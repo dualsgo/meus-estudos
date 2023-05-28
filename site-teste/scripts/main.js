@@ -18,16 +18,25 @@ myImage.onclick = () => { // () => é uma função de seta atribuída à proprie
 let myButton = document.querySelector("button"); // Selecionamos o elemento button e o armazenamos na variável myButton
 let myHeading = document.querySelector("h1"); // Selecionamos o elemento h1 e o armazenamos na variável myHeading
 
-function setUserName() { // Criamos uma função chamada setUserName
-    const myName = prompt("Por favor digite o seu nome."); // A função prompt() exibe uma caixa de diálogo que solicita ao usuário a entrada de dados. O valor que o usuário insere é armazenado na variável myName
-    if (!myName) { // Verificamos se a variável myName não contém um valor. A Expressão lógica ! (não) verifica se o valor de uma variável é falso. Nesse caso, verifica se myName é nulo por meio do valor booleano false. Isso ocorre porque o método prompt() retorna o valor nulo se o usuário clicar no botão Cancelar da caixa de diálogo
-        setUserName(); // Se não contiver, chamamos a função setUserName() novamente para que o usuário insira um valor
-    } else { // Caso contrário, se contiver um valor
-        localStorage.setItem("name", myName); // Chamamos o método setItem() do objeto localStorage, que permite que nós armazenemos dados no navegador e os recuperemos posteriormente. Os dados são armazenados permanentemente, mesmo após o navegador ser fechado e reaberto nos parametros "name" e myName que significam que o nome do item é "name" e o valor é a variável myName. Isso cria uma espécie de arquivo de armazenamento chave-valor no navegador que pode ser usado para armazenar dados no futuro. Se quiser alterar o valor de um dado armazenado, basta chamar o método setItem() novamente com o mesmo nome da chave. Como o localStorage é específico para o domínio, todos os sites armazenam dados separadamente.
-        myHeading.textContent = `Mozilla é legal, ${myName}`; // Alteramos o valor da propriedade textContent do elemento myHeading para "Mozilla é legal, " concatenado com o valor da variável myName
-    }
-}
 
-myButton.onclick = () => {
-    setUserName();
-}; // Criamos uma função anônima atribuída à propriedade onclick do elemento myButton (button). Isso significa que quando o elemento myButton (button) for clicado, a função será executada. A função chama a função setUserName() definida anteriormente e executa o código dentro dela. Com isso, o usuário pode alterar o nome que é armazenado no navegador
+function setUserName() { // Criamos uma função chamada setUserName()
+    let myName = prompt('Entre com o seu nome.'); // A função usa a função prompt() para solicitar ao usuário que insira um nome. O valor do nome é armazenado na variável myName por meio da função prompt()
+    if(!myName) { // A função verifica se o nome é nulo. Se for, a função setUserName() é executada novamente. Isso ocorre se o usuário clicar em Cancelar.
+      setUserName(); // Se o nome não for nulo, a função setUserName() usa a função setItem() do objeto localStorage para criar um item chamado 'name' e definir seu valor como o nome inserido pelo usuário por meio da função prompt()
+    } else { // Caso contrário
+      localStorage.setItem('name', myName); // A função setUserName() define o valor do cabeçalho h1 para uma string, mais o nome definido pelo usuário por meio da função prompt()
+      myHeading.innerHTML = 'Mozilla is cool, ' + myName;  // myHeading é o elemento h1 que criamos anteriormente. A propriedade innerHTML define o conteúdo HTML de qualquer elemento. Aqui, estamos definindo-o como uma string composta da frase 'Mozilla is cool, ' e do nome definido pelo usuário.
+    } 
+  }
+  
+  if(!localStorage.getItem('name')) { // A função verifica se já existe um item 'name' definido:
+    setUserName(); // Se não existir, a função setUserName() é executada para criar o item e definir o nome do usuário.
+  } else { // Caso contrário
+    let storedName = localStorage.getItem('name'); // Se já existir, a função getItem() do objeto localStorage recupera o item 'name' e o armazena na variável storedName
+    myHeading.innerHTML = 'Mozilla is cool, ' + storedName; // De novo, myHeading é o elemento h1 que criamos anteriormente. A propriedade innerHTML define o conteúdo HTML de qualquer elemento. Aqui, estamos definindo-o como uma string composta da frase 'Mozilla is cool, ' e do nome definido pelo usuário.
+  }
+myButton.onclick = () => { // () => é uma função de seta atribuída à propriedade onclick do elemento myButton (button). Isso significa que quando o elemento myButton (button) for clicado, a função será executada
+    setUserName(); // A função setUserName() é executada
+};
+
+//Vimos como usar o JavaScript para alterar o conteúdo HTML de um elemento <h1> quando o usuário clica em um botão, solicitando que ele insira um novo nome e armazenando esse nome no armazenamento local do navegador, para que ele possa ser recuperado e usado posteriormente. Também vimos como usar a API do localStorage para armazenar dados no navegador, recuperá-los posteriormente e verificar se os dados já existem.
