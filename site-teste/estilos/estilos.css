@@ -71,7 +71,7 @@ O quarto valor define a cor base da sombra.*/
 
 img {
   display: block;
-  /* display - isso define o elemento como um bloco, o que significa que ele deve ser renderizado em uma nova linha, e que deve ocupar toda a largura disponível. */
+  /* display - isso define o elemento como um bloco, o que significa que ele ocupa todo o espaço horizontal disponível. */
   margin: 0 auto;
-  /* margem - isso centraliza a imagem */
+  /* margin - isso centraliza a imagem */
 }
