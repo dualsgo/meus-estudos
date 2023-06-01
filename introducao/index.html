@@ -11,11 +11,23 @@
 <body>
 
     <!-- Anatomia de um elemento html. 1. Tag de abertura, contendo o nome do elemento envolvido por parênteses angulares. 2. Conteúdo (geralmente texto) 3. Tag de fechamento, envolvido por parênteses angulares e uma barra antes do nome -->
-    <p>Meu gato é mal-humorado</p>
+
+    <p><!-- Tag de abertura -->
+        Meu gato é mal-humorado <!-- Conteúdo -->
+    </p><!-- Tag de fechamento -->
 
     <!-- Elementos podem ser aninhados. -->
-    <p>Meu gato é <em>muito</em> mal-humorado.</p>
+
+    <p> <!--Abertura Tag pai-->
+    Meu gato é  
+        <em> <!-- Abertura Tag filha-->
+            muito 
+        </em><!-- Fechamento Tag filha-->
+     mal-humorado.
+    </p> <!-- Fechamento Tag pai-->
+
     <p>Meu gato é <strong>muito</strong> mal-humorado.</p>
+    <!-- O elemento <strong> é usado para enfatizar o texto, e o navegador geralmente o exibe em negrito. -->
     <!-- Aninhamento incorreto -->
     <p>Meu gato é <strong>muito mal-humorado.</p></strong>
     <!-- Os elementos devem abrir e fechar corretamente para que eles fiquem claramente dentro ou fora do outro. -->
@@ -49,6 +61,26 @@
 
 <!-- O usuário pode inserir texto na caixa de entrada a seguir, pois não contém o atributo disabled -->
 <input type="text">
+
+<!-- Omitindo aspas dos valores dos atributos-->
+
+<a href=https://www.mozilla.org/>site favorito</a> 
+<!-- O valor do atributo href não está entre aspas, mas o navegador ainda consegue entender o que fazer com ele. -->
+<a href=https://www.mozilla.org/ title=The Mozilla homepage>site favorito</a>
+<!-- O valor do atributo title não está entre aspas, e o navegador irá entende que The é o title e Mozzila e homepage são atributos booleanos -->
+
+<!-- Aspas duplas ou simples? -->
+<a href="http://www.example.com">Um link para o exemplo.</a>
+<a href='http://www.example.com'>Um link para o exemplo.</a>
+<!-- Aspas duplas são mais comuns, mas aspas simples também são aceitas. -->
+<!-- O navegador não irá entender o que fazer com o link se misturarmos as aspas.-->
+
+<!-- Se utilizar um tipo de aspas no seu HTML, você pode inserir o outro tipo de aspas no texto, por exemplo, que não ocorrerá erro, desta forma: -->
+<a href="http://www.example.com" title="Isn't this fun?">A link to my example.</a>
+<!-- No entanto, se você quiser incluir aspas, dentro de aspas onde ambas as aspas são do mesmo tipo (aspas simples ou aspas duplas), será necessário usar entidades HTML para as aspas. Por exemplo, isso irá quebrar: -->
+<a href='http://www.example.com' title='Isn't this fun?'>A link to my example.</a>
+<!-- Então você precisa fazer isso: -->
+<a href='http://www.example.com' title='Isn&#39;t this fun?'>A link to my example.</a>
 
 </body>
 
