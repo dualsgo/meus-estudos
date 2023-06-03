@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <!-- O atributo lang é usado para especificar o idioma do conteúdo do documento. O valor do atributo é uma tag de idioma (por exemplo, en para inglês, pt para português, es para espanhol, etc.) ou uma tag de idioma seguida por uma tag de país (por exemplo, pt-BR para português do Brasil, pt-PT para português de Portugal, etc.). -->
+
+<head>
+    <!-- O head de um documento HTML é a parte que não é exibida no navegador da Web quando a página é carregada. o trabalho do cabeçalho é conter metadados sobre o documento -->
+    <meta charset="UTF-8">
+    <!-- O elemento meta é usado para especificar metadados (dados sobre dados) dentro de um documento HTML. O atributo charset especifica o conjunto de caracteres usado pelo documento. -->
+    <!-- O UTF-8 é um formato de codificação de caracteres que pode ser usado para qualquer idioma no mundo. Ele é o formato de codificação de caracteres mais popular atualmente e tem sido usado para a maioria dos sites. -->
+
+    <!-- O name especifica o tipo de elemento meta que é; que tipo de informação contém. O content especifica o conteúdo real do meta. -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- "http-equiv" é um atributo que indica que o valor especificado é equivalente a um cabeçalho HTTP. "X-UA-Compatible" é um cabeçalho HTTP que é usado para definir a versão do modo de documento que o Internet Explorer deve usar para renderizar a página. "content" é o valor associado ao cabeçalho HTTP especificado. No caso dessa linha de código, o valor é "IE=edge", o que significa que a página deve ser renderizada na versão mais recente disponível do Internet Explorer. -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- O elemento meta com o atributo name definido como "viewport" é usado para informar ao navegador que a página da Web deve ser ajustada para corresponder à largura da tela do dispositivo em que está sendo exibida. O atributo content especifica a largura da página. O valor "width=device-width" define a largura da página para seguir a largura da tela do dispositivo (que irá variar dependendo do dispositivo). O valor "initial-scale=1.0" define o nível de zoom inicial quando a página é carregada pela primeira vez pelo navegador. -->
+    <meta name="author" content="Chris Mills">
+    <!-- O elemento meta com o atributo name definido como "author" é usado para especificar o autor do documento. O atributo content especifica o nome do autor. -->
+    <meta name="description"
+        content="A Área de Aprendizagem do MDN tem como objetivo proporcionar iniciantes em Web com tudo o que eles precisam saber para começar a desenvolver sites e aplicativos.">
+    <!-- O elemento meta com o atributo name definido como "description" é usado para fornecer uma breve descrição do documento. O atributo content especifica a descrição. -->
+    <meta name="keywords" content="HTML, CSS, JavaScript, Web, desenvolvimento, iniciantes, tutoriais, aprendizagem">
+    <!-- O elemento meta com o atributo name definido como "keywords" é usado para especificar palavras-chave que descrevem o documento. O atributo content especifica as palavras-chave para os motores de busca para determinar a relevância dessa página usando diferentes termos de pesquisa — Atualmente são ignorados pelos motores de busca, porque os spammers estavam apenas preenchendo a lista de palavras-chave com centenas de palavras-chave, influenciando os resultados -->
+
+    <!-- Para enriquecer ainda mais o design do seu site, você pode adicionar referências a ícones personalizados em seus metadados, e estes serão exibidos em determinados contextos. O mais usado é o favicon (abreviação de "favorites icon", referindo-se ao seu uso nas listas "favoritos" nos navegadores). -->
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <!-- O elemento link é usado para vincular um recurso externo ao documento HTML atual. O atributo rel especifica o tipo de relacionamento entre o documento atual e o documento vinculado. O atributo href especifica o local do documento vinculado. O atributo type especifica o tipo de documento vinculado. -->
+    <link rel="stylesheet" href="style.css">
+    <!-- O elemento <link> sempre vai no cabeçalho do seu documento. Isso requer dois atributos, rel = "stylesheet", que indica que é a folha de estilo do documento e href, que contém o caminho para o arquivo de folha de estilo -->
+
+    <title>Document</title>
+    <!-- O elemento <title> é um metadado que representa o título de todo o document HTML (não o conteúdo do documento). Se você favoritar a página verá o conteúdo <title> preenchido como o nome sugerido do favorito. -->
+
+</head>
+
+<body>
+    <p>Exemplo Japonês:ご飯が熱い</p>
+    <!-- O elemento <script > não precisa ir no cabeçalho; na verdade, muitas vezes é melhor colocá-lo na parte inferior do corpo do documento (antes da tag </body > de fechamento), para garantir que todo o conteúdo HTML tenha sido lido pelo navegador antes de tentar aplicar o JavaScript nele se o JavaScript tentar acessar um elemento que ainda não existe, o navegador gerará um erro. O atributo src indica o caminho do arquivo -->
+    <script src="meu-arquivo-js.js">
+        // O elemento <script> pode parecer um elemento vazio, mas não é, e, portanto, precisa de uma tag de fechamento. Em vez de apontar para um arquivo de script externo, você também pode escolher colocar seu script dentro do elemento <script>. Isso é útil para scripts muito pequenos ou para testar coisas rapidamente.
+    </script>
+
+</body>
+
+</html>
