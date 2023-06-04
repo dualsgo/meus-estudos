@@ -6,11 +6,19 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Introdução ao HTML</title>
+    <style>em, p {
+        border: solid 1px;
+    }</style>
 </head>
 
 <body>
 
-    <!-- Anatomia de um elemento html. 1. Tag de abertura, contendo o nome do elemento envolvido por parênteses angulares. 2. Conteúdo (geralmente texto) 3. Tag de fechamento, envolvido por parênteses angulares e uma barra antes do nome -->
+    <!--
+        Anatomia de um elemento html.
+        1. Tag de abertura, contendo o nome do elemento envolvido por parênteses angulares.
+        2. Conteúdo (geralmente texto)
+        3. Tag de fechamento, envolvido por parênteses angulares e uma barra antes do nome
+    -->
 
     <p><!-- Tag de abertura -->
         Meu gato é mal-humorado <!-- Conteúdo -->
@@ -36,6 +44,8 @@
     <!-- O elemento <em> é inline, então como você pode ver abaixo, os três primeiros elementos ficam na mesma linha uns dos outros sem espaço entre eles -->
     <p>quarto</p><p>quinto</p><p>sexto</p>
     <!-- O <p>, por outro lado, é um elemento em bloco, então cada elemento aparece em uma nova linha, com espaço acima e abaixo de cada um (o espaçamento é devido à estilização CSS padrão que o browser aplica aos parágrafos). -->
+    
+        <!-- Adicionamos estilo para ficar mais claro. Uma borda sólida foi definida nos parágrafos e ênfase. -->
 
         <img src="https://raw.githubusercontent.com/mdn/beginner-html-site/gh-pages/images/firefox-icon.png">
         <!-- Nem todos os elementos seguem o padrão acima de: tag de abertura, conteúdo, tag de fechamento. Alguns elementos consistem apenas em uma única tag, que é geralmente usada para inserir/incorporar algo no documento no lugar em que ele é incluído. Por exemplo, o elemento <img> insere uma imagem em uma página na posição em que ele é incluído. Nota: Elementos vazios são também chamados de void elements. -->
@@ -64,7 +74,7 @@
 
 <!-- Omitindo aspas dos valores dos atributos-->
 
-<a href=https://www.mozilla.org/>site favorito</a> 
+<a href=https://www.mozilla.org>site favorito</a> 
 <!-- O valor do atributo href não está entre aspas, mas o navegador ainda consegue entender o que fazer com ele. -->
 <a href=https://www.mozilla.org/ title=The Mozilla homepage>site favorito</a>
 <!-- O valor do atributo title não está entre aspas, e o navegador irá entende que The é o title e Mozzila e homepage são atributos booleanos -->
