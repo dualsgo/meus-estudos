@@ -1,4 +1,5 @@
-# Introdução a web
+# MDN - Aprendendo Desenvolvimento Web
+## Introdução a web
 ### A internet
 A Internet é uma rede global de computadores interconectados que permite a troca de informações e comunicação entre pessoas e dispositivos em todo o mundo. Ela é um sistema descentralizado e distribuído, formado por uma vasta quantidade de redes locais, regionais e globais.
 
@@ -33,7 +34,9 @@ A padronização da Web foi uma preocupação importante desde o início. Em 199
 Desde sua criação, a World Wide Web se tornou uma parte essencial da vida cotidiana para bilhões de pessoas em todo o mundo. Ela revolucionou a maneira como compartilhamos informações, nos comunicamos, consumimos conteúdo e realizamos transações comerciais. A Web continua a evoluir com o desenvolvimento de novas tecnologias, como o HTML5, CSS3, JavaScript e aplicativos web avançados.
 
 A criação da World Wide Web abriu um mundo de oportunidades e transformou a forma como vivemos e interagimos com a informação. Ela se tornou uma das inovações mais impactantes e influentes da história da tecnologia.
+
 ### Página web e sites
+
   Uma página da web é um documento eletrônico acessível através da internet e visualizado em um navegador da web. Ela contém informações, conteúdo e elementos interativos que são exibidos em um formato HTML (Hypertext Markup Language) interpretado pelo navegador.
 
 Uma página da web pode conter vários elementos, como texto, imagens, vídeos, links, formulários e muito mais. Ela pode ser estática, apresentando conteúdo fixo que não muda, ou dinâmica, exibindo conteúdo que pode ser atualizado ou modificado interativamente.
@@ -73,6 +76,7 @@ A comunicação entre clientes e servidores ocorre por meio do protocolo HTTP (H
 Os conceitos de cliente e servidor são fundamentais na arquitetura da Internet e permitem a comunicação eficiente e a troca de informações entre dispositivos conectados em rede. Eles desempenham papéis complementares para fornecer serviços e recursos aos usuários da Internet.
 
 ### Domínio e hospedagem
+
 Domínio e hospedagem são dois conceitos essenciais relacionados à disponibilização de um site na internet. Vamos entender cada um deles:
 
 1. Domínio:
@@ -90,6 +94,27 @@ Ao contratar um serviço de hospedagem, o provedor de hospedagem fornece os recu
 Geralmente, é necessário associar o domínio registrado à conta de hospedagem para que o site possa ser acessado pelo domínio desejado. Isso envolve a configuração dos registros DNS (Domain Name System) para apontar o domínio para o servidor de hospedagem correto.
 
 Em resumo, o domínio é o endereço exclusivo que identifica um site na internet, enquanto a hospedagem envolve o armazenamento e disponibilização dos arquivos do site em um servidor. Ambos são necessários para tornar um site acessível aos usuários na internet.
+
+###  DNS 
+
+DNS, que significa Domain Name System (Sistema de Nomes de Domínio), é um sistema fundamental na Internet que converte nomes de domínio legíveis para humanos em endereços IP numéricos que os computadores podem entender.
+
+Quando você digita um nome de domínio (por exemplo, www.exemplo.com) em um navegador web, o navegador precisa descobrir o endereço IP associado a esse nome de domínio para que possa se conectar ao servidor que hospeda o site. É aqui que entra o DNS.
+
+O DNS funciona como um enorme diretório distribuído em que os servidores DNS armazenam as informações de mapeamento entre nomes de domínio e endereços IP. Quando você insere um nome de domínio no navegador, o navegador envia uma solicitação de resolução DNS para o servidor DNS mais próximo ou designado.
+
+O servidor DNS começa a procurar no diretório de DNS por informações sobre o nome de domínio. Se o servidor DNS tiver as informações de mapeamento para o nome de domínio solicitado em seu cache, ele retornará o endereço IP correspondente imediatamente. Caso contrário, o servidor DNS iniciará uma série de consultas em outros servidores DNS para encontrar o mapeamento correto.
+
+Essas consultas são feitas em cascata, começando por servidores DNS de nível superior, como os servidores raiz, que possuem informações gerais sobre os domínios de topo (como .com, .org, .net). Em seguida, a consulta é enviada para servidores DNS autoritativos específicos para o domínio em questão, que possuem informações detalhadas sobre o domínio e podem fornecer o endereço IP correto.
+
+Uma vez que o servidor DNS encontre o endereço IP correspondente ao nome de domínio, ele retorna essa informação ao navegador web, que pode então estabelecer a conexão com o servidor web correto e solicitar a página desejada.
+
+O DNS é essencial para a funcionalidade da Internet, permitindo que os usuários acessem sites usando nomes de domínio em vez de ter que memorizar endereços IP complexos. Além disso, o DNS também suporta outros recursos, como registros MX para roteamento de e-mails e registros de serviço para direcionar solicitações para serviços específicos, como servidores de e-mail, servidores de arquivos, entre outros.
+
+É importante destacar que o DNS é um sistema distribuído e altamente redundante, projetado para ser rápido e confiável. A complexidade e a infraestrutura do DNS são mantidas por várias organizações, como a Internet Corporation for Assigned Names and Numbers (ICANN) e outras entidades governamentais e privadas.
+
+Em resumo, o DNS desempenha um papel crucial na tradução de nomes de domínio em endereços IP, permitindo a navegação e a comunicação eficientes na Internet. Sem o DNS, seria muito mais difícil para as pessoas acessarem sites e serviços online usando nomes de domínio amigáveis.
+
 ### Protocolos
   
 TCP/IP, DNS e HTTP são três protocolos fundamentais usados na Internet para facilitar a comunicação e o acesso a recursos. Vamos entender cada um deles:
@@ -145,8 +170,10 @@ Além disso, os navegadores web são constantemente atualizados para melhorar o 
 
 Os navegadores web têm desempenhado um papel essencial no desenvolvimento da Web e na maneira como interagimos com o conteúdo online. Eles facilitam a navegação, a busca por informações, a colaboração e o acesso a uma ampla variedade de serviços e recursos disponíveis na Internet.
 
-## INTRODUÇÃO AO HTML
+## Introdução ao HTML
+
 HTML (HyperText Markup Language) é uma linguagem de marcação usada para estruturar e exibir o conteúdo de uma página da web. É a base fundamental da maioria das páginas da web e é interpretada pelos navegadores da web para renderizar o conteúdo aos usuários.
+
 ### Contextualizando 
 
 A criação do HTML (Hypertext Markup Language) remonta ao início da World Wide Web. O HTML foi desenvolvido por Tim Berners-Lee, um cientista da computação britânico, enquanto trabalhava no CERN (Organização Europeia para a Pesquisa Nuclear) nos anos 1980.
@@ -194,7 +221,7 @@ HTML é considerado uma linguagem de marcação e não uma linguagem de programa
     
 5.  Suporte a multimídia: O HTML inclui elementos para incorporar e exibir diferentes tipos de mídia, como imagens, áudio e vídeo. Isso permite que os desenvolvedores adicionem conteúdo multimídia às páginas da web de forma acessível e interativa.
 
-## Elementos
+### Elementos
 
 Um elemento HTML é composto por várias partes que trabalham juntas para definir sua estrutura e conteúdo. Aqui está a anatomia básica de um elemento HTML:
 
@@ -216,7 +243,7 @@ Neste exemplo, temos um parágrafo `<p>` com o atributo `class` definido como "d
 
 É importante observar que nem todos os elementos HTML têm a mesma estrutura, alguns têm características específicas e podem ter atributos ou comportamentos diferentes. A estrutura e os atributos de um elemento específico podem ser encontrados na documentação oficial do HTML ou em recursos de referência.
 
-## Elementos vazios
+### Elementos vazios
 
 Alguns elementos em HTML são chamados de "elementos vazios" ou "elementos autônomos" (void elements, em inglês) e não possuem uma tag de fechamento correspondente. Esses elementos são usados principalmente para inserir ou incorporar algo no documento, como imagens, quebras de linha, ícones e outros elementos que não precisam de conteúdo adicional.
 
@@ -236,7 +263,7 @@ Os elementos vazios são uma exceção ao padrão geral de ter uma tag de fecham
 
 É importante observar que, em HTML5, a tag de fechamento para elementos vazios é opcional e pode ser omitida em certas circunstâncias. Por exemplo, `<br>` é equivalente a `<br />`. No entanto, em HTML anterior, como XHTML, a tag de fechamento era obrigatória para elementos vazios.
 
-## Atributos
+### Atributos
 
 Os atributos em HTML fornecem informações adicionais sobre um elemento e são usados para especificar suas propriedades, comportamentos ou características específicas. Eles podem ser usados para definir estilos, identificadores, valores de entrada, links, eventos, entre outras finalidades.
 
@@ -260,7 +287,7 @@ Neste exemplo, a classe "destaque" é atribuída ao atributo `class` do parágra
 
 Os atributos em HTML podem variar dependendo do elemento e da funcionalidade desejada. Além disso, alguns atributos têm valores específicos que são restritos a um conjunto de opções definidas. É importante consultar a documentação oficial do HTML ou recursos de referência para conhecer os atributos disponíveis para cada elemento e como usá-los corretamente.
 
-## Atributos booleanos
+### Atributos booleanos
 
 Os atributos booleanos são um tipo especial de atributos em HTML que não possuem um valor atribuído. Em vez disso, a presença do atributo em um elemento já indica sua ativação ou desativação.
 
@@ -282,7 +309,7 @@ Observe que não é necessário fornecer um valor específico para esses atribut
 
 É importante lembrar que nem todos os atributos em HTML são booleanos. Alguns atributos requerem valores específicos para controlar sua funcionalidade. Sempre consulte a documentação oficial do HTML ou recursos de referência para saber quais atributos são booleanos e como usá-los corretamente.
 
-## Aspas nos atributos
+### Aspas nos atributos
 
 Os atributos booleanos são um tipo especial de atributos em HTML que não possuem um valor atribuído. Em vez disso, a presença do atributo em um elemento já indica sua ativação ou desativação.
 
@@ -304,7 +331,7 @@ Observe que não é necessário fornecer um valor específico para esses atribut
 
 É importante lembrar que nem todos os atributos em HTML são booleanos. Alguns atributos requerem valores específicos para controlar sua funcionalidade. Sempre consulte a documentação oficial do HTML ou recursos de referência para saber quais atributos são booleanos e como usá-los corretamente.
 
-## Caracteres especiais - Entidades HTML
+### Caracteres especiais - Entidades HTML
 
 Em HTML, certos caracteres têm significado especial e não podem ser inseridos diretamente no documento, pois são reservados para uso em marcação HTML. Esses caracteres incluem o sinal de menor que (<), o sinal de maior que (>), o sinal de ampersand (&), as aspas duplas (") e o apóstrofo (').
 
@@ -324,7 +351,7 @@ A utilização de entidades HTML garante que os caracteres especiais sejam inter
 
 É importante ressaltar que, em muitos casos, o próprio editor ou framework usado para criar páginas HTML já lida automaticamente com as entidades HTML, substituindo os caracteres especiais pelos códigos de entidade correspondentes. Portanto, em muitos casos, você não precisará se preocupar em escrever as entidades manualmente, já que o software fará a conversão para você.
 
-## Elementos aninhados
+### Elementos aninhados
 
 Em HTML, é possível aninhar elementos dentro de outros elementos, o que significa que você pode colocar elementos dentro de elementos para criar uma hierarquia ou estrutura mais complexa.
 
@@ -346,7 +373,7 @@ Ao aninhar elementos, é importante garantir que eles sejam corretamente abertos
 
 O aninhamento de elementos em HTML permite uma estruturação flexível e granular do conteúdo, possibilitando a criação de layouts e hierarquias complexas para atender às necessidades específicas de uma página da web.
 
-## Comentários HTML
+### Comentários HTML
 
 Comentários em HTML são trechos de texto que podem ser inseridos no código HTML e são ignorados pelo navegador ao renderizar a página. Eles são usados para adicionar anotações, descrições ou explicações sobre o código, tornando-o mais legível e compreensível para os desenvolvedores que estão trabalhando nele.
 
@@ -374,7 +401,7 @@ No primeiro exemplo, temos um comentário em uma única linha que descreve a fun
 
 Os comentários em HTML são uma prática comum para ajudar a documentar e explicar o código, tornando-o mais legível e facilitando a colaboração entre os desenvolvedores. É uma boa prática adicionar comentários significativos e relevantes ao seu código HTML para que outros (ou você mesmo no futuro) possam entender sua lógica e propósito.
 
-## ESTRUTURA DE UM DOCUMENTO
+## Estrutura de um documento HTML
 
 A estrutura básica de um documento HTML consiste em várias partes que fornecem a estrutura e o conteúdo da página. Aqui está a estrutura básica de um documento HTML fornecido automaticamente pelo Visual Studio Code:
 
