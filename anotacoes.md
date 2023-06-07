@@ -1,7 +1,7 @@
 # MDN - Aprendendo Desenvolvimento Web
 ## Introdução a web
 ### A internet
-A Internet é uma rede global de computadores interconectados que permite a troca de informações e comunicação entre pessoas e dispositivos em todo o mundo. Ela é um sistema descentralizado e distribuído, formado por uma vasta quantidade de redes locais, regionais e globais.
+A Internet (O termo "internet" é uma abreviação de "interconnected networks", que em português significa "redes interconectadas".) é uma rede global de computadores interconectados que permite a troca de informações e comunicação entre pessoas e dispositivos em todo o mundo. Ela é um sistema descentralizado e distribuído, formado por uma vasta quantidade de redes locais, regionais e globais.
 
 A história da Internet remonta à década de 1960, quando o Departamento de Defesa dos Estados Unidos desenvolveu uma rede chamada ARPANET (Advanced Research Projects Agency Network). A ARPANET foi a precursora da Internet e foi criada com o objetivo de interconectar computadores em diferentes instituições de pesquisa e acadêmicas.
 
@@ -23,7 +23,7 @@ Em 1989, Berners-Lee propôs a ideia de um sistema hipertexto para interconectar
 
 O HTTP é um protocolo de comunicação que permite a transferência de informações na Web. O HTML é uma linguagem de marcação que permite a estruturação e formatação dos documentos da Web. Juntos, o HTTP e o HTML fornecem a base para a navegação e o acesso aos documentos interconectados.
 
-Em 1991, a primeira página web foi criada por Berners-Lee. Ela continha informações sobre o projeto da Web e serviu como um exemplo prático de como os documentos poderiam ser vinculados e acessados através de hiperlinks. Essa página inicial da Web ainda está disponível online hoje.
+Em 1991, a primeira página web foi criada por Berners-Lee. Ela continha informações sobre o projeto da Web e serviu como um exemplo prático de como os documentos poderiam ser vinculados e acessados através de hiperlinks. Essa página inicial da Web ainda está disponível online hoje. [Clique para acessar](http://info.cern.ch/hypertext/WWW/TheProject.html)
 
 A Web rapidamente ganhou popularidade e começou a se expandir além do ambiente acadêmico. Com o lançamento de navegadores mais amigáveis e acessíveis, como o Mosaic, o Netscape Navigator e o Internet Explorer, a Web se tornou acessível para um público mais amplo.
 
@@ -311,25 +311,39 @@ Observe que não é necessário fornecer um valor específico para esses atribut
 
 ### Aspas nos atributos
 
-Os atributos booleanos são um tipo especial de atributos em HTML que não possuem um valor atribuído. Em vez disso, a presença do atributo em um elemento já indica sua ativação ou desativação.
+No HTML, é possível omitir as aspas dos valores dos atributos em determinadas circunstâncias. No entanto, essa prática não é recomendada e pode levar a problemas de compatibilidade e dificuldades de leitura e manutenção do código.
 
-Ao usar um atributo booleano em um elemento, não é necessário especificar um valor. Se o atributo está presente no elemento, ele é considerado "verdadeiro" ou ativado. Caso contrário, se o atributo está ausente, é considerado "falso" ou desativado.
+Em geral, é recomendado que você sempre use aspas para envolver os valores dos atributos em HTML. As aspas podem ser simples ('') ou duplas (""). Elas ajudam a delimitar claramente o valor do atributo e evitam conflitos com caracteres especiais ou espaços em branco.
 
-Aqui estão alguns exemplos comuns de atributos booleanos:
+Veja um exemplo de uso adequado das aspas nos valores dos atributos:
 
-1. `disabled`: Desativa um elemento, como um botão ou campo de entrada. Por exemplo: `<input type="text" disabled>`
+```html
+<img src="imagem.jpg" alt="Descrição da imagem">
+<a href="https://www.exemplo.com">Link para exemplo</a>
+<input type="text" placeholder="Digite seu nome">
+```
 
-2. `readonly`: Torna um campo de entrada apenas para leitura, impedindo que os usuários o modifiquem. Por exemplo: `<input type="text" readonly>`
+No exemplo acima, todos os valores dos atributos estão entre aspas, o que torna o código mais legível e evita possíveis erros.
 
-3. `required`: Indica que um campo de entrada é obrigatório e não pode ser enviado vazio em um formulário. Por exemplo: `<input type="text" required>`
+Embora seja possível omitir as aspas em determinados casos, como quando o valor do atributo não contém espaços ou caracteres especiais, é uma prática recomendada sempre incluir as aspas para garantir a consistência e a legibilidade do código HTML.
 
-4. `checked`: Marca uma caixa de seleção ou botão de opção como selecionado por padrão. Por exemplo: `<input type="checkbox" checked>`
+No caso em que você deseja incluir aspas dentro de um valor de atributo que já está entre aspas do mesmo tipo, é necessário usar entidades HTML para representar as aspas adicionais. Isso ocorre porque, se você simplesmente inserir aspas adicionais dentro das aspas existentes, o código ficará malformado e causará erros.
 
-5. `selected`: Seleciona uma opção em um menu suspenso (select). Por exemplo: `<option value="1" selected>Opção 1</option>`
+Por exemplo, para incluir aspas dentro de um valor de atributo entre aspas duplas, você pode usar a entidade HTML `&quot;`:
 
-Observe que não é necessário fornecer um valor específico para esses atributos booleanos. A presença do atributo no elemento já indica que ele está ativado.
+```html
+<a href="http://www.example.com" title="Isn&apos;t this fun?">A link to my example.</a>
+```
 
-É importante lembrar que nem todos os atributos em HTML são booleanos. Alguns atributos requerem valores específicos para controlar sua funcionalidade. Sempre consulte a documentação oficial do HTML ou recursos de referência para saber quais atributos são booleanos e como usá-los corretamente.
+Nesse caso, a entidade `&apos;` é usada para representar a aspa simples, para evitar conflitos com as aspas duplas que delimitam o valor do atributo `title`.
+
+Da mesma forma, se você estiver usando aspas simples para delimitar um valor de atributo, pode usar a entidade `&quot;` para representar as aspas duplas adicionais:
+
+```html
+<a href='http://www.example.com' title='This is a &quot;fun&quot; example.'>A link to my example.</a>
+```
+
+Dessa forma, você pode incluir corretamente aspas adicionais dentro de valores de atributos sem causar erros de sintaxe no seu código HTML.
 
 ### Caracteres especiais - Entidades HTML
 
@@ -610,3 +624,163 @@ Ao definir um título significativo e descritivo para a página usando o element
 É uma boa prática incluir o elemento `<title>` em todos os seus documentos HTML para fornecer informações claras e concisas sobre o conteúdo da página, ajudando os usuários a identificar e navegar pela página com facilidade.
 
 Portanto, ao utilizar o elemento `<title>` corretamente, você está fornecendo um metadado essencial para a identificação e organização da página em navegadores, guias e favoritos, tornando a experiência de navegação mais eficiente e amigável para os usuários.
+
+## Fundamentos de texto
+
+O uso adequado da estrutura e organização do conteúdo em um documento HTML tem um impacto significativo na experiência de leitura dos usuários. A estruturação adequada não apenas facilita a compreensão e a navegação do conteúdo, mas também torna a leitura mais agradável e eficiente. Alguns benefícios do conteúdo estruturado incluem:
+
+1. Legibilidade: Uma estrutura clara e organizada facilita a leitura e compreensão do texto. Os usuários podem percorrer o conteúdo de forma mais eficiente e extrair informações relevantes com mais facilidade.
+
+2. Escaneabilidade: Com a estrutura adequada, os usuários podem rapidamente escanear a página em busca de informações específicas. Os cabeçalhos, parágrafos, listas e outros elementos ajudam a identificar os pontos-chave do conteúdo.
+
+3. Hierarquia visual: Os cabeçalhos em diferentes níveis criam uma hierarquia visual, indicando a importância e a organização dos tópicos. Isso permite que os usuários identifiquem rapidamente as seções relevantes e naveguem pelo conteúdo de acordo com seus interesses.
+
+4. Acessibilidade: Uma estrutura bem definida beneficia os usuários com necessidades especiais, como pessoas que utilizam leitores de tela. Os leitores de tela podem interpretar a estrutura do conteúdo e fornecer uma experiência de leitura mais acessível.
+
+5. SEO (Otimização para mecanismos de busca): Os motores de busca utilizam a estrutura do conteúdo para indexar e classificar as páginas. O uso correto dos cabeçalhos e a organização adequada do conteúdo podem melhorar a visibilidade e a relevância do seu site nos resultados de pesquisa.
+
+Portanto, ao desenvolver conteúdo em HTML, é essencial considerar a estrutura e a organização adequadas para proporcionar uma experiência de leitura agradável, fácil de entender e acessível aos usuários.
+### Semântica
+
+A semântica em HTML refere-se ao uso adequado e significativo dos elementos HTML para descrever a estrutura e o significado do conteúdo de uma página da web. É a prática de escolher os elementos HTML corretos que melhor representam o significado e a função do conteúdo, em vez de usar elementos apenas para estilização visual.
+
+Aqui estão algumas razões pelas quais a semântica em HTML é importante:
+
+1. Acessibilidade: Uma estrutura semântica ajuda as tecnologias assistivas, como leitores de tela, a entenderem e interpretarem corretamente o conteúdo. Isso torna o conteúdo mais acessível para pessoas com deficiências visuais ou outros tipos de necessidades especiais.
+
+2. SEO (Otimização para mecanismos de busca): Os motores de busca analisam a estrutura semântica do HTML para entender melhor o conteúdo de uma página. Usar os elementos HTML corretos pode ajudar a melhorar a indexação e a classificação do conteúdo nos resultados de pesquisa.
+
+3. Manutenção e leitura do código: Um código HTML semântico é mais legível e compreensível para desenvolvedores e equipes de manutenção. Isso facilita a colaboração, a depuração e a atualização do código no futuro.
+
+Aqui estão alguns exemplos de elementos HTML semânticos comuns:
+
+- `<header>`: Representa a seção de cabeçalho da página ou de uma seção específica.
+- `<nav>`: Representa uma seção de navegação.
+- `<article>`: Representa um conteúdo independente que pode ser distribuído ou reutilizado separadamente.
+- `<section>`: Representa uma seção temática ou agrupamento de conteúdo relacionado.
+- `<aside>`: Representa um conteúdo relacionado ou complementar ao conteúdo principal.
+- `<footer>`: Representa a seção de rodapé da página ou de uma seção específica.
+
+Ao utilizar esses elementos e outros elementos semânticos apropriados, você pode transmitir o significado e a estrutura do seu conteúdo de forma mais clara e eficaz. A semântica em HTML contribui para uma melhor experiência de usuário, acessibilidade e otimização para mecanismos de busca.
+
+### Cabeçalhos
+
+Os cabeçalhos, também conhecidos como heading tags em HTML, são elementos usados para definir os títulos e subtítulos de uma página. Eles são importantes para estruturar o conteúdo e fornecer uma hierarquia clara e organizada.
+
+Em HTML, existem seis níveis de cabeçalhos, que vão de `<h1>` a `<h6>`, sendo `<h1>` o nível mais alto de importância e `<h6>` o nível mais baixo. Aqui estão algumas características importantes dos cabeçalhos:
+
+1. `<h1>`: É usado para o título principal da página e deve ser único em cada página. Geralmente, é o título mais importante e atrai a atenção do leitor.
+
+2. `<h2>`, `<h3>`, `<h4>`, `<h5>`, `<h6>`: Esses são usados para títulos e subtítulos secundários em ordem decrescente de importância. O `<h2>` é o segundo nível mais importante e assim por diante. Eles devem ser usados de forma hierárquica e consistente para estruturar o conteúdo.
+
+3. Hierarquia: É essencial usar os cabeçalhos na ordem correta, sem pular níveis. Por exemplo, não é recomendado usar `<h3>` após um `<h2>` sem um `<h3>` intermediário. Isso pode causar confusão na leitura e interpretação do conteúdo.
+
+4. Significado semântico: Além de fornecer uma estrutura visual, os cabeçalhos têm um significado semântico. Os motores de busca e tecnologias assistivas podem interpretar a estrutura dos cabeçalhos para melhorar a acessibilidade e a indexação do conteúdo.
+
+5. Estilo visual: Os cabeçalhos têm estilos padrão associados a eles, mas é comum aplicar estilos personalizados usando CSS para adequar-se ao design do site. No entanto, é importante manter a consistência visual em todo o site para uma experiência de usuário coesa.
+
+Ao usar cabeçalhos, é recomendado seguir as melhores práticas:
+
+- Use apenas um `<h1>` por página para o título principal.
+- Siga a hierarquia correta ao usar os outros níveis de cabeçalho.
+- Limite o uso de cabeçalhos a um máximo de três por página, a menos que seja absolutamente necessário usar mais.
+- Garanta que o conteúdo dentro de cada cabeçalho seja relevante e esteja relacionado ao tópico do cabeçalho.
+
+Usar cabeçalhos apropriados não apenas melhora a estrutura e a legibilidade do seu conteúdo, mas também ajuda os usuários a navegarem e compreenderem o conteúdo de forma mais eficiente.
+
+### Listas
+
+As listas em HTML são usadas para organizar e estruturar itens relacionados. Existem três tipos principais de listas em HTML: listas ordenadas (`<ol>`), listas não ordenadas (`<ul>`) e listas de definição (`<dl>`).
+
+1. Listas ordenadas (`<ol>`):
+   - Uma lista ordenada é usada para criar uma lista numerada, onde os itens são apresentados em uma sequência específica.
+   - Os itens da lista são definidos com o elemento `<li>` (item da lista) dentro do elemento `<ol>`.
+   - Por padrão, os itens da lista são numerados automaticamente, começando em 1. Você também pode especificar o atributo `start` para definir um valor inicial diferente.
+
+Exemplo de uma lista ordenada:
+```html
+<ol>
+  <li>Item 1</li>
+  <li>Item 2</li>
+  <li>Item 3</li>
+</ol>
+```
+
+2. Listas não ordenadas (`<ul>`):
+   - Uma lista não ordenada é usada para criar uma lista de itens com pontos ou marcadores.
+   - Os itens da lista são definidos com o elemento `<li>` (item da lista) dentro do elemento `<ul>`.
+   - Por padrão, os itens da lista são exibidos com marcadores, mas você pode alterar o estilo usando CSS.
+
+Exemplo de uma lista não ordenada:
+```html
+<ul>
+  <li>Item 1</li>
+  <li>Item 2</li>
+  <li>Item 3</li>
+</ul>
+```
+
+3. Listas de definição (`<dl>`):
+   - Uma lista de definição é usada para apresentar termos (definições) em pares.
+   - Os termos são definidos com o elemento `<dt>` (termo) e as definições são definidas com o elemento `<dd>` (definição) dentro do elemento `<dl>`.
+   - Não há uma formatação padrão para listas de definição, mas você pode estilizá-las usando CSS.
+
+Exemplo de uma lista de definição:
+```html
+<dl>
+  <dt>Termo 1</dt>
+  <dd>Definição 1</dd>
+  <dt>Termo 2</dt>
+  <dd>Definição 2</dd>
+  <dt>Termo 3</dt>
+  <dd>Definição 3</dd>
+</dl>
+```
+
+As listas em HTML são úteis para organizar informações em uma estrutura clara e lógica. Elas podem ser combinadas e aninhadas para criar estruturas mais complexas, dependendo das necessidades do seu conteúdo. Lembre-se de escolher o tipo de lista adequado com base na natureza dos seus itens e do estilo visual que você deseja aplicar.
+
+As listas em HTML podem ser aninhadas, ou seja, você pode colocar uma lista dentro de outra lista. Isso é útil quando você precisa criar uma estrutura de listas hierárquicas ou listas com subitens.
+
+Aqui está um exemplo de como aninhar listas não ordenadas:
+
+```html
+<ul>
+  <li>Item 1</li>
+  <li>Item 2
+    <ul>
+      <li>Subitem 2.1</li>
+      <li>Subitem 2.2</li>
+      <li>Subitem 2.3</li>
+    </ul>
+  </li>
+  <li>Item 3</li>
+</ul>
+```
+
+Neste exemplo, a lista externa `<ul>` contém três itens, sendo o segundo item uma lista interna aninhada dentro do `<li>` correspondente. Os subitens são definidos como `<li>` dentro da lista interna `<ul>`. Isso cria uma estrutura de lista com subitens.
+
+Você também pode aninhar listas ordenadas ou listas de definição da mesma maneira, substituindo os elementos `<ul>` pelos elementos correspondentes `<ol>` ou `<dl>`, e os elementos `<li>` pelos elementos `<li>`, `<dt>` e `<dd>`, respectivamente.
+
+A aninhamento de listas permite criar estruturas mais complexas e hierárquicas para organizar informações de maneira mais detalhada. No entanto, é importante garantir que a estrutura aninhada seja consistente e lógica para que os leitores e motores de busca possam interpretar corretamente o conteúdo.
+
+### Ênfase e importância
+
+Na linguagem HTML, podemos usar os elementos `<em>` e `<strong>` para enfatizar e marcar a importância de determinado conteúdo textual. Aqui está uma explicação sobre cada um deles:
+
+1. Ênfase - `<em>`:
+   - O elemento `<em>` é usado para marcar ênfase em um trecho de texto.
+   - Por padrão, os navegadores costumam exibir o texto em itálico quando envolvido por `<em>`, mas isso pode ser alterado usando CSS para estilizar o texto de acordo com as preferências de design.
+   - O uso de `<em>` indica que o texto deve ser enfatizado de alguma forma, destacando-o em relação ao restante do conteúdo.
+   - Por exemplo, no código `<p>Eu estou <em>feliz</em> você não está <em>atrasado</em>.</p>`, as palavras "feliz" e "atrasado" são enfatizadas.
+
+2. Importância - `<strong>`:
+   - O elemento `<strong>` é usado para marcar um trecho de texto como importante.
+   - Por padrão, os navegadores geralmente exibem o texto em negrito quando envolvido por `<strong>`, mas assim como com `<em>`, isso pode ser modificado usando CSS.
+   - O uso de `<strong>` indica que o texto tem um significado ou relevância especial dentro do contexto.
+   - Por exemplo, no código `<p>Este líquido é <strong>altamente tóxico</strong>.</p>`, a frase "altamente tóxico" é marcada como importante.
+
+3. Ênfase e importância combinados:
+   - É possível combinar os elementos `<em>` e `<strong>` para marcar um trecho de texto como enfatizado e importante ao mesmo tempo.
+   - Por exemplo, no código `<p>Este líquido é <strong>altamente tóxico</strong> - Se você beber, <strong>você pode <em>morrer</em></strong>.</p>`, a frase "altamente tóxico" é enfatizada e marcada como importante, enquanto a palavra "morrer" dentro dessa frase recebe um ênfase adicional.
+
+Lembrando que a formatação visual padrão desses elementos pode variar de navegador para navegador, mas é recomendado utilizar CSS para estilizar o texto conforme as necessidades de design do seu site. A semântica fornecida pelos elementos `<em>` e `<strong>` é mais importante do que sua aparência visual.
