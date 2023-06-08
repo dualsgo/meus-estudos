@@ -784,3 +784,202 @@ Na linguagem HTML, podemos usar os elementos `<em>` e `<strong>` para enfatizar 
    - Por exemplo, no código `<p>Este líquido é <strong>altamente tóxico</strong> - Se você beber, <strong>você pode <em>morrer</em></strong>.</p>`, a frase "altamente tóxico" é enfatizada e marcada como importante, enquanto a palavra "morrer" dentro dessa frase recebe um ênfase adicional.
 
 Lembrando que a formatação visual padrão desses elementos pode variar de navegador para navegador, mas é recomendado utilizar CSS para estilizar o texto conforme as necessidades de design do seu site. A semântica fornecida pelos elementos `<em>` e `<strong>` é mais importante do que sua aparência visual.
+
+## Criando hiperlinks
+
+Em HTML, um link é criado usando a tag `<a>` (âncora), que é aberta com `<a>` e fechada com `</a>`. O texto ou conteúdo que você deseja transformar em um link é colocado entre as tags de abertura e fechamento da âncora.
+
+Aqui está a estrutura básica de um link em HTML:
+
+`<a href="URL">Texto do link</a>` 
+
+O atributo `href` (hiperreferência) é adicionado à tag de abertura da âncora e é usado para especificar o destino do link. O valor do atributo `href` deve ser uma URL (Uniform Resource Locator) ou um caminho de arquivo local para o qual você deseja que o link aponte. Por exemplo, para criar um link para a página inicial do Google, você pode usar:
+
+htmlCopy code
+
+`<a href="https://www.google.com">Ir para o Google</a>` 
+
+Quando um usuário clica nesse link, o navegador abre uma nova página ou altera a URL atual para a URL especificada no atributo `href`.
+
+Além disso, existem outros atributos opcionais que você pode usar em uma âncora para controlar o comportamento do link, como `target`, `title`, `rel`, entre outros. Esses atributos permitem que você especifique se o link deve ser aberto em uma nova guia ou janela, forneça dicas de ferramentas (tooltips) e estabeleça relações com outros documentos, respectivamente.
+
+No entanto, o atributo `href` é o atributo mais essencial para criar um link funcional em HTML.
+
+#### Atributos 
+
+O atributo `title` pode ser adicionado aos links para fornecer informações adicionais sobre o link. O texto especificado no atributo `title` é exibido como uma dica de ferramenta quando o usuário passa o mouse sobre o link.
+
+No entanto, é importante notar que o uso exclusivo do atributo `title` pode ser problemático para acessibilidade, uma vez que as pessoas que dependem de teclado ou touchscreen para navegar em páginas web não têm a mesma interação de passar o mouse sobre o link para visualizar a dica de ferramenta.
+
+Portanto, se as informações fornecidas no atributo `title` são cruciais para a usabilidade da página, é recomendável apresentá-las de uma maneira que seja acessível a todos os usuários. Uma abordagem alternativa é incluir essas informações diretamente no texto do link, para que todos os usuários possam acessá-las.
+
+Por exemplo, em vez de usar apenas a dica de ferramenta do `title`:
+
+```html
+<a href="https://www.example.com" title="Informações adicionais">Meu link</a>
+```
+
+Você pode incluir as informações diretamente no texto do link:
+
+```html
+<a href="https://www.example.com">Meu link - Informações adicionais</a>
+```
+
+Dessa forma, as informações importantes são apresentadas de maneira acessível a todos os usuários, sem depender da interação de passar o mouse sobre o link.
+### Imagens
+Se você tiver uma imagem e desejar transformá-la em um link, pode fazer isso colocando a tag `<img>` (imagem) entre as tags `<a>` (âncora). Isso permite que a imagem se torne clicável e redirecione o usuário para outra página quando clicada.
+
+Aqui está um exemplo de como fazer isso:
+
+```html
+<a href="https://www.example.com">
+  <img src="caminho_da_imagem.png" alt="Descrição da imagem">
+</a>
+```
+
+Nesse exemplo, a tag `<a>` envolve a tag `<img>`, e o atributo `href` especifica o destino do link. O atributo `src` dentro da tag `<img>` indica o caminho da imagem que você deseja exibir, e o atributo `alt` fornece uma descrição alternativa da imagem, que é exibida caso a imagem não possa ser carregada ou para fins de acessibilidade.
+
+Ao clicar na imagem, o navegador redirecionará o usuário para a URL especificada no atributo `href`.
+
+Lembre-se de substituir "caminho_da_imagem.png" pelo caminho real da sua imagem e "https://www.example.com" pela URL para a qual deseja que o link aponte.
+
+## URL
+
+Um URL (Uniform Resource Locator) é de fato uma sequência de texto que especifica a localização de um recurso na Web. Ele fornece a localização precisa de um arquivo, página da web ou qualquer outro recurso na internet.
+
+Um URL é composto por várias partes:
+
+1. Protocolo: É o esquema utilizado para acessar o recurso. Exemplos comuns incluem HTTP (HyperText Transfer Protocol), HTTPS (HTTP Secure), FTP (File Transfer Protocol) e muitos outros.
+
+2. Domínio: É o nome do servidor que hospeda o recurso. Por exemplo, no URL "https://www.mozilla.org/en-US/", o domínio é "mozilla.org".
+
+3. Caminho: É a parte do URL que especifica a localização do recurso em relação à estrutura de arquivos do servidor. O caminho pode incluir pastas, subpastas e o nome do arquivo. No exemplo acima, o caminho é "/en-US/".
+
+4. Parâmetros: Podem ser adicionados ao final do URL para fornecer informações extras para o servidor. Eles são separados do resto do URL por um ponto de interrogação (?) e podem incluir um ou mais pares de chave-valor. Por exemplo, "https://www.example.com/search?q=term" tem um parâmetro "q" com o valor "term".
+
+5. Fragmento: É usado para especificar uma seção específica do recurso que está sendo referenciado. É indicado por um sinal de hash (#) seguido de um identificador. Por exemplo, em "https://www.example.com/#section2", o fragmento é "section2".
+
+Ao combinar essas partes, um URL completo é formado, permitindo que os navegadores e servidores localizem e acessem o recurso desejado na Web.
+
+É importante notar que os caminhos nos URLs nem sempre correspondem diretamente à estrutura de arquivos do servidor. Os servidores podem fazer uso de reescrita de URLs e redirecionamentos para mapear os caminhos especificados nos URLs para os recursos reais em seus sistemas de arquivos.
+
+### Fragmentos de documento
+
+Você pode usar fragmentos de documento para vincular a partes específicas de um documento HTML. Aqui está uma explicação detalhada sobre como fazer isso:
+
+1. Atribuindo um ID ao elemento alvo:
+   Para vincular a uma parte específica do documento, você precisa atribuir um atributo "id" ao elemento HTML ao qual deseja vincular. No exemplo dado, o elemento `<h2>` é atribuído o ID "Mailing_address" usando o atributo "id":
+
+   ```html
+   <h2 id="Mailing_address">Endereço de correspondência</h2>
+   ```
+
+   Agora você tem um ponto de ancoragem com o ID "Mailing_address" ao qual pode se referir.
+
+2. Criando um link para o fragmento de documento:
+   Para criar um link que direcione para o fragmento de documento específico, você precisa incluir o ID no URL do link, precedido por um símbolo de hashtag (#). No exemplo fornecido, o link é criado da seguinte forma:
+
+   ```html
+   <p>
+     Quer escrever uma carta? Use nosso
+     <a href="contacts.html#Mailing_address">endereço de correspondência</a>.
+   </p>
+   ```
+
+   Quando o link é clicado, o navegador irá rolar automaticamente até o elemento com o ID "Mailing_address" dentro do documento "contacts.html".
+
+3. Vinculando a outros fragmentos do mesmo documento:
+   Além de vincular a outro documento, você também pode vincular a outros fragmentos do mesmo documento usando apenas a referência de fragmento do documento. No exemplo dado, o link é criado da seguinte forma:
+
+   ```html
+   <p>
+     O <a href="#Mailing_address">endereço postal da empresa</a> pode ser
+     encontrado na parte inferior desta página.
+   </p>
+   ```
+
+   Quando o link é clicado, o navegador rolará até o elemento com o ID "Mailing_address" dentro do mesmo documento em que o link está localizado.
+
+Essa técnica é útil para criar navegação interna em páginas longas, permitindo que os usuários saltem diretamente para seções específicas do conteúdo.
+
+### URL absoluto x relativo
+
+Um URL absoluto é um URL completo que inclui o protocolo (por exemplo, HTTP, HTTPS), o nome de domínio e o caminho completo para o recurso desejado. Ele aponta para um local específico na web, independentemente de onde o URL é usado. Por exemplo, "http://www.exemplo.com/projeto/index.html" é um URL absoluto que aponta para uma página específica em um servidor web.
+
+Por outro lado, um URL relativo é relativo ao local do arquivo em que está sendo usado. Ele aponta para um local relativo ao arquivo de origem. Em vez de fornecer o caminho completo, um URL relativo especifica o caminho relativo em relação ao arquivo de origem. Por exemplo, se você deseja vincular um arquivo PDF chamado "project-brief.pdf" no mesmo diretório que o arquivo de origem, você pode usar um URL relativo simplesmente especificando o nome do arquivo: "project-brief.pdf". Se o arquivo PDF estiver em um subdiretório chamado "pdfs", o URL relativo seria "pdfs/project-brief.pdf".
+
+A principal diferença é que um URL absoluto sempre aponta para o mesmo local, independentemente de onde é usado, enquanto um URL relativo aponta para diferentes locais dependendo da localização real do arquivo de origem.
+
+O uso de URLs absolutos ou relativos depende do contexto e das necessidades do seu projeto. URLs absolutos são úteis quando você deseja especificar um local exato e não quer depender da estrutura de diretórios. URLs relativos são úteis quando você deseja vincular a recursos relacionados a partir do local atual e deseja manter a portabilidade do seu projeto, facilitando a reorganização e o movimento dos arquivos.
+
+### Boas práticas
+
+1. Use palavras-chave claras: Ao criar um link, é importante usar palavras-chave descritivas que indiquem claramente o conteúdo do link. Isso ajuda os usuários de leitores de tela, os motores de busca e os usuários em geral a entender o contexto do link.
+
+Exemplo:
+```html
+<p><a href="https://firefox.com/">Baixe o Firefox</a></p>
+```
+
+2. Evite textos genéricos ou irrelevantes: Evite usar textos genéricos como "clique aqui" ou "link" para descrever um link. Esses textos não fornecem informações úteis e podem ser confusos. Os usuários já sabem que estão lidando com um link devido à formatação visual específica.
+
+Exemplo incorreto:
+```html
+<p><a href="https://firefox.com/">clique aqui</a> para baixar o Firefox</p>
+```
+
+3. Não repita o URL no texto do link: Evite repetir o URL completo como parte do texto do link. Isso pode tornar o link visualmente poluído e difícil de ler.
+
+4. Mantenha o rótulo do link curto: É recomendável manter o texto do link o mais curto possível. Links longos podem ser irritantes para os usuários de leitores de tela, que precisam ouvir o texto completo do link.
+
+5. Use links relativos sempre que possível: Quando você está vinculando a recursos dentro do mesmo site, é uma boa prática usar URLs relativos em vez de URLs absolutos. URLs relativos são mais curtos, facilitam a manutenção do código e são mais eficientes em termos de desempenho.
+
+6. Vincule-se a recursos não HTML com clareza: Ao vincular a recursos que não sejam páginas HTML, como arquivos para download, vídeos ou jogos, é importante fornecer informações claras sobre o que é esperado quando o link é clicado. Isso ajuda a evitar surpresas indesejadas para os usuários.
+
+Exemplo:
+```html
+<p><a href="http://www.example.com/large-report.pdf">Baixe o relatório de vendas (PDF, 10MB)</a></p>
+```
+
+7. Use o atributo "download" para downloads: Ao vincular a um arquivo para download, você pode usar o atributo "download" para especificar um nome de arquivo padrão para o download. Isso ajuda os usuários a identificar o arquivo que está sendo baixado.
+
+Exemplo:
+```html
+<a href="https://download.mozilla.org/?product=firefox-39.0-SSL&os=win&lang=en-US" download="firefox-39-installer.exe">Faça o download do Firefox 39 para Windows</a>
+```
+
+Seguir essas práticas recomendadas ajudará a melhorar a usabilidade e acessibilidade dos links em suas páginas da web.
+
+### Links de email
+
+É possível criar links ou botões que abram uma nova mensagem de e-mail de saída quando clicados. Isso é feito usando o elemento `<a>` e a estrutura de URL `mailto:`.
+
+Na forma mais simples, um link `mailto:` contém apenas o endereço de e-mail do destinatário. Por exemplo:
+
+```html
+<a href="mailto:nowhere@mozilla.org">Enviar email para nenhum lugar</a>
+```
+
+Isso resulta em um link que se parece com isso: "Enviar e-mail para lugar nenhum". Quando o usuário clica nesse link, uma nova janela ou guia de e-mail será aberta no aplicativo de e-mail padrão do usuário, com o destinatário preenchido com o endereço de e-mail especificado.
+
+Você também pode fornecer informações adicionais, como o campo "cc" (com cópia), "bcc" (cópia oculta), "assunto" e "corpo" do e-mail. Esses campos são especificados como termos de consulta no URL `mailto:`.
+
+Aqui está um exemplo que inclui os campos cc, bcc, assunto e corpo:
+
+```html
+<a href="mailto:nowhere@mozilla.org?cc=name2@rapidtables.com&bcc=name3@rapidtables.com&amp;subject=The%20subject%20of%20the%20email&amp;body=The%20body%20of%20the%20email">
+  Aqui está um exemplo, incluindo um cc, bcc, assunto e corpo
+</a>
+```
+
+Observe que os valores de cada campo devem ser codificados por URL, substituindo caracteres não imprimíveis e espaços por sequências de escape com percentuais. O caractere de ponto de interrogação `?` é usado para separar o URL principal dos valores do campo, e o caractere `&` é usado para separar cada campo no URL `mailto:`.
+
+Aqui estão alguns outros exemplos de URLs de `mailto`:
+
+- `mailto:`
+- `mailto:nowhere@mozilla.org`
+- `mailto:nowhere@mozilla.org,nobody@mozilla.org`
+- `mailto:nowhere@mozilla.org?cc=nobody@mozilla.org`
+- `mailto:nowhere@mozilla.org?cc=nobody@mozilla.org&subject=This%20is%20the%20subject`
+
+Esses links `mailto` permitem que os usuários cliquem para enviar e-mails ou compartilhem informações diretamente usando seus aplicativos de e-mail preferidos.
