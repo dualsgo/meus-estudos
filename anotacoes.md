@@ -983,3 +983,142 @@ Aqui estão alguns outros exemplos de URLs de `mailto`:
 - `mailto:nowhere@mozilla.org?cc=nobody@mozilla.org&subject=This%20is%20the%20subject`
 
 Esses links `mailto` permitem que os usuários cliquem para enviar e-mails ou compartilhem informações diretamente usando seus aplicativos de e-mail preferidos.
+
+
+### Citações
+
+Para marcar uma citação em bloco em HTML, você pode usar o elemento `<blockquote>`. Esse elemento é usado para indicar que um trecho de texto é uma citação longa ou um bloco de citação. O conteúdo dentro do elemento `<blockquote>` é geralmente indentado ou apresentado de forma distinta para destacar a citação do restante do texto.
+
+Exemplo de uso do elemento `<blockquote>`:
+
+```html
+<blockquote>
+  Este é um exemplo de citação em bloco. O texto aqui seria uma citação longa ou um bloco de citação que você deseja destacar.
+</blockquote>
+```
+
+Por outro lado, se você estiver marcando uma citação em linha, pode usar o elemento `<q>`. Esse elemento é usado para indicar que um trecho de texto é uma citação curta ou uma citação em linha. O conteúdo dentro do elemento `<q>` é geralmente envolvido por aspas duplas automaticamente pelo navegador.
+
+Exemplo de uso do elemento `<q>`:
+
+```html
+<p>Isso é um exemplo de texto com uma <q>citação em linha</q>.</p>
+```
+
+Lembre-se de que a aparência exata das citações pode variar dependendo do CSS aplicado ao seu site ou projeto.
+
+### Abreviação
+
+Certamente! O elemento `<abbr>` é usado para fornecer uma expansão completa de uma abreviação ou sigla em HTML. Ele permite que os navegadores mostrem uma dica de ferramenta (tooltip) com a explicação completa quando o usuário passa o mouse sobre a abreviação.
+
+Aqui estão alguns exemplos de uso do elemento `<abbr>`:
+
+```html
+<p>A <abbr title="World Wide Web">WWW</abbr> revolucionou a forma como compartilhamos informações.</p>
+
+<p>O <abbr title="HyperText Markup Language">HTML</abbr> é a linguagem de marcação padrão para a criação de páginas da web.</p>
+
+<p>Os <abbr title="Cascading Style Sheets">CSS</abbr> são usados para estilizar o layout e a aparência dos elementos HTML.</p>
+```
+
+Nesses exemplos, a tag `<abbr>` é usada para envolver a abreviação (como "WWW", "HTML" e "CSS"), e o atributo `title` é utilizado para fornecer a expansão completa da abreviação. Quando o usuário passa o mouse sobre a abreviação, uma dica de ferramenta será exibida com o texto do atributo `title`.
+
+É importante notar que o comportamento de exibição da dica de ferramenta pode variar dependendo do navegador e das configurações do usuário. Além disso, é recomendado adicionar estilos personalizados para a tag `<abbr>` por meio de CSS para tornar a dica de ferramenta mais visível e esteticamente agradável.
+
+### Contato
+
+Peço desculpas novamente, mas há uma confusão. O elemento `<address>` em HTML é usado para marcar informações de contato, como o endereço físico, o endereço de e-mail, o número de telefone e assim por diante. Ele é utilizado para fornecer um contexto semântico aos dados de contato em uma página HTML.
+
+No entanto, o elemento `<address>` não envolve automaticamente os detalhes de contato. Em vez disso, é usado para indicar que o conteúdo dentro dele é um bloco de informações de contato.
+
+Aqui está um exemplo de uso do elemento `<address>`:
+
+```html
+<address>
+  <p>Nome: John Doe</p>
+  <p>Endereço: 123 Main Street, Cidade, Estado, CEP</p>
+  <p>E-mail: john.doe@example.com</p>
+  <p>Telefone: (123) 456-7890</p>
+</address>
+```
+
+Nesse exemplo, o elemento `<address>` é usado para agrupar os detalhes de contato em um bloco. É comum estilizar esse bloco com CSS para destacar visualmente as informações de contato.
+
+Lembre-se de que o uso do elemento `<address>` não implica nenhuma formatação especial por padrão. Você pode aplicar estilos personalizados usando CSS para adequar o elemento à aparência desejada em seu site ou projeto.
+
+### Sobrescrito e subscrito 
+
+Correto! O HTML fornece os elementos `<sup>` e `<sub>` para marcar o texto como sobrescrito (superscript) ou subscrito (subscript), respectivamente. Esses elementos são usados para atribuir significado e formatação corretos a elementos como datas, fórmulas químicas e equações matemáticas.
+
+O elemento `<sup>` é usado para criar texto sobrescrito, geralmente posicionado acima da linha de base normal. Alguns exemplos comuns de uso do `<sup>` são para marcar expoentes, números ordinais ou notas de rodapé.
+
+Exemplo de uso do elemento `<sup>`:
+
+```html
+<p>A fórmula da água é H<sub>2</sub>O, onde o número 2 está sobrescrito.</p>
+<p>A equação para a lei de Coulomb é F = k * q<sub>1</sub> * q<sub>2</sub> / r<sup>2</sup>.</p>
+```
+
+O elemento `<sub>` é usado para criar texto subscrito, geralmente posicionado abaixo da linha de base normal. É comumente usado para representar índices em equações químicas ou fórmulas matemáticas.
+
+Exemplo de uso do elemento `<sub>`:
+
+```html
+<p>O índice do elemento químico H<sub>2</sub>O<sub>2</sub> é 2.</p>
+<p>A fórmula para a área de um círculo é A = π * r<sup>2</sup>, onde r é o raio.</p>
+```
+
+Ao usar esses elementos, lembre-se de que a aparência exata dos textos sobrescrito e subscrito pode variar dependendo do CSS aplicado ao seu site ou projeto. É possível estilizar esses elementos com CSS para ajustar a aparência e a posição dos textos sobrescrito e subscrito de acordo com suas necessidades.
+
+### Data e tempo
+
+Com certeza! O elemento `<time>` em HTML é usado para marcar horários, datas e períodos de tempo em um formato legível por máquina. Ele permite que você especifique informações de data e hora de forma estruturada, facilitando o processamento e a interpretação desses dados por parte de máquinas e mecanismos de busca.
+
+O elemento `<time>` possui o atributo `datetime`, que é usado para fornecer a data e/ou hora no formato padrão ISO 8601. Esse formato é amplamente reconhecido e utilizado para representar informações de data e hora de maneira consistente.
+
+Aqui está um exemplo de uso do elemento `<time>`:
+
+```html
+<p>A conferência ocorrerá em <time datetime="2023-07-15T10:00">15 de julho de 2023 às 10:00</time>.</p>
+<p>O artigo foi publicado em <time datetime="2023-05-20">20 de maio de 2023</time>.</p>
+```
+
+No exemplo acima, o atributo `datetime` é usado para fornecer a data e/ou hora no formato ISO 8601. O conteúdo dentro do elemento `<time>` é o texto legível por humanos que será exibido no navegador, oferecendo uma forma amigável de apresentar as informações aos usuários.
+
+O uso do elemento `<time>` e do atributo `datetime` ajuda a melhorar a acessibilidade e a indexação de informações temporais por parte de máquinas e mecanismos de busca. Ele também permite que os navegadores e assistentes virtuais forneçam recursos adicionais, como a conversão automática de fusos horários.
+
+Lembre-se de que a aparência exata dos elementos `<time>` pode variar dependendo do CSS aplicado ao seu site ou projeto. O elemento `<time>` em si não impõe um estilo específico, mas você pode estilizá-lo usando CSS para ajustá-lo ao design do seu site.
+
+### Códigos
+
+Existem vários elementos disponíveis em HTML para marcar o código de computador. Cada um desses elementos serve a um propósito específico na formatação e marcação de código.
+
+Aqui estão alguns dos elementos mais comumente usados para representar código em HTML:
+
+1. `<code>`: O elemento `<code>` é usado para marcar uma seção de código em linha. Ele é adequado para pequenos trechos de código incorporados no texto.
+
+Exemplo:
+```html
+<p>Para imprimir uma mensagem no console, use <code>console.log('Olá, mundo!');</code></p>
+```
+
+2. `<pre>`: O elemento `<pre>` é usado para marcar um bloco de código pré-formatado. Ele preserva espaços em branco, quebras de linha e outras formatações exatamente como são definidas no código-fonte.
+
+Exemplo:
+```html
+<pre>
+    function greet() {
+        console.log('Olá, mundo!');
+    }
+    greet();
+</pre>
+```
+
+3. `<kbd>`: O elemento `<kbd>` é usado para marcar a entrada de teclado ou comandos. Ele é frequentemente usado para exibir atalhos de teclado ou sequências de comandos.
+
+Exemplo:
+```html
+<p>Pressione <kbd>Ctrl</kbd> + <kbd>C</kbd> para copiar o texto.</p>
+```
+
+Esses são apenas alguns exemplos dos elementos mais comuns usados para marcar código em HTML. Cada um desses elementos pode ser estilizado usando CSS para ajustar a aparência do código de acordo com suas preferências. Além disso, existem outras opções e técnicas disponíveis para formatar e realçar a sintaxe do código, como o uso de bibliotecas ou frameworks específicos para esse fim.
