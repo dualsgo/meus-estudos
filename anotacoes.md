@@ -1195,3 +1195,21 @@ e sua marcação não leu muito bem.</p>
 Nesse exemplo, o <br> é usado para criar quebras de linha entre as linhas do poema e separar cada verso em linhas separadas. O <hr> é usado para criar uma regra horizontal entre os parágrafos, indicando uma mudança temática entre as partes da história.
 
 Esses elementos podem ser úteis em situações específicas onde você precisa controlar a formatação e a aparência visual do texto. No entanto, é importante lembrar de usar esses elementos de forma adequada e sem excessos, para não comprometer a semântica e a acessibilidade do conteúdo.
+
+## Debugging e validação
+
+Quando se trata de depuração em HTML, existem algumas abordagens que você pode adotar:
+
+1. Validar seu código: A primeira etapa para depurar HTML é garantir que seu código seja válido. Você pode usar validadores HTML online, como o W3C Markup Validation Service, para verificar se há erros no seu código HTML.
+
+2. Usar o Console do desenvolvedor: A maioria dos navegadores modernos possui uma ferramenta de desenvolvedor integrada, que inclui um Console. O Console permite visualizar erros de JavaScript, bem como avisos e erros relacionados ao HTML. Você pode abrir o Console pressionando F12 no seu navegador e selecionando a guia "Console".
+
+3. Inspecionar elementos: O recurso de inspeção de elementos dos navegadores permite visualizar a estrutura HTML de uma página, bem como os estilos aplicados a cada elemento. Você pode acessar esse recurso clicando com o botão direito do mouse em um elemento da página e selecionando "Inspecionar" ou "Inspecionar elemento". Isso ajudará a identificar problemas de marcação ou estilos aplicados de maneira incorreta.
+
+4. Comentar seções de código: Se você suspeitar que um trecho específico de código está causando problemas, pode comentar temporariamente essa seção, envolvendo-a com as tags de comentário HTML: `<!-- seu código aqui -->`. Isso permitirá que você isole o código problemático e verifique se o problema persiste.
+
+5. Verificar a ordem de fechamento de tags: Certifique-se de que todas as suas tags HTML estejam sendo abertas e fechadas corretamente. A falta de uma tag de fechamento ou a ordem incorreta de fechamento das tags pode causar problemas de renderização.
+
+6. Verificar o uso adequado de atributos: Certifique-se de que os atributos em suas tags HTML estejam sendo usados corretamente e que tenham valores válidos. A falta ou o uso incorreto de atributos podem causar problemas de exibição ou comportamento inesperado.
+
+Essas são apenas algumas das técnicas que você pode usar para depurar HTML. A depuração muitas vezes envolve uma abordagem de tentativa e erro, examinando o código cuidadosamente e testando diferentes soluções para identificar e corrigir problemas.
