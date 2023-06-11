@@ -1122,3 +1122,76 @@ Exemplo:
 ```
 
 Esses são apenas alguns exemplos dos elementos mais comuns usados para marcar código em HTML. Cada um desses elementos pode ser estilizado usando CSS para ajustar a aparência do código de acordo com suas preferências. Além disso, existem outras opções e técnicas disponíveis para formatar e realçar a sintaxe do código, como o uso de bibliotecas ou frameworks específicos para esse fim.
+
+## Estrutura de páginas e documentos
+
+### Elementos semânticos
+
+É bom entender o significado geral de todos os elementos de seção do HTML em detalhes - isso é algo em que você trabalhará gradualmente ao começar a obter mais experiência com o desenvolvimento web. Você pode encontrar muitos detalhes lendo o nosso [Elementos HTML](https://developer.mozilla.org/pt-BR/docs/Web/HTML/Element). Para agora, estes são as principais definições que você deve tentar entender:
+
+-   [`<main>`](https://developer.mozilla.org/pt-BR/docs/Web/HTML/Element/main) é para o conteúdo único dessa página.Use <main> apenas uma vez por página, e o coloca diretamente dentro do [`<body>`](https://developer.mozilla.org/pt-BR/docs/Web/HTML/Element/body). Não é ideal aninhar ele dentro de qualquer outro elemento senão o elemento <body>.
+-   [`<article>`](https://developer.mozilla.org/pt-BR/docs/Web/HTML/Element/article) inclui um bloco de conteúdo relacionado o qual faz sentido por si só, sem o restante da página (por exemplo, uma postagem singular dum blog).
+-   [`<section>`](https://developer.mozilla.org/pt-BR/docs/Web/HTML/Element/section) é similar com <article>, mas ele é mais para agrupar uma única parte de página que constitui em um único pedaço de funcionalidade (por exemplo, um minimapa, ou um conjunto de manchetes e resumo). É considerado boa prática começar cada seção com um [título](https://developer.mozilla.org/pt-BR/docs/Learn/HTML/Introduction_to_HTML/HTML_text_fundamentals); observe também que você pode dividir um <article>s em diferentes <section>s, ou <section>s em diferentes <article>s, dependendo do contexto.
+-   [`<aside>`](https://developer.mozilla.org/pt-BR/docs/Web/HTML/Element/aside) é para conteúdo que não está relacionados diretamente com os conteúdos principais, mas que podem providenciar informações complementares a esses (entradas de glossários, biografia do autor, links relacionados, etc.).
+-   [`<header>`](https://developer.mozilla.org/pt-BR/docs/Web/HTML/Element/header) representa um grupo de conteúdo introdutório. Se ele for um elemento filho do [`<body>`](https://developer.mozilla.org/pt-BR/docs/Web/HTML/Element/body), Ele é um header global da página do site, mas se for um elemento filho de um [`<article>`](https://developer.mozilla.org/pt-BR/docs/Web/HTML/Element/article) ou [`<section>`](https://developer.mozilla.org/pt-BR/docs/Web/HTML/Element/section), é definido como um header específico para essa seção ( tenta não confundir isso com [títulos e cabeçalhos](https://developer.mozilla.org/pt-BR/docs/Learn/HTML/Introduction_to_HTML/The_head_metadata_in_HTML#adicionando_um_t%c3%adtulo)).
+-   [`<nav>`](https://developer.mozilla.org/pt-BR/docs/Web/HTML/Element/nav) contém a funcionalidade principal de navegação da página. Links secundários, etc., não iria na navegação
+-   [`<footer>`](https://developer.mozilla.org/pt-BR/docs/Web/HTML/Element/footer) representa um grupo de conteúdo final da página.
+
+### Elementos não semânticos
+Às vezes, você se depara numa situação em que não consegue encontrar um elemento semântico ideal para agrupar alguns itens ou agrupar algum conteúdo. Nesses momentos, convém agrupar um conjunto de elementos para afetá-los todos como uma única entidade com alguns [CSS](https://developer.mozilla.org/pt-BR/docs/Glossary/CSS) ou [JavaScript](https://developer.mozilla.org/pt-BR/docs/Glossary/JavaScript). Para casos como esses, HTML oferece os elementos [`<div>`](https://developer.mozilla.org/pt-BR/docs/Web/HTML/Element/div) e [`<span>`](https://developer.mozilla.org/pt-BR/docs/Web/HTML/Element/span). Você deve usá-los preferencialmente com um atributo [`class`](https://developer.mozilla.org/pt-BR/docs/Web/HTML/Global_attributes#class) adequado, para fornecer a eles algum tipo de rótulo para que possam ser facilmente referenciados.
+
+[`<span>`](https://developer.mozilla.org/pt-BR/docs/Web/HTML/Element/span) é um elemento não-semântico embutido, que você deve usar apenas se não conseguir pensar em um elemento de texto semântico melhor para agrupar seu conteúdo ou se não quiser adicionar um significado específico. Por exemplo:
+
+```
+<p>O rei voltou bêbado para o quarto às 01:00, a cerveja não fez nada para ajudá-lo
+enquanto ele cambaleando pela porta <span class="editor-note">[Nota do editor: Neste ponto da peça, as luzes devem estar baixas]</span>.</p>
+
+```
+
+Nesse caso, a nota do editor deve meramente fornecer orientação extra para o diretor da peça; não é suposto ter um significado semântico extra. Para usuários observador, talvez o CSS fosse usado para distanciar a nota um pouco do texto principal.
+
+[`<div>`](https://developer.mozilla.org/pt-BR/docs/Web/HTML/Element/div) é um elemento não semântico no nível de bloco, que você deve usar apenas se não conseguir pensar em um elemento de bloco semântico melhor para usar ou se não quiser adicionar um significado específico. Por exemplo, imagine um widget de carrinho de compras que você poderia escolher a qualquer momento durante o seu tempo em um site de comércio eletrônico:
+
+```
+<div class="carrinho-de-compras">
+  <h2>Carrinho de compras</h2>
+  <ul>
+    <li>
+      <p><a href=""><strong>Brincos de prata</strong></a>: $99.95.</p>
+      <img src="../products/3333-0985/thumb.png" alt="Brincos de prata">
+    </li>
+    <li>
+      ...
+    </li>
+  </ul>
+  <p>Preço total: $237.89</p>
+</div>
+
+```
+
+Este não é realmente um `<aside>`, pois não está necessariamente relacionado ao conteúdo principal da página (você deseja visualizá-lo de qualquer lugar). Nem sequer garante particularmente o uso de uma `<section>`, pois não faz parte do conteúdo principal da página. Portanto, um <div> é bom neste caso. Incluímos um cabeçalho como orientação para ajudar os usuários de leitores de tela a encontrá-lo.
+
+### Quebra de linha
+
+O uso do <br> e <hr> no exemplo fornecido é adequado para criar uma quebra de linha e uma regra horizontal no documento. O elemento <br> é usado para inserir uma quebra de linha no meio de um parágrafo, forçando a renderização de linhas curtas e fixas. Por outro lado, o elemento <hr> cria uma regra horizontal para indicar uma alteração temática no texto.
+
+Aqui está o exemplo com a formatação correta utilizando <br> e <hr>:
+
+```html
+<p>Era uma vez um homem chamado O'Dell<br>
+Que adorava escrever HTML<br>
+Mas sua estrutura era ruim, sua semântica era triste<br>
+e sua marcação não leu muito bem.</p>
+
+<hr>
+
+<p>Ron foi apoiado em um canto pelas feras inferiores saqueadores. Assustado, mas determinado a proteger seus amigos, ele levantou a varinha e se preparou para a batalha, esperando que seu pedido de socorro tivesse passado.</p>
+
+<hr>
+
+<p>Enquanto isso, Harry estava sentado em casa, olhando para sua declaração de realeza e ponderando quando a próxima série sairia, quando uma carta de socorro encantada voou pela janela e aterrissou em seu colo. Ele leu-o nebuloso e suspirou; "é melhor voltar ao trabalho então", ele pensou.</p>
+```
+
+Nesse exemplo, o <br> é usado para criar quebras de linha entre as linhas do poema e separar cada verso em linhas separadas. O <hr> é usado para criar uma regra horizontal entre os parágrafos, indicando uma mudança temática entre as partes da história.
+
+Esses elementos podem ser úteis em situações específicas onde você precisa controlar a formatação e a aparência visual do texto. No entanto, é importante lembrar de usar esses elementos de forma adequada e sem excessos, para não comprometer a semântica e a acessibilidade do conteúdo.

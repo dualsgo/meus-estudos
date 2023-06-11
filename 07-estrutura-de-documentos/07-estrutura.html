@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<!-- Em seu código HTML, você pode marcar seções de conteúdo com base em sua funcionalidade. Você pode usar elementos que representam as seções de conteúdo descritas acima sem ambigüidade, e tecnologias assistivas, como leitores de tela, podem reconhecer esses elementos e ajudar com tarefas como "localizar a navegação principal". "ou" encontre o conteúdo principal. " Como mencionamos anteriormente no curso, há um número de consequências de não usar a estrutura de elemento e semâtica certas para o trabalho certo.
+
+Para implementar essa marcação semântica, o HTML fornece tags dedicadas que você pode usar para representar essas seções, por exemplo:
+
+    <main> é para o conteúdo único dessa página. Use <main> apenas uma vez por página, e o coloca diretamente dentro do <body>. Não é ideal aninhar ele dentro de qualquer outro elemento senão o elemento <body>.
+
+    <article> inclui um bloco de conteúdo relacionado o qual faz sentido por si só, sem o restante da página (por exemplo, uma postagem singular dum blog).
+
+    <section> é similar com <article>, mas ele é mais para agrupar uma única parte de página que constitui em um único pedaço de funcionalidade (por exemplo, um minimapa, ou um conjunto de manchetes e resumo). É considerado boa prática começar cada seção com um título; observe também que você pode dividir um <article>s em diferentes <section>s, ou <section>s em diferentes <article>s, dependendo do contexto.
+
+    <aside> é para conteúdo que não está relacionados diretamente com os conteúdos principais, mas que podem providenciar informações complementares a esses (entradas de glossários, biografia do autor, links relacionados, etc.).
+
+    <header> representa um grupo de conteúdo introdutório. Se ele for um elemento filho do <body>, Ele é um header global da página do site, mas se for um elemento filho de um <article> ou <section>, é definido como um header específico para essa seção ( tenta não confundir isso com títulos e cabeçalhos).
+
+    <nav> contém a funcionalidade principal de navegação da página. Links secundários, etc., não iria na navegação
+
+    <footer> representa um grupo de conteúdo final da página.
+
+ -->
+<html>
+  <head>
+    <meta charset="utf-8" />
+
+    <title>My page title</title>
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300|Sonsie+One"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <!-- Esse é o cabeçalho (header) principal que vai ser usado em todas as páginas do nosso website -->
+    <header>
+      <h1>Header</h1>
+    </header>
+
+    <!-- A barra de navegação é um elemento de navegação principal que contém uma coleção de links para outros documentos ou a outras partes do documento atual. -->
+    <nav>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Our team</a></li>
+        <li><a href="#">Projects</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+
+      <!-- Um formulário de pesquisa é uma outra maneira não linear comum de navegar por um site. -->
+
+      <form>
+        <input type="search" name="q" placeholder="Search query" />
+        <input type="submit" value="Go!" />
+      </form>
+    </nav>
+
+    <!-- Esse é o conteúdo principal da nossa página -->
+    <main>
+      <!-- Contém um artigo -->
+      <article>
+        <h2>Article heading</h2>
+
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Donec a diam
+          lectus. Set sit amet ipsum mauris. Maecenas congue ligula as quam
+          viverra nec consectetur ant hendrerit. Donec et mollis dolor. Praesent
+          et diam eget libero egestas mattis sit amet vitae augue. Nam tincidunt
+          congue enim, ut porta lorem lacinia consectetur.
+        </p>
+
+        <h3>Subsection</h3>
+
+        <p>
+          Donec ut librero sed accu vehicula ultricies a non tortor. Lorem ipsum
+          dolor sit amet, consectetur adipisicing elit. Aenean ut gravida lorem.
+          Ut turpis felis, pulvinar a semper sed, adipiscing id dolor.
+        </p>
+
+        <p>
+          Pelientesque auctor nisi id magna consequat sagittis. Curabitur
+          dapibus, enim sit amet elit pharetra tincidunt feugiat nist imperdiet.
+          Ut convallis libero in urna ultrices accumsan. Donec sed odio eros.
+        </p>
+
+        <h3>Another subsection</h3>
+
+        <p>
+          Donec viverra mi quis quam pulvinar at malesuada arcu rhoncus. Cum
+          soclis natoque penatibus et manis dis parturient montes, nascetur
+          ridiculus mus. In rutrum accumsan ultricies. Mauris vitae nisi at sem
+          facilisis semper ac in est.
+        </p>
+
+        <p>
+          Vivamus fermentum semper porta. Nunc diam velit, adipscing ut
+          tristique vitae sagittis vel odio. Maecenas convallis ullamcorper
+          ultricied. Curabitur ornare, ligula semper consectetur sagittis, nisi
+          diam iaculis velit, is fringille sem nunc vet mi.
+        </p>
+      </article>
+
+      <!-- O contéudo do elemento aside pode ser aninhado dentro do conteúdo do elemento main -->
+      <aside>
+        <h2>Related</h2>
+
+        <ul>
+          <li><a href="#">Oh I do like to be beside the seaside</a></li>
+          <li><a href="#">Oh I do like to be beside the sea</a></li>
+          <li><a href="#">Although in the North of England</a></li>
+          <li><a href="#">It never stops raining</a></li>
+          <li><a href="#">Oh well...</a></li>
+        </ul>
+      </aside>
+    </main>
+
+    <!-- Esse é o rodapé principal que vai ser usado em todas as páginas do nosso website -->
+
+    <footer>
+      <p>©Copyright 2050 by nobody. All rights reversed.</p>
+    </footer>
+
+    <!-- Quebras de linha. Elementos br e hr -->
+    <p>
+      Era uma vez um homem chamado O'Dell<br /> 
+      Que adorava escrever HTML<br /> 
+      Mas sua estrutura era ruim, sua semântica era triste<br /> 
+      e sua marcação não leu muito bem.
+    </p>
+
+    <hr /> <!-- Uma linha horizontal -->
+
+    <p>
+      Ron foi apoiado em um canto pelas feras inferiores saqueadores. Assustado,
+      mas determinado a proteger seus amigos, ele levantou a varinha e se
+      preparou para a batalha, esperando que seu pedido de socorro tivesse
+      passado.
+    </p>
+
+    <br /> <!-- Uma quebra de linha -->
+
+    <p>
+      Enquanto isso, Harry estava sentado em casa, olhando para sua declaração
+      de realeza e ponderando quando a próxima série sairia, quando uma carta de
+      socorro encantada voou pela janela e aterrissou em seu colo. Ele leu-o
+      nebuloso e suspirou; "é melhor voltar ao trabalho então", ele pensou.
+    </p>
+  </body>
+</html>
