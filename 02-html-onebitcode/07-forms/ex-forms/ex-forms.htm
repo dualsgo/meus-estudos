@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <title>Exercicio Forms</title>
+  </head>
+
+  <body>
+    <!-- tag form com o atributo action vazio pois nesse exemplo nao iremos submeter as informações -->
+    <form action="">
+      <!-- Título do formulário -->
+      <h3>Cadastro da liga dos astronautas</h3>
+      <div>
+        <!-- label e input para o nome -->
+        <label for="name">Nome:</label>
+        <input type="text" id="name" />
+      </div>
+      <br />
+      <div>
+        <!-- label e input para o email e senha -->
+        <label for="email">Email:</label>
+        <input type="email" name="email" id="email" /> -
+        <label for="password">Senha:</label>
+        <input type="password" id="password" />
+      </div>
+      <br />
+      <div>
+        <!-- label e input para data e foto -->
+        <label for="bithday">Data de nascimento:</label>
+        <input type="date" id="birthday" /> -
+        <label for="photo">Foto:</label>
+        <input type="file" id="photo" />
+      </div>
+      <br />
+      <div>
+        <!-- label para nacionalidade e genero -->
+        <label for="nationality">Nacionalidade:</label>
+        <select name="nationality" id="nationality">
+          <option value="escolha" disabled selected>Clique e escolha</option>
+          <option value="russian">Russo</option>
+          <option value="american">Americano</option>
+          <option value="brazilian">Brasileiro</option>
+        </select>
+        -
+      </div>
+      <br />
+      <div>
+        <!-- Para o rádio precisamos definir o mesmo name para que somente um possa ser selecionado -->
+        Gênero:
+        <label for="female">Feminino</label>
+        <input type="radio" name="gender" id="female" value="feminino" />
+        <label for="male">Masculino</label>
+        <input type="radio" name="gender" id="male" value="masculino" />
+      </div>
+      <br />
+      <div>
+        <!-- label habilidades e textarea -->
+        <label for="int">Suas principais habilidades:</label>
+        <br />
+        <label for="int">Inteligência</label>
+        <input type="checkbox" name="int" id="int" /> |
+        <label for="res">Resiliência</label>
+        <input type="checkbox" name="res" id="res" /> |
+        <label for="pre">Preparo físico</label>
+        <input type="checkbox" name="pre" id="pre" /> |
+        <label for="edu">Educação</label>
+        <input type="checkbox" name="edu" id="edu" /> |
+      </div>
+      <br />
+<div>
+    <textarea
+    name="description"
+    id="description"
+    cols="70"
+    rows="10"
+    placeholder="Porque você gostaria de ser um astronauta?"
+    maxlength="500"
+  ></textarea>
+</div>
+      <br />
+<div>
+          <!--input para o botão -->
+    <input type="submit" value="Criar" id="criar" />
+</div>
+    </form>
+  </body>
+</html>

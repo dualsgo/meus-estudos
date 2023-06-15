@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <title>Conhecendo os formulários</title>
+  </head>
+  <body>
+    <!-- Formulários são elementos que permitem a interação do usuário com o site. Eles são compostos por campos de entrada de dados, botões de envio e outros elementos. -->
+
+    <!-- O elemento <form> é o elemento que define um formulário. Ele possui o atributo action, que define o endereço para onde os dados serão enviados. O atributo method define o método de envio dos dados. -->
+
+    <h3>Encontre no Google</h3>
+
+    <!-- O atributo action recebe o endereço ao qual os dados do formulários serão enviados -->
+    <form action="https://www.google.com.br/search">
+      <!-- O label é um texto associado ao campo de input (entrada de dados) através dos atributos for e id -->
+      <label for="q"> O que deseja pesquisar? </label>
+      <!-- O input é do tipo texto, o atributo id deve ter o mesmo valor do for da label -->
+      <input
+        type="text"
+        id="q"
+        name="q"
+        placeholder="Digite aqui o que você procura"
+        required
+      />
+      <!-- O input é do tipo submit, ou seja, ele envia os dados do formulário para o endereço definido no atributo action -->
+      <input type="submit" value="Pesquisar" />
+    </form>
+
+    <!-- Validações (front-end) -->
+
+    <!-- O atributo required faz com que o campo seja obrigatório -->
+    <!-- O atributo type define o tipo de dado que será inserido no campo de input. Se o tipo de dado inserido for diferente um aviso será mostrado -->
+  </body>
+</html>
