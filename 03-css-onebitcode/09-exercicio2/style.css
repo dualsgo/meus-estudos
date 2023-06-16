@@ -1,0 +1,63 @@
+/* Reset css */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: black;
+}
+
+/* 
+Fontes utilizadas:
+1. Elemento H1 = Montserrat
+2. Elementos com a classe date = Roboto
+3. Elementos com a classe post-content = Open Sans
+
+Cores:
+1. Background dos posts = #fffafa
+2. Cor da data = #008080 */
+
+/* Centralizando as postagens */
+
+.post-container {
+
+    margin: 0 auto 0 auto;
+    background-color: #fffafa;
+    padding: 20px;
+}
+
+/* Começando com a data classe date - sendo especifico, indicando que é a classe dentro do container*/
+
+.post-container .date {
+    font-family: 'Roboto', sans-serif;
+    color: #008080;
+    padding: 25px 0 25px 0;
+    margin: 0 auto 0 auto;
+}
+
+/* Seguindo com o h1 */
+
+h1 {
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* Depois o post content */
+
+.post-content {
+    font-family: "Open Sans";
+    padding: 25px 0 25px 0;
+    margin: 0 auto 0 auto;
+}
+
+/* Editando o post */
+
+div .post {
+    width: 75%;
+    height: auto;
+    margin: 0 auto 0 auto;
+    background-color: #eee;
+    padding: 20px;
+    border: solid 1px #ccc;
+}
