@@ -1,0 +1,13 @@
+/* Background */
+
+body{
+    background-image: url(falconheavy.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+/* Bordas */
+
+h1{
+    border: solid 5px red;
+}
