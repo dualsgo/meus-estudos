@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <title>Hire Us</title>
+  </head>
+
+  <body>
+    <!-- Novamente aproveitamos a estrutura do menu de navegação -->
+    <header>
+      <nav>
+        <a href="../index.html"><img src="../assets/logo.png" alt="" /></a> |
+        <a href="spaceships.html">The Spaceships</a> |
+        <a href="contacts.html">Hire us</a>
+      </nav>
+      <hr />
+    </header>
+    <!-- No main temos apenas um título e uma descrição -->
+    <main>
+      <section>
+        <h3>Hire Us Now</h3>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam ab
+          esse est ut beatae, corrupti blanditiis consequatur repellat placeat
+          unde illum neque explicabo recusandae atque optio iusto? Natus, nisi
+          provident.
+        </p>
+      </section>
+      <br />
+      <!-- Aqui temos um formulário com os campos: Nome, Email, Nave e Tipo de Serviço -->
+      <form action="">
+        <!-- Os campos de nome e email são simples -->
+        <div>
+          <label for="name">Name:</label>
+          <input type="text" name="name" id="name" /> -
+          <label for="email">Email:</label>
+          <input type="email" name="email" id="email" />
+        </div>
+        <br /><br />
+        <!-- Já os campos de nave e tipo de serviço são um pouco mais complexos -->
+        <div>
+          <label for="spaceship">Spaceships:</label>
+          <!-- O campo de nave é um select com duas opções: Falcon 9 e Falcon Heavy. A opção Select é basicamente um título não selecionavel -->
+          <select name="spaceship" id="spaceship">
+            <option value="" selected disabled>Select</option>
+            <option value="Falcon-9">Falcon 9</option>
+            <option value="Falcon-Heavy">Falcon Heavy</option>
+          </select>
+          -
+          <label for="search">Type of Service</label>
+          <!-- O campo de tipo de serviço é um input com sugestões. Para isso usamos o atributo list para referenciar o id de uma datalist -->
+          <input
+            type="text"
+            id="service"
+            list="services"
+            placeholder="Digite algo..."
+          />
+          <!-- O datalist recebe as opções que serão mostradas como sugestão com base na digitação ou simplesmente selecionando -->
+          <!-- O input é ligado ao datalist pelo atributo list -->
+          <datalist id="services">
+            <option value="Sint sunt beatae facere pariatur"></option>
+            <option value="Nobis a blanditiis non"></option>
+            <option value="beatae facere pariatur similique"></option>
+            <option
+              value="Nobis a blanditiis non velit est quos placeat"
+            ></option>
+          </datalist>
+        </div>
+        <br /><br />
+        <input type="button" value="Send Message" />
+      </form>
+    </main>
+  </body>
+</html>
