@@ -7,3 +7,15 @@ a {
   color: tomato;
   font-size: 32px;
 }
+
+/* 
+Seletor: Seleciona o elemento(s) que deve ser estilizado.
+
+Bloco CSS: Engloba as propriedades {} que serão aplicadas ao seletor.
+
+Propriedade: Define o que será alterador.
+
+Valor: Define o valor do novo estilo.
+
+Regra: Seletor + Bloco CSS.
+*/
