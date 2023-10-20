@@ -1,7 +1,7 @@
-# Desafio 001 - Crie um script Python que leia o nome de uma pessoa e mostre uma mensagem de boas-vindas de acordo com o valor digitado.
+""" Desafio 002 - Respondendo ao usuário (Aula 01 a 04): Faça um programa que leia o nome de uma pesoa e mostre uma mensagem de boas vindas."""
 
 # Passo 1: Armazenar em uma variável a informação, utilizando a função input() para que o usuário digite o valor
-print('Qual é o seu nome?')
+print('Qual é o seu nome? ')
 # Solicita ao usuário que digite seu nome e armazena na variável 'nome'
 nome = input('')
 

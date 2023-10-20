@@ -1,10 +1,17 @@
 # Curso Python Aula 01 - Seja um programador
 
-# Professor Guanabara destaca a importância da programação e a crescente necessidade de novos programadores na sociedade. 
-# Ele começa enfatizando a demanda por programadores, citando estatísticas da organização 'code.org', que preveem que, em 10 anos, o mundo precisará de 1,4 milhão de programadores, mas haverá um déficit de um milhão de programadores se a qualidade da educação atual não melhorar.
-# Professor Guanabara ressalta que a programação está intrinsecamente ligada ao nosso cotidiano, mencionando produtos como smartphones e smart TVs que dependem da programação. Ele destaca como os programadores desempenham um papel crucial na criação desses produtos.
-# Além disso, ele aborda a importância de aprender programação, destacando que ela ensina pensamento crítico, criatividade e solução de problemas. Professor Guanabara desmistifica equívocos comuns, como a necessidade de fluência em inglês ou um profundo conhecimento de matemática para aprender programação. Ele enfatiza que a programação não tem limitações de idade, gênero ou grupo e é uma habilidade acessível a todos.
-# Ao discutir os obstáculos na aprendizagem de programação, Professor Guanabara encoraja a abordagem passo a passo e prática constante, além de destacar que a programação, embora desafiadora, não é inatingível, desde que as pessoas invistam tempo e esforço.
-# Ele também enfatiza a importância de começar do zero e não pular etapas ao aprender programação. Além disso, ele menciona as diversas áreas de especialização em programação, desde desktop e web até desenvolvimento de aplicativos móveis, IoT e jogos. Professor Guanabara compara a programação a aprender uma nova língua, destacando a importância de entender a essência das linguagens de programação para se comunicar eficazmente com computadores.
-# O Professor Guanabara encerra a palestra explicando que todas as linguagens de programação seguem uma essência comum e, uma vez que alguém compreende a essência de uma linguagem, pode aprender qualquer outra. Ele introduz a linguagem Python como uma escolha popular e enfatiza que não existem linguagens melhores do que outras, apenas aquelas mais adequadas para tarefas específicas. Ele destaca a importância da comunidade e da colaboração na programação, convidando os espectadores a apoiarem o curso e a se envolverem na comunidade de programadores para promover o aprendizado e o crescimento contínuo.
-# Em resumo, esta palestra destaca a importância da programação, a crescente demanda por programadores e a acessibilidade da programação como habilidade. Ela incentiva os interessados a começarem sua jornada na programação, enfrentarem obstáculos com paciência e dedicação, e a se envolverem na comunidade de programadores para promover o aprendizado e o crescimento contínuo.
+'''RESUMO'''
+
+# Importância da programação e a crescente demanda por programadores na sociedade.
+# Destaque para a previsão de déficit de programadores, com base nas estatísticas da 'code.org'.
+# Relação da programação com produtos do cotidiano, como smartphones e smart TVs.
+# Enfoque na capacidade da programação de ensinar pensamento crítico, criatividade e solução de problemas.
+# Desmistificação de equívocos comuns sobre a programação, como a necessidade de fluência em inglês ou profundo conhecimento de matemática.
+# Ênfase na acessibilidade da programação a pessoas de todas as idades, gêneros e grupos.
+# Abordagem dos obstáculos na aprendizagem de programação, com ênfase em aprendizado passo a passo e prática constante.
+# Destaque para a importância de começar do zero e não pular etapas ao aprender programação.
+# Apresentação das diversas áreas de especialização em programação.
+# Comparação da programação com a aprendizagem de uma nova língua e a importância de entender a essência das linguagens de programação.
+# Introdução à linguagem Python como uma escolha popular.
+# Enfatização da importância da comunidade e da colaboração na programação e convite para apoiar o curso.
+# Encerramento com ênfase na importância da programação, na acessibilidade da habilidade e no incentivo ao aprendizado e crescimento contínuo.

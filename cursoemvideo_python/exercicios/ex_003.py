@@ -1,4 +1,4 @@
-# Desafio 003 - Crie um script Python que leia dois números e tente mostrar a soma entre eles.
+""" Desafio 003 - Somando dois números (Aula 01 a 04): Crie um script Python que leia dois números e tente mostrar a soma entre eles."""
 
 # Passo 1: Criar as variáveis que irão receber os números digitados pelo usuário. Para isso, utilizar a função input() para permitir que o usuário digite os dados. Como a função input() retorna dados do tipo string por padrão, precisamos converter esses dados para realizar a soma. Para isso, usamos a função int() para converter os dados para números inteiros.
 
