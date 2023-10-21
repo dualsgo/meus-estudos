@@ -1,0 +1,1 @@
+"""Desafio 011 - Título (Aula 01 a 07): Faça um programa que leia a largura e altura de uma parede em metros, calcule a sua área e a quantidade de tinta necessária para pintá-la, sabendo quecada litro de tinta pinta uma área de 2m**2"""

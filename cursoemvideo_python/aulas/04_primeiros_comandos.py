@@ -8,7 +8,6 @@
 # Criação e execução de scripts Python para programar e testar funcionalidades de maneira eficiente.
 # Apresentação de três desafios práticos para os espectadores, incentivando a aplicação dos conceitos aprendidos.
 
-
 '''CONTEÚDO'''
 
 # Função print()
