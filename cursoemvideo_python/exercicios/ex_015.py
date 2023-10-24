@@ -9,12 +9,12 @@ km = float(input(''))
 
 # Passo 2: Definir os valores do Km e do dia
 # Primeiro convertemos os km para metros para multiplicar pelo preço e calculamos o custo por Km
-custo_km = (km * 0.15) / 100  # Custo por quilômetro rodado em centavos
+custo_km = km * 0.15  # Custo por quilômetro rodado
 custo_dia = 60  # Custo por dia de aluguel
 
 # Cálculo dos custos
 dias_final = dias * custo_dia  # Custo total dos dias
-km_final = km * custo_km  # Custo total dos Km rodados
+km_final = custo_km  # Custo total dos Km rodados
 aluguel = dias_final + km_final  # Custo total do aluguel
 
 # Exibir os resultados

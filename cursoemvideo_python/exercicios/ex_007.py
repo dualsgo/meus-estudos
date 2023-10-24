@@ -12,4 +12,4 @@ media = (primeira_nota + segunda_nota) / 2
 # Agora exibimos o resultado:
 
 print(f"""Suas notas são \033[1m{primeira_nota}\033[m e \033[1m{segunda_nota}\033[m.
-A sua média é \033[1;31m{media}\033[m.""")
+A sua média é \033[1;31m{media:.1f}\033[m.""")
