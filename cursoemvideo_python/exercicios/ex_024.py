@@ -1,1 +1,2 @@
-Desafio 024 - TÌtulo (Aula 00 a 00): DescriÁ„o.
+"""Desafio 024 - T√≠tulo (Aula 01 a 09): Crie um programa que leia o nome de uma cidade e diga se ela come√ßa ou n√£o com 'SANTO'
+"""

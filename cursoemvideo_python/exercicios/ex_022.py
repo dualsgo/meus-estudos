@@ -1,1 +1,6 @@
-Desafio 022 - TÌtulo (Aula 00 a 00): DescriÁ„o.
+"""Desafio 022 - T√≠tulo (Aula 01 a 09): Crie um programa que leia o nome completo de uma pessoa e mostre:
+- O nome com todas as letras MAI√öSCULAS.
+- O nome com todas as letras min√∫sculas.
+- Quantas letras ao todo (sem considerar espa√ßos).
+- Quantas letras tem o primeiro nome.
+"""

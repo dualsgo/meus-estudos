@@ -1,4 +1,4 @@
-"""Desafio 020 - Sorteando uma ordem na lista (Aula 01 a 07): O mesmo professor do desafio anterior quer sortear a ordem de apresentação de trabalhos dos alunos. Faça um programa que leia os nomes dos quatro alunos e mostre a ordem sorteada.
+"""Desafio 020 - Sorteando uma ordem na lista (Aula 01 a 08): O mesmo professor do desafio anterior quer sortear a ordem de apresentação de trabalhos dos alunos. Faça um programa que leia os nomes dos quatro alunos e mostre a ordem sorteada.
 """
 # Passo 1: Importar a biblioteca random
 from random import shuffle, sample

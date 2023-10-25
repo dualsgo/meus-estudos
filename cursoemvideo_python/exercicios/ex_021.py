@@ -1,4 +1,4 @@
-"""Desafio 021 - Tocando um mp3 (Aula 01 a 09): Faça um programa em python que abra o áudio de um arquivo mp3.
+"""Desafio 021 - Tocando um mp3 (Aula 01 a 08): Faça um programa em python que abra o áudio de um arquivo mp3.
 """
 
 # 1. **Instale a biblioteca pygame**: Certifique-se de que a biblioteca pygame está instalada no seu ambiente Python. Você pode instalá-la usando o pip:

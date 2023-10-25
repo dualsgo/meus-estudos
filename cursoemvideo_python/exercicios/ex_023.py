@@ -1,1 +1,8 @@
-Desafio 023 - TÌtulo (Aula 00 a 00): DescriÁ„o.
+"""Desafio 023 - T√≠tulo (Aula 01 a 09): Fa√ßa um programa que leia um n√∫mero entre zero e 999e mostre na tela cada um dos d√≠gitos separados.
+
+EX.: Digite um n√∫mero: 1834
+unidade: 4
+dezena: 3
+centena: 8
+milhar: 1
+"""
