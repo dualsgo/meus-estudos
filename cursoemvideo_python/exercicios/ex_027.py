@@ -4,3 +4,12 @@ EX.: Ana Maria de Souza
 primeiro = Ana
 último = Souza
 """
+
+nome = str(input('')).strip()
+
+nome_separado = nome.split()
+print(nome_separado)
+primeiro_nome = nome_separado[0]
+print(primeiro_nome)
+ultimo_nome = nome_separado[-1]
+print(ultimo_nome)
