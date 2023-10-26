@@ -10,12 +10,17 @@ milhar: 1
 
 # Passo 1: Entrar com o número - O valor será armazrnado em uma variável e atribuido a ela a partir de uma função input
 
-print('Digite um número entre 0 e 9999')
+print("""
+# MÉTODO 1: EM FORMATO NUMÉRICO #
+\033[1mDigite um número entre 0 e 9999:\033[m""")
 numero = int(input(''))
 
 # Passo 2: Realizar as operações para dividir os números
 
-# Dígitos separados
+# Dígitos separados - Para a unidade basta usar o resto da divisão do número digitado por 10. Assim o resultado sempre será alguma unidade já que qualquer divisão por 10 só é possível com números terminados em zero
+
+# Para as dezenas, centenas e milhar, basta antes realizar a divisão exata por 10, 100 ou 1000. Pois nessa divisão por multiplos de 10 basta mover a vírgula para a esquerda tantas vezes quanto a quantidade de zeros do divisor. Depois fazemos o resto da divisão para retornar o algarirsmo que estiver na primeira posição a esquerda da virgura
+
 # O dígito das unidades é obtido usando o operador de módulo (%) para pegar o resto da divisão por 10.
 unidade = numero % 10
 
@@ -29,15 +34,16 @@ centena = (numero // 100) % 10
 milhar = (numero // 1000) % 10
 
 # Mostrar os dígitos na tela
-print(f'unidade: {unidade}')
-print(f'dezena: {dezena}')
-print(f'centena: {centena}')
-print(f'milhar: {milhar}')
+print(f'\033[1;31munidade: {unidade}\033[m')
+print(f'\033[1;31mdezena: {dezena}\033[m')
+print(f'\033[1;31mcentena: {centena}\033[m')
+print(f'\033[1;31mmilhar: {milhar}\033[m')
 
 # FORMA DE FAZER COM DADOS DO TIPO STRING
 
 # Solicita ao usuário que digite um número
-numero_str = input("Digite um número entre 0 e 9999: ")
+numero_str = input("""MÉTODO 2: FORMATO DE STRING
+\033[1mDigite um número entre 0 e 9999: \033[1m""")
 
 # Garante que a string tem no máximo 4 caracteres
 numero_str = numero_str[:4]
@@ -47,7 +53,7 @@ numero_str = numero_str[:4]
 unidade = numero_str[-1]
 
 # O dígito das dezenas é o caractere imediatamente antes das unidades.
-dezena = numero_str[-2:-1]
+dezena = numero_str[-2:-1] or '0'
 
 # O dígito das centenas é o caractere antes das dezenas (ou zero, se não houver).
 centena = numero_str[-3:-2] or '0'
@@ -56,7 +62,7 @@ centena = numero_str[-3:-2] or '0'
 milhar = numero_str[-4:-3] or '0'
 
 # Mostra os dígitos na tela
-print("unidade: {unidade}")
-print("dezena: {dezena}")
-print("centena: {centena}")
-print("milhar: {milhar}")
+print(f"\033[1;32munidade: {unidade}\033[m")
+print(f"\033[1;32mdezena: {dezena}\033[m")
+print(f"\033[1;32mcentena: {centena}\033[m")
+print(f"\033[1;32mmilhar: {milhar}\033[m")
