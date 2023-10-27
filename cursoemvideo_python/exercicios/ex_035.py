@@ -1,1 +1,1 @@
-Desafio 035 - TÌtulo (Aula 00 a 00): DescriÁ„o.
+"""Desafio 028 - Analisando Tri√¢ngulo V1.0 (Aula 01 a 10): Desenvolva um programa que leia o comprimento o segmento de tr√äs retas e diga ao usu√°rio se elas podem formar um tri√¢ngulo. """

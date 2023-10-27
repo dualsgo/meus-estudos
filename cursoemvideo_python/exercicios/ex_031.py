@@ -1,1 +1,3 @@
-Desafio 031 - TÌtulo (Aula 00 a 00): DescriÁ„o.
+"""Desafio 031 - Custo da Viagem (Aula 01 a 10): Desenvolva um programa que pergunte a dist√¢ncia de uma viagem em Km.
+
+- Calcule o pre√ßo da passagem, cobrando R$ 0,50 por Km para viagens de at√© 200Km e R$ 0,45 para viagens mais longas."""

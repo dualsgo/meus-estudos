@@ -1,1 +1,1 @@
-Desafio 030 - TÌtulo (Aula 00 a 00): DescriÁ„o.
+"""Desafio 030 - Par ou √≠mpar? (Aula 01 a 10): Crie um programa que leia um n√∫mero inteiro e mostre na tela se ele √© PAR ou √çMPAR. """

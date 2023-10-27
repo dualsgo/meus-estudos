@@ -1,1 +1,1 @@
-Desafio 032 - Título (Aula 00 a 00): Descrição.
+"""Desafio 032 - Ano Bissexto (Aula 01 a 10): FÃ§a um programa que leia um ano qualquer e mostre se ele Ã© BISSEXTO."""

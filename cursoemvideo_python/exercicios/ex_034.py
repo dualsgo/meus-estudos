@@ -1,1 +1,4 @@
-Desafio 034 - TÌtulo (Aula 00 a 00): DescriÁ„o.
+"""Desafio 034 - Aumentos multiplos (Aula 01 a 10): Escreva um programa que pergunte o sal√°rio de um funcion√°rio e calcule o valor do seu aumento.
+
+- Para sal√°rios superiores a R$ 1250,00 calcule um aumento de 10%.
+- Para os inferiores ou iguais, o aumento √© de 15%."""
