@@ -27,9 +27,3 @@ print(comp)  # Exibe False como resultado da comparação
 # Strings também podem ser comparadas.
 # Retorna True, pois as strings são diferentes
 print('online' != 'offline')
-10
-11
-12
-13
-15
-16
