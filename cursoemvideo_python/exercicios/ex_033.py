@@ -1,7 +1,7 @@
 """Desafio 033 - Jogo de Adivinhação V.1.0 (Aula 01 a 10): Faça um programa que leia três números e mostre qual é o maior e qual é o menor."""
 
 print("""
-      \033[1;45mMENOR E MAIOR\n\033[m""")
+      \033[1;45mMENOR E MAIOR\033[m""")
 # Passo 1: Atribuir a uma variável uma lista, cada elemento será definido por uma escolha do usuário - Usaremos input para atribuir o valor de cada elemento da lista
 numeros = [input('Digite o primeiro número: '), input(
     'Digite outro número: '), input('Digite o último número: ')]

@@ -10,4 +10,4 @@
 
 # Instruções sobre como instalar o Python 3 e o IDLE em sistemas Windows, Mac e Linux, enfatizando a importância do interpretador Python.
 
-# Conclusão da lição com destaque para as vantagens do uso do terminal e incentivo à continuação do aprendizado e prática em Python. Solicitação de apoio dos espectadores e importância de instalar um interpretador. Próxima lição: variáveis, operações básicas e exibição de resultados na tela.
+# Conclusão da lição com destaque para as vantagens do uso do terminal e incentivo à continuação do aprendizado e prática em Python. Solicitação de apoio dos espectadores e importância de instalar um interpretador.

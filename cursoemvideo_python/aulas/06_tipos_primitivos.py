@@ -25,7 +25,7 @@
 # int - integer: São valores numéricos sem casas decimais após a vírgula (7, -4, 0, 9875)
 # float - ponto flutuante: São valores que possuem casas decimais após a vírgula (4.5, 0.076, -15.223, 7.0)
 # bool - boolean: São valores lógicos (True e False)
-# str - string: São cadeias com nenhuma ou mais caracteres que pode ser números, letras ou símbolos ('Olá', '7.5', '')
+# str - string: São cadeias com nenhuma ou mais caracteres que podem ser números, letras ou símbolos ('Olá', '7.5', '', '@#$')
 
 # Exemplo de tipos primitivos
 

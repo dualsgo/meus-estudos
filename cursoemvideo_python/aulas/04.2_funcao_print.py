@@ -18,22 +18,22 @@ junto = 'Essa parte' + ' se junta a essa.'
 print(junto)
 
 # Quando as expressões têm variáveis, seus valores são unidos.
-texto1 = 'Essa parte'
-texto2 = ' se junta a essa.'
-print(texto1 + texto2)
+texto_1 = 'Essa parte'
+texto_2 = ' se junta a essa.'
+print(texto_1 + texto_2)
 
 # As expressões são valores e, como tal, podem ser armazenadas em outra variável.
-expressao = texto1 + texto2
+expressao = texto_1 + texto_2
 print(expressao)
 
 # DADOS NUMÉRICOS: São os dígitos numéricos. Eles não usam aspas.
 
 # Podemos criar também expressões com números. As variáveis com dados numéricos podem ser usadas para cálculos.
-valor1 = 5
-print(valor1 + 3)  # Exibirá 8
+valor_1 = 5
+print(valor_1 + 3)  # Exibirá 8
 
 # Podemos atribuir o resultado das expressões numéricas a uma variável.
-res = valor1 + 3
+res = valor_1 + 3
 print(res)  # Exibirá 8
 
 # Opções 'end' e 'sep' da instrução print()
@@ -45,7 +45,7 @@ print('Este texto', end=' ')
 print('será exibido na mesma linha.')
 
 # A opção 'sep' permite especificar o separador entre os valores a serem impressos. O valor padrão é um espaço.
-valor1 = 10
+valor_1 = 10
 valor2 = 20
-print(valor1, valor2)  # Exibirá "10 20"
-print(valor1, valor2, sep=', ')  # Exibirá "10, 20"
+print(valor_1, valor2)  # Exibirá "10 20"
+print(valor_1, valor2, sep=', ')  # Exibirá "10, 20"

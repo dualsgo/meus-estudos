@@ -1,6 +1,7 @@
 # MIMO - Instrução type()
 
-# Usamos a instrução type() para verificar o tipo de dado de uma variável. 
+# Usamos a instrução type() para verificar o tipo de dado de uma variável.
+
 # Podemos combinar com a instrução print() para exibir esse resultado no console: print(type(variavel))
 variavel = 5
 tipo = type(variavel)

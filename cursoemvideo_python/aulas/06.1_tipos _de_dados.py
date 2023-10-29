@@ -10,7 +10,7 @@ numero_int = 10
 
 # Ponto flutuante/Float (float): São números com casas decimais, representados usando um ponto como separador decimal.
 numero_float = 10.0
-zero_float = 0.1  # Podemos omitir o zero à esquerda do ponto.
+zero_float = .1  # Podemos omitir o zero à esquerda do ponto.
 
 # BOOLEANOS (bool): São valores especiais que representam verdadeiro ou falso.
 

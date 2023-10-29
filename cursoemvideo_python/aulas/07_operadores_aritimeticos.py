@@ -32,8 +32,8 @@
 # Adição (+): 5 + 2 == 7
 # Subtração (-): 5 - 2 == 3
 # Multiplicação (*): 5 * 2 == 10
-# Divisão (/): 5 / 2 == 2.5
 # Potência (**): 5 ** 2 == 25
+# Divisão (/): 5 / 2 == 2.5
 # Divisão inteira (//): 5 // 2 == 2
 # Resto da divisão (%): 5 % 2 == 1
 
@@ -47,12 +47,13 @@
 
 print(5 + 3 * 2)  # A multiplicação tem prioridade. O resultado é == 11
 print(3 * 5 + 4 ** 2)  # A potência tem prioridade. O resultado é == 31
-# A soma entre os parênteses tem prioridade, seguido da potência. O resultado é == 243
-print(3 * (5 + 4) ** 2)
+print(3 * (5 + 4) ** 2) # A soma entre os parênteses tem prioridade, seguido da potência. O resultado é == 243
 
 # Função interna pow(base, expoente) - Potencia
+print(pow(4,2)) # É o mesmo que 4 ** 2
+
 # Calcular a raiz quadrada de um número é o mesmo que elevá-lo a meio (1/2) visto que 2 é o mesmo que 2/1, então fazemos a operação inversa
-print(81**(1/2))  # Retornará 9.0
+print(81**(1/2))  # Retornará 9.0 (Divisão retorna um valor float)
 
 # Operadores em strings
 

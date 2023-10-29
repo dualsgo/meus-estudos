@@ -1,6 +1,6 @@
 """Desafio 028 - Analisando Triângulo V1.0 (Aula 01 a 10): Desenvolva um programa que leia o comprimento o segmento de três retas e diga ao usuário se elas podem formar um triângulo. """
 
-# Ler o comprimento das retas - Atribuiremos a uma variável uma lista e cada elemento da lista receberá um valor para representar um lado
+# Ler o comprimento das retas - Atribuiremos a uma variável, uma lista e cada elemento da lista receberá um valor para representar um lado
 
 a = int(input('Digite um valor para o A lado do triângulo: '))
 b = int(input('Digite um valor para o B lado do triângulo: '))

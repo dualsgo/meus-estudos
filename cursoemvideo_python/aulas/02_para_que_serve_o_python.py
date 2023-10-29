@@ -10,4 +10,4 @@
 
 # Aplicações do Python em várias indústrias, incluindo empresas como o Google e a NASA, além de jogos populares desenvolvidos com Python. Ênfase na importância de focar no aprendizado inicial em vez de pular para projetos avançados.
 
-# Discussão do curso de Python do criador do vídeo e a necessidade de apoio financeiro da comunidade para completá-lo. Descrição do curso para iniciantes, sem pré-requisitos, e sua abordagem abrangente por meio de exercícios e materiais. Ênfase na importância do apoio da comunidade. Próxima lição: instalação do Python e conceitos básicos de programação.
+# Discussão do curso de Python do criador do vídeo e a necessidade de apoio financeiro da comunidade para completá-lo. Descrição do curso para iniciantes, sem pré-requisitos, e sua abordagem abrangente por meio de exercícios e materiais. Ênfase na importância do apoio da comunidade.

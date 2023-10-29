@@ -3,7 +3,7 @@
 - Para salários superiores a R$ 1250,00 calcule um aumento de 10%.
 - Para os inferiores ou iguais, o aumento é de 15%."""
 print("""
-      \033[1;45mAUMENTO SALARIAL\033[m""")
+      \033[1;42mAUMENTO SALARIAL\033[m""")
 # Passo 1: Peguntar o salário - Atribuimos a uma variável o valor que será digitado através de um método input e convertido pra float
 print('Digite o seu salário: \n')
 salario = float(input(''))
