@@ -3,6 +3,7 @@
 
 # Passo 1: Importar a biblioteca random
 from random import choice
+
 # Passo 2: Entrar com os nomes dos alunos - Armazenaremos os nomes dos alunos em uma variável cada
 primeiro_aluno = input('Qual é o nome do primeiro aluno? ')
 segundo_aluno = input('E do segundo? ')
@@ -17,3 +18,7 @@ print(f"""
 Uni, duni, duni, tê. Salamê minguê.
 Entre \033[1;32m{primeiro_aluno}\033[m, \033[1;32m{segundo_aluno}, \033[1;32m{terceiro_aluno}\033[m e \033[1;32m{quarto_aluno}\033[m
 O aluno escolhido foi você, \033[1;32m{choice(lista_de_alunos)}\033[m.""")
+
+# Ordem alfabética - sort()
+lista_de_alunos.sort()
+print(f"Em ordem alfabética: {', '.join(lista_de_alunos)}")

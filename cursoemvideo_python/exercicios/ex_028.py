@@ -13,6 +13,10 @@ numero = randint(0, 5)
 
 # A variável palpite armazena o valor digitado pelo usuário.
 palpite = int(input(''))
+# EXTRA - Colocando um laço para validar se o usuário digitou um número válido (entre 0 e 5)
+while palpite > 5:
+    print('Digite um número entre 0 e 5!')
+    palpite = int(input(''))
 
 # Passo 3: Escrever na tela se o usuário acertou ou errou - Para isso usaremos a estrutura condicional if else. Para fins de entendimento criamos uma variável que irá receber a comparação entre o número pensado pelo computador e o número digitado pelo usuário.
 

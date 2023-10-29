@@ -4,6 +4,7 @@
 print('Digite o valor atual do seu salário: ')
 salario_atual = float(input(''))
 print(f'O seu salário atual é \033[1;32mR$ {salario_atual:.2f}\033[m')
+
 # Mostrar o novo salário com 15% de aumento - O novo salário ficará armazenado em uma variavel. Ele corresponde a soma do salario atual mais o produto do salario atual vezes 1,5
 novo_salario = salario_atual + (salario_atual * 15/100)
 aumento = novo_salario - salario_atual

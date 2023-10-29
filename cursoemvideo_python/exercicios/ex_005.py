@@ -14,4 +14,5 @@ print(
     f'Você digitou o número \033[1m{numero}\033[m!\n\033[31mO seu antecessor é o número {antecessor}.\033[m\n\033[32mO seu sucessor é o número {sucessor}.\033[m')
 
 print(
-    f'RETA NUMÉRICA: - < --- ... ,{antecessor}, {numero}, {sucessor}, ... ---> +')
+    f"""RETA NUMÉRICA: 
+Negativos - < ... ,{antecessor}, {numero}, {sucessor}, ... > + Positivos""")

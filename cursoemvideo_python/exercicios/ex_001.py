@@ -2,8 +2,10 @@
 
 # Podemos exibir a mensagem diretamente no console ou guardá-la em uma variável
 
-# Primeiro método
+# Primeiro método - Atribuindo a mensagem a uma variável
 mensagem = '\033[1;31mOlá, mundo!\033[m'
+# Depois exibindo, utilizando a variável na instrução print
 print(mensagem)
-# Segundo método
+
+# Segundo método - Exibindindo a mensagem diretamente na instrução print
 print("\033[1;32mOlá, Mundo!\033[m")

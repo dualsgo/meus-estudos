@@ -1,7 +1,7 @@
 """ Desafio 004 - Dissecando uma variável (Aulas 01 a 06): Faça um programa que leia algo pelo teclado e mostre na tela o seu tipo primitivo e todas as informações sobre ele."""
 
 # Passo 1: Ler algo pelo teclado. Para isso utilizamos uma vriável para armazenar os dados que serão inseridos através de uma função input()
-print('Digite algo:')
+print('\033[42mDigite algo:\033[m')
 valor_digitado = input('')
 # Passo 2: Exibir as informações. Para isso iremos criar um print com uma string formatada e usaremos os métodos aplicáveis.
 # Observação: Iniciar a impressão de uma string formatada com três aspas triplas permite que a string abranja várias linhas e contenha substituições de variáveis.

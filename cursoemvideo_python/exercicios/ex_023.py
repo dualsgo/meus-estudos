@@ -1,4 +1,4 @@
-"""Desafio 023 - Título (Aula 01 a 09): Faça um programa que leia um número entre zero e 9999 e mostre na tela cada um dos dígitos separados.
+"""Desafio 023 - Separando dígitos de um número (Aula 01 a 09): Faça um programa que leia um número entre zero e 9999 e mostre na tela cada um dos dígitos separados.
 
 EX.: Digite um número: 1834
 unidade: 4
@@ -8,7 +8,7 @@ milhar: 1
 """
 # FORMA DE FAZER COM DADOS DO TIPO INT
 
-# Passo 1: Entrar com o número - O valor será armazrnado em uma variável e atribuido a ela a partir de uma função input
+# Passo 1: Entrar com o número - O valor será armazenado em uma variável e atribuido a ela a partir de uma função input()
 
 print("""
 # MÉTODO 1: EM FORMATO NUMÉRICO #

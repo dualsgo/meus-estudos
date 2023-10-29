@@ -1,7 +1,7 @@
 """Desafio 012 - Calculando Descontos (Aula 01 a 07): Faça um algoritimo que leia o preço de um produto e seu novo preço com 5% de desconto."""
 
 # Passo 1: Ler o preço do produto - Armazenamos o preço em uma variável convertida para float
-print('Calculadora de descontos!\nDigite o preço em R$:\n')
+print('Calculadora de descontos!\nDigite o preço em R$:')
 preco = float(input(''))
 print(f'O valor digitado foi: \033[1;32mR$ {preco:.2f}\033[m')
 # Calcular e exibir o desconto - Calculamos o desconto pegando o preço e subtraindo dele o valor total multiplicado pelo valor da porcentagem, respeitando a ordem de precedência.

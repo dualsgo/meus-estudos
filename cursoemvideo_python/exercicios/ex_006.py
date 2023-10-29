@@ -6,7 +6,7 @@ print("""
 """)
 print('Digite um número:')
 numero = int(input(''))
-# Passo 2: Mostrar o dobro, tripo e raiz quadrada: Para melhor entendimento iremos criar uma variável para cada ação.
+# Passo 2: Mostrar o dobro, tripo e raiz quadrada: para melhor entendimento iremos criar uma variável para cada ação.
 
 # Para chegar ao dobro basta multiplicar o valor fornecido por 2
 dobro = numero * 2

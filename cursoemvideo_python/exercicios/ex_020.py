@@ -18,4 +18,4 @@ print(f"""A ordem de apresentação será a seguinte: { ", ".join(lista)}""")
 # Neste código, ", ".join(lista) combina os elementos da lista com uma vírgula e um espaço entre eles, criando uma única string. Esta string é então exibida como a ordem de apresentação sem colchetes ou aspas simples.
 
 # Se quiser mostrar um número limitado de resultados podemos usar sample(lista, k=quantidade)
-print(", ".join(sample(lista, k=2))) # Exibira 2 entre os 4
+print(f'Entre os 4 alunos da lista os dois que irão apresentar são: {", ".join(sample(lista, k=2))}') # Exibira 2 entre os 4

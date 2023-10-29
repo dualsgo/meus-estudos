@@ -20,9 +20,9 @@ print(f'Você digitou {ano}\n')
 bissexto = (ano % 4 == 0 and ano % 100 != 0) or (ano % 400 == 0)
 # Passo 3: Exibir o resultado verificando a condição
 if bissexto:
-    print(f'\033[1;45m{ano} é BISSEXTO!\033[m')
+    print(f'\033[1;42m{ano} é BISSEXTO!\033[m')
 else:
-    print(f'\033[1;43m{ano} não é BISSEXTO!\033[m')
+    print(f'\033[1;41m{ano} não é BISSEXTO!\033[m')
 
 print("""
       \033[7mMétodo com móduto datetime\033[m
@@ -31,6 +31,6 @@ ano_atual_bissexto = (ano_atual % 4 == 0 and ano_atual %
                       100 != 0) or (ano_atual % 400 == 0)
 
 if ano_atual_bissexto:
-    print(f'\033[1;45mO ano atual {ano_atual} é bissexto.\033[m')
+    print(f'\033[1;42mO ano atual {ano_atual} é bissexto.\033[m')
 else:
-    print(f'\033[1;43mO ano atual {ano_atual} náo é bissexto.\033[m')
+    print(f'\033[1;41mO ano atual {ano_atual} náo é bissexto.\033[m')

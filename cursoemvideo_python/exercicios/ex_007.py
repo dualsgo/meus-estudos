@@ -4,9 +4,9 @@
 print('\033[7mMÉDIA ARITIMÉTICA\033[m')
 primeira_nota = float(input('Digite a primeira nota: '))
 segunda_nota = float(input('Digite a segunda nota: '))
-# Passo 2: Calcular e exibir a média - Criaremos uma cariável para realizar o cálculo e armazenar o resultado.
+# Passo 2: Calcular e exibir a média - Criaremos uma variável para realizar o cálculo e armazenar o resultado.
 
-# Lembrando da ordem de precedência, nesse caso primeiro realizamos a soma dos valores para depois dividir por 2. Para isso utilizamos os parenteses para envolver a soma.
+# Lembrando da ordem de precedência, nesse caso primeiro realizamos a soma dos valores para depois dividir por 2. Para isso utilizamos os parênteses para envolver a soma.
 media = (primeira_nota + segunda_nota) / 2
 
 # Agora exibimos o resultado:

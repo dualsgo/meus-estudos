@@ -13,7 +13,7 @@ distancia = int(input('Distância: '))
 print(f'Sua viagem será de \033[1m{distancia}Km\033[m.')
 if distancia <= 200:
     valor = distancia * .5
-    print(f'Você deverá pagar \033[1mR$ {valor:.2f}\033[m.')
+    print(f'Você deverá pagar \033[1;32mR$ {valor:.2f}\033[m.')
 else:
     valor = distancia * .45
-    print(f'Você deverá pagar \033[1mR$ {valor:.2f}\033[m.')
+    print(f'Você deverá pagar \033[1;32mR$ {valor:.2f}\033[m.')

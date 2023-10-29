@@ -19,10 +19,13 @@ aluguel = dias_final + km_final  # Custo total do aluguel
 
 # Exibir os resultados
 print(f"""
-Você utilizou o veículo por {dias} dias.
-A diária custa R$ 60,00 - Você pagará R$ {dias_final:.2f}.
-Você rodou por {km} Km.
-Cada Km rodado custa R$ 0,15 - Você pagará R$ {km_final:.2f}. 
+\033[1;42mA diária custa R$ 60,00\033[m
+Você utilizou o veículo por \033[1;32m{dias}\033[m dias.
+Você pagará: \033[1;32mR$ {dias_final:.2f}\033[m.
 
-O custo total do aluguel é R$ {aluguel:.2f}.
+\033[1;42mCada Km rodado custa R$ 0,15\033[m
+Você rodou por {km} Km.
+Você pagará: \033[1;32mR$ {km_final:.2f}\033[m. 
+
+\033[1;42mO custo total do aluguel é:\033[m \033[1;32mR$ {aluguel:.2f}\033[m.
 """)

@@ -1,4 +1,4 @@
-"""Desafio 024 - Título (Aula 01 a 09): Crie um programa que leia o nome de uma cidade e diga se ela começa ou não com 'SANTO'
+"""Desafio 024 - Separando dígitos de um número (Aula 01 a 09): Crie um programa que leia o nome de uma cidade e diga se ela começa ou não com 'SANTO'
 """
 # Passo 1: Ler o nome da cidade - Armazenamos o valor obtido através do input em uma variável. O input recebe o tratamento com strip para remover possíveis espaços adicionais. Poderia ser utilizado lstrip pra remover somente os do início
 print("""\033[1;31;40mDIGITE O NOME DA SUA CIDADE!\033[m""")

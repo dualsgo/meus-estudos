@@ -15,11 +15,11 @@ mm = metros * 1000
 print(f"""
 Você digitou {metros}m.
 Este valor equivale a:
-\033[1;32m{km}km (Quilômetro)
-{hm}hm (Hectômetro)
-{dam}dam (Decâmetro)\033[m
+\033[1;32m{km}km (Quilômetros)
+{hm}hm (Hectômetros)
+{dam}dam (Decâmetros)\033[m
 {metros}m (Metros)
-\033[1;31m{dm}dm (Decímetro)
-{cm}cm (Centrímetro)
-{mm}mm (Milímetro)\033[m
+\033[1;31m{dm}dm (Decímetros)
+{cm}cm (Centímetros)
+{mm}mm (Milímetros)\033[m
 """)

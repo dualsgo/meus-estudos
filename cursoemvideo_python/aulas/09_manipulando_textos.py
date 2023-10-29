@@ -29,7 +29,6 @@
 # Encerramento do vídeo com a promessa de mais conteúdo nas próximas aulas.
 
 """CONTEÚDO"""
-# Conteúdo
 
 # Cadeias de caracteres (strings): São sequências de texto envolvidas em aspas simples ou duplas e podem conter letras, números e caracteres especiais.
 frase = 'Curso em Vídeo Python'
@@ -46,7 +45,7 @@ print(frase[9:13])  # Exibirá 'Víde'
 print(frase[9:21:2])  # Exibe 'VdoPo'
 
 # Omitindo o início, começa do índice zero:
-print(frase[:5])  # Exibe 'Curso'
+print(frase[:5])  # Exibe 'Curso' - Seria o mes
 
 # Omitindo o fim, indica o início e vai até o final, independente do tamanho:
 print(frase[15:])  # Exibe 'Python'
@@ -63,7 +62,9 @@ print(len(frase))
 print(frase.count('o'))  # Retorna o número de ocorrências de 'o'
 
 # Podemos usar fatiamento para contar em um intervalo:
+# variavel.count('string', incio, fim)
 print(frase.count('o', 0, 13))  # Contagem de 'o' nos primeiros 13 caracteres
+# Se omitir o intervalo irá considerar toda a string
 
 # .find(): Exibe o índice de início da ocorrência de um conjunto de caracteres.
 # Exibe o índice de início de 'deo' (ou -1 se não encontrado)
@@ -101,7 +102,7 @@ print(frase_espacada.strip())
 
 # Divisão
 
-# .split(): Divide a string usando espaços como separadores e cria uma lista de palavras.
+# .split(): Divide a string usando espaços como separadores (por padrão, mas podemos definir outro separador entre os parênteses) e cria uma lista de palavras. Cada palavra é um elemento e receberá um índice
 frase_split = frase.split()
 print(frase_split)  # Exibirá ['Curso', 'em', 'Vídeo', 'Python']
 # Podemos exibir o índice zero de frase_split
@@ -114,7 +115,7 @@ print(frase_split[0][3])  # Exibirá a letra s que está no indice indicado
 # '-'.join(frase_split): Reúne elementos da lista em uma string, usando '-' como separador.
 frase_junta = '-'.join(frase_split)
 print(frase_junta)  # Exibe 'Curso-em-Vídeo-Python'
-
+# Podemos selecionar o separador, o colocando entre as aspas
 
 # Três aspas exibem a string exatamente da forma que o código é digitado
 

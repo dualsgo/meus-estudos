@@ -5,7 +5,7 @@ A multa vai custar R$ 70,00 por cada Km acima do limite."""
 
 # Passo 1: Escrever um número que leia a velocidade de um carro - Para isso atribuiremos a uma variável o método imput para que o usuário entre com a velocidade. Converteremos o valor para um número inteiro.
 
-print("""\033[1;45mSoy, Francesco Virgolini, Fiiiaaaaaaaaauunn
+print("""\033[1;42mSoy, Francesco Virgolini, Fiiiaaaaaaaaauunn
 La máquina más bloz De tote italiee Fiiiaaaa\033[m""")
 print('Qual é a sua velocidade?')
 velocidade = int(input(''))
