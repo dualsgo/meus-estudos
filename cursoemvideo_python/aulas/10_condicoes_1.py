@@ -40,10 +40,14 @@
 algo = True
 
 # A estrutura usa identação para identificar as instruções dentro das estruturas conducionais
-if algo:  # if sempre é executado se a condição for verdadeira - podemos usar uma comparação
+
+# if sempre é executado se a condição for verdadeira - podemos usar uma comparação
+if algo:
     print('\033[32mExecuta essa instrução caso a condição seja atendida\033[m')
-else:  # else não precisa de condição pois será executado sempre que a condição não for atendida
+# else não precisa de condição, pois será executado sempre que a condição não for atendida
+else:
     print('\033[31mExecuta essa instrução caso a condição não seja atendida\033[m')
+
 # As instruções fora da identação são sempre executadas
 print('Essa instrução não faz parte da estrutura condicional')
 
