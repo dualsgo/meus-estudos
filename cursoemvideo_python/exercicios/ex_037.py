@@ -1,4 +1,4 @@
-"""Desafio 037 -  (Aula 01 a 12): Escreva um programa que leia um número inteiro qualquer e peça para o usuário escolher qual será a base numérica da conversão.
+"""Desafio 037 - Conversor de bases numéricas (Aula 01 a 12): Escreva um programa que leia um número inteiro qualquer e peça para o usuário escolher qual será a base numérica da conversão.
 - 1. Binário
 - 2. Octal
 - 3. Hexadecimal
@@ -35,10 +35,10 @@ print(f'Você escolheu a opção {cor["green"]}{opcao}{cor["fecha"]}.')
 
 # Converter utilizando funções integradas
 if opcao == 1:
-    print(f'{cor["green"]}{numero}{cor["fecha"]} em binário é {cor["green"]}{bin(numero)}{cor["fecha"]}.')
+    print(f'{cor["green"]}{numero}{cor["fecha"]} em binário é {cor["green"]}{bin(numero)[2:]}{cor["fecha"]}.')
 elif opcao == 2:
-    print(f'{cor["green"]}{numero}{cor["fecha"]} em octal é {cor["green"]}{oct(numero)}{cor["fecha"]}.')
+    print(f'{cor["green"]}{numero}{cor["fecha"]} em octal é {cor["green"]}{oct(numero)[2:]}{cor["fecha"]}.')
 elif opcao == 3:
-    print(f'{cor["green"]}{numero}{cor["fecha"]} em hexadecimal é {cor["green"]}{hex(numero)}{cor["fecha"]}.')
+    print(f'{cor["green"]}{numero}{cor["fecha"]} em hexadecimal é {cor["green"]}{hex(numero)[2:]}{cor["fecha"]}.')
     
 # EXTRA - Método sem as funções integradas
