@@ -18,17 +18,23 @@ print('Digite o seu peso: Kg')
 peso = float(input(''))
 print('Digite a sua altura: m')
 altura = float(input(''))
+
 # Calcular o IMC
 imc = peso / altura ** 2
+print(f'{cor["destaque"]}Seu IMC é: {cor["green"]}{imc:.2f}{cor["fecha"]}')
+
 # Categorizar com base na tabela
-print(f'{cor["destaque"]}Seu IMC é: {imc:.1f}.{cor["fecha"]}')
-if imc < 18.5:
+if imc < 17:
+    print(f'{cor["destaque"]}Você está{cor["fecha"]} {cor["yellow"]}MUITO ABAIXO DO PESO{cor["fecha"]}')
+elif imc < 18.49:
     print(f'{cor["destaque"]}Você está{cor["fecha"]} {cor["yellow"]}ABAIXO DO PESO{cor["fecha"]}')
-elif imc < 25:
+elif imc < 24.99:
     print(f'{cor["destaque"]}Você está no{cor["fecha"]} {cor["green"]}PESO IDEAL{cor["fecha"]}')
-elif imc < 30:
+elif imc < 29.99:
     print(f'{cor["destaque"]}Você está com{cor["fecha"]} {cor["yellow"]}SOBREPESO{cor["fecha"]}')
-elif imc < 40:
-    print(f'{cor["destaque"]}Você se enquadra em{cor["fecha"]} {cor["red"]}OBESIDADE{cor["fecha"]}')
+elif imc < 34.99:
+    print(f'{cor["destaque"]}Você se enquadra em{cor["fecha"]} {cor["red"]}OBESIDADE I{cor["fecha"]}')
+elif imc < 39.99:
+    print(f'{cor["destaque"]}Você se enquadra em{cor["fecha"]} {cor["red"]}OBESIDADE II - SEVERA{cor["fecha"]}')
 else:
-    print(f'{cor["destaque"]}Você se enquadra em{cor["fecha"]} {cor["red"]}OBESIDADE MÓRBIDA{cor["fecha"]}')
+    print(f'{cor["destaque"]}Você se enquadra em{cor["fecha"]} {cor["red"]}OBESIDADE III - MÓRBIDA{cor["fecha"]}')

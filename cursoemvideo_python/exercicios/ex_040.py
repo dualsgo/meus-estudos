@@ -25,7 +25,7 @@ if media < 5:
     print(f"""{cor['red']}REPROVADO!{cor['fecha']}
 {cor['destaque']}Nota corte:{cor['fecha']} {cor['red']}0 a 4.9{cor['fecha']}
 {cor['destaque']}Sua média:{cor['fecha']} {cor['red']}{media:.1f}{cor['fecha']}""")
-elif media >= 5 and media < 7:
+elif 7 > media >= 5:
     print(f"""{cor['yellow']}RECUPERAÇÃO!{cor['fecha']}
 {cor['destaque']}Nota corte:{cor['fecha']} {cor['yellow']}5 a 6.9{cor['fecha']}
 {cor['destaque']}Sua média:{cor['fecha']} {cor['yellow']}{media:.1f}{cor['fecha']}""")

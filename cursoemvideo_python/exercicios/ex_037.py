@@ -7,18 +7,18 @@
 cor = {
     'red': '\033[1;31m',
     'green': '\033[1;32m',
+    'yellow': '\033[1;33m',
     'fecha': '\033[m',
-    'destaque': '\033[1m'}
+    'destaque': '\033[7m'}
 print("""
       CONVERTENDO VALORES DECIMAIS""")
-# Receber o numero digitado pelo usuário
+# Receber o número digitado pelo usuário convertido para inteiro.
 numero = int(input('Digite um número: '))
 # Dar ao usuário as opções disponíveis
-opcao = int(input(f"""
-Escolha a base numérica para comverter o número {cor["green"]}{numero}{cor["fecha"]}:
-{cor["destaque"]}1 - BINÁRIO{cor["fecha"]}
-{cor["destaque"]}2 - OCTAL{cor["fecha"]}
-{cor["destaque"]}3 - HEXADECIMAL{cor["fecha"]}
+opcao = int(input(f"""Escolha a base numérica para converter o número {cor["green"]}{numero}{cor["fecha"]}:
+{cor["destaque"]}[1]{cor["fecha"]} {cor["green"]}BINÁRIO{cor["fecha"]}
+{cor["destaque"]}[2]{cor["fecha"]} {cor["red"]}OCTAL{cor["fecha"]}
+{cor["destaque"]}[3]{cor["fecha"]} {cor["yellow"]}HEXADECIMAL{cor["fecha"]}
 """))
 
 # EXTRA - Validação para garantir que utilize uma das opções sugeridas
@@ -40,5 +40,5 @@ elif opcao == 2:
     print(f'{cor["green"]}{numero}{cor["fecha"]} em octal é {cor["green"]}{oct(numero)[2:]}{cor["fecha"]}.')
 elif opcao == 3:
     print(f'{cor["green"]}{numero}{cor["fecha"]} em hexadecimal é {cor["green"]}{hex(numero)[2:]}{cor["fecha"]}.')
-    
-# EXTRA - Método sem as funções integradas
+
+# [2:] fatia a string e exibe a partir do terceiro caracter

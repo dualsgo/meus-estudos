@@ -24,6 +24,7 @@ if esquerda != direita:  # EXTRA - Verifica se os valores são diferentes - Se f
         print(f'O número {cor["green"]}{esquerda}{cor["fecha"]} é maior que o {cor["red"]}{direita}{cor["fecha"]}.')
     else:
         print(f'O número {cor["green"]}{direita}{cor["fecha"]} é maior que o {cor["red"]}{esquerda}{cor["fecha"]}.')
-else: # Se forem iguais só precisamos de uma opção
+# Se forem iguais só precisamos de uma opção
+else:
     print(
         f'Os valores digitados foram: {cor["green"]}{esquerda}{cor["fecha"]} e {cor["red"]}{direita}{cor["fecha"]}.\n{cor["green"]}Estes valores são iguais!{cor["fecha"]}')

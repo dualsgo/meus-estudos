@@ -25,13 +25,14 @@ ano = int(input(''))
 idade = date.today().year - ano
 
 # Categorizar
-if idade <= 9:
-    print(f'{cor["destaque"]}Com {idade} anos, sua categoria será:{cor["fecha"]} {cor["green"]}MIRIM{cor["fecha"]}')
-elif idade <= 14:
-    print(f'{cor["destaque"]}Com {idade} anos, sua categoria será:{cor["destaque"]} {cor["green"]}INFANTIL{cor["fecha"]}')
-elif idade <= 19:
-    print(f'{cor["destaque"]}Com {idade} anos, sua categoria será:{cor["destaque"]} {cor["green"]}JUNIOR{cor["fecha"]}')
-elif idade == 20:
-    print(f'{cor["destaque"]}Com {idade} anos, sua categoria será:{cor["destaque"]} {cor["green"]}SÊNIOR{cor["fecha"]}')
-else:
-    print(f'{cor["destaque"]}Com {idade} anos, sua categoria será:{cor["destaque"]} {cor["green"]}MASTER{cor["fecha"]}')
+if idade <= 9: # Até 9 anos
+    categoria = 'MIRIM'
+elif idade <= 14: # De 9 a 14 anos
+    categoria = 'INFANTIL'
+elif idade <= 19: # De 15 a 19 anos
+    categoria = 'SÊNIOR'
+elif idade <= 25: # De 20 até 25 anos
+    categoria = 'SÊNIOR'
+else: # Com 26 ou mais
+    categoria = 'MASTER'
+print(f'{cor["destaque"]}Com {idade} anos, sua categoria será:{cor["destaque"]} {cor["green"]}{categoria:^30}{cor["fecha"]}')
