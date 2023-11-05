@@ -1,1 +1,5 @@
-Desafio 056 - Título (Aula 00 a 00): Descrição.
+"""Desafio 56 -  (Aula 01 a 13): Desenvolva um programa que leia o nome, idade e sexo de quatro pessoas. No final do programa mostre:
+- A mÃ©dia de idade do grupo
+- Qual Ã© o nome do homem mais velho
+- Quantas mulheres tem menos de 20 anos
+"""

@@ -51,7 +51,7 @@
 # Laço for - Repete uma ou mais instruções um número determinado de vezes
 
 # Exemplo 1: Iterando de 1 a 9
-for passo in range(1, 10):
+for passo in range(1, 10): # Se omitir o 1 irá iniciar em zero
     print(f'Andei {passo}')
     passo += 1  # Incrementa o contador
 print('Parei')
@@ -59,10 +59,10 @@ print('Parei')
 # Exemplo 2: Iterando de 0 a 9, verificando se é par ou ímpar
 c = 0
 for c in range(0, 10):
-    if c % 2 == 0:
-        print(f'{c} é par.')
+    if c % 2 == 0: # Verifica se o numero dividido por 2 tem resto zero, indicando que é par
+        print(f'{c} é par.') # se for par
     else:
-        print(f'{c} é ímpar.')
+        print(f'{c} é ímpar.') # se for ímpar
     c += 1
 print('FIM')
 
