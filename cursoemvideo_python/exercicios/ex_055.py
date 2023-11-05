@@ -1,4 +1,4 @@
-"""Desafio 055 -  (Aula 01 a 13): Faça um programa que leia o peso de cinco pessoas. No final mostre qual foi o maior peso e o menor peso."""
+"""Desafio 055 - Maior e menor da sequência (Aula 01 a 13): Faça um programa que leia o peso de cinco pessoas. No final mostre qual foi o maior peso e o menor peso."""
 
 # Definir uma variável que receberá uma lista
 peso = []

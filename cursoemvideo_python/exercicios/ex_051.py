@@ -1,4 +1,4 @@
-"""Desafio 051 -  (Aula 01 a 13): Desenvolva um programa que leia o primeiro termo e a razão de uma progressão aritimética e no final mostre os 10 primeiros termos dessa progressão."""
+"""Desafio 051 - Progressão Aritimética (Aula 01 a 13): Desenvolva um programa que leia o primeiro termo e a razão de uma progressão aritimética e no final mostre os 10 primeiros termos dessa progressão."""
 
 
 """

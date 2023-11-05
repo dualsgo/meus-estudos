@@ -1,4 +1,4 @@
-"""Desafio 053 -  (Aula 01 a 13):
+"""Desafio 053 - Detector de palíndromo (Aula 01 a 13):
 Crie um programa que leia uma frase qualquer e diga se ela é um palíndromo, desconsiderando os espaços."""
 
 # Ler uma frase

@@ -1,4 +1,4 @@
-"""Desafio 054 -  (Aula 01 a 13):
+"""Desafio 054 - Grupo da maioridade (Aula 01 a 13):
 Crie um programa que leia o ano de nascimento de sete pessoas e no final mostre quantas pessoas já são maiores de 21 anos e quantos não são."""
 # import randint para sortear um ano aleatório
 from random import randint
