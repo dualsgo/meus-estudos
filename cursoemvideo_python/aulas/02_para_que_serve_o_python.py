@@ -1,6 +1,6 @@
 # Curso Python Aula 02 - Para que serve o Python?
 
-'''RESUMO'''
+"""RESUMO"""
 
 # Origens do Python, uma linguagem de programação criada por Guido van Rossum em 1989, com o objetivo de ser simples e amigável ao usuário. Destaque para sua popularidade devido à facilidade de aprendizado e uso em diversas indústrias.
 

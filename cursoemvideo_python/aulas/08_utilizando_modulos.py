@@ -42,7 +42,7 @@ num = int(input('Digite um número: '))
 
 # Utilizando a biblioteca math para calcular a raiz quadrada do número inserido
 raiz = math.sqrt(num)
-
+print(raiz)
 # Utilizando a função "ceil" para arredondar para cima e exibindo o resultado
 print("Arredondando para cima:", math.ceil(raiz))
 

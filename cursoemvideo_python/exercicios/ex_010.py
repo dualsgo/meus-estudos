@@ -12,11 +12,18 @@ carteira = float(input(''))
 # Passo 2: Converter o valor realizando a operação matemática correspondente - Para isso criaremos uma variável que irá armazenar o resultado do cálculo
 
 real = carteira  # Armazena o valor que digitado pelo usuário
-dolar = 3.27  # Armazena o valor atual do dolar em real
-convertido = real / dolar  # Armazena a conversão
+# Calcula a quantidade de dólares que a pessoa pode comprar dividindo o valor em reais pela taxa de câmbio (R$ 4,94 por dólar).
+dolar = real / 4.94
+# Calcula a quantidade de euros que a pessoa pode comprar dividindo o valor em reais pela taxa de câmbio (R$ 5,33 por euro).
+euro = real / 5.33
+real_dolar = real / dolar  # Armazena a conversão
+real_euro = real / euro
+
 
 # Passo 3: Exibir o resultado - As variáveis estão formatadas para exibir duas casas decimais
 print(f"""
 \033[1mVocê possui\033[1m \033[1;32mR$ {real:.2f}.\033[m
-\033[1mNa cotação atual você consegue comprar\033[m \033[1;31mU$ {convertido:.2f}\033[m
+\033[1mNa cotação atual você consegue comprar\033[m \033[1;31mU$ {real_dolar:.2f}\033[m
+\033[1mNa cotação atual você consegue comprar\033[m \033[1;31m € {real_euro:.2f}\033[m
+
 """)

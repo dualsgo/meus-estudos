@@ -1,6 +1,6 @@
 # Curso Python Aula 01 - Seja um programador
 
-'''RESUMO'''
+"""RESUMO"""
 
 # Importância da programação e a crescente demanda por programadores na sociedade.
 # Destaque para a previsão de déficit de programadores, com base nas estatísticas da 'code.org'.

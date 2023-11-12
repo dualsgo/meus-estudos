@@ -1,8 +1,8 @@
 # MIMO - Formatando Strings com F-strings e Caracteres de Escape
 
 # Antes, vimos que podemos concatenar strings usando o sinal de +. Dessa forma, os valores são unidos e formam uma única string.
-texto1 = 'Essa parte'
-texto2 = ' se junta a essa.'
+texto1 = '\033[31mEssa parte\033[m'
+texto2 = '\033[32m se junta a essa.\033[m'
 print(texto1 + texto2)  # Saída: 'Essa parte se junta a essa'
 
 # O recurso de formatação de string (f-string) nos possibilita formatar uma string de modo mais amplo.

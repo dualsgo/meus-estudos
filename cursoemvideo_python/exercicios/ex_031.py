@@ -16,4 +16,4 @@ if distancia <= 200:
     print(f'Você deverá pagar \033[1;32mR$ {valor:.2f}\033[m.')
 else:
     valor = distancia * .45
-    print(f'Você deverá pagar \033[1;32mR$ {valor:.2f}\033[m.')
+    print(f'Você deverá pagar \033[1;Q32mR$ {valor:.2f}\033[m.')
