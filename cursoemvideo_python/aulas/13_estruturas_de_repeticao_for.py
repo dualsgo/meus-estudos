@@ -57,9 +57,9 @@ for passo in range(1, 10): # Se omitir o 1 irá iniciar em zero
 print('Parei')
 
 # Exemplo 2: Iterando de 0 a 9, verificando se é par ou ímpar
-c = 0
-for c in range(0, 10):
-    if c % 2 == 0: # Verifica se o numero dividido por 2 tem resto zero, indicando que é par
+c = 1
+for c in range(1, 10):
+    if c % 2 == 0: # Verifica se o número dividido por 2 tem resto zero, indicando que é par
         print(f'{c} é par.') # se for par
     else:
         print(f'{c} é ímpar.') # se for ímpar

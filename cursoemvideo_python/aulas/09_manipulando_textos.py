@@ -78,7 +78,7 @@ print('Curso' in frase)  # Retorna True
 # .replace(): Substitui um valor na string, criando uma nova string. A mudança só vale para aquela instância. Para mudar o valor pemantentemente deve-se atribuir o novo valor a variável ou a uma nova
 # replace('string que deseja mudar', 'novo valor')
 nova_frase = frase.replace('Python', 'Android')
-print(frase, nova_frase)
+print(frase, nova_frase, frase)
 
 # .upper(): Transforma a string em maiúsculas.
 print(frase.upper())
@@ -122,5 +122,6 @@ print(frase_junta)  # Exibe 'Curso-em-Vídeo-Python'
 print("""Portanto
   mesmo
         que
+        
             hajam espaços
 e linhas, serão mostrados da forma que foi digitado.""")

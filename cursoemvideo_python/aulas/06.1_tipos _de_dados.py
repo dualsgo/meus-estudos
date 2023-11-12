@@ -10,7 +10,7 @@ numero_int = 10
 
 # Ponto flutuante/Float (float): São números com casas decimais, representados usando um ponto como separador decimal.
 numero_float = 10.0
-zero_float = .1  # Podemos omitir o zero à esquerda do ponto.
+zero_float = .001  # Podemos omitir o zero à esquerda do ponto.
 
 # BOOLEANOS (bool): São valores especiais que representam verdadeiro ou falso.
 
@@ -21,8 +21,8 @@ verdadeiro = True
 falso = False
 
 # Além disso, os booleanos podem ser usados para expressar condições, como em declarações condicionais (if, else) e loops.
-condicao = numero_int > 5  # Exemplo de uso de um booleano em uma condição.
-
+condicao = numero_int > 1  # Exemplo de uso de um booleano em uma condição.
+print(condicao)
 # Os booleanos são essenciais para controlar o fluxo do programa, permitindo a execução condicional de blocos de código.
 if condicao:
     print("A condição é verdadeira.")

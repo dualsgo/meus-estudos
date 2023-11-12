@@ -49,8 +49,8 @@ for item_lista in lista:
 # Contando elementos
 
 # Usamos a instrução len(lista) para obter o número de elementos de uma lista.
-print(f"Comprimento da lista: {len(exemplo)}")
-comprimento = len(exemplo)
+print(f"Comprimento da lista: {len(lista)}")
+comprimento = len(lista)
 print(f"Comprimento armazenado em uma variável: {comprimento}")
 
 # Listas vazias (lista[]) retornam zero. Podemos usar o comprimento da lista em instruções condicionais, por exemplo.
@@ -76,9 +76,12 @@ print(f"Soma dos elementos da lista: {total}")
 # Combinando dados
 
 # Para combinar dados de dois conjuntos ou mais, criamos uma expressão contendo os nomes das listas e o operador de adição +.
-lista1 = [0, 1, 2, 3]
-lista2 = [4, 5, 6, 7, 8, 9]
+lista2 = [0, 1, 2, 3]
+lista1 = [4, 5, 6, 7, 8, 9]
 print(lista1 + lista2)
+listas = lista1 + lista2
+listas.sort()
+print(listas)
 # O resultado é [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 # Ao usar +, a primeira lista será exibida seguida das demais, nessa ordem.
 # Os dados das listas podem ser diferentes!

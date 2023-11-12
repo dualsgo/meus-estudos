@@ -71,11 +71,11 @@ print(f'Olá {nome:^20}!')
 # Podemos definir um caracter que desejarmos substituindo os espaços
 print(f'Olá {nome:=^20}!')
 
-# Podemos formatar o numero de casas decimais
+# Podemos formatar o número de casas decimais
 pi = 3.1415
 print(f'{pi:.2f}')  # Irá exibir apenas 2 casas decimais >> Retorna 3.14
 
 # Quebra de linha
-# Irá exibir as instruções print na mesma linha
+# Irá exibir as instruções print() na mesma linha
 print('Uma linha', end=' apoio visual ')
 print('Outra linha')

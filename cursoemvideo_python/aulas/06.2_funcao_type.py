@@ -4,6 +4,7 @@
 
 # Podemos combinar com a instrução print() para exibir esse resultado no console: print(type(variavel))
 variavel = 5
+print(variavel)
 tipo = type(variavel)
 print(tipo)
 

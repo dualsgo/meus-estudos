@@ -37,9 +37,9 @@
 
 # Sintaxe:
 # Nesse exemplo como atribuímos a variável o valor True, o primeiro bloco será executado.
-algo = True
+algo = False
 
-# A estrutura usa identação para identificar as instruções dentro das estruturas conducionais
+# A estrutura usa identação para identificar as instruções dentro das estruturas condicionais
 
 # if sempre é executado se a condição for verdadeira - podemos usar uma comparação
 if algo:
@@ -66,7 +66,7 @@ print('CARRO NOVO'if tempo <= 3 else 'CARRO VELHO')
 # Estrutura condicional simples possui apenas um bloco if, a estrutura condicional composta possui um ou mais blocos if. O bloco else é opicional, mas deve vir sempre no final, após os bloco if
 nome = str(input('Qual é o seu nome? '))
 
-# CONDIÇÃO - Consiste em uma comparação entre o valor digitado e o valor pré definido.
+# CONDIÇÃO - Consiste em uma comparação entre o valor digitado e o valor pré-definido.
 if nome == 'Gustavo':
     # BLOCO VERDADEIRO - Será executado somente se a CONDIÇÃO for atendida.
     print('Que nome lindo você tem!')

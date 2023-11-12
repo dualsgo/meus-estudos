@@ -75,8 +75,10 @@ par = 0  # Inicializa a contagem de números pares
 impar = 0  # Inicializa a contagem de números ímpares
 while numero <= 10:  # Enquanto o número for menor ou igual a 10
     if numero % 2 == 0:  # Verifica se o número é par
+        print(numero, 'PAR')
         par += 1  # Incrementa a contagem de pares
     else:
+        print(numero, 'ÍMPAR')
         impar += 1  # Incrementa a contagem de ímpares
     numero += 1  # Incrementa o número em 1
 print(f'Ao todo temos {par} pares e {impar} ímpares')  # Imprime o resultado

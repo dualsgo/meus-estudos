@@ -87,7 +87,7 @@ print('''
 \033[7mTESTE\033[m - Invertido, texto padrão, fundo padrão
 ''')
 
-# Declaração dicionário 'cor'
+# Declaração, dicionário 'cor'
 cor = {
     'limpa': '\033[m',
     'verde': '\033[1;32m',

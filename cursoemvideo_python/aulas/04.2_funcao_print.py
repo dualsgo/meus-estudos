@@ -45,7 +45,7 @@ print('Este texto', end=' ')
 print('será exibido na mesma linha.')
 
 # A opção 'sep' permite especificar o separador entre os valores a serem impressos. O valor padrão é um espaço.
-valor_1 = 10
-valor2 = 20
-print(valor_1, valor2)  # Exibirá "10 20"
-print(valor_1, valor2, sep=', ')  # Exibirá "10, 20"
+horas = 10
+minutos = 20
+print(horas, minutos)  # Exibirá "10 20"
+print(horas, minutos, sep=':')  # Exibirá "10:20"

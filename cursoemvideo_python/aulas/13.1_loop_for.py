@@ -4,7 +4,7 @@
 # Para criar um loop for, usamos a palavra-chave 'for', uma variável de contador como 'i', seguida da palavra 'in' e, por fim, a função 'range()' com seu parâmetro.
 
 print("Loop For:")
-for i in range(11):
+for i in range(1):
     print(i)
 
 # A função 'range()' especifica quantas vezes queremos que o nosso loop seja executado. Como começa no índice 0, ele terá duas execuções e irá exibir 0 e 1.

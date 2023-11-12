@@ -14,13 +14,5 @@ else:
 print('Esta instrução não faz parte do bloco condicional e é exibida independentemente do resultado.')
 
 # elif (senão se): Podemos usar elif para condições mais específicas. É usado quando há uma segunda condição a ser verificada quando a condição do if não for atendida. Podemos usar quantos elif quisermos.
-if algo:
-    # Usamos um recuo de dois espaços para destacar os blocos de código. Todas as linhas com o mesmo recuo pertencem ao bloco de código
-    print('Avaliado como verdadeiro!')
-    print('Essa instrução também faz parte do bloco de código condicional.')
-# Podemos usar operadores de comparação em programas para verificar se algo está correto e se a resposta dada é igual a solução esperada.
-else:  # Else vai sempre no final do código da instrução.
-    # else (senão): Programas não decide somente oque fazer quando uma condição é true. Eles contam com um plano B caso a condição seja avaliada como False. Usamos a intrução else. Ela não precisa de uma condição própria pois trata dos casos em que a condição do if não é avaliada como True. É como uma resposta padrão
-    print('Essa linha seria exibida caso a condição do if não fosse atendida.')
-print('Já essa instrução não faz parte do bloco condicional e é exibida independente do resultado.')
-# elif (senão se): Para condições mais específicas usamos elif. É usado quando há uma segunda condição a ser verificada quando a condição do if não for atendida. Contanto que venha antes de else, podemos usar quandos elif quisermos.
+
+# Diferença if e elif - A escolha entre if e elif depende de como você deseja que o programa se comporte com relação às condições. O elif é útil quando você quer testar várias condições exclusivas, enquanto vários blocos if podem ser usados quando você deseja avaliar condições independentes.
