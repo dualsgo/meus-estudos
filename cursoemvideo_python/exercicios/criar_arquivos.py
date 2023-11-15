@@ -12,8 +12,7 @@ for i in range(6, 101):
     caminho_arquivo = os.path.join(diretorio, nome_arquivo)
 
     # Conteúdo a ser adicionado em cada arquivo
-    conteudo = f'Desafio {numero_formatado} - Título (Aula 00 a 00): Descrição.
-'
+    conteudo = f'Desafio {numero_formatado} - Título (Aula 00 a 00): Descrição.'
     # Cria o arquivo e escreve o conteúdo
     with open(caminho_arquivo, "w") as arquivo:
         arquivo.write(conteudo)

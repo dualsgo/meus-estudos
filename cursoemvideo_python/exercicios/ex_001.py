@@ -4,7 +4,7 @@
 
 # Primeiro método - Atribuindo a mensagem a uma variável
 mensagem = '\033[1;31mOlá, mundo!\033[m'
-# Depois exibindo, utilizando a variável na instrução print
+# Depois exibindo, utilizando a variável na instrução print()
 print(mensagem)
 
 # Segundo método - Exibindindo a mensagem diretamente na instrução print()

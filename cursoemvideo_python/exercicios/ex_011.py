@@ -22,7 +22,8 @@ litros = area / 2
 print(f"""
 Para pintar toda a sua parede de \033[1;31m{area:.2f}m²\033[m será necessário utilizar \033[1;31m{litros:.1f}L\033[m de tinta.
 """)
-
-# Extra - Informar a quantidade de galões de 3.6L ou de 18L que serão necessários. Na própria string usaremos a expressão convertida para int() para desse forma desconsiderar a parte fracionária.
-
-print(f'Você terá que comprar \033[1;31m{int(litros / 3.6)} galões de 3,6L\033[m ou \033[1;32m{int(litros / 18)} galões de 18L\033[1;31m de tinta.')
+if litros > 3.6:
+    # Extra - Informar a quantidade de galões de 3.6L ou de 18L que serão necessários. Na própria string usaremos a expressão convertida para int() para desse forma desconsiderar a parte fracionária.
+    print(f'Você terá que comprar \033[1;31m{int(litros / 3.6)} galões de 3,6L\033[m ou \033[1;32m{int(litros / 18)} galões de 18L\033[1;31m de tinta.')
+else:
+    print(f'Você usará \033[1;31mmenos de um galão de 3,6L\033[m.')
