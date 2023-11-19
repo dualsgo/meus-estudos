@@ -4,7 +4,7 @@
 
 # Comandos básicos em Python, enfatizando a função print() para exibir mensagens na tela e o uso de aspas para delimitar mensagens e realizar cálculos com números.
 
-"""Comandos Básicos em Python:
+"""
 1. print():
    - Função usada para exibir mensagens na tela.
    - Sintaxe: `print("Mensagem")`
@@ -18,14 +18,13 @@
 
 # Introdução ao conceito de variáveis e como elas armazenam informações, incluindo representação de strings com aspas e concatenação de várias strings.
 
-"""# Introdução ao Conceito de Variáveis em Python:
-
+"""
 1. Variáveis: 
 - São espaços de armazenamento para dados em um programa.
 - Exemplo: idade = 25 armazena o valor 25 na variável idade.
 idade = 25
 2. Armazenamento de Informações:
-- Variáveis guardam diferentes tipos de dados, como números, textos e booleanos.
+- Variáveis guardam diferentes tipos de dados, como números, textos e booleans.
 - Exemplo: nome = "João" armazena a string "João" na variável nome.
 nome = "João"
 3. Representação de Strings com Aspas:
@@ -40,8 +39,7 @@ saudacao = "Olá, " + nome
 
 # Interatividade com o usuário por meio da função input, permitindo a personalização das saídas dos programas.
 
-"""Interatividade com o Usuário por meio da Função input:
-
+"""
 1. Solicitar entrada do usuário e armazenar em uma variável.
 nome_usuario = input("Digite seu nome: ")
 2. Utilizar a entrada do usuário para personalizar uma mensagem.

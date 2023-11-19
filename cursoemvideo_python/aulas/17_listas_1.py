@@ -1,4 +1,4 @@
-# Curso Python #17 - Listas
+# Curso Python #17 - Listas PARTE 1
 
 """RESUMO"""
 
@@ -76,7 +76,7 @@ print(lanche)
 lanche.remove('Suco')
 print(lanche)
 
-# Ao tentar remover um elemento que não existe ocorerrá um erro. Podemos usar o comando if para verificar se o elemento está na lista. Com essa verificação, caso o elemento não exista evitamos o erro
+# Ao tentar remover um elemento que não existe ocorrerá um erro. Podemos usar o comando if para verificar se o elemento está na lista. Com essa verificação, caso o elemento não exista evitamos o erro
 
 # Podemos criar listas através de range() com o comando list()
 from random import randint

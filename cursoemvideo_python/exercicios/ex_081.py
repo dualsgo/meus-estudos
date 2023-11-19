@@ -1,4 +1,4 @@
-"""Desafio 081 -  (Aula 01 a 17): Crie um programa que vai ler vários números e colocar em uma lista. Depois disso, mostre:
+"""Desafio 081 - Extraindo dados de uma lista (Aula 01 a 17): Crie um programa que vai ler vários números e colocar em uma lista. Depois disso, mostre:
 - Quantos números foram digitados.
 - A lista de valores ordenada de forma decrescente.
 - Se o valor 5 foi digitado e está ou não na lista.
@@ -32,3 +32,19 @@ if 5 not in lista:
     print(f'O elemento 5 não está presente na lista!')
 else:
     print(f'O elemento 5 foi digitado na posição {lista.index(5)}.')
+
+###################### Versão Guanabara
+
+valores = []
+while True:
+    valores.append((int(input('Digite um valor: '))))
+    resp = str(input('Quer continuar? S/N'))
+    if resp in 'Nn':
+        break
+print(f'Você digitou {len(valores)} elementos.')
+valores.sort(reverse=True)
+print(f'Os valores em ordem decrescente são: {valores}')
+if 5 in lista:
+    print('O valor 5 faz parte da lista!')
+else:
+    print('O valor 5 não foi encontrado na lista!')

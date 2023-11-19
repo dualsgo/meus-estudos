@@ -1,4 +1,4 @@
-"""Desafio 082 -  (Aula 01 a 17): Crie um programa para ler vários números e colocar em uma lista. Depois disso, crie duas listas extras que vão conter apenas os valores pares e os valores ímpares digitados, respectivamente. Ao final, mostre o conteúdo das três listas geradas. AAlimentar a lista primeiro e depois fazer a análise
+"""Desafio 082 - Dividindo valores em várias listas (Aula 01 a 17): Crie um programa para ler vários números e colocar em uma lista. Depois disso, crie duas listas extras que vão conter apenas os valores pares e os valores ímpares digitados, respectivamente. Ao final, mostre o conteúdo das três listas geradas. AAlimentar a lista primeiro e depois fazer a análise
 """
 
 # Criar uma lista
@@ -33,4 +33,21 @@ print(f'A lista completa é: {lista}')
 print(f'A lista dos pares é: {pares}' if pares else 'Não há números pares nesta lista!')
 print(f'A lista dos ímpares é: {impares}' if impares else 'Não há números ímpares nesta lista!')
 
+############ Guanabara
 
+num = []
+pares = []
+impares = []
+while True:
+    num.append(int(input('Digite um número: ')))
+    resp = str(input('Quer continuar? S/N'))
+    if resp in 'Nn':
+        break
+for i, v in enumerate(num):
+    if v % 2 == 0:
+        pares.append(v)
+    elif v % 2 == 1:
+        impares.append(v)
+print(f'A lista completa é {num}')
+print(f'A lista de pares é {pares}')
+print(f'A lista de impares é {impares}')
