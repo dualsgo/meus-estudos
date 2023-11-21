@@ -102,5 +102,6 @@ while c <= fim:  # Enquanto 'c' for menor ou igual ao valor de fim
         lista.append(c)  # Adiciona 'c' à lista de números pares
     soma += c  # Incrementa 'c' na soma
     c += iteracao  # Incrementa 'c' com o valor de iteração
+print('')
 print(f'Soma: {soma}')  # Imprime a soma
 print(f'Números pares na lista: {lista}')  # Imprime a lista de números pares

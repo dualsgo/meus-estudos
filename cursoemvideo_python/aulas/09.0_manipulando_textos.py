@@ -75,7 +75,7 @@ print('Curso' in frase)  # Retorna True
 
 # Transformação
 
-# .replace(): Substitui um valor na string, criando uma nova string. A mudança só vale para aquela instância. Para mudar o valor pemantentemente deve-se atribuir o novo valor a variável ou a uma nova
+# .replace(): Substitui um valor na string, criando uma nova string. A mudança só vale para aquela instância. Para mudar o valor permanentemente deve-se atribuir o novo valor a variável ou a uma nova
 # replace('string que deseja mudar', 'novo valor')
 nova_frase = frase.replace('Python', 'Android')
 print(frase, nova_frase, frase)

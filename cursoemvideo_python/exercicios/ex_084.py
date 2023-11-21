@@ -8,25 +8,20 @@ lista = []
 # Inicializa as listas para armazenar as pessoas mais pesadas e mais leves
 mais_pesados = []
 mais_leves = []
-
 # Loop para ler o nome e peso de várias pessoas. Será finalizado quando o usuário decidir não adicionar mais pessoas à lista.
 while True:
     # Inicializa a lista para armazenar nome e peso da pessoa atual. Cada informação já será alocada em seu índice
     pessoa = [str(input('Digite o nome da pessoa: ')), float(input('Digite o peso dessa pessoa: '))]
+    if len(lista) == 0:
+        mais_leves = mais_pesados = pessoa[1]
+    else:
+        if pessoa[1] >= mais_pesados:
+            mais_pesados.append(pessoa[1])
+        if pessoa[1] <= mais_leves:
+            mais_leves.append(pessoa[1])
 
     # Adiciona uma cópia da lista pessoa atual à lista principal
     lista.append(pessoa[:])
-
-    # Verifica se a pessoa é mais pesada ou mais leve em relação às listas já existentes
-    if not mais_pesados or pessoa[1] > mais_pesados[0][1]:
-        mais_pesados = [pessoa[:]]
-    elif pessoa[1] == mais_pesados[0][1]:
-        mais_pesados.append(pessoa[:])
-
-    if not mais_leves or pessoa[1] < mais_leves[0][1]:
-        mais_leves = [pessoa[:]]
-    elif pessoa[1] == mais_leves[0][1]:
-        mais_leves.append(pessoa[:])
 
     # Pergunta se deseja continuar até obter uma resposta válida
     while True:
@@ -45,10 +40,14 @@ while True:
     # Encerra o loop principal se o usuário decidir não adicionar mais pessoas à lista
     if pergunta == 'N':
         break
-
+print(lista)
 # Quantas pessoas foram cadastradas. Essa informação é facilmente acessada exibindo o comprimento da lista principal
 print(f'Foram cadastradas {len(lista)} pessoas!')
 
 # Exibe as listas de pessoas mais pesadas e mais leves
-print(f'As pessoas mais pesadas pesam {mais_pesados[0][1]} e são: {mais_pesados[0][0]}')
-print(f'As pessoas mais leves pesam {mais_leves[0][1]} e são: {mais_leves[0][0]}')
+print(f'As pessoas mais pesadas pesam {mais_pesados}Kg e são:')
+if pessoa in mais_pesados:
+    print(pessoa[0])
+print(f'As pessoas mais leves pesam {mais_leves}Kg e são:')
+if pessoa in mais_leves:
+    print(pessoa[0])

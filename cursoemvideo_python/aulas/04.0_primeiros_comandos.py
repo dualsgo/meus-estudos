@@ -57,8 +57,7 @@ print(mensagem_personalizada)
 # Função print()
 # Em Python, todos os comandos são funções, e todas as funções são chamadas usando parênteses. Para exibir mensagens de texto, é necessário envolvê-las entre aspas, como em:
 print('Olá, Mundo!')  # Isso exibirá 'Olá, Mundo!'
-
-# Caso contrário, sem as aspas, ocorrerá um erro "SyntaxError: invalid syntax".
+# Caso contrário, sem as aspas, ocorrerá um erro "SyntaxError: invalid syntax"
 
 # Quando trabalhamos com números, não é necessário usar aspas. Por exemplo, a expressão a seguir retornará o valor 11:
 print(7 + 4)  # Exibirá 11
@@ -89,7 +88,7 @@ print(nome, idade, peso)  # Isso exibirá Guanabara 25 75.8
 # Função input()
 # A função input() em Python permite que o usuário insira um valor, que será armazenado em uma variável. Por exemplo:
 
-# nome recerá o valor digitado pelo usuário em vez de ter um valor pré-definido como no exemplo anterior.
+# nome receberá o valor digitado pelo usuário em vez de ter um valor pré-definido como no exemplo anterior.
 nome = input('Digite o seu nome: ')
 
 # A mensagem entre os parênteses será exibida no console.

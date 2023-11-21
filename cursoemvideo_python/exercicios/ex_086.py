@@ -3,23 +3,25 @@
 [4] [5] [6]
 [7] [8] [9]
 """
-
-# Inicializa uma matriz vazia
+from random import randint
+from time import sleep
 matriz = []
-
-# Preenche a matriz com valores lidos pelo teclado
-for i in range(3):
-    linha = []  # Inicializa uma nova linha vazia
-    for j in range(3):
-        valor = int(input(f'Digite um valor para [{i+1}][{j+1}]: '))
-        linha.append(valor)
+for l in range(3):
+    linha = []
+    for c in range(3):
+        print(f'O número sorteado para a coluna [{c}] linha [{l}] é: ', end='')
+        numero = randint(0, 99)
+        print(numero)
+        sleep(0.5)
+        linha.append(numero)
     matriz.append(linha)
 
-# Exibe a matriz na tela com a formatação correta
+print('A MATRIZ 3X3 É')
+
 for linha in matriz:
-    print('[', end='')  # Início da linha
-    for valor in linha:
-        print(f'[{valor}]', end=' ')  # Exibe cada valor entre colchetes e separados por espaço
-    print(']')  # Fim da linha
+    # Loop para percorrer os elementos de cada linha
+    for elemento in linha:
+        print(f'[{elemento:2}]', end=' ')
+    print()  # Pula para a próxima linha após imprimir os elementos da linha
 
 

@@ -3,33 +3,35 @@
 - A soma dos valores da terceira coluna
 - O maior valor da segunda linha
 """
+from random import randint
+from time import sleep
 matriz = []
+matriz_pares = []
+terceira_coluna = []
 
-# Loop para preencher a matriz
-for i in range(3):
-    linha = []  # Inicializa uma nova linha vazia
-    for j in range(3):
-        numero = int(input(f'Digite um valor para [{i+1}][{j+1}]: '))
+for l in range(3):
+    linha = []
+    for c in range(3):
+        print(f'O número sorteado para a coluna [{c}] linha [{l}] é: ', end='')
+        numero = randint(0, 99)
+        print(numero)
+        sleep(0.5)
         linha.append(numero)
+        if numero % 2 == 0:
+            matriz_pares.append(numero)
+        if c == 2:
+            terceira_coluna.append(numero)
+
     matriz.append(linha)
 
-# Exibe a matriz entre colchetes
+print('A MATRIZ 3X3 É')
+
 for linha in matriz:
-    print(f'[{linha[0]}] [{linha[1]}] [{linha[2]}]')
+    # Loop para percorrer os elementos de cada linha
+    for elemento in linha:
+        print(f'[{elemento:2}]', end=' ')
+    print()  # Pula para a próxima linha após imprimir os elementos da linha
 
-# A soma de todos os valores pares digitados
-soma_pares = 0
-for linha in matriz:
-    for numero in linha:
-        if numero % 2 == 0:
-            soma_pares += numero
-print(f'A soma de todos os valores pares digitados é: {soma_pares}')
-
-# A soma dos valores da terceira coluna
-soma_terceira_coluna = matriz[0][2] + matriz[1][2] + matriz[2][2]
-print(f'A soma de todos os valores da terceira coluna é: {soma_terceira_coluna}')
-
-# O maior valor da segunda linha
-maior_segunda_linha = max(matriz[1])
-print(f'O maior valor da segunda linha é: {maior_segunda_linha}')
-
+print(f'A soma de todos os valores pares é: {sum(matriz_pares)}.')
+print(f'A soma dos valores da terceira coluna é: {sum(terceira_coluna)}.')
+print(f'O maior valor da segunda linha é: {max(matriz[1])}.')
