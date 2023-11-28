@@ -1,0 +1,11 @@
+import pygame
+from emoji import emojize
+arquivo = 'C:/Users/mdbsi/OneDrive/Área de Trabalho/EstudosPython/CursoEmVideo/Exercícios/audio.mp3'
+
+pygame.init()
+pygame.mixer.music.load(arquivo)
+pygame.mixer.music.play()
+pygame.event.wait()
+
+print(emojize(':notas_musicais::notas_musicais::notas_musicais::notas_musicais::notas_musicais::notas_musicais::notas_musicais::notas_musicais::notas_musicais::notas_musicais::notas_musicais::notas_musicais::notas_musicais::notas_musicais::notas_musicais::notas_musicais::notas_musicais:', language='pt'))
+input("Pressione Enter para sair...")  # Mantém o programa em execução até que Enter seja pressionado
