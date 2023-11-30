@@ -1,13 +1,16 @@
 # MIMO - 7 - Operações com strings
-# 07.1 - Dividindo strings
+# 07.2 - Atualizando strings
 
-# Ao trabalhar com diferentes tipos de dados, muitas vezes os receberemos em um formato que pode dificultar o trabalho.
-# Conseguimos dividir strings e armazenar os valores individuais numa lista utilizando o método .split()
-nome_completo = "Maycon Douglas Barros da Silva"
-print(nome_completo)
+# Às vezes precisamos atualizar os dados numa string sem criar uma string totalmente nova.
+# Podemos substituir uma parte de uma string armazenada numa variável codificando primeiro o nome da variável e depois o método .replace()
+filme = 'Harry Potter e a Pedra Filosofal'
+print(f'Filme 1: {filme}')
 
-# As strings são separadas em espaços em branco por padrão
-lista = nome_completo.split()
-print(lista)
+# Dentro dos parênteses, adicionamos a parte que queremos substituir, uma vírgula e depois o novo valor
+novo_filme = filme.replace('Pedra Filosofal', 'Câmara Secreta')
+print(f'Filme 2: {novo_filme}')
 
-# Podemos especificar exatamente como queremos dividir uma string colocando um separador entre parênteses.
+# Se codificarmos a variável original, notaremos que o valor dela permanece inalterado
+print(f'Filme 1: {filme}')
+
+# Quando usamos replace() substituiremos todas as ocorrências do valor dentro da string

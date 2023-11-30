@@ -1,14 +1,17 @@
 # MIMO - 6 - Operações com listas
-# 06.4 - Unindo listas de dados
+# 06.5 - Contando elementos
 
-# Frequentemente encontraremos diferentes conjuntos de dados que devemos combinar em um só, como o valor das vendas no fim de semana.
-sabado = [50, 3, 20, 22, 5]
-print(sabado)
-domingo = [60, 10, 9, 11, 40]
-print(domingo)
+# Ao explorar conjuntos de dados, é bom saber quantas vezes um dado está presente, como a resposta mais frequente a uam pesquisa.
+respostas = ['sim', 'não', 'as vezes', 'sim', 'sim']
 
-# Para combinar dois conjuntos de dados, criamos uma expressão usando o operador +. A segunda lista é anexada no final da primeira. Podemos salvar alista combinada em uma variável para reutiliza-la
-vendas_fds = sabado + domingo
-print(vendas_fds)
+# Para contar a frequência que um valor aparece em uma lista como, começamos com o nome da lista, um ponto e em seguida o método count(), com o valor desejado entre os parênteses
+# Podemos salvar o resultado da consulta em uma variável para reutilizá-la depois.
+frequencia = respostas.count('sim')
+print(frequencia)
 
-# A união também funciona com diferentes tipos de valores.
+# Podemos usar qualquer tipo de valor.
+
+# Se não quisermos saber o número exato, mas apenas se existe um elemento específico, usamos a palavra-chave in
+# O resultado será um boolean, True se houver o item na lista, caso contrário, False
+print('não' in respostas)
+

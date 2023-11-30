@@ -3,7 +3,7 @@
 # 01.3 - Verdadeiro ou falso
 
 """
-Há um valor especial que não é nem uma cadeia de caracteres nem um número: (True). Não há aspas em torno dele, e não é um valor numérico.
+Há um valor especial que não é numa cadeia de caracteres nem um número: (True). Não há aspas em torno dele, e não é um valor numérico.
 """
 
 # True é ótimo para situações como verificar se um recurso está ativado ou se os dados estão disponíveis. 

@@ -1,7 +1,7 @@
-# MIMO - 06 - Operações com listas - Desafio 3
-# Joe registra quanto dinheiro ele economizou todos os meses em uma lista chamada savings.
-savings = [122, 5, 102, 102, 103, 79, 46, 107, 9, 13, 91, 193, 4]
+# MIMO - 07 - Operações com strings - Desafio 3
+# Um professor deseja criar uma lista com os nomes de todos os alunos de sua turma. Ele recebeu uma longa string contendo todos os nomes, cada nome separado por vírgula. Ajude-o a criar uma lista_nomes que armazene os nomes individuais separados por vírgula. Em seguida, imprima a lista.
 
-# Ajude Joe a calcular suas economias totais no ano usando sum() e imprima o resultado no console.
-economia = sum(savings)
-print(f'Joe enconomizou ${economia}.')
+nomes_estudantes = "Samantha,Mcgrath,Peyton,Kerim,Nadia,Sandra,Sarah,Alex"
+
+lista_nomes = nomes_estudantes.split(',')
+print(lista_nomes)

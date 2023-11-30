@@ -1,14 +1,14 @@
 # MIMO - 6 - Operações com listas
-# 06.1 - Encontrando dados extremos
+# 06.2 - Classificando dados
 
-# Para explorar os dados que armazenamos em listas, muitas vezes é útil encontrar os valores extremos: O mínimo e o máximo.
-pontos = [3, 5, 4, 6, 7, 2, 1]
+# As listas classificadas são úteis quando queremos entender a posição dos pontos de dados individuais, como pontuações, em relação aos outros.
+pontos = [10, 11, 4, 15, 11, 7]
 print(pontos)
 
-# Para encontrar o maior número em uma lista de dados, codificamos max(), com o nome da lista entre os parênteses.
-print(max(pontos))
+# Para classificar uma lista como pontos, codificamos o nome da lista, um ponto e em seguida  sort()
+pontos.sort()
+print(pontos)
 
-# Para encontrar o menor, codificamos min()
-print(min(pontos))
+# Ao usar sort() numa lista de números, os números são classificados em ordem crescente, sejam eles inteiros ou de ponto flutuante, negativos ou positivos.
 
-# Podemos salvar esses resultados em variáveis
+# Ao usar sort() em uma lista de com strings, os valores são ordenados em ordem algabética

@@ -1,4 +1,5 @@
 # Curso Python #08 - Utilizando Módulos
+
 from math import sqrt
 from random import randint
 from emoji import emojize

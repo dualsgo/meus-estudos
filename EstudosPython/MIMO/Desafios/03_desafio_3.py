@@ -3,9 +3,10 @@
 
 idade = 21
 tem_reserva = True
-resultado = True
+resultado = False
 
 # Tarefa 1: Se idade for igual ou maior a 18 e tem_reserva for True, defina resultado como True
 if idade >= 18 and tem_reserva == True:
+    resultado = True
     # Tarefa 2: Imprimir a saída:
     print(f'Entrada permitida: {resultado}')

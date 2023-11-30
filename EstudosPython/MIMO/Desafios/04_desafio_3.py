@@ -5,5 +5,6 @@
 
 loop = True
 while loop:
-    print("Entered the loop!")
+    print("Entrando no loop")
     loop = False
+print('Loop encerrado!')

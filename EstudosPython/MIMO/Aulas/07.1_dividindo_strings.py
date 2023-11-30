@@ -1,17 +1,13 @@
-# MIMO - 6 - Operações com listas
-# 06.5 - Contando elementos
+# MIMO - 7 - Operações com strings
+# 07.1 - Dividindo strings
 
-# Ao explorar conjuntos de dados, é bom saber quantas vezes um dado está presente, como a resposta mais frequente a uam pesquisa.
-respostas = ['sim', 'não', 'as vezes', 'sim', 'sim']
+# Ao trabalhar com diferentes tipos de dados, muitas vezes os receberemos em um formato que pode dificultar o trabalho.
+# Conseguimos dividir strings e armazenar os valores individuais numa lista utilizando o método .split()
+nome_completo = "Maycon Douglas Barros da Silva"
+print(nome_completo)
 
-# Para contar a frequência que um valor aparece em uma lista como, começamos com o nome da lista, um ponto e em seguida o método count(), com o valor desejado entre os parênteses
-# Podemos salvar o resultado da consulta em uma variável para reutilizá-la depois.
-frequencia = respostas.count('sim')
-print(frequencia)
+# As strings são separadas em espaços em branco por padrão
+lista = nome_completo.split()
+print(lista)
 
-# Podemos usar qualquer tipo de valor.
-
-# Se não quisermos saber o número exato, mas apenas se existe um elemento específico, usamos a palavra-chave in
-# O resultado será um boolean, True se houver o item na lista, caso contrário, False
-print('não' in respostas)
-
+# Podemos especificar exatamente como queremos dividir uma string colocando um separador entre parênteses.

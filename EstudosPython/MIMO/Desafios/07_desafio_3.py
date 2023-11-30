@@ -1,7 +1,10 @@
-# MIMO - 06 - Operações com listas - Desafio 3
-# Joe registra quanto dinheiro ele economizou todos os meses em uma lista chamada savings.
-savings = [122, 5, 102, 102, 103, 79, 46, 107, 9, 13, 91, 193, 4]
+# MIMO - 07 - Operações com strings - Desafio 1
+# Uma locadora de DVD deseja atualizar seu site com um cabeçalho que liste os filmes mais vendidos.
+top_filmes = "The Power of the Dog - Trapped - Tenet"
+print(top_filmes)
 
-# Ajude Joe a calcular suas economias totais no ano usando sum() e imprima o resultado no console.
-economia = sum(savings)
-print(f'Joe enconomizou ${economia}.')
+# Tarefa 1: Crie uma nova variável novos_top_filmes que substitua o valor "Trapped" de top_filmes por "Moonfall" . Lembre-se de que esses títulos diferenciam maiúsculas de minúsculas.
+novos_top_filmes = top_filmes.replace('Trapped', 'Moonfall')
+
+# Tarefa 2: Imprima a nova lista
+print(novos_top_filmes)

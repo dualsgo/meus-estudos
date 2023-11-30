@@ -7,7 +7,7 @@ idade_para_dirigir = 18
 # Tarefa 1: Termine a comparação muito_jovem para responder à pergunta no console com um boolean que diz que Sam é muito jovem para dirigir.
 
 muito_jovem = idade_da_sam < idade_para_dirigir
-pode_dirigir = idade_da_sam == idade_para_dirigir
+pode_dirigir = idade_da_sam >= idade_para_dirigir
 
 # Tarefa 2: Conclua a comparação pode_dirigir para mostrar que ela não consegue dirigir.
 

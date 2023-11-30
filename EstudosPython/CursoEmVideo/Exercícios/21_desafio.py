@@ -1,6 +1,9 @@
+# Exercício Python #021 - Tocando um MP3 - Aulas 00 até 08
+# Faça um programa em Python que abra e reproduza o áudio de um arquivo MP3.
+
 import pygame
 from emoji import emojize
-arquivo = 'C:/Users/mdbsi/OneDrive/Área de Trabalho/EstudosPython/CursoEmVideo/Exercícios/audio.mp3'
+arquivo = 'C:/Users/mdbsi/OneDrive/Documentos/GitHub/meus-estudos/EstudosPython/CursoEmVideo/Exercícios/audio.mp3'
 
 pygame.init()
 pygame.mixer.music.load(arquivo)

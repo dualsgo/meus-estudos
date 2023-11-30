@@ -1,14 +1,13 @@
 # MIMO - 6 - Operações com listas
-# 06.2 - Classificando dados
+# 06.3 - Somando dados
 
-# As listas classificadas são úteis quando queremos entender a posição dos pontos de dados individuais, como pontuações, em relação aos outros.
-pontos = [10, 11, 4, 15, 11, 7]
-print(pontos)
+# Saber a soma dos números nas listas é útil ao comparar diferentes conjuntos de dados, como a diferença nas inscrições semanais em dois meses.
+junho = [30, 6, 20, 12]
+julho = [20, 5, 100, 40]
 
-# Para classificar uma lista como pontos, codificamos o nome da lista, um ponto e em seguida  sort()
-pontos.sort()
-print(pontos)
+# Para calcular o total de uma lista, usamos sum() com o nome da lista entre os parênteses
+print(sum(junho))
+print(sum(julho))
 
-# Ao usar sort() numa lista de números, os números são classificados em ordem crescente, sejam eles inteiros ou de ponto flutuante, negativos ou positivos.
+# Para reutilizar a soma da lista, podemos salvar o resultado em uma variável.
 
-# Ao usar sort() em uma lista de com strings, os valores são ordenados em ordem algabética

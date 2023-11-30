@@ -1,13 +1,14 @@
 # MIMO - 6 - Operações com listas
-# 06.3 - Somando dados
+# 06.4 - Unindo listas de dados
 
-# Saber a soma dos números nas listas é útil ao comparar diferentes conjuntos de dados, como a diferença nas inscrições semanais em dois meses.
-junho = [30, 6, 20, 12]
-julho = [20, 5, 100, 40]
+# Frequentemente encontraremos diferentes conjuntos de dados que devemos combinar em um só, como o valor das vendas no fim de semana.
+sabado = [50, 3, 20, 22, 5]
+print(sabado)
+domingo = [60, 10, 9, 11, 40]
+print(domingo)
 
-# Para calcular o total de uma lista, usamos sum() com o nome da lista entre os parênteses
-print(sum(junho))
-print(sum(julho))
+# Para combinar dois conjuntos de dados, criamos uma expressão usando o operador +. A segunda lista é anexada no final da primeira. Podemos salvar alista combinada em uma variável para reutiliza-la
+vendas_fds = sabado + domingo
+print(vendas_fds)
 
-# Para reutilizar a soma da lista, podemos salvar o resultado em uma variável.
-
+# A união também funciona com diferentes tipos de valores.
