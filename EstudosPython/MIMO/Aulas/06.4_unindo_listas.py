@@ -1,4 +1,4 @@
-# MIMO - 6 - Operações com listas
+# MIMO - 06 - Operações com listas
 # 06.4 - Unindo listas de dados
 
 # Frequentemente encontraremos diferentes conjuntos de dados que devemos combinar em um só, como o valor das vendas no fim de semana.

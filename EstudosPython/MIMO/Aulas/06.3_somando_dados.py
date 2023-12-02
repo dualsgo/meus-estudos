@@ -1,4 +1,4 @@
-# MIMO - 6 - Operações com listas
+# MIMO - 06 - Operações com listas
 # 06.3 - Somando dados
 
 # Saber a soma dos números nas listas é útil ao comparar diferentes conjuntos de dados, como a diferença nas inscrições semanais em dois meses.

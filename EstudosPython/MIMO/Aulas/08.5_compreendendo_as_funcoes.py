@@ -1,12 +1,14 @@
 # MIMO - 08 - Funções
-# 08.4 - Usando vários parâmetros
+# 08.5 - Compreendendo as funções
 
-# As funções precisam de vários parâmetros para executar tarefas em mais dados. Podemos criar funções com um único parâmetro ou adicionar mais, os separando com vírgula.
-def infos(nome, idade, sexo):
-    texto = f'Olá, {nome}. Sua idade é {idade} e o seu sexo é {sexo}.'
-    return texto
+# Dar nomes descritivos as funções nos ajuda a compreender rapidamente o que elas fazem.
+# Funções são ações, então seus nomes geralmente começam com um verbo
 
-# Para passar os valores para a função também os separamos com vírgula. Passamos os valores para uma função na ordem dos parâmetros. Podemos adicionar quantos valores quisermos, desde que os separemos por vírgula.
-dados = infos('Maycon', 30, 'masculino')
+# Funções que retornam valores geralmente começam com get, calculate, compute
+# Funções que retornam valores boolean começam com is, has, can
 
-print(dados)
+# Importante manter o padrão de nomes para funções que executam tarefas semelhantes.
+
+#
+
+

@@ -1,4 +1,4 @@
-# MIMO - 7 - Operações com strings
+# MIMO - 07 - Operações com strings
 # 07.2 - Atualizando strings
 
 # Às vezes precisamos atualizar os dados numa string sem criar uma string totalmente nova.

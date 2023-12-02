@@ -1,4 +1,4 @@
-# MIMO - 6 - Operações com listas
+# MIMO - 06 - Operações com listas
 # 06.5 - Contando elementos
 
 # Ao explorar conjuntos de dados, é bom saber quantas vezes um dado está presente, como a resposta mais frequente a uam pesquisa.

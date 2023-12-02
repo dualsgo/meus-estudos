@@ -1,4 +1,4 @@
-# MIMO - 7 - Operações com strings
+# MIMO - 07 - Operações com strings
 # 07.1 - Dividindo strings
 
 # Ao trabalhar com diferentes tipos de dados, muitas vezes os receberemos em um formato que pode dificultar o trabalho.

@@ -1,4 +1,4 @@
-# MIMO - 6 - Operações com listas
+# MIMO - 06 - Operações com listas
 # 06.1 - Encontrando dados extremos
 
 # Para explorar os dados que armazenamos em listas, muitas vezes é útil encontrar os valores extremos: O mínimo e o máximo.

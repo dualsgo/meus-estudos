@@ -1,4 +1,5 @@
 # Curso Python #07 - Operadores Aritméticos
+# Nessa aula, vamos aprender quais são os operadores aritméticos do Python e também sua ordem de precedência dentro de expressões matemáticas. Veja como funcionam os operadores de adição, subtração, multiplicação, divisão, exponenciação e quociente na linguagem Python.
 
 # Além do operador de Adição (+) temos os operadores:
 print(f'Adição: 5 + 2 == {5+2}')

@@ -1,4 +1,5 @@
 # Curso Python #10 - Condições (Parte 1)
+# Nessa aula, vamos aprender como utilizar estruturas condicionais simples e compostas nos seus programas em Python.
 
 # As estruturas condicionais oferecem possibilidades distintas para situações distintas. Assim os nossos programas se tornam mais inteligentes e tomam decisões, dependendo das condições apresentadas.
 

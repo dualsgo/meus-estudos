@@ -1,21 +1,12 @@
 # MIMO - 08 - Funções
-# 08.3 - Retornando valores
+# 08.4 - Usando vários parâmetros
 
-# Uma função pode retornar um valor ao código que a chamou.
-# Funções são escritas para realizar tarefas e às vezes podemos precisar do resultado das tarefas. Isso pode ser feito via return
-# Adicionamos a palavra-chave return, seguida do valor a ser retornado. O valor pode ser de qualquer tipo e o chamamos de saída da função.
-# Podemos usar o valor de retorno de uma função como qualquer valor chamando a função.
-def maior_idade(idade):
-    texto = f'Com {idade} anos você é '
-    if idade >= 18:
-        texto = texto + 'maior de idade.'
-    else:
-        texto = texto + 'menor de idade.'
+# As funções precisam de vários parâmetros para executar tarefas em mais dados. Podemos criar funções com um único parâmetro ou adicionar mais, os separando com vírgula.
+def infos(nome, idade, sexo):
+    texto = f'Olá, {nome}. Sua idade é {idade} e o seu sexo é {sexo}.'
+    return texto
 
-    return texto # Se não incluirmos a instrução return, a função retornará o valor None
+# Para passar os valores para a função também os separamos com vírgula. Passamos os valores para uma função na ordem dos parâmetros. Podemos adicionar quantos valores quisermos, desde que os separemos por vírgula.
+dados = infos('Maycon', 30, 'masculino')
 
-# Também podemos armazenar o valor de retorno em uma variável
-resultado = maior_idade(int(input('Digite a sua idade: ')))
-
-print(resultado)
-
+print(dados)

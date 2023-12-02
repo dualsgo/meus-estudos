@@ -1,4 +1,5 @@
 # Curso Python #04 - Primeiros comandos em Python3
+# Agora chegou a hora de aprender os comandos básicos do Python e fazer os primeiros programas em Linguagem Python.
 
 # Os dados de texto são delimitados por aspas simples ou duplas. Podem conter letras, números e caracteres especiais.
 # Todos os comandos são funções e devem ter parênteses.

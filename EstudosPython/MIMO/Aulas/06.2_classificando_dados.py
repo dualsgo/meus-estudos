@@ -1,4 +1,4 @@
-# MIMO - 6 - Operações com listas
+# MIMO - 06 - Operações com listas
 # 06.2 - Classificando dados
 
 # As listas classificadas são úteis quando queremos entender a posição dos pontos de dados individuais, como pontuações, em relação aos outros.
