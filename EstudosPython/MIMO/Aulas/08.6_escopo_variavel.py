@@ -1,12 +1,21 @@
 # MIMO - 08 - Funções
-# 08.5 - Compreendendo as funções
+# 08.6 - Funções e escopo variável
 
-# Dar nomes descritivos as funções nos ajuda a compreender rapidamente o que elas fazem.
-# Funções são ações, então seus nomes geralmente começam com um verbo
+# Escopo local
+# Variáveis criadas dentro de uam função possuem escopo local. Com escopo local, só podemos acessar ou atualizar a variável dentro da função que a criou.
 
-# Funções que retornam valores geralmente começam com get, calculate, compute
-# Funções que retornam valores boolean começam com is, has, can
+def add_bonus(salario):
+    bonus = 100
+    bonus = 200
+    print(salario + bonus)
 
-# Importante manter o padrão de nomes para funções que executam tarefas semelhantes.
+# print(bonus) - NameError: name 'bonus' is not defined
+add_bonus(1900)
 
+# Escopo global
+# Variáveis criadas fora de um bloco funcional têm um escopo global. Com um escopo global, podemos acessar a variável em qualquer lugar do código.
+
+# Todas as variáveis têm escopo global, exceto aquelas criadas dentro de funções
+
+# Mesmo com o escopo global, é importante que só possamos acessar as variáveis após criá-las.
 

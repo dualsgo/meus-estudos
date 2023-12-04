@@ -22,7 +22,7 @@ else:
 # A instrução else vai sempre no final. Ela não precisa de sua própria condição, pois trata de casos em que a condição if não é atendida.
 
 # É como uma resposta padrão. Aqui irá exibir 'Número incorreto!' para todos os números diferentes de 1.
-numero = 99
+numero = 9
 if numero == 0:
     print('Número correto!')
 else:

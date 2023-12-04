@@ -2,7 +2,7 @@
 # Crie um script Python que leia o nome de uma pessoa e mostre uma mensagem de boas-vindas conforme o valor digitado.
 
 # Tarefa 1: Ler o nome de uma pessoa
-nome = input('Digite o seu nome: ')
+nome = input('Digite o seu nome: ').strip()
 
 # Tarefa 2: Mostrar uma mensagem de boas-vindas com o valor digitado.
 print('Seja bem-vindo, ', nome, '! ', 'Prazer em te conhecer!', sep='')

@@ -1,38 +1,60 @@
 # MIMO - 08 - Funções
-# 08.7.1 - Decidindo com funções
+# 08.8 - Funções com listas
 
-# Aninhando condicionais em funções
+# Listas como argumentos
 
-# E se quiséssemos que nossa função decida, como adicionar ou não o custo do frete, mas com base no fato do carrinho ter um determinado valor ou não?
+# Qualquer tipo de valor pode servir como entrada ou saída de uma função. Vejamos as funções podem usar listas como players
 
-# Para fazer uma condicional funcionar de maneira mais flexível, podemos usar o parâmetro da função, como carrinho, como parte da condição.
-def add_carrinho(carrinho):
-    # Usamos o recuo de dois espaços para aninhar a condicional dentro da função
-    if carrinho < 100:
-        # E outro recuo para aninhar o bloco de código da condicional
-        return carrinho + 10
-    else:
-        return carrinho
-# Ao codificar uma condicional dentro do bloco de código de uma função como add_carrinho, estamos aninhando dentro da função.
+def is_multiplayer(players):
+    return len(players) == 2
+players = ['Amy', 'Jay']
+print(is_multiplayer(players))
 
-# Ao usar o parâmetro na condição, estamos usando o valor que passamos ao chamar a função, como 45 ou 200
-print(add_carrinho(45))
-print(add_carrinho(200))
+# Passamos listas para funções assim como fazemos com qualquer outro valor: codificando um nome de lista entre os parênteses da função.
 
-# # 08.7.2 - Incorporando elif e outros
+# Após passarmos a lista para a função, podemos usar o parâmetro para exibi-la.
 
-# Podemos aninhar todos os tipos de condicionais numa função, como esta instrução else. Também podemos aninhar instruções elif, como esta que verifica se o operador é igual a -
+# Lembre-se de que os parâmetros são como variáveis que armazenam os valores que passamos para uma função.
 
-def calcular(operador, x, y):
-    if operador == "+":
-        return x + y
-    elif operador == "-":
-        return x - y
-    else:
-        print(f'Operador {operador} inválido.')
-    print('Calculando...')
-resultado = calcular('+', int(input('Digite um número: ')), int(input('Digite um número: ')))
+# Aqui o parâmetro filmes irá armazenar os elementos da lista_filmes
+def display_programme(filmes):
+    print('Filmes disponíveis: ')
+    print(filmes)
 
-print(f'O resultado é {resultado}')
+lista_filmes = ['Alien', 'Moon']
+lista_tarefas = ['Fazer popoca', 'Lavar a louça']
+# já que é com esse valor que chamamos a função.
+display_programme(lista_filmes)
 
-# Mesmo que a condicional seja ignorada, o restante do bloco de código da função é executato
+# Se mudarmos o valor
+display_programme(lista_tarefas)
+
+# Dentro da função, podemos usar todas as operações de listas, como len() para obter o número de passageiros
+
+def contagem_passageiros(passageiros):
+    return len(passageiros)
+
+lista_passageiros = ['Ana', 'Juan', 'Cláudia', 'Fátima']
+print(f'Temos {contagem_passageiros(lista_passageiros)} passageiros')
+
+# A função pode usar o cumprimento da lista para comparações
+
+# Às vezes queremos que nossa função recupere certos elementos de uma lista.
+def get_vencedor(competidores):
+    vencedor = competidores[0]
+    print(f'O vencedor foi: {vencedor}')
+
+competidores = ['Jay', 'Meg', 'Cy']
+get_vencedor(competidores)
+
+# As funções também podem atualizar listas, como atualizar o nome em tabela[0] para aquele no parâmetro time
+
+def mudar_lider(tabela, time):
+    tabela[0] = time
+    return tabela
+
+tabela = ['Botafogo', 'Palmeiras', 'Atlético', 'Flamengo', 'Gremio']
+print(tabela)
+
+tabela = mudar_lider(tabela, 'Vasco')
+print(tabela)

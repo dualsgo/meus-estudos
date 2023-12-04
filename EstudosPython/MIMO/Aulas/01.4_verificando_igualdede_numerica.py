@@ -30,4 +30,4 @@ primeiro = 1
 segundo = 2
 print(primeiro) # Exibe 1
 print(segundo) # Exibe 2
-print(primeiro != segundo) # Exibe False
+print(primeiro != segundo) # Exibe True

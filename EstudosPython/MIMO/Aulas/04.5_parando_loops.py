@@ -1,6 +1,6 @@
 # MIMO - 04 - Loops
 
-# 4.4 - Parando loops while
+# 4.4 - Parando loops for
 
 # Usando loops for, podemos escrever programas com muito menos código e facilitar o entendimento de outros programadores.
 

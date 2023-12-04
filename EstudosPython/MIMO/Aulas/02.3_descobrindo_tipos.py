@@ -9,7 +9,7 @@
 # Ponto flutuante (float) - São números com um ou mais dígitos após a vírgula decimal.
 # Boolean (bool) - Representam os valores especiais True e False.
 
-# Coversão de tipos
+# Conversão de tipos
 
 # Vimos os tipos de dados básicos em Python. Se não tivermos certeza do tipo de valor, podemos verificá-lo. O método type() verifica o tipo de dado.
 # Podemos verificar o tipo de qualquer variável com type(), colocando-a entre os parênteses.
@@ -23,6 +23,7 @@ print(type(dado)) # Exibe <class 'int'>
 
 # A variável recebe um valor do tipo string
 idade = '17'
+
 # int() nos ajudará a converter o valor da string idade para um número inteiro, de modo que seja possível realizar a comparação sem causar um erro.
 print(int(idade) < 18)
 

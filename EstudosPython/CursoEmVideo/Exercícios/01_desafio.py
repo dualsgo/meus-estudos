@@ -5,7 +5,7 @@ from emoji import emojize
 print('Mensagem direto no console com a função print():')
 print(emojize('Olá, mundo! :globo_mostrando_as_américas:', language='pt'))
 print('Mensagem no console utilizando a variável para exibir o valor:')
-mensagem = 'Olá, mundo!'
+mensagem = emojize('Olá, mundo! :globo_mostrando_as_américas:', language='pt')
 print(mensagem)
 print('Mensagem no console utilizando o valor passado pelo usuário e atribuindo-o a uma variável:')
 mensagem = input('Digite a mensagem: ')

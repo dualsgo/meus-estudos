@@ -1,21 +1,38 @@
 # MIMO - 08 - Funções
-# 08.6 - Funções e escopo variável
+# 08.7.1 - Decidindo com funções
 
-# Escopo local
-# Variáveis criadas dentro de uam função possuem escopo local. Com escopo local, só podemos acessar ou atualizar a variável dentro da função que a criou.
+# Aninhando condicionais em funções
 
-def add_bonus(salario):
-    bonus = 100
-    bonus = 200
-    print(salario + bonus)
+# E se quiséssemos que nossa função decida, como adicionar ou não o custo do frete, mas com base no fato do carrinho ter um determinado valor ou não?
 
-# print(bonus) - NameError: name 'bonus' is not defined
-add_bonus(1900)
+# Para fazer uma condicional funcionar de maneira mais flexível, podemos usar o parâmetro da função, como carrinho, como parte da condição.
+def add_carrinho(carrinho):
+    # Usamos o recuo de dois espaços para aninhar a condicional dentro da função
+    if carrinho < 100:
+        # E outro recuo para aninhar o bloco de código da condicional
+        return carrinho + 10
+    else:
+        return carrinho
+# Ao codificar uma condicional dentro do bloco de código de uma função como add_carrinho, estamos aninhando dentro da função.
 
-# Escopo global
-# Variáveis criadas fora de um bloco funcional têm um escopo global. Com um escopo global, podemos acessar a variável em qualquer lugar do código.
+# Ao usar o parâmetro na condição, estamos usando o valor que passamos ao chamar a função, como 45 ou 200
+print(add_carrinho(45))
+print(add_carrinho(200))
 
-# Todas as variáveis têm escopo global, exceto aquelas criadas dentro de funções
+# # 08.7.2 - Incorporando elif e outros
 
-# Mesmo com o escopo global, é importante que só possamos acessar as variáveis após criá-las.
+# Podemos aninhar todos os tipos de condicionais numa função, como esta instrução else. Também podemos aninhar instruções elif, como esta que verifica se o operador é igual a -
 
+def calcular(operador, x, y):
+    if operador == "+":
+        return x + y
+    elif operador == "-":
+        return x - y
+    else:
+        print(f'Operador {operador} inválido.')
+    print('Calculando...')
+resultado = calcular('+', int(input('Digite um número: ')), int(input('Digite um número: ')))
+
+print(f'O resultado é {resultado}')
+
+# Mesmo que a condicional seja ignorada, o restante do bloco de código da função é executato

@@ -9,7 +9,7 @@
 # Nomes das variáveis
 
 # Para criar uma variável, começamos digitando seu nome. Os nomes das variáveis precisam ser palavras únicas sem espaços.
-exemplo = "Olá, mundo!"
+exemplo = "Valor da variável"
 
 # Se quisermos um nome de variável com várias palavras, usamos maiúsculas e minúsculas (CamelCase) ou sublinhado (_) para conectar as palavras adicionais (snake_case)
 exemploCamelCase = 'Lembra as corcovas de um camelo'
@@ -19,6 +19,7 @@ exemplo_snake_case = 'Parece um cobra'
 ano_atual = 2023
 
 # Após criar e nomear uma variável, usamos o operador de atribuição (=) para armazenar um valor dentro dela. Armazenar um valor em uma variável é como colocar coisas em uma caixa rotulada.
+caixa = "Conteúdo"
 
 # Valores das variáveis
 
@@ -47,6 +48,7 @@ print('E essa em seguida, em ordem.')
 # Podemos usar para exibir variáveis também - print(variavel) - Quando exibimos variáveis no console, seus valores aparecem em vez de seus nomes.
 nome = 'Douglas'
 print(nome)
+# Estamos dizendo - Mostre o que há dentro da caixa nome
 
 
 

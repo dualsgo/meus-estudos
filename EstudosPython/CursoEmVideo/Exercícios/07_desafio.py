@@ -4,9 +4,9 @@
 # Tarefa 1: Ler as duas notas
 nota_1 = float(input('Digite a sua primeira nota: '))
 nota_2 = float(input('Digite a sua segunda nota: '))
-
+soma_notas = nota_1 + nota_2
 # tarefa 2: Calcula-las e mostrar a média.
-media = (nota_1 + nota_2) / 2
+media = soma_notas / 2
 
 print(f'Sua primeira nota foi {nota_1} e a segunda nota foi {nota_2}.')
 print(f'A sua média ficou {media:.1f}!')

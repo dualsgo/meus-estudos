@@ -15,3 +15,12 @@
 # O código que o loop while repete vem depois de :, detro do bloco de código recuado.
 
 # Se a condição de um loop while permanecer True para sempre, nós o chamaremos de loop infinito.
+verdade = True
+while verdade:
+    print('Repita')
+    verdade = False
+
+quantidade = 0
+while quantidade < 10:
+    print('Adicionando')
+    quantidade += 1

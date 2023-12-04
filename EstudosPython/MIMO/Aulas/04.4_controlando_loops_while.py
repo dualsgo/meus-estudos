@@ -20,3 +20,11 @@ while contador < 4:
 # Alterar a condição informa ao loop quando parar.
 
 # A ordem do código afeta o que o console exibe! Se colocar o incremento antes do print pro exemplo
+
+
+contador = 1
+
+while contador < 4:
+# Começa em 2, pois incrementa antes
+    contador += 1
+    print(f' {contador} - Agora temos um limite de repetições')

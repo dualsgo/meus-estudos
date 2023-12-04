@@ -14,7 +14,7 @@
 
 # Por se tratar de um intervalo limitado, vamos definir bem as condições.
 
-hora = 5
+hora = 22
 if 4 < hora <= 11: # Dia entre 5 e 11
     print('Bom dia!')
 elif 12 < hora <= 17: # Tarde entre 12 e 17

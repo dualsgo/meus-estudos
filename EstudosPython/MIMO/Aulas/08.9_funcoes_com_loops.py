@@ -1,60 +1,35 @@
 # MIMO - 08 - Funções
-# 08.1 - Funções com listas
+# 08.9 - Funções com loops
 
-# Listas como argumentos
+# Intervalos como range(3) nos dizem quantas vezes o loop for é executado, como três vezes nesse caso
 
-# Qualquer tipo de valor pode servir como entrada ou saída de uma função. Vejamos as funções podem usar listas como players
+def progress():
+    for i in range(1, 4):
+        print(f'Download file {i} out of 3')
 
-def is_multiplayer(players):
-    return len(players) == 2
-players = ['Amy', 'Jay']
-print(is_multiplayer(players))
+progress()
 
-# Passamos listas para funções assim como fazemos com qualquer outro valor: codificando um nome de lista entre os parênteses da função.
+# Para reutilizar um loop for com qualquer intervalo, passamos um parâmetro entre range()
 
-# Após passarmos a lista para a função, podemos usar o parâmetro para exibi-la.
+def progress(files):
+    for i in range(files):
+        print(f'Download file {i+1} out of  {files}')
 
-# Lembre-se de que os parâmetros são como variáveis que armazenam os valores que passamos para uma função.
+# O valor que passamos ao chamar a função é armazenado no parâmetro e depois usado como intervalo
+qt_files = int(input('Files = '))
 
-# Aqui o parâmetro filmes irá armazenar os elementos da lista_filmes
-def display_programme(filmes):
-    print('Filmes disponíveis: ')
-    print(filmes)
+progress(qt_files)
 
-lista_filmes = ['Alien', 'Moon']
-lista_tarefas = ['Fazer popoca', 'Lavar a louça']
-# já que é com esse valor que chamamos a função.
-display_programme(lista_filmes)
+# Para reutilizar um loop que itera pro uma lista, podemos aninhá-lo em uma função, como este loop for
+# Para iterar com qualquer tipo de lista, usamos o parâmetro da função em vez de uma lista fixa.
+def metade_do_preco(carrinho):
+    for preco in carrinho:
+        print(f'Novo preço: {preco/2}')
 
-# Se mudarmos o valor
-display_programme(lista_tarefas)
+lista_carrinho = [5, 20, 8]
 
-# Dentro da função, podemos usar todas as operações de listas, como len() para obter o número de passageiros
+# Ao percorre a lista no parâmetro, podemos chamar a função com qualquer lista, como lista_carrihno aqui
+metade_do_preco(lista_carrinho)
 
-def contagem_passageiros(passageiros):
-    return len(passageiros)
 
-lista_passageiros = ['Ana', 'Juan', 'Cláudia', 'Fátima']
-print(f'Temos {contagem_passageiros(lista_passageiros)} passageiros')
 
-# A função pode usar o cumprimento da lista para comparações
-
-# Às vezes queremos que nossa função recupere certos elementos de uma lista.
-def get_vencedor(competidores):
-    vencedor = competidores[0]
-    print(f'O vencedor foi: {vencedor}')
-
-competidores = ['Jay', 'Meg', 'Cy']
-get_vencedor(competidores)
-
-# As funções também podem atualizar listas, como atualizar o nome em tabela[0] para aquele no parâmetro time
-
-def mudar_lider(tabela, time):
-    tabela[0] = time
-    return tabela
-
-tabela = ['Botafogo', 'Palmeiras', 'Atlético', 'Flamengo', 'Gremio']
-print(tabela)
-
-tabela = mudar_lider(tabela, 'Vasco')
-print(tabela)

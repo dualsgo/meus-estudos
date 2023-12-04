@@ -8,6 +8,7 @@ carteira = float(input('Digite quanto possui na carteira: R$ '))
 cotacao_dolar = 4.90
 cotacao_euro = 5.36
 cotacao_peso = 72.89
+
 dolar = carteira / cotacao_dolar
 euro = carteira / cotacao_euro
 peso = carteira * cotacao_peso

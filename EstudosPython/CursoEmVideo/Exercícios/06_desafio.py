@@ -10,5 +10,5 @@ triplo = numero * 3
 raiz = numero ** (1/2)
 
 print(f'Você digitou o número {numero}.')
-print((f'O dobro de {numero} é {dobro}, e o triplo {triplo}.'))
+print(f'O dobro de {numero} é {dobro}, e o triplo {triplo}.')
 print(f'A raiz quadrada de {numero} é aproximadamente {raiz:.2f}.')

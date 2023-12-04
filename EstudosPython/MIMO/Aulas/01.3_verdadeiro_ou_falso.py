@@ -11,9 +11,11 @@ Há um valor especial que não é numa cadeia de caracteres nem um número: (Tru
 # Podemos armazenar em uma variável como uma cadeia de caracteres ou um número. Exibi-lo também funciona da mesma forma.
 ligado = True
 print(ligado)
+
 """
 False é outro valor especial e o oposto de True.
 """
+
 ligado = False
 print(ligado)
 

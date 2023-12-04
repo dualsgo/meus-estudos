@@ -9,6 +9,4 @@
 
 # Importante manter o padrão de nomes para funções que executam tarefas semelhantes.
 
-#
-
 

@@ -5,7 +5,7 @@
 # Condições
 # Programas inteligentes usam booleans para tomar decisões sobre executar linhas de código ou ignorá-las.
 
-# Usamos uma instrução SE para escrever código que responda a diferentes situações. Nós utilizamos a palavra-chave if. A instrução só executa o código se a condição for avaliada como verdade (True). É como dizer 'SE algo é verdade, faça isso'
+# Usamos uma instrução SE (if) para escrever código que responda a diferentes situações. Nós utilizamos a palavra-chave if. A instrução só executa o código se a condição for avaliada como verdade (True). É como dizer 'SE algo é verdade, faça isso'
 
 # Podemos salvar o valor boolean em uma variável.
 algo = True
