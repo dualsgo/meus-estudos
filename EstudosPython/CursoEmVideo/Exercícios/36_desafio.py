@@ -11,10 +11,11 @@ limite = salario * .3
 prestacoes = anos_pagando * 12
 valor_prestacoes = valor_imovel / prestacoes
 
-if valor_prestacoes > limite:
-    print('Não será possível aprovar o seu empréstimo. O valor das prestações é superior ao limite de 30% do seu salário.')
+if valor_prestacoes >= limite:
+    print('\033[1;31mNão será possível aprovar o seu empréstimo. O valor das prestações é superior ao limite de 30% do seu salário.\033[m')
+    print(f'Valor das prestações: \033[1;31mR$ {valor_prestacoes:.2f}\033[m')
 else:
-    print('Parabéns! Seu empréstimo foi aprovado. Confira as condições:')
+    print('\033[1;32mParabéns! Seu empréstimo foi aprovado. Confira as condições:\033[m')
 # Tarefa 3: Após a verificação, mostrar se o empréstimo foi aprovado ou negado.
-    print(f'O imóvel avaliado em R$ {valor_imovel:.2f} será quitado em {anos_pagando} anos.')
-    print(f'Cada uma das {prestacoes} parcelas custará R$ {valor_prestacoes:.2f}.')
+    print(f'O imóvel avaliado em \033[1;32mR$ {valor_imovel:.2f}\033[m será quitado em \033[1;32m{anos_pagando}\033[m anos.')
+    print(f'Cada uma das \033[1;32m{prestacoes}\033[m parcelas custará \033[1;32mR$ {valor_prestacoes:.2f}\033[m')

@@ -16,7 +16,7 @@ altura = float(input('Digite sua altura em metros: m'))
 
 # Tarefa 2: Formar a tabela com as condições para categorizar o imc
 imc = peso / (altura * altura)
-print(f'Seu IMC é {imc:.2f}.', end= ' ')
+print(f'Seu IMC é {imc:.1f}.', end= ' ')
 if imc < 18.5:
     print('Abaixo do peso')
 elif imc < 25:

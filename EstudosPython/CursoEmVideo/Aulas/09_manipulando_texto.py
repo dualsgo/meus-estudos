@@ -9,19 +9,26 @@ frase = 'Curso em Vídeo Python'
 # Podemos realizar operações - Fatiamento
 # Tecnicamente, uma string é uma lista de caracteres. Sendo assim, podemos acessar os seus índices da mesma forma que faríamos com uma lista.
 
-print(frase[9]) # Exibe o caractere que está posicionado no índice 9, que nesse caso é V
+print(frase[9])
+# Exibe o caractere que está posicionado no índice 9, que nesse caso é V
 
-print(frase[9:13]) # Utilizando os dois pontos podemos indicar intervalo entre os índices que queremos buscar. Nesse caso será buscado do índice 9 e irá até o 12 (sempre exclui a última posição). Retornará Víde
+print(frase[9:13])
+# Utilizando os dois pontos podemos indicar intervalo entre os índices que queremos buscar. Nesse caso será buscado do índice 9 e irá até o 12 (sempre exclui a última posição). Retornará Víde
 
-print(frase[9:23]) # O primeiro dígito representa o início e o segundo o fim do intervalo. Se utilizarmos um valor para o final maior que o comprimento da string, será exibido até o final. Nesse caso Vídeo Python
+print(frase[9:23])
+# O primeiro dígito representa o início e o segundo o fim do intervalo. Se utilizarmos um valor para o final maior que o comprimento da string, será exibido até o final. Nesse caso Vídeo Python
 
-print(frase[9:23:2]) # O terceiro valor é a iteração, nesse caso, pulando a cada dois e retornando VdoPto
+print(frase[9:23:2])
+# O terceiro valor é a iteração, nesse caso, pulando a cada dois e retornando VdoPto
 
-print(frase[:5]) # Podemos omitir o início se quisermos começar do primeiro caractere. Nesse caso retorna Curso
+print(frase[:5])
+# Podemos omitir o início se quisermos começar do primeiro caractere. Nesse caso retorna Curso
 
-print(frase[15:]) # Da mesma forma, podemos omitir o final se não soubermos. Nesse caso retorna Python
+print(frase[15:])
+# Da mesma forma, podemos omitir o final se não soubermos. Nesse caso retorna Python
 
-print(frase[9::3]) # Seguindo a mesma lógica, podemos omitir o final e indicar a iteração. Retorna VePh
+print(frase[9::3])
+# Seguindo a mesma lógica, podemos omitir o final e indicar a iteração. Retorna VePh
 
 # Análise
 
@@ -29,13 +36,17 @@ print(frase[9::3]) # Seguindo a mesma lógica, podemos omitir o final e indicar 
 print(len(frase))
 
 # O método .count('valor') mostra a quantidade de ocorrências de um valor informado entre as aspas
-print(frase.count('o')) # Irá exibir a quantidade de ocorrências de o minúsculo
 
-print(frase.count('0', 0, 13)) # Esse método aceita a indicação de um intervalo em seus argumentos
+print(frase.count('o'))
+# Irá exibir a quantidade de ocorrências de o minúsculo
+
+print(frase.count('0', 0, 13))
+# Esse método aceita a indicação de um intervalo em seus argumentos
 
 # O método .find(valor) exibe a primeira posição de um caractere ou de um conjunto
 
-print(frase.find('deo')) # Exibe 11, que é a posição do caractere d
+print(frase.find('deo'))
+# Exibe 11, que é a posição do caractere d
 
 # Se o valor não for encontrado, o retorno será -1
 
@@ -49,7 +60,9 @@ print('Curso' in frase)
 # O método .replace(valor, novo_valor)
 frase.replace('Python', 'Android')
 
-print(frase) # Isso não exibirá a mudança, pois a string é imutável. Mas podemos salvar o novo valor em outra variável
+print(frase)
+# Isso não exibirá a mudança, pois a string é imutável. Mas podemos salvar o novo valor em outra variável
+
 nova_frase = frase.replace('Python', 'Android')
 print(nova_frase)
 
@@ -69,7 +82,8 @@ print(frase.capitalize())
 # Cada palavra será um elemento e terá sua própria indexação e cada caractere das palavras receberão seus próprios índices.
 print(frase.split())
 frase_dividida = frase.split()
-print(frase_dividida[2][0]) # Exibindo o primeiro caractere da terceira palavra
+print(frase_dividida[2][0])
+# Exibindo o primeiro caractere da terceira palavra
 
 # Junção
 # O método 'separador'.join(valor) reúne os itens de um conjunto separado utilizando o separador indicado.

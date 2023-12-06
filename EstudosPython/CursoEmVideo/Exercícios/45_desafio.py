@@ -2,58 +2,40 @@
 # Crie um programa que faça o computador jogar Jokenpô com você.
 from time import sleep
 from random import randint
+from emoji import emojize
+
 # Tarefa 1: Receber a jogada do jogador e do computador
-computador = randint(1, 3)
+opcoes = [emojize(':punho_levantado:', language='pt'), emojize(':mão_levantada:', language='pt'), emojize(':mão_em_v_de_vitória:', language='pt')]
+computador = randint(0, 2)
+print(computador)
 print('Jogador, faça a sua jogada:')
-print('[1] Pedra [2] Papel [3] Tesoura')
+
+print(emojize(':tecla_0: PEDRA :punho_levantado:\n:tecla_1: PAPEL :mão_levantada:\n:tecla_2: TESOURA :mão_em_v_de_vitória:', language='pt'))
 jogador = int(input(''))
 
-pedra = 1
-papel = 2
-tesoura = 3
+if jogador != 0 or 1 or 2:
+    print('Opção inválida!')
+    jogador = int(input(''))
 
-print('Você jogou', end=' ')
+pedra = 0
+papel = 1
+tesoura = 2
+
+print(emojize('JO :punho_levantado:', language='pt'), end=' ')
 sleep(1)
-# Tarefa 2: Definir as regras para cada combinação
-if jogador == pedra:
-    print('pedra')
-    sleep(1)
-    print('O computador jogou', end=' ')
-    sleep(1)
-    if computador == papel:
-        print('papel')
-        sleep(1)
-        print('Computador vence!')
-    elif computador == tesoura:
-        print('tesoura')
-        sleep(1)
-        print('Jogador vence!')
-elif jogador == papel:
-    print('papel')
-    sleep(1)
-    print('O computador jogou', end=' ')
-    sleep(1)
-    if computador == pedra:
-        print('pedra')
-        sleep(.5)
-        print('Jogador vence!')
-    elif computador == tesoura:
-        print('tesoura')
-        sleep(1)
-        print('Computador vence!')
-elif jogador == tesoura:
-    print('tesoura')
-    sleep(1)
-    print('O computador jogou', end=' ')
-    sleep(1)
-    if computador == pedra:
-        print('pedra')
-        sleep(1)
-        print('Computador vence!')
-    elif computador == papel:
-        print('papel')
-        sleep(1)
-        print('Jogador vence!')
+print(emojize('KEN :mão_levantada:', language='pt'), end=' ')
+sleep(1)
+print(emojize('PO :mão_em_v_de_vitória:', language='pt'))
+sleep(1)
+
+# Tarefa 2: Definir as regras para cada combinação e exibir o vencedor
+
+
+if jogador == computador:
+    print('Deu empate!')
+elif (jogador == pedra and computador == tesoura) or (jogador == tesoura and computador == papel) or (jogador == papel and computador == pedra):
+    print(emojize('Jogador vence! :troféu:', language='pt'))
 else:
-    print('Escolha inválida!')
-# Tarefa 3: Exibir o vencedor
+    print(emojize('Computador vence! :troféu:', language='pt'))
+
+print(f'Jogador {opcoes[jogador]} X {opcoes[computador]} Computador')

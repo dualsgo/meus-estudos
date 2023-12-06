@@ -8,10 +8,12 @@ nome = input('Digite o seu nome: ').strip()
 print('Seja bem-vindo, ', nome, '! ', 'Prazer em te conhecer!', sep='')
 
 # Saída formatada com .format()
+print('\n\033[1;32mSaída formatada com .format()\033[m')
 print('É um prazer te conhecer, {}!'.format(nome))
 
 # Saída formatada com f-string
-print(f'É um prazer te conhecer, {nome}!')
+print('\n\033[1;32mSaída formatada com f-string\033[m')
+print(f'É um prazer te conhecer, {nome}!\n')
 
 # Crie um script Python que leia o dia, o mês e o ano de nascimento de uma pessoa e mostre uma mensagem com a data formatada.
 

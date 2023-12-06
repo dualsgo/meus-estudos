@@ -10,15 +10,16 @@ from datetime import date
 ano_nascimento = int(input('Digite seu ano de nascimento: '))
 ano_atual = date.today().year
 idade = ano_atual - ano_nascimento
+print(f'Idade: {idade} anos')
 # Tarefa 2: Definir as categorias conforme a idade
 print('Sua categoria é: ', end='')
-if idade < 10:
+if idade <= 9:
     print('MIRIM')
-elif idade < 15:
+elif idade <= 14:
     print('INFANTIL')
-elif idade < 20:
+elif idade <= 19:
     print('JÚNIOR')
-elif idade < 26:
+elif idade <= 25:
     print('SÊNIOR')
 else:
     print('MASTER')

@@ -12,9 +12,11 @@ maior = menor = primeiro
 # Tarefa 2: Verificar se há um maior ou se são iguais
 if primeiro != segundo:
     if primeiro > segundo:
+        print('O primeiro valor é o maior!')
         maior = primeiro
         menor = segundo
     elif primeiro < segundo:
+        print('O segundo valor é o maior!')
         maior = segundo
         menor = primeiro
     print(f'O maior é {maior} e o menor é {menor}')

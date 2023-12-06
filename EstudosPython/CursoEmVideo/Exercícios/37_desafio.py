@@ -3,22 +3,24 @@
 
 # Tarefa 1: Ler um número inteiro
 numero = int(input('Digite um número: '))
-print('[1] BINARIO [2] OCTAL [3] HEXADECIMAL')
-escolha = int(input(''))
-print(f'O número {numero} em', end=' ')
-convertidos = ''
+print('[1] BINARIO\n[2] OCTAL\n[3] HEXADECIMAL')
+escolha = int(input('>>> '))
+conversao = 0
+if 0 > numero < 4:
+    print(f'O número {numero} em', end=' ')
 # Tarefa 2: Configurar as conversões
 if escolha == 1:
     print('BINÁRIO', end=' ')
-    convertidos = str(bin(numero))
+    conversao = bin(numero)[2:]
 elif escolha == 2:
     print('OCTAL', end=' ')
-    convertidos = str(oct(numero))
+    conversao = oct(numero)[2:]
 elif escolha == 3:
     print('HEXADECIMAL', end=' ')
-    convertidos = str(hex(numero))
+    conversao = hex(numero)[2:]
 else:
     print('Opção inválida. Encerrando...')
 
 # Tarefa 3: Escolher a base de conversão e exibir o resultado
-print(f'é igual a {convertidos[2:]}')
+if 0 > numero < 4:
+    print(f'é igual a {conversao}')

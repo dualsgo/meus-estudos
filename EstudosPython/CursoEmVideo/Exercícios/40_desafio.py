@@ -6,15 +6,17 @@
 
 # Tarefa 1: Receber as duas notas e calcular a média
 primeira_nota = float(input('Digite a primeira nota: '))
+print(f'Nota do primeiro bimestre: {primeira_nota:.1f}')
 segunda_nota = float(input('Digite a segunda nota: '))
+print(f'Nota do segundo bimestre: {segunda_nota:.1f}')
 
 media = (primeira_nota + segunda_nota) / 2
 # Tarefa 2: Definir as condições e mensagens
-print(f'Sua média foi: {media} - ', end='')
+print(f'\033[1mSua média foi: {media:.1f} - \033[m', end='')
 if media < 5:
-    print('REPROVADO!')
+    print('\033[1;31mREPROVADO!\033[m')
 elif media < 7:
-    print('RECUPERAÇÃO!')
+    print('\033[1;33mRECUPERAÇÃO!\033[m')
 else:
-    print('APROVADO!')
+    print('\033[1;32mAPROVADO!\033[m')
 # Tarefa 3: Mostrar o resultado

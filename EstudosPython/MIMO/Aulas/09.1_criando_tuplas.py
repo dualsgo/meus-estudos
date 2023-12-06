@@ -1,35 +1,20 @@
-# MIMO - 08 - Funções
-# 08.9 - Funções com loops
+# MIMO - 09 - Tuplas, dicionários e conjuntos
 
-# Intervalos como range(3) nos dizem quantas vezes o loop for é executado, como três vezes nesse caso
+# 09.1 - Criando e usando tuplas
 
-def progress():
-    for i in range(1, 4):
-        print(f'Download file {i} out of 3')
+# Esta lista contém filmes e datas de lançamento, mas não está claro qual data pertence a qual filme
 
-progress()
+filmes = ['Vertigo', 'Parasite', 1958, 2010]
 
-# Para reutilizar um loop for com qualquer intervalo, passamos um parâmetro entre range()
+# Podemos agrupar dados relacionados com uma tupla.
 
-def progress(files):
-    for i in range(files):
-        print(f'Download file {i+1} out of  {files}')
+filmes_tupla = [('Vertigo', 1958), ('Parasite', 2010)]
+print(filmes_tupla[1])
+# As tuplas nos ajudam a agrupar diferentes partes de dados que pertencem umas às outras.
 
-# O valor que passamos ao chamar a função é armazenado no parâmetro e depois usado como intervalo
-qt_files = int(input('Files = '))
+# Criamos tuplas de forma semelhante a listas, mas utilizamos parênteses em vez de colchetes para envolver os valores. Assim como nas listas, também separamos os elementos com vírgula.
 
-progress(qt_files)
+# Como um caso especial, tuplas com apenas um valor terminam em vírgula de qualquer maneira
+tulpa_especial = ('Valor',)
 
-# Para reutilizar um loop que itera pro uma lista, podemos aninhá-lo em uma função, como este loop for
-# Para iterar com qualquer tipo de lista, usamos o parâmetro da função em vez de uma lista fixa.
-def metade_do_preco(carrinho):
-    for preco in carrinho:
-        print(f'Novo preço: {preco/2}')
-
-lista_carrinho = [5, 20, 8]
-
-# Ao percorre a lista no parâmetro, podemos chamar a função com qualquer lista, como lista_carrihno aqui
-metade_do_preco(lista_carrinho)
-
-
-
+# As tuplas podem ter quantos valores quisermos. Podemos salvar uma tupla em uma variável, assim como qualquer valor

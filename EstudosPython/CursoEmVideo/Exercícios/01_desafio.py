@@ -2,12 +2,18 @@
 # Crie um programa que escreva 'Olá, mundo!' na tela.
 from emoji import emojize
 # Tarefa 1: Escrever a mensagem na tela
-print('Mensagem direto no console com a função print():')
+
+# Método 1
+print('\033[1;32mMensagem direto no console com a função print():\033[m')
 print(emojize('Olá, mundo! :globo_mostrando_as_américas:', language='pt'))
-print('Mensagem no console utilizando a variável para exibir o valor:')
+
+# Método 2
+print('\n\033[1;32mMensagem no console utilizando a variável para exibir o valor:\033[m')
 mensagem = emojize('Olá, mundo! :globo_mostrando_as_américas:', language='pt')
 print(mensagem)
-print('Mensagem no console utilizando o valor passado pelo usuário e atribuindo-o a uma variável:')
+
+# Método 3
+print('\n\033[1;32mMensagem no console utilizando o valor passado pelo usuário e atribuindo-o a uma variável:\033[m')
 mensagem = input('Digite a mensagem: ')
 print(mensagem)
 
