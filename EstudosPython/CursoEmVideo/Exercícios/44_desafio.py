@@ -1,4 +1,4 @@
-# Exercício Python #044 - Gerenciador de Pagamentos
+# Exercício Python #044 - Gerenciador de Pagamentos - Aula 00 até 12 - Mundo 2
 from emoji import emojize
 #  Elabore um programa que calcule o valor a ser pago por um produto, considerando o seu preço normal e condição de pagamento:
 # - à vista dinheiro/cheque: 10% de desconto

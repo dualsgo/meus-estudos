@@ -1,4 +1,4 @@
-# Exercício Python #001 - Deixando tudo pronto - Aula 00 até 04
+# Exercício Python #001 - Deixando tudo pronto - Aula 00 até 04 - Mundo 1
 # Crie um programa que escreva 'Olá, mundo!' na tela.
 from emoji import emojize
 # Tarefa 1: Escrever a mensagem na tela

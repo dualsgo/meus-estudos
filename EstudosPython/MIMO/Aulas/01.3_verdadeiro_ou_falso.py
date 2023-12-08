@@ -21,7 +21,7 @@ print(ligado)
 
 # Negando valores - Operador de negação not
 
-# O código not na frente de True faz com que a expressão resulte em False. Se algo não é verdadeiro, tem que ser falso. not é o operador de negação. Transforma os valores em seu oposto.
+# O código not na frente de True faz com que a expressão resulte em False. Se algo não é verdade, tem que ser falso. not é o operador de negação. Transforma os valores em seu oposto.
 
 # Quando mudamos um valor para o seu oposto com not, nós o negamos. O operador not antes de False altera seu valor para True. Se um valor não é False, tem que ser True.
 verdade = True

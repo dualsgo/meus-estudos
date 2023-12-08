@@ -1,4 +1,4 @@
-# Exercício Python #040 - Aquele clássico da Média
+# Exercício Python #040 - Aquele clássico da Média - Aula 00 até 12 - Mundo 2
 # Crie um programa que leia duas notas de um aluno e calcule sua média, mostrando uma mensagem no final, conforme a média atingida:
 # - Média abaixo de 5.0: REPROVADO
 # - Média entre 5.0 e 6.9: RECUPERAÇÃO
