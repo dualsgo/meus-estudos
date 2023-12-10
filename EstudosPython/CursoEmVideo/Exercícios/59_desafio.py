@@ -1,54 +1,59 @@
-# Exercício Python #056 - Analisador completo - Aula 00 até 13 - Mundo 2
-# Desenvolva um programa que leia o nome, idade e sexo de 4 pessoas. No final do programa, mostre: a média de idade do grupo, qual é o nome do homem mais velho e quantas mulheres têm menos de 20 anos.
+# Exercício Python #059 - Criando um Menu de Opções - Aula 00 até 14 - Mundo 2
+# Crie um programa que leia dois valores e mostre um menu na tela:
+# [1] somar
+# [2] multiplicar
+# [3] maior
+# [4] novos números
+# [5] sair do programa
+# Seu programa deverá realizar a operação solicitada em cada caso.
+from emoji import emojize
+continuar = True  # Inicializa a variável de controle para continuar o programa
 
-# Tarefa 1: Inicializar os contadores e acumuladores
-membros_grupo = 0  # Inicializa o contador para o número total de membros no grupo
-idades_grupo = 0  # Inicializa o acumulador para somar as idades dos membros
+print(emojize('Aplicativos :telefone_celular:', language='pt'))
+primeiro_numero = int(input(emojize(':teclado: Escolha o primeiro número: ', language='pt')))  # Solicita e converte o primeiro número para inteiro
+segundo_numero = int(input(emojize(':teclado: Escolha o segundo número: ', language='pt')))  # Solicita e converte o segundo número para inteiro
+while continuar:
+    print(emojize('Escolha uma das opções:\n:tecla_1: Somar :símbolo_de_adição:\n:tecla_2: Multiplicar :sinal_de_multiplicação:\n:tecla_3: Maior :régua_reta:\n:tecla_4: Novos números :teclado:\n:tecla_5: Sair do programa :botão_ejetar:', language='pt'))
+    escolha = int(input(''))  # Solicita e converte a escolha para inteiro
+    resultado = 0
 
-idade_homem_mais_velho = 0  # Inicializa a variável para armazenar a idade do homem mais velho
-nome_homem_mais_velho = ''  # Inicializa a variável para armazenar o nome do homem mais velho
+    if escolha == 1:
+        print(emojize(':símbolo_de_adição: Somando', language='pt'))
+        resultado = primeiro_numero + segundo_numero
+        print(f'\033[7;30;47mA soma entre {primeiro_numero} e {segundo_numero} é igual a {resultado}\033[m')
 
-quantidade_mulheres = 0  # Inicializa o contador para o número de mulheres com menos de 20 anos
+    elif escolha == 2:
+        print(emojize(':sinal_de_multiplicação: Multiplicando', language='pt'))
+        resultado = primeiro_numero * segundo_numero
+        print(f'\033[7;30;47mO produto entre {primeiro_numero} e {segundo_numero} é igual a {resultado}\033[m')
 
-# Tarefa 2: Ler nome, idade e sexo
-masculino = 'M'  # Atribui 'M' à variável masculino para facilitar comparações
-feminino = 'F'  # Atribui 'F' à variável feminino para facilitar comparações
+    elif escolha == 3:
+        print(emojize(':régua_reta: Maior entre eles', language='pt'))
+        if primeiro_numero == segundo_numero:
+            print('\033[7;30;47mOs números são iguais!\033[m')
+        else:
+            resultado = primeiro_numero if primeiro_numero > segundo_numero else segundo_numero
+            print(f'\033[7;30;47mEntre {primeiro_numero} e {segundo_numero}, {resultado} é o maior!\033[m')
 
-for pessoa in range(1, 5):  # Loop para iterar sobre 4 pessoas (de 1 a 4)
-    print(f'{pessoa}º Pessoa')
+    elif escolha == 4:
+        print('Escolha novos números:')
+        primeiro_numero = int(input(''))  # Solicita e converte o novo primeiro número para inteiro
+        segundo_numero = int(input(''))  # Solicita e converte o novo segundo número para inteiro
 
-    # Entrada de dados do usuário
-    nome = str(input('Digite o nome da pessoa: ')).strip().title()  # Solicita e formata o nome
-    idade = int(input('Digite a idade da pessoa: '))  # Solicita a idade como um número inteiro
-    sexo = str(input('Digite o sexo da pessoa: F/M')).strip().upper()  # Solicita e formata o sexo
-    membros_grupo += 1  # Incrementa o contador de membros no grupo
+    elif escolha == 5:
+        print('\033[1;41mEncerrando...\033[m')
+        continuar = False
 
-    # Verifica se é a primeira pessoa do sexo masculino ou se é mais velho que o homem mais velho atual
-    if pessoa == 1 and sexo == masculino:
-        nome_homem_mais_velho = nome
-        idade_homem_mais_velho = idade
     else:
-        # Verifica se a pessoa é do sexo masculino e se a idade é maior que a do homem mais velho atual
-        if sexo == masculino and idade >= idade_homem_mais_velho:
-            nome_homem_mais_velho = nome
-            idade_homem_mais_velho = idade
+        print('Escolha inválida!')
 
-    # Conta mulheres com menos de 20 anos
-    if sexo == feminino and idade < 20:
-        quantidade_mulheres += 1
+    if escolha:
+        continuar = input('Continuar? S/N').strip().upper()  # Solicita se o usuário deseja continuar
+        if continuar == 'N':
+            continuar = False
+        elif continuar != 'S':
+            print('Comando inválido!')
+            continuar = input('S/N').strip().upper()
 
-    # Acumula as idades para calcular a média posteriormente
-    idades_grupo += idade
-
-    # Exibe os dados cadastrados para cada pessoa
-    print(f'Nome: {nome}\nIdade: {idade}\nSexo: {sexo}')
-    print('Cadastro realizado com sucesso!')
-
-# Calcula a média de idade do grupo
-media_idade_grupo = idades_grupo / membros_grupo
-
-# Exibe os resultados finais
-print(f'A média de idade do grupo é {media_idade_grupo} anos.')
-print(f'A homem mais velho do grupo é o {nome_homem_mais_velho} com {idade_homem_mais_velho} anos de idade.')
-print(f'Entre os quatro membros do grupo, {quantidade_mulheres} são mulheres com menos de 20 anos.')
+print('Programa finalizado!')  # Exibe mensagem de encerramento do programa
 

@@ -17,7 +17,7 @@ for i in range(1, 8):  # Loop para iterar sobre 7 pessoas
     idade = ano_atual - ano_nascimento  # Calcula a idade
     print(f'{idade} anos de idade')
     sleep(1)  # Pausa por 1 segundo
-    if idade >= 18:
+    if idade >= 21:
         print('\033[1;32mMaior de idade\033[m')  # Exibe em verde se for maior de idade
         maiores += 1
     else:

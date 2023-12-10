@@ -1,54 +1,41 @@
-# Exercício Python #056 - Analisador completo - Aula 00 até 13 - Mundo 2
-# Desenvolva um programa que leia o nome, idade e sexo de 4 pessoas. No final do programa, mostre: a média de idade do grupo, qual é o nome do homem mais velho e quantas mulheres têm menos de 20 anos.
+# Exercício Python #065 - Maior e Menor valores - Aula 00 até 14 - Mundo 2
+# Crie um programa que leia vários números inteiros pelo teclado. No final da execução, mostre a média entre todos os valores e qual foi o maior e o menor valores lidos. O programa deve perguntar ao usuário se ele quer ou não continuar a digitar valores.
 
-# Tarefa 1: Inicializar os contadores e acumuladores
-membros_grupo = 0  # Inicializa o contador para o número total de membros no grupo
-idades_grupo = 0  # Inicializa o acumulador para somar as idades dos membros
+quantidade_de_valores = 0  # Inicializa o contador de valores
+soma_valores = 0  # Inicializa o acumulador da soma dos valores
+maior = menor = 0  # Inicializa as variáveis para armazenar o maior e o menor valores
+continuar = True  # Inicializa a variável de continuação
 
-idade_homem_mais_velho = 0  # Inicializa a variável para armazenar a idade do homem mais velho
-nome_homem_mais_velho = ''  # Inicializa a variável para armazenar o nome do homem mais velho
+while continuar:
+    numero = int(input('Digite um valor: '))  # Solicita e converte um valor para inteiro
+    continuar = str(input('Deseja continuar? S/N')).strip().upper()  # Pergunta se deseja continuar e converte para maiúsculas
 
-quantidade_mulheres = 0  # Inicializa o contador para o número de mulheres com menos de 20 anos
+    quantidade_de_valores += 1  # Incrementa o contador de valores
+    soma_valores += numero  # Adiciona o valor à soma total
 
-# Tarefa 2: Ler nome, idade e sexo
-masculino = 'M'  # Atribui 'M' à variável masculino para facilitar comparações
-feminino = 'F'  # Atribui 'F' à variável feminino para facilitar comparações
+    if quantidade_de_valores == 1:
+        maior = menor = numero  # Se for o primeiro valor, atribui a ele tanto o maior quanto o menor
 
-for pessoa in range(1, 5):  # Loop para iterar sobre 4 pessoas (de 1 a 4)
-    print(f'{pessoa}º Pessoa')
-
-    # Entrada de dados do usuário
-    nome = str(input('Digite o nome da pessoa: ')).strip().title()  # Solicita e formata o nome
-    idade = int(input('Digite a idade da pessoa: '))  # Solicita a idade como um número inteiro
-    sexo = str(input('Digite o sexo da pessoa: F/M')).strip().upper()  # Solicita e formata o sexo
-    membros_grupo += 1  # Incrementa o contador de membros no grupo
-
-    # Verifica se é a primeira pessoa do sexo masculino ou se é mais velho que o homem mais velho atual
-    if pessoa == 1 and sexo == masculino:
-        nome_homem_mais_velho = nome
-        idade_homem_mais_velho = idade
     else:
-        # Verifica se a pessoa é do sexo masculino e se a idade é maior que a do homem mais velho atual
-        if sexo == masculino and idade >= idade_homem_mais_velho:
-            nome_homem_mais_velho = nome
-            idade_homem_mais_velho = idade
+        if numero > maior:
+            maior = numero  # Atualiza o maior valor se necessário
+        if numero < menor:
+            menor = numero  # Atualiza o menor valor se necessário
 
-    # Conta mulheres com menos de 20 anos
-    if sexo == feminino and idade < 20:
-        quantidade_mulheres += 1
+    opcao_invalida = continuar not in 'SsNn'
+    while opcao_invalida:
+        print('Opção inválida!')
+        continuar = str(input(''))  # Solicita novamente se a opção é inválida
 
-    # Acumula as idades para calcular a média posteriormente
-    idades_grupo += idade
+    if continuar == 'S':
+        print('Continuando...')
+    elif continuar == 'N':
+        print('Encerrando...')
+        continuar = False
 
-    # Exibe os dados cadastrados para cada pessoa
-    print(f'Nome: {nome}\nIdade: {idade}\nSexo: {sexo}')
-    print('Cadastro realizado com sucesso!')
+media_valores = soma_valores / quantidade_de_valores  # Calcula a média dos valores
 
-# Calcula a média de idade do grupo
-media_idade_grupo = idades_grupo / membros_grupo
-
-# Exibe os resultados finais
-print(f'A média de idade do grupo é {media_idade_grupo} anos.')
-print(f'A homem mais velho do grupo é o {nome_homem_mais_velho} com {idade_homem_mais_velho} anos de idade.')
-print(f'Entre os quatro membros do grupo, {quantidade_mulheres} são mulheres com menos de 20 anos.')
+print(f'Foram digitados {quantidade_de_valores} valores.')
+print(f'O maior valor foi {maior} e o menor foi {menor}.')
+print(f'A média entre os valores é {media_valores}')
 
