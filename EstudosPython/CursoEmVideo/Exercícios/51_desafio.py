@@ -8,7 +8,7 @@ dez_primeiros = 10 * razao  # Calcula o décimo termo (posição 10) da PA
 
 # Tarefa 2: Mostrar os 10 primeiros termos
 print(f'Os dez primeiros termos da PA são: ', end='')
-for i in range(primeiro_termo, dez_primeiros, razao):
-    print(f'{i}', end=', ')  # Exibe cada termo seguido de uma vírgula
+for termo in range(primeiro_termo, dez_primeiros, razao):
+    print(f'{termo}', end=', ')  # Exibe cada termo seguido de uma vírgula
 print('FIM!')  # Indica o final da lista
 

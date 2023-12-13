@@ -36,6 +36,6 @@ while continuar:
 media_valores = soma_valores / quantidade_de_valores  # Calcula a média dos valores
 
 print(f'Foram digitados {quantidade_de_valores} valores.')
-print(f'O maior valor foi {maior} e o menor foi {menor}.')
 print(f'A média entre os valores é {media_valores}')
+print(f'O maior valor foi {maior} e o menor foi {menor}.')
 

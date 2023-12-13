@@ -4,8 +4,8 @@
 primeiro_termo = int(input('Digite o primeiro termo da PA: '))  # Solicita e converte o primeiro termo para inteiro
 razao = int(input('Digite a razão da PA: '))  # Solicita e converte a razão para inteiro
 decimo_termo = razao * 10  # Calcula o décimo termo da PA
-
 termo = 0
+
 while decimo_termo > 0:
     termo += 1
     print(f'{termo}º termo: {primeiro_termo}')  # Exibe o termo atual da PA

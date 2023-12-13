@@ -6,7 +6,7 @@ quantidade = 0  # Inicializa o contador de números digitados
 condicao = True  # Inicializa a condição de repetição
 
 while condicao:
-    numero = int(input('Digite um número: '))  # Solicita e converte um número para inteiro
+    numero = int(input('Digite um número: [999 encerra] '))  # Solicita e converte um número para inteiro
 
     if numero == 999:
         print(f'Encerrando!')
