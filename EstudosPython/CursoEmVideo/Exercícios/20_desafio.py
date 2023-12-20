@@ -20,6 +20,6 @@ shuffle(alunos)
 sleep(.5)
 
 # Tarefa 2: Exiba a ordem do sorteio.
-print(emojize(f'A ordem do sorteio é a seguinte: :cone_de_festa:\n {alunos}', language='pt'))
+print(emojize(f'A ordem do sorteio é a seguinte: :cone_de_festa:\n {', '.join(alunos)}.', language='pt'))
 
 

@@ -4,43 +4,58 @@
 # B) quantos homens foram cadastrados.
 # C) quantas mulheres tem menos de 20 anos.
 
-pessoa_mais_18 = 0
-homens = 0
-mulheres_menos_20 = 0
+pessoa_mais_18 = 0  # Contador para pessoas com mais de 18 anos
+homens = 0         # Contador para homens
+mulheres_menos_20 = 0  # Contador para mulheres com menos de 20 anos
 
-contador = 0
+contador = 0  # Contador total de pessoas
 
 while True:
+    # Conta a quantidade de pessoas
     contador += 1
     print(f'{contador}º pessoa')
-    idade = int(input('Digite a idade da pessoa: '))
-    sexo = str(input('Digite o sexo da pessoa: F/M')).strip().upper()
-    while sexo not in 'FfMm':
-        sexo = str(input('Digite o sexo da pessoa: F/M')).strip().upper()
 
-    if idade > 18:
+    # Solicita a idade e o sexo da pessoa
+    idade = int(input('Digite a idade da pessoa: '))
+    sexo = input('Digite o sexo da pessoa (F/M): ').strip().upper()
+
+    # Garante que o sexo seja F ou M
+    while sexo not in 'FfMm':
+        sexo = input('Digite o sexo da pessoa (F/M): ').strip().upper()
+
+# Verifica as condições e atualiza os contadores
+
+    # Se for maior de 18 anos
+    if idade >= 18:
         pessoa_mais_18 += 1
 
-    if sexo in 'Mm':
+    # Se for um homem
+    if sexo == 'M':
         homens += 1
 
-    if sexo in 'Ff' and idade < 20:
+    # Se for uma mulher com menos de 20 anos
+    if sexo == 'F' and idade < 20:
         mulheres_menos_20 += 1
 
-    continuar = str(input('Deseja continuar? S/N')).strip().upper()
+    # Verifica se quer continuar
+    continuar = input('Deseja continuar? (S/N): ').strip().upper()
 
-    if continuar not in 'SsNn':
+    # Garante que a resposta seja S ou N
+    while continuar not in 'SsNn':
         print('Comando inválido!')
-        continuar = str(input('Somente S ou N')).strip().upper()
+        continuar = input('Somente S ou N. Deseja continuar? (S/N): ').strip().upper()
 
-    if continuar in 'Ss':
-        print('Continuando...')
-
-    if continuar in 'Nn':
+    # Se for não, encerra. Caso contrário, reinicia o loop
+    if continuar == 'N':
         print('Encerrando...')
         break
+    else:
+        print('Continuando...')
 
-print(f'Foram cadastradas {contador} pessoas.')
-print(f'Entre elas, {pessoa_mais_18} pessoas tem mais de 18 anos.')
-print(f'Ao todo {homens} pessoas são homens.')
-print(f'Temos {mulheres_menos_20} mulheres com menos de 20 anos.')
+# Exibe as estatísticas finais
+print(f'{"Apenas uma pessoa foi cadastrada!" if contador == 1 else f'Foram cadastradas {contador} pessoas.'}')
+print(f'Entre elas, {pessoa_mais_18} {"pessoa tem mais de 18 anos." if pessoa_mais_18 == 1 else "pessoas têm mais de 18 anos."}')
+print(f'Ao todo, {homens} {"homem foi cadastrado." if homens == 1 else "homens foram cadastrados."}')
+print(f'Temos {mulheres_menos_20} {"mulher com menos de 20 anos." if mulheres_menos_20 == 1 else "mulheres com menos de 20 anos."}')
+
+

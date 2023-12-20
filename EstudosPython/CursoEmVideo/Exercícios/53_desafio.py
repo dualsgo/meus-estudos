@@ -5,8 +5,7 @@ frase = str(input('Digite sua frase ou palavra: ')).strip().upper()  # Solicita 
 nova_frase = ''  # Inicializa a variável para armazenar a nova frase invertida
 
 # Remove espaços da frase original
-frase = frase.split()  # Divide a frase em uma lista de palavras
-frase = ''.join(frase)  # Junta as palavras para formar a frase sem espaços
+frase = frase.replace(' ', '')
 
 # Inverte a frase
 for letra in frase[::-1]:

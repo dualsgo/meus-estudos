@@ -47,7 +47,6 @@ print(frase.count('0', 0, 13))
 
 print(frase.find('deo'))
 # Exibe 11, que é a posição do caractere d
-
 # Se o valor não for encontrado, o retorno será -1
 
 # O operador in pode ser utilizado para retornar um boolean ao verificar se há uma correspondência dentro da string
@@ -100,7 +99,5 @@ print(frase)
 # O método .strip() irá remover os espaços desnecessários, na esquerda de na direita, mas não os espaços entre as palavras.
 print(frase.strip())
 # Há duas variações: Somente da direita rstrip() e somente da esquerda lstrip()
-
-print('\n============ Parte prática ============\n')
 
 

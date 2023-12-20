@@ -4,6 +4,7 @@ from random import randint
 
 # Tarefa 1: Ler um número (Irei usar um número aleatório sorteado)
 numero = randint(0, 9999)
+print(numero // 10)
 
 # Tarefa 2: Mostrar na tela cada um dos dígitos separados
 unidade = numero % 10

@@ -1,12 +1,17 @@
 # Curso Python #013 - Estrutura de repetição for
+# Nessa aula, vamos começar nossos estudos com os laços e vamos fazer primeiro o "for", que é uma estrutura versátil e simples de entender. Por exemplo:
+
+# for c in range(0, 4):
+#      print(c)
+# print('Acabou')
 
 # Laços, repetições ou iterações
 
 # Laços de repetição com variável de controle realizam as instruções repetidamente, uma determinada quantidade de vezes.
 
 # A sintaxe de um laço for é a seguinte:
-#
-for contador in range(1, 10):
+
+for contador in range(1, 10):  # A variável de contador irá guardar o número de repetições
     # O range é o intervalo e recebe os argumentos: início, fim e iteração
     print(f'Repita isso: {contador}')
     # A instrução será executada no intervalo indicado de 1 a 10 (excluindo o 10). Serão 9 repetições
@@ -19,25 +24,24 @@ for contador in range(1, 10, 2):
     print(f'Repita isso iterando a cada 2: {contador}')
 print('Pare')
 
-# Podemos utilizar as estruturas condicionais aninhadas num loop usando a identação (recuo) para estruturar o código.
+# Podemos utilizar as estruturas condicionais aninhadas num loop usando a indentação (recuo) para estruturar o código.
 
 for contador in range(1, 10):
     print(f'Contagem: {contador}')
+
     # Aqui se o número for par ou ímpar, retorna o texto correspondente
     if contador % 2 == 0:
         print(f'{contador} é par.')
-    else:
+    elif contador % 2 == 1:
         print(f'{contador} é ímpar.')
 print('Pare')
-
-print('\n============ Parte prática ============\n')
 
 # O laço inicia em zero e termina no número anterior ao argumento. Nesse exemplo finaliza no 5
 for c in range(0, 6):
     print(c)
 
-# Se quisermos fazer em contagem regressiva, devemos u/começar com o maior algarismo e terminar no menor além de usar a iteração negativa.
-for c in range(6, 0, -1):
+# Se quisermos fazer em contagem regressiva, devemos começar com o maior algarismo e terminar no menor, além de usar a iteração negativa.
+for c in range(6, -1, -1):
     print(c)
 # Da mesma forma que antes, o algarismo do fim é desconsiderado
 

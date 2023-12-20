@@ -28,8 +28,6 @@ else:
 # A mesma estrutura pode ser simplificada
 print('Carro novo' if tempo <= 3 else 'Carro velho')
 
-print('\n============ Parte prática ============\n')
-
 # Exemplo 1 - Condição simples
 
 nome = str(input('Qual é o seu nome: ')).strip().title()

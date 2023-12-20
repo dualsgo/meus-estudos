@@ -2,30 +2,30 @@
 # Agora chegou a hora de aprender os comandos básicos do Python e fazer os primeiros programas em Linguagem Python.
 
 # Os dados de texto são delimitados por aspas simples ou duplas. Podem conter letras, números e caracteres especiais.
-# Todos os comandos são funções e devem ter parênteses.
-# A função print() exibe no console o texto desejado
+# Todos os comandos são funções e devem ter parênteses após seu nome.
+# A função print() exibe no console o texto desejado.
 # A sintaxe é print('Seu texto')
 print('Olá, mundo!')
 
-# Se uma das aspas for omitida, o programa irá apresentar um erro de sintaxe. Caso as duas aspas sejam omitidas o programa irá exibir um erro diferente, pois irá interpretar cada palavra como uma variável além do erro de sintaxe.
+# Se uma das aspas for omitida, o programa irá apresentar um erro de sintaxe. Caso as duas aspas sejam omitidas o programa irá exibir um erro diferente, pois irá interpretar cada palavra como uma variável (além do erro de sintaxe).
 
 # Também podemos exibir números. Números entre aspas são considerados textos!
 # Os números são usados para cálculos matemáticos, por exemplo.
-print(7 + 4) # Irá exibir a soma que é 11
+print(7 + 4)  # Irá exibir a soma que é 11
 
 # Se colocarmos os números entre as aspas e utilizarmos o operador de soma (+), o programa não irá apresentar um erro! Ele irá unir os dois textos. Essa ação é chamada de concatenação - O operador + une strings e soma valores numéricos.
-print('7' + '4') # Exibe '74'
+print('7' + '4')  # Exibe '74'
 
-# Também é possível utilizar a vírgula para concatenar os valores. A diferença é que o operador de soma + só funciona com valores do mesmo tipo, por exemplo string + string ou número + número. A vírgula permite utilizar valores de tipos diferentes
-print('7', 4) # Irá exibir '7' 4 - haverá um espaço, pois é o separador padrão ao utilizar vírgula na concatenação.
-print('\n============ Parte prática ============\n')
+# Também é possível utilizar a vírgula para concatenar os valores. A diferença é que o operador de soma + só funciona com valores do mesmo tipo, por exemplo, string + string ou número + número. A vírgula permite utilizar valores de tipos diferentes
+print('7', 4)  # Irá exibir '7' 4 - haverá um espaço, pois é o separador padrão ao utilizar vírgula na concatenação.
+
 # Variáveis são úteis para armazenar os valores. Recomenda-se utilizar letras minúsculas para nomeá-las. Toda variável é um objeto em Python.
 
 # O símbolo de = é chamado de operador de atribuição. A sintaxe da atribuição é nome da variável - operador de atribuição - valor.
 # Podemos ler o operador de atribuição como 'recebe'.
-nome = 'Guanabara'
-idade = 25
-peso = 75.8
+nome = 'Guanabara'  # nome recebe Guanabara
+idade = 25  # idade recebe 25
+peso = 75.8  # peso recebe 75.8
 
 # Se utilizarmos as variáveis nas funções print() o seu valor será exibido. Concatenamos os valores com a vírgula, pois seus valores são de tipos diferentes.
 print(nome, idade, peso)

@@ -6,6 +6,7 @@
 
 # Tarefa 1: Ler o nome completo
 nome = str(input('Digite seu nome completo: ')).strip().title()
+print(nome)
 
 # Tarefa 2: Mostrar as informações solicitadas
 

@@ -13,7 +13,7 @@ print('Jogador, faça a sua jogada:')
 print(emojize(':tecla_0: PEDRA :punho_levantado:\n:tecla_1: PAPEL :mão_levantada:\n:tecla_2: TESOURA :mão_em_v_de_vitória:', language='pt'))
 jogador = int(input(''))
 
-if jogador != 0 or 1 or 2:
+while jogador > 2:
     print('Opção inválida!')
     jogador = int(input(''))
 

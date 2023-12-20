@@ -3,7 +3,7 @@
 
 # Programas podem oferecer possibilidades extras caso haja mais de um caminho a ser seguido. Se uma determinada condição não é atendida, o programa deve conseguir oferecer essas outras opções
 
-numero = 4
+numero = 2
 
 if numero == 1:
     print('Executa a primeira possibilidade')
@@ -17,8 +17,6 @@ else:
 # else só pode ser usado como última opção mas também pode ser omitido.
 
 # elif pode ser usado quantas vezes for necessário, mas deve sempre ser usado após um if
-
-print('\n============ Parte prática ============\n')
 
 nome = str(input('Qual é o seu nome: '))
 

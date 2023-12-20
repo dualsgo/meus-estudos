@@ -27,8 +27,6 @@ print(pow(4, 2))"""
 # factorial - fatorial
 # randint - gera um número aleatório
 
-print('\n============ Parte prática ============\n')
-
 num = int(input('Digite um número: '))
 # Calcular a raiz quadrada
 print(f'A raiz quadrada de {num} é {sqrt(num)}.')

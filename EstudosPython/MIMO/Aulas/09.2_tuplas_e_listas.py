@@ -25,3 +25,5 @@ print(days_list[1])
 # Dizemos que as tuplas são imutáveis, pois tentar modificá-las resulta em erro.
 
 # Como são imutáveis, nós usamos tuplas para armazenar informações que não devem ser modificadas
+
+
