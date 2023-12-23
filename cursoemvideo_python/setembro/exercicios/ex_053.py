@@ -6,11 +6,11 @@ reverso = ''  # Variável para armazenar a versão invertida da frase
 compara = ''  # Variável para armazenar a versão original da frase
 frase = str(input('Digite a frase: ')).strip().upper()  # Lê a frase, remove espaços em branco e converte para letras maiúsculas
 print(frase)  # Imprime a frase original
-
+frase = frase.replace(' ', '')
 # Loop para inverter a frase
 for letra in frase:
     reverso = letra + reverso
-    compara = compara + letra
+    compara += letra
 
 # Verifica se a versão invertida é igual à versão original
 if reverso == compara:

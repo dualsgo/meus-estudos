@@ -1,14 +1,14 @@
 """Desafio 080 - Lista ordenada sem repetições (Aula 01 a 17): Crie um programa onde o usuário possa digitar cinco valores numéricos e cadastre-os em uma lista, já na posição correta de inserção (sem usar o sort())
 No final, mostre a lista ordenada na tela. Mostrar se foi adicionado no final da lista se for o maior que os já digitados ou a posição se for menor
 """
-
+from random import randint
 # Inicializar a lista
 lista = []
 
 # Loop para solicitar cinco valores numéricos
 for posicao in range(5):
     # Solicitar um valor numérico ao usuário
-    elemento = int(input('Digite um valor: '))
+    elemento = randint(0, 9)
 
     # Verificar se a lista está vazia
     if not lista:
@@ -35,7 +35,7 @@ print(lista)
 
 lista = []
 for c in range(0, 5):
-    n = int(input('Digite um valor: '))
+    n = randint(0, 9)
     if c == 0 or n > lista[-1]:
         lista.append(n)
         print('Adicionado ao final da lista')
