@@ -46,8 +46,7 @@ while True:
 
     if numero == 999:
         break
-
-    soma += numero
+    else:
+        soma += numero
 
 print(f'A soma é: {soma}')
-

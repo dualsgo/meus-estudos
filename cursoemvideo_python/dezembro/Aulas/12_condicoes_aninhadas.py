@@ -14,10 +14,11 @@ elif numero == 3:
 else:
     print('Numero inválido!')
 
+# OBSERVAÇÃO:
+# elif pode ser usado quantas vezes for necessário, mas deve sempre ser usado após um if.
 # else só pode ser usado como última opção mas também pode ser omitido.
 
-# elif pode ser usado quantas vezes for necessário, mas deve sempre ser usado após um if
-
+# TESTANDO POSSIBILIDADES:
 nome = str(input('Qual é o seu nome: '))
 
 if nome == 'Gustavo':

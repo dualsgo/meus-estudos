@@ -99,5 +99,3 @@ print(frase)
 # O método .strip() irá remover os espaços desnecessários, na esquerda de na direita, mas não os espaços entre as palavras.
 print(frase.strip())
 # Há duas variações: Somente da direita rstrip() e somente da esquerda lstrip()
-
-

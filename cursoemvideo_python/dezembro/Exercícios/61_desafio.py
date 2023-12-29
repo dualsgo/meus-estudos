@@ -8,7 +8,7 @@ termo = 0
 
 while decimo_termo > 0:
     termo += 1
-    print(f'{termo}º termo: {primeiro_termo}')  # Exibe o termo atual da PA
+    print(f'{termo:2}º termo: {primeiro_termo:2}')  # Exibe o termo atual da PA
 
     primeiro_termo += razao  # Atualiza o valor do próximo termo
     decimo_termo -= razao  # Reduz o contador do décimo termo

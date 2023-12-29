@@ -28,7 +28,7 @@ print(f'O 9 apareceu quantas vezes? {numeros.count(9)}')
 
 # Verifica se o número 3 está presente na tupla e imprime a posição (caso esteja)
 # ou uma mensagem indicando que não está presente
-mensagem_3 = ('\033[1;32mO número 3 apareceu no primeiro no índice {numeros.index(3)}.\033[m' if 3 in numeros else '\033[1;31mO número 3 não aparece na tupla.\033[m')
+mensagem_3 = (f'\033[1;32mO número 3 apareceu no primeiro no índice {numeros.index(3)}.\033[m' if 3 in numeros else '\033[1;31mO número 3 não aparece na tupla.\033[m')
 print(mensagem_3)
 
 # Imprime os números pares da tupla (exceto o zero)

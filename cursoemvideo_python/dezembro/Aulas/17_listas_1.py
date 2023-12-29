@@ -109,4 +109,3 @@ print(f'Lista B: {lista_b}')
 lista_b[2] = 8
 print(f'Lista A: {lista_a}')
 print(f'Lista B: {lista_b}')
-
