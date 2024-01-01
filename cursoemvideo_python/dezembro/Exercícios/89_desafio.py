@@ -25,12 +25,13 @@ while True:
     # Se o usuário escolher 'N', exibe o boletim e encerra o programa
     if continuar == 'N':
         print('Encerrando...')
-
+        print(f'{"BOLETIM DA TURMA":^20}')
+        print(f'{"Número":<8}{"Nome":<10}{"Média":>8}')
         for i, aluno in enumerate(boletim):
             nome = aluno[0]
             nota1, nota2, media = aluno[1]
             # Formatação melhorada usando f-strings
-            print(f'O aluno {nome}, teve as notas {nota1} e {nota2}. Sua média foi {media:.1f}')
+            print(f'{i:<8}{nome:<10}{media:>8.1f}')
         break
 
 # Loop para visualizar as notas de cada aluno individualmente
