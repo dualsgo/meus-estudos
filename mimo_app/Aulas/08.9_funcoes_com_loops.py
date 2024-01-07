@@ -31,5 +31,9 @@ lista_carrinho = [5, 20, 8]
 # Ao percorre a lista no parâmetro, podemos chamar a função com qualquer lista, como lista_carrihno aqui
 metade_do_preco(lista_carrinho)
 
+# Ou uma lista de compras 
+lista_compras = [10, 30, 80, 100, 200, 300]
+metade_do_preco(lista_compras)
+
 
 

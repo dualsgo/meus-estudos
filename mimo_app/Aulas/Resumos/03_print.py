@@ -1,6 +1,6 @@
 # MIMO - Instrução print()
 
-# Linhas de código são instruções que o computador deve seguir. A ordem é importante, pois o computador segue as instruções linha por linha.
+# Linhas de código são instruções que o computador deve seguir. A ordem é importante, pois o computador segue as instruções linhas por linha.
 
 # Com a instrução print(), dizemos ao computador para exibir um valor no console (também chamado de shell).
 print('Esse texto será exibido quando o programa for executado!')

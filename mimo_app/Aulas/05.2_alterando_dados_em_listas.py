@@ -13,3 +13,8 @@ print(temperature[1])
 # Para alterar o terceiro valor de temperature na lista, acessamos o valor através do seu índice e usamos = para atribuir a ele um novo valor
 temperature[2] = 25
 print(temperature)
+
+# Se quisermos saber qual é o índice de um elemento, podemos usar o método index().
+# O método index() retorna o índice do primeiro elemento com o valor especificado.
+# A sintaxe é: list.index(element, start, end)
+print(temperature.index(25))

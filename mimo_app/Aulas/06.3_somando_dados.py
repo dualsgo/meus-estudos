@@ -11,3 +11,8 @@ print(sum(julho))
 
 # Para reutilizar a soma da lista, podemos salvar o resultado em uma variável.
 
+# Podemos usar sum() para calcular a diferença entre os totais de duas listas.
+print(sum(junho) - sum(julho))
+
+
+

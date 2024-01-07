@@ -10,6 +10,6 @@ print(lista)
 nova_lista = set(lista)
 print(nova_lista)
 
-
+# Podemos transformar o conjunto de volta em uma lista com a instrução list() contendo o nome do conjunto entre os parênteses.
 
 

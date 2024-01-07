@@ -7,4 +7,8 @@
 
 postcodes = {'SW1A', 'SY3', 'B44'}
 
+# Podemos usar um loop para iterar um conjunto.
+# Como os conjuntos não têm ordem, não podemos acessar valores por índice.
+# A cada iteração, o loop acessa um valor diferente do conjunto.
+print(postcodes)
 

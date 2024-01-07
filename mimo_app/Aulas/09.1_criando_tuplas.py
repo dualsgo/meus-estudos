@@ -5,7 +5,6 @@
 # Esta lista contém filmes e datas de lançamento, mas não está claro qual data pertence a qual filme
 
 filmes = ['Vertigo', 'Parasite', 1958, 2010]
-
 # Podemos agrupar dados relacionados com uma tupla.
 
 filmes_tupla = [('Vertigo', 1958), ('Parasite', 2010)]

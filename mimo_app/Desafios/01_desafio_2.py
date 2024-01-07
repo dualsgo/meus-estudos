@@ -11,3 +11,4 @@ menos_visto = 'The Best Mug to Take Scuba Diving'
 # Tarefa 3: Use as duas instruções print() para gerar essas variáveis no console.
 print(f'O vídeo mais visualizado é: "{mais_visto}".')
 print(f'O vídeo menos visualizado é: "{menos_visto}".')
+

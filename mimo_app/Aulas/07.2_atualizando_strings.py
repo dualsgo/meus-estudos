@@ -10,7 +10,14 @@ print(f'Filme 1: {filme}')
 novo_filme = filme.replace('Pedra Filosofal', 'Câmara Secreta')
 print(f'Filme 2: {novo_filme}')
 
-# Se codificarmos a variável original, notaremos que o valor dela permanece inalterado
+# Se codificarmos a variável original, notaremos que o valor dela permanece inalterado. Isso ocorre pois o método .replace() não altera o valor da variável original, mas cria uma nova string com o valor atualizado.
 print(f'Filme 1: {filme}')
 
 # Quando usamos replace() substituiremos todas as ocorrências do valor dentro da string
+
+# replace é útil para atualizar strings, mas também para remover caracteres indesejados
+# Por exemplo, se quisermos remover os espaços em branco de uma string, podemos usar o método .replace()
+nome = 'Maycon Douglas Barros da Silva'
+nome_sem_espacos = nome.replace(' ', '') # Substituímos o espaço em branco por nada
+print(nome_sem_espacos) # MayconDouglasBarrosdaSilva
+print(nome) # Exibe Maycon Douglas Barros da Silva pois como dito antes, o método .replace() não altera o valor da variável original, mas cria uma nova string com o valor atualizado.

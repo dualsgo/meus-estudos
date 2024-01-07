@@ -12,3 +12,6 @@ print(pontos)
 # Ao usar sort() numa lista de números, os números são classificados em ordem crescente, sejam eles inteiros ou de ponto flutuante, negativos ou positivos.
 
 # Ao usar sort() em uma lista de com strings, os valores são ordenados em ordem alfabética
+
+# Se quisermos uma lista classificada em ordem decrescente, podemos usar o argumento reverse=True
+pontos.sort(reverse=True)

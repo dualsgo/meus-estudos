@@ -18,9 +18,15 @@ locations = {
 # As chaves são como índices rotulados. Nós usamos porque nos ajudam a recuperar valores como 'Paris' com base no seu significado.
 # Só podemos usar uma chave por vez. Cada chave está associada a um valor
 
-# Dentro do dicionário, separamos pares de valores-chave com vírgulas
+# Dentro do dicionário, separamos pares de valores-chave com vírgulas e cada par é separado por dois pontos.
 
 # As chaves de um dicionário podem ser números, boolean ou tuplas, mas o tipo mais comumente usado é string. Os valores podem ser de qualquer tipo, inclusive listas.
+lista = ['New York', 'Paris']
+locations = {
+    'headquarters': lista,
+    'flagship': 'Paris'
+}
+print(locations['headquarters']) # ['New York', 'Paris']
 
 # Podemos armazenar quantos pares de valores-chave quisermos dentro de um dicionário.
 

@@ -12,3 +12,5 @@ print(max(pontos))
 print(min(pontos))
 
 # Podemos salvar esses resultados em variáveis
+
+# Podemos usar o método sort() para classificar os elementos de uma lista em ordem crescente e depois usar os índices para acessar os valores extremos.

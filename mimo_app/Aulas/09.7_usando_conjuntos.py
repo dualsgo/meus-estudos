@@ -10,8 +10,7 @@ conjunto.add('talvez')
 print(conjunto)
 
 # Como os conjuntos excluem os valores duplicados, nada acontece quando tentamos adicionar um valor já existente.
-
-#
+conjunto.add('sim')
 
 # Sabemos que podemos acessar e atualizar elementos em listas pelo seu índice, mas ao contrário das listas, os conjuntos não podem ser ordenados. Isso significa que os elementos não possuem índices e devido isso, só podemos verificar se um elemento está presente no conjunto usando o operador in
 
@@ -21,8 +20,6 @@ print('sim' in conjunto)
 
 for elemento in conjunto:
     print(f'Opção: {elemento}')
-
-#
 
 # Para remover um elemento do conjunto como 'sim', codificamos o nome do conjunto seguido da instrução .remove() com o elemento entre parênteses. Para evitar erros verificamos antes se o elemento pertence ao conjunto.
 

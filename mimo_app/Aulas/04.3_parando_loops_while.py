@@ -6,10 +6,12 @@
 
 # Para parar um loop, começamos criando uma variável fora do loop.
 continuar = True
+
 while continuar: # É o mesmo que comparar se continuar == True
-    print('De novo...')
-# Dentro do bloco de código, paramos o loop definindo continuar como False
+    print('De novo...')  # O loop while repete seu bloco de código enquanto continuar for True
+    # Dentro do bloco de código, paramos o loop definindo continuar como False
     continuar = False
+    
     print('Só dessa vez.')
 
 
