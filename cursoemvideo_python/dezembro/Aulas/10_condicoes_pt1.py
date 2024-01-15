@@ -20,7 +20,7 @@ else:
 tempo = int(input('Quantos anos tem o carro: '))
 
 # Condicional - Utilizando uma comparação
-if tempo <= 3:
+if tempo <= 3: # O programa irá verificar se o valor da variável é menor ou igual a 3 e retornará True ou False
     print('Carro novo')
 else:
     print('Carro velho')

@@ -8,8 +8,12 @@
 # A função print() exibe no console o texto desejado.
 # A sintaxe é o nome da função, um par de abertura e fechamento de parênteses envolvendo o valor que deseja exibir.
 # print('Seu texto')
-print('Olá, mundo!')  # Shift + F10 para executar - O texto será exibido no console.
-# A função exibe seu resultado em uma linha diferente, mas é possível controlar esse comportamento utilizando caracteres de escape.
+
+print('Olá, mundo!')  # Ao executar o programa o texto será exibido no console.
+
+# A função exibe seu resultado em uma linha diferente, mas é possível controlar esse comportamento utilizando caracteres de escape ou atributos.
+
+# Por exemplo, a função print possui um atributo chamado end. O atributo end permite que você especifique o que deve ser exibido após o último caractere da função print.
 
 # O valor padrão de end é uma quebra de linha(\n), isso faz com que a próxima instrução seja exibida em uma nova linha. Se mudarmos o valor para qualquer outro, a próxima instrução será exibida ao lado, separada pelo valor escolhido.
 print('Olá, mundo!', end=' % ')
@@ -17,7 +21,7 @@ print('Olá, mundo!', end='\n')
 
 # ERROS:
 # Se uma das aspas for omitida, o programa irá apresentar um erro de sintaxe.
-# Caso as duas aspas sejam omitidas o programa irá exibir um erro diferente, pois irá interpretar cada palavra como uma variável (além do erro de sintaxe).
+# Caso as duas aspas sejam omitidas o programa irá exibir um erro diferente, pois irá interpretar cada palavra como uma variável e não irá encontrá-las(além do erro de sintaxe).
 
 # Também podemos exibir números.
 # Números entre aspas são considerados textos!
@@ -32,9 +36,11 @@ print('Duas strings são unidas ao utilizar o operador +: "7" + "4" =', '7' + '4
 # A vírgula permite utilizar valores de tipos diferentes:
 print('Usando vírgula para concatenar um dado string ("7") e um dado numérico (4):', '7', 4)  # Irá exibir '7' 4 - haverá um espaço, pois é o separador padrão ao utilizar vírgula na concatenação.
 
+# O separador também é um atributo de print(). O atributo sep permite que você especifique o que deve ser exibido entre os valores passados para a função print. A sintaxe é sep='separador'.
+
 # VARIÁVEIS:
 # Variáveis são úteis para armazenar os valores. Recomenda-se utilizar letras minúsculas para nomeá-las.
-# Toda variável é um objeto em Python.
+# Toda variável é um objeto em Python. Isso significa que ela possui atributos e métodos.
 # O símbolo de = é chamado de operador de atribuição. A sintaxe da atribuição é nome da variável - operador de atribuição - valor.
 # Podemos ler o operador de atribuição como 'recebe'.
 nome = 'Guanabara'  # nome recebe Guanabara
@@ -58,3 +64,5 @@ print(nome, idade, peso)
 
 # Podemos mudar o separador padrão da vírgula que é um espaço para outro caractere de preferência usando o atributo sep.
 print(nome, idade, peso, sep=' - ')
+
+# Os dados recebidos pelo input() são sempre do tipo string. Para converter o tipo de dado utilizamos as funções int(), float() e str().

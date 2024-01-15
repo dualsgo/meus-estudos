@@ -3,9 +3,8 @@
 
 # Uma cadeia de caracteres, ou string, é um texto entre aspas simples ou duplas.
 
-# Ao atribuir uma frase a uma variável, a frase é dividida em espaços na memória e cada um desses espaços recebe um índice que identifica sua posição, iniciando em zero. Os caracteres da frase, incluindo os espaços entre as palavras, ocupam essas posições
+# Ao atribuir uma frase a uma variável, a frase é dividida em espaços na memória e cada um desses espaços recebe um índice que identifica sua posição, iniciando em zero. Os caracteres da frase, incluindo os espaços entre as palavras, ocupam essas posições. Esse é o comportamento de uma lista; Uma string é uma lista de caracteres.
 frase = 'Curso em Vídeo Python'
-
 # Podemos realizar operações - Fatiamento
 # Tecnicamente, uma string é uma lista de caracteres. Sendo assim, podemos acessar os seus índices da mesma forma que faríamos com uma lista.
 
@@ -38,13 +37,12 @@ print(len(frase))
 # O método .count('valor') mostra a quantidade de ocorrências de um valor informado entre as aspas
 
 print(frase.count('o'))
-# Irá exibir a quantidade de ocorrências de o minúsculo
+# Irá exibir a quantidade de ocorrências de o minúsculo.
 
 print(frase.count('0', 0, 13))
 # Esse método aceita a indicação de um intervalo em seus argumentos
 
 # O método .find(valor) exibe a primeira posição de um caractere ou de um conjunto
-
 print(frase.find('deo'))
 # Exibe 11, que é a posição do caractere d
 # Se o valor não for encontrado, o retorno será -1
@@ -56,7 +54,7 @@ print('Curso' in frase)
 
 # Uma string é imutável, mas podemos utilizar alguns métodos para alterá-la
 
-# O método .replace(valor, novo_valor)
+# O método .replace(valor, novo_valor) altera um valor por outro, mas não altera a string original, apenas exibe a mudança
 frase.replace('Python', 'Android')
 
 print(frase)
@@ -72,7 +70,7 @@ print(frase.lower())
 # O método .title() transforma apenas o primeiro caractere de cada palavra em maiúsculo.
 print(frase.title())
 
-# O método ..capitalize() transforma apenas o primeiro caractere em maiúsculo
+# O método .capitalize() transforma apenas o primeiro caractere em maiúsculo
 print(frase.capitalize())
 
 # Divisão de strings
@@ -82,6 +80,7 @@ print(frase.capitalize())
 print(frase.split())
 frase_dividida = frase.split()
 print(frase_dividida[2][0])
+# Nesse exemplo, o primeiro valor indica a palavra e o segundo o caractere
 # Exibindo o primeiro caractere da terceira palavra
 
 # Junção

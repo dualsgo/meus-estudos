@@ -11,11 +11,14 @@
 
 # A sintaxe de um laço for é a seguinte:
 
-for contador in range(1, 10):  # A variável de contador irá guardar o número de repetições
-    # O range é o intervalo e recebe os argumentos: início, fim e iteração
+for contador in range(1, 10):
+    # A variável de contador irá guardar o número de repetições
+    # O range é o intervalo e recebe os argumentos: início, fim e iteração opcional
     print(f'Repita isso: {contador}')
     # A instrução será executada no intervalo indicado de 1 a 10 (excluindo o 10). Serão 9 repetições
 print('Pare')
+
+# O fluxo é simples. O contador inicia no valor informadono inicio do range, executa a instrução do bloco de código, incrementa o seu valor de acordo com a iteração que por padrão é 1 e repete o processo até o valor do contador ser igual ao valor informado no fim do range.
 
 # Se adicionarmos a iteração no range() a contagem muda
 
@@ -53,3 +56,8 @@ iteracao = int(input('Iteração: '))
 for c in range(inicio, fim, iteracao):
     print(f'Contando: {c}')
 print('FIM!')
+
+# O método enumerate() retorna uma tupla com o índice e o valor de cada elemento da lista. Podemos usar o desempacotamento para atribuir cada valor a uma variável.
+
+for indice, valor in enumerate(range(0, 10)):
+    print(f'{indice} - {valor}')

@@ -38,3 +38,9 @@ print(f'A raiz quadrada de {num} é {sqrt(num)}.')
 
 print(emojize(':coração_preto:', language='pt'))
 
+# Aliasing - Podemos atribuir um apelido para um módulo
+# import math as m torna o módulo math acessível como m, facilitando a digitação.
+# from math import sqrt as s torna a função sqrt acessível como s, facilitando a digitação.
+
+# Se quisermos importar vários módulos, podemos usar o comando "import biblioteca1, biblioteca2, biblioteca3"
+# Se quisermos importar todas as funcionalidades de um módulo, podemos usar o comando "from biblioteca import *" ou simplesmente "import biblioteca"

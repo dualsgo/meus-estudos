@@ -23,6 +23,11 @@ nome = str(input('Qual é o seu nome: '))
 
 if nome == 'Gustavo':
     print('Que nome bonito!')
+# Se colocarmos duas instruções if, ambas serão verificadas.
+if nome[0] == 'G':
+    print('Seu nome começa com G!')
+    
+# As instruções elif só serão verificadas se a condição if não for atendida. Se a condição elif for atendida, as demais condições serão ignoradas.
 elif nome == 'Pedro' or nome == 'Maria' or nome == 'Paulo':
     print('Seu nome é popular no Brasil.')
 elif nome in 'Juliana':
@@ -30,4 +35,10 @@ elif nome in 'Juliana':
 else:
     print('Seu nome é normal.')
 
+# A instrução fora da indentação será exibida, independente da condição ser atendida ou não
 print(f'Tenha um bom dia, {nome}!')
+
+
+
+
+    
