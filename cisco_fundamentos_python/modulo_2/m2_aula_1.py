@@ -1,6 +1,5 @@
 # PE1: Módulo 1. Introdução à programação de computadores e Python
 
-
 print('Olá mundo!')
 # Como você pode ver, este primeiro programa consiste nas seguintes partes:
 
