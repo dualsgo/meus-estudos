@@ -1,4 +1,4 @@
-# 2.1.13   LAB   Formatação de saída
+# 2.1.13 LAB Formatação de saída
 # Cenário
 # Recomendamos que você brinque com o código que escrevemos para você e faça algumas alterações (talvez até destrutivas). Sinta-se livre para modificar qualquer parte do código, mas há uma condição: aprender com seus erros e tirar suas próprias conclusões.
 
