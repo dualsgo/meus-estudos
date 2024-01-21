@@ -5,22 +5,13 @@
 
 # Por exemplo, se um evento começa às 12:17 e dura 59 minutos, termina às 13:16.
 
-# Não se preocupe com imperfeições no código - tudo bem se ele aceitar um tempo inválido - o mais importante é que o código produz resultados válidos para dados de entrada válidos.
-
-# Teste seu código com cuidado. Dica: usar o operador % pode ser a chave para o sucesso.
-
-# Dados de teste
-# Exemplo de entrada:
-# 12
-# 17
-# 59
 horas = -1
 minutos = -1
 
-while 0 > horas or horas > 23:
+while horas not in range(0, 24):
 	horas = int(input("Hora de início (horas): "))
 
-while 0 > minutos or minutos > 59:
+while minutos not in range(0, 60):
 	minutos = int(input("Hora de início (minutos): "))
 
 print(f'São {horas}:{minutos}')
@@ -28,12 +19,14 @@ print(f'São {horas}:{minutos}')
 tempo = int(input("Duração do evento (minutos): "))
 print(f'O evento tem duração de {tempo} minutos.')
 
-# Escreva seu código aqui.
-
+hora_adicional = (minutos + tempo) // 60
 minutos = (minutos + tempo) % 60
-horas += (minutos + tempo) // 60
-if horas == 24:
-	horas = 0
-elif horas > 23:
-	horas -= 24
+horas += hora_adicional
+
+if horas > 23:
+  hora = horas % 24
+  horas = 0
+  horas += hora
+
+
 print(f'O evento terminará às {horas}h e {minutos}min')
