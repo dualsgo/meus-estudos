@@ -2,23 +2,25 @@
 # Crie um programa que leia uma frase qualquer e diga se ela é um palíndromo, desconsiderando os espaços.
 
 frase = str(input('Digite sua frase ou palavra: ')).strip().upper()  # Solicita e converte a frase para maiúsculas e remove espaços extras
-nova_frase = ''  # Inicializa a variável para armazenar a nova frase invertida
-
 # Remove espaços da frase original
-frase = frase.replace(' ', '')
+frase = frase.split() # Separa a frase em palavras
+nova_frase = []  # Inicializa a variável para armazenar a nova frase invertida
 
 # Inverte a frase
-for letra in frase[::-1]:
-    nova_frase += letra  # Adiciona cada letra invertida à nova frase
+for palavra in frase: # Percorre cada palavra da frase
+    nova_palavra = '' # Inicializa a variável para armazenar a nova palavra invertida
+    for letra in palavra[::-1]: # Percorre cada letra da palavra de trás para frente
+        nova_palavra += letra  # Adiciona cada letra invertida à nova frase
+    nova_frase.append(nova_palavra) # Adiciona cada palavra invertida à nova frase
 
-print(f'A frase digitada foi: "{frase}"')  # Exibe a frase original sem espaços
-print(f'O inverso da frase é: "{nova_frase}"')  # Exibe a nova frase invertida sem espaços
+print(f'A frase digitada foi: {' '.join(frase)}') # Imprime a frase original
+print(f'O inverso da frase é: {' '.join(nova_frase)}') # Imprime a frase invertida
 
 # Verifica se é um palíndromo
 if nova_frase == frase:
-    print('A frase é um palíndromo!')
-else:
-    print('A frase não é um palíndromo!')
+    print('A frase é um palíndromo!') # Imprime se for um palíndromo
+else: 
+    print('A frase não é um palíndromo!') # Imprime se não for um palíndromo
 
 
 
@@ -43,4 +45,3 @@ if palindromo:
     print('É um palíndromo.')
 else:
     print('Não é um palíndromo.')"""
-

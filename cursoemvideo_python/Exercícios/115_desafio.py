@@ -1,5 +1,4 @@
 # Exercício Python #115a - Criando um menu em Python
-from time import sleep
 # ___________________________________
 #         MENU PRINCIPAL
 # ___________________________________
@@ -19,69 +18,72 @@ from time import sleep
 # ___________________________________
 import json
 
+
 def ver_pessoas_cadastradas():
-    try:
-        with open("pessoas.txt", "r") as arquivo:
-            pessoas = arquivo.readlines()
+    try:  # Tenta abrir o arquivo
+        with open("pessoas.txt", "r") as arquivo:  # Abre o arquivo
+            pessoas = arquivo.readlines()  # Lê o arquivo
 
-        if not pessoas:
-            print("Nenhuma pessoa cadastrada ainda.")
-        else:
-            print("Pessoas cadastradas:")
-            for pessoa_json in pessoas:
-                pessoa = json.loads(pessoa_json)
-                print(f"Nome: {pessoa['nome']}, Idade: {pessoa['idade']}")
-    except FileNotFoundError:
-        print("Nenhuma pessoa cadastrada ainda.")
-
-
-def menu():
-    try:
-        escolha_user = int(input('Digite o número da opção desejada: '))
-        return escolha_user
-    except ValueError:
-        print('\033[1;31mErro! Digite um número inteiro válido!\033[m')
-    return None
+        if not pessoas:  # Se não tiver nenhuma pessoa cadastrada
+            print("Nenhuma pessoa cadastrada ainda.")  # Mostra essa mensagem
+        else:  # Se tiver pessoas cadastradas
+            print("Pessoas cadastradas:")  # Mostra essa mensagem
+            for pessoa_json in pessoas:  # Para cada pessoa no arquivo
+                pessoa = json.loads(pessoa_json)  # Carrega a pessoa
+                print(f"Nome: {pessoa['nome']}, Idade: {pessoa['idade']}")  # Mostra o nome e a idade da pessoa
+    except FileNotFoundError:  # Se o arquivo não existir
+        print("Nenhuma pessoa cadastrada ainda.")  # Mostra essa mensagem
 
 
-def cadastrar_pessoa():
-    # Adicione lógica para cadastrar uma nova pessoa
-    nome = input("Digite o nome da pessoa: ")
-    idade = int(input("Digite a idade da pessoa: "))
-    pessoa = {"nome": nome, "idade": idade}
-    salvar_pessoa(pessoa)
+def menu():  # Função para mostrar o menu
+    try:  # Tenta converter o input para inteiro
+        escolha_user = int(input('Digite o número da opção desejada: '))  # Pergunta a opção desejada
+        return escolha_user  # Retorna a opção desejada
+    except ValueError:  # Se não for possível converter para inteiro
+        print('\033[1;31mErro! Digite um número inteiro válido!\033[m')  # Mostra essa mensagem
+    return None  # Retorna None para mostrar o menu novamente
 
-def salvar_pessoa(pessoa):
-    # Adicione lógica para salvar a pessoa em um arquivo TXT
-    with open("pessoas.txt", "a") as arquivo:
-        arquivo.write(json.dumps(pessoa) + "\n")
-    print("Pessoa cadastrada com sucesso!")
 
-def escolha():
-    while True:
-        titulo('SISTEMA DE GESTÃO DE PESSOAS')
-        print("""# 1 - Ver pessoas cadastradas
+def cadastrar_pessoa():   # Função para cadastrar uma pessoa
+    nome = input("Digite o nome da pessoa: ")  # Pergunta o nome da pessoa
+    idade = int(input("Digite a idade da pessoa: "))     # Pergunta a idade da pessoa
+    pessoa = {"nome": nome, "idade": idade}   # Cria um dicionário com o nome e a idade da pessoa
+    salvar_pessoa(pessoa)   # Chama a função para salvar a pessoa
+
+
+def salvar_pessoa(pessoa):   # Função para salvar a pessoa
+    with open("pessoas.txt", "a") as arquivo:   # Abre o arquivo
+        arquivo.write(json.dumps(pessoa) + "\n")     # Escreve a pessoa no arquivo
+    print("Pessoa cadastrada com sucesso!")  # Mostra essa mensagem
+
+
+def escolha():   # Função para mostrar o menu e perguntar a opção desejada
+    while True:  # Enquanto for verdade
+        titulo('SISTEMA DE GESTÃO DE PESSOAS')   # Mostra o título
+        print("""# 1 - Ver pessoas cadastradas    #  
 # 2 - Cadastrar pessoas
 # 3 - Sair do sistema
 --------------------------------------""")
 
-        num_escolhido = menu()
+        num_escolhido = menu()  # Chama a função para mostrar o menu e perguntar a opção desejada
 
-        if num_escolhido is not None:
-            if num_escolhido == 1:
-                ver_pessoas_cadastradas()
-            elif num_escolhido == 2:
-                cadastrar_pessoa()
-            elif num_escolhido == 3:
-                titulo('SAIR DO SISTEMA')
-                print('Saindo do sistema... Obrigado por utilizar!')
-                break
-            else:
-                print(f'Selecione uma das opções do menu acima. {num_escolhido} não é válido!')
+        if num_escolhido is not None:  # Se a opção for válida
+            if num_escolhido == 1:  # Se a opção for 1
+                ver_pessoas_cadastradas()  # Chama a função para ver as pessoas cadastradas
+            elif num_escolhido == 2:  # Se a opção for 2
+                cadastrar_pessoa()   # Chama a função para cadastrar uma pessoa
+            elif num_escolhido == 3:     # Se a opção for 3
+                titulo('SAIR DO SISTEMA')    # Mostra o título
+                print('Saindo do sistema... Obrigado por utilizar!')     # Mostra essa mensagem
+                break    # Para o loop
+            else:    # Se a opção não for 1, 2 ou 3
+                print(f'Selecione uma das opções do menu acima. {num_escolhido} não é válido!')  # Mostra essa mensagem
 
-def titulo(frase):
-    print(f'-' * (len(frase) + 10))
-    print(f'\033[1;32m{frase:^35}\033[m')
-    print(f'-' * (len(frase) + 10))
 
-escolha()
+def titulo(frase):   # Função para mostrar o título
+    print(f'-' * (len(frase) + 10))  # Mostra o traço
+    print(f'\033[1;32m{frase:^35}\033[m')    # Mostra o título
+    print(f'-' * (len(frase) + 10))  # Mostra o traço
+
+
+escolha()  # Chama a função para mostrar o menu e perguntar a opção desejada
