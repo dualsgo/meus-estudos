@@ -13,7 +13,7 @@ print('Olá, mundo!')  # Ao executar o programa o texto será exibido no console
 
 # A função exibe seu resultado em uma linha diferente, mas é possível controlar esse comportamento utilizando caracteres de escape ou atributos.
 
-# Por exemplo, a função print possui um atributo chamado end. O atributo end permite que você especifique o que deve ser exibido após o último caractere da função print.
+# Por exemplo, a função print() possui um atributo chamado end. O atributo end permite que você especifique o que deve ser exibido após o último caractere da função print().
 
 # O valor padrão de end é uma quebra de linha(\n), isso faz com que a próxima instrução seja exibida em uma nova linha. Se mudarmos o valor para qualquer outro, a próxima instrução será exibida ao lado, separada pelo valor escolhido.
 print('Olá, mundo!', end=' % ')
