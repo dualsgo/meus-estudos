@@ -54,7 +54,7 @@ def function_name():
 '''
 
 # Começa sempre com a palavra-chave def (de define)
-# Depois de def passa o nome da função (as regras para nomear funções são exatamente as mesmas que para nomear variáveis)
+# Depois de def passa o nome da função (as regras para nomear funções são as mesmas que para nomear variáveis)
 # depois do nome da função, há um lugar para um par de parênteses (eles não contêm nada aqui, mas isso vai mudar em breve)
 # a linha deve ser terminada com dois pontos;
 # a linha logo após def inicia o corpo da função - um par (pelo menos um) de instruções necessariamente aninhadas, que serão executadas sempre que a função for chamada; nota: a função termina onde o aninhamento termina, então você precisa ter cuidado.
@@ -91,8 +91,8 @@ Começamos aqui.
 Entre um valor: # mensagem da função
 terminamos aqui.
 """
-# O bloco de código que foi definido como o corpo da função foi executado. O Python lembra o local onde a função foi chamada e retorna a esse local quando a função termina.
-# A função não retorna nada, mas faz algo. É por isso que a chamamos de efeito colateral.
+# O bloco de código definido como o corpo da função foi executado. O Python lembra o local onde a função foi chamada e retorna a esse local quando a função termina.
+# A função não retorna nada, mas faz algo. É por isso que a chamamos de efeito.
 
 # 4.1.5 Como funções funcionam
 # quando você invoca uma função, o Python se lembra do local onde aconteceu e salta para a função invocada;
@@ -171,4 +171,3 @@ name = input("Entre um valor: ")
 hello(name)  # chamando a função
 
 # Falaremos sobre funções parametrizadas na próxima seção. Não se preocupe.
-

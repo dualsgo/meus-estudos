@@ -18,6 +18,7 @@ def mostraLinha():
 # Programa principal - Deve estar a duas linhas de distância da função
 mostraLinha()
 
+
 # Usando parâmetros
 def mostraLinha(texto):
     print('-' * 30)

@@ -2,7 +2,6 @@
 
 print('Olá, Mundo!')
 
-
 # Como você pode ver, este primeiro programa consiste nas seguintes partes:
 
 # A palavra print().

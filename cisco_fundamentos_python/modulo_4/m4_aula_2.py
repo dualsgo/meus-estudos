@@ -60,14 +60,14 @@ print(number) # 1234
 # Vamos modificar a função - ela tem dois parâmetros agora:
 def message(what, number):
     print("Entrar", what, "número", number)
-    
+
 # Isso também significa que a invocação da função exigirá dois argumentos.
 message("um", 1)
 
 # Os tipos de parâmetros e argumentos não são verificados pelo Python. Você pode passar qualquer valor para qualquer parâmetro. O Python não se importa com isso. É sua responsabilidade garantir que os valores sejam adequados para o propósito da função.
 
 # 4.2.2 Passagem de parâmetros posicionais
-# Uma técnica que atribui o i-ésimo (primeiro, segundo e assim por diante) argumento para o i-ésimo (primeiro, segundo, etc.) parâmetro de função é chamada de passagem de parâmetro posicional, enquanto argumentos passados dessa maneira são chamados de argumentos posicional.
+# Uma técnica que atribui o i-ésimo (primeiro, segundo e assim por diante) argumento para o i-ésimo (primeiro, segundo, etc.) parâmetro de função é chamada de passagem de parâmetro posicional, enquanto argumentos passados dessa maneira são chamados de argumento posicional.
 
 # Você já usou, mas o Python pode oferecer muito mais. Vamos falar sobre isso agora.
 def my_function(a, b, c): # a, b, c são parâmetros, exatamente nessa ordem
@@ -106,7 +106,7 @@ introduction(last_name = "Skywalker", first_name = "Luke") # Olá meu nome é Lu
 # Obviamente, você não deve usar um nome de parâmetro inexistente. O Python não aceitará isso e gerará um erro. TypeError: introduction() got an unexpected keyword argument 'surname'
 
 # 4.2.4 Mistura de argumentos posicionais e de palavras-chave
-# Você pode combinar os dois estilos, se quiser - há apenas uma regra inquebrável: 
+# Você pode combinar os dois estilos, se quiser - há apenas uma regra inquebrável:
 # você precisa colocar argumentos posicionais antes dos argumentos das palavras-chave. Se você pensar por um momento, certamente entenderá o porquê.
 
 # Seu objetivo é avaliar e apresentar a soma de todos os seus argumentos.
@@ -133,7 +133,7 @@ adding(1, 2, 3) # 1 + 2 + 3 = 6
 # Tenha cuidado e cuidado com os erros. Se você tentar passar mais de um valor para um argumento, tudo que obterá será um erro de tempo de execução.
 
 # 4.2.5 Funções parametrizadas – mais detalhes
-# Às vezes, os valores de um determinado parâmetro são usados com mais frequência do que outros. Esses argumentos podem ter seus valores padrão (predefinidos) levados em consideração quando seus argumentos correspondentes foram omitidos. Isso é chamado de parâmetro padrão. Também é usado para evitar erros de tempo de execução.
+# Às vezes, os valores de um determinado parâmetro são usados com mais frequência do que outros. Esses argumentos podem ter seus valores padrão (predefinidos) considerados quando seus argumentos correspondentes foram omitidos. Isso é chamado de parâmetro padrão. Também é usado para evitar erros de tempo de execução.
 
 # Eles dizem que o sobrenome mais popular em inglês é Smith. Vamos tentar levar isso em conta.
 def introduction(first_name, last_name="Smith"):
@@ -142,7 +142,7 @@ def introduction(first_name, last_name="Smith"):
 
 introduction("James", "Doe") # Olá meu nome é James Doe
 introduction("James") # Olá meu nome é James Smith - o valor padrão é usado aqui pois só foi passado um argumento
-introduction(first_name="William") # Olá meu nome é William Smith 
+introduction(first_name="William") # Olá meu nome é William Smith
 
 # Você pode usar argumentos posicionais e de palavras-chave em uma única chamada de função, mas você deve ter cuidado com a ordem dos argumentos posicionais. Eles devem vir primeiro.
 
@@ -203,7 +203,7 @@ subtra(5, b=2) # saídas: 3
 subtra(5, 2) # saídas: 3
 # subtra(b=2, a) # SyntaxError: non-default argument follows default argument
 
-# É importante lembrar que argumentos de posição não devem seguir argumentos de palavra-chave. 
+# É importante lembrar que argumentos de posição não devem seguir argumentos de palavra-chave.
 # É por isso que, se você tentar executar o seguinte trecho:
 
 # Exemplo inválido
@@ -238,10 +238,3 @@ def add_numbers(a, b=2, c=0):
 add_numbers(a=1, c=3)
 
 """
-
-
-
-
-
-
-

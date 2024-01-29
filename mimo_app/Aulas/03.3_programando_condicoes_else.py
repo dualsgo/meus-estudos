@@ -32,7 +32,7 @@ else:
     # Se disponivel for False, o código abaixo será executado.
     print('Sem estoque!')
 
-# Se o valor de dispoivel for atualizado para True, a estrutura acima irá avaliar novamente para decidir qual bloco de código executar.
+# Se o valor de disponivel for atualizado para True, a estrutura acima irá avaliar novamente para decidir qual bloco de código executar.
 
 
 # A instrução else vai sempre no final. Ela não precisa de sua própria condição, pois trata de casos em que a condição if não é atendida.

@@ -19,6 +19,8 @@ print(1 < 1) # False
 
 # Verificando a igualdade
 # Para verificar se um número é menor ou igual ou se é menor ou igual a outro, usamos os operadores <= ou >=
+
+# Agora verificamos duas possibilidades, se o número é menor ou igual ou se é menor ou igual a outro.
 print(1 >= 1) # True
 print(1 <= 1) # True
 

@@ -14,7 +14,7 @@
 for i in range(6):  # O range() é o argumento de parada do loop for. Nesse caso, o loop for irá de 0 a 5
     print(i)
 
-# A variável antes de in, nesse caso, i, é a variável de contador. Conta em qje iteração o loop está.
+# A variável antes de in, nesse caso, i, é a variável de contador. Conta em que iteração o loop está.
 
 # A mesma contagem utilizando while seria:
 

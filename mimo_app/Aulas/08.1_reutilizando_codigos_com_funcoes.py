@@ -1,7 +1,7 @@
 # MIMO - 08 - Funções
 # 08.1 - Reutilizando códigos com funções
 
-# Porgramas precisam executar regularmente a mesma tarefa continuamente. Em vez de reescrever o mesmo código, podemos usar funções para agrupar código relacionados e executar a tarefa em um só lugar.
+# Programas precisam executar regularmente a mesma tarefa continuamente. Em vez de reescrever o mesmo código, podemos usar funções para agrupar código relacionados e executar a tarefa em um só lugar.
 
 # Para começar a grupar o código relacionado, começamos a definir uma função com a palavra-chave def.
 # def significa definir, ou seja, estamos definindo uma função.

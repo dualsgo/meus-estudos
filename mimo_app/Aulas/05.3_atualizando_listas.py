@@ -42,3 +42,5 @@ else:
     print("O elemento não existe")
     
 # Podemos utilizar o método clear() para remover todos os elementos de uma lista. A sintaxe é: list.clear()
+
+# clear difere de del, pois não exclui a lista, apenas remove todos os elementos.

@@ -1,6 +1,6 @@
 # 2.5.1 Comentários - por que, quando e como?
 
-# Uma observação inserida no programa, que é omitida em tempo de execução, é chamada de comentário. Em Python, um comentário é um pedaço de texto que começa com um sinal # (hash) e se estende até o final da linha.
+# Uma observação inserida no programa, omitida em tempo de execução, é chamada de comentário. Em Python, um comentário é um pedaço de texto que começa com um sinal # (hash) e se estende até o final da linha.
 
 # Se você deseja um comentário que se estenda por várias linhas, deve colocar um hash na frente de todas elas. Assim como aqui:
 
@@ -27,6 +27,3 @@ Sempre que possível e justificado, você deve fornecer nomes auto comentados a 
 É importante usar comentários para facilitar a compreensão dos programas e usar nomes de variáveis legíveis e significativos no código. No entanto, é igualmente importante não usar nomes de variáveis que são confusos ou deixar comentários que contêm informações incorretas ou incorretas!
 
 Os comentários podem ser importantes quando você está lendo seu próprio código depois de algum tempo (confie em nós, os desenvolvedores esquecem o que seu próprio código faz) e quando outros estão lendo seu código (eles podem ajudá-los a entender o que seus programas fazem e como eles fazem isso mais rapidamente)."""
-
-
-

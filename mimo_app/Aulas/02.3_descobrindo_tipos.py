@@ -20,8 +20,7 @@
 dado = 100  # A variável recebe um valor do tipo inteiro
 print(type(dado))  # Exibe <class 'int'>
 
-# Às vezes queremos alterar valores de um tipo para outro. Isso é chamado de conversão de tipo.
-# Python possui alguns métodos integrados para nos ajudar a converter os tipos de dados. Por exemplo:
+# Após ter certeza do tipo de dado, podemos converter um tipo de dado em outro. Para isso, usamos os métodos int(), float(), str() e bool().
 
 # A variável recebe um valor do tipo string
 idade = '17'

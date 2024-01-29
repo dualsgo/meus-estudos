@@ -2,6 +2,7 @@
 
 # 01.4 - Verificando a igualdade numérica
 
+
 # Operador de igualdade (==) - Diferente da matemática, o operador de igualdade em Python é == já que o sinal de igual (=) é usado para atribuir valores a variáveis.
 
 # Aprendemos a criar e armazenar valores, mas como compará-los? Como verificar se o PIN inserido de um usuário corresponde ao PIN salvo.

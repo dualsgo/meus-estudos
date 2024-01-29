@@ -16,7 +16,6 @@
 
 hora = 12 # Define a hora atual
 
-
 # Se a hora for menor que 12, exibe 'Bom dia!'
 if 5 <= hora <= 11:  # Dia entre 5 e 11
     print('Bom dia!')
