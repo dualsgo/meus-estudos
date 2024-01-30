@@ -7,7 +7,7 @@
 
 # Alguns módulos estão disponíveis online para as pessoas usarem em seus códigos.
 
-# Python possui alguns módulos integragos. O módulo math fornece dados como o valor de pi.
+# Python possui alguns módulos integrados. O módulo math fornece dados como o valor de pi.
 
 import math
 print(math.pi)  # 3.141592653589793

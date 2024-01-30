@@ -22,16 +22,3 @@ print(f'{2} novas mensagens')
 # Inserir variáveis entre as chaves também funciona.
 nome = 'Ana'
 print(f'Nome: {nome}')
-
-# Também podemos usar expressões (com variáveis ou sem)
-distancia = 10
-distancia_percorrida = 4
-print(f'Faltam percorrer {distancia - distancia_percorrida} Km.')
-
-# Podemos usar quantas chaves forem necessárias.
-print(f'A distância é de {distancia}Km. Você percorreu {distancia_percorrida}Km. Faltam percorrer {distancia - distancia_percorrida}Km.')
-
-# Podemos armazenar a f-string em uma variável
-notificacoes = 7
-status = f'{notificacoes} novas notificações'
-print(status)

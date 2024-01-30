@@ -15,6 +15,8 @@ print('Olá, mundo!')  # Ao executar o programa o texto será exibido no console
 
 # Por exemplo, a função print() possui um atributo chamado end. O atributo end permite que você especifique o que deve ser exibido após o último caractere da função print().
 
+# end na verdade é um parâmetro da função print(). Um parâmetro é um valor que a função espera receber quando é chamada. Nesse caso, end é um parâmetro opcional, pois possui um valor padrão.
+
 # O valor padrão de end é uma quebra de linha(\n), isso faz com que a próxima instrução seja exibida em uma nova linha. Se mudarmos o valor para qualquer outro, a próxima instrução será exibida ao lado, separada pelo valor escolhido.
 print('Olá, mundo!', end=' % ')
 print('Olá, mundo!', end='\n')
