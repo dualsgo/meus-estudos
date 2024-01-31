@@ -1,8 +1,6 @@
 # 3.2 Seção 2 - Loops em Python
 # Na segunda seção, você aprenderá sobre loops em Python e, especificamente, os loops while e for. Você aprenderá como criar (e evitar cair) infinitos loops, como sair de loops e pular iterações de loop específicas. Vamos lá?
 
-
-
 # 3.2.1 Fazendo um loop no seu código com while
 
 # Em geral, em Python, um loop pode ser representado da seguinte forma:
@@ -31,7 +29,7 @@
     print("Estou preso dentro de um loop.")"""
 # Esse loop exibirá infinitamente "Estou preso dentro de um loop" pois não há nada que altere a condição do loop. Ela sempre será True.
 
-#  Vamos mostrar como usar esse loop recém-aprendido para encontrar o maior número de um grande conjunto de dados inseridos.
+# Vamos mostrar como usar esse loop recém-aprendido para encontrar o maior número de um grande conjunto de dados inseridos.
 
 # Armazene o maior número atual aqui.
 largest_number = -999999999

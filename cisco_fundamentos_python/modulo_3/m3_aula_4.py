@@ -188,7 +188,6 @@ print(my_list)
 # 3.4.9 Utilização de listas
 # O loop for tem uma variante especial que pode processar listas de forma muito eficaz - vamos dar uma olhada nisso.
 
-
 # Vamos supor que você deseja calcular a soma de todos os valores armazenados na lista my_list.
 # a uma lista é atribuída uma sequência de cinco valores inteiros;
 

@@ -1,7 +1,7 @@
 # MIMO - 10 - Compreeensões de listas
 # 10.3 - Filtrando com instruções if
 
-# Podemos usar list comprehesion para criar uma nova lista filtrando elementods de uma lista existente, como criar uma lista de high_scores com valores maiores que 20
+# Podemos usar list comprehesion para criar uma nova lista filtrando elementos de uma lista existente, como criar uma lista de high_scores com valores maiores que 20
 
 scores = [12, 47, 30,  29, 19, 35] # Lista de pontuações
 # Ao usar uma condicional, a ordem usual é começar com a expressão, seguida pela instrução for e, em seguida, pela instrução if
