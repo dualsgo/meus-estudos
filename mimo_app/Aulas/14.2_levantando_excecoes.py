@@ -11,8 +11,8 @@ if diners < 1:
 else:
   slices_per_diner = slices / diners
   print(f"Each person gets {slices_per_diner} slices of pizza.")"""
-  
-  
+
+
 # A palavra chave raise é usada para levantar uma exceção. Quando a exceção é levantada, o programa para de ser executado e o traceback é mostrado.
 
 # Podemos usar exceções para destacar quando algo não pode estar funcionando como deveria.
