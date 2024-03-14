@@ -3,7 +3,7 @@
 
 import pygame
 from emoji import emojize
-arquivo = 'C:/Users/mdbsi/OneDrive/Documentos/GitHub/meus-estudos/cursoemvideo_python/dezembro/Exercícios/audio.mp3'
+arquivo = 'C:/Users/mdbsi/OneDrive/Documentos/GitHub/meus-estudos/cursoemvideo_python/dezembro/Exercicios/audio.mp3'
 
 pygame.init()
 pygame.mixer.music.load(arquivo)
