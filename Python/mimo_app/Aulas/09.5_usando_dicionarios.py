@@ -78,8 +78,7 @@ if 'Maycon' in player_scores:
     player_scores.pop('Maycon')
     print(player_scores)
 else:
-    player_scores['Maycon'] = 'Agora sim'
-    print(player_scores)
+    player_scores.pop('Maycon', None)
 
 # Dicionários aninhados
 # Podemos armazenar dicionários dentro de dicionários. Isso é chamado de aninhamento.
