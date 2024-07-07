@@ -5,17 +5,13 @@ while True:
 	try:
 		largura = float(input('Digite a largura da parede: '))
 		altura = float(input('Digite a altura da parede: '))
-
-	except ValueError:
-		print(f'Você digitou um valor inválido!')
-
-	else:
 		area = largura * altura
 		litro_rende = area / 2
-
 		print(
 			f'{'Largura':<10}{largura:>10.2f}{'m':<2}\n'
 			f'{'Altura':<10}{altura:>10.2f}{'m':<2}\n'
 			f'{'Área':<10}{area:>10.2f}{'m²':>2}\n'
 			f'{'Tinta':<10}{litro_rende:>10.2f}{'l':<2}')
 		break
+	except ValueError:
+		print(f'Você digitou um valor inválido!')

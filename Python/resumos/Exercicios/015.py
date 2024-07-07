@@ -7,10 +7,6 @@ while True:
 		dias_utilizando = int(input('Quantidade de dias alugado: '))
 		km_percorrido = float(input('Quantidade de Km percorrido: '))
 
-	except ValueError:
-		print('Valores não válidos!')
-
-	else:
 
 		valor_diaria = dias_utilizando * 60
 		valor_km = km_percorrido * .15
@@ -28,3 +24,6 @@ while True:
 			f'{'-'*30}')
 
 		break
+
+	except ValueError:
+		print('Valores não válidos!')
