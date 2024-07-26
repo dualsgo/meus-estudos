@@ -28,3 +28,56 @@ elif imc < 40:
 else:
     print('Obesidade mórbida')
 # Tarefa 3: Exibir o resultado
+
+# SIMPLIFICADA 
+try:
+	peso_kg = float(input('Peso em Kg: '))
+	altura_metros = float(input('Altura em metros: '))
+	imc = round(peso_kg / (altura_metros * altura_metros), 2)
+	categoria = 'Abaixo do peso' if imc < 18.5 else 'Peso ideal' if imc < 25 else 'Sobrepeso' if imc < 30 else 'Obesidade' if imc < 40 else 'Obesidade mórbida'
+	print('-' * 55)
+	print(f'|{'Peso (Kg)':^10}|{'Altura (m)':^10}|{'IMC':^10}|{'Categoria':^20}|')
+	print('-' * 55)
+	print(f'|{peso_kg:^10}|{altura_metros:^10.2f}|{imc:^10}|{categoria:^20}|')
+	print('-' * 55)
+except ValueError:
+	print(f'Erro! Valores inválidos para essa operação.')
+
+
+# VERSÃO COMPLETA
+
+def obter_valor(mensagem):
+    while True:
+        try:
+            return float(input(mensagem))
+        except ValueError:
+            print('Tipo de dado inválido.')
+
+peso = obter_valor('Digite o peso em Kg: ')
+while 0 > peso or peso > 200:
+    print('Peso inválido!')
+    peso = obter_valor('Digite o peso em Kg: ')
+
+altura = obter_valor('Digite a altura em cm: ')
+while 0 > altura or altura > 300:
+    print('Altura inválida!')
+    altura = obter_valor('Digite a altura em cm: ')
+
+if altura >= 100:
+    altura = altura / 100
+
+imc = round(peso / (altura * altura), 2)
+
+categoria = (
+    'Abaixo do peso' if imc < 18.5 else
+    'Peso ideal' if imc < 25 else
+    'Sobrepeso' if imc < 30 else
+    'Obesidade' if imc < 40 else
+    'Obesidade mórbida'
+)
+
+print(f'{"Peso:":<10}{f"{peso:.2f} Kg":>20}')
+print(f'{"Altura:":<10}{f"{altura:.2f} m":>20}')
+print(f'{"IMC:":<10}{imc:>20}')
+print('-' * 30)
+print(f'{"Categoria:":<10}{categoria:>20}')

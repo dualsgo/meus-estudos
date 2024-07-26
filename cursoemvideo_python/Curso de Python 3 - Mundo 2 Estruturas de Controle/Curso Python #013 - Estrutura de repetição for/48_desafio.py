@@ -19,3 +19,22 @@ print(f'Entre 1 e 500, encontramos {contador} múltiplos de 3 que são ímpares!
 print(f'A soma entre todos estes valores é {acumulador}.')
 
 # Também poderíamos iterar a cada 3 a partir do 3 no range()
+
+# Versão simplificada
+valores = [i for i in range(3, 499, 3) if i % 2 != 0]
+print(f'A soma entre os {len(valores)} valores ímpares, múltiplos de 3 no intervalo ente 1 e 500 é {sum(valores)}.')
+
+print(f'Os {len(valores)} valores considerados são:')
+for i, v in enumerate(valores):
+	print(v, end=', ' if i < len(valores)-1 else '.')
+
+# Recente
+
+soma = quantidade = 0
+print('Múltiplos de 3 entre 1 e 500: ', end='')
+for i in range(3, 501, 3):
+	print(i, end=', ' if i < 498 else '.\n')
+	if i % 2:
+		soma += i
+		quantidade += 1
+print(f'A soma entre os {quantidade} números ímpares múltiplos de três entre 1 e 500 é igual a {soma}')

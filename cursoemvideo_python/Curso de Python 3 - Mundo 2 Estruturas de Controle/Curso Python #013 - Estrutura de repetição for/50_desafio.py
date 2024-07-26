@@ -1,20 +1,23 @@
 # Exercício Python #050 - Soma dos pares - Aula 00 até 13
 # Desenvolva um programa que leia seis números inteiros e mostre a soma apenas daqueles que forem pares. Se o valor digitado for ímpar, desconsidere-o.
 
-from random import randint  # Importa a função randint para gerar números inteiros aleatórios
-from time import sleep  # Importa a função sleep para pausas temporizadas
+acumulador = contador = 0
+for número in range(1, 7):
+	while True:
+		try:
+			valor = int(input(f'Digite o {número}º valor: '))
+			if valor % 2:
+				print('\033[1;31mValor ímpar desconsiderado\033[m')
+			else:
+				print('\033[1;32mValor par considerado\033[m')
+				acumulador += valor
+				contador += 1
+			break
+		except ValueError:
+			print('Você digitou um valor de tipo inválido!')
+print(f'Entre os 6 números, consideramos {contador} e a soma entre eles é igual a {acumulador}.')
 
-# Tarefa 1: Ler 6 números inteiros
-soma = 0  # Inicializa a variável para armazenar a soma dos números pares
-
-# Tarefa 2: Mostrar a soma dos que forem pares
-for numero in range(6):  # Loop para gerar 6 números
-    valor = randint(0, 9999)  # Gera um número inteiro aleatório entre 0 e 9999
-    sleep(1)  # Pausa por 1 segundo
-    if valor % 2 == 0:  # Verifica se o número é par
-        soma += valor  # Adiciona o número à soma
-        print(f'\033[1;32mValor {valor} considerado.\033[m')  # Exibe o valor em verde como considerado
-    else:
-        print(f'\033[1;31mValor {valor} desconsiderado.\033[m')  # Exibe o valor em vermelho como desconsiderado
-
-print(f'A soma dos valores digitados que são pares é {soma}.')  # Exibe a soma final
+# Com lista
+nmbrs = [int(input('Digite um número: ')) for i in range(6)]
+soma = [i for i in nmbrs if i % 2 == 0]
+print(f'A soma entre os {len(soma)} números pares digitados é {sum(soma)}')

@@ -38,3 +38,25 @@ elif idade > idade_alistamento:
 
 else:
     print('STATUS: \033[1;32mAliste-se já!\033[m')
+    
+# Versão 2 - Com validação
+
+from datetime import date
+
+ano_atual = date.today().year
+
+while True:
+	try:
+		ano_nascimento = int(input('Digite o seu ano de nascimento: '))
+		idade = ano_atual - ano_nascimento
+		ano_alsitamento = ano_nascimento + 18
+
+		if ano_alsitamento < ano_atual:
+			print(f'Você completou 18 anos em {ano_alsitamento} deveria ter se apresentado ao serviço militar obrigatório!')
+		elif ano_alsitamento > ano_atual:
+			print(f'Você ainda tem {idade} anos. Só deverá se apresentar daqui a {ano_alsitamento - ano_atual} anos, em {ano_alsitamento}.')
+		else:
+			print(f'Você que completa 18 anos em {ano_atual} deve se apresentar ao serviço militar obrigatório!')
+		break
+	except ValueError:
+		print('Você está utilizando um tipo de dao inválido para essa operação!')

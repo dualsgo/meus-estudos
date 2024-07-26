@@ -1,48 +1,114 @@
 # Exercício Python #044 - Gerenciador de Pagamentos - Aula 00 até 12 - Mundo 2
-from emoji import emojize
 #  Elabore um programa que calcule o valor a ser pago por um produto, considerando o seu preço normal e condição de pagamento:
 # - à vista dinheiro/cheque: 10% de desconto
 # - à vista no cartão: 5% de desconto
 # - em até 2x no cartão: preço formal
 # - 3x ou mais no cartão: 20% de juros
-print(emojize(':loja_de_conveniência: Lojas Guanabara', language='pt'))
-# Tarefa 1: Receber o valor original e selecionar a forma de pagamento
-valor_original = float(input('Digite o valor da compra: R$ '))
-print(emojize('Escolha a forma de pagamento:', language='pt'))
-print(emojize(':tecla_1: à vista dinheiro/cheque :nota_de_dólar:', language='pt'))
-print(emojize(':tecla_2: à vista no cartão :cartão_de_crédito:', language='pt'))
-print(emojize(':tecla_3: em até 2x no cartão :cartão_de_crédito:', language='pt'))
-print(emojize(':tecla_4: 3x ou mais no cartão :cartão_de_crédito:', language='pt'))
-escolha = int(input(''))
-valor_final = valor_original
-# Tarefa 2: Definir as condições para cada forma de pagamento
-if escolha == 1:
-    print('Você terá 10% de desconto')
-    valor_final = valor_original - (valor_original * .1)
-elif escolha == 2:
-    print('Você terá 5% de desconto')
-    valor_final = valor_original - (valor_original * .05)
-elif escolha == 3:
-    print('Você não terá desconto')
-    valor_final = valor_original
-    parcelas = 2
-    valor_parcelado = valor_final / parcelas
-    print(f'Parcelamento: {parcelas} vezes de R$ {valor_parcelado:.2f}')
-elif escolha == 4:
-    print('Você terá acréscimo de 20% de juros')
-    print('Em quantas parcelas? 4 até 10 vezes')
-    parcelas = int(input(''))
-    valor_final = valor_original + (valor_original * .2)
-    valor_parcelado = valor_final / parcelas
-    print(f'Parcelamento: {parcelas} vezes de R$ {valor_parcelado:.2f}')
-else:
-    print('Escolha inválida!')
-print(f'O valor final é R$ {valor_final:.2f}')
+from emoji import emojize
 
-desconto = valor_original - valor_final
-if desconto > 0:
-    print(f'Desconto de R$ {desconto:.2f}')
-elif desconto < 0 and escolha != 3:
-    desconto = valor_final - valor_original
-    print(f'Acréscimo de R$ {desconto:.2f}')
-# Tarefa 3: Exibir o valor final
+
+def obter_valor(mensagem):
+    while True:
+        try:
+            valor = float(input(mensagem))
+            if valor > 0:
+                return valor
+            else:
+                print('Valor não pode ser zero ou negativo.')
+        except ValueError:
+            print('Tipo de dado inválido.')
+
+valor = obter_valor('Valor da compra: R$ ')
+
+while True:
+    try:
+        forma_de_pagamento = int(input('Escolha a forma de pagamento: [1] Dinheiro [2] Cartão [3] PIX: '))
+        if forma_de_pagamento in [1, 2, 3]:
+            break
+        else:
+            print('Opção inválida!')
+    except ValueError:
+        print('Tipo de dado inválido.')
+
+if forma_de_pagamento == 1:
+    desconto = 0.10
+    valor_final = valor - (valor * desconto)
+    print('Forma de pagamento: Dinheiro')
+
+elif forma_de_pagamento == 2:
+    while True:
+        try:
+            tipo_cartao = int(input('Tipo de cartão: [1] Débito [2] Crédito: '))
+            if tipo_cartao in [1, 2]:
+                break
+            else:
+                print('Opção inválida!')
+        except ValueError:
+            print('Tipo de dado inválido.')
+
+    if tipo_cartao == 1:
+        desconto = 0.10
+        valor_final = valor - (valor * desconto)
+        print('Forma de pagamento: Cartão Débito')
+
+    elif tipo_cartao == 2:
+        while True:
+            try:
+                cartao_credito = int(input('Opção de crédito: [1] À Vista [2] Parcelado: '))
+                if cartao_credito in [1, 2]:
+                    break
+                else:
+                    print('Opção inválida!')
+            except ValueError:
+                print('Tipo de dado inválido.')
+
+        if cartao_credito == 1:
+            desconto = 0.05
+            valor_final = valor - (valor * desconto)
+            print('Forma de pagamento: Cartão Crédito à Vista')
+
+        elif cartao_credito == 2:
+            while True:
+                try:
+                    parcelamento = int(input('Parcelamento: [1] 2X Sem Juros [2] 3X até 10X com Juros: '))
+                    if parcelamento in [1, 2]:
+                        break
+                    else:
+                        print('Opção inválida!')
+                except ValueError:
+                    print('Tipo de dado inválido.')
+
+            if parcelamento == 1:
+                valor_final = valor
+                parcela = valor / 2
+                print('Forma de pagamento: Cartão Crédito Parcelado em 2X Sem Juros')
+
+            elif parcelamento == 2:
+                while True:
+                    try:
+                        parcelas = int(input('Número de parcelas (3 a 10): '))
+                        if 3 <= parcelas <= 10:
+                            break
+                        else:
+                            print('Opção inválida!')
+                    except ValueError:
+                        print('Tipo de dado inválido.')
+
+                total_com_juros = valor + (valor * 0.20)
+                valor_final = total_com_juros
+                parcela = total_com_juros / parcelas
+                print(f'Forma de pagamento: Cartão Crédito Parcelado em {parcelas}X com Juros')
+
+elif forma_de_pagamento == 3:
+    desconto = 0.10
+    valor_final = valor - (valor * desconto)
+    print('Forma de pagamento: PIX')
+
+print(f'{"Valor:":<15} R$ {valor:.2f}')
+if forma_de_pagamento != 2 or (forma_de_pagamento == 2 and tipo_cartao == 2 and parcelamento == 1):
+    print(f'{"Desconto:":<15} R$ {valor * desconto:.2f}')
+print(f'{"Valor final:":<15} R$ {valor_final:.2f}')
+
+if forma_de_pagamento == 2 and tipo_cartao == 2 and cartao_credito == 2:
+    print(f'{"Valor da parcela:":<15} R$ {parcela:.2f}')
+    print(f'{"Número de parcelas:":<15} {parcelas}')

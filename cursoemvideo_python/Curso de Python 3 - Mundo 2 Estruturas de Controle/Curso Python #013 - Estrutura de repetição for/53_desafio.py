@@ -21,7 +21,20 @@ if nova_frase == frase:
     print('A frase é um palíndromo!') # Imprime se for um palíndromo
 else: 
     print('A frase não é um palíndromo!') # Imprime se não for um palíndromo
+    
 
+# Simplificação do código
+frase = input('Digite uma frase: ').strip().upper().replace(' ', '')
+print('Palíndromo' if frase == frase[::-1] else 'Não é palíndromo')
+
+# Outra versão
+frase = input('Frase: ').strip().upper().replace(' ', '')
+frase_invertida = frase[::-1]
+
+if frase == frase_invertida:
+	print(f'\033[1;32m{frase}\n{frase_invertida}\033[m')
+else:
+	print(f'\033[1;31m{frase}\n{frase_invertida}\033[m')
 
 
 

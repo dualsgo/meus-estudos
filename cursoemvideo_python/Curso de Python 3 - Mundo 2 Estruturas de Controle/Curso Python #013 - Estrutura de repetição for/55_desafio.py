@@ -1,28 +1,34 @@
 # Exercício Python #055 - Maior e menor da sequência - Aula 00 até 13 - Mundo 2
 # Faça um programa que leia o peso de cinco pessoas. No final, mostre qual foi o maior e o menor peso lidos.
 
-# Tarefa 1: Ler cinco pesos
-menor_peso = maior_peso = 0  # Inicializa as variáveis para o menor e o maior peso
+# Simples
+import random
+pesos = [round(random.uniform(60.0, 180.0), 1) for h in range(5)]
+for pessoa, peso in enumerate(pesos, 1):
+	print(f'Pessoa {pessoa}: {peso:>8}kg')
 
-# Tarefa 2: Mostra o maior e o menor lidos
+# Completo
+from random import randint
+from time import sleep
 
-for i in range(5):  # Loop para iterar cinco vezes
-    peso = float(input('Digite seu peso: Kg '))  # Solicita e converte o peso para um número de ponto flutuante
+pesado = float('-inf')
+leve = float('inf')
 
-    if i == 0:
-        menor_peso = maior_peso = peso  # Se for o primeiro peso, define o menor e o maior como o valor lido
-
-    else:
-        # Verifica se o peso atual é maior que o maior peso registrado até agora
-        if peso >= maior_peso:
-            maior_peso = peso
-
-        # Verifica se o peso atual é menor que o menor peso registrado até agora
-        if peso <= menor_peso:
-            menor_peso = peso
-
-# Exibe os resultados
-print(f'Menor peso: {menor_peso}Kg')
-print(f'Maior peso: {maior_peso}Kg')
-
-
+while True:
+    try:
+        print(f'{"-"*20}')
+        print(f'{"PESSOA":^10}{"PESO KG":^10}')
+        print(f'{"-"*20}')
+        for pessoa in range(1, 6):
+            sleep(1)
+            peso = randint(40, 200)
+            print(f'{pessoa:^10}{peso:^10.2f}Kg')
+            if peso > pesado:
+                pesado = peso
+            if peso < leve:
+                leve = peso
+        print(f'A pessoa mais pesada pesa {pesado:>10.2f}Kg')
+        print(f'A pessoa mais leve pesa {leve:>10.2f}Kg')
+        break
+    except Exception as e:
+        print(f'ERRO: {e}')

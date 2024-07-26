@@ -23,16 +23,17 @@ print(fatorial)  # Exibe o resultado final do fatorial
 
 # Utilizando FOR
 
-# Solicita e converte um novo número para inteiro
-numero = int(input('Digite um número: '))
-# Imprime o resultado do fatorial usando a função factorial
-print(f'O fatorial de {numero} é {factorial(numero)}.')
-
-for f in range(numero, 0, -1):
-    print(f'{f}', end='')  # Exibe cada multiplicador
-    print(' x ' if f > 1 else ' = ', end='')  # Exibe ' x ' para multiplicadores intermédios e '=' para o último
-    fatorial *= f  # Atualiza o acumulador multiplicando pelo próximo número
-
-print(fatorial)  # Exibe o resultado final do fatorial
+while True:
+	try:
+		número = int(input('Digite um valor para verificar seu fatorial: '))
+		fatorial = 1
+		print(f'{número}! = ', end='')
+		for valor in range(número, 0, -1):
+			print(valor, end=' X ' if valor > 1 else ' = ')
+			fatorial *= valor
+		print(fatorial)
+		break
+	except ValueError:
+		print('Valor inválido')
 
 

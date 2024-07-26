@@ -3,18 +3,31 @@
 
 # Ex: 0 - 1 - 1 - 2 - 3 - 5 - 8
 
-# Solicita ao usuário a entrada de um número que representa a quantidade de termos na sequência.
-termos = int(input('Digite quantos termos deseja visualizar: '))
+while True:
+	try:
+		elementos = int(input('Digite a quantidade de elementos que deseja visualizar: '))
+		primeiro = 0
+		segundo = 1
+		enéssimo = elementos
+		for e in range(enéssimo):
+			próximo = primeiro + segundo
+			print(primeiro, end=' - ' if e < enéssimo -1 else ' - FIM!')
+			primeiro, segundo = segundo, primeiro + segundo
+		break
+	except ValueError:
+		print('Este valor é de um tipo inválido para essa operação. Tente novamente')
 
-# Inicializa os termos da sequência de Fibonacci.
-primeiro_termo = 0
-segundo_termo = 1
+"""
+for i in range(termos):
 
-# Imprime os termos da sequência de Fibonacci usando um loop while.
-contador = 0
-while contador < termos:
-    print(primeiro_termo, end=' ')
-    primeiro_termo, segundo_termo = segundo_termo, primeiro_termo + segundo_termo
-    contador += 1
-
-
+	if i == 0:
+		a = i
+		print(a, end=' - ')
+	elif i == 1:
+		b = i
+		print(b, end=' - ')
+	else:
+		termo = a + b
+		a = b
+		b = termo
+		print(termo, end=' ⮕ ' if i < termos-1 else ' ⮕ FIM!')"""

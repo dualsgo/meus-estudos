@@ -38,3 +38,55 @@ if triangulo:
 else:
     print(f'Não é possível formar um triângulo com os segmentos a = {a}, b = {b} e c = {c}.')
 
+# Versão 2 - Mais simple e om validação
+
+while True:
+	try:
+		a, b, c = float(input('Segmento A: ')), float(input('Segmento B: ')), float(input('SegmentoC: '))
+	except ValueError:
+		print('Apenas valores numéricos')
+	else:
+		triangulo = a + b > c and a + c > b and a < b + c
+		tipo = 'equilátero' if a == b == c else 'escaleno' if a != b != c != a else 'isósceles'
+
+	print(f'{a}, {b} e {c}', f'formam um triângulo {tipo}!' if triangulo else 'não formam um triângulo!')
+	break
+
+# Versão mais completa
+from emoji import emojize
+
+
+def segmento_reta(mensagem):
+	while True:
+		try:
+			return float(input(mensagem))
+		except ValueError:
+			print('Erro...')
+
+
+def verificação(a, b, c):
+	if a + b > c and a + c > b and b + c > a:
+		return True
+	else:
+		return False
+
+
+def tipo_triangulo(a, b, c):
+	if a == b == c == a:
+		return 'EQUILÁTERO'
+	elif a != b != c != a:
+		return 'ESCALENO'
+	else:
+		return 'ISÓSCELES'
+
+
+segmento_a = segmento_reta(emojize(':régua_reta: Comprimento do segmento A: ', language='pt'))
+segmento_b = segmento_reta(emojize(':régua_reta: Comprimento do segmento B: ', language='pt'))
+segmento_c = segmento_reta(emojize(':régua_reta: Comprimento do segmento C: ', language='pt'))
+triangulo = verificação(segmento_a, segmento_b, segmento_c)
+
+print(
+	emojize(f'Os segmentos de reta de comprimento \033[1;33m{segmento_a:.3g}, {segmento_b:.3g} e {segmento_c:.3g}\033[m '
+			f'{"\033[1;32mPODEM FORMAR :régua_triangular:\033[m" if triangulo else "\033[1;31mNÃO PODEM FORMAR\033[m"} '
+			f'um triângulo{f" do tipo {tipo_triangulo(segmento_a, segmento_b, segmento_c)}" if triangulo else "!"}', language='pt')
+)

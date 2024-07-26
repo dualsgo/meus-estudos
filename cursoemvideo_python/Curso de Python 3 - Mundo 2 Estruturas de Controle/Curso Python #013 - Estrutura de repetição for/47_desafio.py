@@ -16,3 +16,9 @@ for numero in range(inicio, fim + 1):
 
 print('fim da lista.')
 # Também poderíamos colocar o intervalo começando em 2 e terminando no 51, com uma iteração a cada 2 em vez de utilizar a condicional.
+
+
+# Versão simplificada
+print('Números pares entre 1 e 50: ', end='')
+for i in range(2, 51, 2):
+	print(i, end=', ' if i < 50 else '.')

@@ -22,3 +22,28 @@ if primeiro != segundo:
     print(f'O maior é {maior} e o menor é {menor}')
 else:
     print('Os números são iguais!')
+
+# Versão 2 - Simplificada
+
+valor1 = int(input('Digite um valor: '))
+valor2 = int(input('Digite outro valor: '))
+
+print(
+	f'{valor1} é maior que {valor2}' if valor1 > valor2 else
+	f'{valor1} é menor que {valor2}' if valor1 < valor2 else
+	f'{valor1} e {valor2} são iguais.')
+
+# Versão 3 - Com validação  
+
+def obter_valor(mensagem):
+	while True:
+		try:
+			return int(input(mensagem))
+		except ValueError:
+			print('Tipo de dado inválido para essa operação.')
+
+
+primeiro = obter_valor('Digite o primeiro valor: ')
+segundo = obter_valor('Digite o segundo valor: ')
+verificação = 'O primeiro valor é o maior!' if primeiro > segundo else 'O segundo valor é o maior' if primeiro < segundo else 'Os valores são iguais!'
+print(verificação)
