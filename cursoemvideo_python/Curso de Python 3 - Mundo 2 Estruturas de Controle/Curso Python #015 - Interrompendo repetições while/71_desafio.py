@@ -8,8 +8,13 @@ from emoji import emojize
 # Mensagem de boas-vindas
 print(emojize(':banco::moeda: BANCO GUANABARA :moeda::banco:', language='pt'))
 
-# Solicita ao usuário o valor desejado para saque
-valor_saque = int(input(emojize(':símbolo_de_caixa_automático: Quanto deseja sacar? R$ ', language='pt')))
+while True:
+    try:
+        # Solicita ao usuário o valor desejado para saque
+        valor_saque = int(input(emojize(':símbolo_de_caixa_automático: Quanto deseja sacar? R$ ', language='pt')))
+        break
+    except ValueError:
+        print('Valor inválido!')
 
 # Variável para armazenar a quantidade de cédulas
 cedulas = 0
@@ -19,32 +24,32 @@ while True:
     if valor_saque >= 100:
         cedulas = valor_saque // 100
         valor_saque %= 100
-        print(emojize(f':nota_de_dólar: Sacando {cedulas} cédulas de R$ 100', language='pt'))
+        print(emojize(f'{f':nota_de_dólar: Sacando {cedulas} cédulas de R$ ':<30}{'100':>3}', language='pt'))
 
     elif valor_saque >= 50:
         cedulas = valor_saque // 50
         valor_saque %= 50
-        print(emojize(f':nota_de_dólar: Sacando {cedulas} cédulas de R$ 50', language='pt'))
+        print(emojize(f'{f':nota_de_dólar: Sacando {cedulas} {'cédulas' if cedulas > 1 else 'cédula '} de R$ ':<30}{'50':>3}', language='pt'))
 
     elif valor_saque >= 20:
         cedulas = valor_saque // 20
         valor_saque %= 20
-        print(emojize(f':nota_de_dólar: Sacando {cedulas} cédulas de R$ 20', language='pt'))
+        print(emojize(f'{f':nota_de_dólar: Sacando {cedulas} {'cédulas' if cedulas > 1 else 'cédula '} de R$ ':<30}{'20':>3}', language='pt'))
 
     elif valor_saque >= 10:
         cedulas = valor_saque // 10
         valor_saque %= 10
-        print(emojize(f':nota_de_dólar: Sacando {cedulas} cédulas de R$ 10', language='pt'))
+        print(emojize(f'{f':nota_de_dólar: Sacando {cedulas} {'cédulas' if cedulas > 1 else 'cédula '} de R$ ':<30}{'10':>3}', language='pt'))
 
     elif valor_saque >= 5:
         cedulas = valor_saque // 5
         valor_saque %= 5
-        print(emojize(f':nota_de_dólar: Sacando {cedulas} cédulas de R$ 5', language='pt'))
+        print(emojize(f'{f':nota_de_dólar: Sacando {cedulas} {'cédulas' if cedulas > 1 else 'cédula '} de R$ ':<30}{'5':>3}', language='pt'))
 
     elif valor_saque >= 2:
         cedulas = valor_saque // 2
         valor_saque %= 2
-        print(emojize(f':nota_de_dólar: Sacando {cedulas} cédulas de R$ 2', language='pt'))
+        print(emojize(f'{f':nota_de_dólar: Sacando {cedulas} {'cédulas' if cedulas > 1 else 'cédula '} de R$ ':<30}{'2':>3}', language='pt'))
 
     else:
         # Quando não há mais cédulas a serem sacadas, encerra o loop
@@ -53,5 +58,3 @@ while True:
 
 # Mensagem de agradecimento ao usuário por utilizar os serviços do banco
 print(emojize('Obrigado por utilizar os nossos serviços!', language='pt'))
-
-

@@ -28,3 +28,38 @@ print('-'*45)
 
 # Imprime o valor total da compra
 print(f'{"Valor total": <30} R${total: >10.2f}')
+
+# Versão 2
+
+tupla = 'Lápis', 1.75, 'Borracha', 2.00, 'Caderno', 15.90, 'Estojo', 25.00, 'Transferidor', 4.20, 'Compasso', 9.99, 'Mochila', 120.32, 'Canetas', 22.30, 'Livro', 34.90
+
+for índice, valor in enumerate(tupla, 1):
+	print(f'{valor:.<15}' if índice % 2 else f'R${valor:>8.2f}\n', end='')
+
+# Versão 3
+
+produtos_precos = (
+	"Arroz", 20.50,
+	"Feijao", 8.75,
+	"Macarrao", 4.20,
+	"Acucar", 3.40,
+	"Cafe", 12.80,
+	"Leite", 5.30,
+	"Manteiga", 7.90,
+	"Oleo", 6.45,
+	"Sal", 1.85,
+	"Farinha", 4.70
+)
+print(f'{'-' * 30}')
+print(f'{'NOTA FISCAL':^30}')
+print(f'{'-' * 30}')
+
+total = 0
+for índice, produto in enumerate(produtos_precos, 1):
+	if índice % 2:
+		print(f'{produto:<15}', end='')
+	else:
+		print(f'{f'R$ {produto:5.2f}':>15}')
+		total += produto
+print(f'{'-' * 30}')
+print(f'{'Total:':<15}{f'R$ {total:5.2f}':>15}')

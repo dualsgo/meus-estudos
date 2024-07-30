@@ -100,22 +100,70 @@ print(f'Há {mulheres_menos_vinte}' if mulheres_menos_vinte else 'Não há', f'{
 
 # EXTRA
 
-# Fazer com dicionários
-
 # Lista para armazenar as informações das pessoas
 lista_pessoas = []
 
-# Loop para coletar informações de três pessoas
-for i in range(3):
-    pessoa = {
-        'nome': input('Nome: ').strip().title(),
-        'idade': int(input('Idade: ')),
-        'sexo': input('Sexo: ').strip().upper()
-    }
-    # Adiciona o dicionário da pessoa à lista
-    lista_pessoas.append(pessoa)
+
+def validar_nome(n):
+    return n.isalpha()
+
+
+def validar_idade(ida):
+    return 0 <= ida <= 120
+
+
+def validar_sexo(s):
+    return s in ['MASCULINO', 'FEMININO']
+
+
+while True:
+    try:
+        # Loop para coletar informações de três pessoas
+        for i in range(3):
+
+            print(f"{'-' * 30}\n{f'{i + 1}ª pessoa:':^30}\n{'-' * 30}")
+
+            while True:
+                nome = input('Nome: ').strip().title()
+                if validar_nome(nome):
+                    break
+                else:
+                    print("Nome inválido! Por favor, insira apenas letras.")
+
+            while True:
+                try:
+                    idade = int(input('Idade: '))
+                    if validar_idade(idade):
+                        break
+                    else:
+                        print("Idade inválida! Por favor, insira um valor entre 0 e 120.")
+                except ValueError:
+                    print("Valor inválido! Por favor, insira um número para a idade.")
+
+            while True:
+                sexo = input('Sexo (Masculino/Feminino): ').strip().upper()
+                if validar_sexo(sexo):
+                    break
+                else:
+                    print("Sexo inválido! Por favor, insira 'Masculino' ou 'Feminino'.")
+
+            pessoa = {
+                'nome': nome,
+                'idade': idade,
+                'sexo': sexo
+            }
+            # Adiciona o dicionário da pessoa à lista
+            lista_pessoas.append(pessoa)
+        break
+    except ValueError:
+        print('Valor inválido!')
 
 # Exibe a lista de pessoas
 print("Informações das pessoas:")
+print(f'{'-' * 30}')
 for pessoa in lista_pessoas:
-    print(f"Nome: {pessoa['nome']}, Idade: {pessoa['idade']}, Sexo: {pessoa['sexo']}")
+
+    print(f'Nome: {pessoa['nome']:>20}'
+          f'Idade: {pessoa['idade']:>20}'
+          f'Sexo: {pessoa['sexo']:>20}')
+    print(f'{'-' * 30}')

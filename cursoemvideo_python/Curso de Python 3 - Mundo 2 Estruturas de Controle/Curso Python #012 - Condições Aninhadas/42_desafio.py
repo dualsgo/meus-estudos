@@ -20,12 +20,12 @@ print(f'C {c} < A {a} + B {b}\033[m\n')
 # Tarefa 2: Definir as condições para cada topo de triângulo
 
 # EQUILÁTERO: todos os lados iguais
-equilatero = a == b == c == a
+equilatero = a == b == c
 # ESCALENO: todos os lados diferentes
-escaleno = a != b != c != a
+escaleno = a != b and b != c and a != c
 # ISÓSCELES: dois lados iguais, um diferente
 isosceles = not equilatero and not escaleno
-# Tarefa 3: Mostrar se forma um triângulo e de qual tipo
+
 
 if triangulo:
     print(f'\033[1mOs segmentos de comprimento a = {a}, b = {b} e c = {c} podem formar um\033[m', end=' ')

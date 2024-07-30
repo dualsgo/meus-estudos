@@ -5,22 +5,22 @@
 quantidade = soma = 0
 
 while True:
-	try:
-		número = int(input('Digite um valor: '))
+    try:
+        número = int(input('Digite um valor: '))
 
-		if número != 999:
-			soma += número
-			quantidade += 1
-		else:
-			print(f'Programa encerrado!')
-			if quantidade >= 1:
-				print(f'Apenas o valor {soma} foi digitado')
-			else:
-				print(f'Foram digitados {quantidade} valores e a soma entre eles é {soma}')
-			break
+        if número != 999:
+            soma += número
+            quantidade += 1
+        else:
+            print(f'Programa encerrado!')
+            if quantidade >= 1:
+                print(f'Apenas o valor {soma} foi digitado')
+            else:
+                print(f'Foram digitados {quantidade} valores e a soma entre eles é {soma}')
+            break
 
-	except ValueError:
-		print('Erro')
+    except ValueError:
+        print('Erro')
 
 
 # Com lista

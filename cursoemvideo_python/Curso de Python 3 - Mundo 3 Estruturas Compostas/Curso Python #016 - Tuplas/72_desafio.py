@@ -1,28 +1,39 @@
 # Exercício Python #072 - Número por Extenso - Aula 00 até 16 - Mundo 3
 # Crie um programa que tenha uma dupla totalmente preenchida com uma contagem por extenso, de zero até vinte. Seu programa deverá ler um número pelo teclado (entre 0 e 20) e mostrá-lo por extenso.
 
-# Tupla contendo os números de 0 a 20 por extenso
-contagem_por_extenso = ('zero', 'um', 'dois', 'três', 'quatro', 'cinco', 'seis', 'sete', 'oito', 'nove', 'dez', 'onze', 'doze', 'treze', 'quatorze', 'quinze', 'dezesseis', 'dezessete', 'dezoito', 'dezenove', 'vinte')
+extenso = ('Zero', 'Um', 'Dois', 'Três', 'Quatro', 'Cinco', 'Seis', 'Sete', 'Oito', 'Nove', 'Dez', 'Onze', 'Doze', 'Treze', 'Quatorze', 'Quinze', 'Dezesseis', 'Dezessete', 'Dezoito', 'Dezenove', 'Vinte')
 
-# Loop principal
 while True:
-    # Solicita ao usuário que digite um número entre 0 e 20
-    numero = int(input('Digite um número: 0 até 20 '))
+	try:
+		print(f"Você digitou o número {extenso[int(input('Digite um valor entre 0 e 20: '))]}")
+		continuar = str(input('Continuar? S/N ')).strip().upper()
+		if continuar not in 'Ss':
+			break
+	except IndexError:
+		print('Somente valores entre 0 e 20')
+	except ValueError:
+		print('Apenas valores numéricos.')
 
-    # Verifica se o número está dentro do intervalo permitido
-    if 0 <= numero <= 20:
-        # Imprime o número por extenso
-        print(f'O número {numero} por extenso é {contagem_por_extenso[numero]}.')
+# Versão 2
 
-        # Pergunta ao usuário se deseja continuar
-        continuar = str(input('Continuar? S/N ')).strip().upper()
+numeros_por_extenso = (
+	'zero', 'um', 'dois', 'três', 'quatro', 'cinco',
+	'seis', 'sete', 'oito', 'nove', 'dez', 'onze',
+	'doze', 'treze', 'quatorze', 'quinze', 'dezesseis',
+	'dezessete', 'dezoito', 'dezenove', 'vinte'
+)
 
-        # Se a resposta não for 'S', encerra o loop
-        if continuar not in 'Ss':
-            break
-    else:
-        # Se o número não estiver no intervalo permitido, solicita que o usuário tente novamente
-        print('Tente novamente.')
+while True:
+	try:
+		numero = int(input('Digite um valor entre 0 e 20: '))
+		if 0 <= numero <= 20:
+			break
+		else:
+			print("Inválido")
+	except ValueError:
+		print('Este valor é de um tipo de dado inválido para essa operação!')
 
-
-
+resultado = f'O número {numero} por extenso é: {numeros_por_extenso[numero]}'
+tamanho = len(resultado)
+print(resultado)
+print(f'{"-" * tamanho}')

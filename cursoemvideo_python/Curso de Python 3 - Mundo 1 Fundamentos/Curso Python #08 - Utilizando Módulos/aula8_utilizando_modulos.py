@@ -1,6 +1,6 @@
 # Curso Python #08 - Utilizando Módulos
 # Nessa aula, vamos aprender como utilizar módulos em Python utilizando os comandos import e from/import no Python. Veja como carregar bibliotecas de funções e utilizar vários recursos adicionais nos seus programas utilizando módulos built-in e módulos externos, oferecidos no Pypi.
-
+import math
 from math import sqrt
 from random import randint
 from emoji import emojize
@@ -34,10 +34,13 @@ print(f'A raiz quadrada de {num} é {sqrt(num)}.')
 num = randint(1, 99)
 # Calcular a raiz quadrada com número aleatório
 print(f'A raiz quadrada de {num} é {sqrt(num)}.')
+print('❤️‍🔥')
+
+print(dir(math))
+print(help(math))
 
 
 print(emojize(':coração_preto:', language='pt'))
-
 # Aliasing - Podemos atribuir um apelido para um módulo
 # import math as m torna o módulo math acessível como m, facilitando a digitação.
 # from math import sqrt as s torna a função sqrt acessível como s, facilitando a digitação.

@@ -18,4 +18,6 @@ média = (primeira_nota + segunda_nota) / 2
 
 
 print(f'{'Primeira nota:':<15}{primeira_nota:>5}\n{'Segunda nota:':<15}{segunda_nota:>5}\n{'Média:':<15}{média:>5}')
-print(f'{'\033[1;31mREPROVADO\033[m'}' if média < 5 else f'{'\033[1;33mEM RECUPERAÇÃO\033[m'}' if média < 7 else f'{'\033[1;
+
+print(f'{'\033[1;31mREPROVADO\033[m'}' if média < 5 else f'{'\033[1;33mEM RECUPERAÇÃO\033[m'}' if média < 7 else f'{'\033[1;32mAPROVADO\033[m'}')
+

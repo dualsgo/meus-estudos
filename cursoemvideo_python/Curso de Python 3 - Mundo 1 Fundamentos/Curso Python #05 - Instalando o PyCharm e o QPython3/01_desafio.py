@@ -17,6 +17,4 @@ print(mensagem)
 # Método 3: Solicita ao usuário uma mensagem, atribui o valor a uma variável e imprime no console
 print('\n\033[1;32mMensagem no console utilizando o valor passado pelo usuário e atribuindo-o a uma variável:\033[m')
 mensagem = input('Digite a mensagem: ')
-print(mensagem)
-
-
+print(f'Mensagem: {mensagem}')

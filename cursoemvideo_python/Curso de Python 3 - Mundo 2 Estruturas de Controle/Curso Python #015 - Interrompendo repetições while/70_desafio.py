@@ -4,63 +4,54 @@
 # B) quantos produtos custam mais de R$1000.
 # C) qual é o nome do produto mais barato.
 
-"""
-Essa verificação é necessária porque, na primeira iteração (quando contador é igual a 1), você não tem um valor anterior para comparar.
+cadastros = quantidade_produtos_mais_mil = valor_total = valor_produto_mais_mil = 0
+descrição_mais_barato = descrição_produto_mais_mil = ''
+valor_produto_mais_barato = float('+inf')
+def obter_preço(mensagem):
+	try:
+		return float(input(mensagem))
+	except ValueError:
+		print('Dados inválidos')
 
-if contador == 1:
-    produto_mais_barato = nome
-    valor_produto_mais_barato = valor
-else:
-    if valor < valor_produto_mais_barato:
-        produto_mais_barato = nome
-        valor_produto_mais_barato = valor
 
-No entanto, você pode simplificar isso utilizando uma técnica comumente chamada de "sentinela". Nesse caso, você inicializa valor_produto_mais_barato com um valor que representa infinito, indicado por float('inf'). Como nenhum preço real será maior que infinito, na primeira iteração, qualquer preço será menor que esse valor "infinito". Isso elimina a necessidade de verificar se contador é igual a 1.
-
-valor_produto_mais_barato = float('inf')  # Inicializa com infinito
-
-while True:
-    # ... (restante do código)
-
-    if valor < valor_produto_mais_barato:
-        # Atualiza o produto mais barato se o valor atual for menor
-        produto_mais_barato = nome
-        valor_produto_mais_barato = valor
-"""
-
-total_gasto = 0
-produtos_mais_mil = 0
-produto_mais_barato = ''
-valor_produto_mais_barato = float('inf')  # Inicializa com infinito
-contador = 0
+print(f'{'-'*30}')
+print(f'{'CADASTRO DE PRODUTOS':^30}')
+print(f'{'-'*30}')
 
 while True:
-    nome = str(input('Digite o nome do produto: ')).strip().upper()
-    valor = float(input('Digite o valor do produto: R$ '))
+	descrição = input('Descrição do produto: ').strip().upper()
+	valor = obter_preço('Valor do produto: R$ ')
 
-    total_gasto += valor  # Atualiza o total gasto na compra
-    contador += 1  # Incrementa o contador de produtos
+	if valor < valor_produto_mais_barato:
+		valor_produto_mais_barato = valor
+		descrição_mais_barato = descrição
 
-    if valor > 1000:
-        produtos_mais_mil += 1  # Conta produtos que custam mais de R$ 1000
+	if valor > 1000:
+		quantidade_produtos_mais_mil += 1
+		descrição_produto_mais_mil = descrição
+		valor_produto_mais_mil = valor
+	print('Cadastro realizado com sucesso!')
+	print(f'{'Descrição:':<20}{descrição:>25}\n{'Valor:':<20}{f'{'R$':>15}{valor:>10.2f}'}')
+	print(f'{'-' * 45}')
+	valor_total += valor
+	continuar = input('Digite S para continuar ou N para encerrar: S / N').strip().upper()
+	while continuar not in ['S', 'N']:
+		print('Você escolheu uma opção inválida@!')
+		continuar = input('Digite S para continuar ou N para encerrar: S / N').strip().upper()
+	print(f'{'-' * 45}')
+	if continuar == 'S':
+		print('Próximo cadastro: ')
 
-    if valor < valor_produto_mais_barato:
-        # Atualiza o produto mais barato se o valor atual for menor
-        produto_mais_barato = nome
-        valor_produto_mais_barato = valor
+	else:
+		print('Encerrando o programa...')
+		break
 
-    continuar = str(input('Deseja continuar? S/N ')).strip().upper()
-
-    while continuar not in 'SsNn':
-        continuar = str(input('Comando inválido: S ou N ')).strip().upper()
-
-    if continuar in 'Nn':
-        print('Encerrando...')
-        break
-    else:
-        print('Continuando...')
-
-# Exibe as informações finais
-print(f'O total gasto na compra foi: R$ {total_gasto:.2f}')
-print(f'Ao todo {produtos_mais_mil} {'produto custa' if produtos_mais_mil == 1 else 'produtos custam'} mais de R$ 1000,00')
-print(f'O produto mais barato é {produto_mais_barato} que custa R$ {valor_produto_mais_barato:.2f}')
+print(f'{'-' * 45}')
+print(f'{'VALOR TOTAL':^45}')
+print(f'{'-' * 45}')
+print(f'{'Valor total:':<30}{f'{'R$':>5}{valor_total:>10.2f}'}')
+print(f'{'-' * 45}')
+print(f'{'Produtos que custam mais de MIL REAIS:':<40} {quantidade_produtos_mais_mil:>5}')
+print(f'{'-' * 45}')
+print(f'{'PRODUTO MAIS BARATO':^45}')
+print(f'{'Descrição:':<20}{descrição_mais_barato:>25}\n{'Valor:':<20}{f'{'R$':>15}{valor_produto_mais_barato:>10.2f}'}')
