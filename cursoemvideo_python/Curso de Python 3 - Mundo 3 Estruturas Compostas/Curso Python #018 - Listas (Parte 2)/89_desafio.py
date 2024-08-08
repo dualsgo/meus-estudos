@@ -91,3 +91,133 @@ nota1, nota2, media = notas
 Então, após essa linha de código, você tem acesso direto às notas individuais do aluno através das variáveis `nota1` e `nota2`, bem como à média através da variável `media`. Isso facilita o uso desses valores posteriormente no código, como na linha seguinte onde eles são usados na impressão formatada.
 
 Em resumo, o desempacotamento e a atribuição de valores individuais ajudam a tornar o código mais legível e a facilitar o acesso a elementos específicos dentro de listas ou tuplas."""
+
+
+# V2
+
+boletim = []
+
+while True:
+    try:
+        aluno = []  # Cria uma nova lista para cada aluno
+        nome = input('Digite o nome do aluno: ').strip().title()
+        aluno.append(nome)
+        nota_1 = float(input('1º Bimestre: '))
+        nota_2 = float(input('2º Bimestre: '))
+    except ValueError:
+        print(f'Ops... Valores inválidos. Tente novamente.')
+        continue
+
+    aluno.append(nota_1)
+    aluno.append(nota_2)
+    media = (nota_1 + nota_2) / 2
+    aluno.append(media)
+    boletim.append(aluno)
+
+    continuar = ''
+    while continuar not in ('S', 'N'):
+        continuar = input('Outro aluno? S/N').strip().upper()
+
+    if continuar == 'S':
+        continue
+    if continuar == 'N':
+        break
+
+print('-' * 46)
+print(f'|{"No":^8}|{"Nome":^8}|{"Nota 1":^8}|{"Nota 2":^8}|{"Média":^8}|')
+print('-' * 46)
+
+for i, aluno in enumerate(boletim):
+    print(f'|{i:^8}|{aluno[0]:^8}|{aluno[1]:^8}|{aluno[2]:^8}|{aluno[3]:^8}|')
+
+print('-' * 46)
+
+while True:
+    try:
+        escolha = int(input('Verificar informações de qual aluno? '))
+    except ValueError:
+        print(f'Valor inválido.')
+        continue
+
+    if escolha >= len(boletim):
+        print(f'Aluno não localizado.')
+        continue
+
+    else:
+        print('-' * 46)
+        print(f'|{"No":^8}|{"Nome":^8}|{"Nota 1":^8}|{"Nota 2":^8}|{"Média":^8}|')
+        print('-' * 46)
+        print(f'|{escolha:^8}|{boletim[escolha][0]:^8}|{boletim[escolha][1]:^8}|{boletim[escolha][2]:^8}|{boletim[escolha][3]:^8}|')
+        print('-' * 46)
+
+    continuar = ''
+    while continuar not in ('S', 'N'):
+        continuar = input('Outro aluno? S/N').strip().upper()
+
+    if continuar == 'S':
+        continue
+    if continuar == 'N':
+        print('Encerrando...')
+        break
+
+# V3 INCOMPLETO
+
+def obtem_nota(mensagem):
+	while True:
+		try:
+			valor = float(input(mensagem))
+			if 0 <= valor <= 10:
+				return valor
+			else:
+				print('Valor deve estar entre 0 e 10')
+		except ValueError:
+			print('Valor inválido!')
+
+def obtem_nome(mensagem):
+	while True:
+		digitado = input(mensagem).strip().title()
+		nome_sem_espaços = digitado.replace(' ', '')
+		if nome_sem_espaços.isalpha():
+			return digitado
+		else:
+			print('Nome inválido!')
+
+def obtem_valor(mensagem):
+	while True:
+		try:
+			return int(input(mensagem))
+		except ValueError:
+			print('Valor inválido!')
+
+boletim = []
+
+while True:
+	nome = obtem_nome('Nome do aluno: ')
+
+	# Obtém as 4 notas do aluno
+	notas = [obtem_nota('Primeira nota do aluno: '),
+			 obtem_nota('Segunda nota do aluno: '),
+			 obtem_nota('Terceira nota do aluno: '),
+			 obtem_nota('Quarta nota do aluno: ')]
+	aluno = [nome, notas]
+	boletim.append(aluno)
+
+	while True:
+		continuar = input('Continuar? S/N ').strip().upper()
+		if continuar in 'SN':
+			break
+
+	if continuar == 'N':
+		break
+
+print('-' * 40)
+for indice, aluno in enumerate(boletim):
+	print(f'Aluno: {aluno[0]:^20}')
+	print('-' * 40)
+	print('Notas dos 4 bimestres:'.center(40))
+	print('-' * 40)
+	for bim, nota in enumerate(aluno[1], 1):  # Corrigido para aluno[1]
+		print(f'{bim}º bimestre: {nota:>20.1f}')
+	print('-' * 40)
+	print(f'Média: {sum(aluno[1])/4:>20.1f}')  # Corrigido para aluno[1]
+	print('-' * 40)

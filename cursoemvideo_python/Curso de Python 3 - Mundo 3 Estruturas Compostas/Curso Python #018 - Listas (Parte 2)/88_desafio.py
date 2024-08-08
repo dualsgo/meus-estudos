@@ -23,3 +23,59 @@ for jogo in range(quantidade_jogos):
     print(f'Jogo {jogo+1}: {bilhete}')
     sleep(1)
     bilhete.clear()
+
+
+    # V2
+
+    while True:
+        try:
+            jogos = int(input('Quantos jogos deseja simular? '))
+        except ValueError:
+            print(f'Valor inválido.')
+            continue
+        break
+
+    bilhetes = []
+    for _ in range(jogos):
+        numeros_unicos = set()
+        while len(numeros_unicos) < 6:
+            numeros_unicos.add(randint(1, 60))
+        bilhete = sorted(list(numeros_unicos))
+        bilhetes.append(bilhete)
+
+    for ordem, jogo in enumerate(bilhetes, 1):
+        print(f'{f" Jogo {ordem} ":=^23}')
+        print(*[f'{valor:^3}' for valor in jogo], sep=' ', end='\n')
+
+# V3
+
+while True:
+	try:
+		quantidade_de_jogos = int(input('Quantos jogos deseja realizar? '))
+		break
+	except ValueError:
+		print('Essa valor não é válido para essa operação!')
+
+jogos = []
+
+for sorteio in range(quantidade_de_jogos):
+	bilhete = []
+
+	while True:
+		valor = randint(1, 60)
+
+		if valor not in bilhete:
+			bilhete.append(valor)
+
+		if len(bilhete) == 6:
+			bilhete.sort()
+			jogos.append(bilhete)
+			break
+
+for _, bilhetes in enumerate(jogos, 1):
+	print(f'{f'{_}º JOGO':^30}')
+	print(f'{'-'*30}')
+	for valor in bilhetes:
+		print(f'{valor:^5}', end='')
+
+	print(f'\n{'-'*30}')

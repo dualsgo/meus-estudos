@@ -15,3 +15,16 @@ for linha in range(3):
         print(f'[ {matriz[linha][coluna]:2} ] ', end='')
     print()
 
+# Resumida
+
+matriz = [[randint(0, 9) for i in range(3)] for i in range(3)]
+for linha in matriz:
+    print(*[f'[{valor:^3}]' for valor in linha], sep='', end='\n')
+
+# Versão atual
+
+matriz = [[randint(0, 9) for valor in range(3)] for linha in range(3)]
+for linha in matriz:
+	for valor in linha:
+		print(f'[{valor:^3}]', end=' ')
+	print('')

@@ -4,48 +4,28 @@
 # B) A lista de valores, ordenada de forma decrescente.
 # C) Se o valor 5 foi digitado e está ou não na lista.
 
-# Inicializa uma lista vazia
-lista = []
 
-# Inicializa um contador para o número de itens na lista
-contador = 0
+def obter_valores_válidos(mensagem):
+	while True:
+		try:
+			return int(input(mensagem))
+		except ValueError:
+			print('Valor inválido!')
 
-# Loop principal
+
+lista_de_valores = []
 while True:
-    # Solicita ao usuário que digite um valor
-    numero = int(input('Digite um valor: '))
+	lista_de_valores.append(obter_valores_válidos('Digite um valor: '))
+	while True:
+		continuar = input('Outro valor? S/N ').strip().upper()
+		if continuar in 'SN':
+			break
 
-    # Adiciona o valor à lista
-    lista.append(numero)
+	if continuar == 'N':
+		break
 
-    # Incrementa o contador
-    contador += 1
-
-    # Pergunta ao usuário se deseja continuar
-    continuar = str(input('Deseja continuar? S/N ')).strip().upper()
-
-    # Valida a resposta do usuário
-    while continuar not in 'SsNn':
-        print('Comando inválido!')
-        continuar = str(input('Deseja continuar? S/N ')).strip().upper()
-
-    # Verifica se o usuário deseja continuar
-    if continuar in 'S':
-        print('Continuando...')
-    elif continuar in 'N':
-        print('Finalizando...')
-        break
-
-# Exibe o número de itens na lista
-print(f'Foram digitados {contador} itens na lista!')
-
-# Ordena a lista em ordem decrescente
-lista.sort(reverse=True)
-
-# Exibe a lista ordenada
-print(f'A lista em ordem decrescente é a seguinte: {lista}')
-
-# Verifica se o valor 5 está presente na lista
-print(f'O valor 5 foi digitado e está na lista.' if 5 in lista else 'O valor 5 não foi digitado e não está presente na lista.')
-
-
+print(f'A lista com {len(lista_de_valores)} valores em ordem decrescente é: ')
+lista_de_valores.sort(reverse=True)
+for i, v in enumerate(lista_de_valores, 1):
+	print(v, end=', ' if i < len(lista_de_valores) else '.')
+print(f'\nO valor 5 {f'não ' if 5 not in lista_de_valores else ''}está na lista!')

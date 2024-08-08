@@ -33,7 +33,6 @@ filme = {'titulo': 'Star Wars',
 
 # Podemos acessar itens, chaves ou valores
 
-#
 print(filme.values())  # Retorna os valores:
 # dict_values(['Star Wars', 1997, 'George Lucas'])
 

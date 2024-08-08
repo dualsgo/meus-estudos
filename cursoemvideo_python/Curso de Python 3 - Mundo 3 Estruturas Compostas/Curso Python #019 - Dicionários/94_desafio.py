@@ -58,3 +58,98 @@ if len(mulheres) > 0:
     print(f'{"Pessoa":^10}|{"Nome":^10}|{"Sexo":^10}|{"Idade":^10}')
     for i, v in enumerate(mulheres, 1):
         print(f"{i:^10}|{v['nome']:^10}|{v['sexo']:^10}|{v['idade']:^10}")
+
+# v2
+
+def print_divider():
+    print('-' * 30)
+
+
+def print_error(message):
+    print(f'\033[1;31m{message}\033[m')
+
+
+def obtem_nome():
+    while True:
+       print_divider()
+       entrada_nome = input('Digite o nome: ').strip().title()
+       if entrada_nome.replace(' ', '').isalpha():
+          return entrada_nome
+       else:
+          print_error('NOME INVÁLIDO! Apenas caracteres alfabéticos.')
+
+
+def obtem_idade():
+    while True:
+       try:
+          idade = int(input('Digite a idade: '))
+          if not (0 < idade < 100):
+             print_error('Idade inválida!')
+          else:
+             return idade
+       except ValueError:
+          print_error('ERRO! Apenas dados numéricos.')
+
+
+def obtem_sexo() -> object:
+    while True:
+       print_divider()
+       entrada_sexo = input('Digite o sexo:\n[M] Masculino\n[F] Feminino\n[O] Outro\nSua resposta: ').strip().upper()
+       if entrada_sexo in ['M', 'F', 'O']:
+          return entrada_sexo
+       else:
+          print_error('Opção inválida! Tente novamente.')
+
+
+def continuar():
+    while True:
+       print_divider()
+       entrada = input('Deseja continuar?\n[S] Sim\n[N] Não\nSua resposta: ').strip().upper()
+       if entrada in "SN":
+          return entrada
+
+
+def print_pessoa(pessoa):
+    print(f"Nome: {pessoa['nome']}, Sexo: {pessoa['sexo']}, Idade: {pessoa['idade']}")
+
+
+def main():
+    pessoas = []
+    lista_mulheres = []
+    soma_idades = 0
+
+    while True:
+        pessoa = {}
+        pessoa['nome'] = obtem_nome()
+        pessoa['sexo'] = obtem_sexo()
+        pessoa['idade'] = obtem_idade()
+        soma_idades += pessoa['idade']
+        pessoas.append(pessoa.copy())
+
+        if pessoa['sexo'] in ['F', 'O']:
+            lista_mulheres.append(pessoa.copy())
+
+        if continuar() == 'N':
+            break
+        else:
+            print('Pessoa adicionada com sucesso!')
+
+    grupo = len(pessoas)
+    média_idade = soma_idades / grupo if grupo > 0 else 0
+
+    print(f'Foram cadastradas {grupo} pessoas!' if grupo > 1 else 'Apenas uma pessoa foi cadastrada!')
+    print(f'A média de idade do grupo é de {média_idade:.1f} anos')
+
+    if lista_mulheres:
+        print('As mulheres do grupo são:')
+        for mulher in lista_mulheres:
+            print_pessoa(mulher)
+
+    print('Pessoas com idade acima da média:')
+    for pessoa in pessoas:
+        if pessoa['idade'] > média_idade:
+            print_pessoa(pessoa)
+
+
+if __name__ == "__main__":
+    main()

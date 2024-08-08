@@ -4,6 +4,8 @@
 # B) Uma listagem com as pessoas mais pesadas.
 # C) Uma listagem com as pessoas mais leves.
 
+# Versão 1
+
 lista_principal = []  # Inicializa a lista principal que irá conter todos os dados
 
 pesado = 0  # Inicializa o mais pesado como zero
@@ -69,3 +71,56 @@ for pessoa in pessoas_leves:
     else:
         print(pessoa)
 
+# Versão 2
+
+pessoas = []
+mais_pesado = mais_leve = 0
+while True:
+	pessoa = []
+
+	nome = input('Nome: ').strip().title()
+	pessoa.append(nome)
+
+	while True:
+		try:
+			peso = float(input('Digite o peso: '))
+			break
+		except ValueError:
+			print('Idade inválida!')
+
+	pessoa.append(peso)
+
+
+	while True:
+		continuar = input('Continuar? S/N ').strip().upper()
+		if continuar in 'SN':
+			break
+
+	pessoas.append(pessoa)
+
+	if len(pessoas) == 1:
+		mais_pesado = mais_leve = peso
+
+	if continuar == 'N':
+
+
+		for pessoa in pessoas:
+			print(pessoa)
+			pessoa_peso = pessoa[1]
+
+			if pessoa_peso > mais_pesado:
+				mais_pesado = pessoa_peso
+			elif pessoa_peso < mais_leve:
+				mais_leve = pessoa_peso
+
+		break
+
+print(f'Você cadastrou: {len(pessoas)} pessoas')
+print(f'Maior peso: {mais_pesado:.2f}Kg')
+for pessoa in pessoas:
+	if pessoa[1] == mais_pesado:
+		print(pessoa[0], end=' - ')
+print(f'\nMenor peso: {mais_leve:.2f}Kg')
+for pessoa in pessoas:
+	if pessoa[1] == mais_leve:
+		print(pessoa[0], end=' - ')
