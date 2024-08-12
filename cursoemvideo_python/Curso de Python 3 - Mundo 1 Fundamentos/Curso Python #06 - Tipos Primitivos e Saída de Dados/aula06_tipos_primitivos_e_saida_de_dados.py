@@ -10,7 +10,7 @@ n2 = input('Digite outro número: ')
 soma = n1 + n2
 print('A soma entre', n1, 'e', n2, 'é igual a', soma)
 
-# A funçã o type() é útil para verificar os tipos de dados dos valores. A sintaxe é type(valor) - pode ser uma variável, assim seu valor será verificado, ou um valor direto.
+# A função type() é útil para verificar os tipos de dados dos valores. A sintaxe é type(valor) - pode ser uma variável, assim seu valor será verificado, ou um valor direto.
 
 print(type(n1))  # Será exibido no console o tipo do valor contido na variável n1 que é uma string, mesmo que um número seja digitado, mas como dito antes, um input retorna por padrão um valor string.
 

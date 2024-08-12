@@ -18,4 +18,5 @@ def verifica_disponibilidade(url):
     except requests.RequestException as e:
         print(f'Erro na requisição: {e}')
 
-verifica_disponibilidade('https://www.facebook.com')
+site = input('Digite o site que deseja verificar: ').strip()
+verifica_disponibilidade(f'https://www.{site}.com.br')

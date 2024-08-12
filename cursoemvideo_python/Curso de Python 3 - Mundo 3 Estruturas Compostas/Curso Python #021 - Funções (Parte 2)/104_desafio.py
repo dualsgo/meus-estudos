@@ -3,12 +3,14 @@
 # Ex: n = leiaInt('Digite um n: ')
 
 def leia_int(mensagem):
-    valor = input(mensagem)
-    while not valor.isnumeric():
-        print('Erro! Digite um número válido: ', end='')
-        valor = input('')
-    else:
-        return int(valor)
+	while True:
+		valor = input(mensagem)
+		try:
+			float(valor)
+			print(f'Você digitou o valor: {valor}')
+			break
+		except ValueError:
+			print('Este valor não é um número.')
 
-numero_digitado = leia_int('Digite um número: ')
-print(f'Você acabou de digitar o número {numero_digitado}.')
+
+leia_int('Digite um valor inteiro: ')

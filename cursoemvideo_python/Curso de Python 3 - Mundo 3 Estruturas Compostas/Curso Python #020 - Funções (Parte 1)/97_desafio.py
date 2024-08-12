@@ -8,11 +8,11 @@
 #  Olá, Mundo!
 # ~~~~~~~~~
 
-def escreva(texto_qualquer):
-    tamanho = len(texto_qualquer) + 2
-    print('~' * tamanho)
-    print(f'{texto_qualquer:^{tamanho}}')
-    print('~' * tamanho)
+def exibe_texto_adaptado(texto):
+    tamanho_texto = len(texto) + 10
+    print(f'{'~' * tamanho_texto}')
+    print(f'{texto.center(tamanho_texto)}')
+    print(f'{'~' * tamanho_texto}')
 
 
-escreva(str(input('Digite o texto que deseja exibir: ')))
+exibe_texto_adaptado(input('Digite um texto e veja o resultado: ').strip())

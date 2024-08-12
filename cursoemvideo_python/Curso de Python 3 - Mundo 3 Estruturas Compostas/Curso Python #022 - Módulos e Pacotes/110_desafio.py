@@ -3,7 +3,7 @@
 
 from pacoteexercicios import moeda
 
-valor = float(input('Digite um valor: R$ '))
+valor = moeda.obter_valor_valido('Digite um valor: R$ ')
 taxa_aumento = int(input(f'Aumentar {moeda.moeda(valor)} em quantos % '))
 taxa_reducao = int(input(f'Diminuir {moeda.moeda(valor)} em quantos % '))
 

@@ -9,7 +9,7 @@
 
 # Adicione também as docstrings dessa função para consulta pelo desenvolvedor.
 
-def notas(*valores):
+"""def notas(*valores):
     boletim = dict()
     quantidade_notas = soma_notas = maior_nota = menor_nota = 0
 
@@ -41,4 +41,42 @@ def notas(*valores):
             print('Seguindo...')
 
 
-notas()
+notas()"""
+
+
+# V2
+def valor_valido():
+    while True:
+        entrada = input('Digite uma nota ou S para sair: ').strip().upper()
+        if entrada == 'S':
+            print('Saindo...')
+            return None
+        try:
+            valor = float(entrada)
+            return valor
+        except ValueError:
+            print('Valor inválido! Por favor, digite um número válido.')
+
+
+def notas(*notas_alunos):
+    if not notas_alunos:
+        print('Nenhuma nota foi inserida.')
+        return
+
+    print(f'Maior nota: {max(notas_alunos)}')
+    print(f'Menor nota: {min(notas_alunos)}')
+    media = sum(notas_alunos) / len(notas_alunos)
+    print(f'Média: {media:.2f}')
+    situacao = 'REPROVADO' if media < 5 else 'RECUPERAÇÃO' if media < 7 else 'APROVADO'
+    print(f'Situação: {situacao}')
+
+
+notas_alunos = []
+while True:
+    nota = valor_valido()
+    if nota is None:
+        break
+    notas_alunos.append(nota)
+
+
+notas(*notas_alunos)

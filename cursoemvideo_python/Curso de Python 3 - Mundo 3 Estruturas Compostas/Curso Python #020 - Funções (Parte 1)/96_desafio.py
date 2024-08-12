@@ -1,10 +1,18 @@
 # Exercício Python #096 - Função que calcula área - Aula 00 até 20 - Mundo 3
 # Faça um programa que tenha uma função chamada área(), que receba as dimensões de um terreno retangular (largura e comprimento) e mostre a área do terreno.
-from emoji import emojize
-def area(largura, comprimento):
-    area_terreno = largura * comprimento
-    print(emojize(f'O terreno de largura {largura}m e comprimento {comprimento}m possui uma área de {area_terreno}m²'))
 
-print(emojize(f':régua_reta:{"Controle de terrenos":^30}:régua_reta:', language='pt'))
-print()
-area(float(input(emojize(':régua_reta: Digite a largura do terreno em m: ', language='pt'))), float(input(emojize(':régua_reta: Digite o comprimento do terreno em m: ', language='pt'))))
+
+def valor(mensagem):
+	while True:
+		try:
+			return float(input(mensagem))
+		except ValueError:
+			print('Valor inválido para essa operação!')
+
+
+largura = valor('Digite a largura do terreno: ')
+comprimento = valor('Digite o comprimento do terreno: ')
+área_do_terreno = largura * comprimento
+
+print(f'{f'LARGURA (m)':^15}{f'COMPRIMENTO (m)':^15}{f'ÁREA (m²)':^15}')
+print(f'{largura:^15}{comprimento:^15}{área_do_terreno:^15}')

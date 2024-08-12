@@ -21,9 +21,9 @@ mostraLinha()
 
 # Usando parâmetros
 def mostraLinha(texto):
-    print('-' * 30)
+    print('-' * len(texto))
     print(texto)
-    print('-' * 30)
+    print('-' * len(texto))
 
 
 mostraLinha('Curso em vídeo')

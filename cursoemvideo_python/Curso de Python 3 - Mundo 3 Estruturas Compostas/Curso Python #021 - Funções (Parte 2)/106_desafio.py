@@ -1,20 +1,53 @@
 # Exercício Python #106 - Sistema interativo de ajuda em Python - Aula 00 até 21 - Mundo 3
 # Faça um mini-sistema que utilize o Interactive Help do Python. O usuário vai digitar o comando e o manual vai aparecer. Quando o usuário digitar a palavra 'FIM', o programa se encerrará. Importante: use cores.
-comando = str(input('\033[1;34mSOBRE O QUE GOSTARIA DE LER? \033[m')).strip().lower()
-def ajuda(comando):
+
+def ajuda():
+	while True:
+		entrada = input('\033[1;34mDigite o comando que deseja visualizar ou FIM para sair: \033[m').strip().lower()
+		if entrada == 'fim':
+			print('\033[1;31mFINALIZANDO O PROGRAMA\033[m')
+			break
+
+		print('\033[7;37;40m', end='')
+		help(entrada)
+		print('\033[m')
+
+
+ajuda()
+
+
+"""
+def ajuda():
     while True:
-        print('\033[7;37;40m', end='')
-        print(help(comando))
-        print('\033[m')
-        continuar = str(input('\033[1;33mVER OUTRA DOCUMENTAÇÃO? S/N\033[m')).strip().upper()
-        while continuar not in 'SN':
-            continuar = str(input('\033[1;31mESSE COMANDO É INVÁLIDO. DIGITE S OU N\033[m')).strip().upper()
-        if continuar in 'N':
-            print('\033[1;31mOK, FINALIZANDO O PROGRAMA\033[m')
+        entrada = input('\033[1;34mDigite o comando que deseja visualizar ou FIM para sair: \033[m').strip().lower()
+        if entrada == 'fim':
+            print('\033[1;31mFINALIZANDO O PROGRAMA\033[m')
             break
+        
+        # Tenta capturar a saída do help() e verificar o conteúdo
+        import io
+        import sys
+        
+        # Redireciona a saída padrão para capturar o texto gerado pelo help()
+        old_stdout = sys.stdout
+        new_stdout = io.StringIO()
+        sys.stdout = new_stdout
+        
+        try:
+            help(entrada)
+            output = new_stdout.getvalue()
+        finally:
+            sys.stdout = old_stdout  # Restaura a saída padrão
+        
+        # Verifica se "No Python documentation found for" está na saída
+        if "No Python documentation found for" in output:
+            print('\033[1;30;43m', end='')  # Texto preto com fundo amarelo
         else:
-            print('\033[1;32mCERTO! VAMOS EM FRENTE.\033[m')
-            comando = str(input('\033[1;34mSOBRE O QUE DESEJA SABER?  \033[m')).strip().lower()
+            print('\033[7;37;40m', end='')  # Fundo inverso
+        
+        print(output)
+        print('\033[m', end='')  # Reseta as cores
 
+ajuda()
 
-ajuda(comando)
+"""
