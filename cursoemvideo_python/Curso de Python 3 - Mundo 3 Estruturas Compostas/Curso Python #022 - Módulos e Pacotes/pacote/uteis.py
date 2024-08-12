@@ -13,6 +13,7 @@ def fatorial(n):
         f *= c
     return f
 
+
 def dobro(n):
     return n * 2
 
