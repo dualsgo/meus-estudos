@@ -1,4 +1,5 @@
-import pacoteexercicios
+from pacoteexercicios import moeda
+from moeda import aumentar, diminuir, dobro, metade, moeda
 
 def escolha(e, a):
     if e == 1:
