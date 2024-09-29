@@ -68,3 +68,38 @@ ano_atual = date.today().year
 ano_nascimento = [int(input(f'Ano de nascimento da {i}ª pessoa: ')) for i, v in enumerate(range(7), 1)]
 maiores = [i for i in ano_nascimento if ano_atual - i > 17]
 print(f'Ao todos temos {len(maiores)} maiores de idade e {len(ano_nascimento) - len(maiores)} menores de idade!')"""
+
+
+# Estou compartilhando minhas anotações sobre os exercícios. Quem quiser, pode copiar e colar em um documento .py pois está tudo formatado e comentado.
+
+# Nesse exercício, vamos ler o ano de nascimento de sete pessoas e mostrar quantas são maiores de idade e quantas são menores de idade.
+# Para definir a idade precisamos saber o ano atual. Vamos usar a função date() da classe date para obter o ano atual.
+from datetime import date # Importa a classe date para obter o ano atual
+from time import sleep as pausa # Importa a função sleep para pausas temporizadas e renomeia para pausa
+
+ano_atual = date.today().year  # Obtém o ano atual
+
+# Inicializamos os contadores de maiores e menores de idade com zero.
+maiores = menores = 0
+
+# Vamos usar um laço de repetição for para iterar sobre as sete pessoas.
+for i in range(1, 8):  # Loop para iterar sobre 7 pessoas
+    print(f'Pessoa {i}, seu ano de nascimento é: ', end='')  # Mostra o nome da pessoa e solicita o ano de nascimento
+    pausa(1)  # Pausa por 1 segundo
+    
+    ano_nascimento = int(input())  # Lê o ano de nascimento da pessoa
+    idade = ano_atual - ano_nascimento  # Calcula a idade
+    
+    print(f'Você tem: {idade} anos de idade')  # Mostra a idade da pessoa
+    pausa(1)  # Pausa por 1 segundo
+    
+    # Verifica se a pessoa é maior ou menor de idade e incrementa o contador correspondente.
+    if idade >= 18:
+        print('\033[1;32mMaior de idade\033[m')
+        maiores += 1 
+    else:
+        print('\033[1;31mMenor de idade\033[m')
+        menores += 1
+        
+pausa(1)  # Pausa por 1 segundo
+print(f'Ao todo temos {menores} menores e {maiores} maiores de idade.')  # Mostra o

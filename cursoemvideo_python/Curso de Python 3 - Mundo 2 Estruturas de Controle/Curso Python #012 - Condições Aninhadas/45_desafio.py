@@ -1,5 +1,6 @@
 # Exercício Python #045 - GAME: Pedra Papel e Tesoura - Aula 00 até 12 - Mundo 2
 # Crie um programa que faça o computador jogar Jokenpô com você.
+from math import e
 from time import sleep
 from random import randint, choice
 from emoji import emojize
@@ -80,3 +81,52 @@ while True:
 	except ValueError:
 		print('Por favor, digite um número válido.')
 		continue
+
+# Estou compartilhando minhas anotações sobre os exercícios. Quem quiser, pode copiar e colar em um documento .py pois está tudo formatado e comentado.
+
+# Nesse exercício vamos criar um jogo
+
+# Primeiro, vamos importar as bibliotecas necessárias
+from random import randint # Vamos usar a função randint para gerar números aleatórios
+from time import sleep # Vamos usar a função sleep para dar um tempo entre as ações do jogo
+
+# Vamos criar uma lista com as opções do jogo
+opcoes = ['Pedra', 'Papel', 'Tesoura']
+
+# Vamos usar um lista para associar os números às opções. Os elementos da lista são as opções do jogo. Uma lista é uma coleção de elementos que podem ser acessados por um índice. Os índices começam em 0, logo, a opção 'Pedra' está no índice 0, a opção 'Papel' está no índice 1 e a opção 'Tesoura' está no índice 2.
+
+# Vamos fazer o computador escolher uma opção aleatória entre 0 e 2, que são os índices das opções na lista	
+computador = randint(0, 2)
+
+# Vamos pedir para o jogador escolher uma opção
+print('Escolha uma opção:')
+print('[0] Pedra')
+print('[1] Papel')
+print('[2] Tesoura')
+jogador = int(input('Digite o número correspondente à sua escolha: '))
+
+# O usuário deve digitar um número entre 0 e 2. Vamos verificar se o número digitado é válido
+if jogador < 0 or jogador > 2:
+	print('Opção inválida! Por favor, escolha um número entre 0 e 2.')
+	exit() # A função exit() encerra o programa se o jogador digitar um número inválido
+else:
+    # Caso contrário, vamos mostrar as opções do jogo
+	print('JO')
+	sleep(1)
+	print('KEN')
+	sleep(1)
+	print('PO!!!')
+
+	# Vamos mostrar as escolhas do jogador e do computador
+	print(f'Você escolheu: {opcoes[jogador]}')
+	print(f'O computador escolheu: {opcoes[computador]}')
+
+	# Vamos verificar quem ganhou
+	if jogador == computador:
+		print('Empate!')
+	elif jogador == 0 and computador == 2 or jogador == 1 and computador == 0 or jogador == 2 and computador == 1:
+		print('Você ganhou!')
+	else:
+		print('Você perdeu!')
+
+# Usamos uma pequena validação para garantir que o jogador escolha um número entre 0 e 2. Porém o programa é encerrar se o jogador escolher um número inválido. Podemos melhorar isso para que o programa continue rodando até que o jogador escolha um número válido. Podemos fazer isso com um loop while, mas como ainda não vimos loops, vamos deixar assim por enquanto.

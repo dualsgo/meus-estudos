@@ -78,3 +78,36 @@ while True:
 		print(f'Errou! É {dica} que {usuário}. Tente novamente...')
 		tentativa += 1
 		continue
+
+# Estou compartilhando minhas anotações sobre os exercícios. Quem quiser, pode copiar e colar em um documento .py pois está tudo formatado e comentado.
+
+# Nesse exercício, o programa deve fazer o computador "pensar" em um número inteiro entre 0 e 5 e pedir para o usuário tentar descobrir qual foi o número escolhido pelo computador. O programa deve escrever na tela se o usuário venceu ou perdeu.
+
+# Para criar o efeito de "pensar" em um número, vamos utilizar a função randint() do módulo random. Essa função gera um número inteiro aleatório dentro de um intervalo especificado. Apenas para fins estéticos, vamos adicionar um pequeno delay entre as mensagens com a função sleep() do módulo time.
+
+# Primeiro precisamos importar as funções randint() e sleep() dos módulos random e time, respectivamente.
+from random import randint
+from time import sleep
+
+# Em seguida, vamos fazer o computador "pensar" em um número entre 0 e 5.
+computador = randint(0, 5)
+
+# Agora, vamos pedir para o usuário tentar adivinhar o número escolhido pelo computador.
+usuario = int(input('Em qual número o computador está pensando? '))
+
+# Vamos exibir o número escolhido pelo usuário e o número escolhido pelo computador.
+print(f'Você chutou o número {usuario}.')
+sleep(1)
+print('O computador pensou no número...', end=' ')
+sleep(1)
+print(f'{computador}')
+
+# Por fim, vamos verificar se o usuário acertou ou errou. Podemos salvar o resultado da comparação entre os números em uma variável chamada acertou ou simplesmente fazer a comparação dentro da estrutura condicional. Aqui vamos salvar o resultado da comparação em uma variável.
+acertou = computador == usuario
+
+if acertou: # Como if espera um valor booleano e armazenamos o resultado da comparação entre os números em acertou, não precisamos fazer a comparação novamente. Ou seja, se acertou for True, o usuário acertou, caso contrário, errou e o else será executado.
+    print('ACERTOU!')
+else:
+    print('ERROU!')
+
+# Nossa estrutura condicional é simples, pois só precisamos verificar se o número escolhido pelo usuário é igual ao número escolhido pelo computador. Se for, o usuário acertou, caso contrário, errou. 

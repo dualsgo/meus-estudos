@@ -113,3 +113,26 @@ while True:
 
 	except ValueError:
 		print('O valor fornecido não é válido. Digite novamente... ')
+  
+# Estou compartilhando minhas anotações sobre os exercícios. Quem quiser, pode copiar e colar em um documento .py pois está tudo formatado e comentado.
+
+# Nesse exercício, o programa solicita ao usuário o salário de um funcionário e exibe na tela o salário com 15% de aumento. Para isso, utilizamos a operação de multiplicação.
+
+# Assim como antes, utilizamos a função input() para solicitar um valor ao usuário. O valor digitado é convertido para ponto flutuante e armazenado na variável salário.
+
+# O aumento de 15% pode ser calculado multiplicando o salário do funcionário por 1.15.
+salário = float(input('Digite o salário do funcionário: R$ '))
+salário_com_aumento = salário * 1.15 # 115% do salário
+
+# 1.15 é o mesmo que 100% + 15% = 115%. Portanto, o salário com aumento é 115% do salário original.
+
+# Outra forma de calcular o aumento é somar 15% do salário ao salário original. O resultado é o mesmo.
+aumento = salário * .15 # 15% do salário
+salário_com_aumento = salário + aumento # salário + 15%
+
+# Como antes, utilize a fórmula que achar mais fácil de entender e de lembrar. O importante é que o resultado seja o mesmo.
+
+# Por fim, exibimos o salário original, o aumento e o novo salário na tela.
+print(f'Salário atual: R${salário:.2f}')
+print(f'Aumento: R${aumento:.2f}')
+print(f'Novo salário: R${salário_com_aumento:.2f}')

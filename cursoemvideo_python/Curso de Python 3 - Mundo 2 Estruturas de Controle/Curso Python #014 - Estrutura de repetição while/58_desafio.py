@@ -63,3 +63,51 @@ def adivinhacao_computador(numero):
 
 numero_escolhido = int(input("Escolha um número entre 1 e 1000: "))
 adivinhacao_computador(numero_escolhido)
+
+# Estou compartilhando minhas anotações sobre os exercícios. Quem quiser, pode copiar e colar em um documento .py pois está tudo formatado e comentado.
+
+# Nesse exercício, vamos melhorar o jogo da adivinhação do DESAFIO 028. Agora, o computador vai "pensar" em um número entre 0 e 10 e o jogador vai tentar adivinhar até acertar, mostrando no final quantos palpites foram necessários para vencer.
+
+# Vamos usar a mesma estrutura do exercíco 28, mas vamos incrementar o contador de palpites e exibir uma mensagem de acerto com o número de palpites realizados.
+
+# Primeiro precisamos importar as funções randint() e sleep() dos módulos random e time, respectivamente.
+from random import randint
+from time import sleep
+
+# Em seguida, vamos fazer o computador "pensar" em um número entre 0 e 10. Essa parte do código é a mesma do exercício 28 e deve ficar fora do loop pois senão o computador escolherá um novo número a cada iteração.
+computador = randint(0, 10)
+
+# Temos que implementar um contador de palpites para saber quantas tentativas o jogador fez até acertar o número escolhido pelo computador.
+palpites = 1  # Inicializa o contador de palpites
+
+# Primeiro definiremos uma condição de controle para o loop. Vamos inicializar o contador de palpites com 1 e pedir para o usuário tentar adivinhar o número.
+condição_de_controle = True 
+
+# Agora, vamos pedir para o usuário tentar adivinhar o número escolhido pelo computador. Essa aprte deverá ficar dentro de um estrutura de repetição para que o usuário possa tentar adivinhar até acertar.
+
+while condição_de_controle:
+
+	# Vamos pedir para o usuário tentar adivinhar o número escolhido pelo computador.
+	usuario = int(input('Em qual número o computador está pensando? '))
+
+	# Vamos exibir o número escolhido pelo usuário.
+	print(f'Você chutou o número {usuario}.')
+	sleep(1)
+
+	# Vamos verificar se o usuário acertou ou errou. Podemos salvar o resultado da comparação entre os números em uma variável chamada acertou ou simplesmente fazer a comparação dentro da estrutura condicional. Aqui vamos salvar o resultado da comparação em uma variável.
+	acertou = computador == usuario
+
+	if acertou: # Como if espera um valor booleano e armazenamos o resultado da comparação entre os números em acertou, não precisamos fazer a comparação novamente. Ou seja, se acertou for True, o usuário acertou, caso contrário, errou e o else será executado.
+    
+        # Se o usuário acertou, vamos exibir uma mensagem de sucesso e o número de palpites realizados.
+		print('ACERTOU!')
+		print(f'Você acertou com {palpites} palpites!')
+		
+		# Atualizamos a condição de controle para encerrar o loop.
+		condição_de_controle = False
+
+	else:
+		# Se o usuário errou, vamos exibir uma mensagem de erro.
+		print('ERROU!')
+		print('Tente novamente...') # O loop reiniciará e o usuário poderá tentar adivinhar o número novamente.
+		palpites += 1  # Incrementa o contador de palpites

@@ -81,3 +81,28 @@ print(f'{"Altura:":<10}{f"{altura:.2f} m":>20}')
 print(f'{"IMC:":<10}{imc:>20}')
 print('-' * 30)
 print(f'{"Categoria:":<10}{categoria:>20}')
+
+
+# Estou compartilhando minhas anotações sobre os exercícios. Quem quiser, pode copiar e colar em um documento .py pois está tudo formatado e comentado.
+
+# Nesse exercício, aprendemos a criar um programa que calcula o IMC de uma pessoa e exibe a categoria do IMC de acordo com a tabela fornecida no enunciado. Para isso, utilizamos a fórmula do IMC, que é o peso dividido pela altura ao quadrado, e criamos uma estrutura condicional para verificar em qual categoria o IMC se encaixa.
+
+# A primeira coisa a ser feita é ler o peso e a altura da pessoa. Para isso, utilizamos a função input() para ler os valores e a função float() para converter os valores para ponto flutuante.
+peso = float(input('Digite seu peso: Kg'))
+altura = float(input('Digite sua altura em metros: m'))
+
+# Em seguida, calculamos o IMC da pessoa utilizando a fórmula IMC = peso / (altura x altura).
+imc = peso / (altura * altura)
+print(f'Seu IMC é {imc:.1f}.', end=' ')
+
+# Por fim, utilizamos uma estrutura condicional para verificar em qual categoria o IMC se encaixa e exibimos a categoria correspondente.
+if imc < 18.5:
+    print('Abaixo do peso')
+elif imc < 25:
+    print('Peso ideal')
+elif imc < 30:
+    print('Sobrepeso')
+elif imc < 40:
+    print('Obesidade')
+else:
+    print('Obesidade mórbida')

@@ -1,6 +1,7 @@
 # Exercício Python #029 - Radar eletrônico - Aula 00 até 09 - Mundo 1
 # Escreva um programa que leia a velocidade de um carro. Se ele ultrapassar 80Km/h, mostre uma mensagem dizendo que ele foi multado. A multa vai custar R$7,00 por cada Km acima do limite.
 
+from math import e
 from random import randint
 from time import sleep
 from emoji import emojize
@@ -88,3 +89,36 @@ def verifica(v):
 for veículos in range(6):
 	velocidade = randint(60, 200)  # Define as velocidades
 	verifica(velocidade)
+
+# Estou compartilhando minhas anotações sobre os exercícios. Quem quiser, pode copiar e colar em um documento .py pois está tudo formatado e comentado.
+
+# Nesse exercício, o programa deve ler a velocidade de um carro e se ele ultrapassar 80Km/h, deve mostrar uma mensagem dizendo que ele foi multado. A multa vai custar R$7,00 por cada Km acima do limite.
+
+# A primeira coisa a ser feita é capturar a velocidade do carro. Para isso, vamos utilizar a função input() para ler a velocidade digitada pelo usuário. Precisamos converter o valor para inteiro com a função int().
+velocidade = int(input('Qual é a velocidade atual do carro? '))
+
+# Em seguida, vamos definir o limite de velocidade, que é de 80Km/h.
+velocidade_maxima = 80
+
+# Agora, vamos verificar se a velocidade do carro ultrapassou o limite permitido. Vamos salvar a diferença entre a velocidade do carro e o limite em uma variável chamada acima_do_limite pois precisaremos dela para calcular o valor da multa.
+acima_do_limte = velocidade - velocidade_maxima
+
+# Se a velocidade do carro for maior que o limite permitido, o carro foi multado. Nesse caso, vamos exibir uma mensagem informando que o carro foi multado e calcular o valor da multa. Para que a multa seja aplicada, acima_do_limite deve ser maior que zero.
+
+# Para calcular o valor da multa, vamos multiplicar a diferença entre a velocidade do carro e o limite pelo valor da multa por Km excedido, que é de R$7,00.
+if acima_do_limte > 0:
+	print('MULTADO! Você excedeu o limite permitido que é de 80Km/h')
+	multa = acima_do_limte * 7
+	print(f'Você deve pagar uma multa de R${multa:.2f}!')
+# Na exibição do valor da multa, utilizamos o f-string para formatar o valor com duas casas decimais.
+else:
+	print('Tenha um bom dia! Dirija com segurança!')
+
+# Nesse método salvamos as informações em variáveis para facilitar a leitura e a compreensão do código. No entanto, é possível fazer a verificação diretamente na estrutura condicional, sem a necessidade de salvar a diferença entre a velocidade do carro e o limite em uma variável.
+
+velocidade = int(input('Qual é a velocidade atual do carro? '))
+if velocidade > 80:
+	multa = (velocidade - 80) * 7
+	print(f'MULTADO! Você excedeu o limite permitido que é de 80Km/h\nVocê deve pagar uma multa de R${multa:.2f}!')
+else:
+	print('Tenha um bom dia! Dirija com segurança!')

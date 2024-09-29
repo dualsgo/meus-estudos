@@ -8,14 +8,20 @@
 # Converteremos esse número binário para decimal e, em seguida, para um caractere da tabela ASCII que será exibido na tela.
 from random import randint
 
-# Solicita ao usuário a quantidade de caracteres para a senha aleatória
-quantidade_caracteres = int(input('Digite a quantidade de caracteres para sua senha aleatória: Min. 8 Max. 16 '))
+def quantidade_caracteres(mensagem):
+    # Solicita ao usuário a quantidade de caracteres para a senha aleatória
+    while True:
+        try:
+            return int(input(mensagem))
+        except ValueError:
+            pass
+
 
 # Inicializa uma lista vazia para armazenar os caracteres gerados
 lista_caracteres = list()
 
 # Loop para gerar a quantidade desejada de caracteres
-for caractere in range(quantidade_caracteres):
+for caractere in range(quantidade_caracteres('Digite a quantidade de caracteres para sua senha aleatória: Min. 8 Max. 16 ')):
 
     # Inicializa uma lista vazia para armazenar os dígitos binários
     lista_bin = list()
@@ -143,7 +149,7 @@ print(next(iterador))  # 5
 
 # next() gera uma exceção StopIteration se não houver mais itens
 
-# são usados em laços for e compreensões de listas: 
+# são usados em laços for e compreensões de listas:
 
 for i in [1, 2, 3, 4, 5]:
     print(i)
@@ -151,3 +157,5 @@ for i in [1, 2, 3, 4, 5]:
 # é equivalente a:
 
 iterador = iter([1, 2, 3, 4, 5])
+
+help(iter)

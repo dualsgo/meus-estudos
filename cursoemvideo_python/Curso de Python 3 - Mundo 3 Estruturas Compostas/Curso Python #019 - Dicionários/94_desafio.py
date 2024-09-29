@@ -153,3 +153,82 @@ def main():
 
 if __name__ == "__main__":
     main()
+    
+    
+    
+# Estou compartilhando minhas anotações sobre os exercícios. Quem quiser, pode copiar e colar em um documento .py pois está tudo formatado e comentado.
+
+# Nesse exercício, o professor pede para criar um programa que leia nome, sexo e idade de várias pessoas, guardando os dados de cada pessoa em um dicionário e todos os dicionários em uma lista. No final, mostrar:
+
+# A) Quantas pessoas foram cadastradas
+# B) A média de idade
+# C) Uma lista com as mulheres
+# D) Uma lista de pessoas com idade acima da média
+
+# Para resolver esse exercício, vamos criar um dicionário chamado pessoa para armazenar o nome, o sexo e a idade de cada pessoa. Vamos criar uma lista chamada pessoas para armazenar todos os dicionários de pessoas. Vamos criar uma lista chamada mulheres para armazenar as mulheres. Vamos criar uma lista chamada idade_maior_media para armazenar as pessoas com idade acima da média.
+pessoa = dict()
+pessoas = []
+mulheres = []
+idade_maior_media = []
+total_idade = 0
+
+# Vamos criar um laço de repetição para adicionar várias pessoas à lista pessoas. Dentro do laço, vamos pedir o nome, o sexo e a idade de cada pessoa.
+while True:
+    pessoa = dict()
+    pessoa["nome"] = str(input('Nome: ')).strip().upper()
+    pessoa["sexo"] = str(input('Sexo: F/M ')).strip().upper()
+    
+    # Vamos verificar se o sexo é válido. Se não for, vamos pedir novamente.
+    while pessoa["sexo"] not in 'FM':
+        pessoa["sexo"] = str(input('ERRO! Sexo deve ser F ou M ')).strip().upper()
+    pessoa["idade"] = int(input('Idade: '))
+
+    # Vamos adicionar a idade da pessoa à variável total_idade.
+    total_idade += pessoa["idade"]
+    
+    # Vamos adicionar o dicionário pessoa à lista pessoas.
+    pessoas.append(pessoa)
+
+    # Vamos perguntar se o usuário deseja continuar adicionando pessoas.
+    continuar = ''
+    while continuar not in 'SN':
+        continuar = str(input('Continuar? S/N ')).strip().upper()
+    else:
+        if continuar == 'S':
+            print('Prosseguindo...')
+        else:
+            print('Encerrando...')
+            break
+
+# Vamos calcular o total de pessoas cadastradas e a média de idade do grupo.
+pessoas_cadastradas = len(pessoas)
+media_idade = total_idade / pessoas_cadastradas
+print(f'A) Foram cadastradas {pessoas_cadastradas} pessoas.')
+print(f'B) A média de idade do grupo é {media_idade:.2f}')
+
+# Vamos percorrer a lista pessoas e adicionar as mulheres à lista mulheres e as pessoas com idade acima da média à lista idade_maior_media.
+for i, v in enumerate(pessoas):
+    if v['idade'] > media_idade:
+        idade_maior_media.append(v.copy())
+    if v['sexo'] == 'F':
+        mulheres.append(v.copy())
+        
+# Vamos imprimir as pessoas com idade acima da média e as mulheres do grupo.
+if len(idade_maior_media) > 0:
+    print(f'{"-=" * 20}')
+    print(f'{"C) ACIMA DA IDADE MÉDIA DO GRUPO":^40}')
+    print(f'{"-=" * 20}')
+
+    print(f'{"Pessoa":^10}|{"Nome":^10}|{"Sexo":^10}|{"Idade":^10}')
+    for i, v in enumerate(idade_maior_media):
+        print(f"{i+1:^10}|{v['nome']:^10}|{v['sexo']:^10}|{v['idade']:^10}")
+        
+if len(mulheres) > 0:
+    print(f'{"-=" * 20}')
+    print(f'{"D) MULHERES DO GRUPO":^40}')
+    print(f'{"-=" * 20}')
+
+    print(f'{"Pessoa":^10}|{"Nome":^10}|{"Sexo":^10}|{"Idade":^10}')
+    for i, v in enumerate(mulheres, 1):
+        print(f"{i:^10}|{v['nome']:^10}|{v['sexo']:^10}|{v['idade']:^10}")
+        

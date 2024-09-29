@@ -27,10 +27,12 @@ def ver_pessoas_cadastradas():
         if not pessoas:  # Se não tiver nenhuma pessoa cadastrada
             print("Nenhuma pessoa cadastrada ainda.")  # Mostra essa mensagem
         else:  # Se tiver pessoas cadastradas
+            print('--------------------------------------')
             print("Pessoas cadastradas:")  # Mostra essa mensagem
             for pessoa_json in pessoas:  # Para cada pessoa no arquivo
                 pessoa = json.loads(pessoa_json)  # Carrega a pessoa
-                print(f"Nome: {pessoa['nome']}, Idade: {pessoa['idade']}")  # Mostra o nome e a idade da pessoa
+                print(f"{'Nome:':<6}{pessoa['nome']:^15}{'Idade:':<10}{pessoa['idade']:^10}")  # Mostra o nome e a idade da pessoa
+            print('--------------------------------------')
     except FileNotFoundError:  # Se o arquivo não existir
         print("Nenhuma pessoa cadastrada ainda.")  # Mostra essa mensagem
 
@@ -45,22 +47,27 @@ def menu():  # Função para mostrar o menu
 
 
 def cadastrar_pessoa():   # Função para cadastrar uma pessoa
-    nome = input("Digite o nome da pessoa: ")  # Pergunta o nome da pessoa
+    print('--------------------------------------')
+    nome = input("Digite o nome da pessoa: ").strip().title()  # Pergunta o nome da pessoa
     idade = int(input("Digite a idade da pessoa: "))     # Pergunta a idade da pessoa
     pessoa = {"nome": nome, "idade": idade}   # Cria um dicionário com o nome e a idade da pessoa
     salvar_pessoa(pessoa)   # Chama a função para salvar a pessoa
+    print('--------------------------------------')
 
 
 def salvar_pessoa(pessoa):   # Função para salvar a pessoa
     with open("pessoas.txt", "a") as arquivo:   # Abre o arquivo
         arquivo.write(json.dumps(pessoa) + "\n")     # Escreve a pessoa no arquivo
-    print("Pessoa cadastrada com sucesso!")  # Mostra essa mensagem
+    print("""--------------------------------------
+\033[1;32mPessoa cadastrada com sucesso!\033[m
+--------------------------------------""")  # Mostra essa mensagem
 
 
 def escolha():   # Função para mostrar o menu e perguntar a opção desejada
     while True:  # Enquanto for verdade
         titulo('SISTEMA DE GESTÃO DE PESSOAS')   # Mostra o título
-        print("""# 1 - Ver pessoas cadastradas    #  
+        print("""--------------------------------------
+# 1 - Ver pessoas cadastradas  
 # 2 - Cadastrar pessoas
 # 3 - Sair do sistema
 --------------------------------------""")

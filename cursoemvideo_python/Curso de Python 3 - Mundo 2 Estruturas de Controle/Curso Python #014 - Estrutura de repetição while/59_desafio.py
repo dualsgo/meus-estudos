@@ -7,6 +7,7 @@
 # [5] sair do programa
 # Seu programa deverá realizar a operação solicitada em cada caso.
 from emoji import emojize
+from numpy import result_type
 continuar = True  # Inicializa a variável de controle para continuar o programa
 
 print(emojize('Aplicativos :telefone_celular:', language='pt'))
@@ -212,3 +213,79 @@ def menu():
 
 while menu() != 5:
     menu()"""
+    
+    
+# Estou compartilhando minhas anotações sobre os exercícios. Quem quiser, pode copiar e colar em um documento .py pois está tudo formatado e comentado.
+
+# Nesse exercício, vamos criar um programa que leia dois valores e mostre um menu na tela. O programa deve realizar a operação solicitada em cada caso.
+
+# Vamos dividir o problema em partes menores:
+
+# 1. Inicializar as variáveis de controle e os números
+# 2. Exibir o menu com as opções
+# 3. Realizar a operação solicitada
+# 4. Solicitar novos números
+# 5. Encerrar o programa
+
+# Inicializamos a variável de controle continuar como True para iniciar o programa.
+variavel_de_controle = True
+
+# Solicitamos e convertemos os dois números para inteiros.
+numero1 = int(input('Escolha o primeiro número: '))
+numero2 = int(input('Escolha o segundo número: '))
+
+# Iniciamos um loop while para continuar o programa enquanto a variável de controle continuar for True.
+
+while variavel_de_controle:
+    # Exibimos o menu com as opções para o usuário escolher.
+    print('''Escolha uma das opções:
+[1] Somar
+[2] Multiplicar
+[3] Maior
+[4] Novos números
+[5] Sair do programa''')
+
+    # Solicitamos e convertemos a escolha para inteiro.
+    escolha = int(input(''))
+
+    # Inicializamos a variável resultado como 0.
+    resultado = 0
+
+    # Verificamos a escolha do usuário e realizamos a operação correspondente.
+
+    # Se a escolha for 1, somamos os números e exibimos o resultado.
+    if escolha == 1:
+        print('Somando...')
+        resultado = numero1 + numero2
+        print(f'A soma entre {numero1} e {numero2} é igual a {resultado}')
+        
+    # Se a escolha for 2, multiplicamos os números e exibimos o resultado.
+    elif escolha == 2:
+        print('Multiplicando...')
+        resultado = numero1 * numero2
+        print(f'O produto entre {numero1} e {numero2} é igual a {resultado}')
+        
+    # Se a escolha for 3, verificamos qual número é maior e exibimos o resultado.
+    elif escolha == 3:
+        print('Maior número...')
+        if numero1 == numero2:
+            print('Os números são iguais!')
+        else:
+            resultado = numero1 if numero1 > numero2 else numero2
+            print(f'Entre {numero1} e {numero2}, {resultado} é o maior!')
+            
+    # Se a escolha for 4, solicitamos novos números.
+    elif escolha == 4:
+        print('Escolha novos números:')
+        numero1 = int(input(''))
+        numero2 = int(input(''))
+        # Após a escolha dos novos números, o programa volta para o início do loop para escolher uma nova opção.
+    
+    # Se a escolha for 5, encerramos o programa.
+    elif escolha == 5:
+        print('Encerrando...')
+        variavel_de_controle = False
+
+    # Se a escolha for inválida, exibimos uma mensagem de erro.
+    else:
+        print('Escolha inválida!')

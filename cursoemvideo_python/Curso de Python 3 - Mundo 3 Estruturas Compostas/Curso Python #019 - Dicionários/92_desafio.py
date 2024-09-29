@@ -204,3 +204,76 @@ titulos = {
 for chave, valor in dados.items():
 	titulo = titulos.get(chave, chave)
 	print(f'{titulo:<30}{valor:>15}')
+
+# Estou compartilhando minhas anotações sobre os exercícios. Quem quiser, pode copiar e colar em um documento .py pois está tudo formatado e comentado.
+
+# Nesse exercício, o professor pede para criar um programa que leia o nome, o ano de nascimento e a carteira de trabalho de uma pessoa. Se a pessoa tiver carteira de trabalho, o programa deve ler o ano de contratação e o salário. No final, o programa deve mostrar o nome, a idade, o tempo de contribuição e quantos anos faltam para a pessoa se aposentar.
+
+# Primeiramente, vamos importar a função datetime da biblioteca datetime para obter o ano atual.
+from datetime import datetime
+
+# Vamos criar uma lista vazia chamada dados para armazenar as informações das pessoas.
+dados = []
+
+# Vamos obter o ano atual com a função today().year da biblioteca datetime.
+ano_atual = datetime.today().year
+
+# Vamos criar um loop while True para solicitar as informações das pessoas.
+while True:
+    # Vamos criar um dicionário chamado pessoa para armazenar as informações de cada pessoa.
+	pessoa = {}
+
+	# Vamos solicitar o nome da pessoa e armazenar no dicionário pessoa.
+	pessoa['nome'] = str(input('Nome: '))
+
+	# Vamos solicitar o ano de nascimento da pessoa e armazenar no dicionário pessoa.
+	pessoa['nascimento'] = int(input('Ano de nascimento: '))
+
+	# Vamos calcular a idade da pessoa e armazenar no dicionário pessoa.
+	pessoa['idade'] = ano_atual - pessoa['nascimento']
+
+	# Vamos solicitar se a pessoa possui carteira de trabalho e armazenar na variável carteira.
+	carteira = str(input('Possui CTPS: S/N ')).strip().upper()
+
+	# Vamos criar um loop while para verificar se a resposta é válida.
+	while carteira not in 'SN':
+		carteira = str(input('Resposta inválida: S/N ')).strip().upper()
+
+	# Se a pessoa possuir carteira de trabalho, vamos solicitar o número da CTPS, o ano de contratação e o salário.
+	if carteira == 'S':
+		# Para não ficar vamos colocar um número aleatório para a CTPS
+		pessoa['ctps'] = randint(1234567, 9999999)
+		# Os demais dados o usuário irá informar
+		pessoa['contratacao'] = int(input('Ano de contratação: '))
+		pessoa['salario'] = float(input('Salário: R$ '))
+
+	# Vamos adicionar o dicionário pessoa à lista dados.
+	dados.append(pessoa.copy())
+
+	# Vamos perguntar se deseja continuar e armazenar na variável continuar.
+	continuar = str(input('Continuar? S/N ')).strip().upper()
+
+	# Vamos criar um loop while para verificar se a resposta é válida.
+	while continuar not in 'SN':
+		continuar = str(input('Continuar? S/N ')).strip().upper()
+
+	# Se a resposta for N, vamos encerrar o programa.
+	if continuar == 'N':
+		print('Encerrando...')
+		break
+
+	# Se a resposta for S, vamos prosseguir com o programa.
+	elif continuar == 'S':
+		print('Prosseguindo...')
+
+# Vamos percorrer a lista dados e mostrar as informações das pessoas.
+for pessoa in dados:
+	# Se a pessoa possuir CTPS, vamos mostrar o nome, o ano de nascimento, a idade, o número da CTPS, o ano de contratação, o salário e quantos anos faltam para se aposentar.
+	if 'ctps' in pessoa:
+		print(
+			f"{pessoa['nome']}, nasceu em {pessoa['nascimento']} possui {pessoa['idade']} anos, porta a CTPS nº {pessoa['ctps']}. Trabalha desde {pessoa['contratacao']} com salário de R$ {pessoa['salario']:.2f} e terá que contribuir mais {35 - (ano_atual - pessoa['contratacao'])} anos para se aposentar.")
+	# Se a pessoa não possuir CTPS, vamos mostrar o nome, o ano de nascimento e a idade.
+	else:
+		print(
+			f"{pessoa['nome']}, nascido em {pessoa['nascimento']} possui {pessoa['idade']} anos e ainda não é contribuinte.")
+

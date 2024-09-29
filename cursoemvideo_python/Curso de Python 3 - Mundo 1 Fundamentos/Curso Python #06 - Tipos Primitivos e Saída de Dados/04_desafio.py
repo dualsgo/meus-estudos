@@ -91,3 +91,37 @@ for i in dir(algo):
     if '_' not in i:
         print(f"{'.' + i + '()'}")
         """
+
+# Estou compartilhando minhas anotações sobre os exercícios. Quem quiser, pode copiar e colar em um documento .py pois está tudo formatado e comentado.
+
+# Nesse exercício, o objetivo é ler um valor digitado pelo usuário e mostrar na tela o seu tipo primitivo e todas as informações possíveis sobre ele. Como estamos utilizando somente os conhecimentos básicos, nesse exercpicio nos limitamos a strings, pois é o valor padrão retornado pelo input().
+
+# Primeiro vamos ler algo pelo teclado. Para isso utilizamos uma variável para armazenar os dados que serão inseridos através de uma função input() aprendida anteriormente.
+
+algo = input('Digite algo: ')
+
+# Agora vamos exibir as informações. Para isso iremos criar um print() com uma string formatada e usaremos os métodos aplicáveis.
+# Métodos são funções que pertencem a um objeto. Todo objeto tem características e e realiza funcionalidades (atributos e métodos). Todos os métodos terminam com parênteses. Não vamos entrar em detalhes sobre objetos, atributos e métodos, pois isso será abordado em aulas futuras.
+
+# A sintaxe de um método é: objeto.método()
+algo.isnumeric()
+
+# Nesse exemplo, algo é o objeto e isnumeric() é o método. O método isnumeric() verifica se a string inserida é numérica. Se for numérica, o método retorna True, caso contrário, retorna False.
+
+# NOTA: O método isnumeric() não aceita números decimais, negativos ou números escritos por extenso. Ele aceita somente números inteiros positivos. O metodo isdigit() aceita números decimais, mas não aceita números negativos ou números escritos por extenso.
+
+# Lembre-se: Aqui estamos trabalhando com números, mas o tipo de dado retornado pelo input() é sempre uma string. Strings podem ser numéricas, mas se estiverem entre aspas, são consideradas como texto.
+
+# A função type() retorna o tipo de dado de um objeto. Nesse caso, queremos saber o tipo de dado de algo.
+print(f'O tipo primitivo desse valor é {type(algo)}.')
+
+# Os metodos retornam valores booleanos (True ou False). 
+print(f'Só tem espaços? {algo.isspace()}')
+
+# Para saber os métodos disponíveis para um objeto, podemos usar a função dir(). Ela retorna uma lista de todos os métodos e atributos disponíveis para um objeto. A sintaxe é: dir(objeto)
+
+print(dir(algo))
+
+# Se quiser	saber mais sobre um método específico, podemos usar a função help(). A sintaxe é: help(objeto.método)
+
+help(algo.isnumeric) # O texto exibido é a documentação do método isnumeric() e está em inglês. A documentação é uma descrição detalhada de como o método funciona e como ele deve ser usado.

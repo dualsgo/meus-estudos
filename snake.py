@@ -95,9 +95,6 @@ class Snake:
             while len(self.trail) > self.tail:
                 self.trail.pop(0)
 
-        if not stopped:
-            pass  # código relacionado à exibição na tela e interação do usuário
-
         for i in range(len(self.trail) - 1):
             if not stopped and self.trail[i] == self.player:
                 self.reset()
@@ -127,6 +124,12 @@ snake = Snake(tile_count)
 snake.fixed_tail = False  # Define se a cauda da cobra cresce ao comer a fruta
 snake.walls = False  # Define se o jogo terá paredes ou não
 
+# Cores
+WHITE = (255, 255, 255)
+BLACK = (0, 0, 0)
+RED = (255, 0, 0)
+GREEN = (0, 255, 0)
+
 # Loop principal do jogo
 running = True
 while running:
@@ -147,8 +150,18 @@ while running:
             elif event.key == pygame.K_ESCAPE:
                 snake.reset()
 
-    # Atualiza o estado do jogo e desenha na tela
+    # Atualiza o estado do jogo
     reward = snake.loop()
+
+    # Limpa a tela
+    screen.fill(BLACK)
+
+    # Desenha a fruta
+    pygame.draw.rect(screen, RED, (snake.fruit[0] * snake.grid_size, snake.fruit[1] * snake.grid_size, snake.grid_size, snake.grid_size))
+
+    # Desenha a cobra
+    for segment in snake.trail:
+        pygame.draw.rect(screen, GREEN, (segment[0] * snake.grid_size, segment[1] * snake.grid_size, snake.grid_size, snake.grid_size))
 
     # Atualiza a tela
     pygame.display.flip()

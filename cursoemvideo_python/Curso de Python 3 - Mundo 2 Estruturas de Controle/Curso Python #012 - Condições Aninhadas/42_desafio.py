@@ -90,3 +90,46 @@ print(
 			f'{"\033[1;32mPODEM FORMAR :régua_triangular:\033[m" if triangulo else "\033[1;31mNÃO PODEM FORMAR\033[m"} '
 			f'um triângulo{f" do tipo {tipo_triangulo(segmento_a, segmento_b, segmento_c)}" if triangulo else "!"}', language='pt')
 )
+
+
+# Estou compartilhando minhas anotações sobre os exercícios. Quem quiser, pode copiar e colar em um documento .py pois está tudo formatado e comentado.
+
+# Nesse exercício, o programa deve ler o comprimento de três retas e verificar se elas podem formar um triângulo. Para que três segmentos possam formar um triângulo, cada lado deve ser menor que a soma dos outros dois.
+
+# Você pode copiar o código do exercício 35 e adicionar a verificação do tipo de triângulo. Para isso, você pode criar uma função que recebe os três segmentos de reta e verifica se eles formam um triângulo. Em seguida, você pode criar outra função que recebe os três segmentos de reta e verifica o tipo de triângulo que eles formam.
+
+# A primeira coisa a ser feita é ler o comprimento dos três segmentos de reta. Para isso, vamos utilizar a função input() para ler os valores e a função float() para converter os valores para ponto flutuante.
+segmento_a = float(input('Comprimento do segmento A: '))
+segmento_b = float(input('Comprimento do segmento B: '))
+segmento_c = float(input('Comprimento do segmento C: '))
+
+# Em seguida, vamos verificar se os segmentos de reta podem formar um triângulo. Para isso, vamos utilizar uma estrutura condicional que verifica se cada lado é menor que a soma dos outros dois.
+triangulo = segmento_a + segmento_b > segmento_c and segmento_a + segmento_c > segmento_b and segmento_b + segmento_c > segmento_a
+
+# Temos que comparar todas as possibilidades: Se a soma de A e B for maior que C, se a soma de A e C for maior que B e se a soma de B e C for maior que A. Se todas essas condições forem verdadeiras, os segmentos podem formar um triângulo. Caso contrário, não é possível formar um triângulo.
+
+# Por fim, vamos exibir uma mensagem informando se os segmentos de reta podem ou não formar um triângulo.
+if triangulo:
+    print(f'Os segmentos de reta de comprimento {segmento_a}, {segmento_b} e {segmento_c} podem formar um triângulo!')
+else:
+    print(f'Não é possível formar um triângulo com os segmentos de reta de comprimento {segmento_a}, {segmento_b} e {segmento_c}.')
+    
+# Para verificar o tipo de triângulo, vamos comparar os lados do triângulo.
+# Se os três lados forem iguais, o triângulo é equilátero.
+# Se dois lados forem iguais e um diferente, o triângulo é isósceles.
+# Se os três lados forem diferentes, o triângulo é escaleno.
+
+# Como a comparação de isósceles é mais complexa, vamos verificar primeiro se o triângulo é equilátero ou escaleno. Se não for nenhum dos dois, então é isósceles.
+
+# Para isso, vamos utilizar uma estrutura condicional que verifica se os três lados são iguais, se dois lados são iguais e um diferente ou se os três lados são diferentes.
+if segmento_a == segmento_b and segmento_c == segmento_a and segmento_b == segmento_c:
+	print('O triângulo é equilátero.')
+elif segmento_a != segmento_b and segmento_c != segmento_a and segmento_b != segmento_c:
+	print('O triângulo é escaleno.')
+
+# Se os três lados forem diferentes, o triângulo é escaleno.
+
+else:
+	print('O triângulo é isósceles.')
+
+# Se não for equilátero nem escaleno, então é isósceles.

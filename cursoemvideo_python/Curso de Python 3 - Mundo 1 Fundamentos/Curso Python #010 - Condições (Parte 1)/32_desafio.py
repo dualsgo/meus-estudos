@@ -62,3 +62,34 @@ ano_atual = date.today().year
 # Laço para exibir a lista de anos
 #for i in range(1582, ano_atual + 1):
 #	print(f'O ano {i}', '\033[1;32mé bissexto!\033[m' if verifica_ano(i) else '\033[1;31mnão é bissexto!\033[m')
+
+
+# Estou compartilhando minhas anotações sobre os exercícios. Quem quiser, pode copiar e colar em um documento .py pois está tudo formatado e comentado.
+
+# Nesse exercício, o programa deve ler um ano qualquer e verificar se ele é bissexto.
+# Um ano bissexto é divisível por 4, mas não é divisível por 100, a menos que seja divisível por 400. Agora precisamos escrever isso em código.
+
+# Vamos usar uma estrutura de decisão para verificar se o ano é bissexto. Primeiro, vamos ler o ano digitado pelo usuário com a função input() e converter o valor para inteiro com a função int().
+ano = int(input('Digite um ano: '))
+
+# Em seguida, vamos verificar se o ano é bissexto. Para isso, vamos utilizar uma estrutura condicional com a palavra-chave if. Vamos criar duas variáveis chamadas caso_1 e caso_2 para representar as duas condições que definem um ano bissexto.
+
+# A primeira condição é que o ano seja divisível por 4 e não seja divisível por 100. A segunda condição é que o ano seja divisível por 4, por 100 e por 400.
+caso_1 = ano % 4 == 0 and ano % 100 != 0
+# Se ano for divisível por 4 (resto da divisão por 4 igual a zero) e não for divisível por 100 (resto da divisão por 100 diferente de zero), então é um ano bissexto.
+
+caso_2 = ano % 4 == 0 and ano % 100 == 0 and ano % 400 == 0
+# Se ano for divisível por 4 (resto da divisão por 4 igual a zero), por 100 (resto da divisão por 100 igual a zero) e por 400 (resto da divisão por 400 igual a zero), então é um ano bissexto.
+
+# Agora, vamos verificar se o ano é bissexto. Se uma das condições for verdadeira, o ano é bissexto.
+if caso_1 or caso_2:
+    print(f'O ano {ano} é bissexto!')
+else:
+    print(f'O ano {ano} não é bissexto!')
+
+# Podemos capturar o ano atual com a função date.today().year do módulo datetime e exibir uma lista de anos bissextos.
+# Para isso, vamos importar a função date do módulo datetime.
+from datetime import date
+
+# Em seguida, vamos capturar o ano atual com a função date.today().year.
+ano_atual = date.today().year

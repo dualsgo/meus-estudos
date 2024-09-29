@@ -4,33 +4,25 @@
 def leia_int(msg):
     while True:
         try:
-            msg = int(input(msg))
+            return int(input(msg))
         except (ValueError, TypeError):
             print('ERRO! Digite um número inteiro válido...')
-            continue
         except KeyboardInterrupt:
             print(f'Programa foi interrompido!')
-            msg = ''
-        else:
-            return msg
+
 
 def leia_float(msg):
     while True:
         try:
-            msg = float(input(msg))
+            return float(input(msg))
         except (ValueError, TypeError):
             print('ERRO! Digite um número inteiro válido...')
-            continue
         except KeyboardInterrupt:
             print(f'Programa foi interrompido!')
-            msg = ''
-        else:
-            return msg
 
 
-numero = leia_int('Digite um número inteiro: ')
-num = leia_float('Digite um número float: ')
+inteiro = leia_int('Digite um número inteiro: ')
+flutuante = leia_float('Digite um número float: ')
 
-
-print(f'Você digitou o número INTEIRO {numero}')
-print(f'Você digitou o número FLOAT {num}')
+print(f'Você digitou o número INTEIRO {inteiro}')
+print(f'Você digitou o número FLOAT {flutuante}')

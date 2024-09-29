@@ -107,3 +107,36 @@ def obter_valor(msg):
 # Preenchemos a lista e exibimos o maior valor com max() e o menor com min()
 lista = [obter_valor('Digite um valor: ') for i in range(3)]
 print(f'Maior: {max(lista)}\nMenor: {min(lista)}')
+
+
+# Estou compartilhando minhas anotações sobre os exercícios. Quem quiser, pode copiar e colar em um documento .py pois está tudo formatado e comentado.
+
+# Nesse exercício, o programa deve ler três números e mostrar qual é o maior e qual é o menor.
+
+# A primeira coisa a ser feita é ler os três números digitados pelo usuário. Para isso, vamos utilizar a função input() para ler os números e a função int() para converter os valores para inteiros.
+valor1 = int(input('Digite o primeiro valor: '))
+valor2 = int(input('Digite o segundo valor: '))
+valor3 = int(input('Digite o terceiro valor: '))
+
+# Em seguida, vamos comparar os valores para encontrar o maior e o menor. Para isso, vamos utilizar uma estrutura condicional com a palavra-chave if para verificar as condições.
+# Vamos começar definindo o maior e o menor valor como o primeiro valor digitado pelo usuário.
+maior = valor1
+menor = valor1
+
+# Agora, vamos comparar o segundo valor com o maior e o menor valor. Se o segundo valor for maior que o maior valor, atualizamos o maior valor. Se o segundo valor for menor que o menor valor, atualizamos o menor valor.
+if valor2 > maior:
+    maior = valor2
+if valor2 < menor:
+    menor = valor2
+    
+# Por fim, vamos comparar o terceiro valor com o maior e o menor valor. Se o terceiro valor for maior que o maior valor, atualizamos o maior valor. Se o terceiro valor for menor que o menor valor, atualizamos o menor valor.
+if valor3 > maior:
+    maior = valor3
+if valor3 < menor:
+    menor = valor3
+    
+# Agora, basta exibir o maior e o menor valor na tela.
+
+print(f'O maior valor é {maior} e o menor valor é {menor}')
+
+# Essa é uma forma simples de encontrar o maior e o menor valor entre três números usando os conhecimentos que temos até o momento. Podemos simplificar o código e torná-lo mais eficiente, mas isso envolve o uso de estruturas de dados mais avançadas, como listas e funções. Por enquanto, essa é uma solução válida e funcional para o problema proposto.

@@ -121,3 +121,31 @@ if dias_frequentados >= 50:
 else: # Caso o aluno tenha uma frequência menor que 50 dias, será reprovado sem as validações das notas
     print('\nInfelizmente, você foi reprovado, sua frequência escolar\n'
           'foi menor que 50 dias de aula.')
+    
+# Estou compartilhando minhas anotações sobre os exercícios. Quem quiser, pode copiar e colar em um documento .py pois está tudo formatado e comentado.
+
+# Nesse exercício, o programa deve ler duas notas de um aluno e calcular a média entre elas. Em seguida, o programa deve mostrar a média calculada e a situação do aluno, conforme a média atingida:
+# - Média abaixo de 5.0: REPROVADO
+# - Média entre 5.0 e 6.9: RECUPERAÇÃO
+# - Média 7.0 ou superior: APROVADO
+
+# A primeira coisa a ser feita é ler as duas notas do aluno. Para isso, vamos utilizar a função input() para ler as notas e a função float() para converter os valores para ponto flutuante.    
+nota1 = float(input('Digite a primeira nota: '))
+nota2 = float(input('Digite a segunda nota: '))
+
+# Em seguida, vamos calcular a média entre as duas notas. Para isso, vamos somar as duas notas e dividir o resultado por 2.
+media = (nota1 + nota2) / 2
+# Note que utilizamos parenteses para garantir que a soma seja feita antes da divisão, já que a divisão tem prioridade sobre a soma.
+
+# Por fim, vamos verificar a situação do aluno conforme a média atingida. Para isso, vamos utilizar uma estrutura condicional que verifica se a média é menor que 5, se é menor que 7 ou se é maior ou igual a 7.
+
+if media < 5: # Condição quando a média do aluno é menor que 5. Isso exclui o 5.
+    print(f'Sua média foi {media:.1f} e você está \033[1;31mREPROVADO\033[m.')
+
+# Este elif verifica se a média do aluno é menor que 7 e maior ou igual a 5. Como o if anterior já verificou se a média é menor que 5, se ele não for atendido, a média é maior ou igual a 5.
+elif media < 7: 
+    print(f'Sua média foi {media:.1f} e você está de \033[1;33mRECUPERAÇÃO\033[m.')
+
+# Este else é executado quando a média do aluno é maior ou igual a 7. Como os ifs anteriores já verificaram se a média é menor que 5 ou menor que 7, se ele não for atendido, a média é maior ou igual a 7
+else:
+    print(f'Sua média foi {media:.1f} e você está \033[1;32mAPROVADO\033[m.')

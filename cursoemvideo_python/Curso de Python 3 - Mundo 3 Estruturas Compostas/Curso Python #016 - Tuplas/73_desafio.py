@@ -106,3 +106,77 @@ print('\n')
 print('Posição do CR Vasco da Gama- RJ')
 posicao_vasco = times.index('CR Vasco da Gama - RJ') + 1
 print(f'O Vasco terminou o campeonato em {posicao_vasco}º')
+
+
+# Estou compartilhando minhas anotações sobre os exercícios. Quem quiser, pode copiar e colar em um documento .py pois está tudo formatado e comentado.
+
+# Nessse exercício, vamos criar um programa que tenha uma tupla preenchida com os 20 primeiros colocados da Tabela do Campeonato Brasileiro de Futebol, na ordem de colocação. O programa deve mostrar:
+
+# Vamos importar a função choice da biblioteca random para escolher um time aleatório.
+from random import choice
+
+# Vamos criar um dicionário com as cores ANSI para colorir a saída do programa. Um dicinário é uma coleção de objetos que são indexados por chaves. Este tópicos será abordado em detalhes futuramente
+cores_ansi = {
+    'azul_escuro': '\033[44;30m',  # Fundo azul escuro, texto preto
+    'azul_claro': '\033[104;30m',  # Fundo azul claro, texto preto
+    'verde': '\033[42;30m',        # Fundo verde, texto preto
+    'cinza': '\033[47;30m',        # Fundo cinza, texto preto
+    'vermelho': '\033[41;30m',     # Fundo vermelho, texto preto
+    'reset': '\033[0m'             # Reset para o padrão
+}
+
+# Vamos criar uma tupla com os times do Campeonato Brasileiro de 2024. A ordem dos times é aleatória.
+# OBS.: Você pode organizar a lista de times baseado na tabela atual
+times = (
+    'Flamengo', 'Botafogo', 'Palmeiras', 'Fortaleza', 'Cruzeiro',
+    'São Paulo', 'Bahia', 'Athletico-PR', 'Atlético-MG', 'Bragantino',
+    'Vasco', 'Criciúma', 'Juventude', 'Internacional', 'Corinthians',
+    'Grêmio', 'Vitória', 'Cuiabá', 'Fluminense', 'Atlético-GO'
+)
+
+# Vamos criar uma lista a partir da tupla times para poder manipular os dados.
+lista_times = list(times)
+# Vamos escolher um time aleatório da lista de times.
+time_escolhido = choice(lista_times)
+# Vamos criar uma variável para armazenar a posição do time escolhido. O valor inicial é None. None é um tipo de dado que representa a ausência de valor.
+posição_time = None
+
+# Vamos criar uma variável título para exibir o título do programa. Assim podemos centralizar o texto.
+título = f'  Tabela Campeonato Brasileiro 2024 - 20ª Rodada  '
+# Vamos calcular o tamanho do título para centralizar a mensagem.
+tamanho = len(título)
+
+# Vamos exibir o título do programa. Como sabemos o tamanho do título, podemos criar uma linha com o mesmo tamanho.
+print(f'{"-" * tamanho}')
+print(título)
+print(f'{"-" * tamanho}')
+
+# Vamos percorrer a lista de times e exibir a posição e o nome do time. Vamos colorir a saída de acordo com a posição do time.
+for posição, equipe in enumerate(times, 1):
+    if equipe == time_escolhido:
+        posição_time = posição
+    if 1 <= posição <= 4:
+        cor = cores_ansi['azul_escuro']
+    elif 5 <= posição <= 6:
+        cor = cores_ansi['azul_claro']
+    elif 7 <= posição <= 12:
+        cor = cores_ansi['verde']
+    elif 13 <= posição <= 16:
+        cor = cores_ansi['cinza']
+    else:
+        cor = cores_ansi['vermelho']
+# Vamos exibir a posição e o nome do time. Vamos resetar a cor para o padrão.
+    print(f'{cor}{posição:2}º | {equipe:<20}{cores_ansi["reset"]}')
+
+# Vamos exibir os times em ordem alfabética.
+print('Times em ordem alfabética:')
+em_ordem = sorted(times) # Para organizar em ordem alfabética, vamos usar a função sorted. Esta função retorna uma nova lista ordenada a partir dos elementos da sequência, então não altera a lista original. Precisamos armazenar o resultado em uma nova variável.
+
+
+# Vamos percorrer a lista de times em ordem alfabética e exibir o nome do time. Vamos separar os times por vírgula, exceto o último time que será seguido de um ponto final.
+for i, time in enumerate(em_ordem):
+    print(time, end=', ' if i < (len(em_ordem) -1) else '.\n')
+
+# Vamos exibir o time escolhido e a posição atual do time na tabela.
+print(f'Time: {time_escolhido} - Posição atual: {posição_time}')
+

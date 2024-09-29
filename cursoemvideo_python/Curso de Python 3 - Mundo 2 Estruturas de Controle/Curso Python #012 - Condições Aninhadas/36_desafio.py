@@ -94,3 +94,32 @@ for i in range(1, n+1):
     juros = s * taxa_juros_mensal
     print(f'Parcela {i}: R$ {p:.2f} (Amortização: R$ {amortizacao:.2f}, Juros: R$ {juros:.2f}, Saldo Devedor: R$ {s:.2f})')
     s -= p
+    
+# Estou compartilhando minhas anotações sobre os exercícios. Quem quiser, pode copiar e colar em um documento .py pois está tudo formatado e comentado.
+
+# Nesse exercício, o programa deve aprovar ou negar um empréstimo bancário para a compra de uma casa. Para isso, o programa deve perguntar o valor da casa, o salário do comprador e em quantos anos ele vai pagar. A prestação mensal não pode exceder 30% do salário ou então o empréstimo será negado.
+
+# A primeira coisa a ser feita é perguntar o valor da casa, o salário do comprador e em quantos anos ele vai pagar. Para isso, vamos utilizar a função input() para ler os valores e a função float() para converter o valor da casa para ponto flutuante e a função int() para converter a quantidade de anos para inteiro.
+valor_imovel = float(input('Digite o valor do imóvel: R$ '))
+salario = float(input('Digite o seu salário: R$ '))
+anos_pagando = int(input('Digite a quantidade de anos que deseja pagar: '))
+
+# Em seguida, vamos verificar se a prestação mensal é maior que 30% do salário. Para isso, vamos calcular o valor da prestação mensal dividindo o valor do imóvel pela quantidade de meses que o comprador vai pagar. Em seguida, vamos calcular o limite de 30% do salário e verificar se o valor da prestação é maior ou igual ao limite.
+
+# Antes, vamos converter a quantidade de anos para meses multiplicando por 12.
+prestacoes = anos_pagando * 12
+
+# Agora, vamos calcular o valor da prestação mensal e o limite de 30% do salário.
+valor_prestacoes = valor_imovel / prestacoes
+limite = salario * .3
+
+# Por fim, vamos verificar se o valor da prestação é maior ou igual ao limite de 30% do salário e exibir uma mensagem informando se o empréstimo foi aprovado ou negado.
+
+if valor_prestacoes >= limite:
+    print(f'Com um salário de R$ {salario:.2f}, não será possível aprovar o seu empréstimo. O valor das prestações é superior ao limite de 30% do seu salário.')
+    print(f'Limites: R$ {limite:.2f}')
+    print(f'Valor das prestações: R$ {valor_prestacoes:.2f}')
+else:
+    print('Parabéns! Seu empréstimo foi aprovado. Confira as condições:')
+    print(f'O imóvel avaliado em R$ {valor_imovel:.2f} será quitado em {anos_pagando} anos.')
+    print(f'Cada uma das {prestacoes} parcelas custará R$ {valor_prestacoes:.2f}')

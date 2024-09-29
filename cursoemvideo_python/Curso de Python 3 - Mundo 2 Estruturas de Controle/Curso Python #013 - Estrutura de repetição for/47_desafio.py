@@ -22,3 +22,17 @@ print('fim da lista.')
 print('Números pares entre 1 e 50: ', end='')
 for i in range(2, 51, 2):
 	print(i, end=', ' if i < 50 else '.')
+
+# Estou compartilhando minhas anotações sobre os exercícios. Quem quiser, pode copiar e colar em um documento .py pois está tudo formatado e comentado.
+
+# Nesse exercício, vamos mostrar todos os números pares entre 1 e 50.
+# Se você entendeu como funciona o laço de repetição for, vai perceber que é muito simples fazer essa tarefa usando a função range().
+
+# Podemos definir o intervalo de 1 a 51 (pois se definirmos de 1 a 50, o 50 não será incluído) e incrementar de 2 em 2. Assim, teremos todos os números pares entre 1 e 50.
+for numero in range(1, 51, 2):  # Começa em 1, termina em 50 e incrementa de 2 em 2
+    print(numero, end=', ')  # Mostra o número par
+
+# Outra forma de resolver o exercício é verificar se o número é par dentro do laço de repetição. Desse modo, todos os números serão verificados e apenas os pares serão mostrados.
+for numero in range(1, 51):
+    if numero % 2 == 0:  # Se o número for par, o resto da divisão por 2 é zero
+        print(numero, end=', ')  # Mostra o número par

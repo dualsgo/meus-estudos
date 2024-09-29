@@ -75,3 +75,30 @@ for _ in range(0, 5):
 			posicao += 1
 
 print(f'Os números gerados em ordem foram: {numeros_ordenados}')
+
+# Estou compartilhando minhas anotações sobre os exercícios. Quem quiser, pode copiar e colar em um documento .py pois está tudo formatado e comentado.
+
+# Nesse exercício, vamos criar um programa onde o usuário possa digitar cinco valores numéricos e cadastre-os em uma lista, já na posição correta de inserção (sem usar o sort()). No final, o programa deve mostrar a lista ordenada na tela.
+
+# append() é um método que adiciona um item ao final da lista. Se quisermos adicionar um item em uma posição específica da lista, podemos usar o método insert(). A sintaxe é: lista.insert(posição, valor). Onde posição é a posição que queremos adicionar o valor e valor é o valor que queremos adicionar.
+
+# Para resolver esse exercício, teremos que avaliar a posição correta para adicionar o valor na lista. Se o valor for o primeiro da lista ou maior que o último valor da lista, adicionamos o valor no final da lista. Se não for o primeiro valor ou maior que o último valor da lista, avaliamos a posição correta para adicionar o valor.
+
+for i in range(5):
+	valor = int(input('Digite um valor: '))
+
+	if i == 0 or valor >= lista[-1]: # Se for o primeiro valor ou maior que o último valor da lista, adicionar o valor no final da lista.
+		lista.append(valor)
+		print(f'Valor {valor} adicionado no final da lista.')
+
+	else: # Se não for o primeiro valor ou maior que o último valor da lista, avaliar a posição correta para adicionar o valor.
+		pos = 0 # Inicializando a variável pos com 0.
+
+		while pos < len(lista): # Enquanto pos for menor que o tamanho da lista, fazer:
+
+			if valor <= lista[pos]: # Se o valor for menor ou igual ao valor na posição pos da lista, adicionar o valor na posição pos da lista.
+				lista.insert(pos, valor) # Adicionando o valor na posição pos da lista.
+				break
+			pos += 1 # Incrementando a variável pos.
+
+# Se você resolveu o exercício usando outra lógica, parabéns! Se a sua resposta ficou maior ou mais complexa, não tem problema. O importante é entender a lógica por trás da solução. Futuramente, você poderá refatorar o código e deixá-lo mais simples e enxuto.

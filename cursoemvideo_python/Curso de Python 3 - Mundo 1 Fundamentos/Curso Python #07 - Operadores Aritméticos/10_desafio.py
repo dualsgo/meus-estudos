@@ -140,3 +140,25 @@ print('')
 print(f'Você possui R$ {carteira:.2f}. Na cotação atual (1,00 € = R$ 5.36) você pode comprar {euro:.2f} €.')
 print('')
 print(f'R$ {carteira:.2f} equivalem a $ {peso:.2f} pesos argentinos.')
+
+
+# Estou compartilhando minhas anotações sobre os exercícios. Quem quiser, pode copiar e colar em um documento .py pois está tudo formatado e comentado.
+
+# Nesse exercício, o programa solicita ao usuário um valor em reais e exibe na tela quantos dólares ele pode comprar. Para isso, é feita uma divisão simples do valor em reais pela cotação do dólar.
+
+# Primeiro precisamos saber a cotação do dólar em reais. Salvaremos este valor eu uma variável chamada cotacao_dolar já que a cotação pode variar. Então, dessa forma podemos atualizar o valor da cotação facilmente.
+
+cotacao_dolar = 5.56 # Vamos considerar a cotação do dólar em 5.56 reais.
+
+# Depois, solicitamos ao usuário o valor em reais que ele deseja converter. O valor digitado é convertido para ponto flutuante e armazenado na variável BRL.
+
+BRL = float(input('Digite o valor em BRL: '))
+
+# Para calcular quantos dólares o usuário pode comprar, basta dividir o valor em reais pela cotação do dólar. O resultado é armazenado na variável USD.
+
+USD = BRL / cotacao_dolar
+
+# Por fim, exibimos na tela o valor em reais e o valor em dólares que o usuário pode comprar.
+
+print(f'Você possui R$ {BRL:.2f}. Na cotação atual (US$ 1,00 = R$ {cotacao_dolar:.2f}) você pode comprar US$ {USD:.2f}.')
+# Formatamos os valores para exibir apenas duas casas decimais utilizando a notação :.2f no f-string. Isso garante que o valor seja exibido de forma mais clara e legível.
