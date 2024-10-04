@@ -1,0 +1,39 @@
+# Conhecendo a Linguagem
+
+# Tipos de dados
+
+# Os tipos built-in do Python são:
+
+# Texto: str
+# Números: int, float, complex
+# Sequências: list, tuple, range
+# Mapeamentos: dict
+# Conjuntos: set, frozenset
+# Coleções: deque, defaultdict, namedtuple, OrderedDict, Counter
+# Booleanos: bool
+# Binários: bytes, bytearray, memoryview
+
+# Tipos numéricos
+
+# int: Inteiro
+# Números inteiros são números inteiros, positivos ou negativos, sem casas decimais.
+print(11 + 10 + 1000)
+
+# float: Ponto flutuante
+# Números de ponto flutuante são números com casas decimais (ou que podem ser representados com casas decimais).
+print(1.5 + 1 + 0.5)
+
+# Booleans: bool
+# Booleans são valores binários que representam verdadeiro ou falso. Em Python, eles são True e False.
+# São uma subclassede inteiros, sendo True equivalente a 1 (ou qualquer valor diferente de zero) e False equivalente a 0.
+print(True)
+print(False)
+
+
+# Strings: str
+# Strings são sequências de caracteres alfanuméricos. Em Python, elas são criadas com aspas simples ou duplas, triplas simples ou triplas duplas. Elas podem conter letras, números, espaços, pontuação e até mesmo caracteres especiais e ter zero ou mais caracteres de comprimento.
+print("Python")
+
+# dir() é uma função interna do Python que retorna uma lista de todos os atributos e métodos de um objeto (diferente de help() que retorna a documentação de um objeto).
+
+# help() é uma função interna do Python que retorna a documentação de um objeto, método, função, módulo, pacote, etc.

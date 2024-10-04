@@ -115,7 +115,7 @@ class Snake:
 # Inicialização do pygame e configuração da janela
 pygame.init()
 tile_count = 10
-screen_size = (400, 400)
+screen_size = (800, 800)
 screen = pygame.display.set_mode(screen_size)
 clock = pygame.time.Clock()
 
