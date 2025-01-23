@@ -32,7 +32,7 @@ caixa = "Conteúdo"
 # Os valores de cadeia de caracteres são texto entre aspas duplas ou simples chamados strings.
 equipe_de_futebol = "Vasco da Gama"
 
-# A utilização do tipo de aspas depende do que queremos armazenar na variável. Por exemplo, se quisermos armazenar uma string que contenha aspas, usamos aspas simples para envolver a string e aspas duplas para envolver a citação dentro dea e vice versa. Caso isso não seja feito, o Python não saberá onde a string termina e gerará um erro.
+# A utilização do tipo de aspas depende do que queremos armazenar na variável. Por exemplo, se quisermos armazenar uma string que contenha aspas, usamos aspas simples para envolver a string e aspas duplas para envolver a citação dentro dela e vice versa. Caso isso não seja feito, o Python não saberá onde a string termina e gerará um erro.
 citacao = "O técnico disse: 'Vamos vencer!'"
 
 # Uma forma de contornar esse problema é usar uma barra invertida (\), que é um caractere de escape antes da aspas que queremos armazenar na string. Porém isso pode ser um pouco confuso.
