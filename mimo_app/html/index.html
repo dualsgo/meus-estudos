@@ -1,0 +1,65 @@
+<!-- 
+    A declaração <!DOCTYPE html> informa ao navegador que este documento segue o padrão HTML5.  
+    Isso garante que a renderização da página seja feita corretamente, evitando problemas de compatibilidade  
+    entre diferentes navegadores e garantindo que os recursos modernos do HTML5 sejam suportados.
+-->
+<!DOCTYPE html>
+
+<!-- 
+    A tag <html> é o elemento raiz de um documento HTML.  
+    Todo o conteúdo da página deve estar contido dentro dessa tag.  
+
+    O atributo lang="en" especifica o idioma principal do documento.  
+    Isso é importante para acessibilidade e SEO, pois ajuda leitores de tela e mecanismos de busca  
+    a entenderem melhor o conteúdo da página.  
+-->
+<html lang="en">
+  <!-- 
+    A tag <head> contém metadados e links para recursos externos.  
+    Os metadados são informações sobre a própria página, como codificação de caracteres,  
+    configurações de exibição e o título da aba no navegador.  
+
+    O conteúdo da <head> não é visível diretamente na página renderizada,  
+    mas é fundamental para o funcionamento correto do site.  
+-->
+  <head>
+    <!-- 
+        A tag <meta charset="UTF-8"> define a codificação de caracteres da página.  
+        UTF-8 é um padrão de codificação que suporta caracteres especiais,  
+        como acentos e símbolos de diferentes idiomas, garantindo que o texto  
+        seja exibido corretamente.  
+    -->
+    <meta charset="UTF-8" />
+
+    <!-- 
+        A meta tag abaixo é essencial para tornar a página responsiva, ou seja,  
+        garantir que ela se adapte corretamente a diferentes tamanhos de tela (celulares, tablets, desktops).  
+        
+        O atributo name="viewport" define a área visível da página.  
+        O atributo content="width=device-width, initial-scale=1.0" faz com que:  
+        - A largura da página seja igual à largura do dispositivo (width=device-width).  
+        - A escala inicial de zoom seja 1.0 (initial-scale=1.0), evitando que o navegador ajuste automaticamente o tamanho do conteúdo.  
+    -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- 
+        A tag <title> define o título da página, que aparece na aba do navegador  
+        e nos resultados dos mecanismos de busca. Um título bem definido melhora a usabilidade e a indexação da página nos motores de busca.  
+    -->
+    <title>Minha Página HTML</title>
+  </head>
+
+  <!-- 
+    A tag <body> contém todo o conteúdo visível da página,  
+    como textos, imagens, vídeos e outros elementos interativos.  
+    Tudo o que estiver dentro de <body> será renderizado e exibido no navegador.  
+    -->
+  <body>
+    <!-- 
+        A tag <h1> representa o título principal da página.  
+        Cabeçalhos (<h1> a <h6>) são importantes para estruturar o conteúdo e melhorar a acessibilidade e SEO.  
+        O <h1> deve ser único por página e usado para o título mais importante do conteúdo.  
+    -->
+    <h1>Bem-vindo ao Meu Site</h1>
+  </body>
+</html>

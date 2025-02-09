@@ -1,0 +1,32 @@
+<!-- MIMO 12 - Elementos que mudam de aparência -->
+
+<!-- 11.2 - Elementos semânticos que mudam de aparência -->
+
+<!-- A maioria dos elementos semânticos até agora não mudou a aparência da página da web, mas agora vamos conhecer alguns que mudam. 
+ 
+Vamos substituir o p por essas alternativas, que tornam o código mais legível enquanto mudam a aparência da página.
+
+Você pode ter notado que alguns elementos semânticos, como h1, não são apenas mais legíveis, mas também mudam a aparência da página renderizada.
+-->
+
+<!-- Podemos indicar que algum texto é uma descrição detalhada envolvendo todo o conteúdo com <details></details>. 
+ 
+Para criar um resumo, como nossa breve descrição da pintura, usamos um elemento summary dentro do elemento details.
+
+Para indicar que algum texto, como The Scream, é uma legenda de imagem, agrupamos a imagem e o texto entre as tags <figure></figure>.
+
+Então, precisamos colocar o texto da legenda entre as tags figcaption.
+-->
+
+<!DOCTYPE html>
+<html>
+<body>
+<h1>Painting of the Day</h1>
+<figure><img src="https://mimo.app/i/scream.png" width="220" height="277">
+<figcaption>The Scream</figcaption></figure>
+<details>
+<summary>Painted in 1893 by Edward Munch.</summary>
+<p>The agonised face in the painting has become one of the most iconic images of art.</p>
+</details>
+</body>
+</html>
