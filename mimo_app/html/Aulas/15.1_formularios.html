@@ -1,0 +1,42 @@
+<!-- MIMO 15 - Formulários HTML -->
+
+<!-- 15.1 - Formulários -->
+
+<!-- Os sites frequentemente precisam coletar entradas dos usuários. Para coletar essas entradas, usamos forms.
+Vamos dar uma olhada em uma página de login como exemplo.
+
+Um elemento form com diferentes elementos input e um botão de envio dentro compõem a estrutura do formulário. 
+
+Para criar um formulário, precisamos das tags de abertura <form> e de fechamento </form>.
+
+Para coletar a entrada do usuário, adicionamos elementos input dentro do elemento form.
+
+Usamos fieldsets para agrupar entradas relacionadas. Um fieldset exibirá uma borda ao redor dos elementos relacionados.
+
+Colocamos um elemento legend dentro do elemento fieldset para legendar todo o conjunto de campos.
+
+Para enviar as informações de entrada, adicionamos um elemento button dentro do form.
+-->
+
+<!doctype html>
+<html>
+ <body>
+  <h3>Register Account</h3>
+  <form>
+   <fieldset>
+    <legend>Personal Info</legend>
+   Name: <input type="text"><br>
+   Email: <input type="email"><br>
+   Phone: <input type="tel"><br>
+   </fieldset>
+   <br>
+   <fieldset>
+    <legend>Login Info</legend>
+    Username: <input type="text"><br>
+    Password: <input type="password"><br>
+   </fieldset>
+   <br>
+   <button>Register</button>
+  </form>
+ </body>
+</html>
