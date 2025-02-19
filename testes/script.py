@@ -81,8 +81,7 @@ def process_packing_lists(driver):
 
         # Localizar o botão de envio de declaração de romaneio na linha escolhida
         send_button = random_row.find_element(
-            By.CSS_SELECTOR, "button[ng-click='showDocumentModal(itemPack)']")
-        )
+        By.CSS_SELECTOR, "button[ng-click='showDocumentModal(itemPack)']")
 
         if send_button.is_displayed():
             logging.info("Clicando no botão 'Enviar declaração de romaneio' de uma linha aleatória...")
