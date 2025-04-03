@@ -109,7 +109,7 @@ while True:
 # Essa estrutura pode ser simplificada com o uso de listas e laços de repetição. Veja o exemplo abaixo:
 valor_saque = int(input('Quanto deseja sacar? R$ ')) # Solicita ao usuário o valor desejado para saque
 
-for cedula in [100, 50, 20, 10, 5, 2, 1]: # Percorre a lista de cédulas disponíveis
+for cedula in [100, 50, 20, 10, 5, 2]: # Percorre a lista de cédulas disponíveis
     quantidade = valor_saque // cedula # Calcula a quantidade de cédulas necessárias para o valor de saque atual e a cédula atual
     valor_saque %= cedula # Atualiza o valor de saque subtraindo o valor das cédulas já sacadas
     

@@ -1,14 +1,13 @@
-"""Bem-vindo ao beecrowd!
+def palavra_valida(texto):
+    palavra = input(texto).strip()
+    while not palavra.isalpha():
+        palavra = input('Deve conter somente letras... ').strip()
+    
+    return palavra
 
-O seu primeiro programa em qualquer linguagem de programação normalmente é o "Hello World!". Neste primeiro problema tudo o que você precisa fazer é imprimir esta mensagem na tela.
 
-Entrada
-Este problema não possui nenhuma entrada.
+entrada = palavra_valida('Digite uma palavra: ')
+ao_contrario = entrada[::-1].title()
 
-Saída
-Você deve imprimir a mensagem "Hello World!" e em seguida o final de linha, conforme o exemplo abaixo.
-
-Exemplo de Entrada	Exemplo de Saída
-Hello World!"""
-
-print('Hello, World!')
+print(f'Palavra: {entrada}, ao contrário: {ao_contrario}')
+print('É palíndromo!' if ao_contrario == entrada else 'Não é palíndromo.')
