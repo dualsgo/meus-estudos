@@ -17,6 +17,7 @@ interface NotebookReaderProps {
   moduleNumber: number;
   totalModules: number;
   onComplete: () => void;
+  onRedo: () => void;
   onPrev: () => void;
   onNext: () => void;
   hasPrev: boolean;
@@ -65,7 +66,7 @@ const CodeBlock: React.FC<{ code: string; output?: string[] }> = ({ code, output
 
 const NotebookReader: React.FC<NotebookReaderProps> = ({
   notebook, loading, moduleTitle, moduleNumber, totalModules,
-  onComplete, onPrev, onNext, hasPrev, hasNext, isCompleted,
+  onComplete, onRedo, onPrev, onNext, hasPrev, hasNext, isCompleted,
 }) => {
   const [readPct, setReadPct] = useState(0);
 
@@ -152,16 +153,23 @@ const NotebookReader: React.FC<NotebookReaderProps> = ({
               <button className="nav-btn prev-btn" onClick={onPrev} disabled={!hasPrev}>
                 ← Anterior
               </button>
-              {!isCompleted && readPct >= 20 && (
-                <button className="nav-btn complete-btn" onClick={onComplete}>
-                  ✓ Marcar como concluído
-                </button>
-              )}
-              {isCompleted && (
-                <button className="nav-btn complete-btn done" disabled>
-                  ✓ Concluído
-                </button>
-              )}
+              <div className="nav-center-btns">
+                {isCompleted && (
+                  <button className="nav-btn redo-btn" onClick={onRedo} title="Desmarcar como concluído e refazer">
+                    ↺ Refazer
+                  </button>
+                )}
+                {!isCompleted && readPct >= 20 && (
+                  <button className="nav-btn complete-btn" onClick={onComplete}>
+                    ✓ Marcar como concluído
+                  </button>
+                )}
+                {isCompleted && (
+                  <button className="nav-btn complete-btn done" disabled>
+                    ✓ Concluído
+                  </button>
+                )}
+              </div>
               <button className="nav-btn next-btn" onClick={onNext} disabled={!hasNext}>
                 Próximo →
               </button>

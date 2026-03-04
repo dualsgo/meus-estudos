@@ -407,3 +407,120 @@
     color: #fbbf24;
     animation: pulse-dot 0.8s ease-in-out infinite;
 }
+
+/* ── Challenges strip ── */
+.challenges-strip {
+    flex-shrink: 0;
+    border-bottom: 1px solid var(--border);
+    background: rgba(0, 0, 0, 0.15);
+}
+
+.challenges-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 14px 6px;
+}
+
+.challenges-label {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.challenges-count {
+    font-size: 10px;
+    color: var(--text-muted);
+    background: rgba(99, 102, 241, 0.1);
+    border: 1px solid rgba(99, 102, 241, 0.2);
+    padding: 1px 7px;
+    border-radius: 100px;
+}
+
+.challenges-scroll {
+    display: flex;
+    gap: 6px;
+    padding: 0 14px 10px;
+    overflow-x: auto;
+    scrollbar-width: thin;
+    scrollbar-color: var(--border) transparent;
+}
+
+.challenge-chip {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 5px 10px;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border);
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.15s;
+    flex-shrink: 0;
+}
+
+.challenge-chip:hover {
+    border-color: rgba(99, 102, 241, 0.4);
+    background: rgba(99, 102, 241, 0.08);
+}
+
+.challenge-chip.active {
+    border-color: var(--accent);
+    background: rgba(99, 102, 241, 0.15);
+}
+
+.chip-num {
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--text-muted);
+    font-family: 'JetBrains Mono', monospace;
+    background: var(--border);
+    width: 18px;
+    height: 18px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.challenge-chip.active .chip-num {
+    background: var(--accent);
+    color: white;
+}
+
+.chip-title {
+    font-size: 11px;
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+.challenge-chip.active .chip-title {
+    color: var(--text-primary);
+}
+
+.challenge-desc {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 8px 14px 10px;
+    background: rgba(99, 102, 241, 0.04);
+    border-top: 1px solid rgba(99, 102, 241, 0.1);
+    animation: slideIn 0.2s ease;
+}
+
+.challenge-desc-icon {
+    font-size: 14px;
+    flex-shrink: 0;
+    margin-top: 1px;
+}
+
+.challenge-desc-text {
+    font-size: 12px;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    margin: 0;
+}

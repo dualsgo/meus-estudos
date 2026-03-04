@@ -9,17 +9,16 @@ interface QuizPanelProps {
   savedScore?: number;
 }
 
-const QuizPanel: React.FC<QuizPanelProps> = ({ moduleId, quizzes, onScore, savedScore }) => {
+const QuizPanel: React.FC<QuizPanelProps> = ({ quizzes, onScore, savedScore }) => {
   const [current, setCurrent] = useState(0);
   const [selected, setSelected] = useState<number | null>(null);
   const [submitted, setSubmitted] = useState(false);
   const [answers, setAnswers] = useState<boolean[]>([]);
-  const [finished, setFinished] = useState(!!savedScore);
   const [showScore, setShowScore] = useState(!!savedScore);
+  const [, setFinished] = useState(!!savedScore);
 
   const q = quizzes[current];
   const isCorrect = submitted && selected === q?.correctIndex;
-  const isWrong = submitted && selected !== null && selected !== q?.correctIndex;
 
   const handleSubmit = () => {
     if (selected === null) return;
@@ -33,8 +32,9 @@ const QuizPanel: React.FC<QuizPanelProps> = ({ moduleId, quizzes, onScore, saved
       setSelected(null);
       setSubmitted(false);
     } else {
-      const score = Math.round(([...answers, selected === q.correctIndex].filter(Boolean).length / quizzes.length) * 100);
-      setFinished(true);
+      // answers já inclui a última resposta (adicionada por handleSubmit).
+      // Não adicionar selected novamente para evitar dupla contagem.
+      const score = Math.round((answers.filter(Boolean).length / quizzes.length) * 100);
       setShowScore(true);
       onScore(score);
     }
