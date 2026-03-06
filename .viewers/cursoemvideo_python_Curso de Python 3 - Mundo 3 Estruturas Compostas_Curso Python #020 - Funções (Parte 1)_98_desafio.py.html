@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>98_desafio.py</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="https://pyscript.net/releases/2024.1.1/core.css">
+    <script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>
+    <style>
+        .sandbox-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
+        .sandbox-header h2 { font-size: 1.2rem; color: var(--primary); display: flex; align-items: center; gap: 0.5rem; }
+        .py-repl-container { border-radius: 8px; overflow: hidden; border: 1px solid var(--glass-border); background: #1e293b; }
+    </style>
+    
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --glass-bg: rgba(30, 41, 59, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --primary: #38bdf8;
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        header {
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            border-bottom: 1px solid var(--glass-border);
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .back-btn {
+            color: var(--text-main);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            background: rgba(255,255,255,0.05);
+            transition: 0.3s;
+        }
+        .back-btn:hover {
+            background: rgba(56, 189, 248, 0.2);
+            color: var(--primary);
+        }
+        .file-title {
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+        main {
+            flex: 1;
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        .container {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="../index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Voltar</a>
+        <div class="file-title">98_desafio.py</div>
+    </header>
+    <main>
+        
+    <div class="container">
+        <div class="sandbox-header">
+            <h2><i class="fa-brands fa-python"></i> Sandbox PyScript</h2>
+            <span>Edite e execute (Shift + Enter) ou no botão verde ▶</span>
+        </div>
+        <div class="py-repl-container">
+            <script type="py" id="main-script"></script>
+            <py-repl auto-generate="true">
+# Exercício Python #098 - Função de Contador - Aula 00 até 20 - Mundo 3
+# Faça um programa que tenha uma função chamada contador(), que receba três parâmetros: início, fim e passo. Seu programa tem que realizar três contagens através da função criada:
+#
+# a) de 1 até 10, de 1 em 1
+# b) de 10 até 0, de 2 em 2
+# c) uma contagem personalizada
+
+from time import sleep
+
+
+def valor_válido(mensagem):
+    while True:
+        try:
+            return int(input(mensagem))
+        except ValueError:
+            print(&#x27;Valor inválido para essa operação!&#x27;)
+
+
+def contador(inicio, fim, passo):
+
+        if passo == 0:
+            print(&#x27;Passo não pode ser zero!&#x27;)
+            passo += 1
+
+        if inicio &gt; fim:
+            passo -= passo * 2
+
+        if inicio &lt; fim and passo &gt; 0:
+            print(&#x27;CONTAGEM PROGRESSIVA!&#x27;)
+            for número in range(inicio, fim + 1, passo):
+                print(número, end=&#x27;, &#x27;)
+            else:
+                print(&#x27;FIM!&#x27;)
+
+        elif inicio &gt; fim and passo &lt; 0:
+            print(&#x27;CONTAGEM REGRESSIVA!&#x27;)
+            for número in range(inicio, fim - 1, passo):
+                print(número, end=&#x27;, &#x27;)
+            else:
+                print(&#x27;FIM!&#x27;)
+
+        else:
+            print(&#x27;Os parâmetros fornecidos não geram uma contagem válida!&#x27;)
+
+
+print(&#x27;Contagem de 1 até 10, de 1 em 1&#x27;)
+sleep(1)
+
+for i in range(11):
+    sleep(.5)
+    print(i, end=&#x27;, &#x27; if i &lt; 10 else &#x27;.\n&#x27;)
+
+sleep(1)
+print(&#x27;Contagem de 10 até 0, de 2 em 2&#x27;)
+
+for i in range(10, -1, -2):
+    sleep(.5)
+    print(i, end=&#x27;, &#x27; if i &gt; 0 else &#x27;.\n&#x27;)
+
+sleep(1)
+print(&#x27;Agora é sua vez! Contagem personalizada&#x27;)
+sleep(1)
+
+iniciar = valor_válido(&#x27;Digite o início da contagem: &#x27;)
+finalizar = valor_válido(&#x27;Digite o fim da contagem: &#x27;)
+iterador = valor_válido(&#x27;Digite o passo da contagem: &#x27;)
+contador(iniciar, finalizar, iterador)
+
+
+# Estou compartilhando minhas anotações sobre os exercícios. Quem quiser, pode copiar e colar em um documento .py pois está tudo formatado e comentado.
+
+# Ness exercício, precisamos criar uma função chamada contador() que recebe três parâmetros: início, fim e passo. A função deve exibir uma contagem progressiva ou regressiva de acordo com os parâmetros fornecidos.
+from time import sleep # Importa a função sleep() do módulo time.
+
+
+# Vamos criar uma função para verificar se o valor digitado pelo usuário é válido. A função valor_válido() recebe uma mensagem como parâmetro e solicita um valor ao usuário. Se o valor digitado não for um número inteiro, a função exibe uma mensagem de erro e solicita um novo valor.
+def valor_válido(mensagem):
+    while True:
+        try:
+            return int(input(mensagem))
+        except ValueError:
+            print(&#x27;Valor inválido para essa operação!&#x27;)
+
+
+# A função contador() recebe três parâmetros: início, fim e passo. A função exibe uma contagem progressiva ou regressiva de acordo com os parâmetros fornecidos.
+def contador(inicio, fim, passo):
+    
+        # Se o passo for zero, exibe uma mensagem de erro.
+        if passo == 0:
+            print(&#x27;Passo não pode ser zero!&#x27;)
+            passo += 1
+    
+        # Se o início for maior que o fim, inverte o sinal do passo.
+        if inicio &gt; fim:
+            passo -= passo * 2
+    
+        # Se o início for menor que o fim e o passo for positivo, exibe uma contagem progressiva.
+        if inicio &lt; fim and passo &gt; 0:
+            print(&#x27;CONTAGEM PROGRESSIVA!&#x27;)
+            for número in range(inicio, fim + 1, passo):
+                print(número, end=&#x27;, &#x27;)
+            else:
+                print(&#x27;FIM!&#x27;)
+    
+        # Se o início for maior que o fim e o passo for negativo, exibe uma contagem regressiva.
+        elif inicio &gt; fim and passo &lt; 0:
+            print(&#x27;CONTAGEM REGRESSIVA!&#x27;)
+            for número in range(inicio, fim - 1, passo):
+                print(número, end=&#x27;, &#x27;)
+            else:
+                print(&#x27;FIM!&#x27;)
+    
+        # Se os parâmetros fornecidos não gerarem uma contagem válida, exibe uma mensagem de erro.
+        else:
+            print(&#x27;Os parâmetros fornecidos não geram uma contagem válida!&#x27;)
+
+
+# Exibe uma contagem progressiva de 1 até 10, de 1 em 1.
+print(&#x27;Contagem de 1 até 10, de 1 em 1&#x27;)
+sleep(1)
+for i in range(11):
+    sleep(.5)
+    print(i, end=&#x27;, &#x27; if i &lt; 10 else &#x27;.\n&#x27;)
+
+# Exibe uma contagem regressiva de 10 até 0, de 2 em 2.
+sleep(1)
+print(&#x27;Contagem de 10 até 0, de 2 em 2&#x27;)
+for i in range(10, -1, -2):
+    sleep(.5)
+    print(i, end=&#x27;, &#x27; if i &gt; 0 else &#x27;.\n&#x27;)
+    
+# Solicita ao usuário os valores para a contagem personalizada.
+sleep(1)
+print(&#x27;Agora é sua vez! Contagem personalizada&#x27;)
+sleep(1)
+iniciar = valor_válido(&#x27;Digite o início da contagem: &#x27;)
+finalizar = valor_válido(&#x27;Digite o fim da contagem: &#x27;)
+iterador = valor_válido(&#x27;Digite o passo da contagem: &#x27;)
+
+# Chama a função contador() com os valores fornecidos pelo usuário.
+contador(iniciar, finalizar, iterador)
+            </py-repl>
+        </div>
+    </div>
+    
+    </main>
+</body>
+</html>

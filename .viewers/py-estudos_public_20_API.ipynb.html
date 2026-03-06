@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>20_API.ipynb</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/monokai-sublime.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/python.min.js"></script>
+    
+    <style>
+        .cell { margin-bottom: 1.5rem; }
+        .cell-markdown { font-size: 1.05rem; line-height: 1.6; color: #cbd5e1; }
+        .cell-markdown h1, .cell-markdown h2, .cell-markdown h3 { color: #f1f5f9; margin-top: 1rem; margin-bottom: 0.5rem; }
+        .cell-markdown code { background: rgba(0,0,0,0.3); padding: 0.2rem 0.4rem; border-radius: 4px; color: #eab308; }
+        .cell-markdown pre { background: rgba(0,0,0,0.3); padding: 1rem; border-radius: 8px; overflow-x: auto; border: 1px solid var(--glass-border); margin: 1rem 0; }
+        .cell-code { background: #23241f; border-radius: 8px; padding: 1rem; overflow-x: auto; position: relative; border: 1px solid #333; }
+        .cell-output { background: #000; color: #a3e635; padding: 1rem; border-radius: 8px; margin-top: 0.5rem; font-family: monospace; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;}
+        .prompt { position: absolute; top: 0.5rem; right: 0.5rem; color: #64748b; font-size: 0.8rem; user-select: none; }
+    </style>
+    
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --glass-bg: rgba(30, 41, 59, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --primary: #38bdf8;
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        header {
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            border-bottom: 1px solid var(--glass-border);
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .back-btn {
+            color: var(--text-main);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            background: rgba(255,255,255,0.05);
+            transition: 0.3s;
+        }
+        .back-btn:hover {
+            background: rgba(56, 189, 248, 0.2);
+            color: var(--primary);
+        }
+        .file-title {
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+        main {
+            flex: 1;
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        .container {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="../index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Voltar</a>
+        <div class="file-title">20_API.ipynb</div>
+    </header>
+    <main>
+        <div class="container">
+            <div class="cell cell-markdown" id="md-0"></div>
+            <script>
+                (function(){
+                    const b64 = "IyDwn5OhIFRyYWJhbGhhbmRvIGNvbSBBUElzCgojIyDwn5SNIE8gcXVlIMOpIHVtYSBBUEk/CgpBUEkgKCoqQXBwbGljYXRpb24gUHJvZ3JhbW1pbmcgSW50ZXJmYWNlKiogb3UgKipJbnRlcmZhY2UgZGUgUHJvZ3JhbWHDp8OjbyBkZSBBcGxpY2F0aXZvcyoqKSDDqSB1bSBjb25qdW50byBkZSByZWdyYXMgZSBkZWZpbmnDp8O1ZXMgcXVlIGZhY2lsaXRhIGEgY29tdW5pY2HDp8OjbyBlbnRyZSBkaWZlcmVudGVzIHNpc3RlbWFzLiBFbGFzIHBlcm1pdGVtIHF1ZSB1bSBwcm9ncmFtYSBlbnZpZSByZXF1aXNpw6fDtWVzIGEgb3V0cm8gZSByZWNlYmEgcmVzcG9zdGFzIGRlIHZvbHRhLgoKIyMjIPCfjb3vuI8gQ29tcGFyYcOnw6NvIGNvbSB1bSByZXN0YXVyYW50ZToKCi0gTyAqKmNsaWVudGUqKiAocHJvZ3JhbWEgcmVtZXRlbnRlKSBmYXogdW0gcGVkaWRvIGFvIGdhcsOnb20uCi0gTyAqKmdhcsOnb20qKiAoQVBJKSB0cmFuc21pdGUgbyBwZWRpZG8gcGFyYSBhIGNvemluaGEgKHByb2dyYW1hIHJlY2VwdG9yKS4KLSBBICoqY296aW5oYSoqIHByZXBhcmEgYSBjb21pZGEgZSBhIGRldm9sdmUgYW8gZ2Fyw6dvbSwgcXVlIGVudMOjbyBhIGVudHJlZ2EgYW8gY2xpZW50ZS4KCk91IHNlamEsIGEgQVBJIHJlY2ViZSB1bWEgc29saWNpdGHDp8OjbywgcHJvY2Vzc2EgZXNzYSBzb2xpY2l0YcOnw6NvICh0YWx2ZXogY29uc3VsdGFuZG8gdW0gYmFuY28gZGUgZGFkb3MpIGUgcmV0b3JuYSB1bWEgcmVzcG9zdGEuCgotLS0KCiMjIPCfjJAgQ29tbyBmdW5jaW9uYSB1bWEgcmVxdWlzacOnw6NvIEdFVD8KClVtIGRvcyBtw6l0b2RvcyBtYWlzIGNvbXVucyBkZSBpbnRlcmHDp8OjbyBjb20gdW1hIEFQSSDDqSBvICoqR0VUKiosIHF1ZSBzZXJ2ZSBwYXJhIHJlY3VwZXJhciBpbmZvcm1hw6fDtWVzLiBWYW1vcyB2ZXIgdW0gZXhlbXBsbyByZWFsIHVzYW5kbyBhIEFQSSBKU09OUGxhY2Vob2xkZXIsIHF1ZSBmb3JuZWNlIGRhZG9zIGZpY3TDrWNpb3MgcGFyYSB0ZXN0ZXM6CgojIyMgRXhlbXBsbyBkZSByZXF1aXNpw6fDo28gR0VUOgpgYGBodHRwCkdFVCBodHRwczovL2pzb25wbGFjZWhvbGRlci50eXBpY29kZS5jb20vcG9zdHMvMSBIVFRQLzEuMQpgYGAKClNlIHR1ZG8gb2NvcnJlciBjb3JyZXRhbWVudGUsIGEgcmVzcG9zdGEgc2Vyw6EgdW0gKipKU09OKiogY29tIG9zIGRhZG9zIHNvbGljaXRhZG9zIGUgdW0gY8OzZGlnbyBkZSBzdGF0dXMgKioyMDAqKiwgaW5kaWNhbmRvIHN1Y2Vzc28uCgojIyMgRXhlbXBsbyBlbSBQeXRob24gdXNhbmRvIGEgYmlibGlvdGVjYSBgcmVxdWVzdHNgOgoK8J+TjCAqKk8gcXVlIGFjb250ZWNlIGFxdWk/KioKLSAqKnJlcXVlc3RzLmdldCh1cmwpKiogZmF6IGEgcmVxdWlzacOnw6NvIEdFVCBwYXJhIGEgVVJMLgotICoqcmVzcG9uc2UuanNvbigpKiogY29udmVydGUgYSByZXNwb3N0YSBKU09OIGVtIHVtIGRpY2lvbsOhcmlvIFB5dGhvbi4KLSBPIGNvbnRlw7pkbyDDqSBpbXByZXNzbyBuYSB0ZWxhLg==";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-0').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [1]</div>
+                <pre><code class="language-python">import requests
+
+# O método get é usado para fazer uma requisição GET. O argumento é a URL do recurso que queremos acessar.
+response = requests.get(&quot;https://jsonplaceholder.typicode.com/posts/1&quot;)
+
+# Aqui, data será um dicionário Python com os dados retornados pela API. Usamos o método json() para converter o conteúdo da resposta para um dicionário Python.
+data = response.json()
+
+print(data)
+# A saída será:
+# {&#x27;userId&#x27;: 1, &#x27;id&#x27;: 1, &#x27;title&#x27;: &#x27;sunt aut facere repellat provident occaecati excepturi optio reprehenderit&#x27;, &#x27;body&#x27;: &#x27;quia et suscipit\nsuscipit recusandae consequuntur expedita et cum</code></pre>
+            </div>
+            <div class="cell-output">{&#x27;userId&#x27;: 1, &#x27;id&#x27;: 1, &#x27;title&#x27;: &#x27;sunt aut facere repellat provident occaecati excepturi optio reprehenderit&#x27;, &#x27;body&#x27;: &#x27;quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto&#x27;}
+</div>
+            <div class="cell cell-markdown" id="md-2"></div>
+            <script>
+                (function(){
+                    const b64 = "IyMg8J+TpiBEZSBvbmRlIGEgQVBJIG9idMOpbSBvcyBkYWRvcz8KCkFQSXMgZ2VyYWxtZW50ZSBzZSBjb211bmljYW0gY29tIGJhbmNvcyBkZSBkYWRvcy4gRW0gdmV6IGRlIGVzY3JldmVyIGNvbWFuZG9zIFNRTCBkaXJldGFtZW50ZSwgdXNhbW9zIHJlcXVpc2nDp8O1ZXMgSFRUUCBwYXJhIGFjZXNzYXIgb3MgZGFkb3MgZGUgZm9ybWEgbWFpcyBmw6FjaWwgZSBvcmdhbml6YWRhLgoKLS0tCgojIyDinInvuI8gUmVxdWlzacOnw7VlcyBQT1NUOiBFbnZpYW5kbyBkYWRvcyBwYXJhIHVtYSBBUEkKCk8gbcOpdG9kbyAqKlBPU1QqKiDDqSB1c2FkbyBxdWFuZG8gcXVlcmVtb3MgZW52aWFyIGluZm9ybWHDp8O1ZXMgcGFyYSB1bSBzZXJ2aWRvciwgY29tbyBjcmlhciB1bSBub3ZvIHVzdcOhcmlvIG91IHBvc3RhciB1bSBjb21lbnTDoXJpby4KCiMjIyBFeGVtcGxvIGRlIHJlcXVpc2nDp8OjbyBQT1NUOgpgYGBodHRwClBPU1QgaHR0cHM6Ly9qc29ucGxhY2Vob2xkZXIudHlwaWNvZGUuY29tL3Bvc3RzIEhUVFAvMS4xCgp7CiAgInRpdGxlIjogIk1ldSBwcmltZWlybyBwb3N0IiwKICAiYm9keSI6ICJFc3RlIMOpIHVtIGV4ZW1wbG8gZGUgZW52aW8gZGUgZGFkb3MgdmlhIEFQSS4iLAogICJ1c2VySWQiOiAxCn0KYGBgCgojIyMgRXhlbXBsbyBlbSBQeXRob246";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-2').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [2]</div>
+                <pre><code class="language-python">import requests
+
+url = &quot;https://jsonplaceholder.typicode.com/posts&quot;
+data = {
+    &quot;title&quot;: &quot;Meu primeiro post&quot;,
+    &quot;body&quot;: &quot;Este é um exemplo de envio de dados via API.&quot;,
+    &quot;userId&quot;: 1
+}
+
+response = requests.post(url, json=data)
+print(response.json())  # Exibe a resposta do servidor</code></pre>
+            </div>
+            <div class="cell-output">{&#x27;title&#x27;: &#x27;Meu primeiro post&#x27;, &#x27;body&#x27;: &#x27;Este é um exemplo de envio de dados via API.&#x27;, &#x27;userId&#x27;: 1, &#x27;id&#x27;: 101}
+</div>
+            <div class="cell cell-markdown" id="md-4"></div>
+            <script>
+                (function(){
+                    const b64 = "8J+TjCAqKkRpZmVyZW50ZSBkZSBHRVQsIHF1ZSBhcGVuYXMgc29saWNpdGEgZGFkb3MsIFBPU1QgcHJlY2lzYSBkZSB1bSBjb3JwbyAoYm9keSkgY29udGVuZG8gYXMgaW5mb3JtYcOnw7VlcyBhIHNlcmVtIGVudmlhZGFzLioqCgotLS0KCiMjIPCfmoAgUG9yIHF1ZSB1c2FyIEFQSXM/CgrinIUgKipGYWNpbGlkYWRlIGRlIGRlc2Vudm9sdmltZW50byoqIOKGkiBQb2RlbW9zIGludGVncmFyIHNlcnZpw6dvcyBleGlzdGVudGVzIHNlbSBwcmVjaXNhciByZWNyaWFyIHR1ZG8gZG8gemVyby4KCuKchSAqKlNlcGFyYcOnw6NvIGVudHJlIGZyb250LWVuZCBlIGJhY2stZW5kKiog4oaSIERlc2Vudm9sdmVkb3JlcyBwb2RlbSB0cmFiYWxoYXIgaW5kZXBlbmRlbnRlbWVudGUgZW0gY2FkYSBwYXJ0ZSBkbyBzaXN0ZW1hLgoK4pyFICoqQXV0b21hdGl6YcOnw6NvKiog4oaSIEFQSXMgcGVybWl0ZW0gY29sZXRhciBkYWRvcyBhdXRvbWF0aWNhbWVudGUsIGNvbW8gcHJldmlzw7VlcyBkbyB0ZW1wbywgaW5mb3JtYcOnw7VlcyBkZSBhw6fDtWVzIGRhIGJvbHNhLCBlIG11aXRvIG1haXMuCgotLS0KCiMjIPCfl5HvuI8gT3V0cm9zIG3DqXRvZG9zIGRlIHJlcXVpc2nDp8OjbyBIVFRQCgojIyMg4p2MIERFTEVURTogUmVtb3ZlbmRvIGRhZG9zCgpPIG3DqXRvZG8gKipERUxFVEUqKiDDqSB1c2FkbyBwYXJhIGV4Y2x1aXIgdW0gcmVjdXJzby4gVmFtb3MgdmVyIHVtIGV4ZW1wbG8gcmVhbCBjb20gYSBBUEkgSlNPTlBsYWNlaG9sZGVyOgoKYGBgaHR0cApERUxFVEUgaHR0cHM6Ly9qc29ucGxhY2Vob2xkZXIudHlwaWNvZGUuY29tL3Bvc3RzLzEgSFRUUC8xLjEKYGBgCgojIyMgRXhlbXBsbyBlbSBQeXRob246";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-4').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [3]</div>
+                <pre><code class="language-python">import requests
+
+url = &quot;https://jsonplaceholder.typicode.com/posts/1&quot;
+response = requests.delete(url)
+
+print(response.status_code)  # Retorna 200 se a exclusão foi bem-sucedida</code></pre>
+            </div>
+            <div class="cell-output">200
+</div>
+            <div class="cell cell-markdown" id="md-6"></div>
+            <script>
+                (function(){
+                    const b64 = "IyMjIOKcj++4jyBQVVQ6IEF0dWFsaXphbmRvIHVtIHJlY3Vyc28gKHN1YnN0aXR1aSBjb21wbGV0YW1lbnRlKQoKTyBtw6l0b2RvICoqUFVUKiogYXR1YWxpemEgdW0gb2JqZXRvIGV4aXN0ZW50ZS4gU2UgZWxlIG7Do28gZXhpc3RpciwgcG9kZSBjcmlhciB1bSBub3ZvLgoKYGBgaHR0cApQVVQgaHR0cHM6Ly9qc29ucGxhY2Vob2xkZXIudHlwaWNvZGUuY29tL3Bvc3RzLzEgSFRUUC8xLjEKCnsKICAidGl0bGUiOiAiVMOtdHVsbyBhdHVhbGl6YWRvIiwKICAiYm9keSI6ICJOb3ZvIGNvbnRlw7pkbyBkbyBwb3N0IiwKICAidXNlcklkIjogMQp9CmBgYAoKIyMjIEV4ZW1wbG8gZW0gUHl0aG9uOg==";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-6').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [4]</div>
+                <pre><code class="language-python">import requests
+
+url = &quot;https://jsonplaceholder.typicode.com/posts/1&quot;
+data = {
+    &quot;title&quot;: &quot;Título atualizado&quot;,
+    &quot;body&quot;: &quot;Novo conteúdo do post&quot;,
+    &quot;userId&quot;: 1
+}
+
+response = requests.put(url, json=data)
+print(response.json())  # Exibe a resposta do servidor</code></pre>
+            </div>
+            <div class="cell-output">{&#x27;title&#x27;: &#x27;Título atualizado&#x27;, &#x27;body&#x27;: &#x27;Novo conteúdo do post&#x27;, &#x27;userId&#x27;: 1, &#x27;id&#x27;: 1}
+</div>
+            <div class="cell cell-markdown" id="md-8"></div>
+            <script>
+                (function(){
+                    const b64 = "IyMjIPCfm6DvuI8gUEFUQ0g6IEF0dWFsaXphbmRvIHBhcmNpYWxtZW50ZSB1bSByZWN1cnNvCgpTZSBxdWlzZXJtb3MgbW9kaWZpY2FyIGFwZW5hcyBwYXJ0ZSBkZSB1bSBvYmpldG8sIHVzYW1vcyAqKlBBVENIKiouCgpgYGBodHRwClBBVENIIGh0dHBzOi8vanNvbnBsYWNlaG9sZGVyLnR5cGljb2RlLmNvbS9wb3N0cy8xIEhUVFAvMS4xCgp7CiAgInRpdGxlIjogIk5vdm8gdMOtdHVsbyIKfQpgYGAKCiMjIyBFeGVtcGxvIGVtIFB5dGhvbjo=";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-8').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [5]</div>
+                <pre><code class="language-python">import requests
+
+url = &quot;https://jsonplaceholder.typicode.com/posts/1&quot;
+data = {&quot;title&quot;: &quot;Novo título&quot;}
+
+response = requests.patch(url, json=data)
+print(response.json())  # Exibe a resposta do servidor</code></pre>
+            </div>
+            <div class="cell-output">{&#x27;userId&#x27;: 1, &#x27;id&#x27;: 1, &#x27;title&#x27;: &#x27;Novo título&#x27;, &#x27;body&#x27;: &#x27;quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto&#x27;}
+</div>
+            <div class="cell cell-markdown" id="md-10"></div>
+            <script>
+                (function(){
+                    const b64 = "IyMg8J+UkSBUcmFiYWxoYW5kbyBjb20gQVBJcyBxdWUgZXhpZ2VtIGF1dGVudGljYcOnw6NvCgpNdWl0YXMgQVBJcyBleGlnZW0gYXV0ZW50aWNhw6fDo28gY29tICoqY2hhdmVzIGRlIEFQSSAoQVBJIGtleXMpKiogb3UgKip0b2tlbnMqKi4gVmFtb3MgdmVyIHVtIGV4ZW1wbG8gcmVhbCBjb20gYSBBUEkgT3BlbldlYXRoZXJNYXAsIHF1ZSBmb3JuZWNlIHByZXZpc8O1ZXMgZG8gdGVtcG86";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-10').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [10]</div>
+                <pre><code class="language-python">import requests
+
+API_KEY = &quot;SUA_CHAVE_AQUI&quot;  # Substitua pela sua chave da OpenWeatherMap
+city = &quot;São Paulo&quot;
+
+url = f&quot;http://api.openweathermap.org/data/2.5/weather?q={city}&amp;appid={API_KEY}&quot;
+
+response = requests.get(url)
+data = response.json()
+
+print(data)</code></pre>
+            </div>
+            <div class="cell-output">{&#x27;cod&#x27;: 401, &#x27;message&#x27;: &#x27;Invalid API key. Please see https://openweathermap.org/faq#error401 for more info.&#x27;}
+</div>
+            <div class="cell cell-markdown" id="md-12"></div>
+            <script>
+                (function(){
+                    const b64 = "8J+TjCAqKk8gcXVlIGFwcmVuZGVtb3MgYXF1aT8qKgotIEEgT3BlbldlYXRoZXJNYXAgZXhpZ2UgdW1hIGNoYXZlIGRlIEFQSS4KLSBFbnZpYW1vcyBhIGNoYXZlIGNvbW8gdW0gcGFyw6JtZXRybyBuYSBVUkwgcGFyYSBhdXRlbnRpY2FyIG5vc3NhIHJlcXVpc2nDp8Ojby4=";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-12').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-markdown" id="md-13"></div>
+            <script>
+                (function(){
+                    const b64 = "IyMg8J+Xgu+4jyBUcmFiYWxoYW5kbyBjb20gdmFyacOhdmVpcyBkZSBhbWJpZW50ZQoKQ2hhdmVzIGRlIEFQSSBudW5jYSBkZXZlbSBzZXIgY29sb2NhZGFzIGRpcmV0YW1lbnRlIG5vIGPDs2RpZ28uIEVtIHZleiBkaXNzbywgcG9kZW1vcyBhcm1hemVuw6EtbGFzIGNvbW8gKip2YXJpw6F2ZWlzIGRlIGFtYmllbnRlKiouCgojIyMgQ3JpYW5kbyB1bSBhcnF1aXZvIGAuZW52YDo=";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-13').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [8]</div>
+                <pre><code class="language-python">API_KEY=&quot;SEU_TOKEN_AQUI&quot;</code></pre>
+            </div>
+            
+            <div class="cell cell-markdown" id="md-15"></div>
+            <script>
+                (function(){
+                    const b64 = "IyMjIFVzYW5kbyBgZG90ZW52YCBwYXJhIGNhcnJlZ2FyIGEgY2hhdmU6";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-15').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [9]</div>
+                <pre><code class="language-python">import os
+import dotenv
+from dotenv import load_dotenv
+
+load_dotenv()  # Carrega variáveis do .env
+API_KEY = os.getenv(&quot;API_KEY&quot;)
+
+print(API_KEY)  # Agora sua chave está protegida</code></pre>
+            </div>
+            
+            <div class="cell cell-markdown" id="md-17"></div>
+            <script>
+                (function(){
+                    const b64 = "CiMjIPCfk4ogTWFuaXB1bGHDp8OjbyBkZSByZXNwb3N0YXMgZGUgQVBJCgpTZSBxdWlzZXJtb3MgYnVzY2FyIGluZm9ybWHDp8O1ZXMgc29icmUgdW0gUG9rw6ltb24gdXNhbmRvIGEgKipQb2tlQVBJKiosIHBvZGVtb3MgZmF6ZXI6";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-17').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [6]</div>
+                <pre><code class="language-python">import requests
+
+response = requests.get(&quot;https://pokeapi.co/api/v2/pokemon/pikachu&quot;)
+data = response.json()
+
+print(data[&quot;name&quot;])  # Exibe o nome do Pokémon
+print(data[&quot;abilities&quot;])  # Lista as habilidades do Pokémon</code></pre>
+            </div>
+            <div class="cell-output">pikachu
+[{&#x27;ability&#x27;: {&#x27;name&#x27;: &#x27;static&#x27;, &#x27;url&#x27;: &#x27;https://pokeapi.co/api/v2/ability/9/&#x27;}, &#x27;is_hidden&#x27;: False, &#x27;slot&#x27;: 1}, {&#x27;ability&#x27;: {&#x27;name&#x27;: &#x27;lightning-rod&#x27;, &#x27;url&#x27;: &#x27;https://pokeapi.co/api/v2/ability/31/&#x27;}, &#x27;is_hidden&#x27;: True, &#x27;slot&#x27;: 3}]
+</div>
+            <div class="cell cell-markdown" id="md-19"></div>
+            <script>
+                (function(){
+                    const b64 = "8J+TjCAqKk8gcXVlIGFwcmVuZGVtb3M/KioKLSBBUElzIHJldG9ybmFtIEpTT04sIHF1ZSBwb2RlbW9zIGFjZXNzYXIgY29tbyBkaWNpb27DoXJpb3MuCi0gUG9kZW1vcyBleHRyYWlyIGluZm9ybWHDp8O1ZXMgZXNwZWPDrWZpY2FzLg==";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-19').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            </div><script>hljs.highlightAll();</script>
+    </main>
+</body>
+</html>

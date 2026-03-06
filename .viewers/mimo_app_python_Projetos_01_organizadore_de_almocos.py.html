@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>01_organizadore_de_almocos.py</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="https://pyscript.net/releases/2024.1.1/core.css">
+    <script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>
+    <style>
+        .sandbox-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
+        .sandbox-header h2 { font-size: 1.2rem; color: var(--primary); display: flex; align-items: center; gap: 0.5rem; }
+        .py-repl-container { border-radius: 8px; overflow: hidden; border: 1px solid var(--glass-border); background: #1e293b; }
+    </style>
+    
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --glass-bg: rgba(30, 41, 59, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --primary: #38bdf8;
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        header {
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            border-bottom: 1px solid var(--glass-border);
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .back-btn {
+            color: var(--text-main);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            background: rgba(255,255,255,0.05);
+            transition: 0.3s;
+        }
+        .back-btn:hover {
+            background: rgba(56, 189, 248, 0.2);
+            color: var(--primary);
+        }
+        .file-title {
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+        main {
+            flex: 1;
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        .container {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="../index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Voltar</a>
+        <div class="file-title">01_organizadore_de_almocos.py</div>
+    </header>
+    <main>
+        
+    <div class="container">
+        <div class="sandbox-header">
+            <h2><i class="fa-brands fa-python"></i> Sandbox PyScript</h2>
+            <span>Edite e execute (Shift + Enter) ou no botão verde ▶</span>
+        </div>
+        <div class="py-repl-container">
+            <script type="py" id="main-script"></script>
+            <py-repl auto-generate="true">
+# Projeto 01 - Organizador de Almoço: Neste projeto, você está codificando um programa para ajudá-lo a organizar um almoço para seus amigos.
+
+# Tarefa 1: Você servirá pizza para os convidados da sua festa. Vamos criar uma variável e armazenar o item de menu dentro.
+# Crie uma variável menu_item e atribua o valor de string &quot;pizza&quot;
+menu_item = &#x27;Pizza&#x27;
+
+# Tarefa 2: 10 convidados confirmaram que estão vindo para sua festa. Vamos criar outra variável para acompanhar o número de convidados.
+# Crie uma variável convidados e tribua o valor 10.
+convidados = 10
+
+# Tarefa 3: Antes dos convidados chegarem, vamos verificar o cardápio e o número de pessoas que vêm para ter certeza de que preparamos comida suficiente. Para exibir os valores armazenados nas variáveis que criamos, vamos usar instruções de impressão.
+
+# Imprima a variável menu_item
+print(menu_item)
+# Imprima a variável convidados
+print(convidados)
+
+# Tarefa 4: Você acabou de receber uma ligação de um dos convidados e eles lhe disseram que eles são alérgicos a queijo! Para garantir a segurança de todos, vamos substituir o item do menu por biryani. Biryani é um delicioso prato feito com carne ou legumes, arroz e uma variedade de especiarias saborosas.
+
+# Atualize o valor da variável menu_item para &quot;biryani&quot;
+menu_item = &#x27;biryani&#x27;
+
+# Tarefa 5: Vamos nos certificar de que atualizamos o menu! Podemos usar uma declaração impressão para fazer isso.
+
+# Imprima no console usando uma expressão. O resultado deve ser o seguinte: Item do menu atualizado é: biryani
+print(&#x27;Item do menu atualizado é: &#x27; + menu_item )
+
+# Tarefa 6: É hora de calcular quanto biryani você precisa para 10 convidados. Comece criando uma variável para armazenar a quantidade de biryani para uma única pessoa. Em seguida, calcule a quantidade de biryani que precisamos para 10 convidados.
+
+# Crie uma variável biryani_por_pessoa e atribua-lhe um valor 1
+biryani_por_pessoa = 1
+# Crie uma variável biryani_necessario e atribua o valor da multiplicação de biryani_por_pessoa * convidados
+biryani_necessario = biryani_por_pessoa * convidados
+
+# Tarefa 7: Você pediu o biryani depois de calcular quanto biryani você vai precisar para 10 convidados e ele foi entregue em sua casa. Você contou o biryani que recebeu. Agora vamos armazenar o número de biryani que você acabou de contar em uma nova variável.
+
+# Crie uma variável biryani_preparado e atribua-lhe um valor 10
+biryani_preparado  = 10
+
+# Tarefa 8: Vamos verificar se temos biryani suficiente usando o operador de igualdade.
+
+# Crie uma variável biryani_suficiente e atribua o resultado da verificação de se biryani_preparado é igual a biryani_necessario
+biryani_suficiente = biryani_preparado == biryani_necessario
+print(biryani_suficiente)
+
+# Tarefa 9: Os convidados começaram a chegar e você percebeu que um deles trouxe o irmão para a festa também. Vamos atualizar o número de convidados em nosso programa.
+
+# Acrescentar 1 a convidados
+convidados = convidados + 1
+
+# Tarefa 9: Para garantir que todos recebam uma porção de biryani, vamos calcular quanto biryani precisamos para servir cada convidado.
+
+# Crie uma variável biryani_por_convidado e defina igual a biryani_preparado dividido por convidados
+biryani_por_convidado = biryani_preparado / convidados
+# Use uma instrução de impressão para exibir no console biryani_por_convidado
+print(biryani_por_convidado)
+
+
+            </py-repl>
+        </div>
+    </div>
+    
+    </main>
+</body>
+</html>

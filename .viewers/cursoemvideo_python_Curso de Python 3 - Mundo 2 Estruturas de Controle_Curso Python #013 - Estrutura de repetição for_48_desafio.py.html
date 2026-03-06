@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>48_desafio.py</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="https://pyscript.net/releases/2024.1.1/core.css">
+    <script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>
+    <style>
+        .sandbox-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
+        .sandbox-header h2 { font-size: 1.2rem; color: var(--primary); display: flex; align-items: center; gap: 0.5rem; }
+        .py-repl-container { border-radius: 8px; overflow: hidden; border: 1px solid var(--glass-border); background: #1e293b; }
+    </style>
+    
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --glass-bg: rgba(30, 41, 59, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --primary: #38bdf8;
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        header {
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            border-bottom: 1px solid var(--glass-border);
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .back-btn {
+            color: var(--text-main);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            background: rgba(255,255,255,0.05);
+            transition: 0.3s;
+        }
+        .back-btn:hover {
+            background: rgba(56, 189, 248, 0.2);
+            color: var(--primary);
+        }
+        .file-title {
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+        main {
+            flex: 1;
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        .container {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="../index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Voltar</a>
+        <div class="file-title">48_desafio.py</div>
+    </header>
+    <main>
+        
+    <div class="container">
+        <div class="sandbox-header">
+            <h2><i class="fa-brands fa-python"></i> Sandbox PyScript</h2>
+            <span>Edite e execute (Shift + Enter) ou no botão verde ▶</span>
+        </div>
+        <div class="py-repl-container">
+            <script type="py" id="main-script"></script>
+            <py-repl auto-generate="true">
+# Exercício Python #048 - Soma ímpares múltiplos de três - Aula 00 até 13 - Mundo 2
+# Faça um programa que calcule a soma entre todos os números ímpares que são múltiplos de três e que se encontram no intervalo de 1 até 500.
+
+# Tarefa 1: Iniciar o acumulador para verificar a soma e um contador para saber quantos são.
+contador = 0
+acumulador = 0
+# Tarefa 2: Verificar todos os números entre 1 e 500 para saber se são múltiplos de 3.
+for numero in range(1, 500):
+    impar = numero % 2 != 0
+    multiplo_tres = numero % 3 == 0
+    if multiplo_tres and impar:
+        acumulador += numero
+        contador += 1
+        print(f&#x27;\033[1;32m{numero}\033[m&#x27;, end=&#x27;, &#x27;)
+    else:
+        print(f&#x27;\033[1;31m{numero}\033[m&#x27;, end=&#x27;, &#x27;)
+print(&#x27;FIM!&#x27;)
+print(f&#x27;Entre 1 e 500, encontramos {contador} múltiplos de 3 que são ímpares!&#x27;)
+print(f&#x27;A soma entre todos estes valores é {acumulador}.&#x27;)
+
+# Também poderíamos iterar a cada 3 a partir do 3 no range()
+
+# Versão simplificada
+valores = [i for i in range(3, 499, 3) if i % 2 != 0]
+print(f&#x27;A soma entre os {len(valores)} valores ímpares, múltiplos de 3 no intervalo ente 1 e 500 é {sum(valores)}.&#x27;)
+
+print(f&#x27;Os {len(valores)} valores considerados são:&#x27;)
+for i, v in enumerate(valores):
+	print(v, end=&#x27;, &#x27; if i &lt; len(valores)-1 else &#x27;.&#x27;)
+
+# Recente
+
+soma = quantidade = 0
+print(&#x27;Múltiplos de 3 entre 1 e 500: &#x27;, end=&#x27;&#x27;)
+for i in range(3, 501, 3):
+	print(i, end=&#x27;, &#x27; if i &lt; 498 else &#x27;.\n&#x27;)
+	if i % 2:
+		soma += i
+		quantidade += 1
+print(f&#x27;A soma entre os {quantidade} números ímpares múltiplos de três entre 1 e 500 é igual a {soma}&#x27;)
+
+# Estou compartilhando minhas anotações sobre os exercícios. Quem quiser, pode copiar e colar em um documento .py pois está tudo formatado e comentado.
+
+# Nessse exercício, vamos calcular a soma entre todos os números ímpares que são múltiplos de três e que se encontram no intervalo de 1 até 500.
+
+# Para resolver essa tarefa, vamos usar um laço de repetição for para verificar todos os números entre 1 e 500. Vamos usar um acumulador para somar os valores e um contador para saber quantos números são. Como no exercício anterior, vamos usar a função range() para gerar os números do intervalo.	
+
+# Inciamos a contagem a partir do zero, pois vamos contar de 3 em 3. Se iniciarmos a contagem em 1, o primeiro número será 1, o segundo será 4, o terceiro será 7 e assim por diante. Se iniciarmos a contagem em 0, o primeiro número será 0, o segundo será 3, o terceiro será 6 e assim por diante.
+for numero in range(0, 500, 3):  # Começa em 0, termina em 500 e incrementa de 3 em 3
+    
+    # Como o range() está incrementando de 3 em 3, todos os números gerados serão múltiplos de 3. Só precisamos verificar se são ímpares.
+    if numero % 2 != 0:  # Se o número for ímpar  
+        print(numero, end=&#x27;, &#x27;)  # Mostra o número ímpar
+        
+        # Se o número for ímpar, somamos ao acumulador e incrementamos o contador.
+        acumulador += numero
+        # A notação += é um atalho para acumulador = acumulador + numero. Ela soma o valor atual de acumulador com o valor de número e atribui o resultado a acumulador.
+        
+        contador += 1
+        # A notação += é um atalho para contador = contador + 1. Ela incrementa o valor atual de contador em 1 e atribui o resultado a contador.
+
+# Exibimos a mensagem de fim de lista e a quantidade de números encontrados.
+print(f&#x27;Encontramos {contador} números ímpares múltiplos de três no intervalo de 1 a 500.&#x27;)
+            </py-repl>
+        </div>
+    </div>
+    
+    </main>
+</body>
+</html>

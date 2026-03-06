@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>m4_a3_lab3.py</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="https://pyscript.net/releases/2024.1.1/core.css">
+    <script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>
+    <style>
+        .sandbox-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
+        .sandbox-header h2 { font-size: 1.2rem; color: var(--primary); display: flex; align-items: center; gap: 0.5rem; }
+        .py-repl-container { border-radius: 8px; overflow: hidden; border: 1px solid var(--glass-border); background: #1e293b; }
+    </style>
+    
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --glass-bg: rgba(30, 41, 59, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --primary: #38bdf8;
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        header {
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            border-bottom: 1px solid var(--glass-border);
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .back-btn {
+            color: var(--text-main);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            background: rgba(255,255,255,0.05);
+            transition: 0.3s;
+        }
+        .back-btn:hover {
+            background: rgba(56, 189, 248, 0.2);
+            color: var(--primary);
+        }
+        .file-title {
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+        main {
+            flex: 1;
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        .container {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="../index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Voltar</a>
+        <div class="file-title">m4_a3_lab3.py</div>
+    </header>
+    <main>
+        
+    <div class="container">
+        <div class="sandbox-header">
+            <h2><i class="fa-brands fa-python"></i> Sandbox PyScript</h2>
+            <span>Edite e execute (Shift + Enter) ou no botão verde ▶</span>
+        </div>
+        <div class="py-repl-container">
+            <script type="py" id="main-script"></script>
+            <py-repl auto-generate="true">
+# 4.3.6 LAB Dia do ano: escrevendo e usando funções
+
+# Sua tarefa é escrever e testar uma função que usa três argumentos (um ano, um mês e um dia do mês) e retorna o dia correspondente do ano ou retorna None se algum dos argumentos for inválido.
+
+import datetime
+
+
+def is_year_leap(year):  # define a função is_year_leap com o parâmetro year
+    
+    if year % 4 == 0 or (year % 400 == 0 and year % 100 != 0):  # se o ano for divisível por 4 ou (se o ano for divisível por 400 e não for divisível por 100)
+        return True  # retorna True
+    else:  # caso contrário
+        return False  # retorna False
+
+
+def days_in_month(year, month): # define a função days_in_month com os parâmetros year e month
+
+    if is_year_leap(year):  # se o ano for bissexto
+        
+        if month == 2:  # se o mês for fevereiro
+            return 29  # retorna 29 (fevereiro tem 29 dias em anos bissextos)
+        else:  # caso contrário
+            if month in (1, 3, 5, 7, 8, 10, 12):  # se o mês for janeiro, março, maio, julho, agosto, outubro ou dezembro
+                return 31  # retorna 31 (esses meses tem 31 dias)
+            elif month in (4, 5, 9, 11):  # se o mês for abril, junho, setembro ou novembro
+                return 30  # retorna 30 (esses meses tem 30 dias)
+            
+    else: # caso o ano não seja bissexto
+        
+        if month == 2:  # se o mês for fevereiro
+            return 28  # retorna 28 (fevereiro tem 28 dias em anos não bissextos)
+        else:
+            if month in (1, 3, 5, 7, 8, 10, 12):
+                return 31
+            elif month in (4, 5, 9, 11):
+                return 30
+
+def day_of_year(year, month, day):
+    if year &lt; 1 or 1 &gt; month &gt; 12 or day &lt; 1 or day &gt; days_in_month(year, month):  # verifica se o ano é menor que 1 ou se o mês é menor que 1 ou maior que 12 ou se o dia é menor que 1 ou maior que a quantidade de dias do mês
+        return &quot;Data inválida&quot;
+
+    date_object = datetime.date(year, month, day)  # cria um objeto date com os valores passados como parâmetro
+    day_of_week = date_object.strftime(&quot;%A&quot;)  # Obtém o dia da semana em formato de string
+
+    return day_of_week
+
+
+
+# Argumentos para teste:
+print(day_of_year(2000, 12, 31))
+            </py-repl>
+        </div>
+    </div>
+    
+    </main>
+</body>
+</html>

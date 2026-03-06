@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>m2_aula1.ipynb</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/monokai-sublime.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/python.min.js"></script>
+    
+    <style>
+        .cell { margin-bottom: 1.5rem; }
+        .cell-markdown { font-size: 1.05rem; line-height: 1.6; color: #cbd5e1; }
+        .cell-markdown h1, .cell-markdown h2, .cell-markdown h3 { color: #f1f5f9; margin-top: 1rem; margin-bottom: 0.5rem; }
+        .cell-markdown code { background: rgba(0,0,0,0.3); padding: 0.2rem 0.4rem; border-radius: 4px; color: #eab308; }
+        .cell-markdown pre { background: rgba(0,0,0,0.3); padding: 1rem; border-radius: 8px; overflow-x: auto; border: 1px solid var(--glass-border); margin: 1rem 0; }
+        .cell-code { background: #23241f; border-radius: 8px; padding: 1rem; overflow-x: auto; position: relative; border: 1px solid #333; }
+        .cell-output { background: #000; color: #a3e635; padding: 1rem; border-radius: 8px; margin-top: 0.5rem; font-family: monospace; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;}
+        .prompt { position: absolute; top: 0.5rem; right: 0.5rem; color: #64748b; font-size: 0.8rem; user-select: none; }
+    </style>
+    
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --glass-bg: rgba(30, 41, 59, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --primary: #38bdf8;
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        header {
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            border-bottom: 1px solid var(--glass-border);
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .back-btn {
+            color: var(--text-main);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            background: rgba(255,255,255,0.05);
+            transition: 0.3s;
+        }
+        .back-btn:hover {
+            background: rgba(56, 189, 248, 0.2);
+            color: var(--primary);
+        }
+        .file-title {
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+        main {
+            flex: 1;
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        .container {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="../index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Voltar</a>
+        <div class="file-title">m2_aula1.ipynb</div>
+    </header>
+    <main>
+        <div class="container">
+            <div class="cell cell-markdown" id="md-0"></div>
+            <script>
+                (function(){
+                    const b64 = "IyMjIDIuMS4xIENvbW8gb3MgY29tcHV0YWRvcmVzIGVudGVuZGVtIGNhcmFjdGVyZXMgw7puaWNvcwoKVm9jw6ogZXNjcmV2ZXUgYWxndW5zIHByb2dyYW1hcyBpbnRlcmVzc2FudGVzIGRlc2RlIHF1ZSBjb21lw6dvdSBlc3RlIGN1cnNvLCBtYXMgdG9kb3MgZWxlcyBwcm9jZXNzYXJhbSBhcGVuYXMgdW0gdGlwbyBkZSBkYWRvcyDigJMgbsO6bWVyb3MuIENvbW8gdm9jw6ogc2FiZSAodm9jw6ogcG9kZSB2ZXIgaXNzbyBlbSB0b2RvcyBvcyBsdWdhcmVzIGFvIHNldSByZWRvcikgbXVpdG9zIGRhZG9zIGRlIGNvbXB1dGFkb3IgbsOjbyBzw6NvIG7Dum1lcm9zOiBub21lcywgc29icmVub21lcywgZW5kZXJlw6dvcywgdMOtdHVsb3MsIHBvZW1hcywgYXJ0aWdvcyBjaWVudMOtZmljb3MsIGUtbWFpbHMsIHNlbnRlbsOnYXMganVkaWNpYWlzLCBkZWNsYXJhw6fDtWVzIGRlIGFtb3IgZSBtdWl0bywgbXVpdG8gbWFpcy4KClRvZG9zIGVzc2VzIGRhZG9zIGRldmVtIHNlciBhcm1hemVuYWRvcywgaW5zZXJpZG9zLCBwcm9kdXppZG9zLCBwZXNxdWlzYWRvcyBlIHRyYW5zZm9ybWFkb3MgcG9yICoqY29tcHV0YWRvcmVzIGNvbnRlbXBvcsOibmVvcyoqIGNvbW8gcXVhbHF1ZXIgb3V0cm8gZGFkbywgbsOjbyBpbXBvcnRhIHNlIHPDo28gKipjYXJhY3RlcmVzIMO6bmljb3MqKiBvdSBlbmNpY2xvcMOpZGlhcyBkZSB2w6FyaW9zIHZvbHVtZXMuCgojIyMjIENvbW8gw6kgcG9zc8OtdmVsPwoKQ29tbyB2b2PDqiBwb2RlIGZhemVyIGlzc28gZW0gUHl0aG9uPyDDiSBvIHF1ZSB2YW1vcyBkaXNjdXRpciBhZ29yYS4gVmFtb3MgY29tZcOnYXIgY29tIGNvbW8gb3MgY29tcHV0YWRvcmVzIGVudGVuZGVtICoqY2FyYWN0ZXJlcyDDum5pY29zKiouCgpPcyBjb21wdXRhZG9yZXMgYXJtYXplbmFtICoqY2FyYWN0ZXJlcyoqIGNvbW8gbsO6bWVyb3MuIENhZGEgKipjYXJhY3RlcmUqKiB1c2FkbyBwb3IgdW0gY29tcHV0YWRvciBjb3JyZXNwb25kZSBhIHVtIG7Dum1lcm8gw7puaWNvLCBlIHZpY2UtdmVyc2EuIEVzc2EgYXRyaWJ1acOnw6NvIGRldmUgaW5jbHVpciBtYWlzICoqY2FyYWN0ZXJlcyoqIGRvIHF1ZSBvIGVzcGVyYWRvLiBNdWl0b3MgZGVsZXMgc8OjbyBpbnZpc8OtdmVpcyBwYXJhIG9zIHNlcmVzIGh1bWFub3MsIG1hcyBlc3NlbmNpYWlzIHBhcmEgb3MgY29tcHV0YWRvcmVzLgoKQWxndW5zIGRlc3NlcyAqKmNhcmFjdGVyZXMqKiBzw6NvIGNoYW1hZG9zIGRlICoqZXNwYcOnb3MgZW0gYnJhbmNvKiosIGVucXVhbnRvIG91dHJvcyBzw6NvIGNoYW1hZG9zIGRlICoqY2FyYWN0ZXJlcyBkZSBjb250cm9sZSoqLCBwb3JxdWUgc3VhIGZpbmFsaWRhZGUgw6kgY29udHJvbGFyIGRpc3Bvc2l0aXZvcyBkZSBlbnRyYWRhL3Nhw61kYS4KClVtIGV4ZW1wbG8gZGUgdW0gKiplc3Bhw6dvIGVtIGJyYW5jbyoqIHF1ZSDDqSBjb21wbGV0YW1lbnRlIGludmlzw612ZWwgYSBvbGhvIG51IMOpIHVtIGPDs2RpZ28gZXNwZWNpYWwsIG91IHVtIHBhciBkZSBjw7NkaWdvcyAoZGlmZXJlbnRlcyBzaXN0ZW1hcyBvcGVyYWNpb25haXMgcG9kZW0gdHJhdGFyIGVzc2UgcHJvYmxlbWEgZGUgZm9ybWEgZGlmZXJlbnRlKSwgcXVlIHPDo28gdXNhZG9zIHBhcmEgbWFyY2FyIGFzIGV4dHJlbWlkYWRlcyBkYXMgbGluaGFzIGRlbnRybyBkZSBhcnF1aXZvcyBkZSB0ZXh0by4KCkFzIHBlc3NvYXMgbsOjbyB2ZWVtIGVzdGUgc2luYWwgKG91IGVzc2VzIHNpbmFpcyksIG1hcyBzw6NvIGNhcGF6ZXMgZGUgb2JzZXJ2YXIgbyBlZmVpdG8gZGUgc3VhIGFwbGljYcOnw6NvIG9uZGUgYXMgbGluaGFzIHPDo28gcXVlYnJhZGFzLgoKUG9kZW1vcyBjcmlhciBwcmF0aWNhbWVudGUgcXVhbHF1ZXIgbsO6bWVybyBkZSBhdHJpYnVpw6fDtWVzIGRlIG7Dum1lcm8gZGUgKipjYXJhY3RlcmVzKiosIG1hcyBhIHZpZGEgZW0gdW0gbXVuZG8gZW0gcXVlIGNhZGEgdGlwbyBkZSBjb21wdXRhZG9yIHVzYXNzZSB1bWEgY29kaWZpY2HDp8OjbyBkZSAqKmNhcmFjdGVyZXMqKiBkaWZlcmVudGUgbsOjbyBzZXJpYSBtdWl0byBjb252ZW5pZW50ZS4gRXN0ZSBzaXN0ZW1hIGxldm91IMOgIG5lY2Vzc2lkYWRlIGRlIGludHJvZHV6aXIgdW0gcGFkcsOjbyB1bml2ZXJzYWwgZSBhbXBsYW1lbnRlIGFjZWl0byBpbXBsZW1lbnRhZG8gcG9yIChxdWFzZSkgdG9kb3Mgb3MgY29tcHV0YWRvcmVzIGUgc2lzdGVtYXMgb3BlcmFjaW9uYWlzIGVtIHRvZG8gbyBtdW5kby4KCk8gY2hhbWFkbyAqKkFTQ0lJKiogKGFicmV2aWHDp8OjbyBkZSBBbWVyaWNhbiBTdGFuZGFyZCBDb2RlIGZvciBJbmZvcm1hdGlvbiBJbnRlcmNoYW5nZSkgw6kgbyBtYWlzIHV0aWxpemFkbywgZSB2b2PDqiBwb2RlIGFzc3VtaXIgcXVlIHF1YXNlIHRvZG9zIG9zIGRpc3Bvc2l0aXZvcyBtb2Rlcm5vcyAoY29tbyBjb21wdXRhZG9yZXMsIGltcHJlc3NvcmFzLCBjZWx1bGFyZXMsIHRhYmxldHMsIGV0Yy4pIHVzYW0gZXNzZSBjw7NkaWdvLgoKTyBjw7NkaWdvIGZvcm5lY2UgZXNwYcOnbyBwYXJhIDI1NiAqKmNhcmFjdGVyZXMqKiBkaWZlcmVudGVzLCBtYXMgZXN0YW1vcyBpbnRlcmVzc2Fkb3MgYXBlbmFzIG5vcyBwcmltZWlyb3MgMTI4LiBTZSB2b2PDqiBxdWlzZXIgdmVyIGNvbW8gbyBjw7NkaWdvIMOpIGNvbnN0cnXDrWRvLCB2ZWphIGEgdGFiZWxhIGFiYWl4by4gQ2xpcXVlIG5hIHRhYmVsYSBwYXJhIGFtcGxpw6EtbGEuIE9saGUgY29tIGF0ZW7Dp8OjbyDigJMgaMOhIGFsZ3VucyBmYXRvcyBpbnRlcmVzc2FudGVzLiBPbGhlIHBhcmEgbyBjw7NkaWdvIGRvICoqY2FyYWN0ZXJlKiogbWFpcyBjb211bSDigJMgbyAqKmVzcGHDp28qKi4gU8OjbyAzMi4KCkNoYXJhY3RlciB8IENvZGUgfCBDaGFyYWN0ZXIgfCBDb2RlIHwgQ2hhcmFjdGVyIHwgQ29kZSB8IENoYXJhY3RlciB8IENvZGUKLS0tLS0tLS0tLXwtLS0tLS18LS0tLS0tLS0tLS18LS0tLS0tfC0tLS0tLS0tLS0tfC0tLS0tLXwtLS0tLS0tLS0tLXwtLS0tLQooTlVMKSAgICAgfCAwICAgIHwgKHNwYWNlKSAgIHwgMzIgICB8IEAgICAgICAgICB8IDY0ICAgfCBgICAgICAgICAgfCA5NgooU09IKSAgICAgfCAxICAgIHwgISAgICAgICAgIHwgMzMgICB8IEEgICAgICAgICB8IDY1ICAgfCBhICAgICAgICAgfCA5NwooU1RYKSAgICAgfCAyICAgIHwgIiAgICAgICAgIHwgMzQgICB8IEIgICAgICAgICB8IDY2ICAgfCBiICAgICAgICAgfCA5OAooRVRYKSAgICAgfCAzICAgIHwgIyAgICAgICAgIHwgMzUgICB8IEMgICAgICAgICB8IDY3ICAgfCBjICAgICAgICAgfCA5OQooRU9UKSAgICAgfCA0ICAgIHwgJCAgICAgICAgIHwgMzYgICB8IEQgICAgICAgICB8IDY4ICAgfCBkICAgICAgICAgfCAxMDAKKEVOUSkgICAgIHwgNSAgICB8ICUgICAgICAgICB8IDM3ICAgfCBFICAgICAgICAgfCA2OSAgIHwgZSAgICAgICAgIHwgMTAxCihBQ0spICAgICB8IDYgICAgfCAmICAgICAgICAgfCAzOCAgIHwgRiAgICAgICAgIHwgNzAgICB8IGYgICAgICAgICB8IDEwMgooQkVMKSAgICAgfCA3ICAgIHwgJyAgICAgICAgIHwgMzkgICB8IEcgICAgICAgICB8IDcxICAgfCBnICAgICAgICAgfCAxMDMKKEJTKSAgICAgIHwgOCAgICB8ICggICAgICAgICB8IDQwICAgfCBIICAgICAgICAgfCA3MiAgIHwgaCAgICAgICAgIHwgMTA0CihIVCkgICAgICB8IDkgICAgfCApICAgICAgICAgfCA0MSAgIHwgSSAgICAgICAgIHwgNzMgICB8IGkgICAgICAgICB8IDEwNQooTEYpICAgICAgfCAxMCAgIHwgKiAgICAgICAgIHwgNDIgICB8IEogICAgICAgICB8IDc0ICAgfCBqICAgICAgICAgfCAxMDYKKFZUKSAgICAgIHwgMTEgICB8ICsgICAgICAgICB8IDQzICAgfCBLICAgICAgICAgfCA3NSAgIHwgayAgICAgICAgIHwgMTA3CihGRikgICAgICB8IDEyICAgfCAsICAgICAgICAgfCA0NCAgIHwgTCAgICAgICAgIHwgNzYgICB8IGwgICAgICAgICB8IDEwOAooQ1IpICAgICAgfCAxMyAgIHwgLSAgICAgICAgIHwgNDUgICB8IE0gICAgICAgICB8IDc3ICAgfCBtICAgICAgICAgfCAxMDkKKFNPKSAgICAgIHwgMTQgICB8IC4gICAgICAgICB8IDQ2ICAgfCBOICAgICAgICAgfCA3OCAgIHwgbiAgICAgICAgIHwgMTEwCihTSSkgICAgICB8IDE1ICAgfCAvICAgICAgICAgfCA0NyAgIHwgTyAgICAgICAgIHwgNzkgICB8IG8gICAgICAgICB8IDExMQooRExFKSAgICAgfCAxNiAgIHwgMCAgICAgICAgIHwgNDggICB8IFAgICAgICAgICB8IDgwICAgfCBwICAgICAgICAgfCAxMTIKKERDMSkgICAgIHwgMTcgICB8IDEgICAgICAgICB8IDQ5ICAgfCBRICAgICAgICAgfCA4MSAgIHwgcSAgICAgICAgIHwgMTEzCihEQzIpICAgICB8IDE4ICAgfCAyICAgICAgICAgfCA1MCAgIHwgUiAgICAgICAgIHwgODIgICB8IHIgICAgICAgICB8IDExNAooREMzKSAgICAgfCAxOSAgIHwgMyAgICAgICAgIHwgNTEgICB8IFMgICAgICAgICB8IDgzICAgfCBzICAgICAgICAgfCAxMTUKKERDNCkgICAgIHwgMjAgICB8IDQgICAgICAgICB8IDUyICAgfCBUICAgICAgICAgfCA4NCAgIHwgdCAgICAgICAgIHwgMTE2CihOQUspICAgICB8IDIxICAgfCA1ICAgICAgICAgfCAyMyAgIHwgVSAgICAgICAgIHwgODUgICB8IHUgICAgICAgICB8IDExNwooU1lOKSAgICAgfCAyMiAgIHwgNiAgICAgICAgIHwgNTQgICB8IFYgICAgICAgICB8IDg2ICAgfCB2ICAgICAgICAgfCAxMTgKKEVUQikgICAgIHwgMjMgICB8IDcgICAgICAgICB8IDU1ICAgfCBXICAgICAgICAgfCA4NyAgIHwgdyAgICAgICAgIHwgMTE5CihDQU4pICAgICB8IDI0ICAgfCA4ICAgICAgICAgfCA1NiAgIHwgWCAgICAgICAgIHwgODggICB8IHggICAgICAgICB8IDEyMAooRU0pICAgICAgfCAyNSAgIHwgOSAgICAgICAgIHwgNTcgICB8IFkgICAgICAgICB8IDg5ICAgfCB5ICAgICAgICAgfCAxMjEKKFNVQikgICAgIHwgMjYgICB8IDogICAgICAgICB8IDU4ICAgfCBaICAgICAgICAgfCA5MCAgIHwgeiAgICAgICAgIHwgMTIyCihFU0MpICAgICB8IDI3ICAgfCA7ICAgICAgICAgfCA1OSAgIHwgWyAgICAgICAgIHwgOTEgICB8IHsgICAgICAgICB8IDEyMwooRlMpICAgICAgfCAyOCAgIHwgPCAgICAgICAgIHwgNjAgICB8IFwgICAgICAgICB8IDkyICAgfCB8ICAgICAgICAgfCAxMjQKKEdTKSAgICAgIHwgMjkgICB8ID0gICAgICAgICB8IDYxICAgfCBdICAgICAgICAgfCA5MyAgIHwgfSAgICAgICAgIHwgMTI1CihSUykgICAgICB8IDMwICAgfCA+ICAgICAgICAgfCA2MiAgIHwgXiAgICAgICAgIHwgOTQgICB8IH4gICAgICAgICB8IDEyNgooRVVBKSAgICAgfCAzMSAgIHwgPyAgICAgICAgIHwgNjMgICB8IF8gICAgICAgICB8IDk1ICAgfCAgICAgICAgICAgfCAxMjcKCkFnb3JhIHZlcmlmaXF1ZSBvIGPDs2RpZ28gZGEgbGV0cmEgbWluw7pzY3VsYSAqKmEqKi4gU8OjbyA5Ny4gRSBhZ29yYSBlbmNvbnRyZSBvICoqQSoqIG1hacO6c2N1bG8uIFNldSBjw7NkaWdvIMOpIDY1LiBBZ29yYSB0cmFiYWxoZSBhIGRpZmVyZW7Dp2EgZW50cmUgbyBjw7NkaWdvIGRlICoqYSoqIGUgKipBKiouIMOJIGlndWFsIGEgMzIuIEVzc2Ugw6kgbyBjw7NkaWdvIGRlIHVtICoqZXNwYcOnbyoqLiBJbnRlcmVzc2FudGUsIG7Do28gw6k/CgpPYnNlcnZlIHRhbWLDqW0gcXVlIGFzIGxldHJhcyBlc3TDo28gb3JnYW5pemFkYXMgbmEgbWVzbWEgb3JkZW0gZG8gKiphbGZhYmV0byBsYXRpbm8qKi4K";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-0').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [1]</div>
+                <pre><code class="language-python"># Em Python, podemos decobrir o código ASCII de um caractere com a função ord()
+
+# Exemplo:
+print(ord(&#x27;a&#x27;)) # 97</code></pre>
+            </div>
+            <div class="cell-output">97
+</div>
+            <div class="cell cell-markdown" id="md-2"></div>
+            <script>
+                (function(){
+                    const b64 = "IyMjICoqYEkxOE5gKioKCsOJIGNsYXJvIHF1ZSBvICoqYWxmYWJldG8gbGF0aW5vKiogbsOjbyDDqSBzdWZpY2llbnRlIHBhcmEgdG9kYSBhIGh1bWFuaWRhZGUuIE9zIHVzdcOhcmlvcyBkZXNzZSBhbGZhYmV0byBzw6NvIG1pbm9yaWEuIEVyYSBuZWNlc3PDoXJpbyBjcmlhciBhbGdvIG1haXMgZmxleMOtdmVsIGUgYW1wbG8gZG8gcXVlIG8gKipBU0NJSSoqLCBhbGdvIGNhcGF6IGRlIHRvcm5hciB0b2RvcyBvcyBzb2Z0d2FyZXMgZG8gbXVuZG8gcGFzc8OtdmVpcyBkZSAqKmludGVybmFjaW9uYWxpemHDp8OjbyoqLCBwb3JxdWUgbMOtbmd1YXMgZGlmZXJlbnRlcyB1c2FtIGFsZmFiZXRvcyBjb21wbGV0YW1lbnRlIGRpZmVyZW50ZXMsIGUgw6BzIHZlemVzIGVzc2VzIGFsZmFiZXRvcyBuw6NvIHPDo28gdMOjbyBzaW1wbGVzIHF1YW50byBvIGxhdGluby4KCkEgcGFsYXZyYSAqKmludGVybmFjaW9uYWxpemHDp8OjbyoqIMOpIGNvbXVtZW50ZSBhYnJldmlhZGEgcGFyYSAqKkkxOE4qKi4KClBvciBxdWU/IE9saGUgY29tIGF0ZW7Dp8OjbyDigJMgaMOhIHVtICoqSSoqIG5hIGZyZW50ZSBkYSBwYWxhdnJhLCBlbSBzZWd1aWRhIGjDoSAqKjE4KiogbGV0cmFzIGRpZmVyZW50ZXMgZSB1bSAqKk4qKiBubyBmaW5hbC4KCkFwZXNhciBkYSBvcmlnZW0gbGV2ZW1lbnRlIGh1bW9yw61zdGljYSwgbyB0ZXJtbyDDqSB1c2FkbyBvZmljaWFsbWVudGUgZW0gbXVpdG9zIGRvY3VtZW50b3MgZSBub3JtYXMuCgpPIHNvZnR3YXJlICoqSTE4TioqIMOpIHVtIHBhZHLDo28gbm9zIHRlbXBvcyBhdHVhaXMuIENhZGEgcHJvZ3JhbWEgdGVtIGRlIHNlciBlc2NyaXRvIGRlIHVtYSBmb3JtYSBxdWUgcGVybWl0YSBxdWUgc2VqYSB1c2FkbyBlbSB0b2RvIG8gbXVuZG8sIGVudHJlIGRpZmVyZW50ZXMgY3VsdHVyYXMsIGzDrW5ndWFzIGUgYWxmYWJldG9zLgoKVW1hIGZvcm1hIGNsw6Fzc2ljYSBkZSBjw7NkaWdvICoqQVNDSUkqKiB1c2Egb2l0byBiaXRzIHBhcmEgY2FkYSBzaW5hbC4gT2l0byBiaXRzIHNpZ25pZmljYW0gMjU2IGNhcmFjdGVyZXMgZGlmZXJlbnRlcy4gT3MgcHJpbWVpcm9zIDEyOCBzw6NvIHVzYWRvcyBwYXJhIG8gYWxmYWJldG8gbGF0aW5vIHBhZHLDo28gKGNhcmFjdGVyZXMgbWFpw7pzY3Vsb3MgZSBtaW7DunNjdWxvcykuIMOJIHBvc3PDrXZlbCBlbXB1cnJhciB0b2RvcyBvcyBvdXRyb3MgcGVyc29uYWdlbnMgbmFjaW9uYWlzIHVzYWRvcyBhbyByZWRvciBkbyBtdW5kbyBwYXJhIG9zIDEyOCBsb2NhaXMgcmVzdGFudGVzPwoKTsOjby4gTsOjbyDDqS4=";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-2').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            </div><script>hljs.highlightAll();</script>
+    </main>
+</body>
+</html>

@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>85_desafio.py</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="https://pyscript.net/releases/2024.1.1/core.css">
+    <script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>
+    <style>
+        .sandbox-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
+        .sandbox-header h2 { font-size: 1.2rem; color: var(--primary); display: flex; align-items: center; gap: 0.5rem; }
+        .py-repl-container { border-radius: 8px; overflow: hidden; border: 1px solid var(--glass-border); background: #1e293b; }
+    </style>
+    
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --glass-bg: rgba(30, 41, 59, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --primary: #38bdf8;
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        header {
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            border-bottom: 1px solid var(--glass-border);
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .back-btn {
+            color: var(--text-main);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            background: rgba(255,255,255,0.05);
+            transition: 0.3s;
+        }
+        .back-btn:hover {
+            background: rgba(56, 189, 248, 0.2);
+            color: var(--primary);
+        }
+        .file-title {
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+        main {
+            flex: 1;
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        .container {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="../index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Voltar</a>
+        <div class="file-title">85_desafio.py</div>
+    </header>
+    <main>
+        
+    <div class="container">
+        <div class="sandbox-header">
+            <h2><i class="fa-brands fa-python"></i> Sandbox PyScript</h2>
+            <span>Edite e execute (Shift + Enter) ou no botão verde ▶</span>
+        </div>
+        <div class="py-repl-container">
+            <script type="py" id="main-script"></script>
+            <py-repl auto-generate="true">
+# Exercício Python #085 - Listas com pares e ímpares - Aula 00 até 18 - Mundo 3
+# Crie um programa onde o usuário possa digitar sete valores numéricos e cadastre-os em uma lista única que mantenha separados os valores pares e ímpares. No final, mostre os valores pares e ímpares em ordem crescente.
+
+# Versão 1
+from random import randint
+
+lista_principal = []
+pares = []
+impares = []
+
+for i in range(7):
+    lista_principal.append(randint(0, 99))
+
+for numero in lista_principal:
+    pares.append(numero) if numero % 2 == 0 else impares.append(numero)
+
+print(f&#x27;Todos os valores:&#x27;)
+for valor in lista_principal:
+    print(valor, end=&#x27;, &#x27;)
+    if valor == lista_principal[-1]:
+        print(f&#x27;{valor}.&#x27;)
+
+pares.sort()
+lista_principal.append(pares[:])
+
+impares.sort()
+lista_principal.append(impares[:])
+
+print(&#x27;PARES&#x27;)
+for par in pares:
+    print(par, end=&#x27;, &#x27;)
+    if par == pares[-1]:
+        print(f&#x27;{par}.&#x27;)
+
+print(&#x27;ÍMPARES&#x27;)
+for impar in impares:
+    print(impar, end=&#x27;, &#x27;)
+    if impar == impares[-1]:
+        print(f&#x27;{impar}.&#x27;)
+
+# Versão 2 resumida
+
+lista = [[], []]
+for _ in range(7):
+    try:
+        valor = int(input(&#x27;Digite um valor: &#x27;))
+        lista[0 if valor % 2 == 0 else 1].append(valor)
+    except ValueError:
+        print(&#x27;Valor inválido!&#x27;)
+lista[0].sort()
+lista[1].sort()
+print(lista)
+
+# Versão atual
+
+from random import randint
+valores = []
+pares = []
+ímpares = []
+for v in range(7):
+	valor = randint(1, 10)
+	lista = ímpares if valor % 2 else pares
+	lista.append(valor)
+pares.sort()
+ímpares.sort()
+valores.append(pares)
+valores.append(ímpares)
+print(valores)
+
+# Estou compartilhando minhas anotações sobre os exercícios. Quem quiser, pode copiar e colar em um documento .py pois está tudo formatado e comentado.
+
+# Nesse exercício, vamos criar um programa onde o usuário possa digitar sete valores numéricos e cadastre-os em uma lista única que mantenha separados os valores pares e ímpares. No final, vamos exibir os valores pares e ímpares em ordem crescente.
+
+# Vamos fazer uma versão mais resumida. Primeiro vamos criar uma lista com duas sublistas. A primeira lista, de índice 0, vai armazenar os valores pares. A segunda lista, de índice 1, vai armazenar os valores ímpares.
+lista_principal = [[], []]
+
+# Em seguida, vamos solicitar ao usuário sete valores numéricos. Se o valor for par, vamos adicionar na lista de índice 0. Se o valor for ímpar, vamos adicionar na lista de índice 1.
+for _ in range(7):
+    valor = int(input(&#x27;Digite um valor: &#x27;)) # Solicitando um valor numérico ao usuário
+    
+    # Adicionando o valor na lista de índice 0 se for par, ou na lista de índice 1 se for ímpar.
+    lista_principal[0 if valor % 2 == 0 else 1].append(valor)
+
+# Ao final das iterações, vamos ordenar as sublistas.
+lista_principal[0].sort()
+lista_principal[1].sort()
+
+# Por fim, vamos exibir as sublistas.
+print(f&#x27;Lista principal: {lista_principal}&#x27;)
+print(f&#x27;Pares: {lista_principal[0]}&#x27;)
+print(f&#x27;Ímpares: {lista_principal[1]}&#x27;)
+
+            </py-repl>
+        </div>
+    </div>
+    
+    </main>
+</body>
+</html>

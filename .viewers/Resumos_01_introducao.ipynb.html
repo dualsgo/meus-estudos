@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>01_introducao.ipynb</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/monokai-sublime.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/python.min.js"></script>
+    
+    <style>
+        .cell { margin-bottom: 1.5rem; }
+        .cell-markdown { font-size: 1.05rem; line-height: 1.6; color: #cbd5e1; }
+        .cell-markdown h1, .cell-markdown h2, .cell-markdown h3 { color: #f1f5f9; margin-top: 1rem; margin-bottom: 0.5rem; }
+        .cell-markdown code { background: rgba(0,0,0,0.3); padding: 0.2rem 0.4rem; border-radius: 4px; color: #eab308; }
+        .cell-markdown pre { background: rgba(0,0,0,0.3); padding: 1rem; border-radius: 8px; overflow-x: auto; border: 1px solid var(--glass-border); margin: 1rem 0; }
+        .cell-code { background: #23241f; border-radius: 8px; padding: 1rem; overflow-x: auto; position: relative; border: 1px solid #333; }
+        .cell-output { background: #000; color: #a3e635; padding: 1rem; border-radius: 8px; margin-top: 0.5rem; font-family: monospace; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;}
+        .prompt { position: absolute; top: 0.5rem; right: 0.5rem; color: #64748b; font-size: 0.8rem; user-select: none; }
+    </style>
+    
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --glass-bg: rgba(30, 41, 59, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --primary: #38bdf8;
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        header {
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            border-bottom: 1px solid var(--glass-border);
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .back-btn {
+            color: var(--text-main);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            background: rgba(255,255,255,0.05);
+            transition: 0.3s;
+        }
+        .back-btn:hover {
+            background: rgba(56, 189, 248, 0.2);
+            color: var(--primary);
+        }
+        .file-title {
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+        main {
+            flex: 1;
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        .container {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="../index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Voltar</a>
+        <div class="file-title">01_introducao.ipynb</div>
+    </header>
+    <main>
+        <div class="container">
+            <div class="cell cell-markdown" id="md-0"></div>
+            <script>
+                (function(){
+                    const b64 = "IyMgSW50cm9kdcOnw6NvIMOgIFByb2dyYW1hw6fDo28gY29tIFB5dGhvbgoKLS0tCgpQcm9ncmFtYXIgw6ksIGZ1bmRhbWVudGFsbWVudGUsIHVtIGV4ZXJjw61jaW8gZGUgKipjb211bmljYcOnw6NvKiouIFByZWNpc2Ftb3Mgbm9zIHRvcm5hciBleMOtbWlvcyBjb211bmljYWRvcmVzIHBhcmEgZXhwcmVzc2FyIGlkZWlhcyBkZSBmb3JtYSBjbGFyYSwgdGFudG8gcGFyYSBhIG3DoXF1aW5hIHF1YW50byBwYXJhIG91dHJvcyBkZXNlbnZvbHZlZG9yZXMuIEFvIGNyaWFyIHVtIGPDs2RpZ28sIGluc3RydcOtbW9zIG8gY29tcHV0YWRvciBhIHJlYWxpemFyIHVtYSB0YXJlZmEgYXRyYXbDqXMgZGUgdW0gKiphbGdvcml0bW8qKiwgcXVlIHBvZGUgc2VyIGRlZmluaWRvIGNvbW8gKnVtYSBzZXF1w6puY2lhIGZpbml0YSBkZSBwYXNzb3MgYmVtIGRlZmluaWRvcyBwYXJhIHRyYW5zZm9ybWFyIGRhZG9zIGRlIGVudHJhZGEgZW0gdW0gcmVzdWx0YWRvKi4KCkVtICoqUHl0aG9uKiosIGVzc2EgZmlsb3NvZmlhIGRlIGNvbXVuaWNhw6fDo28gw6kgbGV2YWRhIGFvIGV4dHJlbW8uIEEgbGluZ3VhZ2VtIGZvaSBkZXNlbmhhZGEgcG9yIEd1aWRvIHZhbiBSb3NzdW0gcGFyYSBzZXIgbGlkYSBxdWFzZSBjb21vIHNlIGZvc3NlIGluZ2zDqnMuIE8gY8OzZGlnbyDDqSBhICJ0cmFkdcOnw6NvIiBkbyBhbGdvcml0bW8sIGUgbm8gZWNvc3Npc3RlbWEgUHl0aG9uLCBzZWd1aW1vcyB1bSBtYW50cmE6ICoiQ8OzZGlnbyDDqSBsaWRvIG11aXRvIG1haXMgdmV6ZXMgZG8gcXVlIMOpIGVzY3JpdG8iKi4gUG9yIGlzc28sIGEgKipjbGFyZXphKiogbsOjbyDDqSBvcGNpb25hbDsgw6kgYSBlc3PDqm5jaWEgZGEgbGluZ3VhZ2VtLgoKQSBxdWFsaWRhZGUgZGUgdW0gc29mdHdhcmUgUHl0aG9uIMOpIG1lZGlkYSBwb3IgdHLDqnMgcGlsYXJlcyBlc3NlbmNpYWlzLCBmb3J0ZW1lbnRlIGRlZmVuZGlkb3Mgbm8gKipQRVAgOCoqIChvIGd1aWEgZGUgZXN0aWxvIG9maWNpYWwgZGEgbGluZ3VhZ2VtKToKCiogKipMZWdpYmlsaWRhZGUgKFJlYWRhYmlsaXR5IGNvdW50cyk6Kiogw4kgYSBmYWNpbGlkYWRlIGRlIGxlaXR1cmEgZG8gY8OzZGlnby4gVW0gY8OzZGlnbyAiUHl0aG9uaWNvIiDDqSBhcXVlbGUgcXVlIHVzYSBhIHNpbnRheGUgZGEgbGluZ3VhZ2VtIGRlIGZvcm1hIG5hdHVyYWwgZSBleHByZXNzaXZhLiBTZSB2b2PDqiBwcmVjaXNhIGRlIG11aXRvcyBjb21lbnTDoXJpb3MgcGFyYSBleHBsaWNhciAqbyBxdWUqIG8gY8OzZGlnbyBmYXosIHByb3ZhdmVsbWVudGUgZWxlIG7Do28gZXN0w6EgbGVnw612ZWwgbyBzdWZpY2llbnRlLgoqICoqRWZpY2nDqm5jaWE6KiogRW1ib3JhIFB5dGhvbiBzZWphIHVtYSBsaW5ndWFnZW0gZGUgYWx0byBuw612ZWwgKGZvY2FkYSBuYSBwcm9kdXRpdmlkYWRlIGRvIHByb2dyYW1hZG9yKSwgYSBlZmljacOqbmNpYSBhbGdvcsOtdG1pY2EgY29udGludWEgdml0YWwuIFNpZ25pZmljYSByZXNvbHZlciBwcm9ibGVtYXMgc2VtIGRlc3BlcmTDrWNpbyBkZSBtZW3Ds3JpYSBvdSBwcm9jZXNzYW1lbnRvLiBFbSBQeXRob24sIG11aXRhcyB2ZXplcyBhIGVmaWNpw6puY2lhIHZlbSBkbyB1c28gY29ycmV0byBkYXMgYmlibGlvdGVjYXMgcGFkcsOjbyBlIGVzdHJ1dHVyYXMgZGUgZGFkb3Mgb3RpbWl6YWRhcyAoY29tbyBsaXN0YXMgZSBkaWNpb27DoXJpb3MpLgoqICoqTWFudXRlbmliaWxpZGFkZToqKiDDiSBhIGNhcGFjaWRhZGUgZG8gc29mdHdhcmUgZGUgZXZvbHVpci4gVW0gY8OzZGlnbyBvcmdhbml6YWRvLCBxdWUgc2VndWUgbyBwcmluY8OtcGlvICoiU2ltcGxlcyDDqSBtZWxob3IgcXVlIGNvbXBsZXhvIiogKFplbiBvZiBQeXRob24pLCBwZXJtaXRlIHF1ZSBidWdzIHNlamFtIGNvcnJpZ2lkb3MgZSBub3ZhcyAqZmVhdHVyZXMqIHNlamFtIGFkaWNpb25hZGFzIHNlbSBxdWVicmFyIG8gc2lzdGVtYS4KCiMjIyBBbGdvcml0bW9zIGUgTMOzZ2ljYSBkZSBQcm9ncmFtYcOnw6NvCgpPIGFsZ29yaXRtbyDDqSBhIHJlY2VpdGEsIGUgYSAqKkzDs2dpY2EgZGUgUHJvZ3JhbWHDp8OjbyoqIMOpIGEgZXN0cnV0dXJhIGRlc3NhIHJlY2VpdGEuIFB5dGhvbiBzZSBkZXN0YWNhIGFxdWkgcG9yIHN1YSBzaW50YXhlIGxpbXBhLCBxdWUgcmVtb3ZlIGEgInBvbHVpw6fDo28gdmlzdWFsIiAoY29tbyBjaGF2ZXMgYHt9YCBlIHBvbnRvLWUtdsOtcmd1bGEgYDtgIG9icmlnYXTDs3Jpb3MgZW0gb3V0cmFzIGxpbmd1YWdlbnMpLCBwZXJtaXRpbmRvIGZvY2FyIG5hIGzDs2dpY2EgcHVyYSBhdHJhdsOpcyBkZSB0csOqcyBlc3RydXR1cmFzIGRlIGNvbnRyb2xlOgoKMS4gKipTZXF1w6puY2lhOioqIE8gY29tcHV0YWRvciBleGVjdXRhIHVtYSBpbnN0cnXDp8OjbyBhcMOzcyBhIG91dHJhLCBkZSBjaW1hIHBhcmEgYmFpeG8uIMOJIGEgb3JkZW0gbmF0dXJhbC4KMi4gKipEZWNpc8OjbyAoU2VsZcOnw6NvKToqKiBPIHVzbyBkZSBjb25kaWNpb25haXMgKGBpZmAsIGBlbGlmYCwgYGVsc2VgKS4gQXF1aSwgUHl0aG9uIGludHJvZHV6IHVtIGNvbmNlaXRvIGNyw610aWNvOiBhICoqSW5kZW50YcOnw6NvKiouIE8gImVzcGHDp2FtZW50byIgZG8gY8OzZGlnbyBuw6NvIMOpIGVzdMOpdGljbywgZWxlIGRlZmluZSAqb25kZSBjb21lw6dhIGUgdGVybWluYSogdW0gYmxvY28gZGUgZGVjaXPDo28uCjMuICoqUmVwZXRpw6fDo28gKEl0ZXJhw6fDo28pOioqIEVzdHJ1dHVyYXMgY29tbyBgZm9yYCBlIGB3aGlsZWAgcGVybWl0ZW0gZXhlY3V0YXIgbyBtZXNtbyBibG9jbyB2w6FyaWFzIHZlemVzLiBPIGBmb3JgIGRvIFB5dGhvbiDDqSBlc3BlY2lhbG1lbnRlIHBvZGVyb3NvLCBwcm9qZXRhZG8gcGFyYSBwZXJjb3JyZXIgaXRlbnMgZGUgdW1hIGNvbGXDp8OjbyBkaXJldGFtZW50ZSwgYW8gaW52w6lzIGRlIGFwZW5hcyBjb250YXIgbsO6bWVyb3MuCgojIyMgQSBBbmF0b21pYSBkYSBMaW5ndWFnZW0gUHl0aG9uCgpQYXJhIGRvbWluYXIgUHl0aG9uLCBwcmVjaXNhbW9zIGRpc3NlY2FyIHN1YXMgY2FtYWRhcywgcXVlIGZ1bmNpb25hbSBjb21vIGFzIHJlZ3JhcyBkZSB1bSBpZGlvbWEgbmF0dXJhbDoKCjEuICoqQWxmYWJldG8gKFPDrW1ib2xvcyk6KioKw4kgbyBjb25qdW50byBkZSBjYXJhY3RlcmVzIGFjZWl0b3MuIFB5dGhvbiAzIHN1cG9ydGEgKipVbmljb2RlKiogbmF0aXZhbWVudGUsIG8gcXVlIHNpZ25pZmljYSBxdWUgZWxlIGVudGVuZGUgY2FyYWN0ZXJlcyBkZSBxdWFzZSB0b2RhcyBhcyBsw61uZ3VhcyBodW1hbmFzIChlIGF0w6kgZW1vamlzKSwgZW1ib3JhIGEgYm9hIHByw6F0aWNhIGRpdGUgcXVlIG9zIGNvbWFuZG9zIGRldmVtIHNlciBlc2NyaXRvcyBlbSBpbmdsw6pzIGUgdXNhbmRvIGNhcmFjdGVyZXMgQVNDSUkgcGFkcsOjby4KMi4gKipWb2NhYnVsw6FyaW8gKFBhbGF2cmFzIFJlc2VydmFkYXMpOioqCsOJIG8gImRpY2lvbsOhcmlvIiByZXN0cml0byBkYSBsaW5ndWFnZW0uIFB5dGhvbiBwb3NzdWkgcG91Y2FzIHBhbGF2cmFzIHJlc2VydmFkYXMgKEtleXdvcmRzKSBwYXJhIG1hbnRlciBhIHNpbXBsaWNpZGFkZS4gRWxhcyB0w6ptIHN1cGVycG9kZXJlcyBlIG7Do28gcG9kZW0gc2VyIG5vbWVzIGRlIHZhcmnDoXZlaXMuCipFeGVtcGxvczoqIGBkZWZgIChkZWZpbmlyIGZ1bsOnw6NvKSwgYE5vbmVgICh2YXppby9udWxvKSwgYGFuZGAsIGBvcmAsIGBpbXBvcnRgLCBgY2xhc3NgLgoqTm90YToqIFB5dGhvbiB1c2EgcGFsYXZyYXMgZW0gaW5nbMOqcyAoYGFuZGAsIGBvcmApIHBhcmEgbMOzZ2ljYSwgYW8gY29udHLDoXJpbyBkZSBzw61tYm9sb3MgKGAmJmAsIGB8fGApIGNvbXVucyBlbSBDIG91IEphdmEsIHJlZm9yw6dhbmRvIGEgbGVnaWJpbGlkYWRlLgozLiAqKlNpbnRheGUgKEdyYW3DoXRpY2EgZSBJbmRlbnRhw6fDo28pOioqClPDo28gYXMgcmVncmFzIHLDrWdpZGFzIGRlIGVzY3JpdGEuIEEgc2ludGF4ZSBkbyBQeXRob24gw6kgZmFtb3NhIHBvciBvYnJpZ2FyIG8gcHJvZ3JhbWFkb3IgYSBvcmdhbml6YXIgbyBjw7NkaWdvLgoqICoqQSBSZWdyYSBkZSBPdXJvOioqIEVtIFB5dGhvbiwgYSBpbmRlbnRhw6fDo28gKG8gcmVjdW8gZGEgbGluaGEpIGZheiBwYXJ0ZSBkYSBzaW50YXhlLiBTZSB2b2PDqiBuw6NvIGFsaW5oYXIgbyBjw7NkaWdvIGNvcnJldGFtZW50ZSwgbyBpbnRlcnByZXRhZG9yIGdlcmFyw6EgdW0gYEluZGVudGF0aW9uRXJyb3JgLiBJc3NvIGdhcmFudGUgcXVlIHRvZG8gY8OzZGlnbyBQeXRob24gc2VqYSB2aXN1YWxtZW50ZSBvcmdhbml6YWRvLgoKCjQuICoqU2Vtw6JudGljYSAoU2lnbmlmaWNhZG8pOioqClJlZmVyZS1zZSDDoCBsw7NnaWNhIHBvciB0csOhcyBkbyBjb21hbmRvLiBVbSBjw7NkaWdvIHBvZGUgbsOjbyB0ZXIgZXJyb3MgZGUgZXNjcml0YSAoc2ludGF4ZSksIG1hcyBmYXplciBhbGdvIHNlbSBzZW50aWRvLg==";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-0').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-markdown" id="md-1"></div>
+            <script>
+                (function(){
+                    const b64 = "RXhlbXBsbyBkZSBlcnJvIGRlIHNpbnRheGU6";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-1').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [8]</div>
+                <pre><code class="language-python"># Vamos explorar na prática os erros de sintaxe em Python.
+# Erros de sintaxe são erros que ocorrem quando o código NÃO ESTÁ de acordo com as regras da linguagem de programação. 
+
+# Imagine que deseja digitar o número 1000000 (um milhão), mas para melhorar a legibilidade do código, você deseja separar os milhares.
+
+# Observação: O comando print() está comentado para evitar a interrupção da execução do código. Para descomentar o comando, basta remover o caractere #.
+
+# print(1.000.000)
+# SyntaxError: invalid syntax. Perhaps you forgot a comma?
+
+# Tradução:
+# Erros de Sintaxe: sintaxe inválida. Talvez você tenha esquecido de uma vírgula?
+
+# O Python se esforça ao máximo para fornecer mensagens de erro claras e úteis. Nesse caso, a mensagem de erro indica que há um problema de sintaxe no código, sugerindo que talvez uma vírgula tenha sido esquecida. Nem sempre a sugestão estará correta, mas é uma tentativa do Python de ajudar o programador a identificar e corrigir o erro.
+
+# Usamos pontos como separador, da forma que um humano faria e o Python gerou um erro de sintaxe, pois dentro das regras de sintaxe da linguagem o ponto é utilizado para representar números decimais. Portanto, o Python não consegue interpretar o número 1.000.000, pois não é um número decimal válido. Isso gerou uma mensagem de erro indicando que a sintaxe do código está incorreta e uma sugestão para corrigir o erro.
+
+# Observação: Nesse exemplo, a mensagem de erro foi gerada, pois um número decimal válido possui apenas um ponto e utilizamos dois pontos. Sendo assim, é de se esperar que se removermos um dos pontos, o código será executado sem apresentar a mensagem de erro, mas o resultado não será o esperado.
+
+# Removendo o primeiro ponto da direita para esquerda:
+print(1.000000) # O resultado será 1.0
+
+# Removendo o segundo ponto da direita para esquerda:
+print(1000.000) # O resultado será 1000.0</code></pre>
+            </div>
+            <div class="cell-output">1.0
+1000.0
+</div>
+            <div class="cell cell-markdown" id="md-3"></div>
+            <script>
+                (function(){
+                    const b64 = "RXhlbXBsbyBkZSBlcnJvIHNlbcOibnRpY286";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-3').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python"># Vamos explorar na prática os erros semânticos em Python.
+
+# Como vimos antes, imagine que deseja digitar o número 1000000 (um milhão), mas para melhorar a legibilidade do código, você deseja separar os milhares.
+
+# Você pode digitar o número da seguinte forma:
+# Obs.: Antes utilizamos pontos para separar os milhares, mas aqui usamos vírgulas para explorar o erro semântico.
+print(1,000,000)
+
+# Ao executar o código, o resultado será 1 0 0 que absolutamente não é o esperado.
+
+# O resultado NÃO é 1,000,000, pois o Python interpreta o número 1,000,000 como três números separados por vírgulas, pois a vírgula é utilizada para separar argumentos em funções. Neste caso, a função print() recebe três argumentos: 1, 000 e 000. O Python exibe os argumentos separados por espaços, pois o separador de argumentos da função print() é um espaço em branco por padrão.
+
+# Note que apesar do erro semântico, o Python não exibe uma mensagem de erro, pois o código é sintaticamente correto. O erro é apenas de lógica e o Python não pode adivinhar a intenção do programador. Portanto, é importante prestar atenção aos detalhes e testar o código para garantir que ele está funcionando corretamente.
+
+# Erros semânticos são erros que ocorrem quando o código ESTÁ de acordo com as regras da linguagem de programação, mas o resultado não é o esperado.</code></pre>
+            </div>
+            <div class="cell-output">100
+</div>
+            <div class="cell cell-markdown" id="md-5"></div>
+            <script>
+                (function(){
+                    const b64 = "U29sdcOnw6NvIHBhcmEgbyBwcm9ibGVtYSBhcHJlc2VudGFkbzo=";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-5').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [13]</div>
+                <pre><code class="language-python"># Este tipo de erro é chamado de erro semântico, pois o código é sintaticamente correto, mas o resultado não é o esperado. Python permite que você utilize a vírgula, mas não a interpreta como um separador de milhares. Para isso, você deve utilizar o caractere underscore (_) para separar os milhares se desejar melhorar a legibilidade do código.
+
+# Veja o exemplo correto:
+print(1_000_000) # O resultado será 1000000</code></pre>
+            </div>
+            <div class="cell-output">1000000
+</div>
+            <div class="cell cell-markdown" id="md-7"></div>
+            <script>
+                (function(){
+                    const b64 = "IyMgQXByZXNlbnRhbmRvIG8gUHl0aG9uCgotLS0KClBhcmEgZW50ZW5kZXIgbyBQeXRob24sIHByZWNpc2Ftb3MgcHJpbWVpcm8gZW50ZW5kZXIgY29tbyBjb21wdXRhZG9yZXMgInBlbnNhbSIuIEEgKipMaW5ndWFnZW0gZGUgTcOhcXVpbmEqKiDDqSBvIGlkaW9tYSBuYXRpdm8gZG8gcHJvY2Vzc2Fkb3IuIEVsYSDDqSBjb21wb3N0YSBleGNsdXNpdmFtZW50ZSBwb3IgaW5zdHJ1w6fDtWVzIGJpbsOhcmlhcyAoc2VxdcOqbmNpYXMgZGUgYDBgcyBlIGAxYHMpIHF1ZSBjb250cm9sYW0gZGlyZXRhbWVudGUgbyBoYXJkd2FyZS4gRW1ib3JhIGVmaWNpZW50ZSBwYXJhIGEgbcOhcXVpbmEsIGVsYSDDqSBpbnZpw6F2ZWwgcGFyYSBodW1hbm9zOiBpbWFnaW5lIHRlciBxdWUgZGlnaXRhciBtaWxoYXJlcyBkZSB6ZXJvcyBlIHVucyBhcGVuYXMgcGFyYSBlc2NyZXZlciB1bWEgZnJhc2UgbmEgdGVsYS4KClBhcmEgcmVzb2x2ZXIgaXNzbywgbmFzY2VyYW0gYXMgKipMaW5ndWFnZW5zIGRlIEFsdG8gTsOtdmVsKiouIEVsYXMgZnVuY2lvbmFtIGNvbW8gdW1hIHBvbnRlOiBwZXJtaXRlbSBxdWUgZXNjcmV2YW1vcyBjb21hbmRvcyB1c2FuZG8gcGFsYXZyYXMgcHLDs3hpbWFzIMOgIGxpbmd1YWdlbSBodW1hbmEgKGdlcmFsbWVudGUgaW5nbMOqcyksIHF1ZSBzw6NvIHBvc3Rlcmlvcm1lbnRlIHRyYWR1emlkYXMgcGFyYSBhIGxpbmd1YWdlbSBkZSBtw6FxdWluYS4KCkVzc2EgdHJhZHXDp8OjbyBvY29ycmUgZGUgZHVhcyBmb3JtYXMgcHJpbmNpcGFpczoKCjEuICoqQ29tcGlsYcOnw6NvKio6IE8gY8OzZGlnbyBpbnRlaXJvIMOpIHRyYWR1emlkbyBkZSB1bWEgc8OzIHZleiBhbnRlcyBkZSBzZXIgZXhlY3V0YWRvIChFeDogQywgQysrKS4KMi4gKipJbnRlcnByZXRhw6fDo28qKjogTyBjw7NkaWdvIMOpIHRyYWR1emlkbyBlIGV4ZWN1dGFkbyBsaW5oYSBwb3IgbGluaGEsIGVtIHRlbXBvIHJlYWwuCgoqKmBQeXRob25gKiogw6kgdW1hIGxpbmd1YWdlbSBkZSBhbHRvIG7DrXZlbCwgKippbnRlcnByZXRhZGEqKiBlIGRlIHByb3DDs3NpdG8gZ2VyYWwuIElzc28gc2lnbmlmaWNhIHF1ZSB2b2PDqiBlc2NyZXZlIG8gY8OzZGlnbyBlIHVtIHByb2dyYW1hIGNoYW1hZG8gKkludGVycHJldGFkb3IgUHl0aG9uKiBsw6ogZSBleGVjdXRhIHN1YXMgaW5zdHJ1w6fDtWVzIGluc3RhbnRhbmVhbWVudGUsIHNlbSBuZWNlc3NpZGFkZSBkZSB1bWEgY29tcGlsYcOnw6NvIGNvbXBsZXhhIHByw6l2aWEuCgpDcmlhZGEgcGVsbyBtYXRlbcOhdGljbyBob2xhbmTDqnMgR3VpZG8gdmFuIFJvc3N1bSBlbSAxOTkxLCBvIFB5dGhvbiBmb2kgZGVzZW52b2x2aWRvIGNvbSB1bWEgZmlsb3NvZmlhIMO6bmljYTogKiphIGxlZ2liaWxpZGFkZSBkbyBjw7NkaWdvIMOpIHN1cHJlbWEqKi4KCiMjIyBQb3IgcXVlIFB5dGhvbiDDqSB0w6NvIHBvcHVsYXI/CgpQeXRob24gZG9taW5vdSBvIG1lcmNhZG8g4oCUIGRvIGRlc2Vudm9sdmltZW50byB3ZWIgw6AgQ2nDqm5jaWEgZGUgRGFkb3MgZSBJbnRlbGlnw6puY2lhIEFydGlmaWNpYWwg4oCUIHBvciByYXrDtWVzIGVzdHJhdMOpZ2ljYXM6CgoqICoqU2ludGF4ZSBMaW1wYSAoRW5nbGlzaC1saWtlKSoqOiBMZXIgUHl0aG9uIMOpIHF1YXNlIGNvbW8gbGVyIGluc3RydcOnw7VlcyBlbSBpbmdsw6pzLiBJc3NvIHJlZHV6IGEgY3VydmEgZGUgYXByZW5kaXphZG8gZSBwZXJtaXRlIGZvY2FyIG5hIGzDs2dpY2EsIG7Do28gbmEgcmVncmEgZ3JhbWF0aWNhbCBkYSBsaW5ndWFnZW0uCiogKipCYXR0ZXJpZXMgSW5jbHVkZWQgKEJhdGVyaWFzIEluY2x1c2FzKSoqOiBPIFB5dGhvbiB2ZW0gY29tIHVtYSBiaWJsaW90ZWNhIHBhZHLDo28gZ2lnYW50ZXNjYS4gVm9jw6ogbsOjbyBwcmVjaXNhIGVzY3JldmVyIGPDs2RpZ28gZG8gemVybyBwYXJhIGJhaXhhciB1bWEgcMOhZ2luYSB3ZWIsIGxlciB1bSBlLW1haWwgb3UgbWFuaXB1bGFyIGFycXVpdm9zOyBvIFB5dGhvbiBqw6EgdHJheiBmZXJyYW1lbnRhcyBwcm9udGFzIHBhcmEgaXNzby4KKiAqKlByb2R1dGl2aWRhZGUgdnMuIFBlcmZvcm1hbmNlKio6IMOJIGltcG9ydGFudGUgY29ycmlnaXIgdW0gbWl0byBjb211bS4gTyBQeXRob24gKm7Do28qIHRlbSB1bWEgZXhlY3XDp8OjbyBtYWlzIHLDoXBpZGEgcXVlIGxpbmd1YWdlbnMgY29tcGlsYWRhcyBjb21vIEMgb3UgSmF2YSAoZGV2aWRvIMOgIG5hdHVyZXphIGRhIGludGVycHJldGHDp8OjbykuIE5vIGVudGFudG8sIGVsZSBvZmVyZWNlICoqdmVsb2NpZGFkZSBkZSBkZXNlbnZvbHZpbWVudG8qKi4gTyBxdWUgdW0gcHJvZ3JhbWFkb3IgbGV2YSBob3JhcyBwYXJhIGZhemVyIGVtIEMrKywgZmF6IGVtIG1pbnV0b3MgZW0gUHl0aG9uLiBObyBtdW5kbyBhdHVhbCwgbyB0ZW1wbyBkbyBwcm9ncmFtYWRvciDDqSBmcmVxdWVudGVtZW50ZSBtYWlzIHZhbGlvc28gcXVlIG8gdGVtcG8gZGUgcHJvY2Vzc2FtZW50byBkYSBtw6FxdWluYS4KKiAqKk11bHRpcGFyYWRpZ21hKio6IE8gUHl0aG9uIMOpIGZsZXjDrXZlbC4gVm9jw6ogcG9kZSBwcm9ncmFtYXIgZGUgZm9ybWEgKipQcm9jZWR1cmFsKiogKHBhc3NvIGEgcGFzc28pLCAqKk9yaWVudGFkYSBhIE9iamV0b3MqKiAobW9kZWxhbmRvIG8gbXVuZG8gcmVhbCkgb3UgKipGdW5jaW9uYWwqKi4KCj4gKipOb3RhIHNvYnJlIFZlcnPDtWVzKio6IEEgdmVyc8OjbyBhdHVhbCBlIHJlY29tZW5kYWRhIMOpIG8gKipQeXRob24gMyoqLiBPIGFudGlnbyBQeXRob24gMiBmb2kgZGVzY29udGludWFkbyBlbSAyMDIwIGUgbsOjbyByZWNlYmUgbWFpcyBhdHVhbGl6YcOnw7VlcyBkZSBzZWd1cmFuw6dhLiBDb21vIGluaWNpYW50ZSwgKipmb3F1ZSBleGNsdXNpdmFtZW50ZSBubyBQeXRob24gMyoqLgoKIyMjIEEgUmVncmEgZGUgT3VybzogSW5kZW50YcOnw6NvCgpBIGNhcmFjdGVyw61zdGljYSBtYWlzIGZhbW9zYSAoZSBwb2zDqm1pY2EpIGRvIFB5dGhvbiDDqSBvIHVzbyBkZSAqKmVzcGHDp29zIGVtIGJyYW5jbyoqIChpbmRlbnRhw6fDo28pIHBhcmEgZGVmaW5pciBibG9jb3MgZGUgY8OzZGlnby4KCiogRW0gbGluZ3VhZ2VucyBjb21vIEphdmEgb3UgQywgdXNhLXNlIGNoYXZlcyBgeyB9YCBwYXJhIGRpemVyIG8gcXVlIGVzdMOhIGRlbnRybyBkZSB1bWEgZnVuw6fDo28gb3UgZGUgdW0gbG9vcC4KKiBFbSBQeXRob24sIHVzYS1zZSBvICoqcmVjdW8gZGEgbGluaGEqKi4KCklzc28gbsOjbyDDqSBhcGVuYXMgZXN0w6l0aWNvOyDDqSB1bWEgcmVncmEgZGUgc2ludGF4ZS4gU2Ugdm9jw6ogbsOjbyBhbGluaGFyIG8gY8OzZGlnbyBjb3JyZXRhbWVudGUsIG8gUHl0aG9uIGdlcmFyw6EgdW0gZXJybyAoYEluZGVudGF0aW9uRXJyb3JgKS4gSXNzbyBmb3LDp2EsIGRlc2RlIG8gcHJpbWVpcm8gZGlhLCBxdWUgbyBwcm9ncmFtYWRvciBlc2NyZXZhIHVtIGPDs2RpZ28gdmlzdWFsbWVudGUgb3JnYW5pemFkby4KCiMjIyBWZXJpZmljYcOnw6NvIGUgSW5zdGFsYcOnw6NvCgpNdWl0b3Mgc2lzdGVtYXMgb3BlcmFjaW9uYWlzIChMaW51eCBlIG1hY09TKSBqw6EgdHJhemVtIG8gUHl0aG9uIGluc3RhbGFkby4gUGFyYSB2ZXJpZmljYXI6CgoxLiBBYnJhIG8gc2V1IHRlcm1pbmFsIChvdSBQcm9tcHQgZGUgQ29tYW5kbyBubyBXaW5kb3dzKS4KMi4gRGlnaXRlIG8gY29tYW5kbyBhYmFpeG8gZSBhcGVydGUgRW50ZXI6CmBgYGJhc2gKcHl0aG9uIC0tdmVyc2lvbgoKYGBgCgoKKkRpY2E6KiBFbSBhbGd1bnMgc2lzdGVtYXMgKGVzcGVjaWFsbWVudGUgTWFjIGUgTGludXgpLCBwb2RlIHNlciBuZWNlc3PDoXJpbyBkaWdpdGFyIGBweXRob24zIC0tdmVyc2lvbmAgcGFyYSBnYXJhbnRpciBxdWUgdm9jw6ogZXN0w6EgYWNlc3NhbmRvIGEgdmVyc8OjbyAzLCBlIG7Do28gdW1hIHZlcnPDo28gYW50aWdhIGRvIHNpc3RlbWEuCgpTZSBuw6NvIGVzdGl2ZXIgaW5zdGFsYWRvIG91IGEgdmVyc8OjbyBmb3IgYW50aWdhLCBiYWl4ZSBncmF0dWl0YW1lbnRlIGVtIFtweXRob24ub3JnXShodHRwczovL3d3dy5weXRob24ub3JnKS4gQW8gaW5zdGFsYXIgbm8gV2luZG93cywgbGVtYnJlLXNlIGRlIG1hcmNhciBhIG9ww6fDo286ICoqIkFkZCBQeXRob24gdG8gUEFUSCIqKi4KCiMjIyBTZXUgUHJpbWVpcm8gUHJvZ3JhbWE6IEhlbGxvIFdvcmxkCgpWYW1vcyBzZWd1aXIgYSB0cmFkacOnw6NvIGRvcyBwcm9ncmFtYWRvcmVzLiBQYXJhIGNyaWFyIHNldSBwcmltZWlybyBzY3JpcHQ6CgoxLiBDcmllIHVtIGFycXVpdm8gZGUgdGV4dG8gc2ltcGxlcyBlIHNhbHZlLW8gY29tIG8gbm9tZSBgaGVsbG93b3JsZC5weWAuIEEgZXh0ZW5zw6NvIGAucHlgIGRpeiBhbyBzaXN0ZW1hIHF1ZSBhcXVpbG8gw6kgdW0gc2NyaXB0IFB5dGhvbi4KMi4gRXNjcmV2YSBvIHNlZ3VpbnRlIGPDs2RpZ28gZGVudHJvIGRlbGU6CgpgYGBweXRob24KcHJpbnQoIkhlbGxvLCBXb3JsZCEiKQoKYGBgCgoqKk8gcXVlIGVzdMOhIGFjb250ZWNlbmRvIGFxdWk/KioKCiogYHByaW50YDogw4kgdW1hIGZ1bsOnw6NvIGVtYnV0aWRhIChidWlsdC1pbikgcXVlIGRpeiBhbyBQeXRob246ICJNb3N0cmUgYWxnbyBuYSBzYcOtZGEgcGFkcsOjbyAodGVsYSkiLgoqIGAoLi4uKWA6IE9zIHBhcsOqbnRlc2VzIHPDo28gb2JyaWdhdMOzcmlvcyBubyBQeXRob24gMyBwYXJhIGV4ZWN1dGFyIHVtYSBmdW7Dp8Ojby4KKiBgIi4uLiJgOiBBcyBhc3BhcyBpbmRpY2FtIHF1ZSBvIHRleHRvIGRlbnRybyBkZWxhcyDDqSB1bWEgKipTdHJpbmcqKiAodW1hIGNhZGVpYSBkZSBjYXJhY3RlcmVzIGRlIHRleHRvKSwgZSBuw6NvIHVtIGNvbWFuZG8uCgozLiBQYXJhIGV4ZWN1dGFyLCBhYnJhIG8gdGVybWluYWwgbmEgcGFzdGEgb25kZSB2b2PDqiBzYWx2b3UgbyBhcnF1aXZvIGUgZGlnaXRlOgoKYGBgYmFzaApweXRob24gaGVsbG93b3JsZC5weQoKYGBgCgoqKE91IGBweXRob24zIGhlbGxvd29ybGQucHlgIGRlcGVuZGVuZG8gZG8gc2V1IHNpc3RlbWEpKgoKU2UgYSBtZW5zYWdlbSBgSGVsbG8sIFdvcmxkIWAgYXBhcmVjZXIgbmEgdGVsYSwgcGFyYWLDqW5zISBWb2PDqiBhY2FiYSBkZSBjb25maWd1cmFyIHNldSBhbWJpZW50ZSBlIGV4ZWN1dGFyIHNldSBwcmltZWlybyBhbGdvcml0bW8u";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-7').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [14]</div>
+                <pre><code class="language-python">print(&quot;Hello, World!&quot;)</code></pre>
+            </div>
+            <div class="cell-output">Hello, World!
+</div>
+            <div class="cell cell-markdown" id="md-9"></div>
+            <script>
+                (function(){
+                    const b64 = "IyMgQSBFc3RydXR1cmEgRnVuZGFtZW50YWwgZG8gQ8OzZGlnbyBQeXRob24KCi0tLQoKQSBlc3RydXR1cmEgZGUgdW0gY8OzZGlnbyBQeXRob24gbsOjbyDDqSBhcGVuYXMgdW1hIHF1ZXN0w6NvIGRlIGVzdMOpdGljYTsgw6kgYSBlc3BpbmhhIGRvcnNhbCBkZSBjb21vIGEgbGluZ3VhZ2VtICJwZW5zYSIgZSBmdW5jaW9uYS4gRGlmZXJlbnRlIGRlIG91dHJhcyBsaW5ndWFnZW5zIG9uZGUgYSBvcmdhbml6YcOnw6NvIHZpc3VhbCDDqSBvcGNpb25hbCwgZW0gUHl0aG9uLCBhIGZvcm1hIGRldGVybWluYSBhIGZ1bsOnw6NvLiBVbSBjw7NkaWdvIGJlbSBlc3RydXR1cmFkbyBnYXJhbnRlIHF1ZSBvIGludGVycHJldGFkb3IgZW50ZW5kYSBvbmRlIGNvbWXDp2EgZSB0ZXJtaW5hIGNhZGEgY29tYW5kbywgYWzDqW0gZGUgdG9ybmFyIGEgbGVpdHVyYSBhZ3JhZMOhdmVsIHBhcmEgaHVtYW5vcyAoc2VndWluZG8gbyBwcmluY8OtcGlvIGRlICpsZWdpYmlsaWRhZGUqIHF1ZSBkaXNjdXRpbW9zIGFudGVzKS4KClZhbW9zIGRpc3NlY2FyIGEgYW5hdG9taWEgZGUgdW0gc2NyaXB0IFB5dGhvbjoKCiMjIyAxLiBJbmRlbnRhw6fDo286IEEgUmVncmEgZGUgT3VybwoKRW0gbXVpdGFzIGxpbmd1YWdlbnMgKGNvbW8gSmF2YSBvdSBDKyspLCBvIGNvbXB1dGFkb3IgaWdub3JhIGVzcGHDp29zIGVtIGJyYW5jby4gRW0gUHl0aG9uLCAqKm8gZXNwYcOnbyBlbSBicmFuY28gw6kgc2ludGF4ZSoqLgoKQSAqKkluZGVudGHDp8OjbyoqIChvIHJlY3VvIGRvIGPDs2RpZ28gw6AgZGlyZWl0YSkgw6kgdXNhZGEgcGFyYSBkZWZpbmlyIG8gKiplc2NvcG8qKiBvdSBibG9jb3MgZGUgY8OzZGlnby4gUGVuc2Ugbm8gZXNjb3BvIGNvbW8gdW1hIGhpZXJhcnF1aWE6IG8gcXVlIGVzdMOhIGluZGVudGFkbyAicGVydGVuY2UiIMOgIGxpbmhhIGRlIGNvbWFuZG8gYWNpbWEgZGVsZS4KCiogKipSZWdyYSBQcsOhdGljYToqKiBPIHBhZHLDo28gb2ZpY2lhbCAoUEVQIDgpIHJlY29tZW5kYSB1c2FyICoqNCBlc3Bhw6dvcyoqIHBhcmEgY2FkYSBuw612ZWwgZGUgaW5kZW50YcOnw6NvLgoqICoqUG9yIHF1ZSBpbXBvcnRhPyoqIFNlbSBjaGF2ZXMgYHt9YCBwYXJhIGZlY2hhciBibG9jb3MsIGEgaW5kZW50YcOnw6NvIGRpeiBhbyBQeXRob24gZXhhdGFtZW50ZSBvIHF1ZSBlc3TDoSBkZW50cm8gZGUgdW0gYGlmYCwgZGUgdW0gbG9vcCBvdSBkZSB1bWEgZnVuw6fDo28uCgojIyMgMi4gRmx1eG8gZGUgRXhlY3XDp8OjbyBTZXF1ZW5jaWFsCgpPIGludGVycHJldGFkb3IgUHl0aG9uIGzDqiBvIHNldSBhcnF1aXZvIGNvbW8gbsOzcyBsZW1vcyB1bSBsaXZybzogKipkZSBjaW1hIHBhcmEgYmFpeG8sIGRhIGVzcXVlcmRhIHBhcmEgYSBkaXJlaXRhKiouCklzc28gc2lnbmlmaWNhIHF1ZSB2b2PDqiBuw6NvIHBvZGUgcGVkaXIgcGFyYSBvIGNvbXB1dGFkb3IgdXNhciB1bWEgZmVycmFtZW50YSBxdWUgdm9jw6ogYWluZGEgbsOjbyBlbnRyZWdvdSBhIGVsZS4KCiogKipWYXJpw6F2ZWlzOioqIERldmVtIHNlciBjcmlhZGFzIChkZWNsYXJhZGFzKSBhbnRlcyBkZSBzZXJlbSB1c2FkYXMuCiogKipGdW7Dp8O1ZXM6KiogRGV2ZW0gc2VyIGRlZmluaWRhcyBhbnRlcyBkZSBzZXJlbSBjaGFtYWRhcy4gU2Ugdm9jw6ogdGVudGFyIGNoYW1hciBhIGZ1bsOnw6NvIGBjYWxjdWxhcl9tZWRpYSgpYCBuYSBsaW5oYSAxLCBtYXMgc8OzIGVuc2luYXIgbyBQeXRob24gY29tbyBlbGEgZnVuY2lvbmEgbmEgbGluaGEgMTAsIG9jb3JyZXLDoSB1bSBlcnJvIChgTmFtZUVycm9yYCkuCgojIyMgMy4gQ29tZW50w6FyaW9zOiBBIE5vdGEgcGFyYSBvIEZ1dHVybwoKTyBjb21wdXRhZG9yIGlnbm9yYSB0dWRvIHF1ZSB2ZW0gZGVwb2lzIGRlIHVtYSBoYXNodGFnIGAjYCBuYSBtZXNtYSBsaW5oYS4gT3MgY29tZW50w6FyaW9zIHNlcnZlbSBwYXJhIHZvY8OqIChlIHNldSB0aW1lKS4KCiogKipEaWNhIGRlIE91cm86KiogRXZpdGUgY29tZW50YXIgbyDDs2J2aW8uCiogKlJ1aW06KiBgIyBBdHJpYnVpIDEwIGEgeGAgKE8gY8OzZGlnbyBqw6EgZGl6IGlzc28pLgoqICpCb206KiBgIyBEZWZpbmUgbGltaXRlIGRlIDEwIHRlbnRhdGl2YXMgcGFyYSBldml0YXIgc29icmVjYXJnYSBubyBzZXJ2aWRvcmAgKEV4cGxpY2EgbyAqKnBvcnF1w6oqKikuCgoKCiMjIyA0LiBJbnN0cnXDp8O1ZXMgKFN0YXRlbWVudHMpIHZzLiBFeHByZXNzw7VlcwoKRXNzYSBkaXN0aW7Dp8OjbyDDqSBzdXRpbCwgbWFzIGltcG9ydGFudGUgcGFyYSBlbnRlbmRlciBjb21vIG8gUHl0aG9uIHByb2Nlc3NhIGRhZG9zLgoKKiAqKkluc3RydcOnw7VlcyAoU3RhdGVtZW50cyk6KiogU8OjbyBjb21hbmRvcyBxdWUgKipyZWFsaXphbSB1bWEgYcOnw6NvKiouIEVsYXMgbXVkYW0gbyBlc3RhZG8gZG8gcHJvZ3JhbWEsIG1hcyBuw6NvIG5lY2Vzc2FyaWFtZW50ZSAicmV0b3JuYW0iIHVtIHZhbG9yIHZpc3VhbGl6w6F2ZWwuCiogKkV4ZW1wbG9zOiogYHggPSAxMGAgKGF0cmlidWnDp8OjbyksIGBpZiB4ID4gNTpgIChjb250cm9sZSksIGBpbXBvcnQgbWF0aGAuCgoKKiAqKkV4cHJlc3PDtWVzOioqIFPDo28gcGVkYcOnb3MgZGUgY8OzZGlnbyBxdWUgKipwcm9kdXplbSB1bSB2YWxvcioqLiBPIFB5dGhvbiBhdmFsaWEgYSBleHByZXNzw6NvIGUgYSBzdWJzdGl0dWkgcGVsbyByZXN1bHRhZG8uCiogKkV4ZW1wbG9zOiogYDEwICsgNWAgKHZpcmEgMTUpLCBgeCAqIDJgLgoqICpSZXN1bW86KiBTZSB2b2PDqiBwb2RlIGltcHJpbWlyIG8gcmVzdWx0YWRvIGNvbSB1bSBgcHJpbnQoKWAsIGdlcmFsbWVudGUgw6kgdW1hIGV4cHJlc3PDo28uCgoKCiMjIyA1LiBJbXBvcnRhw6fDo28gZGUgTcOzZHVsb3MgKEJhdHRlcmllcyBJbmNsdWRlZCkKClB5dGhvbiDDqSBmYW1vc28gcG9yIHZpciBjb20gImJhdGVyaWFzIGluY2x1c2FzIi4gSXNzbyBzaWduaWZpY2EgcXVlIHBhcmEgcXVhc2UgcXVhbHF1ZXIgdGFyZWZhIGNvbXVtIChtYXRlbcOhdGljYSBjb21wbGV4YSwgZ2VyYXIgbsO6bWVyb3MgYWxlYXTDs3Jpb3MsIGFjZXNzYXIgYSBpbnRlcm5ldCksIGrDoSBleGlzdGUgdW0gY8OzZGlnbyBwcm9udG8gZSBvdGltaXphZG8uCgoqIFVzYW1vcyBgaW1wb3J0YCBwYXJhIGNhcnJlZ2FyIGVzc2FzIGZlcnJhbWVudGFzIG5vIGluw61jaW8gZG8gYXJxdWl2by4KKiAqRXhlbXBsbzoqIGBpbXBvcnQgcmFuZG9tYCBjYXJyZWdhIGEgYmlibGlvdGVjYSBwYXJhIGdlcmFyIG7Dum1lcm9zIGFsZWF0w7NyaW9zLiBJc3NvIGV2aXRhIHF1ZSB2b2PDqiB0ZW5oYSBxdWUgY3JpYXIgYSBsw7NnaWNhIG1hdGVtw6F0aWNhIGRlIGFsZWF0b3JpZWRhZGUgZG8gemVyby4KCiMjIyA2LiBNb2R1bGFyaXphw6fDo286IEZ1bsOnw7VlcyBlIENsYXNzZXMKCkNvbmZvcm1lIHNldSBjw7NkaWdvIGNyZXNjZSwgZXNjcmV2ZXIgdHVkbyBlbSB1bSAibGluZ3Vpw6fDo28iIMO6bmljbyB0b3JuYS1zZSBpbnZpw6F2ZWwuCgoqICoqRnVuw6fDtWVzIChgZGVmYCk6KiogU2VndWVtIG8gcHJpbmPDrXBpbyAqKkRSWSAoRG9uJ3QgUmVwZWF0IFlvdXJzZWxmKSoqLiBTZSB2b2PDqiB0ZW0gdW0gYmxvY28gZGUgY8OzZGlnbyBxdWUgcmVwZXRlIHbDoXJpYXMgdmV6ZXMsIHRyYW5zZm9ybWUtbyBlbSB1bWEgZnVuw6fDo28uIMOJIGNvbW8gY3JpYXIgdW0gIm1pbmktcHJvZ3JhbWEiIGRlbnRybyBkbyBzZXUgY8OzZGlnbyBxdWUgcmVhbGl6YSB1bWEgdGFyZWZhIGVzcGVjw61maWNhLgoqICoqQ2xhc3NlczoqKiBTw6NvIGEgYmFzZSBkYSBQcm9ncmFtYcOnw6NvIE9yaWVudGFkYSBhIE9iamV0b3MgKFBPTykuIEVsYXMgcGVybWl0ZW0gY3JpYXIgZXN0cnV0dXJhcyBxdWUgdW5lbSAqKmRhZG9zKiogKGluZm9ybWHDp8O1ZXMpIGUgKipjb21wb3J0YW1lbnRvcyoqIChmdW7Dp8O1ZXMpIGVtIHVtIMO6bmljbyBsdWdhci4gKFZlcmVtb3MgaXNzbyBtYWlzIGEgZnVuZG8gZnV0dXJhbWVudGUsIG1hcyBzYWliYSBxdWUgZW0gUHl0aG9uLCAqdHVkbyogw6kgdW0gb2JqZXRvKS4=";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-9').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            </div><script>hljs.highlightAll();</script>
+    </main>
+</body>
+</html>

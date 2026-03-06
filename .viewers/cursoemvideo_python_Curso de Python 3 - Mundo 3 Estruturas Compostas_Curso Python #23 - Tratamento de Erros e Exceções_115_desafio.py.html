@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>115_desafio.py</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="https://pyscript.net/releases/2024.1.1/core.css">
+    <script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>
+    <style>
+        .sandbox-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
+        .sandbox-header h2 { font-size: 1.2rem; color: var(--primary); display: flex; align-items: center; gap: 0.5rem; }
+        .py-repl-container { border-radius: 8px; overflow: hidden; border: 1px solid var(--glass-border); background: #1e293b; }
+    </style>
+    
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --glass-bg: rgba(30, 41, 59, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --primary: #38bdf8;
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        header {
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            border-bottom: 1px solid var(--glass-border);
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .back-btn {
+            color: var(--text-main);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            background: rgba(255,255,255,0.05);
+            transition: 0.3s;
+        }
+        .back-btn:hover {
+            background: rgba(56, 189, 248, 0.2);
+            color: var(--primary);
+        }
+        .file-title {
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+        main {
+            flex: 1;
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        .container {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="../index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Voltar</a>
+        <div class="file-title">115_desafio.py</div>
+    </header>
+    <main>
+        
+    <div class="container">
+        <div class="sandbox-header">
+            <h2><i class="fa-brands fa-python"></i> Sandbox PyScript</h2>
+            <span>Edite e execute (Shift + Enter) ou no botão verde ▶</span>
+        </div>
+        <div class="py-repl-container">
+            <script type="py" id="main-script"></script>
+            <py-repl auto-generate="true">
+# Exercício Python #115a - Criando um menu em Python
+# ___________________________________
+#         MENU PRINCIPAL
+# ___________________________________
+# 1 - Ver pessoas cadastradas
+# 2 - Cadastrar pessoas
+# 3 - Sair do sistema
+# ___________________________________
+# Escolha a opção desejada:
+
+# Se for um tipo diferente mostra uma mensagem de erro e pergunta novamente
+# Se for um número fora do intervalo mostra o menu e pergunta novamente
+
+# Se escolher uma opção correta mostra
+
+# ___________________________________
+#         OPÇÃO ESCOLHIDA
+# ___________________________________
+import json
+
+
+def ver_pessoas_cadastradas():
+    try:  # Tenta abrir o arquivo
+        with open(&quot;pessoas.txt&quot;, &quot;r&quot;) as arquivo:  # Abre o arquivo
+            pessoas = arquivo.readlines()  # Lê o arquivo
+
+        if not pessoas:  # Se não tiver nenhuma pessoa cadastrada
+            print(&quot;Nenhuma pessoa cadastrada ainda.&quot;)  # Mostra essa mensagem
+        else:  # Se tiver pessoas cadastradas
+            print(&#x27;--------------------------------------&#x27;)
+            print(&quot;Pessoas cadastradas:&quot;)  # Mostra essa mensagem
+            for pessoa_json in pessoas:  # Para cada pessoa no arquivo
+                pessoa = json.loads(pessoa_json)  # Carrega a pessoa
+                print(f&quot;{&#x27;Nome:&#x27;:&lt;6}{pessoa[&#x27;nome&#x27;]:^15}{&#x27;Idade:&#x27;:&lt;10}{pessoa[&#x27;idade&#x27;]:^10}&quot;)  # Mostra o nome e a idade da pessoa
+            print(&#x27;--------------------------------------&#x27;)
+    except FileNotFoundError:  # Se o arquivo não existir
+        print(&quot;Nenhuma pessoa cadastrada ainda.&quot;)  # Mostra essa mensagem
+
+
+def menu():  # Função para mostrar o menu
+    try:  # Tenta converter o input para inteiro
+        escolha_user = int(input(&#x27;Digite o número da opção desejada: &#x27;))  # Pergunta a opção desejada
+        return escolha_user  # Retorna a opção desejada
+    except ValueError:  # Se não for possível converter para inteiro
+        print(&#x27;\033[1;31mErro! Digite um número inteiro válido!\033[m&#x27;)  # Mostra essa mensagem
+    return None  # Retorna None para mostrar o menu novamente
+
+
+def cadastrar_pessoa():   # Função para cadastrar uma pessoa
+    print(&#x27;--------------------------------------&#x27;)
+    nome = input(&quot;Digite o nome da pessoa: &quot;).strip().title()  # Pergunta o nome da pessoa
+    idade = int(input(&quot;Digite a idade da pessoa: &quot;))     # Pergunta a idade da pessoa
+    pessoa = {&quot;nome&quot;: nome, &quot;idade&quot;: idade}   # Cria um dicionário com o nome e a idade da pessoa
+    salvar_pessoa(pessoa)   # Chama a função para salvar a pessoa
+    print(&#x27;--------------------------------------&#x27;)
+
+
+def salvar_pessoa(pessoa):   # Função para salvar a pessoa
+    with open(&quot;pessoas.txt&quot;, &quot;a&quot;) as arquivo:   # Abre o arquivo
+        arquivo.write(json.dumps(pessoa) + &quot;\n&quot;)     # Escreve a pessoa no arquivo
+    print(&quot;&quot;&quot;--------------------------------------
+\033[1;32mPessoa cadastrada com sucesso!\033[m
+--------------------------------------&quot;&quot;&quot;)  # Mostra essa mensagem
+
+
+def escolha():   # Função para mostrar o menu e perguntar a opção desejada
+    while True:  # Enquanto for verdade
+        titulo(&#x27;SISTEMA DE GESTÃO DE PESSOAS&#x27;)   # Mostra o título
+        print(&quot;&quot;&quot;--------------------------------------
+# 1 - Ver pessoas cadastradas  
+# 2 - Cadastrar pessoas
+# 3 - Sair do sistema
+--------------------------------------&quot;&quot;&quot;)
+
+        num_escolhido = menu()  # Chama a função para mostrar o menu e perguntar a opção desejada
+
+        if num_escolhido is not None:  # Se a opção for válida
+            if num_escolhido == 1:  # Se a opção for 1
+                ver_pessoas_cadastradas()  # Chama a função para ver as pessoas cadastradas
+            elif num_escolhido == 2:  # Se a opção for 2
+                cadastrar_pessoa()   # Chama a função para cadastrar uma pessoa
+            elif num_escolhido == 3:     # Se a opção for 3
+                titulo(&#x27;SAIR DO SISTEMA&#x27;)    # Mostra o título
+                print(&#x27;Saindo do sistema... Obrigado por utilizar!&#x27;)     # Mostra essa mensagem
+                break    # Para o loop
+            else:    # Se a opção não for 1, 2 ou 3
+                print(f&#x27;Selecione uma das opções do menu acima. {num_escolhido} não é válido!&#x27;)  # Mostra essa mensagem
+
+
+def titulo(frase):   # Função para mostrar o título
+    print(f&#x27;-&#x27; * (len(frase) + 10))  # Mostra o traço
+    print(f&#x27;\033[1;32m{frase:^35}\033[m&#x27;)    # Mostra o título
+    print(f&#x27;-&#x27; * (len(frase) + 10))  # Mostra o traço
+
+
+escolha()  # Chama a função para mostrar o menu e perguntar a opção desejada
+            </py-repl>
+        </div>
+    </div>
+    
+    </main>
+</body>
+</html>

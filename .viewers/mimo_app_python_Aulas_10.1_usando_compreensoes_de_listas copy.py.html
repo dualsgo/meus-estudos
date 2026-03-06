@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>10.1_usando_compreensoes_de_listas copy.py</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="https://pyscript.net/releases/2024.1.1/core.css">
+    <script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>
+    <style>
+        .sandbox-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
+        .sandbox-header h2 { font-size: 1.2rem; color: var(--primary); display: flex; align-items: center; gap: 0.5rem; }
+        .py-repl-container { border-radius: 8px; overflow: hidden; border: 1px solid var(--glass-border); background: #1e293b; }
+    </style>
+    
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --glass-bg: rgba(30, 41, 59, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --primary: #38bdf8;
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        header {
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            border-bottom: 1px solid var(--glass-border);
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .back-btn {
+            color: var(--text-main);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            background: rgba(255,255,255,0.05);
+            transition: 0.3s;
+        }
+        .back-btn:hover {
+            background: rgba(56, 189, 248, 0.2);
+            color: var(--primary);
+        }
+        .file-title {
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+        main {
+            flex: 1;
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        .container {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="../index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Voltar</a>
+        <div class="file-title">10.1_usando_compreensoes_de_listas copy.py</div>
+    </header>
+    <main>
+        
+    <div class="container">
+        <div class="sandbox-header">
+            <h2><i class="fa-brands fa-python"></i> Sandbox PyScript</h2>
+            <span>Edite e execute (Shift + Enter) ou no botão verde ▶</span>
+        </div>
+        <div class="py-repl-container">
+            <script type="py" id="main-script"></script>
+            <py-repl auto-generate="true">
+# MIMO - 10 - Compreeensões de listas
+# 10.1 - Usando compreensões de listas
+
+# Para criar uma lista como halved com base em outra como prices, precisamos primeiro criar uma lista vazia e, em seguida preenchê-la dentro de um loop
+
+prices = [10, 38, 40, 58, 62]
+halved = []
+# Para cada preço na lista de preços, dividimos o preço por 2 e adicionamos o resultado à lista halved
+for price in prices:
+    half_price = price / 2
+    halved.append(half_price)
+
+print(halved)
+
+# Podemos construir a mesma lista halved de antes, mas em uma linha, usando list comprehension
+# A sintaxe é nova_lista = [expressão for elemento in lista_original]
+# A expressão é o que queremos que cada elemento da nova lista tenha, como price / 2. Ela pode ser uma operação matemática, uma função ou qualquer outra coisa que queremos que cada elemento da nova lista tenha.
+
+halved = [price / 2 for price in prices]  # Cria uma lista com os preços divididos por 2
+print(halved)
+
+# Como uma criação de listas retorna uma nova lista, começamos com colchetes. 
+
+# Em seguida, escrevemos a expressão que queremos que cada elemento da lista tenha, price / 2. Depois disso, escrevemos a instrução for price in prices para dizer ao Python que queremos que ele execute a expressão para cada elemento da lista prices. As compreensões de listas usam loops for para iterar cada elemento da lista original.
+
+# Como acontece com qualquer loop for, price é a variável que contém os elementos da lista um por um, enquanto prices é a lista a qual estamos fazendo o loop
+
+# No início da criação de listas, escrevemos uma expressão para aplicar em cada elemento, como reduzir pela metade cada preço com price/2
+
+# Ao atribuir uma criação de listas a uma variável, estamos na verdade atribuindo a lista criada pela compreensão de listas à variável
+
+# Exemplo: Criar uma lista de códigos de voo com list comprehension
+flights = [&quot;1122&quot;, &quot;5788&quot;, &quot;0044&quot;]
+codes_a = [&quot;BA&quot; + flight for flight in flights]
+# Exemplo: Criar uma lista de códigos de voo com o mesmo resultado do exemplo anterior
+codes_b = []
+for flight in flights:
+    code = &quot;BA&quot; + flight
+    codes_b.append(code)
+# O resultado é o mesmo, mas a criação de listas é mais curta e fácil de ler
+print(codes_a)
+print(codes_b)
+            </py-repl>
+        </div>
+    </div>
+    
+    </main>
+</body>
+</html>

@@ -1,0 +1,1116 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>18_classes.ipynb</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/monokai-sublime.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/python.min.js"></script>
+    
+    <style>
+        .cell { margin-bottom: 1.5rem; }
+        .cell-markdown { font-size: 1.05rem; line-height: 1.6; color: #cbd5e1; }
+        .cell-markdown h1, .cell-markdown h2, .cell-markdown h3 { color: #f1f5f9; margin-top: 1rem; margin-bottom: 0.5rem; }
+        .cell-markdown code { background: rgba(0,0,0,0.3); padding: 0.2rem 0.4rem; border-radius: 4px; color: #eab308; }
+        .cell-markdown pre { background: rgba(0,0,0,0.3); padding: 1rem; border-radius: 8px; overflow-x: auto; border: 1px solid var(--glass-border); margin: 1rem 0; }
+        .cell-code { background: #23241f; border-radius: 8px; padding: 1rem; overflow-x: auto; position: relative; border: 1px solid #333; }
+        .cell-output { background: #000; color: #a3e635; padding: 1rem; border-radius: 8px; margin-top: 0.5rem; font-family: monospace; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;}
+        .prompt { position: absolute; top: 0.5rem; right: 0.5rem; color: #64748b; font-size: 0.8rem; user-select: none; }
+    </style>
+    
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --glass-bg: rgba(30, 41, 59, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --primary: #38bdf8;
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        header {
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            border-bottom: 1px solid var(--glass-border);
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .back-btn {
+            color: var(--text-main);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            background: rgba(255,255,255,0.05);
+            transition: 0.3s;
+        }
+        .back-btn:hover {
+            background: rgba(56, 189, 248, 0.2);
+            color: var(--primary);
+        }
+        .file-title {
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+        main {
+            flex: 1;
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        .container {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="../index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Voltar</a>
+        <div class="file-title">18_classes.ipynb</div>
+    </header>
+    <main>
+        <div class="container">
+            <div class="cell cell-markdown" id="md-0"></div>
+            <script>
+                (function(){
+                    const b64 = "IyAqKmBDbGFzc2VzYCoqCgrDgCBtZWRpZGEgcXVlIGNvbnN0cnXDrW1vcyBwcm9ncmFtYXMsIG11aXRhcyB2ZXplcyBwcmVjaXNhcmVtb3MgY3JpYXIgbXVpdG9zIG9iamV0b3Mgc2VtZWxoYW50ZXMsIG1hcyBkaXN0aW50b3MuIENvbW8gdsOhcmlhcyBjb25maWd1cmHDp8O1ZXMgZGlmZXJlbnRlcyBkZSB1bSBjb21wdXRhZG9yLgoKQ3JpYXIgbm92YXMgdmFyacOhdmVpcyBwYXJhIGNhZGEgdW1hIGRhcyBkaWZlcmVudGVzIGNvbmZpZ3VyYcOnw7VlcyBkZSB1bSBjb21wdXRhZG9yIGxldmFyaWEgbXVpdG8gdGVtcG8gZSBwb2RlcmlhIGxldmFyIGEgZXJyb3Mu";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-0').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python">computer1_size = &quot;15&quot;
+computer1_storage = &quot;1TB&quot;
+
+computer2_size = &quot;13&quot;
+computer2_storage = &quot;256GB&quot;</code></pre>
+            </div>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python">print(&quot;Computer1 display size: &quot; + computer1_size)
+print(&quot;Computer1 storage: &quot; + computer1_storage)</code></pre>
+            </div>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python">print(&quot;Computer2 display size: &quot; + computer2_size)
+print(&quot;Computer2 storage: &quot; + computer2_storage)</code></pre>
+            </div>
+            
+            <div class="cell cell-markdown" id="md-4"></div>
+            <script>
+                (function(){
+                    const b64 = "UGFyYSBub3MgYWp1ZGFyIGEgYWdydXBhciBkYWRvcyBlIGZ1bmNpb25hbGlkYWRlcywgY3JpYW1vcyB1bWEgY2xhc3NlLiBVbWEgY2xhc3NlIMOpIHVtIG1vZGVsbyBxdWUgdXNhbW9zIHBhcmEgY3JpYXIgbXVpdGFzIGNvaXNhcyBzZW1lbGhhbnRlcywgbWFzIGRpc3RpbnRhcy4KCkEgc2ludGF4ZSDDqSBhIHNlZ3VpbnRlOgoKPiBjbGFzcyBOb21lRGFDbGFzc2U6Cj4gCj4gICAgY8OzZGlnbyBkYSBjbGFzc2UKClVzYW1vcyByZWN1b3MgcGFyYSBpbmRpY2FyIHF1ZSBvIGPDs2RpZ28gYWJhaXhvIGRhIGxpbmhhIGRlIGRlZmluacOnw6NvIGRhIGNsYXNzZSBwZXJ0ZW5jZSDDoCBjbGFzc2UuCgpPIG5vbWUgZGEgY2xhc3NlIGRldmUgY29tZcOnYXIgY29tIHVtYSBsZXRyYSBtYWnDunNjdWxhLiBQb3IgY29udmVuw6fDo28sIHVzYW1vcyBDYW1lbENhc2UgcGFyYSBub21lcyBkZSBjbGFzc2VzLgoKQSBjbGFzc2UgQ29tcHV0ZXIgw6kgdW0gbW9kZWxvIHBhcmEgY3JpYXIgY29tcHV0YWRvcmVzLiBFbGEgbsOjbyDDqSB1bSBjb21wdXRhZG9yIHJlYWwsIG1hcyB1bSBtb2RlbG8gcGFyYSBjcmlhciBjb21wdXRhZG9yZXMu";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-4').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [1]</div>
+                <pre><code class="language-python">class Computer:
+    # O método __init__ é chamado quando criamos um novo objeto da classe. Ele nos permite definir os atributos do objeto.
+    def __init__(self, size, storage):
+        # O primeiro parâmetro de um método de classe é sempre self. Ele se refere ao objeto que está sendo criado. Os parâmetros restantes são os atributos do objeto.
+
+        self.size = size  # O atributo self.size é definido como o valor do parâmetro size.
+        self.storage = storage  # O atributo self.storage é definido como o valor do parâmetro storage.
+
+    # O método print_specs imprime os atributos do objeto.
+    def print_specs(self):
+        # O primeiro parâmetro de um método de classe é sempre self. Ele se refere ao objeto que está sendo criado. Os parâmetros restantes são os atributos do objeto.
+        print(&quot;Display size: &quot; + self.size)
+        print(&quot;Storage: &quot; + self.storage)
+        # Métodos em classes são semelhantes a funções, mas são chamados usando a notação de ponto. São opcionais e podem ser omitidos.</code></pre>
+            </div>
+            
+            <div class="cell cell-markdown" id="md-6"></div>
+            <script>
+                (function(){
+                    const b64 = "UmVzdW1pbmRvIG8gcXVlIGZpemVtb3MgYXTDqSBhZ29yYTogY3JpYW1vcyB1bWEgY2xhc3NlIENvbXB1dGVyIHF1ZSDDqSB1bSBtb2RlbG8gcGFyYSBjcmlhciBjb21wdXRhZG9yZXMuIEEgY2xhc3NlIENvbXB1dGVyIHRlbSBkb2lzIGF0cmlidXRvczogc2l6ZSBlIHN0b3JhZ2UuIFRhbWLDqW0gY3JpYW1vcyB1bSBtw6l0b2RvIHByaW50X3NwZWNzIHF1ZSBpbXByaW1lIG9zIGF0cmlidXRvcyBkbyBvYmpldG8uCgpBbyB1c2FyIHVtIG1vZGVsbywgcG9kZW1vcyBjcmlhciBjb25maWd1cmHDp8O1ZXMgZGlmZXJlbnRlcyBzZW0gdGVyIHF1ZSBjcmlhciB2YXJpw6F2ZWlzIGluZGl2aWR1YWlzIGNvbW8gc2l6ZSBlIHN0b3JhZ2UgYSBjYWRhIHZlei4=";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-6').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [2]</div>
+                <pre><code class="language-python">low_spec = Computer(&quot;13&quot;, &quot;256GB&quot;)  # Criamos um novo objeto da classe Computer e o atribuímos à variável low_spec.
+# Os valores dos atributos são passados para o método __init__. O parâmetro self é passado automaticamente e não precisamos passá-lo.
+high_spec = Computer(&quot;15&quot;, &quot;1TB&quot;)
+
+print(&quot;Low spec Computer:&quot;)
+low_spec.print_specs()  # Chamamos o método print_specs no objeto low_spec.</code></pre>
+            </div>
+            <div class="cell-output">Low spec Computer:
+Display size: 13
+Storage: 256GB
+</div>
+            <div class="cell cell-markdown" id="md-8"></div>
+            <script>
+                (function(){
+                    const b64 = "Q3JpYW1vcyB1bSBtw6l0b2RvIHBhcmEgZmFjaWxpdGFyIGEgaW1wcmVzc8OjbyBkb3MgYXRyaWJ1dG9zIGRvIG9iamV0by4gQ2hhbWFtb3MgbyBtw6l0b2RvIHByaW50X3NwZWNzIG5vIG9iamV0IGxvd19zcGVjLiBNYXMgcG9kZXLDrWFtb3MgZXhlY3V0YXIgb3MgcHJpbnQoKSBkaXJldGFtZW50ZS4gCgpBc3NpbTo=";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-8').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python">print(&quot;Low spec Computer:&quot;)
+print(&quot;Display size: &quot; + low_spec.size)</code></pre>
+            </div>
+            
+            <div class="cell cell-markdown" id="md-10"></div>
+            <script>
+                (function(){
+                    const b64 = "VmFtb3MgZmF6ZXIgcGFzc28gYSBwYXNzbzoKClBhcmEgY29tZcOnYXIgYSBjcmlhciBvIG1vZGVsbywgYWRpY2lvbmFtb3MgYSBwYWxhdnJhLWNoYXZlIGNsYXNzIHNlZ3VpZGEgZGUgdW0gbm9tZSBlIGRvaXMgcG9udG9zLiBBcXVpLCBjcmlhcmVtb3MgYSBjbGFzcywgY2hhbWFkYSBQZXJzb246";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-10').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python">class Person:
+    # Para adicionar código à classe, recuamos da palavra-chave class como a instrução print() aqui.
+    print(&#x27;Inside the class&#x27;)
+    # Criar variáveis numa classe funciona exatamente como criar variáveis normais. Ele precisa ser recuado corretamente e receber um valor.
+    nationality = &#x27;Brazilian&#x27;
+    # Podemos adicionar quantas variáveis quisermos numa classe, como acontece com a variável passatempo com o valor &quot;Cooking&quot; aqui.
+    hobby = &#x27;Cooking&#x27;
+
+    # Se quisermos adicionar uma funcionalidade à classe, podemos criar uma função dentro dela. Aqui, criamos uma função chamada say_hello() que imprime &quot;Hello, world!&quot;.
+    def say_hello(self):
+        # Para a funcionalidade acessar as variáveis da classe, precisamos usar a palavra-chave self. antes do nome da variável. Aqui, usamos self.hobby para acessar a variável hobby.
+        print(&#x27;Hello, world!&#x27;)
+        print(&#x27;My hobby is &#x27; + self.hobby)</code></pre>
+            </div>
+            
+            <div class="cell cell-markdown" id="md-12"></div>
+            <script>
+                (function(){
+                    const b64 = "IyMjICBDcmlhbmRvIGluc3TDom5jaWFzIGRlIGNsYXNzZQoKUXVhbmRvIHF1ZXJlbW9zIHVzYXIgbm9zc28gbW9kZWxvIGRlIGNsYXNzZSBwYXJhIGNyaWFyIGFsZ28sIGNvbWXDp2Ftb3MgY3JpYW5kbyB1bWEgdmFyacOhdmVsLCBjb21vIGZsdWZmeSBhcXVpLgoKQSBzZWd1aXIsIGFkaWNpb25hbW9zIG8gbm9tZSBkYSBjbGFzc2UgZSBwYXLDqm50ZXNlcyBwYXJhIGNyacOhLWxhLCBjb21vIGFjb250ZWNlIGFxdWkuIElzc28gw6kgY2hhbWFkbyBkZSBpbnN0YW5jaWFyIGEgY2xhc3NlLg==";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-12').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python">class VirtualPet:
+    color = &quot;brown&quot;
+    legs = 4
+    lives = &quot;9&quot;</code></pre>
+            </div>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python">fluffy = VirtualPet()</code></pre>
+            </div>
+            
+            <div class="cell cell-markdown" id="md-15"></div>
+            <script>
+                (function(){
+                    const b64 = "UXVhbmRvIGNyaWFtb3MgdmFyacOhdmVpcyBhIHBhcnRpciBkbyBtb2RlbG8gZGUgY2xhc3NlLCBlc3RhbW9zIGNyaWFuZG8gaW5zdMOibmNpYXMgZGEgY2xhc3NlLiBmbHVmZnkgw6kgdW1hIGluc3TDom5jaWEgZGEgY2xhc3NlIFZpcnR1YWxQZXQuCgpBIGNsYXNzZSBWaXJ0dWFsUGV0IHF1ZSBlc3RhbW9zIHVzYW5kbyBwYXJhIGNyaWFyIGFzIHZhcmnDoXZlaXMgZmx1ZmZ5IMOpIGNoYW1hZGEgZGUgZGVmaW5pw6fDo28uCgpWaXJ0dWFsUGV0IMOpIGEgZGVmaW5pw6fDo28sIGZsdWZmeSDDqSBhIGluc3TDom5jaWEuCgpQYXJhIGFjZXNzYXIgdW1hIHZhcmnDoXZlbCBkZSBjbGFzc2UsIGFkaWNpb25hbW9zIG8gbm9tZSBkYSBpbnN0w6JuY2lhLCB1bSBwb250byBlIG8gbm9tZSBkYSB2YXJpw6F2ZWwgcXVlIHF1ZXJlbW9z";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-15').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python">print(fluffy.color)  # brown</code></pre>
+            </div>
+            
+            <div class="cell cell-markdown" id="md-17"></div>
+            <script>
+                (function(){
+                    const b64 = "Y29sb3Igw6kgdW0gYXRyaWJ1dG8gZGUgZmx1ZmZ5IHBvaXMgw6kgdW1hIHZhcmnDoXZlbCBkYSBjbGFzc2UgVmlydHVhbFBldCBlIGZsdWZmeSDDqSB1bWEgaW5zdMOibmNpYSBkYSBjbGFzc2UgVmlydHVhbFBldC4KClBvZGVtb3MgYWNlc3NhciB0b2RhcyBhcyB2YXJpw6F2ZWlzIGRhIGNsYXNzZS4gQWNlc3NhbW9zIG8gdmFsb3IgZGEgdmFyacOhdmVsIGNvZGlmaWNhbmRvIG8gbm9tZSBkYSBpbnN0w6JuY2lhLCB1bSBwb250byBlIG8gbm9tZSBkYSB2YXJpw6F2ZWwuCgpTZSBxdWlzZXIgYWx0ZXJhciBvIHZhbG9yIGRlIHVtYSB2YXJpw6F2ZWwgZGUgY2xhc3NlLCBwb2RlbW9zIGZhemVyIGlzc28gdXNhbmRvIGEgbm90YcOnw6NvIGRlIHBvbnRvLiBTZSBxdWlzw6lzc2Vtb3MgbW9zdHJhciBmbHVmZnkgY29tIG91dHJvcyBhdHJpYnV0b3MsIHBvZGVyw61hbW9zIGZhemVyIGlzc286";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-17').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python">fluffy.color = &quot;black&quot;
+fluffy.lives = &quot;1&quot;</code></pre>
+            </div>
+            
+            <div class="cell cell-markdown" id="md-19"></div>
+            <script>
+                (function(){
+                    const b64 = "T3V0cmEgZm9ybWEgc2VyaWEgY29sb2NhciBhcmd1bWVudG9zIG5hIGNsYXNzZSBWaXJ0dWFsUGV0LCBjb21vIGZpemVtb3MgY29tIG8gbcOpdG9kbyBfX2luaXRfXyBkYSBjbGFzc2UgQ29tcHV0ZXIu";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-19').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python">class VirtualPet:
+    def __init__(self, color, lives):
+        # O primeiro parâmetro de um método de classe é sempre self. Ele se refere ao objeto que está sendo criado. Os parâmetros restantes são os atributos do objeto.
+        self.color = color  # O atributo self.color é definido como o valor do parâmetro color.
+        self.lives = lives  # O atributo self.lives é definido como o valor do parâmetro lives.
+</code></pre>
+            </div>
+            
+            <div class="cell cell-markdown" id="md-21"></div>
+            <script>
+                (function(){
+                    const b64 = "QWdvcmEsIHF1YW5kbyBjcmlhbW9zIHVtYSBpbnN0w6JuY2lhIGRhIGNsYXNzZSBWaXJ0dWFsUGV0LCBwcmVjaXNhbW9zIHBhc3NhciBvcyBhcmd1bWVudG9zIGNvbG9yIGUgbGl2ZXMu";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-21').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python">fluffy = VirtualPet(&quot;white&quot;, &quot;9&quot;)</code></pre>
+            </div>
+            
+            <div class="cell cell-markdown" id="md-23"></div>
+            <script>
+                (function(){
+                    const b64 = "IyMjICBDbGFzc2VzIGNvbSBtw6l0b2RvcwoKQXMgY2xhc3NlcyB0YW1iw6ltIHBvZGVtIHRlciBmdW7Dp8O1ZXMsIGNvbmhlY2lkYXMgY29tbyBtw6l0b2RvcyBxdWFuZG8gZXN0w6NvIG51bWEgY2xhc3NlLiBDb21vIG3DqXRvZG8gYmFyaygpIGFxdWku";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-23').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python">class VirtualPet:
+    color = &quot;brown&quot;
+
+    def bark(self):
+        print(&quot;Bark bark bark!&quot;)
+    # self é uma palavra-chave especial que precisamos usar dentro de nossa definição de classe. Passamos self como o primeiro parâmetro para todos os métodos que adicionamos. Ele se refere ao objeto que está sendo criado. Sempre que criamos um método de classe, precisamos passar self como o primeiro parâmetro. O Python passa automaticamente o objeto que está sendo criado como o primeiro argumento para todos os métodos de classe.
+
+    def display_color(self):
+        print(self.color)
+    # Usamos self como parâmetro nos métodos de classe para podermos acessar as variáveis de classe como color e legs dentro dos métodos. Sem self, não poderíamos acessar as variáveis de classe. Dentro de display_color(), usamos self.color para acessar a variável de classe color = &quot;brown&quot;.
+
+    # Sem usar self não conseguiríamos acessar as variáveis de classe, pois elas são declaradas fora do escopo do método classe.
+</code></pre>
+            </div>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python">rocky = VirtualPet()
+</code></pre>
+            </div>
+            
+            <div class="cell cell-markdown" id="md-26"></div>
+            <script>
+                (function(){
+                    const b64 = "UGFyYSB1c2FyIHVtIG3DqXRvZG8gZGUgY2xhc3NlIMOpIG8gbWVzbW8gcXVlIHVzYXIgdW1hIHZhcmnDoXZlbCBkZSBjbGFzc2UsIGV4Y2V0byBxdWUgcHJlY2lzYW1vcyBhZGljaW9uYXIgcGFyw6pudGVzZXMuIENvbW8gYXF1aSBjb20gcm9ja3kuYmFyaygpLg==";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-26').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python">rocky.bark()</code></pre>
+            </div>
+            
+            <div class="cell cell-markdown" id="md-28"></div>
+            <script>
+                (function(){
+                    const b64 = "IyMjICBDb25zdHJ1dG9yZXMKCkV4aXN0ZSB1bSBtw6l0b2RvIHF1ZSBwb2RlbW9zIHVzYXIgcXVlIMOpIG1haXMgZmxleMOtdmVsIGFvIGNyaWFyIGRpZmVyZW50ZXMgaW5zdMOibmNpYXMgZGUgdW1hIGNsYXNzZS4gw4kgY2hhbWFkbyBkZSBtw6l0b2RvIGNvbnN0cnV0b3Iu";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-28').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python">class VirtualPet:
+    # O método construtor se parece com __init__() e nos permite definir valores exclusivos para as variáveis de classe quando criamos uma instância. Para adicionar essa flexibilidade às nossas classes, começamos adicionando a função de construção, que se parece com __init__().
+
+    def __init__(self, color):
+        # Assim como acontece com os métodos de classe regulares, precisamos adicionar self como o primeiro parâmetro método construtor. A seguir, adicionamos os parâmetros para os valores personalizados que queremos definir ao criar uma instância, como acontece com color aqui.
+
+        self.color = color
+        # Em seguida definimos o valor codificando self, um ponto e o nome do parâmetro e, em seguida, igualando-o ao valor do parâmetro novamente. Isso faz com que o valor do parâmetro seja atribuído à variável de classe color. O valor será diferente para cada instância que criarmos, sendo definido quando criamos a instância e passamos o valor do parâmetro.
+
+    def display_color(self):
+        # Podemos acessar os parâmetros de outros locais na definição da classe usando self. Aqui, usamos self.color para acessar o valor do parâmetro color.
+        print(self.color)</code></pre>
+            </div>
+            
+            <div class="cell cell-markdown" id="md-30"></div>
+            <script>
+                (function(){
+                    const b64 = "RW0gdmV6IGRlIHVtYSBkZWZpbmnDp8OjbyBkZSBjbGFzc2UgcXVlIHRlcsOhIHNlbXByZSBhIG1lc21hIGNvciwgY29tbzoKCi0gY29sb3IgPSAiYnJvd24iCiAgCnVtIG3DqXRvZG8gY29uc3RydXRvciBub3MgcGVybWl0ZSBlc3BlY2lmaWNhciBvIHF1ZSBxdWVyZW1vcyBhbyBjcmnDoS1sYQoKUXVhbmRvIGNyaWFtb3MgdW1hIGluc3TDom5jaWEgYSBwYXJ0aXIgZGEgZGVmaW5pw6fDo28gZGUgY2xhc3NlLCBwb2RlbW9zIHBhc3NhciB2YWxvcmVzIMO6bmljb3MgZW50cmUgcGFyw6pudGVzZXMsIGNvbW8gYWNvbnRlY2UgY29tIHJvY2t5IGUgYmVubnkgYXF1aS4K";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-30').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python">rocky = VirtualPet(&quot;brown&quot;)
+benny = VirtualPet(&quot;black&quot;)
+
+print(rocky.color)
+print(benny.color)
+rocky.display_color()</code></pre>
+            </div>
+            
+            <div class="cell cell-markdown" id="md-32"></div>
+            <script>
+                (function(){
+                    const b64 = "IyMjICBDb21wcmVlbmRlbmRvIGFzIGNsYXNzZXMKClNlbWVsaGFudGUgw6Agbm9tZWHDp8OjbyBkZSB2YXJpw6F2ZWlzIGUgZnVuw6fDtWVzLCBleGlzdGVtIGFsZ3VtYXMgcHLDoXRpY2FzIGNvbXVucyBhbyBkZWZpbmlyIGNsYXNzZXMu";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-32').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python">class Person:
+    def __init__(self, name, age):
+      self.name = name
+      self.age = age</code></pre>
+            </div>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python">teacher = Person(&quot;Ashley&quot;, 32)</code></pre>
+            </div>
+            
+            <div class="cell cell-markdown" id="md-35"></div>
+            <script>
+                (function(){
+                    const b64 = "MS4gT3Mgbm9tZXMgZGFzIGNsYXNzZXMgZ2VyYWxtZW50ZSB0w6ptIGEgcHJpbWVpcmEgbGV0cmEgbWFpw7pzY3VsYSBlIG8gcmVzdGFudGUgbWluw7pzY3Vsby4gQ29tbyBQZXJzb24uIEVzc2EgY29udmVuw6fDo28gw6kgY2hhbWFkYSBkZSBDYW1lbENhc2UuCiAgIAoyLiBBc3NpbSBjb21vIHZhcmnDoXZlaXMgZSBmdW7Dp8O1ZXMsIHRlbnRhbW9zIG5vbWVhciBhcyBjbGFzc2VzIGRlIGZvcm1hIGRlc2NyaXRpdmEuCiAgCjMuIERldmVtb3Mgbm9tZWFyIGFzIGNvaXNhcyBkZSBmb3JtYSBjb25zaXN0ZW50ZSBlIHRvbWFyIGN1aWRhZG8gY29tIGEgY2FwaXRhbGl6YcOnw6NvCgo0LiBBc3NpbSBjb21vIG9zIG3DqXRvZG9zIGZvcmEgZGFzIGNsYXNzZXMsIHZvY8OqIHBvZGUgdXNhciBhcyBmdW7Dp8O1ZXMgaW50ZWdyYWRhcyBlIG9zIHByaW5jaXBhaXMgcmVjdXJzb3MgZG8gUHl0aG9uLg==";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-35').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python">class Pie:
+    def __init__(self, flavor, ingredients):
+        # O argumento flavor nesse exemplo é uma string. Podemos acessar o valor do argumento usando self.flavor.
+        self.flavor = flavor
+        # O argumento ingredients é uma lista. Podemos acessar o valor do argumento usando self.ingredients.
+        self.ingredients = ingredients
+
+    # O método print_ingredients() imprime os ingredientes da torta usando um loop for.
+    def print_ingredients(self):
+        # O argumento ingredients é uma lista de ingredientes. Podemos iterar sobre a lista usando um loop for.
+        for i in self.ingredients:
+            print(i)</code></pre>
+            </div>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python">applePie = Pie(&#x27;apple&#x27;, [&#x27;flour&#x27;, &#x27;eggs&#x27;, &#x27;apples&#x27;, &#x27;butter&#x27;])</code></pre>
+            </div>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python">applePie.print_ingredients()</code></pre>
+            </div>
+            
+            <div class="cell cell-markdown" id="md-39"></div>
+            <script>
+                (function(){
+                    const b64 = "IyMjICBQcm9ncmFtYcOnw6NvIE9yaWVudGFkYSBhIG9iamV0b3MKIyMjICBFbmNhcHN1bGFtZW50byAtIEVuY2Fwc3VsYW5kbyBvYmpldG9zCgpWYW1vcyBhcHJlbmRlciBzb2JyZSBvcyBkaWZlcmVudGVzIGVzdGlsb3MgZGUgY29kaWZpY2HDp8OjbyB1c2Fkb3MgcGVsb3MgZGVzZW52b2x2ZWRvcmVzLiBFeHBsb3JhcmVtb3MgYSBwcm9ncmFtYcOnw6NvIGZ1bmNpb25hbCBlIGEgcHJvZ3JhbWHDp8OjbyBvcmllbnRhZGEgYSBvYmpldG9zLgoKRGlmZXJlbnRlcyBlc3RpbG9zIGRlIGNvZGlmaWNhw6fDo28gdGFtYsOpbSBzw6NvIGNvbmhlY2lkb3MgY29tbyBwYXJhZGlnbWFzLiBVbSBlc3RpbG8gY29tdW0gw6kgY2hhbWFkbyBkZSBwcm9ncmFtYcOnw6NvIGZ1bmNpb25hbCwgb3UgRlAsIHBhcmEgYWJyZXZpYXIuIE5hIHByb2dyYW1hw6fDo28gZnVuY2lvbmFsLCB1c2Ftb3MgbXVpdGFzIGZ1bsOnw7VlcyBlIHZhcmnDoXZlaXMu";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-39').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python">def get_total(a, b):
+    # Define a função get_total que retorna a soma de dois valores
+    return a + b</code></pre>
+            </div>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python">num1 = 2  # Declara a variável num1 e atribui o valor 2
+num2 = 3  # Declara a variável num2 e atribui o valor 3
+total = get_total(num1, num2)  # Chama a função get_total com os valores de num1 e num2 e atribui o resultado a total
+print(total)  # Imprime o valor de total</code></pre>
+            </div>
+            
+            <div class="cell cell-markdown" id="md-42"></div>
+            <script>
+                (function(){
+                    const b64 = "Tm8gZXN0aWxvIEZQLCBtYW50ZW1vcyBvcyBkYWRvcyBlIGFzIGZ1bmNpb25hbGlkYWRlcyBzZXBhcmFkb3MuIFBhc3NhbW9zIGRhZG9zIHBhcmEgZnVuw6fDtWVzIHNlbXByZSBxdWUgcXVlcmVtb3MgYWxndW1hIGNvaXNhLg==";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-42').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python">def get_distance(mph, h):
+    # Define a função getDistance que retorna a multiplicação de dois valores
+    # Na programação funcional, as funções retornam novos valores e depois usam esses valores em algum lugar do código.
+    return mph * h</code></pre>
+            </div>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python">mph = 60  # Declara a variável mph e atribui o valor 60
+h = 2  # Declara a variável h e atribui o valor 2
+distance = get_distance(mph, h)  # Chama a função getDistance com os valores de mph e h e atribui o resultado a distance</code></pre>
+            </div>
+            
+            <div class="cell cell-markdown" id="md-45"></div>
+            <script>
+                (function(){
+                    const b64 = "TmEgcHJvZ3JhbWHDp8OjbyBvcmllbnRhZGEgYSBvYmpldG9zIE9PUCwgYWdydXBhbW9zIGRhZG9zIGUgZnVuY2lvbmFsaWRhZGVzIGNvbW8gcHJvcHJpZWRhZGVzIGUgbcOpdG9kb3MgZGVudHJvIGRlIG9iamV0b3MsIGNvbW8gVmlydHVhbF9QZXQgYXF1aS4=";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-45').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python">class Virtual_Pet:
+  # Define a classe Virtual_Pet com um construtor que inicializa as propriedades color e name
+    def __init__(self, color, name):
+        self.color = color  # Atribui o valor da variável color ao atributo color do objeto
+        self.name = name  # Atribui o valor da variável name ao atributo name do objeto</code></pre>
+            </div>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python">rocky = Virtual_Pet(&quot;brown&quot;, &quot;Rocky&quot;)  # Cria uma instância da classe Virtual_Pet chamada rocky
+print(rocky.color)  # Imprime o valor do atributo color do objeto rocky
+print(rocky.name)  # Imprime o valor do atributo name do objeto rocky</code></pre>
+            </div>
+            
+            <div class="cell cell-markdown" id="md-48"></div>
+            <script>
+                (function(){
+                    const b64 = "T09QIHBvc3NpYmlsaXRhIG1vZGVsYXIgb2JqZXRvcyBkYSByZWFsaWRhZGUgb3UgbsOjby4gT2JqZXRvcyB0w6ptIHByb3ByaWVkYWRlcyBlIG3DqXRvZG9zIHF1ZSB0cmF0YW1vcyBjb21vIHVtYSBjb2lzYSBzw7MsIGNvbW8gQ2FyIGFxdWku";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-48').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python">class Car:
+    mileage = 12000  # Atribui o valor 12000 ao atributo mileage da classe Car
+
+    def drive(self, miles):
+        # Define o método drive que atualiza o valor do atributo mileage com base no número de milhas percorridas
+        self.mileage = self.mileage + miles</code></pre>
+            </div>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python">tesla = Car()  # Cria uma instância da classe Car chamada tesla
+tesla.drive(100)  # Chama o método drive da instância tesla com o valor 100
+print(tesla.mileage)  # Imprime o valor do atributo mileage da instância tesla</code></pre>
+            </div>
+            
+            <div class="cell cell-markdown" id="md-51"></div>
+            <script>
+                (function(){
+                    const b64 = "RW0gT09QLCB1c2Ftb3MgbcOpdG9kb3MgcGFyYSBhdHVhbGl6YXIgb3MgdmFsb3JlcyBleGlzdGVudGVzIGRlIHVtIG9iamV0bywgY29tbyBhcXVpLCBvbmRlIHVzYW1vcyBlYXQoKSBwYXJhIGF0dWFsaXphciBvIHZhbG9yIGRlIGh1bmdyeSgp";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-51').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python">class Dog:
+    hungry = True  # Atribui o valor True ao atributo hungry da classe Dog
+
+    def eat(self):
+        # Define o método eat que atualiza o valor do atributo hungry para False
+        self.hungry = False</code></pre>
+            </div>
+            
+            <div class="cell cell-markdown" id="md-53"></div>
+            <script>
+                (function(){
+                    const b64 = "VmFtb3MgY3JpYXIgdW0gY29mcmluaG8gdmlydHVhbCBjb20gT09QLiBQcmltZWlybywgY3JpYW1vcyB1bWEgbm92YSBjbGFzc2UgY2hhbWFkYSBQaWdneSBjb20gdW1hIHByb3ByaWVkYWRlIHZhbHVlIGRlZmluaWRhIGNvbW8gMC4=";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-53').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python">class Piggy:
+    value = 0  # Atribui o valor 0 ao atributo value da classe Piggy
+    # A seguir, adicionamos um método chamado addMoney() que aceita um parâmetro chamado amount
+
+    def addMoney(self, amount):
+        # Define o método addMoney() que atualiza o valor com a soma do valor atual e amount de Piggy
+        self.value = self.value + amount</code></pre>
+            </div>
+            
+            <div class="cell cell-markdown" id="md-55"></div>
+            <script>
+                (function(){
+                    const b64 = "VmFtb3MgY29sb2NhciBSJCAxMDAgZW0gbm9zc28gY29mcmluaG8gY2hhbWFuZG8gbyBtw6l0b2RvIGFkZE1vbmV5KCkgZGUgUGlnZ3kgY29tIDEwMCBjb21vIGFyZ3VtZW50by4=";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-55').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python">myPiggy = Piggy()  # Cria uma instância da classe Piggy chamada myPiggy
+myPiggy.addMoney(100)  # Chama o método addMoney() da instância myPiggy com o valor 100 como argumento</code></pre>
+            </div>
+            
+            <div class="cell cell-markdown" id="md-57"></div>
+            <script>
+                (function(){
+                    const b64 = "RmluYWxtZW50ZSB2YW1vcyBpbXByaW1pciBvIHZhbG9yIGRlIFBpZ2d5IHBhcmEgdmVyIHNlIG8gZGluaGVpcm8gZm9pIGFkaWNpb25hZG8u";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-57').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python">print(myPiggy.value)  # Imprime o valor do atributo value da instância myPiggy</code></pre>
+            </div>
+            
+            <div class="cell cell-markdown" id="md-59"></div>
+            <script>
+                (function(){
+                    const b64 = "TmEgT09QLCBhZ3J1cGFtb3MgZGFkb3MgZSBmdW7Dp8O1ZXMgcmVsYWNpb25hZGFzIG5vIG1lc21vIG9iamV0by4gQ2hhbWFtb3MgaXNzbyBkZSBlbmNhcHN1bGFtZW50by4KCkNvbSBvIGVuY2Fwc3VsYW1lbnRvLCB0YW1iw6ltIHRlbW9zIG3DqXRvZG9zIHF1ZSB1dGlsaXphbSBhcyBkZW1haXMgcHJvcHJpZWRhZGVzIHF1ZSBwZXJ0ZW5jZW0gYW8gb2JqZXRvLCBjb21vIG5lc3RlIGV4ZW1wbG8gZWF0IGFjZXNzYW5kbyBhIHByb3ByaWVkYWRlIGh1bmdyeS4=";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-59').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python">class Dog:
+    name = &#x27;Fido&#x27;  # Atribui o valor &#x27;Fido&#x27; ao atributo name da classe Dog
+    hungry = False  # Atribui o valor False ao atributo hungry da classe Dog
+
+    def eat(self):
+        # Define o método eat que atualiza o valor do atributo hungry para True
+        self.hungry = True</code></pre>
+            </div>
+            
+            <div class="cell cell-markdown" id="md-61"></div>
+            <script>
+                (function(){
+                    const b64 = "Tm8gRlAsIG8gY8OzZGlnbyBuw6NvIMOpIGVuY2Fwc3VsYWRvLiBPcyBkYWRvcyBlIGEgZnVuw6fDo28gbsOjbyBzw6NvIGFncnVwYWRvcyBlbSB1bSBvYmpldG8u";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-61').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python">def get_distance(mph, h):
+  # Define a função getDistance que retorna a multiplicação de dois valores
+  return mph * h</code></pre>
+            </div>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python">mph = 60  # Declara a variável mph e atribui o valor 60
+h = 2  # Declara a variável h e atribui o valor 2</code></pre>
+            </div>
+            
+            <div class="cell cell-markdown" id="md-64"></div>
+            <script>
+                (function(){
+                    const b64 = "UG9kZW1vcyBkZXRlY3RhciBjw7NkaWdvIHF1ZSBuw6NvIGVzdMOhIGJlbSBlbmNhcHN1bGFkbyBzZSBtw6l0b2RvcyBlIHByb3ByaWVkYWRlcyByZWxhY2lvbmFkb3MgZXN0aXZlcmVtIGVtIG9iamV0b3MgZGlmZXJlbnRlcy4=";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-64').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python">class Dog:
+    name = &#x27;Fido&#x27;  # Atribui o valor &#x27;Fido&#x27; ao atributo name da classe Dog
+    hungry = False  # Atribui o valor False ao atributo hungry da classe Dog</code></pre>
+            </div>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python">def eat():
+  # Define a função eat que atualiza o valor da variável hungry para True
+  hungry = True</code></pre>
+            </div>
+            
+            <div class="cell cell-markdown" id="md-67"></div>
+            <script>
+                (function(){
+                    const b64 = "TmEgT09QIGlkZW50aWZpY2Ftb3MgcXVhaXMgbcOpdG9kb3MgZSBwcm9wcmllZGFkZXMgcGVydGVuY2VtIHJlY2lwcm9jYW1lbnRlIGUgZGV2ZXIgc2VyIGFkaWNpb25hZG9zIGFvIG1lc21vIG9iamV0by4=";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-67').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python">class Cat:
+  color = &#x27;Orange&#x27;  # Atribui o valor &#x27;Orange&#x27; ao atributo color da classe Cat
+
+  def meow(self):
+ # Define o método meow que imprime &#x27;Meow!&#x27;
+    print(&#x27;Meow!&#x27;)</code></pre>
+            </div>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python">class Car:
+    color = &#x27;Red&#x27;  # Atribui o valor &#x27;Red&#x27; ao atributo color da classe Car
+
+    def drive(self):
+        # Define o método drive que imprime &#x27;Vroom!&#x27;
+        print(&#x27;Vroom!&#x27;)</code></pre>
+            </div>
+            
+            <div class="cell cell-markdown" id="md-70"></div>
+            <script>
+                (function(){
+                    const b64 = "IyMjICBBcGxpY2FuZG8gaGVyYW7Dp2EKCkNvbW8gYXByZW5kZW1vcyBhbnRlcmlvcm1lbnRlLCBPT1Agc2lnbmlmaWNhIGVuY2Fwc3VsYXIgZGFkb3MgZSBmdW7Dp8O1ZXMgcmVsYWNpb25hZGFzIGRlbnRybyBkZSBvYmpldG9zCgpRdWFuZG8gY3JpYW1vcyBvYmpldG9zIHVtIHBvciB1bSwgbm9zIGRlcGFyYW1vcyBjb20gbyBwcm9ibGVtYSBkZSB0ZXIgY8OzZGlnbyBkdXBsaWNhZG8u";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-70').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python">from typing import Any</code></pre>
+            </div>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python">class Person1:
+  # Define a classe Person1
+  name = &#x27;John&#x27;
+  def greet(self):
+    # Define o método greet que imprime uma saudação usando o atributo name
+    print(f&#x27;Hello, my name is {self.name}&#x27;)</code></pre>
+            </div>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python">class Person2:
+  # Define a classe Person2
+  name = &#x27;Mike&#x27;
+  def greet(self):
+    # Define o método greet que imprime uma saudação usando o atributo name
+    print(f&#x27;Hello, my name is {self.name}&#x27;)</code></pre>
+            </div>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python">class Person3:
+  # Define a classe Person3
+  name = &#x27;Jane&#x27;
+  def greet(self):
+    # Define o método greet que imprime uma saudação usando o atributo name
+    print(f&#x27;Hello, my name is {self.name}&#x27;)</code></pre>
+            </div>
+            
+            <div class="cell cell-markdown" id="md-75"></div>
+            <script>
+                (function(){
+                    const b64 = "VXNhbW9zIGhlcmFuw6dhIHBhcmEgdG9ybmFyIG5vc3NvIGPDs2RpZ28gZWZpY2llbnRlLiBBdHJhdsOpcyBkZSBoZXJhbsOnYSwgYXMgY2xhc3NlcyByZWNlYmVtIG3DqXRvZG9zIGRlIG91dHJhcyBjbGFzc2VzLg==";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-75').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python">class Parent:
+  # Define a classe Parent
+  def __init__(self):
+    # Define o construtor da classe Parent que inicializa o atributo eyes
+    self.eyes = &#x27;brown&#x27;</code></pre>
+            </div>
+            
+            <div class="cell cell-markdown" id="md-77"></div>
+            <script>
+                (function(){
+                    const b64 = "QXF1aSB2ZW1vcyBxdWUgYSBjbGFzc2UgQ2hpbGQgZXN0w6EgaGVyZGFuZG8gYSBjbGFzc2UgUGFyZW50IHBvcnF1ZSBlc3TDoSBlbnRyZSBwYXLDqm50ZXNlcyBhcMOzcyBhIGRlZmluacOnw6NvIGRhIGNsYXNzZS4=";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-77').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python">class Child(Parent):
+  # Define a classe Child que herda da classe Parent
+  def __init__(self):
+    # Chama o construtor da classe Parent usando super() e inicializa o atributo age
+    super().__init__()
+    self.age = 7</code></pre>
+            </div>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python">child = Child()
+print(child.eyes)  # Imprime o valor do atributo eyes herdado da classe Parent</code></pre>
+            </div>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python">print(child.age)  # Imprime o valor do atributo age da classe Child</code></pre>
+            </div>
+            
+            <div class="cell cell-markdown" id="md-81"></div>
+            <script>
+                (function(){
+                    const b64 = "VmVqYW1vcyBjb21vIHVtYSBjbGFzc2UgcG9kZSBoZXJkYXIgbcOpdG9kb3MgZGUgb3V0cmEuIEFvIGRlZmluaXIgYSBjbGFzc2UsIGFkaWNpb25hbW9zIHBhcsOqbnRlc2VzIMOgIGNsYXNzZSBxdWUgaGVyZGFtb3Mu";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-81').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python">class Greetings():
+  # Define a classe Greetings
+  def greet(self):
+    # Define o método greet que imprime &#x27;Hello!&#x27;
+    print(&#x27;Hello!&#x27;)</code></pre>
+            </div>
+            
+            <div class="cell cell-markdown" id="md-83"></div>
+            <script>
+                (function(){
+                    const b64 = "QSBjbGFzc2UgUGVyc29uIGFnb3JhIHBvZGUgdXNhciBtw6l0b2RvcyBkYSBTYXVkYcOnw6NvIGNvbW8gb3Mgc2V1cy4=";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-83').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python">class Person(Greetings):
+  # Define a classe Person que herda da classe Greetings
+  name = &#x27;George&#x27;
+
+p = Person()
+p.greet()  # Chama o método greet herdado da classe Greetings</code></pre>
+            </div>
+            
+            <div class="cell cell-markdown" id="md-85"></div>
+            <script>
+                (function(){
+                    const b64 = "UG9kZW1vcyBhdHVhbGl6YXIgbyBmdW5jaW9uYW1lbnRvIGRhcyBjbGFzc2VzIGRlZmluaW5kbyBtw6l0b2RvcyBkaXJldGFtZW50ZSBuYSBjbGFzc2Uu";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-85').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python">class Car:
+  # Define a classe Car
+  def start_car(self):
+    # Define o método start_car que imprime &#x27;Starting the car&#x27;
+    print(&#x27;Starting the car&#x27;)</code></pre>
+            </div>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python">class Hybrid(Car):
+  # Define a classe Hybrid que herda da classe Car
+  def charge(self):
+    # Define o método charge que imprime &#x27;Charging the battery&#x27;
+    print(&#x27;Charging the battery&#x27;)</code></pre>
+            </div>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python">class Electric(Car):
+  # Define a classe Electric que herda da classe Car
+  def fuel(self):
+    # Define o método fuel que imprime &#x27;No fuel needed&#x27;
+    print(&#x27;No fuel needed&#x27;)</code></pre>
+            </div>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python">prius = Hybrid()
+electric = Electric()
+prius.start_car()  # Chama o método start_car da classe Car herdado pela classe Hybrid</code></pre>
+            </div>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python">electric.start_car()  # Chama o método start_car da classe Car herdado pela classe Electric</code></pre>
+            </div>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python">prius.charge()  # Chama o método charge da classe Hybrid</code></pre>
+            </div>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python">electric.fuel()  # Chama o método fuel da classe Electric</code></pre>
+            </div>
+            
+            <div class="cell cell-markdown" id="md-93"></div>
+            <script>
+                (function(){
+                    const b64 = "QXMgY2xhc3NlcyBjb250w6ptIHVtIG3DqXRvZG8gY2hhbWFkbyBjb25zdHJ1dG9yIHF1ZSBkZWZpbmUgYXMgcHJvcHJpZWRhZGVzIGRlIG5vdm9zIG9iamV0b3MsIGNvbmhlY2lkb3MgY29tbyBpbnN0w6JuY2lhcy4=";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-93').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python">class Person:
+  # Define a classe Person
+  def __init__(self, name, age):
+    # Define o construtor da classe Person que inicializa os atributos name e age
+    self.name = name
+    self.age = age</code></pre>
+            </div>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python">sam = Person(&#x27;Sam&#x27;, 7)
+print(sam.name, sam.age)  # Imprime os valores dos atributos name e age da instância sam</code></pre>
+            </div>
+            
+            <div class="cell cell-markdown" id="md-96"></div>
+            <script>
+                (function(){
+                    const b64 = "UG9kZW1vcyB1c2FyIG8gY29uY2VpdG8gZGUgaGVyYW7Dp2EgcGFyYSByZXV0aWxpemFyIHBhcnRlcyBkZSBjw7NkaWdvIGVtIG5vc3NhcyBjbGFzc2VzLCB0b3JuYW5kbyBub3NzbyBjw7NkaWdvIG1haXMgZWZpY2llbnRlLg==";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-96').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python">class Person:
+  # Define a classe Person
+  def __init__(self, name, age):
+    # Define o construtor da classe Person que inicializa os atributos name e age
+    self.name = name
+    self.age = age
+  def greet(self):
+    # Define o método greet que imprime &#x27;Hello!&#x27;
+    print(&#x27;Hello!&#x27;)</code></pre>
+            </div>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python">class Nurse(Person):
+  # Define a classe Nurse que herda da classe Person
+  def __init__(self, name, age):
+    # Chama o construtor da classe Person usando super() e inicializa o atributo name
+    super().__init__(&#x27;Nurse &#x27;+ name, age)
+  def intro(self):
+    # Define o método intro que imprime uma introdução
+    print(&quot;Hi, I&#x27;m Nurse &quot; + self.name)</code></pre>
+            </div>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python">
+Person1 = Person(&#x27;John&#x27;, 36)
+Person1.greet()  # Chama o método greet da classe Person</code></pre>
+            </div>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python">Person2 = Nurse(&#x27;Jane&#x27;, 32)
+Person2.intro()  # Chama o método intro da classe Nurse</code></pre>
+            </div>
+            
+            <div class="cell cell-markdown" id="md-101"></div>
+            <script>
+                (function(){
+                    const b64 = "QW8gdHJhYmFsaGFyIGNvbSBjbGFzc2VzLCB0ZW1vcyBxdWUgcGVuc2FyIHVtIHBvdWNvIGVtIGNvbW8gYXBsaWNhciBoZXJhbsOnYS4gU3Vwb25oYSBxdWUgcXVlcsOtYW1vcyBtb2RlbGFyIHVtYSBjbGFzc2Ugc3R1ZGVudCBlbSBub3NzbyBjw7NkaWdvLgoKUXVlcmVtb3MgcXVlIFN0dWRlbnQgZnVuY2lvbmUgY29tbyBQZXJzb24sIGV4Y2V0byBxdWUgdGVuaGEgdW0gbWFqb3IuIFNlIGNyaWFybW9zIHVtYSBub3ZhIGNsYXNzZSBTdHVkZW50LCBhY2FiYXJlbW9zIGNvbSBjw7NkaWdvIGR1cGxpY2Fkby4KCkVtIHZleiBkaXNzbyBmYXosIGZheiBtYWlzIHNlbnRpZG8sIG5lc3RlIGNhc28sIGNyaWFyIHVtYSBzdWJjbGFzc2UgcXVlIGhlcmRlIG8gbcOpdG9kbyBncmVldCgpIGRhIGNsYXNzZSBQZXJzb24sIGNvZGlmaWNhbmRvIChQZXJzb24pIGFww7NzIFN0dWRlbnQu";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-101').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python">class Student(Person):
+  # Define a classe Student que herda da classe Person
+  def __init__(self, name, age, major):
+    # Chama o construtor da classe Person usando super() e inicializa o atributo major
+    super().__init__(name, age)
+    self.major = major
+  def intro(self):
+    # Define o método intro que imprime uma introdução personalizada para Student
+    print(f&#x27;Hi, I am {self.name} and I study {self.major}&#x27;)</code></pre>
+            </div>
+            
+            <div class="cell cell-markdown" id="md-103"></div>
+            <script>
+                (function(){
+                    const b64 = "IyMjIEFic3RyYWluZG8gb2JqZXRvcwoKVmFtb3MgdGVudGFyIG1vZGVsYXIgdW0gb2JqZXRvIGNvbXBsaWNhZG8gY29tbyB1bSBjYXJybywgdXNhbmRvIE9PUC4gUXVhbmRvIGRpcmlnaW1vcyB1bSBjYXJybywgbsOjbyBwcmVjaXNhbW9zIGVudGVuZGVyIGEgbWVjw6JuaWNhIGludGVybmEgZGVsZS4KCkRhIG1lc21hIGZvcm1hLCBhbyB0cmFiYWxoYXIgY29tIGPDs2RpZ28sIHF1ZXJlbW9zIGNvbXByZWVuZGVyIG9zIG3DqXRvZG9zIHByaW5jaXBhaXMgc2VtIG5vcyBwcmVuZGVyIGEgZGV0YWxoZXMuCgpVbSBjYXJybyBmYXogbXVpdGFzIGNvaXNhcyBhbyBtZXNtbyB0ZW1wby4gUG9yIGV4ZW1wbG8sIHVtIGNhcnJvIGluamV0YSBlIGFjZW5kZSBjb21idXN0w612ZWwgbWlsaGFyZXMgZGUgdmV6ZXMgcG9yIG1pbnV0bywgYXBlbmFzIHBhcmEgY29udGludWFyIGZ1bmNpb25hbmRvLgoKTW9kZWxhciB1bSBjYXJybyBlbSBQeXRob24gZnVuY2lvbmEgZGEgbWVzbWEgZm9ybWEuIE5vIGVudGFudG8sIGNoYW1hciBtw6l0b2RvcyByZXBldGlkYW1lbnRlIHBvZGUgZGlmaWN1bHRhciBhIGNvbXByZWVuc8OjbyBkbyBjw7NkaWdvIGUgbyB1c28uCgpBbMOpbSBkaXNzbywgZ2VyZW5jaWFyIGNhZGEgY2hhbWFkYSBkZSBtw6l0b2RvIGluZGl2aWR1YWwgcG9yIG7Ds3MgbWVzbW9zLCBhdW1lbnRhIGEgY2hhbmNlIGRlIGNvbWV0ZXJtb3MgdW0gZXJybyBlIGNhdXNhciB1bSBidWcuCgpPcyBjYXJyb3MgZmF6ZW0gdG9kYSBlc3NhIGZ1bmNpb25hbGlkYWRlIGRlIGJhaXhvIG7DrXZlbCBwYXJhIG7Ds3MsIGUgc8OzIHByZWNpc2Ftb3MgbGlnw6EtbG8gZSBkaXJpZ2lyLiBPY3VsdGFyIGVzc2VzIGRldGFsaGVzIMOpIGNoYW1hZG8gZGUgYWJzdHJhw6fDo28uCgpJbXBsZW1lbnRhbW9zIGFic3RyYcOnw6NvIGVtIE9PUCBlc2NyZXZlbmRvIGFsZ3VtYXMgZnVuw6fDtWVzIHByaW5jaXBhaXMgcXVlIGxpZGFtIGNvbSB0b2RvIG8gdHJhYmFsaG8gZGUgYmFpeG8gbsOtdmVsIHBhcmEgbsOzcy4=";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-103').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python">class Motor:
+  def __init__(self):
+    self.on = False
+    
+  def injectFuel(self):
+    # Simula a injeção de combustível
+    print(&#x27;Injecting fuel&#x27;)
+      
+  def igniteFuel(self):
+    # Simula a ignição do combustível
+    print(&#x27;Igniting fuel&#x27;)
+      
+  def startUp(self):
+    # Inicia o motor simulando a injeção e ignição do combustível continuamente
+    self.on = True
+    while self.on:
+      self.injectFuel()
+      self.igniteFuel()</code></pre>
+            </div>
+            
+            <div class="cell cell-markdown" id="md-105"></div>
+            <script>
+                (function(){
+                    const b64 = "QSBhYnN0cmHDp8OjbyBwZXJtaXRlIHF1ZSBvdXRyb3MgZGVzZW52b2x2ZWRvcmVzIHVzZW0gdW1hIGNsYXNzZSBzZW0gcHJlY2lzYXIgc2FiZXIgcXVhaXMgbcOpdG9kb3MgZGUgYmFpeG8gbsOtdmVsIGVsYSBwb3NzdWkgb3UgY29tbyBlbGVzIGZ1bmNpb25hbS4KCk91dHJvcyBkZXNlbnZvbHZlZG9yZXMgcG9kZW0gY3JpYXIgdW0gbm92byBvYmpldG8gYSBwYXJ0aXIgZGEgbm9zc2EgY2xhc3NlIGUgdXPDoS1sbyBhcGVuYXMgY2hhbWFuZG8gYWxndW5zIG3DqXRvZG9zIHByaW5jaXBhaXMu";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-105').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python">car = Motor()
+car.startUp()  # Inicia o motor do carro simulando a injeção e ignição do combustível continuamente
+</code></pre>
+            </div>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python">plane = Motor()
+plane.startUp()  # Inicia o motor do avião simulando a injeção e ignição do combustível continuamente</code></pre>
+            </div>
+            
+            <div class="cell cell-markdown" id="md-108"></div>
+            <script>
+                (function(){
+                    const b64 = "IyMjIE9iamV0b3MgcG9saW3Ds3JmaWNvcwoKTcOpdG9kb3MgcmVwcmVzZW50YW0gY29tcG9ydGFtZW50b3MuIFBvciBleGVtcGxvLCB1bSBtw6l0b2RvIHNwZWFrKCkgZXhpYmUgbWVuc2FnZW0gbmEgdGVsYS4KCkNvbSBoZXJhbsOnYSwgcG9kZW1vcyBlc3RlbmRlciBhIGZ1bmNpb25hbGlkYWRlIGRlIHVtYSBjbGFzc2UgZmlsaGEuIE1hcyBlIHNlIHF1aXNlcm1vcyBpbXBsZW1lbnRhciBjb21wb3J0YW1lbnRvcyBkZSBjbGFzc2UgZGUgbWFuZWlyYSBkaWZlcmVudGU/";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-108').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python">class Feline:
+  def speak(self):
+    # Define o comportamento padrão para o método speak() na classe Feline
+    print(&#x27;Meow!&#x27;)</code></pre>
+            </div>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python">class Cat(Feline):
+  def lick(self):
+    # Define um comportamento específico para o método lick() na classe Cat
+    print(&#x27;Licking paw&#x27;)</code></pre>
+            </div>
+            
+            <div class="cell cell-markdown" id="md-111"></div>
+            <script>
+                (function(){
+                    const b64 = "QXF1aSB2ZW1vcyBvIGdhdG8gbWlhbmRvLCBvIHF1ZSDDqSBjb3JyZXRvLiBRdWVyZW1vcyBxdWUgdW0gY29tcG9ydGFtZW50byBkaWZlcmVudGUgZGUgc3BlYWsoKSBjb20gYmFzZSBuYSBjbGFzc2UuIElzc28gw6kgY2hhbWFkbyBkZSBwb2xpbW9yZmlzbW8u";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-111').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python">class Lion(Feline):
+  def prey(self):
+    # Define um comportamento específico para o método prey() na classe Lion
+    print(&#x27;Hunting for food&#x27;)</code></pre>
+            </div>
+            
+            <div class="cell cell-markdown" id="md-113"></div>
+            <script>
+                (function(){
+                    const b64 = "VW1hIHN1YmNsYXNzZSBwb2RlIHN1YnN0aXR1aXIgb3MgbcOpdG9kb3MgcXVlIGhlcmRhIGRlIHN1YSBzdXBlcmNsYXNzZS4gU2ltcGxlc21lbnRlIGRlZmluaW1vcyBvIG3DqXRvZG8gY29tIG8gbWVzbW8gbm9tZSBuYSBzdWJjbGFzc2Uu";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-113').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python">def speak(self):
+    # Define um comportamento específico para o método speak() na classe Lion
+    print(&#x27;Roar!&#x27;)</code></pre>
+            </div>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python">cat = Cat()
+cat.speak()  # Chama o método speak() da classe Feline na classe Cat</code></pre>
+            </div>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python">lion = Lion()
+lion.speak()  # Chama o método speak() da classe Lion</code></pre>
+            </div>
+            </div><script>hljs.highlightAll();</script>
+    </main>
+</body>
+</html>

@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>28_desafio.py</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="https://pyscript.net/releases/2024.1.1/core.css">
+    <script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>
+    <style>
+        .sandbox-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
+        .sandbox-header h2 { font-size: 1.2rem; color: var(--primary); display: flex; align-items: center; gap: 0.5rem; }
+        .py-repl-container { border-radius: 8px; overflow: hidden; border: 1px solid var(--glass-border); background: #1e293b; }
+    </style>
+    
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --glass-bg: rgba(30, 41, 59, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --primary: #38bdf8;
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        header {
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            border-bottom: 1px solid var(--glass-border);
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .back-btn {
+            color: var(--text-main);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            background: rgba(255,255,255,0.05);
+            transition: 0.3s;
+        }
+        .back-btn:hover {
+            background: rgba(56, 189, 248, 0.2);
+            color: var(--primary);
+        }
+        .file-title {
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+        main {
+            flex: 1;
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        .container {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="../index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Voltar</a>
+        <div class="file-title">28_desafio.py</div>
+    </header>
+    <main>
+        
+    <div class="container">
+        <div class="sandbox-header">
+            <h2><i class="fa-brands fa-python"></i> Sandbox PyScript</h2>
+            <span>Edite e execute (Shift + Enter) ou no botão verde ▶</span>
+        </div>
+        <div class="py-repl-container">
+            <script type="py" id="main-script"></script>
+            <py-repl auto-generate="true">
+# Exercício Python #028 - Jogo da Adivinhação v.1.0 - Aula 00 até 09 - Mundo 1
+# Escreva um programa que faça o computador &quot;pensar&quot; em um número inteiro entre 0 e 5 e peça para o usuário tentar descobrir qual foi o número escolhido pelo computador. O programa deverá escrever na tela se o usuário venceu ou perdeu.
+
+from random import randint
+from time import sleep
+from emoji import emojize
+# Tarefa 1: Fazer o computador pensar em um número entre 0 e 5
+computador = randint(0, 5)
+
+# Tarefa 2: O usuário deve tentar descobrir o número
+usuario = int(input(emojize(&#x27;Em qual número o computador está pensando? :rosto_pensativo:&#x27;, language=&#x27;pt&#x27;)))
+
+# Tarefa 3: Escrever na tela se o usuário acertou ou errou
+print(f&#x27;Você chutou o número {usuario}.&#x27;)
+sleep(1)
+print(&#x27;O computador pensou no número...&#x27;, end=&#x27; &#x27;)
+sleep(1)
+print(f&#x27;{computador}&#x27;)
+sleep(1)
+acertou = computador == usuario
+
+if acertou:
+    print(emojize(&#x27;ACERTOU! :rosto_pensativo:&#x27;, language=&#x27;pt&#x27;))
+else:
+    print(emojize(&#x27;ERROU! :rosto_furioso:&#x27;, language=&#x27;pt&#x27;))
+    
+    
+    
+# Versão 2 -
+
+print(f&#x27;Vou pensar em um número entre 1 e 10 e quero que tente adivinhar. Ok?&#x27;)
+sleep(1)
+computador = randint(1, 10)
+acertou = True
+
+while acertou:
+	try:
+		sleep(1)
+		jogador = int(input(&#x27;Palpite: &#x27;))
+		sleep(1)
+		print(&#x27;Analisando...&#x27;)
+		sleep(1)
+		acertou = computador != jogador
+		if jogador == computador:
+			print(f&#x27;Acertou! Era mesmo o número {computador}&#x27;)
+			break
+		else:
+			print(f&#x27;Errou! Não é o número {jogador}. Vamos de novo...&#x27;)
+	except ValueError:
+		print(&#x27;Apenas valores numéricos!&#x27;)
+
+# Versão 3 - Completo com placar
+def palpite(mensagem):
+	while True:
+		try:
+			return int(input(mensagem))
+		except ValueError:
+			print(&#x27;Opção inválida! Digite um número válido.&#x27;)
+
+
+print(f&#x27;{&#x27;Vamos jogar!&#x27;:^20}&#x27;)
+
+computador = randint(1, 100)
+tentativa = 1
+
+while True:
+	usuário = palpite(f&#x27;{tentativa}ª tentativa: &#x27;)
+
+	if usuário &lt; 1 or usuário &gt; 100:
+		print(&#x27;Apenas valores entre 1 e 100.&#x27;)
+		continue
+
+	if usuário == computador:
+		print(f&#x27;Acertou! Era mesmo {computador}. Foram {tentativa} tentativas.&#x27;)
+		break
+	else:
+		dica = emojize(&#x27;\033[1;32mMaior :seta_para_cima:\033[m&#x27; if usuário &lt; computador else &#x27;\033[1;31mMenor :seta_para_baixo:\033[m&#x27;, language=&#x27;pt&#x27;)
+		print(f&#x27;Errou! É {dica} que {usuário}. Tente novamente...&#x27;)
+		tentativa += 1
+		continue
+
+# Estou compartilhando minhas anotações sobre os exercícios. Quem quiser, pode copiar e colar em um documento .py pois está tudo formatado e comentado.
+
+# Nesse exercício, o programa deve fazer o computador &quot;pensar&quot; em um número inteiro entre 0 e 5 e pedir para o usuário tentar descobrir qual foi o número escolhido pelo computador. O programa deve escrever na tela se o usuário venceu ou perdeu.
+
+# Para criar o efeito de &quot;pensar&quot; em um número, vamos utilizar a função randint() do módulo random. Essa função gera um número inteiro aleatório dentro de um intervalo especificado. Apenas para fins estéticos, vamos adicionar um pequeno delay entre as mensagens com a função sleep() do módulo time.
+
+# Primeiro precisamos importar as funções randint() e sleep() dos módulos random e time, respectivamente.
+from random import randint
+from time import sleep
+
+# Em seguida, vamos fazer o computador &quot;pensar&quot; em um número entre 0 e 5.
+computador = randint(0, 5)
+
+# Agora, vamos pedir para o usuário tentar adivinhar o número escolhido pelo computador.
+usuario = int(input(&#x27;Em qual número o computador está pensando? &#x27;))
+
+# Vamos exibir o número escolhido pelo usuário e o número escolhido pelo computador.
+print(f&#x27;Você chutou o número {usuario}.&#x27;)
+sleep(1)
+print(&#x27;O computador pensou no número...&#x27;, end=&#x27; &#x27;)
+sleep(1)
+print(f&#x27;{computador}&#x27;)
+
+# Por fim, vamos verificar se o usuário acertou ou errou. Podemos salvar o resultado da comparação entre os números em uma variável chamada acertou ou simplesmente fazer a comparação dentro da estrutura condicional. Aqui vamos salvar o resultado da comparação em uma variável.
+acertou = computador == usuario
+
+if acertou: # Como if espera um valor booleano e armazenamos o resultado da comparação entre os números em acertou, não precisamos fazer a comparação novamente. Ou seja, se acertou for True, o usuário acertou, caso contrário, errou e o else será executado.
+    print(&#x27;ACERTOU!&#x27;)
+else:
+    print(&#x27;ERROU!&#x27;)
+
+# Nossa estrutura condicional é simples, pois só precisamos verificar se o número escolhido pelo usuário é igual ao número escolhido pelo computador. Se for, o usuário acertou, caso contrário, errou. 
+            </py-repl>
+        </div>
+    </div>
+    
+    </main>
+</body>
+</html>

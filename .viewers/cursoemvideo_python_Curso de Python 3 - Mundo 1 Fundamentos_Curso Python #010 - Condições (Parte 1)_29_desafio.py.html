@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>29_desafio.py</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="https://pyscript.net/releases/2024.1.1/core.css">
+    <script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>
+    <style>
+        .sandbox-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
+        .sandbox-header h2 { font-size: 1.2rem; color: var(--primary); display: flex; align-items: center; gap: 0.5rem; }
+        .py-repl-container { border-radius: 8px; overflow: hidden; border: 1px solid var(--glass-border); background: #1e293b; }
+    </style>
+    
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --glass-bg: rgba(30, 41, 59, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --primary: #38bdf8;
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        header {
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            border-bottom: 1px solid var(--glass-border);
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .back-btn {
+            color: var(--text-main);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            background: rgba(255,255,255,0.05);
+            transition: 0.3s;
+        }
+        .back-btn:hover {
+            background: rgba(56, 189, 248, 0.2);
+            color: var(--primary);
+        }
+        .file-title {
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+        main {
+            flex: 1;
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        .container {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="../index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Voltar</a>
+        <div class="file-title">29_desafio.py</div>
+    </header>
+    <main>
+        
+    <div class="container">
+        <div class="sandbox-header">
+            <h2><i class="fa-brands fa-python"></i> Sandbox PyScript</h2>
+            <span>Edite e execute (Shift + Enter) ou no botão verde ▶</span>
+        </div>
+        <div class="py-repl-container">
+            <script type="py" id="main-script"></script>
+            <py-repl auto-generate="true">
+# Exercício Python #029 - Radar eletrônico - Aula 00 até 09 - Mundo 1
+# Escreva um programa que leia a velocidade de um carro. Se ele ultrapassar 80Km/h, mostre uma mensagem dizendo que ele foi multado. A multa vai custar R$7,00 por cada Km acima do limite.
+
+from math import e
+from random import randint
+from time import sleep
+from emoji import emojize
+# Tarefa 1: Ler a velocidade do carro.
+velocidade = randint(40, 110)
+print(f&#x27;RADAR: Sua velocidade é de {velocidade}Km/h&#x27;)
+
+velocidade_maxima = 80
+
+# Tarefa 2: Definir o valor da multa
+if velocidade &gt; velocidade_maxima:
+    print(&#x27;Você foi multado!&#x27;)
+
+    acima_do_limte = velocidade - velocidade_maxima
+    multa = acima_do_limte * 7
+
+# Tarefa 3: Mostrar a mensagem dizendo se foi multado ou não
+    print(f&#x27;O limite de velocidade é de 80Km/h. Você foi flagrado a {velocidade}Km/h.&#x27;)
+    print(f&#x27;O valor da multa é de R$ 7,00 por Km/h ultrapassado. Sua multa será de R$ {multa:.2f} por trafegar a {acima_do_limte}Km/h além do permitido.&#x27;)
+else:
+    print(&#x27;Você está dentro do limite permitido!&#x27;)
+
+# EXTRA
+
+print(emojize(&#x27;:estrada: RADAR ELETÔNICO&#x27;, language=&#x27;pt&#x27;))
+while True:
+	try:
+		simulações = int(input(&#x27;Quantas simulações deseja realizar? &#x27;))
+		break
+	except ValueError:
+		print(&#x27;Valor inválido!&#x27;)
+
+for carro in range(1, simulações+1):
+	velocidade = randint(70, 90)
+
+	multado = velocidade - 80 &lt;= 0
+
+	valor = 7 * (velocidade - 80)
+	moeda = str(f&#x27;{valor:.2f}&#x27;).replace(&#x27;.&#x27;,&#x27;,&#x27;)
+
+	print(emojize(f&#x27;{f&#x27;:carro: Veículo {carro} - Velocidade registrada:&#x27;:&lt;30}{f&#x27;{velocidade}Km/h&#x27;:&gt;20}&#x27;, language=&#x27;pt&#x27;))
+
+	print(emojize(f&#x27;\033[1;32mTenha um bom dia. Dirija com segurança.\033[m&#x27; if multado else f&#x27;\033[1;31m:sirene: Você foi multado em R$ {moeda} por ultrapassar em {valor/7}Km a velocidade permitida.\033[m&#x27;, language=&#x27;pt&#x27;))
+
+	sleep(1)
+print(&#x27;Simulações encerradas!&#x27;)
+
+# Criar sistema de radar eletrônico que verifique a velocidade e aplique multas R$ 7,00 a cada Km excedido e pontos na carteira - Verificar niveis de gravidade da multa
+
+# Infração leve - 3 Pontos - Multa - R$ 5,00 por KM excedido - 10km acima
+# Infração moderada - 4 Pontos - Multa - R$ 10,00 por KM excedido - 20km acima
+# Infração grave - 6 Pontos - Multa - R$ 15,00 por KM excedido - 30km acima
+# Infração gravíssima - 7 Pontos - Multa - R$ 20,00 por KM excedido - 30km+ acima
+
+from random import randint
+
+def verifica(v):
+	excedido = v - 80  # Calcula as multas
+	acima_limite = (v - 80) &gt; 0  # Verifica se está acima do limite
+	multa = (
+		excedido * 5 if excedido &lt;= 10 else
+		10 if excedido &lt;= 20 else
+		15 if excedido &lt;= 30 else 20)  # Define o multiplicador dependendo do grau
+	grau = (
+		&#x27;\033[32mLeve\033[m&#x27; if excedido &lt;= 10 else
+		&#x27;\033[34mModerada\033[m&#x27; if excedido &lt;= 20 else
+		&#x27;\033[33mGrave\033[m&#x27; if excedido &lt;= 30 else &#x27;\033[31mGravíssima\033[m&#x27;)
+	pontos = (
+		3 if excedido &lt;= 10 else
+		4 if excedido &lt;= 20 else
+		6 if excedido &lt;= 30 else 7)  # Define o multiplicador dependendo do grau
+
+	if acima_limite:
+
+		print(
+			f&#x27;{&#x27;-&#x27; * 26}\n&#x27;
+			f&#x27;{&#x27;Velocidade:&#x27;:&lt;11}{v:&gt;13}{&#x27;km&#x27;:&lt;2}\n&#x27;
+			f&#x27;{&#x27;Infração:&#x27;:&lt;11}{grau:&gt;23}\n&#x27;
+			f&#x27;{&#x27;Excedido:&#x27;:&lt;11}{excedido:&gt;13}{&#x27;km&#x27;:&gt;2}\n&#x27;
+			f&#x27;{&#x27;Pontos:&#x27;:&lt;11}{pontos:&gt;15}\n&#x27;
+			f&#x27;{&#x27;Multa:&#x27;:&lt;11}{&#x27;R$&#x27;:&gt;5}{multa:&gt;10.2f}\n&#x27;
+			f&#x27;{&#x27;-&#x27; * 26}&#x27;)
+
+
+for veículos in range(6):
+	velocidade = randint(60, 200)  # Define as velocidades
+	verifica(velocidade)
+
+# Estou compartilhando minhas anotações sobre os exercícios. Quem quiser, pode copiar e colar em um documento .py pois está tudo formatado e comentado.
+
+# Nesse exercício, o programa deve ler a velocidade de um carro e se ele ultrapassar 80Km/h, deve mostrar uma mensagem dizendo que ele foi multado. A multa vai custar R$7,00 por cada Km acima do limite.
+
+# A primeira coisa a ser feita é capturar a velocidade do carro. Para isso, vamos utilizar a função input() para ler a velocidade digitada pelo usuário. Precisamos converter o valor para inteiro com a função int().
+velocidade = int(input(&#x27;Qual é a velocidade atual do carro? &#x27;))
+
+# Em seguida, vamos definir o limite de velocidade, que é de 80Km/h.
+velocidade_maxima = 80
+
+# Agora, vamos verificar se a velocidade do carro ultrapassou o limite permitido. Vamos salvar a diferença entre a velocidade do carro e o limite em uma variável chamada acima_do_limite pois precisaremos dela para calcular o valor da multa.
+acima_do_limte = velocidade - velocidade_maxima
+
+# Se a velocidade do carro for maior que o limite permitido, o carro foi multado. Nesse caso, vamos exibir uma mensagem informando que o carro foi multado e calcular o valor da multa. Para que a multa seja aplicada, acima_do_limite deve ser maior que zero.
+
+# Para calcular o valor da multa, vamos multiplicar a diferença entre a velocidade do carro e o limite pelo valor da multa por Km excedido, que é de R$7,00.
+if acima_do_limte &gt; 0:
+	print(&#x27;MULTADO! Você excedeu o limite permitido que é de 80Km/h&#x27;)
+	multa = acima_do_limte * 7
+	print(f&#x27;Você deve pagar uma multa de R${multa:.2f}!&#x27;)
+# Na exibição do valor da multa, utilizamos o f-string para formatar o valor com duas casas decimais.
+else:
+	print(&#x27;Tenha um bom dia! Dirija com segurança!&#x27;)
+
+# Nesse método salvamos as informações em variáveis para facilitar a leitura e a compreensão do código. No entanto, é possível fazer a verificação diretamente na estrutura condicional, sem a necessidade de salvar a diferença entre a velocidade do carro e o limite em uma variável.
+
+velocidade = int(input(&#x27;Qual é a velocidade atual do carro? &#x27;))
+if velocidade &gt; 80:
+	multa = (velocidade - 80) * 7
+	print(f&#x27;MULTADO! Você excedeu o limite permitido que é de 80Km/h\nVocê deve pagar uma multa de R${multa:.2f}!&#x27;)
+else:
+	print(&#x27;Tenha um bom dia! Dirija com segurança!&#x27;)
+
+            </py-repl>
+        </div>
+    </div>
+    
+    </main>
+</body>
+</html>

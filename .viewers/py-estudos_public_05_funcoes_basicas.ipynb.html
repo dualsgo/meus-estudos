@@ -1,0 +1,1312 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>05_funcoes_basicas.ipynb</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/monokai-sublime.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/python.min.js"></script>
+    
+    <style>
+        .cell { margin-bottom: 1.5rem; }
+        .cell-markdown { font-size: 1.05rem; line-height: 1.6; color: #cbd5e1; }
+        .cell-markdown h1, .cell-markdown h2, .cell-markdown h3 { color: #f1f5f9; margin-top: 1rem; margin-bottom: 0.5rem; }
+        .cell-markdown code { background: rgba(0,0,0,0.3); padding: 0.2rem 0.4rem; border-radius: 4px; color: #eab308; }
+        .cell-markdown pre { background: rgba(0,0,0,0.3); padding: 1rem; border-radius: 8px; overflow-x: auto; border: 1px solid var(--glass-border); margin: 1rem 0; }
+        .cell-code { background: #23241f; border-radius: 8px; padding: 1rem; overflow-x: auto; position: relative; border: 1px solid #333; }
+        .cell-output { background: #000; color: #a3e635; padding: 1rem; border-radius: 8px; margin-top: 0.5rem; font-family: monospace; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;}
+        .prompt { position: absolute; top: 0.5rem; right: 0.5rem; color: #64748b; font-size: 0.8rem; user-select: none; }
+    </style>
+    
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --glass-bg: rgba(30, 41, 59, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --primary: #38bdf8;
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        header {
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            border-bottom: 1px solid var(--glass-border);
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .back-btn {
+            color: var(--text-main);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            background: rgba(255,255,255,0.05);
+            transition: 0.3s;
+        }
+        .back-btn:hover {
+            background: rgba(56, 189, 248, 0.2);
+            color: var(--primary);
+        }
+        .file-title {
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+        main {
+            flex: 1;
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        .container {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="../index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Voltar</a>
+        <div class="file-title">05_funcoes_basicas.ipynb</div>
+    </header>
+    <main>
+        <div class="container">
+            <div class="cell cell-markdown" id="md-0"></div>
+            <script>
+                (function(){
+                    const b64 = "IyBGdW7Dp8O1ZXMgLSBJbnRyb2R1w6fDo28gYW8gY29uY2VpdG8KLS0tCgpVbWEgZnVuw6fDo28gbm8gY29udGV4dG8gZGEgcHJvZ3JhbWHDp8OjbyDDqSB1bSBibG9jbyBkZSBjw7NkaWdvIHF1ZSBleGVjdXRhIHVtYSB0YXJlZmEgZXNwZWPDrWZpY2EgZSBwb2RlIHNlciByZXV0aWxpemFkbyBlbSBkaWZlcmVudGVzIHBhcnRlcyBkZSB1bSBwcm9ncmFtYS4gQXMgZnVuw6fDtWVzIHBvZGVtIGFjZWl0YXIgYXJndW1lbnRvcyAoZGFkb3MgZGUgZW50cmFkYSkgZSByZXRvcm5hciByZXN1bHRhZG9zIChkYWRvcyBkZSBzYcOtZGEpLiBBcyBmdW7Dp8O1ZXMgcG9kZW0gc2VyIGNoYW1hZGFzIHbDoXJpYXMgdmV6ZXMgZW0gdW0gcHJvZ3JhbWEgZSBwb2RlbSBzZXIgZGVmaW5pZGFzIHBlbG8gcHJvZ3JhbWFkb3Igb3UgaW1wb3J0YWRhcyBkZSBtw7NkdWxvcyBleHRlcm5vcy4=";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-0').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-markdown" id="md-1"></div>
+            <script>
+                (function(){
+                    const b64 = "IyMgYHByaW50KClgCi0tLQpPIGBwcmludCgpYCBlbSBQeXRob24gw6kgdW1hIGZ1bsOnw6NvIGVtYnV0aWRhIChidWlsdC1pbikgcXVlIMOpIHVzYWRhIHBhcmEgZXhpYmlyIGluZm9ybWHDp8O1ZXMgbmEgdGVsYS4gRWxhIGFjZWl0YSB6ZXJvIG91IG1haXMgYXJndW1lbnRvcyBjb21vIGVudHJhZGEgZSBpbXByaW1lIGVzc2VzIGFyZ3VtZW50b3MgbmEgc2HDrWRhIHBhZHLDo28gKG5vcm1hbG1lbnRlLCBhIHRlbGEpLg==";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-1').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [1]</div>
+                <pre><code class="language-python"># Neste primeiro exemplo usaremos um comando simples para exibir uma mensagem na tela
+
+print(&#x27;Olá, Mundo!&#x27;) # Este comando exibirá &quot;Olá, mundo!&quot; na tela quando o programa for executado. O print() é uma ferramenta essencial para a depuração de programas e para fornecer feedback ao usuário durante a execução do código.
+
+# A string &#x27;Olá, Mundo!&#x27; é um argumento passado para a função print().
+# Um argumento é um valor que é passado para uma função para que ela possa realizar alguma ação. 
+# O argumento passado para a função print() pode ser uma string, um número, uma variável, uma expressão ou uma combinação e etc.</code></pre>
+            </div>
+            <div class="cell-output">Olá, Mundo!
+</div>
+            <div class="cell cell-markdown" id="md-3"></div>
+            <script>
+                (function(){
+                    const b64 = "Q29tbyB2b2PDqiB2aXUsIGVzdGUgcHJpbWVpcm8gcHJvZ3JhbWEgY29uc2lzdGl1IG5hcyBzZWd1aW50ZXMgcGFydGVzOgoKLSBBIHBhbGF2cmEgKipgcHJpbnRgKioKLSBVbSBwYXLDqm50ZXNlIGRlIGFiZXJ0dXJhICoqYChgKiogZSB1bSBkZSBmZWNoYW1lbnRvICoqYClgKiouCi0gVW1hIGxpbmhhIGRlIHRleHRvOiAqKmBPbMOhLCBNdW5kbyFgKiogZW50cmUgb3MgcGFyw6pudGVzZXMuCi0gVW0gcGFyIGRlIGFzcGFzICoqYCIiYCoqIGVudm9sdmVuZG8gbyB0ZXh0by4KCkNhZGEgdW1hIGRhcyBwYXJ0ZXMgZGVzY3JpdGFzIGFjaW1hIGRlc2VtcGVuaGEgdW0gcGFwZWwgbXVpdG8gaW1wb3J0YW50ZSBubyBjw7NkaWdvLgoKKipgT3MgcGFyw6pudGVzZXNgKiogZGUgYWJlcnR1cmEgZSBmZWNoYW1lbnRvIHPDo28gdXNhZG9zIHBhcmEgZXhlY3V0YXIgdW1hIGZ1bsOnw6NvLiBVbWEgZnVuw6fDo28gw6kgdW0gY29uanVudG8gZGUgaW5zdHJ1w6fDtWVzIHF1ZSBleGVjdXRhIHVtYSB0YXJlZmEgZXNwZWPDrWZpY2EuIEEgZnVuw6fDo28gcHJpbnQoKSBleGliZSB1bSB0ZXh0byBuYSB0ZWxhLgoKTyB0ZXh0byBxdWUgdm9jw6ogZGVzZWphIGV4aWJpciBuYSB0ZWxhIMOpIGNoYW1hZG8gZGUgKipgYXJndW1lbnRvIGRhIGZ1bsOnw6NvYCoqLiBPIGFyZ3VtZW50byDDqSBvIHZhbG9yIHF1ZSBhIGZ1bsOnw6NvIHVzYSBwYXJhIGV4ZWN1dGFyIHN1YSB0YXJlZmEuIE5vIGNhc28gZGEgZnVuw6fDo28gcHJpbnQoKSwgbyBhcmd1bWVudG8gw6kgbyB0ZXh0byBxdWUgdm9jw6ogZGVzZWphIGV4aWJpciBuYSB0ZWxhLiBPIGFyZ3VtZW50byDDqSBjb2xvY2FkbyBlbnRyZSBvcyBwYXLDqm50ZXNlcyBkZSBhYmVydHVyYSBlIGZlY2hhbWVudG8uCgpVdGlsaXphbW9zIG9zIHBhcsOqbnRlc2VzIHBhcmEgZW52b2x2ZXIgbyB0ZXh0byBxdWUgcXVlcmVtb3MgZXhpYmlyIG5hIHRlbGEuIElzc28gw6kgbmVjZXNzw6FyaW8gcG9ycXVlIG8gaW50ZXJwcmV0YWRvciBQeXRob24gcHJlY2lzYSBzYWJlciBvbmRlIG8gdGV4dG8gY29tZcOnYSBlIG9uZGUgdGVybWluYS4gTyBpbnRlcnByZXRhZG9yIFB5dGhvbiBzYWJlIHF1ZSBvIHRleHRvIGNvbWXDp2EgZSB0ZXJtaW5hIG9uZGUgb3MgcGFyw6pudGVzZXMgZGUgYWJlcnR1cmEgZSBmZWNoYW1lbnRvIGVzdMOjbyBsb2NhbGl6YWRvcy4KCk8gw7puaWNvIGFyZ3VtZW50byBlbnRyZWd1ZSDDoCBmdW7Dp8OjbyBwcmludCgpIG5lc3RlIGV4ZW1wbG8gw6kgdW1hIHN0cmluZy4K";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-3').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python"># Podemos usar vários argumentos separados por vírgula...
+print(&#x27;Argumento 1&#x27;, &#x27;Argumento 2&#x27;)
+
+# ...ou usar o operador de concatenação (+) para combinar strings.
+print(&#x27;Argumento 1&#x27; + &#x27;Argumento 2&#x27;)
+
+# Note que o resultado do comando print() é diferente nos dois casos. No primeiro caso, os argumentos são separados por um espaço em branco, enquanto no segundo caso, as strings são concatenadas sem nenhum espaço entre elas. Isso ocorre porque a função print() tem um comportamento padrão de separar os argumentos por um espaço em branco, mas quando usamos o operador de concatenação (+), estamos criando uma nova string que é a combinação das duas strings originais.
+
+# Também podemos passar nenhum argumento para a função print()
+print() # Este comando exibirá uma linha em branco na tela quando o programa for executado.
+
+# Este comportamento se deve ao fato de a função possuir um argumento opicional chamado &quot;end&quot; que por padrão possui o valor &#x27;\n&#x27; (quebra de linha). Esse comportamento pode ser alterado passando um valor diferente para o argumento &quot;end&quot;, assim como o comportamento do separador entre os argumentos, que por padrão é um espaço em branco, mas pode ser alterado passando um valor diferente para o argumento &quot;sep&quot;.
+
+# Em resumo, a sintaxe da função print() é a seguinte:
+# print(value1, value2, ..., sep=&#x27; &#x27;, end=&#x27;\n&#x27;)
+
+# Onde:
+# value1, value2, ... são os n argumentos com os valores que serão exibidos na tela.
+# sep é o separador entre os valores (por padrão é um espaço em branco). Ou seja, se você passar vários argumentos para a função print(), eles serão separados por um espaço em branco.
+# end é o caractere que será exibido no final da linha (por padrão é uma quebra de linha). Ou seja, após exibir os valores, a função print() adiciona uma quebra de linha para que o próximo comando de saída comece em uma nova linha.</code></pre>
+            </div>
+            <div class="cell-output">Argumento 1 Argumento 2
+Argumento 1Argumento 2
+
+</div>
+            <div class="cell cell-markdown" id="md-5"></div>
+            <script>
+                (function(){
+                    const b64 = "IyMgYEluc3RydcOnw7Vlc2AKLS0tCkxpbmhhcyBkZSBjw7NkaWdvIHPDo28gaW5zdHJ1w6fDtWVzIHBhcmEgbyBjb21wdXRhZG9yIHNlZ3Vpci4gUXVhbmRvIGV4ZWN1dGFtb3MgY8OzZGlnbywgZGl6ZW1vcyBhbyBjb21wdXRhZG9yIHBhcmEgc2VndWlyIGFzIGluc3RydcOnw7VlcyBxdWUgbW9udGFtb3MuCgpBIG9yZGVtIGRhcyBpbnN0cnXDp8O1ZXMgw6kgaW1wb3J0YW50ZSBwb3JxdWUgbyBjb21wdXRhZG9yIHNlZ3VlIGFzIGluc3RydcOnw7VlcywgbGluaGEgcG9yIGxpbmhhLgoKTyBwcm9ncmFtYSBhIHNlZ3VpciBjaGFtYSBhIGZ1bsOnw6NvIHByaW50KCkgZHVhcyB2ZXplcywgZSB2b2PDqiBwb2RlIHZlciBkdWFzIGxpbmhhcyBzZXBhcmFkYXMgbm8gY29uc29sZSDigJIgaXNzbyBzaWduaWZpY2EgcXVlIHByaW50KCkgY29tZcOnYSBzdWEgc2HDrWRhIGEgcGFydGlyIGRlIHVtYSBub3ZhIGxpbmhhIGNhZGEgdmV6IHF1ZSBpbmljaWEgc3VhIGV4ZWN1w6fDo28uIElzc28gasOhIMOpIGVzcGVyYWRvLCBwb2lzIGNvbW8gdmltb3MsIGEgZnVuw6fDo28gcG9zc3VpIHVtIGFyZ3VtZW50byBvcGNpb25hbCBjb20gdW0gY29tcHJvdGFtZW50byBwcsOpIGRlZmluaWRvLgoKKioqVm9jw6ogcG9kZSBtdWRhciBlc3NlIGNvbXBvcnRhbWVudG8sIG1hcyB0YW1iw6ltIHBvZGUgdXPDoS1sbyBhIHNldSBmYXZvci4qKio=";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-5').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [6]</div>
+                <pre><code class="language-python"># As instruções a seguir refletem o comportamento padrão da função print().
+print(&quot;A Dona Aranha subiu pela parede,&quot;)
+print(&quot;Já chegou a chuva e a derrubou.&quot;)
+
+# É esperado que cada argumento passado para a função print() seja exibido em uma linha diferente.</code></pre>
+            </div>
+            <div class="cell-output">A Dona Aranha subiu pela parede,
+Já chegou a chuva e a derrubou.
+</div>
+            <div class="cell cell-markdown" id="md-7"></div>
+            <script>
+                (function(){
+                    const b64 = "Q29tbyBkaXRvLCBmdW7Dp8O1ZXMgcG9kZW0gcmVjZWJlciBxdWFscXVlciBuw7ptZXJvIGRlIGFyZ3VtZW50b3MsIGluY2x1c2l2ZSB6ZXJvLiBPIGPDs2RpZ28gYWJhaXhvIMOpIHbDoWxpZG8sIG1hcyB0YW1iw6ltIG7Do28gw6kgcmVjb21lbmRhZG86";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-7').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [2]</div>
+                <pre><code class="language-python"># Acrescentamos uma instrução print sem argumento
+
+print(&quot;A Dona Aranha subiu pela parede,&quot;)
+print()  # Essa instrução imprime uma linha em branco, pois esse efeito é causado pelo argumento padrão da função print() chamado end que por padrão é \n (caractere de nova linha)
+print(&quot;Já chegou a chuva e a derrubou.&quot;)
+
+# Veja o resultado dessa alteração. A linha em branco entre as duas frases é causada pela instrução print() sem argumentos, que utiliza o valor padrão do argumento end para adicionar uma nova linha após a primeira frase.</code></pre>
+            </div>
+            <div class="cell-output">A Dona Aranha subiu pela parede,
+
+Já chegou a chuva e a derrubou.
+</div>
+            <div class="cell cell-markdown" id="md-9"></div>
+            <script>
+                (function(){
+                    const b64 = "Q2FkYSBpbnZvY2HDp8OjbyBgcHJpbnQoKWAgY29udMOpbSB1bWEgc3RyaW5nIGRpZmVyZW50ZSwgY29tbyBzZXUgYXJndW1lbnRvLCBlIG8gY29udGXDumRvIGRvIGNvbnNvbGUgYSByZWZsZXRlIOKAkiBpc3NvIHNpZ25pZmljYSBxdWUgYXMgaW5zdHJ1w6fDtWVzIG5vIGPDs2RpZ28gc8OjbyBleGVjdXRhZGFzIG5hIG1lc21hIG9yZGVtIGVtIHF1ZSBmb3JhbSBjb2xvY2FkYXMgbm8gYXJxdWl2by1mb250ZSBlIG5lbmh1bWEgaW5zdHJ1w6fDo28gc3Vic2VxdWVudGUgw6kgZXhlY3V0YWRhIGF0w6kgcXVlIGEgYW50ZXJpb3Igc2VqYSBjb25jbHXDrWRhIChleGlzdGVtIGFsZ3VtYXMgZXhjZcOnw7VlcyBhIGVzdGEgcmVncmEsIG1hcyB2b2PDqiBwb2RlIGlnbm9yw6EtbGFzIHBvciBlbnF1YW50by4pCgpBIHNpbnRheGUgZG8gUHl0aG9uIMOpIGJhc3RhbnRlIGVzcGVjw61maWNhIG5lc3NhIMOhcmVhLiBBbyBjb250csOhcmlvIGRhIG1haW9yaWEgZGFzIGxpbmd1YWdlbnMgZGUgcHJvZ3JhbWHDp8OjbywgbyBQeXRob24gZXhpZ2UgcXVlIG7Do28gaGFqYSBtYWlzIGRlIHVtYSBpbnN0cnXDp8OjbyBlbSB1bWEgbGluaGEgYXBlc2FyIGRlIHNlciBwb3Nzw612ZWwgdXRpbGl6YW5kbyB2w61yZ3VsYXMgb3UgcG9udG8gZSB2w61yZ3VsYXMuCgpVbWEgbGluaGEgcG9kZSBlc3RhciB2YXppYSAob3Ugc2VqYSwgcG9kZSBuw6NvIGNvbnRlciBuZW5odW1hIGluc3RydcOnw6NvKSwgbWFzIG7Do28gZGV2ZSBjb250ZXIgZHVhcywgdHLDqnMgb3UgbWFpcyBpbnN0cnXDp8O1ZXMu";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-9').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [10]</div>
+                <pre><code class="language-python">print(&#x27;Olá&#x27;), print(&#x27;Mundo!&#x27;) # É permitido, mas não recomendado
+print(&#x27;Olá&#x27;); print(&#x27;Mundo!&#x27;) # É permitido, mas não recomendado
+
+# Vendo o resultado fica fácil entender o motivo de não ser recomendado usar ponto e vírgula para separar instruções em Python. O uso do ponto e vírgula pode prejudicar a legibilidade do código, especialmente para iniciantes. Apesar do código ter duas instruções lado a lado, o resultado exibido na tela é o mesmo que se cada instrução estivesse em uma linha separada, não refletindo a estrutura visual do código.</code></pre>
+            </div>
+            <div class="cell-output">Olá
+Mundo!
+Olá
+Mundo!
+</div>
+            <div class="cell cell-markdown" id="md-11"></div>
+            <script>
+                (function(){
+                    const b64 = "IyMgYEVzY2FwZSBkbyBQeXRob24gZSBjYXJhY3RlcmVzIGRlIG5vdmFzIGxpbmhhc2AKLS0tCkN1cmlvc2FtZW50ZSwgZW5xdWFudG8gdm9jw6ogcG9kZSB2ZXIgZG9pcyBjYXJhY3RlcmVzIGVtICoqYFxuYCoqLCBvIFB5dGhvbiB2w6ogdW0uCkEgYmFycmEgaW52ZXJ0aWRhIChgXGApIHRlbSB1bSBzaWduaWZpY2FkbyBtdWl0byBlc3BlY2lhbCBxdWFuZG8gdXNhZGEgZGVudHJvIGRlIHN0cmluZ3Mg4oCTIGlzc28gw6kgY2hhbWFkbyBkZSBjYXJhY3RlcmUgZGUgZXNjYXBlLiBBIGxldHJhIGBuYCBjb2xvY2FkYSBhcMOzcyBhIGJhcnJhIGludmVydGlkYSB2ZW0gZGEgcGFsYXZyYSBuZXdsaW5lIChub3ZhIGxpbmhhKS4KCkVzdGEgY29udmVuw6fDo28gdGVtIGR1YXMgY29uc2VxdcOqbmNpYXMgaW1wb3J0YW50ZXM6CgoxLiBTZSB2b2PDqiBxdWlzZXIgY29sb2NhciBhcGVuYXMgdW1hIGJhcnJhIGludmVydGlkYSBudW1hIHN0cmluZywgbsOjbyBzZSBlc3F1ZcOnYSBkZSBzdWEgbmF0dXJlemEgZGUgZXNjYXBlIC0gdm9jw6ogcHJlY2lzYSBkb2Jyw6EtbGEuICAKCjIuIE5lbSB0b2RvcyBvcyBwYXJlcyBkZSBlc2NhcGUgKGEgYmFycmEgaW52ZXJ0aWRhIGp1bnRhbWVudGUgY29tIG91dHJvIGNhcmFjdGVyZSkgc2lnbmlmaWNhbSBhbGdvLg==";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-11').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [3]</div>
+                <pre><code class="language-python"># Python não é muito bom em prever o que você quer fazer, então é melhor ser explícito.
+
+# Imagine que por algum motivo você deseje exibir aspas duplas na tela.
+# Você estaria inclinado a utilizar o comando a seguir para exibir aspas duplas na tela.
+
+# print(&quot;&quot;&quot;)
+
+# Essa instrução geraria um erro de sintaxe pois o Python espera um par de aspas duplas para fechar a string, mas encontra um caractere de aspas duplas solitário.
+
+# Nosso exemplo a seguir, isso não resultará em um erro de sintaxe. Por quê?
+print(&quot;\&quot;&quot;)
+
+# O caractere de escape \ faz com que o caractere de aspas não seja interpretado como um caractere de fim de string. O Python entende que o caractere de aspas duplas é um caractere normal e o exibe na tela.</code></pre>
+            </div>
+            <div class="cell-output">&quot;
+</div>
+            <div class="cell cell-code">
+                <div class="prompt">In [4]</div>
+                <pre><code class="language-python"># Vamos a outra situação. Imagine que você deseje exibir uma barra invertida na tela.
+
+# print(&quot;\&quot;)
+
+# Geraria um erro de sintaxe pois o caractere de escape \ seguido do caractere de aspas duplas faz com que o caractere de aspas não seja interpretado como o fim da string. Desse modo, o Python espera que a string seja fechada com um caractere de aspas duplas, mas não encontra um caractere de aspas duplas para fechar a string.
+
+print(&quot;\\&quot;)
+# Desse modo, como dito antes, se deseja exibir uma barras invertida em uma string, dobre a barra invertida para que o Python entenda que a barra invertida é um caractere normal e a exiba na tela.</code></pre>
+            </div>
+            <div class="cell-output">\
+</div>
+            <div class="cell cell-markdown" id="md-14"></div>
+            <script>
+                (function(){
+                    const b64 = "IyMgYFVzYW5kbyB2w6FyaW9zIGFyZ3VtZW50b3NgCi0tLQpFbSBub3NzbyBwcsOzeGltbyBleGVtcGxvLCBow6EgdW1hIGNoYW1hZGEgZGUgZnVuw6fDo28gcHJpbnQoKSwgbWFzIGVsYSBjb250w6ltIHRyw6pzIGFyZ3VtZW50b3MuIFRvZG9zIGVsZXMgc8OjbyBjYWRlaWFzIGRlIGNhcmFjdGVyZXMsIG91IHNlamEsIHN0cmluZ3Mu";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-14').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python"># Olhe bem. Temos três argumentos passados para a função print() e o separador entre eles é uma vírgula
+print(&quot;Um elefante incomoda muita gente&quot;, &quot;dois elefantes&quot;, &quot;incomodam, incomodam muito mais.&quot;)
+
+# O resultado é que os argumentos são impressos na tela separados por um espaço em branco
+
+# ***Os argumentos são separados por vírgulas. Nós os cercamos de espaços após as virgulas para torná-los mais visíveis, mas não é realmente necessário.***</code></pre>
+            </div>
+            <div class="cell-output">Um elefante incomoda muita gente dois elefantes incomodam, incomodam muito mais.
+</div>
+            <div class="cell cell-markdown" id="md-16"></div>
+            <script>
+                (function(){
+                    const b64 = "TmVzc2UgY2FzbywgYXMgdsOtcmd1bGFzIHF1ZSBzZXBhcmFtIG9zIGFyZ3VtZW50b3MgZGVzZW1wZW5oYW0gdW1hIGZ1bsOnw6NvIGNvbXBsZXRhbWVudGUgZGlmZXJlbnRlIGRhIHbDrXJndWxhIGRlbnRybyBkYSBzZXF1w6puY2lhLiBPIHByaW1laXJvIGZheiBwYXJ0ZSBkYSBzaW50YXhlIGRvIFB5dGhvbiwgZW5xdWFudG8gbyDDumx0aW1vIGRldmUgc2VyIGV4aWJpZG8gbm8gY29uc29sZS4KCkR1YXMgY29uY2x1c8O1ZXMgZW1lcmdlbSBkZXNzZSBleGVtcGxvOgotIHVtYSBmdW7Dp8OjbyBwcmludCgpIGNoYW1hZGEgY29tIG1haXMgZGUgdW0gYXJndW1lbnRvIGdlcmEgdG9kb3MgZWxlcyBlbSB1bWEgbGluaGEKLSBhIGZ1bsOnw6NvIHByaW50KCkgY29sb2NhIHVtIGVzcGHDp28gZW50cmUgb3MgYXJndW1lbnRvcyBnZXJhZG9zIHBvciBzdWEgcHLDs3ByaWEgaW5pY2lhdGl2YS4gRXN0ZSBlZmVpdG8gw6kgY2F1c2FkbyBwZWxvIGFyZ3VtZW50byBgc2VwYCAoc2VwYXJhZG9yKSBxdWUgcG9yIHBhZHLDo28sIMOpIHVtIGVzcGHDp28u";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-16').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [17]</div>
+                <pre><code class="language-python"># Observação: Em Python, strings sequenciais são concatenadas automaticamente. Isso significa que se você escrever duas strings uma após a outra, elas serão concatenadas em uma única string, respeitando a formatação original, isso inclui espaços em branco separando as palavras.
+
+print(&quot;Um elefante incomoda muita gente &quot;&quot;dois elefantes &quot;&quot;incomodam, incomodam muito mais.&quot;)</code></pre>
+            </div>
+            <div class="cell-output">Um elefante incomoda muita gente dois elefantes incomodam, incomodam muito mais.
+</div>
+            <div class="cell cell-markdown" id="md-18"></div>
+            <script>
+                (function(){
+                    const b64 = "IyMjIGBBcmd1bWVudG9zIGRlIFBhbGF2cmEtQ2hhdmVgCgpPcyBhcmd1bWVudG9zIGRlIHVtYSBmdW7Dp8OjbyBwb2RlbSBzZXIgcG9zaWNpb25haXMgb3Ugbm9tZWFkb3MgKHRhbWLDqW0gY2hhbWFkb3MgZGUgYXJndW1lbnRvcyBkZSBwYWxhdnJhLWNoYXZlKS4KCi0gKipBcmd1bWVudG9zIHBvc2ljaW9uYWlzKiogc8OjbyBhcXVlbGVzIHBhc3NhZG9zIHBhcmEgYSBmdW7Dp8OjbyBuYSBvcmRlbSBlbSBxdWUgZm9yYW0gZGVmaW5pZG9zLgotICoqQXJndW1lbnRvcyBub21lYWRvcyoqIHPDo28gYXF1ZWxlcyBwYXNzYWRvcyBwYXJhIGEgZnVuw6fDo28gZXNwZWNpZmljYW5kbyBvIG5vbWUgZG8gcGFyw6JtZXRybyBjb3JyZXNwb25kZW50ZS4KCi0gdW0gYXJndW1lbnRvIGRlIHBhbGF2cmEtY2hhdmUgY29uc2lzdGUgZW0gdHLDqnMgZWxlbWVudG9zOiB1bWEgKipgcGFsYXZyYS1jaGF2ZWAqKiBxdWUgaWRlbnRpZmljYSBvIGFyZ3VtZW50byAoZW5kIGFxdWkpIHVtICoqYHNpbmFsIGRlIGlndWFsICg9IE9wZXJhZG9yIGRlIGF0cmlidWnDp8OjbylgKiogIGUgdW0gKipgdmFsb3JgKiogYXRyaWJ1w61kbyBhIGVzc2UgYXJndW1lbnRvLgoKLSBxdWFscXVlciBhcmd1bWVudG8gZGUgcGFsYXZyYS1jaGF2ZSBkZXZlIHNlciBjb2xvY2FkbyBhcMOzcyBvIMO6bHRpbW8gYXJndW1lbnRvIHBvc2ljaW9uYWwuIFBvciBpc3NvIHPDo28gcGFzc2Fkb3MgYXDDs3MgbyB2YWxvciBxdWUgZGVzZWphbW9zIGV4aWJpci4gKGlzc28gw6kgbXVpdG8gaW1wb3J0YW50ZSEpCgpBIGZ1bsOnw6NvIGBwcmludCgpYCBwb3NzdWkgZG9pcyBhcmd1bWVudG9zIGRlIHBhbGF2cmEtY2hhdmUgcXVlIHZvY8OqIHBvZGUgdXRpbGl6YXI6IGBlbmRgIGUgYHNlcGAuIFVtIHBhcsOibWV0cm8gw6kgdW0gdmFsb3IgcXVlIGEgZnVuw6fDo28gZXNwZXJhIHJlY2ViZXIgcXVhbmRvIMOpIGNoYW1hZGEuIE5lc3NlIGNhc28sIGBlbmRgIGUgYHNlcGAgc8OjbyBwYXLDom1ldHJvcyBvcGNpb25haXMsIHBvaXMgcG9zc3VlbSB2YWxvcmVzIHBhZHLDo28uIElzc28gc2lnbmlmaWNhIHF1ZSwgc2UgbyB1c3XDoXJpbyBuw6NvIG9zIGVzcGVjaWZpY2FyIGFvIGNoYW1hciBhIGZ1bsOnw6NvLCBlbGVzIGFkb3RhcsOjbyBlc3NlcyB2YWxvcmVzIHBhZHLDo28uCgoqKipPcyBhcmd1bWVudG9zIG9wY2lvbmFpcyBwZXJtYW5lY2VtICJpbnZpc2l2ZWlzIiBzZSB2b2PDqiBuw6NvIG9zIHV0aWxpemFyLiBQYXJhIHNhYmVyIHF1YWlzIGFyZ3VtZW50b3Mgb3BjaW9uYWlzIHVtYSBmdW7Dp8OjbyBwb3NzdWksIGNvbnN1bHRlIGEgZG9jdW1lbnRhw6fDo28gZGEgZnVuw6fDo28uIFZvY8OqIHBvZGUgZmF6ZXIgaXNzbyB1c2FuZG8gYSBmdW7Dp8OjbyBoZWxwKCkgZG8gUHl0aG9uIG91IHBlc3F1aXNhbmRvIG5hIGRvY3VtZW50YcOnw6NvIG9maWNpYWwgZG8gUHl0aG9uIG5hIGludGVybmV0LioqKg==";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-18').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python"># print(end=&#x27;55&#x27;, &#x27;Teste&#x27;) # Erro de sintaxe.
+
+# Argumentos posicionais devem vir antes dos argumentos nomeados</code></pre>
+            </div>
+            
+            <div class="cell cell-markdown" id="md-20"></div>
+            <script>
+                (function(){
+                    const b64 = "IyMjIGBlbmRgCi0tLQpPIHByaW1laXJvIHBhcsOibWV0cm8gb3BpY2lvbmFsIGRhIGZ1bsOnw6NvIHByaW50KCkgcXVlIGlyZW1vcyBjb25oZWNlciDDqSBjaGFtYWRvIGRlIGVuZC4KCkEgZnVuw6fDo28gYHByaW50KClgIGRvIFB5dGhvbiBwb3NzdWkgdW0gcGFyw6JtZXRybyBvcGNpb25hbCBjaGFtYWRvIGBlbmRgLCBxdWUgcGVybWl0ZSBwZXJzb25hbGl6YXIgbyBjb21wb3J0YW1lbnRvIGRhIHNhw61kYSBhbyBmaW5hbCBkZSB1bWEgbGluaGEgaW1wcmVzc2EuCgpQb3IgcGFkcsOjbywgZXNzZSBwYXLDom1ldHJvIGVzdMOhIGRlZmluaWRvIGNvbW8gYGVuZD0iXG4iYCwgbyBxdWUgaW5zZXJlIHVtYSBub3ZhIGxpbmhhIGFww7NzIGEgZXhlY3XDp8OjbyBkYSBmdW7Dp8Ojby4gTyBjYXJhY3RlcmUgYFxuYCByZXByZXNlbnRhIHVtYSBxdWVicmEgZGUgbGluaGEsIGZhemVuZG8gY29tIHF1ZSBhIHByw7N4aW1hIGNoYW1hZGEgZGEgZnVuw6fDo28gYHByaW50KClgIGluaWNpZSBuYSBsaW5oYSBzdWJzZXF1ZW50ZS4gTm8gZW50YW50bywgYW8gbW9kaWZpY2FyIG8gdmFsb3IgZG8gcGFyw6JtZXRybyBgZW5kYCwgw6kgcG9zc8OtdmVsIGFsdGVyYXIgZXNzZSBjb21wb3J0YW1lbnRvLCBjb21vLCBwb3IgZXhlbXBsbywgcmVtb3ZlbmRvIGEgcXVlYnJhIGRlIGxpbmhhIG91IGluc2VyaW5kbyB1bSBjYXJhY3RlcmUgZGlmZXJlbnRlLiBDYXNvIG8gcGFyw6JtZXRybyBzZWphIGRlZmluaWRvIGNvbW8gdW1hIHN0cmluZyB2YXppYSAoYGVuZD0iImApLCBhIGZ1bsOnw6NvIGBwcmludCgpYCBuw6NvIGdlcmEgbmVuaHVtYSBxdWVicmEgZGUgbGluaGEgb3Ugb3V0cm8gY2FyYWN0ZXJlIGFkaWNpb25hbCwgcmVzdWx0YW5kbyBuYSBjb250aW51YcOnw6NvIGRhIHNhw61kYSBuYSBtZXNtYSBsaW5oYSBhdMOpIHF1ZSB0b2RvcyBvcyBhcmd1bWVudG9zIHRlbmhhbSBzaWRvIGltcHJlc3Nvcy4gSXNzbyBvZmVyZWNlIG1haW9yIGNvbnRyb2xlIHNvYnJlIGEgZm9ybWF0YcOnw6NvIGUgYXByZXNlbnRhw6fDo28gZG9zIGRhZG9zIGV4aWJpZG9zLg==";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-20').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [20]</div>
+                <pre><code class="language-python"># Como sabemos, a função print() exibe seu resultado em uma linha e pula para a próxima linha. Isso ocorre porque o argumento end padrão é uma quebra de linha (\n). Quando chamamos a função print() apenas com um texto, o resultado é exibido na tela e a próxima instrução print() imprime na linha seguinte.
+
+# end significa fim em inglês. O argumento end é usado para especificar o que será impresso no final de cada chamada da função print(). Por padrão, o argumento end é uma quebra de linha (\n). Isso significa que, após a execução da função print(), o cursor será movido para a próxima linha.
+
+print(&#x27;Olá, mundo!&#x27;) # Imprime &quot;Olá, mundo!&quot; na tela e pula para a próxima linha
+print(&#x27;Olá, mundo!&#x27;) # Imprime &quot;Olá, mundo!&quot; na tela e pula para a próxima linha</code></pre>
+            </div>
+            <div class="cell-output">Olá, mundo!
+Olá, mundo!
+</div>
+            <div class="cell cell-code">
+                <div class="prompt">In [21]</div>
+                <pre><code class="language-python"># Se quisermos manipular esse comportamento, devemos passar um valor diferente para o argumento end. 
+
+print(&#x27;Olá, mundo!&#x27;, end=&#x27; % &#x27;) # Estamos usando o argumento end para imprimir um caractere de porcentagem no final da string, ao invés de uma nova linha. Isso faz ocorrer a impressão de um espaço em branco após a string, na mesma linha. Consequentemente, a próxima instrução print() irá imprimir na mesma linha que a string anterior. 
+
+print(&#x27;Olá, mundo!&#x27;, end=&#x27;\n&#x27;) # Nessa instrução estamos usando o argumento end para imprimir um caractere de nova linha no final da string. Como este é o seu valor padrão, definir explicitamente o argumento end para \n é redundante.
+
+print(&#x27;Olá, mundo!&#x27;, end=&#x27; % &#x27;) # Ao redefinir novamente o argumento end para imprimir um caractere de porcentagem no final da string, de novo, a próxima instrução print() irá imprimir um espaço em branco após a string, na mesma linha.
+
+# Com essas três instruções teremos a seguinte saída:
+# Olá, mundo! % Olá, mundo!
+# Olá, mundo! %</code></pre>
+            </div>
+            <div class="cell-output">Olá, mundo! % Olá, mundo!
+Olá, mundo! % </div>
+            <div class="cell cell-markdown" id="md-23"></div>
+            <script>
+                (function(){
+                    const b64 = "IyMjIGBzZXBgCi0tLQpBIGZ1bsOnw6NvIGBwcmludCgpYCB0YW1iw6ltIHBvc3N1aSBvIHBhcsOibWV0cm8gb3BjaW9uYWwgYHNlcGAsIHF1ZSBjb250cm9sYSBjb21vIG9zIGFyZ3VtZW50b3MgcGFzc2Fkb3MgcGFyYSBhIGZ1bsOnw6NvIHPDo28gc2VwYXJhZG9zIG5hIHNhw61kYS4gUG9yIHBhZHLDo28sIGEgZnVuw6fDo28gdXRpbGl6YSB1bSDDum5pY28gZXNwYcOnbyAoYHNlcD0iICJgKSBwYXJhIHNlcGFyYXIgb3MgZGlmZXJlbnRlcyBhcmd1bWVudG9zIGltcHJlc3NvcywgbWFzIGVzc2UgY29tcG9ydGFtZW50byBwb2RlIHNlciBtb2RpZmljYWRvIGNvbmZvcm1lIGEgbmVjZXNzaWRhZGUuIENvbSBvIHVzbyBkZSBgc2VwYCwgw6kgcG9zc8OtdmVsIGVzcGVjaWZpY2FyIHF1YWxxdWVyIGNhcmFjdGVyZSBvdSBzZXF1w6puY2lhIGRlIGNhcmFjdGVyZXMgcGFyYSBzZXBhcmFyIG9zIGVsZW1lbnRvcywgY29tbyB2w61yZ3VsYXMsIHRyYcOnb3MsIG91IGF0w6kgbWVzbW8gc3RyaW5ncyBtYWlzIGNvbXBsZXhhcy4gRXNzYSBmbGV4aWJpbGlkYWRlIHBlcm1pdGUgbWFpb3IgcGVyc29uYWxpemHDp8OjbyBkYSBmb3JtYXRhw6fDo28gZGEgc2HDrWRhLCBvZmVyZWNlbmRvIGNvbnRyb2xlIHRvdGFsIHNvYnJlIGNvbW8gb3MgaXRlbnMgc8OjbyBleGliaWRvcyBqdW50b3MgZW0gdW1hIMO6bmljYSBjaGFtYWRhIGRlIGBwcmludCgpYC4=";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-23').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [6]</div>
+                <pre><code class="language-python">print(&quot;Meu&quot;, &quot;nome&quot;, &quot;é&quot;, &quot;Monty&quot;, &quot;Python.&quot;) # Esse é o comportamento padrão. Cada argumento é separado por um espaço em branco. Lembre-se que cercamos os argumentos com espaços para fins de legibilidade.
+
+print(&quot;Meu&quot;,&quot;nome&quot;,&quot;é&quot;,&quot;Monty&quot;,&quot;Python.&quot;) # O resultado é o mesmo que o exemplo anterior, pois o separador padrão é um espaço em branco. Apenas removemos os espaços entre os argumentos para mostrar que eles não interferem no resultado.
+
+print(&quot;Meu&quot;&quot;nome&quot;&quot;é&quot;&quot;Monty&quot;&quot;Python.&quot;) # Como vimos antes, strings sequenciais são concatenadas automaticamente. Nesse caso não vemos o efeito de sep, pois não usamos vírgulas para separar os argumentos.</code></pre>
+            </div>
+            <div class="cell-output">Meu nome é Monty Python.
+Meu nome é Monty Python.
+MeunomeéMontyPython.
+</div>
+            <div class="cell cell-code">
+                <div class="prompt">In [7]</div>
+                <pre><code class="language-python"># Agora estamos alterando o valor do argumento sep para um traço. A função print() agora usa um traço, em vez de um espaço para separar os argumentos de saída.
+print(&quot;Meu&quot;, &quot;nome&quot;, &quot;é&quot;, &quot;Monty&quot;, &quot;Python.&quot;, sep=&quot;-&quot;)
+
+# A saída será:
+# Meu-nome-é-Monty-Python.</code></pre>
+            </div>
+            <div class="cell-output">Meu-nome-é-Monty-Python.
+</div>
+            <div class="cell cell-code">
+                <div class="prompt">In [8]</div>
+                <pre><code class="language-python"># Podemos usar o caractere de escape como argumento. A função print() agora usa uma nova linha, em vez de um espaço, para separar os argumentos de saída. Isso significa que cada argumento é impresso em uma nova linha.
+
+print(&quot;Meu&quot;, &quot;nome&quot;, &quot;é&quot;, &quot;Monty&quot;, &quot;Python.&quot;, sep=&quot;\n&quot;)
+
+# A saída será:
+# Meu
+# nome
+# é
+# Monty
+# Python.</code></pre>
+            </div>
+            <div class="cell-output">Meu
+nome
+é
+Monty
+Python.
+</div>
+            <div class="cell cell-markdown" id="md-27"></div>
+            <script>
+                (function(){
+                    const b64 = "IyMjIGBBc3BhcyB0cmlwbGFzYAotLS0KQXNwYXMgdHJpcGxhcyBwb2RlbSBzZXIgdXNhZGFzIHBhcmEgZXNjcmV2ZXIgdGV4dG9zIGRlIHbDoXJpYXMgbGluaGFzLgoKTyB0ZXh0byBzZXLDoSBpbXByZXNzbyBleGF0YW1lbnRlIGNvbW8gZm9pIGVzY3JpdG8sIGluY2x1aW5kbyBvcyBlc3Bhw6dvcyBlbSBicmFuY28sIHRhYnVsYcOnw7VlcyBlIHF1ZWJyYXMgZGUgbGluaGEu";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-27').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [15]</div>
+                <pre><code class="language-python">print(&quot;&quot;&quot;Este é um texto de
+várias linhas. Ele é formado por três linhas.
+
+A primeira linha tem apenas algumas palavras. A segunda linha tem mais 
+
+
+palavras. A terceira linha tem ainda mais palavras.&quot;&quot;&quot;)
+
+# Repare que a saída resultante é formatada de acordo com a formatação do texto. Isso é chamado de formatação de texto em bloco. A formatação de texto em bloco é útil para a documentação de programas e para a formatação de strings longas.</code></pre>
+            </div>
+            <div class="cell-output">Este é um texto de
+várias linhas. Ele é formado por três linhas.
+
+A primeira linha tem apenas algumas palavras. A segunda linha tem mais 
+
+
+palavras. A terceira linha tem ainda mais palavras.
+</div>
+            <div class="cell cell-code">
+                <div class="prompt">In [16]</div>
+                <pre><code class="language-python"># Para efeito de comparação, veja como seria o código para imprimir o mesmo texto sem usar a formatação de texto em bloco:
+
+print(&quot;Este é um texto de\nvárias linhas. Ele é formado por três linhas.\n\nA primeira linha tem apenas algumas palavras. A segunda linha tem mais\n\n\npalavras. A terceira linha tem ainda mais palavras.&quot;)
+
+# A formatação de texto em bloco é mais legível e mais fácil de manter do que a formatação de texto em linha.</code></pre>
+            </div>
+            <div class="cell-output">Este é um texto de
+várias linhas. Ele é formado por três linhas.
+
+A primeira linha tem apenas algumas palavras. A segunda linha tem mais
+
+
+palavras. A terceira linha tem ainda mais palavras.
+</div>
+            <div class="cell cell-markdown" id="md-30"></div>
+            <script>
+                (function(){
+                    const b64 = "IyMgYFBhZHLDo28gQU5TSWAKLS0tCk8gcGFkcsOjbyBBTlNJIGRlIGNvcmVzIMOpIHVtIHBhZHLDo28gZGUgY29yZXMgdW5pdmVyc2FsIHF1ZSBkZWZpbmUgdW1hIHRhYmVsYSBkZSBjb3JlcyBjb20gY8OzZGlnb3MgbnVtw6lyaWNvcy4gQSBzaW50YXhlIHBhcmEgdXNhciBjb3JlcyBBTlNJIGVtIFB5dGhvbiDDqToKCmBgYHB5dGhvbgpcMDMzW1NUWUxFO0NPTE9SX0NPREU7QkFDS0dST1VORF9DT0xPUm1UZXh0b1wwMzNbMG0KYGBgCgpPbmRlOgoKLSBgXDAzM1tgIGluZGljYSBvIGluw61jaW8gZGEgc2VxdcOqbmNpYSBBTlNJLgotIGBTVFlMRWAgw6kgdW0gY8OzZGlnbyBudW3DqXJpY28gb3BjaW9uYWwgcXVlIGRlZmluZSBvIGVzdGlsbyBkbyB0ZXh0byAocG9yIGV4ZW1wbG8sIG5lZ3JpdG8sIHN1YmxpbmhhZG8pLgotIGBDT0xPUl9DT0RFYCDDqSB1bSBjw7NkaWdvIG51bcOpcmljbyBxdWUgZGVmaW5lIGEgY29yIGRvIHRleHRvLgotIGBCQUNLR1JPVU5EX0NPTE9SYCDDqSB1bSBjw7NkaWdvIG51bcOpcmljbyBxdWUgZGVmaW5lIGEgY29yIGRvIGZ1bmRvLgotIGBtYCDDqSBvIG1hcmNhZG9yIHF1ZSBpbmRpY2EgbyBmaW0gZGEgc2VxdcOqbmNpYSBkZSBlc3RpbG8gZSBjb3IuCi0gYFRleHRvYCDDqSBvIHRleHRvIGFvIHF1YWwgYSBjb3Igb3UgbyBlc3RpbG8gc2Vyw6EgYXBsaWNhZG8uCi0gYFwwMzNbMG1gIMOpIHVzYWRvIHBhcmEgcmVkZWZpbmlyIG8gZXN0aWxvIGUgYSBjb3IgcGFyYSBvcyBwYWRyw7Vlcy4KCgpgU1RZTEVgIMOpIHVtIGPDs2RpZ28gbnVtw6lyaWNvIHF1ZSBkZWZpbmUgbyBlc3RpbG8gZG8gdGV4dG8KLSAoMCBwYXJhIG5lbmh1bSBlc3RpbG8sIDEgcGFyYSBuZWdyaXRvLCA0IHBhcmEgc3VibGluaGFkbywgNyBwYXJhIG5lZ2F0aXZvKS4KCmBURVhUX0NPTE9SYCDDqSB1bSBjw7NkaWdvIG51bcOpcmljbyBxdWUgZGVmaW5lIGEgY29yIGRvIHRleHRvIAotICgzMCBwYXJhIGJyYW5jbywgMzEgcGFyYSB2ZXJtZWxobywgMzIgcGFyYSB2ZXJkZSwgMzMgcGFyYSBhbWFyZWxvLCAzNCBwYXJhIGF6dWwsIDM1IHBhcmEgcm94bywgMzYgcGFyYSBhenVsLWNsYXJvLCAzNyBwYXJhIGNpbnphKS4KCmBCQUNLR1JPVU5EX0NPTE9SYCDDqSB1bSBjw7NkaWdvIG51bcOpcmljbyBxdWUgZGVmaW5lIGEgY29yIGRlIGZ1bmRvCi0gKDQwIHBhcmEgYnJhbmNvLCA0MSBwYXJhIHZlcm1lbGhvLCA0MiBwYXJhIHZlcmRlLCA0MyBwYXJhIGFtYXJlbG8sIDQ0IHBhcmEgYXp1bCwgNDUgcGFyYSByb3hvLCA0NiBwYXJhIGF6dWwtY2xhcm8sIDQ3IHBhcmEgY2luemEpLg==";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-30').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [7]</div>
+                <pre><code class="language-python"># Por exemplo, para imprimir um texto em vermelho e negrito, você usaria:
+
+print(&quot;\033[1;31mTexto em vermelho e negrito\033[0m&quot;)
+
+# Para imprimir um texto em verde com fundo amarelo, você usaria:
+
+print(&quot;\033[1;32;43mTexto em verde com fundo amarelo\033[0m&quot;)
+
+# Experimente combinações diferentes alterando os números</code></pre>
+            </div>
+            <div class="cell-output">[1;31mTexto em vermelho e negrito[0m
+[1;32;43mTexto em verde com fundo amarelo[0m
+</div>
+            <div class="cell cell-markdown" id="md-32"></div>
+            <script>
+                (function(){
+                    const b64 = "IyMgYEV4cHJlc3PDtWVzYAotLS0KQXTDqSBhZ29yYSwgdmltb3MgY29tbyBhIGZ1bsOnw6NvIGBwcmludCgpYCBwb2RlIHNlciB1dGlsaXphZGEgcGFyYSBleGliaXIgc3RyaW5ncyBkaXJldGFtZW50ZSBjb21vIGFyZ3VtZW50b3MsIG1hcyBlbGEgdGFtYsOpbSBwZXJtaXRlIGV4aWJpciB2YXJpw6F2ZWlzLCBjb21vIGVtIGBwcmludCh2YXJpYXZlbClgLiBRdWFuZG8gdW1hIHZhcmnDoXZlbCDDqSBwYXNzYWRhIGNvbW8gYXJndW1lbnRvLCBvIHZhbG9yIGFzc29jaWFkbyBhIGVsYSDDqSBleGliaWRvIG5vIGNvbnNvbGUsIGVtIHZleiBkbyBub21lIGRhIHZhcmnDoXZlbCwgbyBxdWUgZXF1aXZhbGUgYSBkaXplciAiKm1vc3RyZSBvIHZhbG9yIGFybWF6ZW5hZG8gbmVzdGEgdmFyacOhdmVsKiIuIEFsw6ltIGRpc3NvLCBwb2RlbW9zIHVzYXIgb3BlcmFkb3JlcyBlbSBjb25qdW50byBjb20gdmFyacOhdmVpcyBwYXJhIG1hbmlwdWxhciBlIGV4aWJpciB2YWxvcmVzIGRlIGZvcm1hIG1haXMgZGluw6JtaWNhLgoKVW0gZXhlbXBsbyBjb211bSDDqSBvIHVzbyBkbyBvcGVyYWRvciBgK2AgcGFyYSBjb21iaW5hciB0ZXh0byBlIHZhcmnDoXZlaXMuIE8gc2luYWwgZGUgYCtgLCBxdWFuZG8gdXRpbGl6YWRvIGVudHJlIGR1YXMgc3RyaW5ncywgYXR1YSBjb21vIHVtIG9wZXJhZG9yIGRlIGNvbmNhdGVuYcOnw6NvLCB1bmluZG8gKG91IGNvbGFuZG8pIGR1YXMgc2VxdcOqbmNpYXMgZGUgY2FyYWN0ZXJlcyBlbSB1bWEgw7puaWNhIHN0cmluZy4gQXNzaW0gY29tbyBzZXUgdXNvIGFyaXRtw6l0aWNvLCBvIG9wZXJhZG9yIGRlIGNvbmNhdGVuYcOnw6NvIHBvZGUgc2VyIGFwbGljYWRvIHbDoXJpYXMgdmV6ZXMgZGVudHJvIGRlIHVtYSBtZXNtYSBleHByZXNzw6NvLCByZXNwZWl0YW5kbyBhIG9yZGVtIGRhIG9wZXJhw6fDo28gZGEgZXNxdWVyZGEgcGFyYSBhIGRpcmVpdGEuCgpFbnRyZXRhbnRvLCBhbyBjb250csOhcmlvIGRvIHNldSB1c28gbnVtw6lyaWNvLCBvIG9wZXJhZG9yIGRlIGNvbmNhdGVuYcOnw6NvIG7Do28gw6kgY29tdXRhdGl2bywgb3Ugc2VqYSwgYSBvcmRlbSBkYXMgc3RyaW5ncyBpbmZsdWVuY2lhIG5vIHJlc3VsdGFkbyBmaW5hbDogYCJhYiIgKyAiYmEiYCByZXN1bHRhIGVtIGAiYWJiYSJgLCBlbnF1YW50byBgImJhIiArICJhYiJgIHJlc3VsdGEgZW0gYCJiYWFiImAuIMOJIGltcG9ydGFudGUgbGVtYnJhciBxdWUsIHBhcmEgcXVlIG8gb3BlcmFkb3IgYCtgIGZ1bmNpb25lIGNvbW8gY29uY2F0ZW5hZG9yIGRlIHN0cmluZ3MgZSBuw6NvIGNvbW8gc29tYWRvciwgYW1ib3Mgb3MgYXJndW1lbnRvcyBwcmVjaXNhbSBzZXIgZG8gdGlwbyBzdHJpbmcuIENhc28gY29udHLDoXJpbywgc2Vyw6EgbmVjZXNzw6FyaW8gY29udmVydGVyIGV4cGxpY2l0YW1lbnRlIG9zIHZhbG9yZXMgcGFyYSBzdHJpbmcgdXRpbGl6YW5kbyBhIGZ1bsOnw6NvIGBzdHIoKWAuCgpQb3IgZXhlbXBsbzog";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-32').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [9]</div>
+                <pre><code class="language-python"># Apenas valores string podem ser concatenados com o operador +. Se você tentar concatenar um valor diferente, o Python retornará um erro.
+
+# Atribuindo a string &quot;3.8.5&quot; à variável version
+version = &quot;3.8.5&quot;
+
+# Concatenando a string &quot;Versão Python: &quot; com a variável version e imprimindo o resultado   
+print(&quot;Versão Python: &quot; + version)
+
+# Será exibido:
+# Versão Python: 3.8.5
+
+# Com valores numéricos o operador + realiza a adição
+print(2 + 3) # Imprime 5
+print(&#x27;2&#x27; + &#x27;3&#x27;) # Imprime 23</code></pre>
+            </div>
+            <div class="cell-output">Versão Python: 3.8.5
+5
+23
+</div>
+            <div class="cell cell-markdown" id="md-34"></div>
+            <script>
+                (function(){
+                    const b64 = "TyBvcGVyYWRvciBgK2Agw6kgYW1wbGFtZW50ZSB1dGlsaXphZG8gcGFyYSBjb25jYXRlbmFyLCBvdSBzZWphLCB1bmlyIGR1YXMgb3UgbWFpcyBzZXF1w6puY2lhcyBkZSBjYXJhY3RlcmVzIChzdHJpbmdzKS4gTm8gZW50YW50bywgYW8gdXRpbGl6YXIgZXNzZSBvcGVyYWRvciwgw6kgaW1wb3J0YW50ZSBsZW1icmFyIHF1ZSBlbGUgbsOjbyBhZGljaW9uYSBhdXRvbWF0aWNhbWVudGUgZXNwYcOnb3MgZW50cmUgYXMgc2VxdcOqbmNpYXMgY29uY2F0ZW5hZGFzLiBTZSBwcmVjaXNhciBkZSBlc3Bhw6dvcywgZWxlcyBkZXZlbSBzZXIgaW5jbHXDrWRvcyBtYW51YWxtZW50ZSwgc2VqYSBkZW50cm8gZGFzIHN0cmluZ3Mgb3UgY29tbyB1bWEgc3RyaW5nIHNlcGFyYWRhIGNvbnRlbmRvIHVtIGVzcGHDp28gKGAiICJgKS4gQWzDqW0gZGlzc28sIG8gb3BlcmFkb3IgYCtgIHPDsyBmdW5jaW9uYSBjb3JyZXRhbWVudGUgc2UgYW1iYXMgYXMgc2VxdcOqbmNpYXMgZm9yZW0gZG8gbWVzbW8gdGlwbywgb3Ugc2VqYSwgdG9kYXMgZGV2ZW0gc2VyIHN0cmluZ3MuIENhc28gY29udHLDoXJpbywgc2Vyw6EgbmVjZXNzw6FyaW8gY29udmVydGVyIG9zIHRpcG9zIGRlIGRhZG9zIHBhcmEgc3RyaW5ncywgdXNhbmRvIGEgZnVuw6fDo28gYHN0cigpYC4KClVtYSBtYW5laXJhIGFsdGVybmF0aXZhIGRlIGNvbmNhdGVuYXIgc3RyaW5ncywgZSBhdMOpIHZhbG9yZXMgZGUgdGlwb3MgZGlmZXJlbnRlcywgw6kgdXRpbGl6YW5kbyBvIG9wZXJhZG9yIGRlIHbDrXJndWxhIChgLGApLiBBbyBjb250csOhcmlvIGRvIG9wZXJhZG9yIGArYCwgYSB2w61yZ3VsYSBhZGljaW9uYSBhdXRvbWF0aWNhbWVudGUgdW0gZXNwYcOnbyBlbnRyZSBvcyB2YWxvcmVzIGNvbmNhdGVuYWRvcywgZmFjaWxpdGFuZG8gYSBjcmlhw6fDo28gZGUgZnJhc2VzIG1haXMgbGVnw612ZWlzIHNlbSBhIG5lY2Vzc2lkYWRlIGRlIGluc2VyaXIgZXNwYcOnb3MgbWFudWFsbWVudGUuIEFsw6ltIGRpc3NvLCBhIHbDrXJndWxhIMOpIG1haXMgZmxleMOtdmVsLCBwb2lzIHBlcm1pdGUgY29uY2F0ZW5hciB2YWxvcmVzIGRlIGRpZmVyZW50ZXMgdGlwb3MsIHNlbSBleGlnaXIgY29udmVyc8OjbyBleHBsw61jaXRhLgoKUG9yIGV4ZW1wbG86";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-34').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python"># Valores de tipos diferentes podem ser concatenados usando vírgulas.
+
+# Atribuindo o número float 3.85 à variável version
+version = 3.85
+
+# Imprimindo a string &quot;Versão Python:&quot; e a variável version separadas por um espaço em branco
+print(&quot;Versão Python:&quot;, version)
+
+# O resultado será:
+# Versão Python: 3.85
+    
+# Se ambos os valores forem números, o operador vírgula também realizará a concatenação. 
+print(2, 3) # Imprime 2 3</code></pre>
+            </div>
+            <div class="cell-output">Versão Python: 3.85
+2 3
+</div>
+            <div class="cell cell-markdown" id="md-36"></div>
+            <script>
+                (function(){
+                    const b64 = "TGVtYnJlLXNlOiBBIGZ1bsOnw6NvIHByaW50KCkgcG9zc3VpIGRvaXMgYXJndW1lbnRvcyBvcGNpb25haXM6IGBgc2VwYGAgZSBgYGVuZGBgLiAqKk8gdmFsb3IgcGFkcsOjbyBkZSBzZXAgw6kgdW0gw7puaWNvIGNhcmFjdGVyZSBkZSBlc3Bhw6dvKiosIGUgKipvIHZhbG9yIHBhZHLDo28gZGUgZW5kIMOpIHVtYSBub3ZhIGxpbmhhKiouIFZvY8OqIHBvZGUgYWx0ZXJhciBlc3NlcyB2YWxvcmVzIHVzYW5kbyBhcmd1bWVudG9zIG5vbWVhZG9zLg==";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-36').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-markdown" id="md-37"></div>
+            <script>
+                (function(){
+                    const b64 = "TyBvcGVyYWRvciBgKmAgKGFzdGVyaXNjbyksIHF1YW5kbyBhcGxpY2FkbyBlbnRyZSB1bWEgc3RyaW5nIGUgdW0gbsO6bWVybywgYXR1YSBjb21vIHVtIG9wZXJhZG9yIGRlIHJlcGxpY2HDp8Ojby4gRWxlIHBlcm1pdGUgcXVlIHVtYSBzdHJpbmcgc2VqYSByZXBldGlkYSB2w6FyaWFzIHZlemVzLCBjb25mb3JtZSBvIG7Dum1lcm8gZXNwZWNpZmljYWRvLiBFc3NlIG9wZXJhZG9yIMOpIGNvbXV0YXRpdm8gbmVzc2UgY29udGV4dG8sIG8gcXVlIHNpZ25pZmljYSBxdWUgYSBvcmRlbSBkb3Mgb3BlcmFuZG9zIG7Do28gYWx0ZXJhIG8gcmVzdWx0YWRvOiB0YW50byBgc3RyaW5nICogbsO6bWVyb2AgcXVhbnRvIGBuw7ptZXJvICogc3RyaW5nYCBwcm9kdXplbSBvIG1lc21vIGVmZWl0by4KClBvciBleGVtcGxvOg==";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-37').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [11]</div>
+                <pre><code class="language-python"># Aqui, a string &quot;Oi&quot; é repetida 3 vezes, criando uma nova sequência com o conteúdo concatenado. Essa replicação de strings é útil quando você precisa criar padrões repetitivos ou simplesmente duplicar uma string várias vezes com facilidade.
+print(&quot;Oi&quot; * 3)
+print(3 * &quot;Oi&quot;)
+
+# Ambos os exemplos resultarão na saída:
+# OiOiOi</code></pre>
+            </div>
+            <div class="cell-output">OiOiOi
+OiOiOi
+</div>
+            <div class="cell cell-markdown" id="md-39"></div>
+            <script>
+                (function(){
+                    const b64 = "IyBJbnRlcnBvbGHDp8OjbyBkZSBzdHJpbmdzCgpBIGludGVycG9sYcOnw6NvIGRlIHN0cmluZ3Mgw6kgdW1hIHTDqWNuaWNhIHF1ZSBwZXJtaXRlIGEgc3Vic3RpdHVpw6fDo28gZGUgdmFyacOhdmVpcyBlbSB1bWEgc3RyaW5nIHBvciBzZXVzIHZhbG9yZXMgY29ycmVzcG9uZGVudGVzLiBJc3NvIMOpIGZlaXRvIHVzYW5kbyB1bSBtYXJjYWRvciBkZSBwb3Npw6fDo28sIHF1ZSDDqSBzdWJzdGl0dcOtZG8gcGVsbyB2YWxvciBkYSB2YXJpw6F2ZWwuIEVtIFB5dGhvbiwgYSBpbnRlcnBvbGHDp8OjbyBkZSBzdHJpbmdzIHBvZGUgc2VyIGZlaXRhIGRlIHRyw6pzIG1hbmVpcmFzOiAKLSBgYG9wZXJhZG9yIGRlIGZvcm1hdGHDp8OjbyBkZSBzdHJpbmdzICglKWBgCi0gYGBtw6l0b2RvIGRlIGZvcm1hdGHDp8OjbyBkZSBzdHJpbmdzICguZm9ybWF0KCkpYGAKLSBgYG3DqXRvZG8gZGUgaW50ZXJwb2xhw6fDo28gZGUgc3RyaW5ncyBmLXN0cmluZ2Bg";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-39').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-markdown" id="md-40"></div>
+            <script>
+                (function(){
+                    const b64 = "IyMjIE9wZXJhZG9yIGRlIGZvcm1hdGHDp8OjbyBkZSBzdHJpbmdzICggJSApCgpPIG9wZXJhZG9yIGRlIGZvcm1hdGHDp8OjbyBkZSBzdHJpbmdzLCByZXByZXNlbnRhZG8gcGVsbyBjYXJhY3RlcmUgYCVgLCDDqSB1bWEgdMOpY25pY2EgbWFpcyBhbnRpZ2EgZW0gUHl0aG9uIHVzYWRhIHBhcmEgaW5zZXJpciB2YWxvcmVzIGRlbnRybyBkZSB1bWEgc3RyaW5nIGRlIGZvcm1hIGZvcm1hdGFkYS4gRXNzZSBvcGVyYWRvciDDqSBpbnNlcmlkbyBlbnRyZSBhIHN0cmluZyBlIG8gdmFsb3IgYSBzZXIgaW50ZXJwb2xhZG8sIGUgw6kgc2VndWlkbyBwb3IgdW0gY2FyYWN0ZXJlIGRlIGZvcm1hdGHDp8OjbyBxdWUgZXNwZWNpZmljYSBvIHRpcG8gZGUgZGFkbyBxdWUgc2Vyw6EgaW5zZXJpZG8uIE8gY2FyYWN0ZXJlIGRlIGZvcm1hdGHDp8OjbyDDqSBwcmVjZWRpZG8gcG9yIHVtIHNpbmFsIGRlIHBvcmNlbnRhZ2VtIChgJWApLCBlIG9zIHRpcG9zIG1haXMgY29tdW5zIHPDo286IGAlc2AgKHBhcmEgc3RyaW5ncyksIGAlZGAgKHBhcmEgaW50ZWlyb3MpLCBgJWZgIChwYXJhIG7Dum1lcm9zIGRlIHBvbnRvIGZsdXR1YW50ZSksIGVudHJlIG91dHJvcyBxdWUgY29ycmVzcG9uZGVtIGEgdGlwb3MgZXNwZWPDrWZpY29zLgoKT3MgdmFsb3JlcyBhIHNlcmVtIGludGVycG9sYWRvcyBzw6NvIHBhc3NhZG9zIGNvbW8gdW1hIHR1cGxhLiBTZSBob3V2ZXIgYXBlbmFzIHVtIHZhbG9yLCBlbGUgcG9kZSBzZXIgaW5zZXJpZG8gZGlyZXRhbWVudGUsIG1hcyBwYXJhIG3Dumx0aXBsb3MgdmFsb3Jlcywgw6kgbmVjZXNzw6FyaW8gY29sb2PDoS1sb3MgZW50cmUgcGFyw6pudGVzZXMuIE5vIGVudGFudG8sIGVzc2EgdMOpY25pY2EsIGVtYm9yYSBmdW5jaW9uYWwsIMOpIGNvbnNpZGVyYWRhIG9ic29sZXRhIGUgbsOjbyByZWNvbWVuZGFkYSBwYXJhIG5vdm9zIGPDs2RpZ29zLCBlc3BlY2lhbG1lbnRlIHBvcnF1ZSByZXF1ZXIgcXVlIG9zIHRpcG9zIGRlIHZhbG9yZXMgc2VqYW0gY2xhcmFtZW50ZSBkZWZpbmlkb3MuIElzc28gcG9kZSBsZXZhciBhIGVycm9zIHNlIG8gdGlwbyBkZSBkYWRvIGZvcm5lY2lkbyBuw6NvIGNvcnJlc3BvbmRlciBhbyBlc3BlY2lmaWNhZG8uCgpQb3IgZXhlbXBsbzo=";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-40').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python">nome = &quot;João&quot;       # Tipo de dado string (str)
+idade = 30          # Tipo de dado inteiro (int)
+salario = 1000.50   # Tipo de dado float (float)
+
+print(&quot;Nome: %s, Idade: %d, Salário: %.2f&quot; % (nome, idade, salario))
+
+# Você deve ser capaz de identificar o tipo de dado de cada variável visualmente, mas se não tiver certeza, pode usar a função type() para verificar o tipo de dado de cada variável.
+print(type(nome))    # &lt;class &#x27;str&#x27;&gt;
+print(type(idade))   # &lt;class &#x27;int&#x27;&gt;
+print(type(salario)) # &lt;class &#x27;float&#x27;&gt;</code></pre>
+            </div>
+            <div class="cell-output">Nome: João, Idade: 30, Salário: 1000.50
+&lt;class &#x27;str&#x27;&gt;
+&lt;class &#x27;int&#x27;&gt;
+&lt;class &#x27;float&#x27;&gt;
+</div>
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python"># Se alterarmos a ordem dos valores na tupla, o resultado será diferente.
+
+print(&quot;Nome: %s, Idade: %d, Salário: %.2f&quot; % (idade, salario, nome))
+
+# Uma exceção TypeError pois em nosso exemplo, o caractere de formatação %s é usado para interpolar uma string, mas a primeira variável na tupla é um número inteiro. O Python não pode interpolar um número inteiro em uma string.
+
+# Justamante por esse tipo de erro, é recomendado usar a formatação de string com f-strings ou o método format() em vez do operador de formatação de string %, pois eles são mais flexíveis e menos propensos a erros de tipo.</code></pre>
+            </div>
+            
+            <div class="cell cell-markdown" id="md-43"></div>
+            <script>
+                (function(){
+                    const b64 = "IyMjIC5mb3JtYXQoKQoKTyBtw6l0b2RvIGAuZm9ybWF0KClgIMOpIHVtYSBhYm9yZGFnZW0gbWFpcyBtb2Rlcm5hIGUgZmxleMOtdmVsIHBhcmEgZm9ybWF0YcOnw6NvIGRlIHN0cmluZ3MgZW0gUHl0aG9uLiBJbnRyb2R1emlkbyBwYXJhIHN1YnN0aXR1aXIgbyBvcGVyYWRvciBgJWAsIGVsZSBwZXJtaXRlIGluc2VyaXIgdmFsb3JlcyBkZW50cm8gZGUgdW1hIHN0cmluZyB1c2FuZG8gbWFyY2Fkb3JlcyBkZSBwb3Npw6fDo28gKGB7fWApLCBxdWUgcG9kZW0gc2VyIHN1YnN0aXR1w61kb3MgcG9yIHZhcmnDoXZlaXMgb3UgZXhwcmVzc8O1ZXMuIEVzc2UgbcOpdG9kbyBvZmVyZWNlIG1haW9yIGNsYXJlemEgZSBmdW5jaW9uYWxpZGFkZSBlbSBjb21wYXJhw6fDo28gw6AgYW50aWdhIHTDqWNuaWNhIGRlIGZvcm1hdGHDp8Ojbywgc2VtIGEgbmVjZXNzaWRhZGUgZGUgZXNwZWNpZmljYXIgZXhwbGljaXRhbWVudGUgbyB0aXBvIGRlIGRhZG8sIHRvcm5hbmRvIG8gY8OzZGlnbyBtYWlzIGludHVpdGl2byBlIG1lbm9zIHByb3BlbnNvIGEgZXJyb3MuCgpBIHNpbnRheGUgYsOhc2ljYSBlbnZvbHZlIG8gdXNvIGRlIGNoYXZlcyBge31gIGRlbnRybyBkYSBzdHJpbmcsIHF1ZSBzw6NvIHByZWVuY2hpZGFzIHBlbG9zIHZhbG9yZXMgcGFzc2Fkb3MgY29tbyBhcmd1bWVudG9zIHBhcmEgbyBtw6l0b2RvIGAuZm9ybWF0KClgLiBFc3NlcyB2YWxvcmVzIHPDo28gaW5zZXJpZG9zIG5hcyBwb3Npw6fDtWVzIGNvcnJlc3BvbmRlbnRlcywgZGUgYWNvcmRvIGNvbSBhIG9yZGVtIGVtIHF1ZSBhcGFyZWNlbS4gQWzDqW0gZGlzc28sIMOpIHBvc3PDrXZlbCByZWZlcmVuY2lhciBleHBsaWNpdGFtZW50ZSBhcyBwb3Npw6fDtWVzIGRvcyBhcmd1bWVudG9zLCBub21lYXIgb3MgdmFsb3JlcyBvdSBhdMOpIGFwbGljYXIgZm9ybWF0YcOnw7VlcyBtYWlzIGNvbXBsZXhhcywgY29tbyBkZWZpbmlyIGNhc2FzIGRlY2ltYWlzLCBhbGluaGFtZW50b3MgZSBwcmVlbmNoaW1lbnRvIGRlIGVzcGHDp29zLg==";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-43').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python"># O método format() é uma maneira mais moderna de formatar strings. Ele substitui o operador % e é mais poderoso e flexível. A sintaxe é parecida, mas agora não precisamos nos preocupar com o tipo de dado que estamos passando. Além disso podemos usar os índices das variáveis na string, permitindo reutilizar variáveis sem repeti-las.
+
+# A sintaxe básica do método format() é a seguinte:
+print(&quot;Nome: {}, Idade: {}, Salário: {}&quot;.format(nome, idade, salario))
+
+# Onde:
+# {} são os espaços reservados para as variáveis (placeholders)
+# .format() é o método que formata a string
+# nome, idade, salario são as variáveis que serão interpoladas
+
+# Podemos usar os índices das variáveis na string, permitindo reutilizar variáveis sem repeti-las.
+
+print(&quot;Nome: {0}, Idade: {1}, Salário: {2}&quot;.format(nome, idade, salario))
+
+print(&quot;Nome: {0}, Nome: {0}, Nome: {0}&quot;.format(nome))
+
+# Também podemos usar palavras-chave para identificar as variáveis.
+
+print(&quot;Nome: {n}, Idade: {i}, Salário: {s}&quot;.format(n=nome, i=idade, s=salario))
+
+# Outra possibilidade é usar ** (kargs) para passar um dicionário de variáveis. Isso significa que podemos passar um dicionario com qualquer número de variáveis (que serão as chaves do dicionário) e o método format() irá substituir as chaves pelos valores correspondentes.
+
+dados = {&#x27;n&#x27;: nome, &#x27;i&#x27;: idade, &#x27;s&#x27;: salario}
+print(&quot;Nome: {n}, Idade: {i}, Salário: {s}&quot;.format(**dados))
+# Onde:
+# **dados é um dicionário de variáveis
+# .format(**dados) é a chamada do método format() com o dicionário de variáveis
+# n, i, s são as chaves do dicionário</code></pre>
+            </div>
+            <div class="cell-output">Nome: João, Idade: 30, Salário: 1000.5
+Nome: João, Idade: 30, Salário: 1000.5
+Nome: João, Nome: João, Nome: João
+Nome: João, Idade: 30, Salário: 1000.5
+Nome: João, Idade: 30, Salário: 1000.5
+</div>
+            <div class="cell cell-markdown" id="md-45"></div>
+            <script>
+                (function(){
+                    const b64 = "IyMgYGYtc3RyaW5nc2AKLS0tCkFzICoqZi1zdHJpbmdzKiogKG91ICpmb3JtYXR0ZWQgc3RyaW5ncyopIHPDo28gdW0gcmVjdXJzbyBtb2Rlcm5vIGludHJvZHV6aWRvIG5vIFB5dGhvbiAzLjYgcXVlIHNpbXBsaWZpY2EgYSBpbnNlcsOnw6NvIGRlIGV4cHJlc3PDtWVzIGUgdmFyacOhdmVpcyBkZW50cm8gZGUgc3RyaW5ncywgZGUgbWFuZWlyYSBjbGFyYSBlIGVmaWNpZW50ZS4gQW8gY29udHLDoXJpbyBkYSBjb25jYXRlbmHDp8OjbyBjb20gbyBvcGVyYWRvciBgK2AsIHF1ZSBwb2RlIGNhdXNhciBlcnJvcyBxdWFuZG8gbWlzdHVyYW1vcyB0aXBvcyBkaWZlcmVudGVzIChjb21vIHN0cmluZ3MgZSBuw7ptZXJvcyksIGFzIGYtc3RyaW5ncyBwZXJtaXRlbSBjb21iaW5hciBlc3NlcyB0aXBvcyBzZW0gcHJvYmxlbWFzLCB0b3JuYW5kby1hcyB1bWEgZXhjZWxlbnRlIGFsdGVybmF0aXZhIHBhcmEgZm9ybWF0YXIgZSBleGliaXIgZGFkb3MuCgpQYXJhIGNyaWFyIHVtYSBmLXN0cmluZywgYmFzdGEgY29sb2NhciB1bSBgZmAgYW50ZXMgZGFzIGFzcGFzIHF1ZSBkZWxpbWl0YW0gYSBzdHJpbmcgZSB1dGlsaXphciBjaGF2ZXMgYHt9YCBkZW50cm8gZGEgc3RyaW5nIHBhcmEgaW5kaWNhciBvcyB2YWxvcmVzIHF1ZSB2b2PDqiBkZXNlamEgZXhpYmlyLiBEZW50cm8gZGFzIGNoYXZlcywgcG9kZW0gc2VyIGluc2VyaWRhcyB2YXJpw6F2ZWlzIG91IGV4cHJlc3PDtWVzLCBxdWUgc2Vyw6NvIGF2YWxpYWRhcyBlIGNvbnZlcnRpZGFzIGF1dG9tYXRpY2FtZW50ZSBlbSBzdHJpbmcuCgpDb20gZi1zdHJpbmdzLCBhbMOpbSBkYSBmYWNpbGlkYWRlIGUgZGEgY2xhcmV6YSwgaMOhIHN1cG9ydGUgcGFyYSBmb3JtYXRhw6fDo28gZGUgc3RyaW5ncyBtYWlzIHNvZmlzdGljYWRhLCBjb21vIGRlZmluaXIgbyBuw7ptZXJvIGRlIGNhc2FzIGRlY2ltYWlzLCBjb250cm9sYXIgbyBhbGluaGFtZW50bywgb3UgYXTDqSByZWFsaXphciBjw6FsY3Vsb3MgZGlyZXRhbWVudGUgZGVudHJvIGRhIHN0cmluZy4gUG9yIGlzc28sIGVsYXMgc2UgdG9ybmFyYW0gdW1hIGRhcyBmb3JtYXMgbWFpcyByZWNvbWVuZGFkYXMgZGUgdHJhYmFsaGFyIGNvbSBzdHJpbmdzIGZvcm1hdGFkYXMgbm8gUHl0aG9uLg==";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-45').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python"># Neste caso, estamos inserindo o valor numérico 2 em uma string.
+print(f&#x27;{2} novas mensagens&#x27;)
+
+# O valor numérico 2 é inserido na string sem causar erro. Isso ocorre porque o Python converte automaticamente o número em uma string antes de inseri-lo na string maior.</code></pre>
+            </div>
+            <div class="cell-output">2 novas mensagens
+</div>
+            <div class="cell cell-code">
+                <div class="prompt">In [14]</div>
+                <pre><code class="language-python"># Inserir variáveis entre as chaves também funciona.
+nome = &#x27;Ana&#x27;
+print(f&#x27;Nome: {nome}&#x27;)
+
+# Isso permite que criemos programas mais dinâmicos e interativos. Ao atualizar o valor da variável não é necessário alterar a string.</code></pre>
+            </div>
+            <div class="cell-output">Nome: Ana
+</div>
+            <div class="cell cell-code">
+                <div class="prompt">In [16]</div>
+                <pre><code class="language-python"># Também podemos usar expressões (com variáveis ou sem)
+distancia = 10
+distancia_percorrida = 4
+
+# A operação pode ser realizada diretamente dentro das chaves
+print(f&#x27;Faltam percorrer {distancia - distancia_percorrida}Km.&#x27;)
+
+# Mas se necessário, podemos usar variáveis para salvar o resultado da expressão
+diferenca = distancia - distancia_percorrida
+print(f&#x27;Faltam percorrer {diferenca}Km.&#x27;)</code></pre>
+            </div>
+            <div class="cell-output">Faltam percorrer 6Km.
+Faltam percorrer 6Km.
+</div>
+            <div class="cell cell-code">
+                <div class="prompt">In [18]</div>
+                <pre><code class="language-python"># Podemos usar quantas chaves forem necessárias para chegar ao resultado desejado.
+print(f&#x27;A distância é de {distancia}Km.\nVocê percorreu {distancia_percorrida}Km.\nFaltam percorrer {distancia - distancia_percorrida}Km.&#x27;)</code></pre>
+            </div>
+            <div class="cell-output">A distância é de 10Km.
+Você percorreu 4Km.
+Faltam percorrer 6Km.
+</div>
+            <div class="cell cell-code">
+                <div class="prompt">In [18]</div>
+                <pre><code class="language-python"># Podemos armazenar a f-string em uma variável se quisermos.    
+notificacoes = 54
+status = f&#x27;{notificacoes} novas notificações&#x27;
+print(status)</code></pre>
+            </div>
+            <div class="cell-output">54 novas notificações
+</div>
+            <div class="cell cell-markdown" id="md-51"></div>
+            <script>
+                (function(){
+                    const b64 = "Q29tIGFzIGYtc3RyaW5ncywgcG9kZW1vcyBmb3JtYXRhciBvIG7Dum1lcm8gZGUgY2FzYXMgZGVjaW1haXMgZGVzZWphZGFzIHV0aWxpemFuZG8gYSBzaW50YXhlIGA6LnF1YW50aWRhZGVmYCwgb25kZSBgcXVhbnRpZGFkZWAgw6kgbyBuw7ptZXJvIGRlIGNhc2FzIGRlY2ltYWlzIHF1ZSBxdWVyZW1vcyBleGliaXIuCgpBIG5vdGHDp8OjbyBkZSBkb2lzIHBvbnRvcyBgOmAgaW5kaWNhIHVtYSBtw6FzY2FyYSBkZSBmb3JtYXRhw6fDo28uIE8gcG9udG8gYC5gIGluZGljYSBxdWUgcXVlcmVtb3MgZm9ybWF0YXIgdW0gbsO6bWVybyByZWFsLiBPIG7Dum1lcm8gZXNwZWNpZmljYWRvIGFww7NzIG8gcG9udG8gaW5kaWNhIGEgcXVhbnRpZGFkZSBkZSBjYXNhcyBkZWNpbWFpcyBkZXNlamFkYXMuIE8gYGZgIGluZGljYSBxdWUgcXVlcmVtb3MgdW0gbsO6bWVybyByZWFsIChmbG9hdCkuCgpQb3IgZXhlbXBsbywgc2UgcXVpc2VybW9zIGV4aWJpciB1bSBuw7ptZXJvIGNvbSB0csOqcyBjYXNhcyBkZWNpbWFpcywgcG9kZW1vcyB1dGlsaXphciBhIHNlZ3VpbnRlIHNpbnRheGU6CmBgYHB5dGhvbgpudW1lcm8gPSAzLjE0MTU5CnByaW50KGYiTyBuw7ptZXJvIHBpIGNvbSB0csOqcyBjYXNhcyBkZWNpbWFpcyDDqToge251bWVybzouM2Z9IikKYGBgCgpJc3NvIHJlc3VsdGFyw6EgbmEgc2HDrWRhOgpgYGAKTyBuw7ptZXJvIHBpIGNvbSB0csOqcyBjYXNhcyBkZWNpbWFpcyDDqTogMy4xNDIKYGBgCgpEZXNzYSBmb3JtYSwgcG9kZW1vcyBjb250cm9sYXIgY29tIHByZWNpc8OjbyBhIGZvcm1hdGHDp8OjbyBkZSBuw7ptZXJvcyBkZSBwb250byBmbHV0dWFudGUgZW0gbm9zc2FzIHN0cmluZ3MgdXRpbGl6YW5kbyBmLXN0cmluZ3Mu";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-51').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [5]</div>
+                <pre><code class="language-python"># Faça um teste com o código a seguir:
+
+# Digite dois números inteiros
+n1 = int(input(&#x27;Digite um número: &#x27;))
+n2 = int(input(&#x27;Digite outro número: &#x27;))
+# Dividiremos os números e exibiremos o resultado com três casas decimais
+divisao = n1 / n2
+
+print(f&#x27;A divisão é {divisao:.3f}&#x27;)
+
+# Veja o mesmo resultado sem a limitação de casas decimais
+print(f&#x27;A divisão é {divisao}&#x27;)
+
+# Digitos significativos: .3g formata o número para exibir até três dígitos significativos, removendo zeros desnecessários à direita.
+
+print(f&#x27;A divisão é {divisao:.3g}&#x27;)
+
+
+# Porcentagem: Podemos exibir um número como uma porcentagem usando o formato .2%. Neste caso, o número é multiplicado por 100 e exibido com duas casas decimais.
+taxa_de_sucesso = 0.85
+print(f&quot;Taxa de sucesso: {taxa_de_sucesso:.2%}&quot;)  # Saída: Taxa de sucesso: 85.00%
+
+numero = 7
+print(f&quot;Número formatado: {numero:05d}&quot;)  # Saída: Número formatado: 00007
+# O d indica que o valor é um número inteiro. O 05 indica que o número deve ser formatado com cinco dígitos, preenchendo com zeros à esquerda, se necessário.</code></pre>
+            </div>
+            <div class="cell-output">A divisão é 0.069
+A divisão é 0.06852791878172589
+A divisão é 0.0685
+Taxa de sucesso: 85.00%
+Número formatado: 00007
+</div>
+            <div class="cell cell-markdown" id="md-53"></div>
+            <script>
+                (function(){
+                    const b64 = "Q29tIGEgbm90YcOnw6NvIGRlIGRvaXMgcG9udG9zIGA6YCwgcG9kZW1vcyBmb3JtYXRhciBvIHRleHRvIGVtIG5vc3NhcyBmLXN0cmluZ3MuIFVtIGV4ZW1wbG8gw6kgcmVzZXJ2YXIgdW0gZGV0ZXJtaW5hZG8gbsO6bWVybyBkZSBlc3Bhw6dvcyBkZSBjYXJhY3RlcmVzIHBhcmEgbyB0ZXh0bywgZ2FyYW50aW5kbyBxdWUgbyB0ZXh0byBzZWphIGFsaW5oYWRvIGFkZXF1YWRhbWVudGUgZW0gdW1hIHNhw61kYSBmb3JtYXRhZGEuCgpQb3IgZXhlbXBsbywgcGFyYSByZXNlcnZhciAyMCBlc3Bhw6dvcyBkZSBjYXJhY3RlcmVzIHBhcmEgbyB0ZXh0byBlIGFsaW5ow6EtbG8gw6AgZXNxdWVyZGEsIHBvZGVtb3MgdXNhciBhIHNlZ3VpbnRlIHNpbnRheGU6CmBgYHB5dGhvbgp0ZXh0byA9ICJQeXRob24iCnByaW50KGYifHt0ZXh0bzo8MjB9fCIpCmBgYAoKSXNzbyByZXN1bHRhcsOhIG5hIHNhw61kYToKYGBgCnxQeXRob24gICAgICAgICAgICAgIHwKYGBgCgpDb21vIG1lbmNpb25hZG8sIHNlIG8gdGV4dG8gdGl2ZXIgbWVub3MgZGUgMjAgY2FyYWN0ZXJlcywgb3MgZXNwYcOnb3MgcmVzdGFudGVzIHNlcsOjbyBwcmVlbmNoaWRvcyBwb3IgZXNwYcOnb3MgZW0gYnJhbmNvIGFww7NzIG8gdGV4dG8uIFNlIHF1aXNlcm1vcyBhbGluaGFyIG8gdGV4dG8gw6AgZGlyZWl0YSBvdSBjZW50cmFsaXrDoS1sbywgcG9kZW1vcyB1c2FyIG9zIHPDrW1ib2xvcyBgPmAgb3UgYF5gLCByZXNwZWN0aXZhbWVudGUuCgpBbMOpbSBkaXNzbywgcG9kZW1vcyBlc3BlY2lmaWNhciBvIGNhcmFjdGVyZSBlc3BlY8OtZmljbyBxdWUgaXLDoSBwcmVlbmNoZXIgb3MgZXNwYcOnb3MgZW0gYnJhbmNvLCBjb2xvY2FuZG8tbyBhbnRlcyBkbyBzw61tYm9sbyBkZSBhbGluaGFtZW50by4gUG9yIGV4ZW1wbG8sIHNlIHF1aXNlcm1vcyBwcmVlbmNoZXIgb3MgZXNwYcOnb3MgZW0gYnJhbmNvIGNvbSB1bSB0cmHDp28gKC0pLCBwb2RlbW9zIHVzYXIgYSBzZWd1aW50ZSBzaW50YXhlOgpgYGBweXRob24KdGV4dG8gPSAiUHl0aG9uIgpwcmludChmInx7dGV4dG86LV4yMH18IikKYGBgCgpJc3NvIHJlc3VsdGFyw6EgbmEgc2HDrWRhOgpgYGAKfC1QeXRob24tfApgYGAKCkRlc3NhIGZvcm1hLCBwb2RlbW9zIGNvbnRyb2xhciBvIGFsaW5oYW1lbnRvIGUgbyBwcmVlbmNoaW1lbnRvIGRvIHRleHRvIGVtIG5vc3NhcyBzdHJpbmdzIGZvcm1hdGFkYXMsIGdhcmFudGluZG8gdW1hIGFwcmVzZW50YcOnw6NvIHZpc3VhbG1lbnRlIGFncmFkw6F2ZWwgZG9zIGRhZG9zLg==";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-53').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python"># Faça um teste:
+
+nome = input(&#x27;Qual é o seu nome? &#x27;)
+tamanho = int(input(&#x27;Qual é o tamanho da saudação? &#x27;))
+caractere = input(&#x27;Qual caractere você deseja usar para preencher? &#x27;)
+
+print(f&#x27;{nome:{caractere}^{tamanho}}&#x27;)</code></pre>
+            </div>
+            <div class="cell-output">0000000000000000000000Maycon0000000000000000000000
+</div>
+            <div class="cell cell-markdown" id="md-55"></div>
+            <script>
+                (function(){
+                    const b64 = "UHl0aG9uIG9mZXJlY2UgdW1hIHZhcmllZGFkZSBkZSBvcMOnw7VlcyBkZSBmb3JtYXRhw6fDo28sIGluY2x1aW5kbyBhbGluaGFtZW50byAoOj4sIDw6LCBeOiksIHByZWVuY2hpbWVudG8gKDpfLCAwLCA8LCA+KSwgZXNwZWNpZmljYcOnw6NvIGRlIGxhcmd1cmEgZSBwcmVjaXPDo28sIGUgZXNwZWNpZmljYWRvcmVzIGRlIHRpcG8uIEFxdWkgZXN0w6NvIGFsZ3VucyBleGVtcGxvcyBkZSBmb3JtYXRhw6fDo28gZGUgc3RyaW5ncyBtYWlzIGF2YW7Dp2Fkb3M6";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-55').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [17]</div>
+                <pre><code class="language-python"># Alinhamento: Você pode especificar o alinhamento de uma string dentro de uma área com uma largura especificada. Os operadores de alinhamento incluem:
+
+# :&gt; para alinhamento à direita
+# :&lt; para alinhamento à esquerda
+# :^ para alinhamento centralizado
+
+texto = &quot;Python&quot;
+print(f&quot;|{texto:&gt;10}|&quot;)  # Saída: |    Python|
+print(f&quot;|{texto:&lt;10}|&quot;)  # Saída: |Python    |
+print(f&quot;|{texto:^10}|&quot;)  # Saída: |  Python  |
+
+# Observação: O alinhamento ao centro pode ser feito com o método center().
+
+# center() é um método de string que centraliza uma string em uma área de largura especificada. O método center() aceita um argumento obrigatório, que é a largura da área de saída.
+print(f&quot;|{texto.center(10)}|&quot;)  # Saída: |  Python  |
+</code></pre>
+            </div>
+            <div class="cell-output">|    Python|
+|Python    |
+|  Python  |
+|  Python  |
+</div>
+            <div class="cell cell-code">
+                <div class="prompt">In [19]</div>
+                <pre><code class="language-python"># Preenchimento: Você pode especificar um caractere de preenchimento ao formatar uma string. Os caracteres de preenchimento comuns incluem _, 0, &lt;, &gt;.
+
+# _ preenche com espaços
+# 0 preenche com zeros à esquerda para números
+# &lt; preenche à esquerda
+# &gt; preenche à direita
+
+numero = 42
+print(f&quot;{numero:_&gt;8}&quot;)  # Saída: ____42
+print(f&quot;{numero:0&gt;8}&quot;)  # Saída: 00000042
+
+# Como vimos, o preenchimento por zeros pode ser feito com a notação 08d. O 0 indica que o preenchimento deve ser feito com zeros, e o 8 indica que o número deve ser formatado com oito dígitos.
+print(f&quot;{numero:08d}&quot;)  # Saída: 00000042</code></pre>
+            </div>
+            <div class="cell-output">______42
+00000042
+00000042
+</div>
+            <div class="cell cell-code">
+                <div class="prompt">In [20]</div>
+                <pre><code class="language-python"># Largura e Precisão: Você pode especificar a largura mínima e a precisão de números de ponto flutuante.
+
+# Largura mínima: :{largura}
+# Precisão de ponto flutuante: :.precisaof
+
+# Podemos utilizar juntos ou separados.
+
+pi = 3.141592653589793
+print(f&quot;{pi:50}&quot;)     # Saída: 3.14159  (largura mínima de 50)
+print(f&quot;{pi:50.2f}&quot;)  # Saída: 3.14    (largura mínima de 50 e precisão de 2 casas decimais)
+
+# Por padrão o alinhamento é à direita e o preenchimento é com espaços a esquerda.
+
+numero = 4567.8933
+print(f&quot;Número formatado localmente: R${numero:n}&quot;)  # Saída: Número formatado localmente: 4,567.89. :n
+
+# Para formatar localmente, você pode usar o módulo locale. O método locale.setlocale() define a localização padrão. O método locale.format_string() formata a string de acordo com a localização padrão.
+
+import locale
+locale.setlocale(locale.LC_ALL, &#x27;pt_BR.UTF-8&#x27;)
+numero = 4567.8933
+print(f&quot;Número formatado localmente: {locale.format_string(&#x27;%.2f&#x27;, numero, grouping=True)}&quot;)  # Saída: Número formatado localmente: 4.567,89
+</code></pre>
+            </div>
+            <div class="cell-output">                                 3.141592653589793
+                                              3.14
+Número formatado localmente: R$4567.89
+Número formatado localmente: 4.567,89
+</div>
+            <div class="cell cell-code">
+                <div class="prompt">In [6]</div>
+                <pre><code class="language-python"># Especificadores de Tipo: Você pode especificar o tipo de dados a ser formatado.
+
+# s para strings
+# d para números inteiros
+# f para números de ponto flutuante
+# x para números hexadecimais
+# o para números octais
+# b para números binários
+
+# Podemos especificar o tipo de dados após a largura e a precisão.
+# Aqui 08 especifica a largura mínima de 8 e x especifica que o número deve ser formatado como um número hexadecimal.
+numero = 42
+print(f&quot;{numero:08x}&quot;)  # Saída: 0000002a 
+
+# Aqui especificamos somente o valor e a base numérica.
+print(f&#x27;{42:b}&#x27;)  # Saída: 101010
+print(f&#x27;{42:o}&#x27;)  # Saída: 52
+print(f&#x27;{numero:b}&#x27;) # Saída: 101010</code></pre>
+            </div>
+            <div class="cell-output">0000002a
+101010
+52
+101010
+</div>
+            <div class="cell cell-markdown" id="md-60"></div>
+            <script>
+                (function(){
+                    const b64 = "IyMjICoqYENvbWVudMOhcmlvc2AqKgotLS0KQ29tZW50w6FyaW9zIHPDo28gcGVkYcOnb3MgZGUgdGV4dG8gaW5zZXJpZG9zIG5vIGPDs2RpZ28tZm9udGUgcXVlIHPDo28gaWdub3JhZG9zIHBlbG8gaW50ZXJwcmV0YWRvciBQeXRob24gZHVyYW50ZSBhIGV4ZWN1w6fDo28gZG8gcHJvZ3JhbWEuIEVsZXMgc8OjbyDDunRlaXMgcGFyYSBkb2N1bWVudGFyIG8gY8OzZGlnbywgZXhwbGljYXIgc2V1IGZ1bmNpb25hbWVudG8gZSBmb3JuZWNlciBpbmZvcm1hw6fDtWVzIGFkaWNpb25haXMgYW9zIGxlaXRvcmVzIGh1bWFub3MuCgpFbSBQeXRob24sIHVtIGNvbWVudMOhcmlvIMOpIGluaWNpYWRvIGNvbSBvIHPDrW1ib2xvIGAjYCAoaGFzaCkgZSBzZSBlc3RlbmRlIGF0w6kgbyBmaW5hbCBkYSBsaW5oYS4gUXVhbHF1ZXIgdGV4dG8gYXDDs3MgbyBgI2AgbmEgbWVzbWEgbGluaGEgw6kgdHJhdGFkbyBjb21vIHVtIGNvbWVudMOhcmlvIGUgbsOjbyBhZmV0YSBhIGV4ZWN1w6fDo28gZG8gcHJvZ3JhbWEuCgpQb3IgZXhlbXBsbzoKYGBgcHl0aG9uCiMgRXN0ZSDDqSB1bSBjb21lbnTDoXJpbyBzaW1wbGVzCnByaW50KCJPbMOhLCBtdW5kbyEiKSAgIyBFc3RlIMOpIHVtIGNvbWVudMOhcmlvIGFww7NzIHVtYSBpbnN0cnXDp8OjbwpgYGAKCk9zIGNvbWVudMOhcmlvcyBwb2RlbSBzZXIgY29sb2NhZG9zIGVtIHVtYSBsaW5oYSBzZXBhcmFkYSBvdSBhbyBsYWRvIGRlIHVtYSBpbnN0cnXDp8Ojby4gRWxlcyBzw6NvIMO6dGVpcyBwYXJhIGV4cGxpY2FyIG8gcHJvcMOzc2l0byBkZSB1bWEgbGluaGEgZGUgY8OzZGlnbyBvdSBmb3JuZWNlciBpbmZvcm1hw6fDtWVzIHNvYnJlIG8gcXVlIG8gY8OzZGlnbyBlc3TDoSBmYXplbmRvLgoKU2Ugdm9jw6ogZGVzZWphIHVtIGNvbWVudMOhcmlvIHF1ZSBzZSBlc3RlbmRhIHBvciB2w6FyaWFzIGxpbmhhcywgcG9kZSB1c2FyIG8gbWVzbW8gc8OtbWJvbG8gYCNgIG5vIGluw61jaW8gZGUgY2FkYSBsaW5oYS4gUG9yIGV4ZW1wbG86CmBgYHB5dGhvbgojIEVzdGUgw6kgdW0gY29tZW50w6FyaW8KIyBxdWUgc2UgZXN0ZW5kZQojIHBvciB2w6FyaWFzIGxpbmhhcwpgYGAKCk5vIGVudGFudG8sIFB5dGhvbiBuw6NvIHBvc3N1aSB1bWEgc2ludGF4ZSBlc3BlY8OtZmljYSBwYXJhIGNvbWVudMOhcmlvcyBkZSB2w6FyaWFzIGxpbmhhcyBjb21vIGVtIGFsZ3VtYXMgb3V0cmFzIGxpbmd1YWdlbnMgZGUgcHJvZ3JhbWHDp8Ojby4=";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-60').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [3]</div>
+                <pre><code class="language-python"># Esse programa calcula a hipotenusa c.
+# a e b são os tamanhos dos lados.
+a = 3.0
+b = 4.0
+c = (a ** 2 + b ** 2) ** 0.5  # Nós usamos ** ao invés de raiz quadrada.
+print(&quot;c =&quot;, c)</code></pre>
+            </div>
+            <div class="cell-output">c = 5.0
+</div>
+            <div class="cell cell-markdown" id="md-62"></div>
+            <script>
+                (function(){
+                    const b64 = "U2Ugdm9jw6ogZGVzZWphIGNvbG9jYXIgdW0gY29tZW50w6FyaW8gcXVlIGFicmFuZ2UgdsOhcmlhcyBsaW5oYXMsIHZvY8OqIHByZWNpc2EgY29sb2NhciAjIG5hIGZyZW50ZSBkZSB0b2RhcyBvdSB1dGlsaXphciBhc3BhcyB0cmlwbGFzLgoKQWzDqW0gZGlzc28sIHZvY8OqIHBvZGUgdXNhciB1bSBjb21lbnTDoXJpbyBwYXJhIG1hcmNhciB1bSBwZWRhw6dvIGRlIGPDs2RpZ28gcXVlIG7Do28gw6kgbmVjZXNzw6FyaW8gbm8gbW9tZW50byAodmVqYSBhIMO6bHRpbWEgbGluaGEgZG8gc25pcHBldCBhYmFpeG8pLCBwb3IgZXhlbXBsbzo=";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-62').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python"># Este programa imprime uma introdução à tela.
+
+print(&quot;Olá!&quot;)  # Chamando a função print()
+# print(&quot;Em Python.&quot;)</code></pre>
+            </div>
+            <div class="cell-output">Olá!
+</div>
+            <div class="cell cell-markdown" id="md-64"></div>
+            <script>
+                (function(){
+                    const b64 = "VXNhciBub21lcyBzaWduaWZpY2F0aXZvcyBlIGF1dG9leHBsaWNhdGl2b3MgcGFyYSB2YXJpw6F2ZWlzIMOpIHVtYSBwcsOhdGljYSByZWNvbWVuZGFkYSBuYSBwcm9ncmFtYcOnw6NvLiBJc3NvIGFqdWRhIGEgdG9ybmFyIG8gY8OzZGlnbyBtYWlzIGxlZ8OtdmVsIGUgY29tcHJlZW5zw612ZWwsIHRhbnRvIHBhcmEgdm9jw6ogcXVhbnRvIHBhcmEgb3V0cm9zIGRlc2Vudm9sdmVkb3JlcyBxdWUgcG9zc2FtIHJldmlzw6EtbG8gbm8gZnV0dXJvLiBFbSB2ZXogZGUgbm9tZXMgZ2Vuw6lyaWNvcyBjb21vIGBteXZhcjFgIGUgYG15dmFyMmAsIMOpIG1lbGhvciBlc2NvbGhlciBub21lcyBkZXNjcml0aXZvcyBxdWUgaW5kaXF1ZW0gY2xhcmFtZW50ZSBvIHByb3DDs3NpdG8gb3UgbyBjb250ZcO6ZG8gZGFzIHZhcmnDoXZlaXMuCgpQb3IgZXhlbXBsbywgc2UgZXN0aXZlcm1vcyBhcm1hemVuYW5kbyBvIGNvbXByaW1lbnRvIGUgYSBsYXJndXJhIGRlIGFsZ28sIHBvZGVyw61hbW9zIHVzYXIgbm9tZXMgY29tbyBgY29tcHJpbWVudG9gIGUgYGxhcmd1cmFgIGVtIHZleiBkZSBgbXl2YXIxYCBlIGBteXZhcjJgLiBJc3NvIHRvcm5hIGltZWRpYXRhbWVudGUgZXZpZGVudGUgbyBzaWduaWZpY2FkbyBkYXMgdmFyacOhdmVpcyBlIGZhY2lsaXRhIGEgY29tcHJlZW5zw6NvIGRvIGPDs2RpZ28uCgpBbMOpbSBkaXNzbywgw6kgaW1wb3J0YW50ZSBmb3JuZWNlciBjb21lbnTDoXJpb3MgcXVhbmRvIG8gY8OzZGlnbyBuw6NvIMOpIGF1dG9leHBsaWNhdGl2byBvdSBxdWFuZG8gdm9jw6ogZGVzZWphIGZvcm5lY2VyIGluZm9ybWHDp8O1ZXMgYWRpY2lvbmFpcyBzb2JyZSBvIHF1ZSBvIGPDs2RpZ28gZXN0w6EgZmF6ZW5kby4gTm8gZW50YW50bywgw6kgY3J1Y2lhbCBnYXJhbnRpciBxdWUgb3MgY29tZW50w6FyaW9zIHNlamFtIHByZWNpc29zLCByZWxldmFudGVzIGUgbWFudGVuaGFtLXNlIGF0dWFsaXphZG9zIGNvbSBvIGPDs2RpZ28uIENvbWVudMOhcmlvcyBpbmNvcnJldG9zIG91IGRlc2F0dWFsaXphZG9zIHBvZGVtIGxldmFyIGEgY29uZnVzw6NvIGUgZGlmaWN1bHRhciBhIG1hbnV0ZW7Dp8OjbyBkbyBjw7NkaWdvIG5vIGZ1dHVyby4KClBvcnRhbnRvLCBhbyBlc2NyZXZlciBjw7NkaWdvLCDDqSB1bWEgYm9hIHByw6F0aWNhIHVzYXIgbm9tZXMgZGUgdmFyacOhdmVpcyBkZXNjcml0aXZvcyBlIGZvcm5lY2VyIGNvbWVudMOhcmlvcyDDunRlaXMgZSBwcmVjaXNvcywgcXVhbmRvIG5lY2Vzc8OhcmlvLCBwYXJhIGdhcmFudGlyIHF1ZSBvIGPDs2RpZ28gc2VqYSBjbGFybywgY29tcHJlZW5zw612ZWwgZSBmw6FjaWwgZGUgbWFudGVyLg==";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-64').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-markdown" id="md-65"></div>
+            <script>
+                (function(){
+                    const b64 = "IyMjIGBpbnB1dCgpYAotLS0KQSBmdW7Dp8OjbyBgaW5wdXQoKWAgw6kgdW1hIGZlcnJhbWVudGEgw7p0aWwgcGFyYSBjcmlhciBpbnRlcmF0aXZpZGFkZSBlbSBwcm9ncmFtYXMgUHl0aG9uLCBwZXJtaXRpbmRvIHF1ZSBvIHVzdcOhcmlvIGZvcm5lw6dhIGRhZG9zIHF1ZSBzZXLDo28gcHJvY2Vzc2Fkb3MgcGVsbyBwcm9ncmFtYS4gUXVhbmRvIHZvY8OqIHVzYSBgaW5wdXQoKWAsIG8gcHJvZ3JhbWEgYWd1YXJkYSBhIGVudHJhZGEgZG8gdXN1w6FyaW8gZSBkZXBvaXMgY29udGludWEgYSBleGVjdcOnw6NvIGNvbSBiYXNlIG5vcyBkYWRvcyBmb3JuZWNpZG9zLgoKQXF1aSBlc3TDoSB1bSBleGVtcGxvIHNpbXBsZXMgZGUgY29tbyB1c2FyIGEgZnVuw6fDo28gYGlucHV0KClgOgoKYGBgcHl0aG9uCm5vbWUgPSBpbnB1dCgiRGlnaXRlIHNldSBub21lOiAiKQpwcmludCgiT2zDoSwgIiArIG5vbWUgKyAiISBCZW0tdmluZG8uIikKYGBgCgpOZXN0ZSBleGVtcGxvOgotIEEgZnVuw6fDo28gYGlucHV0KClgIMOpIGNoYW1hZGEgY29tIHVtIGFyZ3VtZW50byBvcGNpb25hbCwgYSBzdHJpbmcgZGUgcHJvbXB0IHF1ZSDDqSBvIHRleHRvIHF1ZSBzZXLDoSBleGliaWRvIHBhcmEgc29saWNpdGFyIGEgZW50cmFkYSBkbyB1c3XDoXJpby4KCi0gTyBwcm9ncmFtYSBhZ3VhcmRhIGF0w6kgcXVlIG8gdXN1w6FyaW8gaW5zaXJhIGFsZ3VtIHRleHRvIGUgcHJlc3Npb25lIEVudGVyLiBWb2PDqiBwb2RlIG9ic2VydmFyIHVtYSBiYXJyYSBwaXNjYW5kbywgaW5kaWNhbmRvIHF1ZSBvIHByb2dyYW1hIGVzdMOhIGVzcGVyYW5kbyB1bWEgZW50cmFkYS4KCi0gQSBlbnRyYWRhIGRvIHVzdcOhcmlvIMOpIGFybWF6ZW5hZGEgbmEgdmFyacOhdmVsIGBub21lYC4KCi0gTyBwcm9ncmFtYSBlbnTDo28gZXhpYmUgdW1hIG1lbnNhZ2VtIGRlIGJvYXMtdmluZGFzLCBjb25jYXRlbmFuZG8gbyB0ZXh0byBlIHVzYW5kbyBvIG5vbWUgZm9ybmVjaWRvIHBlbG8gdXN1w6FyaW8gZSBhcm1hemVuYWRvIG5hIHZhcmnDoXZlbC4KCsOJIGltcG9ydGFudGUgbm90YXIgcXVlIG8gdmFsb3IgcmV0b3JuYWRvIHBlbGEgZnVuw6fDo28gYGlucHV0KClgIMOpIHNlbXByZSB1bWEgc3RyaW5nLCBtZXNtbyBxdWUgbyB1c3XDoXJpbyBpbnNpcmEgbsO6bWVyb3MuIFNlIHZvY8OqIHByZWNpc2FyIHVzYXIgYSBlbnRyYWRhIGRvIHVzdcOhcmlvIGNvbW8gdW0gbsO6bWVybywgc2Vyw6EgbmVjZXNzw6FyaW8gY29udmVydMOqLWxhIHBhcmEgbyB0aXBvIGFwcm9wcmlhZG8gdXNhbmRvIGZ1bsOnw7VlcyBjb21vIGBpbnQoKWAgb3UgYGZsb2F0KClgLg==";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-65').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [4]</div>
+                <pre><code class="language-python">qualquer_coisa = input(&quot;Conta-me qualquer coisa...&quot;)
+print(f&#x27;Você disse &quot;{qualquer_coisa}&quot;.&#x27;)
+print(f&#x27;O tipo de dado da variável qualquer_coisa é {type(qualquer_coisa)}.&#x27;)
+
+# Também vale ressaltar que se o usuário pressionar enter sem digitar nada, o resultado será uma string vazia</code></pre>
+            </div>
+            <div class="cell-output">Você disse &quot;meun ome&quot;.
+O tipo de dado da variável qualquer_coisa é &lt;class &#x27;str&#x27;&gt;.
+</div>
+            <div class="cell cell-markdown" id="md-67"></div>
+            <script>
+                (function(){
+                    const b64 = "w4kgY3J1Y2lhbCByZWZvcsOnYXIgcXVlIG8gcmVzdWx0YWRvIGRhIGZ1bsOnw6NvIGBpbnB1dCgpYCDDqSBzZW1wcmUgdW1hIHN0cmluZy4gTWVzbW8gcXVlIG8gdXN1w6FyaW8gaW5zaXJhIG7Dum1lcm9zLCBhIGZ1bsOnw6NvIHJldG9ybmEgdW1hIHN0cmluZyBjb250ZW5kbyBvcyBjYXJhY3RlcmVzIGRpZ2l0YWRvcyBubyB0ZWNsYWRvLiBJc3NvIMOpIGltcG9ydGFudGUgZW50ZW5kZXIgcG9ycXVlIHNpZ25pZmljYSBxdWUgdm9jw6ogbsOjbyBwb2RlIHVzw6EtbG8gZGlyZXRhbWVudGUgZW0gb3BlcmHDp8O1ZXMgYXJpdG3DqXRpY2FzIG91IG1hdGVtw6F0aWNhcy4KClBvciBleGVtcGxvLCBzZSB2b2PDqiB0ZW50YXIgcmVhbGl6YXIgdW1hIG9wZXJhw6fDo28gY29tbyBlbGV2YXIgYW8gcXVhZHJhZG8gbyB2YWxvciBpbnNlcmlkbyBwZWxvIHVzdcOhcmlvIGRpcmV0YW1lbnRlIGFww7NzIHVzYXIgYGlucHV0KClgLCBpc3NvIHJlc3VsdGFyw6EgZW0gdW0gZXJybyBwb3JxdWUgbyBQeXRob24gbsOjbyBwb2RlIGVsZXZhciB1bWEgc3RyaW5nIGFvIHF1YWRyYWRvLgoKYGBgcHl0aG9uCiMgRXhlbXBsbyBpbmNvcnJldG8gLSByZXN1bHRhcsOhIGVtIGVycm8KbnVtZXJvID0gaW5wdXQoIkRpZ2l0ZSB1bSBuw7ptZXJvOiAiKQpxdWFkcmFkbyA9IG51bWVybyAqKiAyCnByaW50KCJPIHF1YWRyYWRvIGRvIG7Dum1lcm8gw6k6IiwgcXVhZHJhZG8pCmBgYAoKU2UgbyB1c3XDoXJpbyBwcmVzc2lvbmFyIGFwZW5hcyBFbnRlciBzZW0gZGlnaXRhciBuYWRhLCBvIHJlc3VsdGFkbyBzZXLDoSB1bWEgc3RyaW5nIHZhemlhLiBJc3NvIHBvZGUgY2F1c2FyIGNvbXBvcnRhbWVudG9zIGluZXNwZXJhZG9zIGVtIHNldSBwcm9ncmFtYSBzZSB2b2PDqiBuw6NvIGVzdGl2ZXIgcHJlcGFyYWRvIHBhcmEgbGlkYXIgY29tIGVzc2UgY2Vuw6FyaW8uCgpQb3J0YW50bywgc2VtcHJlIHF1ZSB2b2PDqiB1c2FyIGBpbnB1dCgpYCwgY2VydGlmaXF1ZS1zZSBkZSBjb252ZXJ0ZXIgbyByZXN1bHRhZG8gcGFyYSBvIHRpcG8gZGUgZGFkb3MgYXByb3ByaWFkbywgY29tbyBgaW50YCBvdSBgZmxvYXRgLCBzZSBwcmVjaXNhciByZWFsaXphciBvcGVyYcOnw7VlcyBudW3DqXJpY2FzIGNvbSBvcyBkYWRvcyBpbnNlcmlkb3MgcGVsbyB1c3XDoXJpby4=";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-67').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [24]</div>
+                <pre><code class="language-python"># Faça o teste: 
+numero_digitado = input(&quot;Digite um número: &quot;)
+calculando = numero_digitado ** 2.0
+print(f&#x27;O quadrado de {numero_digitado} é {calculando}.&#x27;) # TypeError: unsupported operand type(s) for ** or pow(): &#x27;str&#x27; and &#x27;float&#x27;</code></pre>
+            </div>
+            
+            <div class="cell cell-markdown" id="md-69"></div>
+            <script>
+                (function(){
+                    const b64 = "QSDDumx0aW1hIGxpbmhhIGRhIGZyYXNlIGV4cGxpY2EgdHVkbzoKCmBgYHB5dGhvbgpUeXBlRXJyb3I6IHVuc3VwcG9ydGVkIG9wZXJhbmQgdHlwZShzKSBmb3IgKiogb3IgcG93KCk6ICdzdHInIGFuZCAnZmxvYXQnCmBgYAoKVm9jw6ogdGVudG91IGFwbGljYXIgbyBvcGVyYWRvciAqKiBhICdzdHInIChzdHJpbmcpIGFjb21wYW5oYWRvIGRlICdmbG9hdCcuIElzc28gw6kgcHJvaWJpZG8uCgpJc3NvIGRldmUgc2VyIMOzYnZpbyAtIHZvY8OqIHBvZGUgcHJldmVyIG8gdmFsb3IgZGUgInNlciBvdSBuw6NvIHNlciIgZWxldmFkbyDDoCBwb3TDqm5jaWEgZGUgMj8=";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-69').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-markdown" id="md-70"></div>
+            <script>
+                (function(){
+                    const b64 = "IyMgYENvbnZlcnPDo28gZGUgdmFsb3Jlc2AKLS0tCk8gUHl0aG9uIG9mZXJlY2UgZnVuw6fDtWVzIHNpbXBsZXMgcGFyYSBlc3BlY2lmaWNhciB1bSB0aXBvIGRlIGRhZG9zIGUgcmVzb2x2ZXIgZXNzZSBwcm9ibGVtYSB0aXBvIGRlIHByb2JsZW1hLgoKSXNzbyDDqSBtdWl0byBzaW1wbGVzIGUgbXVpdG8gZWZpY2F6LiBBbMOpbSBkaXNzbywgdm9jw6ogcG9kZSBjaGFtYXIgcXVhbHF1ZXIgdW1hIGRhcyBmdW7Dp8O1ZXMgcGFzc2FuZG8gb3MgcmVzdWx0YWRvcyBkZSBpbnB1dCgpIGRpcmV0YW1lbnRlIHBhcmEgZWxhcy4gTsOjbyBow6EgbmVjZXNzaWRhZGUgZGUgdXNhciBuZW5odW1hIHZhcmnDoXZlbCBjb21vIGFybWF6ZW5hbWVudG8gaW50ZXJtZWRpw6FyaW8uCgpEw6ogdW1hIG9saGFkYSBubyBleGVtcGxvOiBvIHByb2dyYW1hIHNvbGljaXRhIHF1ZSBvIHVzdcOhcmlvIGluc2lyYSB1bSBuw7ptZXJvIGludGVpcm8gZSwgZW0gc2VndWlkYSwgY2FsY3VsYSBvIHNldSBxdWFkcmFkby4=";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-70').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [6]</div>
+                <pre><code class="language-python">numero_digitado = int(input(&quot;Digite um número: &quot;)) # Usuário digita um valor numérico, mas a função input() retorna uma string. Para realizar operações matemáticas, precisamos converter a string em um número usando a função int() para inteiros ou float() para números de ponto flutuante.
+
+calculando = numero_digitado ** 2
+print(calculando)
+
+# Observação: Caso o usuário digite um valor que não possa ser convertido para um número, como uma letra ou um símbolo, o programa gerará uma exceção ValueError. Por exemplo, se o usuário digitar &quot;abc&quot;, o programa tentará converter essa string para um número inteiro usando a função int(), mas isso não é possível, resultando em um erro.</code></pre>
+            </div>
+            
+            <div class="cell cell-markdown" id="md-72"></div>
+            <script>
+                (function(){
+                    const b64 = "Tm8gUHl0aG9uLCDDqSBwb3Nzw612ZWwgY29udmVydGVyIHZhbG9yZXMgZGUgdW0gdGlwbyBwYXJhIG91dHJvIHVzYW5kbyBmdW7Dp8O1ZXMgZGUgY29udmVyc8OjbyBpbnRlZ3JhZGFzLiBFc3NhcyBmdW7Dp8O1ZXMgcGVybWl0ZW0gcXVlIHZvY8OqIGFsdGVyZSBvIHRpcG8gZGUgZGFkbyBkZSB1bWEgdmFyacOhdmVsIGNvbmZvcm1lIG5lY2Vzc8OhcmlvLgoKUG9yIGV4ZW1wbG8sIHNlIHZvY8OqIHNvbGljaXRhciBhbyB1c3XDoXJpbyB1bSBuw7ptZXJvIGludGVpcm8gdXNhbmRvIGEgZnVuw6fDo28gYGlucHV0KClgLCBvIHZhbG9yIHJldG9ybmFkbyBzZXLDoSB1bWEgc3RyaW5nLiBQYXJhIHJlYWxpemFyIG9wZXJhw6fDtWVzIG1hdGVtw6F0aWNhcyBjb20gZXNzZSB2YWxvciwgY29tbyBjYWxjdWxhciBvIHF1YWRyYWRvIGRvIG7Dum1lcm8sIHZvY8OqIHByZWNpc2EgY29udmVydGVyIGEgc3RyaW5nIGVtIHVtIG7Dum1lcm8gaW50ZWlyby4KClZvY8OqIHBvZGUgZmF6ZXIgaXNzbyB1c2FuZG8gYSBmdW7Dp8OjbyBgaW50KClgLiBFc3NhIGZ1bsOnw6NvIGNvbnZlcnRlIHVtYSBzdHJpbmcgZW0gdW0gbsO6bWVybyBpbnRlaXJvLiBBcXVpIGVzdMOhIHVtIGV4ZW1wbG86CgpgYGBweXRob24KbnVtZXJvX3N0ciA9IGlucHV0KCJEaWdpdGUgdW0gbsO6bWVybyBpbnRlaXJvOiAiKSAgIyBSZWNlYmUgbyBuw7ptZXJvIGNvbW8gc3RyaW5nCm51bWVyb19pbnQgPSBpbnQobnVtZXJvX3N0cikgICMgQ29udmVydGUgYSBzdHJpbmcgcGFyYSB1bSBuw7ptZXJvIGludGVpcm8KcXVhZHJhZG8gPSBudW1lcm9faW50ICoqIDIgICMgQ2FsY3VsYSBvIHF1YWRyYWRvIGRvIG7Dum1lcm8gaW50ZWlybwpwcmludCgiTyBxdWFkcmFkbyBkbyBuw7ptZXJvIMOpOiIsIHF1YWRyYWRvKQpgYGAKCkRhIG1lc21hIGZvcm1hLCBzZSB2b2PDqiBkZXNlamEgbGlkYXIgY29tIG7Dum1lcm9zIGRlY2ltYWlzLCBwb2RlIHVzYXIgYSBmdW7Dp8OjbyBgZmxvYXQoKWAuIElzc28gY29udmVydGUgdW1hIHN0cmluZyBlbSB1bSBuw7ptZXJvIGRlIHBvbnRvIGZsdXR1YW50ZS4KCmBgYHB5dGhvbgpudW1lcm9fc3RyID0gaW5wdXQoIkRpZ2l0ZSB1bSBuw7ptZXJvIGRlY2ltYWw6ICIpICAjIFJlY2ViZSBvIG7Dum1lcm8gY29tbyBzdHJpbmcKbnVtZXJvX2Zsb2F0ID0gZmxvYXQobnVtZXJvX3N0cikgICMgQ29udmVydGUgYSBzdHJpbmcgcGFyYSB1bSBuw7ptZXJvIGRlIHBvbnRvIGZsdXR1YW50ZQpgYGAKCkVzc2FzIGZ1bsOnw7VlcyBkZSBjb252ZXJzw6NvIHPDo28gbXVpdG8gw7p0ZWlzIGFvIGxpZGFyIGNvbSBkYWRvcyBpbnNlcmlkb3MgcGVsbyB1c3XDoXJpbyBvdSBhbyB0cmFiYWxoYXIgY29tIGRpZmVyZW50ZXMgdGlwb3MgZGUgZGFkb3MgZW0gc2V1IHByb2dyYW1hLiBDZXJ0aWZpcXVlLXNlIHNlbXByZSBkZSBjb252ZXJ0ZXIgY29ycmV0YW1lbnRlIG9zIHZhbG9yZXMgY29uZm9ybWUgbmVjZXNzw6FyaW8gcGFyYSBldml0YXIgZXJyb3MgZHVyYW50ZSBhIGV4ZWN1w6fDo28gZG8gcHJvZ3JhbWEu";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-72').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [26]</div>
+                <pre><code class="language-python"># Porém ainda assim, utilizando funções de conversão de tipos, podemos causar um erro. Por exemplo, se o usuário digitar um texto ao invés de um número ou não digitar nada, o programa irá gerar um erro.
+
+# Para estes casos usamos funções específicas para tratar exceções. Vejamos um exemplo de tratamento de erros e exceções:
+
+# O bloco try é executado normalmente. Se ocorrer um erro, o bloco except é executado, se não ocorrer erro, o bloco except é ignorado e o programa continua a execução normalmente.
+try:
+    numero_digitado = int(input(&quot;Digite um número: &quot;))
+    calculando = numero_digitado ** 2
+    print(calculando)
+except ValueError:
+    print(&quot;Você não digitou um número.&quot;)
+
+# Se quisermos garantir que o usuário digite um número, podemos usar um loop while para continuar pedindo ao usuário que digite um número até que ele faça isso.
+
+while True:
+    try:
+        numero_digitado = int(input(&quot;Digite um número: &quot;))
+        calculando = numero_digitado ** 2
+        print(calculando)
+        break
+    except ValueError:
+        print(&quot;Você não digitou um número. Tente novamente.&quot;)</code></pre>
+            </div>
+            <div class="cell-output">1
+1
+</div>
+            <div class="cell cell-markdown" id="md-74"></div>
+            <script>
+                (function(){
+                    const b64 = "IyMjICoqYHR5cGUoKWAqKgotLS0KVmltb3Mgb3MgdGlwb3MgZGUgZGFkb3MgYsOhc2ljb3MgZW0gUHl0aG9uLiBTZSBuw6NvIHRpdmVybW9zIGNlcnRlemEgZG8gdGlwbyBkZSB2YWxvciwgcG9kZW1vcyB2ZXJpZmljw6EtbG8uIAoKTyBtw6l0b2RvIGB0eXBlKClgIMOpIHVzYWRvIHBhcmEgdmVyaWZpY2FyIG8gdGlwbyBkZSBkYWRvcyBkZSB1bWEgZGV0ZXJtaW5hZGEgdmFyacOhdmVsIG91IHZhbG9yLiBFbGUgcmV0b3JuYSBvIHRpcG8gZGUgZGFkb3MgY29tbyB1bSBvYmpldG8gZGUgdGlwby4KCkEgc2ludGF4ZSBwYXJhIHVzYXIgbyBtw6l0b2RvIGB0eXBlKClgIMOpIGB0eXBlKHZhbG9yKWAsIG9uZGUgYHZhbG9yYCDDqSBhIHZhcmnDoXZlbCBvdSB2YWxvciBjdWpvIHRpcG8gZGUgZGFkb3MgcXVlcmVtb3MgdmVyaWZpY2FyLgoKUG9yIGV4ZW1wbG86CgpgYGBweXRob24KbnVtZXJvID0gMTAKdGlwb19udW1lcm8gPSB0eXBlKG51bWVybykKcHJpbnQodGlwb19udW1lcm8pICAjIFNhw61kYTogPGNsYXNzICdpbnQnPgpgYGAKCk5lc3RlIGV4ZW1wbG8sIGBudW1lcm9gIMOpIHVtYSB2YXJpw6F2ZWwgZG8gdGlwbyBpbnRlaXJvIChgaW50YCkuIFVzYW5kbyBvIG3DqXRvZG8gYHR5cGUoKWAsIHZlcmlmaWNhbW9zIHF1ZSBvIHRpcG8gZGUgYG51bWVyb2AgZSBzZSBjb21iaW5hcm1vcyBvIG3DqXRvZG8gYHR5cGUoKWAgY29tIG8gbcOpdG9kbyBgcHJpbnQoKWAsIHBvZGVtb3MgdmVyIHVtYSB2ZXJzw6NvIGFicmV2aWFkYSBkbyB0aXBvIGRlIGRhZG8gbm8gY29uc29sZSBgPGNsYXNzICdpbnQnPmAsIHF1ZSDDqSBhIHJlcHJlc2VudGHDp8OjbyBkbyB0aXBvIGRlIGRhZG9zIGludGVpcm8gZW0gUHl0aG9uLgoKUG9kZW1vcyB1c2FyIG8gbcOpdG9kbyBgdHlwZSgpYCBlbSBxdWFscXVlciB2YXJpw6F2ZWwgb3UgdmFsb3IgcGFyYSBkZXRlcm1pbmFyIHNldSB0aXBvIGRlIGRhZG9zLiBJc3NvIHBvZGUgc2VyIMO6dGlsIGFvIGVzY3JldmVyIGPDs2RpZ28gcGFyYSBnYXJhbnRpciBxdWUgZXN0YW1vcyBtYW5pcHVsYW5kbyBvcyB0aXBvcyBkZSBkYWRvcyBjb3JyZXRvcyBlbSBub3Nzb3MgcHJvZ3JhbWFzLgoKQXDDs3MgdGVyIGNlcnRlemEgZG8gdGlwbyBkZSBkYWRvLCBwb2RlbW9zIGNvbnZlcnRlciB1bSB0aXBvIGRlIGRhZG8gZW0gb3V0cm8uIFBhcmEgaXNzbywgdXNhbW9zIG9zIG3DqXRvZG9zIGludCgpLCBmbG9hdCgpLCBzdHIoKSBlIGJvb2woKS4=";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-74').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python">dado = 100  # A variável recebe um valor do tipo inteiro
+print(type(dado))  # Exibe &lt;class &#x27;int&#x27;&gt;.
+
+print(type(dado).__name__)  # Exibe int.
+# __name__ é um atributo especial que contém o nome da classe do objeto. Neste caso, o nome da classe do objeto é int.</code></pre>
+            </div>
+            <div class="cell-output">&lt;class &#x27;int&#x27;&gt;
+int
+</div>
+            <div class="cell cell-markdown" id="md-76"></div>
+            <script>
+                (function(){
+                    const b64 = "IyMjIGBpbnQoKWAKLS0tCkEgZnVuw6fDo28gYGludCgpYCDDqSB1c2FkYSBwYXJhIGNvbnZlcnRlciB1bSB2YWxvciBlbSB1bSBuw7ptZXJvIGludGVpcm8uIEVsYSBhY2VpdGEgdW0gYXJndW1lbnRvIChwb3IgZXhlbXBsbywgdW1hIHN0cmluZzogYGludChzdHJpbmcpYCkgZSB0ZW50YSBjb252ZXJ0w6otbG8gZW0gdW0gbsO6bWVybyBpbnRlaXJvLiBTZSBhIGNvbnZlcnPDo28gZmFsaGFyLCBvIHByb2dyYW1hIHRhbWLDqW0gZmFsaGFyw6EsIGEgbWVub3MgcXVlIHNlamEgdHJhdGFkYSBhIGV4Y2XDp8Ojby4=";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-76').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [44]</div>
+                <pre><code class="language-python"># Se um caractere alfabetico for convertido para um número inteiro, o Python retornará um erro. Para evitar isso, podemos tratar a exceção com um bloco try-except.
+
+try:
+    numero_inteiro = int(&#x27;A&#x27;)
+    print(numero_inteiro)
+except ValueError:
+    print(&quot;A conversão falhou.&quot;)
+    
+# Observação: Existe uma função chamada ord() que retorna o valor Unicode de um caractere. Por exemplo, ord(&#x27;A&#x27;) retorna 65
+
+try:
+    numero_inteiro = int(ord(&#x27;A&#x27;)) # Converte o valor Unicode de &#x27;A&#x27; para um número inteiro
+    print(numero_inteiro)
+except ValueError:
+    print(&quot;A conversão falhou.&quot;)</code></pre>
+            </div>
+            <div class="cell-output">A conversão falhou.
+65
+</div>
+            <div class="cell cell-markdown" id="md-78"></div>
+            <script>
+                (function(){
+                    const b64 = "ClNlIHVzYXJtb3MgYGludCgpYCBlbSBuw7ptZXJvcyBkZSBwb250byBmbHV0dWFudGUsIGVsYSBzaW1wbGVzbWVudGUgcmVtb3ZlcsOhIG8gcG9udG8gZGVjaW1hbCBlIHF1YWlzcXVlciB2YWxvcmVzIHN1YnNlcXVlbnRlcy4gTsOjbyBoYXZlcsOhIGFycmVkb25kYW1lbnRvIG5lc3NlIHByb2Nlc3NvLiBQb3IgZXhlbXBsbzo=";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-78').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [39]</div>
+                <pre><code class="language-python">numero_float = 3.9
+numero_inteiro = int(numero_float)
+print(numero_inteiro)  # Saída: 3
+
+# Neste exemplo, o número de ponto flutuante `3.9` foi convertido para um número inteiro utilizando `int()`, resultando em `3`. O valor após o ponto decimal foi simplesmente removido, sem arredondamento.</code></pre>
+            </div>
+            <div class="cell-output">3
+</div>
+            <div class="cell cell-markdown" id="md-80"></div>
+            <script>
+                (function(){
+                    const b64 = "U2UgcXVpc2VybW9zIGFycmVkb25kYXIgdW0gbsO6bWVybyBkZSBwb250byBmbHV0dWFudGUgcGFyYSBvIGludGVpcm8gbWFpcyBwcsOzeGltbywgcG9kZW1vcyB1c2FyIGEgZnVuw6fDo28gYHJvdW5kKClgLiBFc3RhIGZ1bsOnw6NvIGFycmVkb25kYXLDoSBvIG7Dum1lcm8gZGUgYWNvcmRvIGNvbSBhIHJlZ3JhIG1hdGVtw6F0aWNhIHBhZHLDo286IHNlIGEgcGFydGUgZnJhY2lvbsOhcmlhIGZvciBtYWlvciBvdSBpZ3VhbCBhIDAuNSwgbyBuw7ptZXJvIHNlcsOhIGFycmVkb25kYWRvIHBhcmEgY2ltYTsgY2FzbyBjb250csOhcmlvLCBzZXLDoSBhcnJlZG9uZGFkbyBwYXJhIGJhaXhvLgoKQXF1aSBlc3TDoSB1bSBleGVtcGxvIGRlIGNvbW8gdXNhciBgcm91bmQoKWAgcGFyYSBhcnJlZG9uZGFyIHVtIG7Dum1lcm8gZGUgcG9udG8gZmx1dHVhbnRlOg==";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-80').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python"># Neste exemplo, o número de ponto flutuante 3.9 foi arredondado para 4, pois a parte fracionária é maior do que 0.5
+
+numero_float = 3.9
+numero_arredondado = round(numero_float)
+print(numero_arredondado)  # Saída: 4
+
+# round() aceita um segundo argumento opcional que especifica o número de casas decimais a serem arredondadas.
+numero_float = 3.14159
+numero_arredondado = round(numero_float, 2)
+print(numero_arredondado)  # Saída: 3.14
+
+# Sem o segundo argumento, round() arredonda para o inteiro mais próximo.
+numero_float = 3.14159
+numero_arredondado = round(numero_float)
+print(numero_arredondado)  # Saída: 3</code></pre>
+            </div>
+            <div class="cell-output">4
+3.14
+3
+</div>
+            <div class="cell cell-markdown" id="md-82"></div>
+            <script>
+                (function(){
+                    const b64 = "UXVhbmRvIHVzYW1vcyBhIGZ1bsOnw6NvIGBpbnQoKWAgZW0gdW0gYm9vbGVhbm8gZW0gUHl0aG9uLCBvIHZhbG9yIG51bcOpcmljbyBlcXVpdmFsZW50ZSDDqSBgMWAgcGFyYSBgVHJ1ZWAgZSBgMGAgcGFyYSBgRmFsc2VgLiBTZSBjb252ZXJ0ZXJtb3MgZXNzZXMgdmFsb3JlcyBwYXJhIGZsb2F0LCBvYnRlcmVtb3MgYDEuMGAgcGFyYSBgVHJ1ZWAgZSBgMC4wYCBwYXJhIGBGYWxzZWAu";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-82').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [47]</div>
+                <pre><code class="language-python"># Aqui está um exemplo que demonstra isso:
+
+verdadeiro = True
+falso = False
+
+inteiro_verdadeiro = int(verdadeiro)
+inteiro_falso = int(falso)
+
+float_verdadeiro = float(verdadeiro)
+float_falso = float(falso)
+
+print(inteiro_verdadeiro)  # Saída: 1
+print(inteiro_falso)       # Saída: 0
+
+print(float_verdadeiro)    # Saída: 1.0
+print(float_falso)         # Saída: 0.0
+
+
+# Neste exemplo, ao converter o booleano `True` em inteiro, obtemos `1`, e ao converter o booleano `False`, obtemos `0`. Quando convertemos esses valores para float, obtemos `1.0` e `0.0`, respectivamente.</code></pre>
+            </div>
+            <div class="cell-output">1
+0
+1.0
+0.0
+</div>
+            <div class="cell cell-markdown" id="md-84"></div>
+            <script>
+                (function(){
+                    const b64 = "IyMjIGBmbG9hdCgpYAotLS0KQW8gdXNhciBhIGZ1bsOnw6NvIGBmbG9hdCgpYCBlbSB1bSBuw7ptZXJvIGludGVpcm8gZW0gUHl0aG9uLCBzZXLDoSBhZGljaW9uYWRvIHVtIHBvbnRvIGRlY2ltYWwgZSB1bSB6ZXJvIHN1YnNlcXVlbnRlLCBjb252ZXJ0ZW5kby1vIHBhcmEgdW0gbsO6bWVybyBkZSBwb250byBmbHV0dWFudGUuCgpBcXVpIGVzdMOhIHVtIGV4ZW1wbG8gcGFyYSBpbHVzdHJhciBpc3NvOg==";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-84').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python">inteiro = 5
+float_resultante = float(inteiro)
+
+print(float_resultante)  # Saída: 5.0
+
+# Neste exemplo, o número inteiro `5` é convertido para um número de ponto flutuante usando a função `float()`, resultando em `5.0`.</code></pre>
+            </div>
+            <div class="cell-output">5.0
+</div>
+            <div class="cell cell-markdown" id="md-86"></div>
+            <script>
+                (function(){
+                    const b64 = "IyMjIGBib29sKClgCi0tLQpBIGZ1bsOnw6NvIGBib29sKClgIGVtIFB5dGhvbiDDqSB1dGlsaXphZGEgcGFyYSBjb252ZXJ0ZXIgdW0gdmFsb3IgcGFyYSBvIHRpcG8gYm9vbGVhbm8uIAoKUXVhbmRvIGFwbGljYWRhIGEgZGlmZXJlbnRlcyB0aXBvcyBkZSBkYWRvcywgYSBmdW7Dp8OjbyBgYm9vbCgpYCByZXRvcm5hIGBGYWxzZWAgc2UgbyB2YWxvciBmb3IgY29uc2lkZXJhZG8gdmF6aW8sIGUgYFRydWVgIGNhc28gY29udHLDoXJpby4g";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-86').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python"># Convertendo diferentes valores para booleanos
+print(bool(&quot;texto&quot;))  # Saída: True
+print(bool(&quot;&quot;))       # Saída: False (string vazia)
+print(bool(0))        # Saída: False
+print(bool(10))       # Saída: True
+print(bool([]))       # Saída: False (lista vazia)
+print(bool([1, 2, 3])) # Saída: True
+
+# Como mostrado nos exemplos, strings não vazias, números diferentes de zero e listas não vazias são avaliados como `True`, enquanto strings vazias, o número zero e listas vazias são avaliados como `False`.</code></pre>
+            </div>
+            <div class="cell-output">True
+False
+False
+True
+False
+True
+</div>
+            <div class="cell cell-markdown" id="md-88"></div>
+            <script>
+                (function(){
+                    const b64 = "IyMjIGBzdHIoKWAKLS0tCkEgZnVuw6fDo28gYHN0cigpYCBlbSBQeXRob24gw6kgdXRpbGl6YWRhIHBhcmEgY29udmVydGVyIHZhbG9yZXMgcGFyYSBvIHRpcG8gc3RyaW5nLgoKUG9yIGV4ZW1wbG8sIHNlIHZvY8OqIHRlbSB1bSBuw7ptZXJvIGludGVpcm8gb3UgZGUgcG9udG8gZmx1dHVhbnRlIGUgZGVzZWphIGNvbnZlcnTDqi1sbyBlbSB1bWEgc3RyaW5nIHBhcmEgZmlucyBkZSBleGliacOnw6NvIG91IG1hbmlwdWxhw6fDo28gZGUgdGV4dG8sIHZvY8OqIHBvZGUgdXNhciBhIGZ1bsOnw6NvIGBzdHIoKWAgcGFyYSByZWFsaXphciBlc3NhIGNvbnZlcnPDo28uCgpBcXVpIGVzdMOhIHVtIGV4ZW1wbG8gZGUgY29tbyB1c2FyIGBzdHIoKWA6";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-88').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python"># Convertendo um número inteiro para uma string
+numero = 42
+numero_em_string = str(numero)
+print(numero_em_string)  # Saída: &quot;42&quot;
+
+# Convertendo um número de ponto flutuante para uma string
+numero_float = 3.14
+numero_float_em_string = str(numero_float)
+print(numero_float_em_string)  # Saída: &quot;3.14&quot;
+
+# Isso pode ser útil ao combinar números e strings em expressões de saída, como ao usar a função `print()`.</code></pre>
+            </div>
+            <div class="cell-output">42
+3.14
+</div>
+            <div class="cell cell-markdown" id="md-90"></div>
+            <script>
+                (function(){
+                    const b64 = "U2UgdW0gYm9vbGVhbm8gZm9yIGNvbnZlcnRpZG8gcGFyYSB1bWEgc3RyaW5nLCBlbGUgc2Vyw6EgcmVwcmVzZW50YWRvIGNvbW8gYCJUcnVlImAgb3UgYCJGYWxzZSJgLCBjb3JyZXNwb25kZW5kbyBhb3MgdmFsb3JlcyBib29sZWFub3MgYFRydWVgIGUgYEZhbHNlYCwgcmVzcGVjdGl2YW1lbnRlLiBBcXVpIGVzdMOhIHVtIGV4ZW1wbG86CgpgYGBweXRob24KYm9vbGVhbm8gPSBUcnVlCmJvb2xlYW5vX2VtX3N0cmluZyA9IHN0cihib29sZWFubykKcHJpbnQoYm9vbGVhbm9fZW1fc3RyaW5nKSAgIyBTYcOtZGE6ICJUcnVlIgpgYGAKCmBgYHB5dGhvbgpib29sZWFubyA9IEZhbHNlCmJvb2xlYW5vX2VtX3N0cmluZyA9IHN0cihib29sZWFubykKcHJpbnQoYm9vbGVhbm9fZW1fc3RyaW5nKSAgIyBTYcOtZGE6ICJGYWxzZSIKYGBgCgpFc3NhIGNvbnZlcnPDo28gw6kgw7p0aWwgcXVhbmRvIHZvY8OqIHByZWNpc2EgcmVwcmVzZW50YXIgdW0gdmFsb3IgYm9vbGVhbm8gY29tbyB0ZXh0bywgcG9yIGV4ZW1wbG8sIGFvIGVzY3JldmVyIGVtIGFycXVpdm9zIG91IGFvIGV4aWJpciBtZW5zYWdlbnMgcGFyYSBvIHVzdcOhcmlvLgoKQWzDqW0gZGUgYGJvb2xgIHBhcmEgYHN0cmAsIGjDoSB0YW1iw6ltIGEgY29udmVyc8OjbyBkZSBgbGlzdGFzYCwgYHR1cGxhc2AsIGBjb25qdW50b3NgIGUgYGRpY2lvbsOhcmlvc2AgcGFyYSBgc3RyaW5nc2AuIEFxdWkgZXN0w6NvIGV4ZW1wbG9zIGRlc3NhcyBjb252ZXJzw7VlczoKCjEuICoqTGlzdGFzIHBhcmEgU3RyaW5nKio6IFVtYSBsaXN0YSBwb2RlIHNlciBjb252ZXJ0aWRhIGVtIHVtYSBzdHJpbmcgdXNhbmRvIGEgZnVuw6fDo28gYHN0cigpYC4gQSBzdHJpbmcgcmVzdWx0YW50ZSBtb3N0cmFyw6Egb3MgZWxlbWVudG9zIGRhIGxpc3RhIHNlcGFyYWRvcyBwb3IgdsOtcmd1bGFzIGUgZW50cmUgY29sY2hldGVzLgoKYGBgcHl0aG9uCmxpc3RhID0gWzEsIDIsIDMsIDQsIDVdCmxpc3RhX2VtX3N0cmluZyA9IHN0cihsaXN0YSkKcHJpbnQobGlzdGFfZW1fc3RyaW5nKSAgIyBTYcOtZGE6ICJbMSwgMiwgMywgNCwgNV0iCmBgYAoKMi4gKipUdXBsYXMgcGFyYSBTdHJpbmcqKjogTyBtZXNtbyBzZSBhcGxpY2Egw6BzIHR1cGxhcy4KCmBgYHB5dGhvbgp0dXBsYSA9ICgxLCAyLCAzLCA0LCA1KQp0dXBsYV9lbV9zdHJpbmcgPSBzdHIodHVwbGEpCnByaW50KHR1cGxhX2VtX3N0cmluZykgICMgU2HDrWRhOiAiKDEsIDIsIDMsIDQsIDUpIgpgYGAKCjMuICoqQ29uanVudG9zIHBhcmEgU3RyaW5nKio6IENvbmp1bnRvcyBwb2RlbSBzZXIgY29udmVydGlkb3MgZW0gc3RyaW5ncyBkYSBtZXNtYSBmb3JtYS4KCmBgYHB5dGhvbgpjb25qdW50byA9IHsxLCAyLCAzLCA0LCA1fQpjb25qdW50b19lbV9zdHJpbmcgPSBzdHIoY29uanVudG8pCnByaW50KGNvbmp1bnRvX2VtX3N0cmluZykgICMgU2HDrWRhOiAiezEsIDIsIDMsIDQsIDV9IgpgYGAKCjQuICoqRGljaW9uw6FyaW9zIHBhcmEgU3RyaW5nKio6IERpY2lvbsOhcmlvcyB0YW1iw6ltIHBvZGVtIHNlciBjb252ZXJ0aWRvcyBlbSBzdHJpbmdzLgoKYGBgcHl0aG9uCmRpY2lvbmFyaW8gPSB7J2EnOiAxLCAnYic6IDIsICdjJzogM30KZGljaW9uYXJpb19lbV9zdHJpbmcgPSBzdHIoZGljaW9uYXJpbykKcHJpbnQoZGljaW9uYXJpb19lbV9zdHJpbmcpICAjIFNhw61kYTogInsnYSc6IDEsICdiJzogMiwgJ2MnOiAzfSIKYGBgCgpFc3NhcyBjb252ZXJzw7VlcyBzw6NvIMO6dGVpcyBhbyBsaWRhciBjb20gc2HDrWRhIGRlIGRhZG9zIG91IGFvIGFybWF6ZW5hciBlc3RydXR1cmFzIGRlIGRhZG9zIGNvbXBsZXhhcyBlbSB1bSBmb3JtYXRvIGxlZ8OtdmVsLg==";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-90').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python"># Podemos converter strings em listas usando a função `list()`. Cada caractere da string se torna um item na lista.
+
+string = &quot;Python&quot;
+lista = list(string)
+print(lista)  # Saída: [&#x27;P&#x27;, &#x27;y&#x27;, &#x27;t&#x27;, &#x27;h&#x27;, &#x27;o&#x27;, &#x27;n&#x27;]</code></pre>
+            </div>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python"># Podemos fazer o mesmo com tuplas, usando a função `tuple()`.
+string = &quot;Python&quot;
+tupla = tuple(string)
+print(tupla)  # Saída: (&#x27;P&#x27;, &#x27;y&#x27;, &#x27;t&#x27;, &#x27;h&#x27;, &#x27;o&#x27;, &#x27;n&#x27;)</code></pre>
+            </div>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [7]</div>
+                <pre><code class="language-python"># Com conjuntos usamos a função `set()`. Cada caractere único da string se torna um item no conjunto.
+string = &quot;Python&quot;
+conjunto = set(string)
+print(conjunto)  # Saída: {&#x27;P&#x27;, &#x27;y&#x27;, &#x27;t&#x27;, &#x27;h&#x27;, &#x27;o&#x27;, &#x27;n&#x27;}
+
+# Se houverem caracteres repetidos na string, eles serão removidos no conjunto.
+string = &quot;Python é uma linguagem de programação&quot;
+conjunto = set(string)
+print(conjunto) # Saída: {&#x27;a&#x27;, &#x27;ç&#x27;, &#x27;m&#x27;, &#x27;g&#x27;, &#x27;P&#x27;, &#x27;n&#x27;, &#x27;r&#x27;, &#x27;d&#x27;, &#x27;i&#x27;, &#x27;e&#x27;, &#x27;u&#x27;, &#x27;l&#x27;, &#x27;p&#x27;, &#x27;o&#x27;, &#x27; &#x27;, &#x27;t&#x27;, &#x27;ã&#x27;, &#x27;é&#x27;, &#x27;P&#x27;}
+
+# Como podemos ver, o conjunto resultante contém apenas caracteres únicos da string.
+print(len(string))  # Saída: 37
+print(len(conjunto))  # Saída: 20</code></pre>
+            </div>
+            <div class="cell-output">{&#x27;h&#x27;, &#x27;P&#x27;, &#x27;n&#x27;, &#x27;o&#x27;, &#x27;y&#x27;, &#x27;t&#x27;}
+{&#x27;ã&#x27;, &#x27;é&#x27;, &#x27;d&#x27;, &#x27;m&#x27;, &#x27;e&#x27;, &#x27;i&#x27;, &#x27;l&#x27;, &#x27;o&#x27;, &#x27;g&#x27;, &#x27;h&#x27;, &#x27;ç&#x27;, &#x27;P&#x27;, &#x27;n&#x27;, &#x27;y&#x27;, &#x27;t&#x27;, &#x27;a&#x27;, &#x27;r&#x27;, &#x27; &#x27;, &#x27;p&#x27;, &#x27;u&#x27;}
+37
+20
+</div>
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python"># isinstance() é uma função que verifica se um objeto é uma instância de uma classe específica. Ela retorna `True` se o objeto for uma instância da classe especificada e `False` caso contrário.
+
+# Exemplo de uso de isinstance():
+numero = &quot;42&quot;
+print(isinstance(numero, int))  # Saída: False  </code></pre>
+            </div>
+            <div class="cell-output">False
+</div></div><script>hljs.highlightAll();</script>
+    </main>
+</body>
+</html>

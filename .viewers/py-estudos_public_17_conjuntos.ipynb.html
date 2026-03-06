@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>17_conjuntos.ipynb</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/monokai-sublime.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/python.min.js"></script>
+    
+    <style>
+        .cell { margin-bottom: 1.5rem; }
+        .cell-markdown { font-size: 1.05rem; line-height: 1.6; color: #cbd5e1; }
+        .cell-markdown h1, .cell-markdown h2, .cell-markdown h3 { color: #f1f5f9; margin-top: 1rem; margin-bottom: 0.5rem; }
+        .cell-markdown code { background: rgba(0,0,0,0.3); padding: 0.2rem 0.4rem; border-radius: 4px; color: #eab308; }
+        .cell-markdown pre { background: rgba(0,0,0,0.3); padding: 1rem; border-radius: 8px; overflow-x: auto; border: 1px solid var(--glass-border); margin: 1rem 0; }
+        .cell-code { background: #23241f; border-radius: 8px; padding: 1rem; overflow-x: auto; position: relative; border: 1px solid #333; }
+        .cell-output { background: #000; color: #a3e635; padding: 1rem; border-radius: 8px; margin-top: 0.5rem; font-family: monospace; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;}
+        .prompt { position: absolute; top: 0.5rem; right: 0.5rem; color: #64748b; font-size: 0.8rem; user-select: none; }
+    </style>
+    
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --glass-bg: rgba(30, 41, 59, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --primary: #38bdf8;
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        header {
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            border-bottom: 1px solid var(--glass-border);
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .back-btn {
+            color: var(--text-main);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            background: rgba(255,255,255,0.05);
+            transition: 0.3s;
+        }
+        .back-btn:hover {
+            background: rgba(56, 189, 248, 0.2);
+            color: var(--primary);
+        }
+        .file-title {
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+        main {
+            flex: 1;
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        .container {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="../index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Voltar</a>
+        <div class="file-title">17_conjuntos.ipynb</div>
+    </header>
+    <main>
+        <div class="container">
+            <div class="cell cell-markdown" id="md-0"></div>
+            <script>
+                (function(){
+                    const b64 = "IyBDcmlhbmRvIENvbmp1bnRvcwoKUXVhbmRvIHF1ZXJlbW9zIGdhcmFudGlyIHF1ZSB1bWEgY29sZcOnw6NvIGRlIHZhbG9yZXMgbsOjbyB0ZW5oYSBkdXBsaWNhdGFzLCBwb2RlbW9zIGFybWF6ZW7DoS1sYSBlbSB1bSBjb25qdW50by4gQ29uanVudG9zIHPDo28gY29sZcOnw7VlcyBkZSB2YWxvcmVzIHNlbWVsaGFudGVzIMOgcyBsaXN0YXMsIG1hcyBuw6NvIHBlcm1pdGVtIHZhbG9yZXMgZHVwbGljYWRvcy4KClBhcmEgY3JpYXIgdW0gY29uanVudG8sIHV0aWxpemFtb3MgY2hhdmVzIGB7fWAgcGFyYSBjZXJjYXIgb3MgdmFsb3Jlcy4gT3MgdmFsb3JlcyBzw6NvIHNlcGFyYWRvcyBwb3IgdsOtcmd1bGEuIFBvZGVtb3MgYXJtYXplbmFyIG8gY29uanVudG8gZW0gdW1hIHZhcmnDoXZlbCBwYXJhIHJldXRpbGl6w6EtbG8gcG9zdGVyaW9ybWVudGUu";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-0').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [2]</div>
+                <pre><code class="language-python">postcodes = {&#x27;SW1A&#x27;, &#x27;SY3&#x27;, &#x27;B44&#x27;}</code></pre>
+            </div>
+            
+            <div class="cell cell-markdown" id="md-2"></div>
+            <script>
+                (function(){
+                    const b64 = "UG9kZW1vcyB1c2FyIHVtIGxvb3AgcGFyYSBpdGVyYXIgdW0gY29uanVudG8uCgpDb21vIG9zIGNvbmp1bnRvcyBuw6NvIHTDqm0gb3JkZW0sIG7Do28gcG9kZW1vcyBhY2Vzc2FyIHZhbG9yZXMgcG9yIMOtbmRpY2UuCgpBIGNhZGEgaXRlcmHDp8OjbywgbyBsb29wIGFjZXNzYSB1bSB2YWxvciBkaWZlcmVudGUgZG8gY29uanVudG8u";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-2').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [5]</div>
+                <pre><code class="language-python">print(postcodes)</code></pre>
+            </div>
+            <div class="cell-output">{&#x27;B44&#x27;, &#x27;SY3&#x27;, &#x27;SW1A&#x27;}
+</div>
+            <div class="cell cell-markdown" id="md-4"></div>
+            <script>
+                (function(){
+                    const b64 = "UGFyYSBhZGljaW9uYXIgdW0gbm92byB2YWxvciBhIHVtIGNvbmp1bnRvIGNvbW8gYW5zd2VycywgY29kaWZpY2Ftb3MgbyBub21lIGRvIGNvbmp1bnRvLCBzZWd1aWRvIGRhIGluc3RydcOnw6NvIC5hZGQoKSBjb21vIG8gbm92byB2YWxvciBlbnRyZSBvcyBwYXLDqm50ZXNlcy4=";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-4').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [6]</div>
+                <pre><code class="language-python">conjunto = {&#x27;sim&#x27;, &#x27;não&#x27;}
+print(conjunto)</code></pre>
+            </div>
+            <div class="cell-output">{&#x27;não&#x27;, &#x27;sim&#x27;}
+</div>
+            <div class="cell cell-markdown" id="md-6"></div>
+            <script>
+                (function(){
+                    const b64 = "T3MgaXRlbnMgbsOjbyBzw6NvIG9yZGVuYWRvcywgcG9ydGFudG8sIG7Do28gcG9kZW1vcyB0ZXIgY2VydGV6YSBkYSBvcmRlbSBlbSBxdWUgb3MgaXRlbnMgYXBhcmVjZXLDo28gcXVhbmRvIGltcHJlc3Nvcw==";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-6').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [8]</div>
+                <pre><code class="language-python">conjunto.add(&#x27;talvez&#x27;)
+print(conjunto)</code></pre>
+            </div>
+            <div class="cell-output">{&#x27;não&#x27;, &#x27;talvez&#x27;, &#x27;sim&#x27;}
+</div>
+            <div class="cell cell-markdown" id="md-8"></div>
+            <script>
+                (function(){
+                    const b64 = "Q29tbyBvcyBjb25qdW50b3MgZXhjbHVlbSBvcyB2YWxvcmVzIGR1cGxpY2Fkb3MsIG5hZGEgYWNvbnRlY2UgcXVhbmRvIHRlbnRhbW9zIGFkaWNpb25hciB1bSB2YWxvciBqw6EgZXhpc3RlbnRlLg==";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-8').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [9]</div>
+                <pre><code class="language-python">conjunto.add(&#x27;sim&#x27;)</code></pre>
+            </div>
+            
+            <div class="cell cell-markdown" id="md-10"></div>
+            <script>
+                (function(){
+                    const b64 = "U2FiZW1vcyBxdWUgcG9kZW1vcyBhY2Vzc2FyIGUgYXR1YWxpemFyIGVsZW1lbnRvcyBlbSBsaXN0YXMgcGVsbyBzZXUgw61uZGljZSwgbWFzIGFvIGNvbnRyw6FyaW8gZGFzIGxpc3Rhcywgb3MgY29uanVudG9zIG7Do28gcG9kZW0gc2VyIG9yZGVuYWRvcy4gSXNzbyBzaWduaWZpY2EgcXVlIG9zIGVsZW1lbnRvcyBuw6NvIHBvc3N1ZW0gw61uZGljZXMgZSBkZXZpZG8gaXNzbywgc8OzIHBvZGVtb3MgdmVyaWZpY2FyIHNlIHVtIGVsZW1lbnRvIGVzdMOhIHByZXNlbnRlIG5vIGNvbmp1bnRvIHVzYW5kbyBvIG9wZXJhZG9yIGlu";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-10').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [10]</div>
+                <pre><code class="language-python">print(&#x27;sim&#x27; in conjunto)</code></pre>
+            </div>
+            <div class="cell-output">True
+</div>
+            <div class="cell cell-markdown" id="md-12"></div>
+            <script>
+                (function(){
+                    const b64 = "VGFtYsOpbSBwb2RlbW9zIHVzYXIgdW0gbG9vcCBmb3IgcGFyYSBpdGVyYXIgcGVsb3MgZWxlbWVudG9zIGRvIGNvbmp1bnRvIGUgYWNlc3PDoS1sb3MgdW0gcG9yIHVt";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-12').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [11]</div>
+                <pre><code class="language-python">for elemento in conjunto:
+    print(f&#x27;Opção: {elemento}&#x27;)</code></pre>
+            </div>
+            <div class="cell-output">Opção: não
+Opção: talvez
+Opção: sim
+</div>
+            <div class="cell cell-markdown" id="md-14"></div>
+            <script>
+                (function(){
+                    const b64 = "UGFyYSByZW1vdmVyIHVtIGVsZW1lbnRvIGRvIGNvbmp1bnRvIGNvbW8gJ3NpbScsIGNvZGlmaWNhbW9zIG8gbm9tZSBkbyBjb25qdW50byBzZWd1aWRvIGRhIGluc3RydcOnw6NvIC5yZW1vdmUoKSBjb20gbyBlbGVtZW50byBlbnRyZSBwYXLDqm50ZXNlcy4gUGFyYSBldml0YXIgZXJyb3MgdmVyaWZpY2Ftb3MgYW50ZXMgc2UgbyBlbGVtZW50byBwZXJ0ZW5jZSBhbyBjb25qdW50by4=";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-14').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [12]</div>
+                <pre><code class="language-python">if &#x27;sim&#x27; in conjunto:
+    conjunto.remove(&#x27;sim&#x27;)
+print(conjunto)</code></pre>
+            </div>
+            <div class="cell-output">{&#x27;não&#x27;, &#x27;talvez&#x27;}
+</div>
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python"># clear() remove todos os elementos do conjunto
+# copy() retorna uma cópia do conjunto
+# discard() remove um elemento do conjunto, se ele estiver presente
+# pop() remove um elemento arbitrário do conjunto
+# remove() remove um elemento do conjunto, se ele estiver presente
+# len() retorna o número de elementos do conjunto</code></pre>
+            </div>
+            
+            <div class="cell cell-markdown" id="md-17"></div>
+            <script>
+                (function(){
+                    const b64 = "IyMgKipgQ29uanVudG9zIGUgbGlzdGFzYCoqCi0tLQpBbyBjb250csOhcmlvIGRvcyBjb25qdW50b3MsIGxpc3RhcyBwZXJtaXRlbSB2YWxvcmVzIGR1cGxpY2Fkb3MuIFBhcmEgZWxpbWluYXIgZHVwbGljYXRhcyBlbSB1bWEgbGlzdGEsIHBvZGVtb3MgdHJhbnNmb3Jtw6EtbGEgZW0gdW0gY29uanVudG8gY29tIGEgaW5zdHJ1w6fDo28gKipgc2V0KClgKiogY29udGVuZG8gbyBub21lIGRhIGxpc3RhIGVudHJlIG9zIHBhcsOqbnRlc2VzLg==";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-17').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [13]</div>
+                <pre><code class="language-python">lista = [1, 2, 2, 3, 4, 5, 5, 6]
+print(lista)</code></pre>
+            </div>
+            <div class="cell-output">[1, 2, 2, 3, 4, 5, 5, 6]
+</div>
+            <div class="cell cell-markdown" id="md-19"></div>
+            <script>
+                (function(){
+                    const b64 = "Kipgc2V0KClgKiogbm9zIGZvcm5lY2UgdW0gY29uanVudG8gZGUgdmFsb3JlcyBleGNsdXNpdm9zIHF1ZSBwb2RlbW9zIGFybWF6ZW5hciBlbSB1bWEgdmFyacOhdmVs";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-19').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [14]</div>
+                <pre><code class="language-python">nova_lista = set(lista)
+print(nova_lista)</code></pre>
+            </div>
+            <div class="cell-output">{1, 2, 3, 4, 5, 6}
+</div>
+            <div class="cell cell-markdown" id="md-21"></div>
+            <script>
+                (function(){
+                    const b64 = "UG9kZW1vcyB0cmFuc2Zvcm1hciBvIGNvbmp1bnRvIGRlIHZvbHRhIGVtIHVtYSBsaXN0YSBjb20gYSBpbnN0cnXDp8OjbyAqKmBsaXN0KClgKiogY29udGVuZG8gbyBub21lIGRvIGNvbmp1bnRvIGVudHJlIG9zIHBhcsOqbnRlc2VzLg==";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-21').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [15]</div>
+                <pre><code class="language-python">print(list(nova_lista))</code></pre>
+            </div>
+            <div class="cell-output">[1, 2, 3, 4, 5, 6]
+</div>
+            <div class="cell cell-markdown" id="md-23"></div>
+            <script>
+                (function(){
+                    const b64 = "IyMgKipgT3BlcmHDp8O1ZXMgY29tIGNvbmp1bnRvc2AqKgotLS0KQXNzaW0gY29tbyBsaXN0YXMsIHBvZGVtb3Mgb2J0ZXIgbyB0YW1hbmhvIGRlIHVtIGNvbmp1bnRvIGNvbSBhIGluc3RydcOnw6NvICoqYGxlbigpYCoqCgpRdWFuZG8gdG9kb3Mgb3MgZWxlbWVudG9zIGRlIHVtIGNvbmp1bnRvIGVzdMOjbyBwcmVzZW50ZXMgZW0gb3V0cm8sIGRpemVtb3MgcXVlIGVzdGUgw6kgdW0gc3ViY29uanVudG8gZG8gb3V0cm8u";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-23').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [16]</div>
+                <pre><code class="language-python">numeros = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9} # Todos os números
+pares = {0, 2, 4, 6, 8} # Apenas os pares</code></pre>
+            </div>
+            
+            <div class="cell cell-markdown" id="md-25"></div>
+            <script>
+                (function(){
+                    const b64 = "IyMgKipgLmlzc3Vic2V0KClgKioKLS0tClBhcmEgdmVyaWZpY2FyIGlzc28sIHVzYW1vcyBhIGluc3RydcOnw6NvICoqYC5pc3N1YnNldCgpYCoqIGNvbSBvIGNvbmp1bnRvIHF1ZSBxdWVyZW1vcyB2ZXJpZmljYXIgZW50cmUgb3MgcGFyw6pudGVzZXMKCioqYC5pc3N1YnNldCgpYCoqIHJldG9ybmEgVHJ1ZSBzZSBvIGNvbmp1bnRvIGRhIGVzcXVlcmRhIGZvciB1bSBzdWJjb25qdW50byBkbyBkYSBkaXJlaXRhIGUgRmFsc2UgY2FzbyBjb250csOhcm8=";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-25').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-markdown" id="md-26"></div>
+            <script>
+                (function(){
+                    const b64 = "VG9kb3Mgb3MgZWxlbWVudG9zIGRvIGNvbmp1bnRvIG51bXMgZXN0w6NvIG5vIGNvbmp1bnRvIHBhcmVzPw==";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-26').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [20]</div>
+                <pre><code class="language-python">print(numeros)
+print(pares)
+print(numeros.issubset(pares)) # False - 1, 3, 5, 7, 9 não estão em pares</code></pre>
+            </div>
+            <div class="cell-output">{0, 1, 2, 3, 4, 5, 6, 7, 8, 9}
+{0, 2, 4, 6, 8}
+False
+</div>
+            <div class="cell cell-markdown" id="md-28"></div>
+            <script>
+                (function(){
+                    const b64 = "VG9kb3Mgb3MgZWxlbWVudG9zIGRvIGNvbmp1bnRvIHBhcmVzIGVzdMOjbyBubyBjb25qdW50byBudW1lcm9zPw==";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-28').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [22]</div>
+                <pre><code class="language-python">print(numeros)
+print(pares)
+print(pares.issubset(numeros)) # True - são eles: 0, 2, 4, 6, 8</code></pre>
+            </div>
+            <div class="cell-output">{0, 1, 2, 3, 4, 5, 6, 7, 8, 9}
+{0, 2, 4, 6, 8}
+True
+</div>
+            <div class="cell cell-markdown" id="md-30"></div>
+            <script>
+                (function(){
+                    const b64 = "IyMgKipgaXNzdXBlcnNldCgpYCoqCi0tLQpQb2RlbW9zIHNhbHZhciBvIGJvb2xlYW4gZm9ybmVjaWRvIGVtIHVtYSB2YXJpw6F2ZWwuCgpQb2RlbW9zIHVzYXIgYSBpbnN0cnXDp8OjbyAqKmBpc3N1cGVyc2V0KClgKiogcGFyYSB2ZXJpZmljYXIgc2UgdW0gY29uanVudG8gY29udMOpbSB0b2RvcyBvcyBlbGVtZW50b3MgZGUgb3V0cm8gY29uanVudG8uCgoqKmBpc3N1cGVyc2V0KClgKiogcmV0b3JuYSBUcnVlIHNlIG8gY29uanVudG8gZGEgZXNxdWVyZGEgY29udGl2ZXIgdG9kb3Mgb3MgZWxlbWVudG9zIGRvIGNvbmp1bnRvIGRhIGRpcmVpdGEgZSBGYWxzZSBjYXNvIGNvbnRyw6FyaW8uCgpUb2RvcyBvcyBlbGVtZW50b3MgZG8gY29uanVudG8gbnVtcyBlc3TDo28gbm8gY29uanVudG8gcGFyZXM/";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-30').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [24]</div>
+                <pre><code class="language-python">print(numeros)
+print(pares)
+print(numeros.issuperset(pares)) # True - são eles: 0, 2, 4, 6, 8</code></pre>
+            </div>
+            <div class="cell-output">{0, 1, 2, 3, 4, 5, 6, 7, 8, 9}
+{0, 2, 4, 6, 8}
+True
+</div>
+            <div class="cell cell-markdown" id="md-32"></div>
+            <script>
+                (function(){
+                    const b64 = "VG9kb3Mgb3MgZWxlbWVudG9zIGRvIGNvbmp1bnRvIHBhcmVzIGVzdMOjbyBubyBjb25qdW50byAnbnVtcyc/";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-32').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [26]</div>
+                <pre><code class="language-python">print(numeros)
+print(pares)
+print(pares.issuperset(numeros)) # False - 1, 3, 5, 7, 9 não estão em pares</code></pre>
+            </div>
+            <div class="cell-output">{0, 1, 2, 3, 4, 5, 6, 7, 8, 9}
+{0, 2, 4, 6, 8}
+False
+</div>
+            <div class="cell cell-markdown" id="md-34"></div>
+            <script>
+                (function(){
+                    const b64 = "IyMgKipgLnVuaW9uKClgKioKLS0tClBvZGVtb3MganVudGFyIGRvaXMgY29uanVudG9zIHVzYW5kbyBhIGluc3RydcOnw6NvICoqYC51bmlvbigpYCoqCgoKKipgLnVuaW9uKClgKiogbm9zIGTDoSB1bSBub3ZvIGNvbmp1bnRvIGNvbSB0b2RvcyBvcyBlbGVtZW50b3MgZG9zIGNvbmp1bnRvcyBvcmlnaW5haXM=";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-34').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [27]</div>
+                <pre><code class="language-python">pares = {0, 2, 4, 6, 8}
+impares = {1, 3, 5, 7, 9}
+
+nums = impares.union(pares)
+print(f&#x27;União: {nums}&#x27;)</code></pre>
+            </div>
+            <div class="cell-output">União: {0, 1, 2, 3, 4, 5, 6, 7, 8, 9}
+</div>
+            <div class="cell cell-markdown" id="md-36"></div>
+            <script>
+                (function(){
+                    const b64 = "KipgLnVuaW9uKClgKiogbm9zIGRhIHVtIG5vdm8gY29uanVudG8sIHNlbSBkdXBsaWNhdGFzLCBtZXNtbyBxdWUgYWxndW5zIGVsZW1lbnRvcyBlc3RlamFtIGVtIGFtYm9zIG9zIGNvbmp1bnRvcyBvcmlnaW5haXMu";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-36').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [28]</div>
+                <pre><code class="language-python">nums = pares.union(impares)
+print(f&#x27;União: {nums}&#x27;)</code></pre>
+            </div>
+            <div class="cell-output">União: {0, 1, 2, 3, 4, 5, 6, 7, 8, 9}
+</div>
+            <div class="cell cell-markdown" id="md-38"></div>
+            <script>
+                (function(){
+                    const b64 = "IyMgKipgLmludGVyc2VjdGlvbigpYCoqCi0tLQpEYSBtZXNtYSBmb3JtYSwgcG9kZW1vcyBjcmlhciB1bSBjb25qdW50byBjb20gb3MgZWxlbWVudG9zIHF1ZSBlc3TDo28gZW0gYW1ib3Mgb3MgY29uanVudG9zIChpbnRlcnNlw6fDo28pIGNvbSAqKmAuaW50ZXJzZWN0aW9uKClgKioKCioqYC5pbnRlcnNlY3Rpb24oKWAqKiBub3MgZMOhIHVtIG5vdm8gY29uanVudG8gY29tIG9zIGVsZW1lbnRvcyBxdWUgZXN0w6NvIGVtIGFtYm9zIG9zIGNvbmp1bnRvcyBvcmlnaW5haXM=";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-38').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [29]</div>
+                <pre><code class="language-python">conjunto_a = {&#x27;a&#x27;, &#x27;e&#x27;, &#x27;i&#x27;, &#x27;o&#x27;, &#x27;u&#x27;}
+conjunto_b = {&#x27;a&#x27;, &#x27;b&#x27;, &#x27;c&#x27;, &#x27;d&#x27;, &#x27;e&#x27;, &#x27;f&#x27;, &#x27;g&#x27;, &#x27;h&#x27;}</code></pre>
+            </div>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [30]</div>
+                <pre><code class="language-python">vogais = conjunto_a.intersection(conjunto_b)
+print(f&#x27;Vogais: {vogais}&#x27;) # {&#x27;a&#x27;, &#x27;e&#x27;}</code></pre>
+            </div>
+            <div class="cell-output">Vogais: {&#x27;e&#x27;, &#x27;a&#x27;}
+</div>
+            <div class="cell cell-markdown" id="md-41"></div>
+            <script>
+                (function(){
+                    const b64 = "KipgLmludGVyc2VjdGlvbigpYCoqIG5vcyBkYSB1bSBub3ZvIGNvbmp1bnRvLCBzZW0gZHVwbGljYXRhcywgbWVzbW8gcXVlIGFsZ3VucyBlbGVtZW50b3MgZXN0ZWphbSBlbSBhbWJvcyBvcyBjb25qdW50b3Mgb3JpZ2luYWlzLg==";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-41').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [31]</div>
+                <pre><code class="language-python">vogais = conjunto_b.intersection(conjunto_a)
+print(f&#x27;Vogais: {vogais}&#x27;) # {&#x27;a&#x27;, &#x27;e&#x27;}</code></pre>
+            </div>
+            <div class="cell-output">Vogais: {&#x27;e&#x27;, &#x27;a&#x27;}
+</div>
+            <div class="cell cell-markdown" id="md-43"></div>
+            <script>
+                (function(){
+                    const b64 = "RW5xdWFudG8gKipgLnVuaW9uKClgKiogbm9zIGZvcm5lY2UgdG9kb3Mgb3MgZWxlbWVudG9zLCAuaW50ZXJzZWN0aW9uKCkgbm9zIGZvcm5lY2UgYXBlbmFzIG9zIGVsZW1lbnRvcyBlbSBjb211bS4KClBvZGVtb3Mgc2FsdmFyIG9zIGNvbmp1bnRvcyBkYWRvcyBwb3IgKipgLnVuaW9uKClgKiogZSAqKmBpbnRlcnNlY3Rpb24oKWAqKiBlbSB2YXJpw6F2ZWlzCgojIyAqKmAuZGlmZmVyZW5jZSgpYCoqCi0tLQpQYXJhIG9idGVyIHVtIGNvbmp1bnRvIGRlIGVsZW1lbnRvcyBxdWUgZXN0w6NvIHByZXNlbnRlcyBlbSB1bSBjb25qdW50bywgbWFzIG7Do28gZW0gb3V0cm8sIHV0aWxpemFtb3MgYSBpbnN0cnXDp8OjbyAuKipgLmRpZmZlcmVuY2UoKWAqKgoKIEEgaW5zdHJ1w6fDo28gbm9zIGTDoSBvcyBlbGVtZW50b3MgcXVlIG8gY29uanVudG8gZGEgZXNxdWVyZGEgdGVtLCBtYXMgcXVlIG8gY29uanVudG8gZGEgZGlyZWl0YSBuw6NvIHRlbQ==";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-43').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [32]</div>
+                <pre><code class="language-python">conjunto_a = {&#x27;a&#x27;, &#x27;e&#x27;, &#x27;i&#x27;, &#x27;o&#x27;, &#x27;u&#x27;}
+conjunto_b = {&#x27;a&#x27;, &#x27;b&#x27;, &#x27;c&#x27;, &#x27;d&#x27;, &#x27;e&#x27;, &#x27;f&#x27;, &#x27;g&#x27;, &#x27;h&#x27;}</code></pre>
+            </div>
+            
+            <div class="cell cell-markdown" id="md-45"></div>
+            <script>
+                (function(){
+                    const b64 = "LioqYC5kaWZmZXJlbmNlKClgKiogbm9zIGTDoSB1bSBub3ZvIGNvbmp1bnRvIGNvbSBvcyBlbGVtZW50b3MgcXVlIGVzdMOjbyBubyBjb25qdW50byBkYSBlc3F1ZXJkYSwgbWFzIG7Do28gbm8gZGEgZGlyZWl0YQ==";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-45').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [33]</div>
+                <pre><code class="language-python">print(f&#x27;Tem no a mas não no b: {conjunto_a.difference(conjunto_b)}&#x27;) # {&#x27;i&#x27;, &#x27;o&#x27;, &#x27;u&#x27;}</code></pre>
+            </div>
+            <div class="cell-output">Tem no a mas não no b: {&#x27;i&#x27;, &#x27;o&#x27;, &#x27;u&#x27;}
+</div>
+            <div class="cell cell-markdown" id="md-47"></div>
+            <script>
+                (function(){
+                    const b64 = "LioqYC5kaWZmZXJlbmNlKClgKiogbm9zIGRhIHVtIG5vdm8gY29uanVudG8sIHNlbSBkdXBsaWNhdGFzLCBtZXNtbyBxdWUgYWxndW5zIGVsZW1lbnRvcyBlc3RlamFtIGVtIGFtYm9zIG9zIGNvbmp1bnRvcyBvcmlnaW5haXMu";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-47').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [34]</div>
+                <pre><code class="language-python">print(f&#x27;Tem no b mas não no a: {conjunto_b.difference(conjunto_a)}&#x27;) # {&#x27;c&#x27;, &#x27;d&#x27;, &#x27;f&#x27;, &#x27;g&#x27;, &#x27;h&#x27;, &#x27;b&#x27;}</code></pre>
+            </div>
+            <div class="cell-output">Tem no b mas não no a: {&#x27;g&#x27;, &#x27;h&#x27;, &#x27;b&#x27;, &#x27;c&#x27;, &#x27;f&#x27;, &#x27;d&#x27;}
+</div>
+            <div class="cell cell-markdown" id="md-49"></div>
+            <script>
+                (function(){
+                    const b64 = "Q29tbyBhbnRlcywgcG9kZW1vcyBzYWx2YXIgZXNzZSByZXN1bHRhZG8gZW0gdW1hIHZhcmnDoXZlbCBzZSBuZWNlc3PDoXJpbw==";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-49').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python"># Diferença simétrica - elementos que estão nos dois conjuntos, mas não em ambos</code></pre>
+            </div>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python"># isdisjoint - retorna True se não houver elementos em comum entre os conjuntos</code></pre>
+            </div>
+            </div><script>hljs.highlightAll();</script>
+    </main>
+</body>
+</html>

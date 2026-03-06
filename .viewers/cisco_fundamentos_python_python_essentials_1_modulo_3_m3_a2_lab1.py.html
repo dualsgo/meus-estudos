@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>m3_a2_lab1.py</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="https://pyscript.net/releases/2024.1.1/core.css">
+    <script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>
+    <style>
+        .sandbox-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
+        .sandbox-header h2 { font-size: 1.2rem; color: var(--primary); display: flex; align-items: center; gap: 0.5rem; }
+        .py-repl-container { border-radius: 8px; overflow: hidden; border: 1px solid var(--glass-border); background: #1e293b; }
+    </style>
+    
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --glass-bg: rgba(30, 41, 59, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --primary: #38bdf8;
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        header {
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            border-bottom: 1px solid var(--glass-border);
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .back-btn {
+            color: var(--text-main);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            background: rgba(255,255,255,0.05);
+            transition: 0.3s;
+        }
+        .back-btn:hover {
+            background: rgba(56, 189, 248, 0.2);
+            color: var(--primary);
+        }
+        .file-title {
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+        main {
+            flex: 1;
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        .container {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="../index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Voltar</a>
+        <div class="file-title">m3_a2_lab1.py</div>
+    </header>
+    <main>
+        
+    <div class="container">
+        <div class="sandbox-header">
+            <h2><i class="fa-brands fa-python"></i> Sandbox PyScript</h2>
+            <span>Edite e execute (Shift + Enter) ou no botão verde ▶</span>
+        </div>
+        <div class="py-repl-container">
+            <script type="py" id="main-script"></script>
+            <py-repl auto-generate="true">
+from random import randint
+# 3.2.4 LAB Adivinhe o número secreto
+# Cenário
+# Um jovem mágico escolheu um número secreto. Ele o ocultou em uma variável chamada secret_number.
+# Ele quer que todos que executam seu programa jogue o jogo Adivinhe o número secreto e adivinhem qual número ele escolheu para eles.
+# Quem não adivinhar o número ficará para sempre em um loop infinito! Infelizmente, ele não sabe como completar o código.
+print(&quot;&quot;&quot;
++===================================+
+| Bem vindo ao meu jogo, trouxa!    |
+| Insira um número inteiro          |
+| e adivinhar o número que tenho    |
+| escolhidos para você.             |
+| Então, qual é o número secreto?   |
++===================================+
+&quot;&quot;&quot;) 	# A maneira como usamos aqui é chamada de impressão de várias linhas. Você pode usar aspas triplas para imprimir sequências de caracteres em várias linhas para facilitar a leitura ou criar um design especial baseado em texto.
+# Sua tarefa é ajudar o mágico a preencher o código no editor de forma que o código:
+secret_number = randint(0, 999)
+# solicitará que o usuário insira um número inteiro;
+user = int(input())
+# Vai usar um while loop;
+while True:
+	# Verificará se o número inserido pelo usuário é igual ao número escolhido pelo mágico.
+	if user == secret_number:
+		# Se o número inserido pelo usuário corresponder ao número escolhido pelo mago, ele deverá ser impresso na tela, e o mago deve dizer as seguintes palavras: &quot;Muito bem, trouxa! Você está livre agora.&quot;
+		print(&quot;Muito bem, trouxa! Você está livre agora.&quot;)
+		break
+	else:
+		print(&quot;Ha ha! Você está preso no meu loop!&quot;)
+		if secret_number &gt; user:
+			print(&#x27;Dica: É maior!&#x27;)
+		elif secret_number &lt; user:
+			print(&#x27;Dica: É menor!&#x27;)
+		# Se o número escolhido pelo usuário for diferente do número secreto do mago, o usuário deverá ver a mensagem &quot;Ha ha! Você está preso no meu loop!&quot; E será solicitado a inserir um número novamente.
+		user = int(input(&#x27;Digite outro número: &#x27;))
+            </py-repl>
+        </div>
+    </div>
+    
+    </main>
+</body>
+</html>

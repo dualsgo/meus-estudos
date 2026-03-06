@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>01.2_usando_variaveis.py</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="https://pyscript.net/releases/2024.1.1/core.css">
+    <script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>
+    <style>
+        .sandbox-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
+        .sandbox-header h2 { font-size: 1.2rem; color: var(--primary); display: flex; align-items: center; gap: 0.5rem; }
+        .py-repl-container { border-radius: 8px; overflow: hidden; border: 1px solid var(--glass-border); background: #1e293b; }
+    </style>
+    
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --glass-bg: rgba(30, 41, 59, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --primary: #38bdf8;
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        header {
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            border-bottom: 1px solid var(--glass-border);
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .back-btn {
+            color: var(--text-main);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            background: rgba(255,255,255,0.05);
+            transition: 0.3s;
+        }
+        .back-btn:hover {
+            background: rgba(56, 189, 248, 0.2);
+            color: var(--primary);
+        }
+        .file-title {
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+        main {
+            flex: 1;
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        .container {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="../index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Voltar</a>
+        <div class="file-title">01.2_usando_variaveis.py</div>
+    </header>
+    <main>
+        
+    <div class="container">
+        <div class="sandbox-header">
+            <h2><i class="fa-brands fa-python"></i> Sandbox PyScript</h2>
+            <span>Edite e execute (Shift + Enter) ou no botão verde ▶</span>
+        </div>
+        <div class="py-repl-container">
+            <script type="py" id="main-script"></script>
+            <py-repl auto-generate="true">
+# MIMO - 01 - Noções básicas de Python
+
+# 01.2 - Usando variáveis
+
+# As variáveis são chamadas de variáveis porque os valores que elas armazenam podem ser alterados. Podemos atualizar redeclarando a variável e dando-lhe um novo valor. Podemos atualizar as variáveis quantas vezes quisermos.
+nome = &#x27;José&#x27;
+print(nome)
+# O valor da variável nome é atualizado
+nome = &#x27;Antônio&#x27;
+print(nome)
+# O valor mais recente da variável será exibido e o anterior será esquecido
+
+# Também podemos dar às variáveis os valores de outras variáveis
+variavel_1 = &#x27;1 - Esse é o meu primeiro valor!&#x27;
+print(variavel_1)
+
+variavel_2 = &#x27;2 - Esse é o meu segundo valor!&#x27;
+print(variavel_2)
+
+variavel_3 = variavel_1  # Atribuímos ums variável como valor de outra
+print(variavel_3)
+
+# Quando atualizamos uma variável, ela esquece seu valor anterior. Aqui, podemos exibir a variável duas vezes e ver como seu valor é atualizado.
+
+status = &quot;Estudando&quot;
+status = &quot;Descansando&quot;
+print(status)  # O valor da última instrução será exibido
+
+# Expressões - valores combinados com operadores são outra maneira de atualizar variáveis. Podemos usar expressões para atualizar variáveis com base em seus valores anteriores.
+
+# Podemos adicionar valores de strings com um sinal + (concatenação). Chamamos a adição de valores de cadeia de caracteres de expressão, pois a saída cria um único valor.
+expressao = &#x27;Essa parte do texto &#x27; + &#x27;se conecta a essa.&#x27;
+print(expressao) # O resultado será uma string com os dois valores concatenados
+
+# Quando as expressões contêm variáveis, elas usam os valores nas variáveis
+texto_1 = &#x27;Vamos unir essa parte &#x27;
+print(texto_1)
+
+texto_2 = &#x27;com essa parte.&#x27;
+print(texto_2)
+
+print(texto_1 + texto_2)
+
+# Como as expressões se tornam valores, podemos armazená-las em variáveis da mesma forma que os valores.
+textao = texto_1 + texto_2
+print(textao)
+
+# Números
+
+# Já vimos antes que as variáveis também podem armazenar números. Ao contrário das cadeias de caracteres, os valores numéricos não usam aspas.
+numero = &#x27;1&#x27;  # valor string
+numero = 1  # valor numérico
+
+# Os números facilitam o controle de dados numéricos. Podemos criar expressões com números também.
+calculo = &#x27;10&#x27; + &#x27;1&#x27;
+print(calculo)  # O resultado será uma string, pois estamos utilizando dois valores desse tipo
+
+calculo = 10 + 1
+print(calculo)  # Nesse outro caso, o resultado será um número inteiro
+
+# calulo = 10 + &#x27;1&#x27;  # O resultado será um erro, pois não podemos somar um número com uma string
+
+# Alugns outros operadores aritméticos são:
+# O sinal * para multiplicar números e o sinal / para dividir números. Também podemos usar variáveis com números para cálculos.
+
+# Como as expressões se tornam valores, podemos armazenar resultados de cálculo em variáveis.
+
+expressao = calculo + numero  # calculo vale 11 e numero vale 1
+print(expressao)  # A expressao terá como valor a soma desses números
+            </py-repl>
+        </div>
+    </div>
+    
+    </main>
+</body>
+</html>

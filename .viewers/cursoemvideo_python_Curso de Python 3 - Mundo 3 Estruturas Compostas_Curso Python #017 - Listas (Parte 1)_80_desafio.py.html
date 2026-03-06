@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>80_desafio.py</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="https://pyscript.net/releases/2024.1.1/core.css">
+    <script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>
+    <style>
+        .sandbox-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
+        .sandbox-header h2 { font-size: 1.2rem; color: var(--primary); display: flex; align-items: center; gap: 0.5rem; }
+        .py-repl-container { border-radius: 8px; overflow: hidden; border: 1px solid var(--glass-border); background: #1e293b; }
+    </style>
+    
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --glass-bg: rgba(30, 41, 59, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --primary: #38bdf8;
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        header {
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            border-bottom: 1px solid var(--glass-border);
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .back-btn {
+            color: var(--text-main);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            background: rgba(255,255,255,0.05);
+            transition: 0.3s;
+        }
+        .back-btn:hover {
+            background: rgba(56, 189, 248, 0.2);
+            color: var(--primary);
+        }
+        .file-title {
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+        main {
+            flex: 1;
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        .container {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="../index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Voltar</a>
+        <div class="file-title">80_desafio.py</div>
+    </header>
+    <main>
+        
+    <div class="container">
+        <div class="sandbox-header">
+            <h2><i class="fa-brands fa-python"></i> Sandbox PyScript</h2>
+            <span>Edite e execute (Shift + Enter) ou no botão verde ▶</span>
+        </div>
+        <div class="py-repl-container">
+            <script type="py" id="main-script"></script>
+            <py-repl auto-generate="true">
+# Exercício Python #080 - Lista ordenada sem repetições - Aula 00 até 17 - Mundo 3
+# Crie um programa onde o usuário possa digitar cinco valores numéricos e cadastre-os em uma lista, já na posição correta de inserção (sem usar o sort()). No final, mostre a lista ordenada na tela.
+
+# Versão -
+def obter_valor_válido(mensagem):
+	while True:
+		try:
+			return int(input(mensagem))
+		except ValueError:
+			print(&#x27;Valor inválido!&#x27;)
+
+
+lista = []
+
+for i in range(5):
+	valor = obter_valor_válido(&#x27;Digite um valor: &#x27;)
+	if i == 0 or valor &gt;= lista[-1]:
+		lista.append(valor)
+	else:
+		pos = 0
+		while pos &lt; len(lista):
+			if valor &lt;= lista[pos]:
+				lista.insert(pos, valor)
+				break
+			pos += 1
+
+	posição = lista.index(valor)
+	print(f&#x27;Valor {valor} adicionado na posição {posição}&#x27;)
+	print(lista)
+	print(lista)
+
+
+# Minha solução - Melhor
+lista = []
+
+for r in range(5):
+	valor = int(input(&#x27;Valor: &#x27;))
+	if r == 0:
+		lista.append(valor)
+		print(&#x27;Primeiro valor adicionado!&#x27;)
+	else:
+		if valor &gt; lista[-1]:
+			lista.append(valor)
+			print(f&#x27;Valor adicionado no fim da lista.&#x27;)
+		elif valor &lt; lista[0]:
+			lista.insert(0, valor)
+			print(&#x27;Valor adicionado no início da lista.&#x27;)
+		else:
+			for i in range(len(lista) - 1):
+				if lista[i] &lt; valor &lt;= lista[i + 1]:
+					lista.insert(i + 1, valor)
+					print(f&#x27;Valor adicionado na posição {i + 1}&#x27;)
+					break
+print(lista)
+
+# Solução GPT
+from random import randint
+
+numeros_ordenados = []
+
+for _ in range(0, 5):
+	novo_numero = randint(0, 99)
+
+	if not numeros_ordenados or novo_numero &gt; numeros_ordenados[-1]:
+		numeros_ordenados.append(novo_numero)
+		print(f&#x27;Número {novo_numero} adicionado ao final da lista.&#x27;)
+	else:
+		posicao = 0
+
+		while posicao &lt; len(numeros_ordenados):
+			if novo_numero &lt;= numeros_ordenados[posicao]:
+				numeros_ordenados.insert(posicao, novo_numero)
+				print(f&#x27;Número {novo_numero} adicionado na posição {posicao} da lista.&#x27;)
+				break
+			posicao += 1
+
+print(f&#x27;Os números gerados em ordem foram: {numeros_ordenados}&#x27;)
+
+# Estou compartilhando minhas anotações sobre os exercícios. Quem quiser, pode copiar e colar em um documento .py pois está tudo formatado e comentado.
+
+# Nesse exercício, vamos criar um programa onde o usuário possa digitar cinco valores numéricos e cadastre-os em uma lista, já na posição correta de inserção (sem usar o sort()). No final, o programa deve mostrar a lista ordenada na tela.
+
+# append() é um método que adiciona um item ao final da lista. Se quisermos adicionar um item em uma posição específica da lista, podemos usar o método insert(). A sintaxe é: lista.insert(posição, valor). Onde posição é a posição que queremos adicionar o valor e valor é o valor que queremos adicionar.
+
+# Para resolver esse exercício, teremos que avaliar a posição correta para adicionar o valor na lista. Se o valor for o primeiro da lista ou maior que o último valor da lista, adicionamos o valor no final da lista. Se não for o primeiro valor ou maior que o último valor da lista, avaliamos a posição correta para adicionar o valor.
+
+for i in range(5):
+	valor = int(input(&#x27;Digite um valor: &#x27;))
+
+	if i == 0 or valor &gt;= lista[-1]: # Se for o primeiro valor ou maior que o último valor da lista, adicionar o valor no final da lista.
+		lista.append(valor)
+		print(f&#x27;Valor {valor} adicionado no final da lista.&#x27;)
+
+	else: # Se não for o primeiro valor ou maior que o último valor da lista, avaliar a posição correta para adicionar o valor.
+		pos = 0 # Inicializando a variável pos com 0.
+
+		while pos &lt; len(lista): # Enquanto pos for menor que o tamanho da lista, fazer:
+
+			if valor &lt;= lista[pos]: # Se o valor for menor ou igual ao valor na posição pos da lista, adicionar o valor na posição pos da lista.
+				lista.insert(pos, valor) # Adicionando o valor na posição pos da lista.
+				break
+			pos += 1 # Incrementando a variável pos.
+
+# Se você resolveu o exercício usando outra lógica, parabéns! Se a sua resposta ficou maior ou mais complexa, não tem problema. O importante é entender a lógica por trás da solução. Futuramente, você poderá refatorar o código e deixá-lo mais simples e enxuto.
+            </py-repl>
+        </div>
+    </div>
+    
+    </main>
+</body>
+</html>

@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meus Estudos - Dashboard Interativo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --glass-bg: rgba(30, 41, 59, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --primary: #38bdf8;
+            --primary-glow: rgba(56, 189, 248, 0.5);
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+            --hover-bg: rgba(56, 189, 248, 0.1);
+            --icon-folder: #eab308;
+            --icon-python: #3b82f6;
+            --icon-html: #ef4444;
+            --icon-pdf: #ec4899;
+            --icon-file: #cbd5e1;
+            --card-radius: 20px;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Outfit', sans-serif;
+        }
+        
+        body {
+            background-color: var(--bg-color);
+            background-image: 
+                radial-gradient(circle at 15% 50%, rgba(56, 189, 248, 0.15), transparent 25%),
+                radial-gradient(circle at 85% 30%, rgba(139, 92, 246, 0.15), transparent 25%);
+            background-attachment: fixed;
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+        }
+        
+        header {
+            padding: 2rem 4rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--glass-border);
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            z-index: 10;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .logo-icon {
+            font-size: 2rem;
+            color: var(--primary);
+            filter: drop-shadow(0 0 10px var(--primary-glow));
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            background: linear-gradient(135deg, #38bdf8, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .search-container {
+            position: relative;
+            width: 350px;
+        }
+        
+        .search-input {
+            width: 100%;
+            padding: 0.8rem 1.2rem;
+            padding-left: 2.8rem;
+            border-radius: 30px;
+            border: 1px solid var(--glass-border);
+            background: rgba(15, 23, 42, 0.6);
+            color: var(--text-main);
+            font-size: 1rem;
+            outline: none;
+            transition: all 0.3s ease;
+            box-shadow: inset 0 2px 5px rgba(0,0,0,0.2);
+        }
+        
+        .search-input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 15px var(--primary-glow), inset 0 2px 5px rgba(0,0,0,0.2);
+        }
+        
+        .search-icon {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+            transition: color 0.3s;
+        }
+        
+        .search-input:focus + .search-icon {
+            color: var(--primary);
+        }
+        
+        main {
+            display: flex;
+            flex: 1;
+            padding: 2rem;
+            gap: 2rem;
+            height: calc(100vh - 90px);
+        }
+        
+        /* Sidebar Styles */
+        aside {
+            width: 300px;
+            background: var(--glass-bg);
+            border-radius: var(--card-radius);
+            border: 1px solid var(--glass-border);
+            padding: 1.5rem;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+        }
+        
+        .sidebar-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .nav-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        
+        .nav-item {
+            padding: 0.8rem 1rem;
+            border-radius: 12px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            transition: all 0.2s ease;
+            color: var(--text-main);
+            border: 1px solid transparent;
+        }
+        
+        .nav-item:hover, .nav-item.active {
+            background: var(--hover-bg);
+            border-color: rgba(56, 189, 248, 0.2);
+            transform: translateX(5px);
+        }
+        
+        .nav-item i {
+            font-size: 1.2rem;
+            color: var(--icon-folder);
+        }
+        
+        /* Content Area */
+        .content-area {
+            flex: 1;
+            background: var(--glass-bg);
+            border-radius: var(--card-radius);
+            border: 1px solid var(--glass-border);
+            padding: 2rem;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+        }
+        
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            flex-wrap: wrap;
+        }
+        
+        .breadcrumb span {
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+        
+        .breadcrumb span:hover {
+            color: var(--primary);
+        }
+        
+        .breadcrumb i {
+            font-size: 0.8rem;
+        }
+        
+        .breadcrumb .current {
+            color: var(--text-main);
+            font-weight: 600;
+        }
+        
+        .grid-view {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 1.5rem;
+            overflow-y: auto;
+            padding-right: 0.5rem;
+        }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        .file-card {
+            background: rgba(15, 23, 42, 0.5);
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            gap: 1rem;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            text-decoration: none;
+            color: var(--text-main);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .file-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(135deg, transparent, rgba(255,255,255,0.03));
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .file-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(56, 189, 248, 0.4);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3), 0 0 15px rgba(56, 189, 248, 0.1);
+        }
+        
+        .file-card:hover::before {
+            opacity: 1;
+        }
+        
+        .file-card.folder:hover i {
+            transform: scale(1.1);
+        }
+        
+        .file-icon {
+            font-size: 3.5rem;
+            transition: transform 0.3s;
+        }
+        
+        .file-name {
+            font-size: 1rem;
+            font-weight: 500;
+            word-break: break-word;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        
+        .file-meta {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-top: -0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        /* Icon Colors based on EXT */
+        .icon-py { color: var(--icon-python); }
+        .icon-html { color: var(--icon-html); }
+        .icon-pdf { color: var(--icon-pdf); }
+        .icon-ipynb { color: #e38a22; }
+        .icon-ts, .icon-tsx { color: #3178c6; }
+        .icon-css { color: #264de4; }
+        .icon-json { color: #cbd5e1; }
+        .icon-md { color: #f8fafc; }
+        
+        .empty-state {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            color: var(--text-muted);
+            gap: 1rem;
+        }
+        
+        .empty-state i {
+            font-size: 4rem;
+            opacity: 0.5;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-5px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        /* Responsive */
+        @media (max-width: 900px) {
+            main { flex-direction: column; }
+            aside { width: 100%; height: auto; max-height: 250px; }
+            header { flex-direction: column; gap: 1rem; padding: 1.5rem; }
+            .search-container { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo-container">
+            <i class="fa-solid fa-graduation-cap logo-icon"></i>
+            <h1>Meus Estudos</h1>
+        </div>
+        <div class="search-container">
+            <input type="text" id="searchInput" class="search-input" placeholder="Buscar cursos, arquivos, resumos...">
+            <i class="fa-solid fa-search search-icon"></i>
+        </div>
+    </header>
+
+    <main>
+        <aside>
+            <div class="sidebar-title"><i class="fa-solid fa-layer-group"></i> Cursos & Trilhas</div>
+            <ul class="nav-list" id="sidebarList">
+                <!-- Injected via JS -->
+            </ul>
+        </aside>
+
+        <section class="content-area">
+            <div class="breadcrumb" id="breadcrumb">
+                <!-- Injected via JS -->
+            </div>
+            <div class="grid-view" id="gridView">
+                <!-- Injected via JS -->
+            </div>
+        </section>
+    </main>
+
+    <script>
+        const fileTree = {"name": "meus-estudos", "type": "folder", "children": [{"name": "cisco_fundamentos_python", "type": "folder", "path": "cisco_fundamentos_python", "children": [{"name": "python_essentials_1", "type": "folder", "path": "cisco_fundamentos_python/python_essentials_1", "children": [{"name": "modulo_1", "type": "folder", "path": "cisco_fundamentos_python/python_essentials_1/modulo_1", "children": [{"name": "m1_aula_1.py", "type": "file", "ext": ".py", "path": ".viewers/cisco_fundamentos_python_python_essentials_1_modulo_1_m1_aula_1.py.html"}]}, {"name": "modulo_2", "type": "folder", "path": "cisco_fundamentos_python/python_essentials_1/modulo_2", "children": [{"name": "m2_a1_lab1.py", "type": "file", "ext": ".py", "path": ".viewers/cisco_fundamentos_python_python_essentials_1_modulo_2_m2_a1_lab1.py.html"}, {"name": "m2_a1_lab2.py", "type": "file", "ext": ".py", "path": ".viewers/cisco_fundamentos_python_python_essentials_1_modulo_2_m2_a1_lab2.py.html"}, {"name": "m2_a1_lab3.py", "type": "file", "ext": ".py", "path": ".viewers/cisco_fundamentos_python_python_essentials_1_modulo_2_m2_a1_lab3.py.html"}, {"name": "m2_a2_lab1.py", "type": "file", "ext": ".py", "path": ".viewers/cisco_fundamentos_python_python_essentials_1_modulo_2_m2_a2_lab1.py.html"}, {"name": "m2_a4_lab1.py", "type": "file", "ext": ".py", "path": ".viewers/cisco_fundamentos_python_python_essentials_1_modulo_2_m2_a4_lab1.py.html"}, {"name": "m2_a4_lab2.py", "type": "file", "ext": ".py", "path": ".viewers/cisco_fundamentos_python_python_essentials_1_modulo_2_m2_a4_lab2.py.html"}, {"name": "m2_a4_lab3.py", "type": "file", "ext": ".py", "path": ".viewers/cisco_fundamentos_python_python_essentials_1_modulo_2_m2_a4_lab3.py.html"}, {"name": "m2_a5_alab1.py", "type": "file", "ext": ".py", "path": ".viewers/cisco_fundamentos_python_python_essentials_1_modulo_2_m2_a5_alab1.py.html"}, {"name": "m2_a6_lab1.py", "type": "file", "ext": ".py", "path": ".viewers/cisco_fundamentos_python_python_essentials_1_modulo_2_m2_a6_lab1.py.html"}, {"name": "m2_a6_lab2.py", "type": "file", "ext": ".py", "path": ".viewers/cisco_fundamentos_python_python_essentials_1_modulo_2_m2_a6_lab2.py.html"}, {"name": "m2_a6_lab3.py", "type": "file", "ext": ".py", "path": ".viewers/cisco_fundamentos_python_python_essentials_1_modulo_2_m2_a6_lab3.py.html"}, {"name": "m2_aula_1.py", "type": "file", "ext": ".py", "path": ".viewers/cisco_fundamentos_python_python_essentials_1_modulo_2_m2_aula_1.py.html"}, {"name": "m2_aula_2.py", "type": "file", "ext": ".py", "path": ".viewers/cisco_fundamentos_python_python_essentials_1_modulo_2_m2_aula_2.py.html"}, {"name": "m2_aula_3.py", "type": "file", "ext": ".py", "path": ".viewers/cisco_fundamentos_python_python_essentials_1_modulo_2_m2_aula_3.py.html"}, {"name": "m2_aula_4.py", "type": "file", "ext": ".py", "path": ".viewers/cisco_fundamentos_python_python_essentials_1_modulo_2_m2_aula_4.py.html"}, {"name": "m2_aula_5.py", "type": "file", "ext": ".py", "path": ".viewers/cisco_fundamentos_python_python_essentials_1_modulo_2_m2_aula_5.py.html"}, {"name": "m2_aula_6.py", "type": "file", "ext": ".py", "path": ".viewers/cisco_fundamentos_python_python_essentials_1_modulo_2_m2_aula_6.py.html"}]}, {"name": "modulo_3", "type": "folder", "path": "cisco_fundamentos_python/python_essentials_1/modulo_3", "children": [{"name": "m3_a1_lab1.py", "type": "file", "ext": ".py", "path": ".viewers/cisco_fundamentos_python_python_essentials_1_modulo_3_m3_a1_lab1.py.html"}, {"name": "m3_a1_lab2.py", "type": "file", "ext": ".py", "path": ".viewers/cisco_fundamentos_python_python_essentials_1_modulo_3_m3_a1_lab2.py.html"}, {"name": "m3_a1_lab3.py", "type": "file", "ext": ".py", "path": ".viewers/cisco_fundamentos_python_python_essentials_1_modulo_3_m3_a1_lab3.py.html"}, {"name": "m3_a1_lab4.py", "type": "file", "ext": ".py", "path": ".viewers/cisco_fundamentos_python_python_essentials_1_modulo_3_m3_a1_lab4.py.html"}, {"name": "m3_a2_lab1.py", "type": "file", "ext": ".py", "path": ".viewers/cisco_fundamentos_python_python_essentials_1_modulo_3_m3_a2_lab1.py.html"}, {"name": "m3_a2_lab2.py", "type": "file", "ext": ".py", "path": ".viewers/cisco_fundamentos_python_python_essentials_1_modulo_3_m3_a2_lab2.py.html"}, {"name": "m3_a2_lab3.py", "type": "file", "ext": ".py", "path": ".viewers/cisco_fundamentos_python_python_essentials_1_modulo_3_m3_a2_lab3.py.html"}, {"name": "m3_a2_lab4.py", "type": "file", "ext": ".py", "path": ".viewers/cisco_fundamentos_python_python_essentials_1_modulo_3_m3_a2_lab4.py.html"}, {"name": "m3_a2_lab5.py", "type": "file", "ext": ".py", "path": ".viewers/cisco_fundamentos_python_python_essentials_1_modulo_3_m3_a2_lab5.py.html"}, {"name": "m3_a2_lab6.py", "type": "file", "ext": ".py", "path": ".viewers/cisco_fundamentos_python_python_essentials_1_modulo_3_m3_a2_lab6.py.html"}, {"name": "m3_a4_lab1.py", "type": "file", "ext": ".py", "path": ".viewers/cisco_fundamentos_python_python_essentials_1_modulo_3_m3_a4_lab1.py.html"}, {"name": "m3_a4_lab2.py", "type": "file", "ext": ".py", "path": ".viewers/cisco_fundamentos_python_python_essentials_1_modulo_3_m3_a4_lab2.py.html"}, {"name": "m3_a6_lab1.py", "type": "file", "ext": ".py", "path": ".viewers/cisco_fundamentos_python_python_essentials_1_modulo_3_m3_a6_lab1.py.html"}, {"name": "m3_aula_1.py", "type": "file", "ext": ".py", "path": ".viewers/cisco_fundamentos_python_python_essentials_1_modulo_3_m3_aula_1.py.html"}, {"name": "m3_aula_2.py", "type": "file", "ext": ".py", "path": ".viewers/cisco_fundamentos_python_python_essentials_1_modulo_3_m3_aula_2.py.html"}, {"name": "m3_aula_3.py", "type": "file", "ext": ".py", "path": ".viewers/cisco_fundamentos_python_python_essentials_1_modulo_3_m3_aula_3.py.html"}, {"name": "m3_aula_4.py", "type": "file", "ext": ".py", "path": ".viewers/cisco_fundamentos_python_python_essentials_1_modulo_3_m3_aula_4.py.html"}, {"name": "m3_aula_5.py", "type": "file", "ext": ".py", "path": ".viewers/cisco_fundamentos_python_python_essentials_1_modulo_3_m3_aula_5.py.html"}, {"name": "m3_aula_6.py", "type": "file", "ext": ".py", "path": ".viewers/cisco_fundamentos_python_python_essentials_1_modulo_3_m3_aula_6.py.html"}, {"name": "m3_aula_7.py", "type": "file", "ext": ".py", "path": ".viewers/cisco_fundamentos_python_python_essentials_1_modulo_3_m3_aula_7.py.html"}]}, {"name": "modulo_4", "type": "folder", "path": "cisco_fundamentos_python/python_essentials_1/modulo_4", "children": [{"name": "m4_a3_lab1.py", "type": "file", "ext": ".py", "path": ".viewers/cisco_fundamentos_python_python_essentials_1_modulo_4_m4_a3_lab1.py.html"}, {"name": "m4_a3_lab2.py", "type": "file", "ext": ".py", "path": ".viewers/cisco_fundamentos_python_python_essentials_1_modulo_4_m4_a3_lab2.py.html"}, {"name": "m4_a3_lab3.py", "type": "file", "ext": ".py", "path": ".viewers/cisco_fundamentos_python_python_essentials_1_modulo_4_m4_a3_lab3.py.html"}, {"name": "m4_a3_lab4.py", "type": "file", "ext": ".py", "path": ".viewers/cisco_fundamentos_python_python_essentials_1_modulo_4_m4_a3_lab4.py.html"}, {"name": "m4_a3_lab5.py", "type": "file", "ext": ".py", "path": ".viewers/cisco_fundamentos_python_python_essentials_1_modulo_4_m4_a3_lab5.py.html"}, {"name": "m4_aula_1.py", "type": "file", "ext": ".py", "path": ".viewers/cisco_fundamentos_python_python_essentials_1_modulo_4_m4_aula_1.py.html"}, {"name": "m4_aula_2.py", "type": "file", "ext": ".py", "path": ".viewers/cisco_fundamentos_python_python_essentials_1_modulo_4_m4_aula_2.py.html"}, {"name": "m4_aula_3.py", "type": "file", "ext": ".py", "path": ".viewers/cisco_fundamentos_python_python_essentials_1_modulo_4_m4_aula_3.py.html"}, {"name": "m4_aula_4.py", "type": "file", "ext": ".py", "path": ".viewers/cisco_fundamentos_python_python_essentials_1_modulo_4_m4_aula_4.py.html"}, {"name": "m4_aula_5.py", "type": "file", "ext": ".py", "path": ".viewers/cisco_fundamentos_python_python_essentials_1_modulo_4_m4_aula_5.py.html"}]}]}, {"name": "python_essentials_2", "type": "folder", "path": "cisco_fundamentos_python/python_essentials_2", "children": [{"name": "modulo_1", "type": "folder", "path": "cisco_fundamentos_python/python_essentials_2/modulo_1", "children": [{"name": "m1_aula3", "type": "folder", "path": "cisco_fundamentos_python/python_essentials_2/modulo_1/m1_aula3", "children": [{"name": "main.py", "type": "file", "ext": ".py", "path": ".viewers/cisco_fundamentos_python_python_essentials_2_modulo_1_m1_aula3_main.py.html"}, {"name": "module.py", "type": "file", "ext": ".py", "path": ".viewers/cisco_fundamentos_python_python_essentials_2_modulo_1_m1_aula3_module.py.html"}]}, {"name": "m1_aula1.ipynb", "type": "file", "ext": ".ipynb", "path": ".viewers/cisco_fundamentos_python_python_essentials_2_modulo_1_m1_aula1.ipynb.html"}, {"name": "m1_aula2.ipynb", "type": "file", "ext": ".ipynb", "path": ".viewers/cisco_fundamentos_python_python_essentials_2_modulo_1_m1_aula2.ipynb.html"}, {"name": "m1_aula3.ipynb", "type": "file", "ext": ".ipynb", "path": ".viewers/cisco_fundamentos_python_python_essentials_2_modulo_1_m1_aula3.ipynb.html"}]}, {"name": "modulo_2", "type": "folder", "path": "cisco_fundamentos_python/python_essentials_2/modulo_2", "children": [{"name": "m2_aula1.ipynb", "type": "file", "ext": ".ipynb", "path": ".viewers/cisco_fundamentos_python_python_essentials_2_modulo_2_m2_aula1.ipynb.html"}, {"name": "m2_aula2.ipynb", "type": "file", "ext": ".ipynb", "path": ".viewers/cisco_fundamentos_python_python_essentials_2_modulo_2_m2_aula2.ipynb.html"}, {"name": "m2_aula3.ipynb", "type": "file", "ext": ".ipynb", "path": ".viewers/cisco_fundamentos_python_python_essentials_2_modulo_2_m2_aula3.ipynb.html"}, {"name": "m2_aula3_lab1.py", "type": "file", "ext": ".py", "path": ".viewers/cisco_fundamentos_python_python_essentials_2_modulo_2_m2_aula3_lab1.py.html"}, {"name": "m2_aula4.ipynb", "type": "file", "ext": ".ipynb", "path": ".viewers/cisco_fundamentos_python_python_essentials_2_modulo_2_m2_aula4.ipynb.html"}]}]}]}, {"name": "cursoemvideo_python", "type": "folder", "path": "cursoemvideo_python", "children": [{"name": "Curso de Python 3 - Mundo 1 Fundamentos", "type": "folder", "path": "cursoemvideo_python/Curso de Python 3 - Mundo 1 Fundamentos", "children": [{"name": "Curso Python #010 - Condi\u00e7\u00f5es (Parte 1)", "type": "folder", "path": "cursoemvideo_python/Curso de Python 3 - Mundo 1 Fundamentos/Curso Python #010 - Condi\u00e7\u00f5es (Parte 1)", "children": [{"name": "10_condicoes_pt1.py", "type": "file", "ext": ".py", "path": ".viewers/cursoemvideo_python_Curso de Python 3 - Mundo 1 Fundamentos_Curso Python #010 - Condi\u00e7\u00f5es (Parte 1)_10_condicoes_pt1.py.html"}, {"name": "28_desafio.py", "type": "file", "ext": ".py", "path": ".viewers/cursoemvideo_python_Curso de Python 3 - Mundo 1 Fundamentos_Curso Python #010 - Condi\u00e7\u00f5es (Parte 1)_28_desafio.py.html"}, {"name": "29_desafio.py", "type": "file", "ext": ".py", "path": ".viewers/cursoemvideo_python_Curso de Python 3 - Mundo 1 Fundamentos_Curso Python #010 - Condi\u00e7\u00f5es (Parte 1)_29_desafio.py.html"}, {"name": "30_desafio.py", "type": "file", "ext": ".py", "path": ".viewers/cursoemvideo_python_Curso de Python 3 - Mundo 1 Fundamentos_Curso Python #010 - Condi\u00e7\u00f5es (Parte 1)_30_desafio.py.html"}, {"name": "31_desafio.py", "type": "file", "ext": ".py", "path": ".viewers/cursoemvideo_python_Curso de Python 3 - Mundo 1 Fundamentos_Curso Python #010 - Condi\u00e7\u00f5es (Parte 1)_31_desafio.py.html"}, {"name": "32_desafio.py", "type": "file", "ext": ".py", "path": ".viewers/cursoemvideo_python_Curso de Python 3 - Mundo 1 Fundamentos_Curso Python #010 - Condi\u00e7\u00f5es (Parte 1)_32_desafio.py.html"}, {"name": "33_desafio.py", "type": "file", "ext": ".py", "path": ".viewers/cursoemvideo_python_Curso de Python 3 - Mundo 1 Fundamentos_Curso Python #010 - Condi\u00e7\u00f5es (Parte 1)_33_desafio.py.html"}, {"name": "34_desafio.py", "type": "file", "ext": ".py", "path": ".viewers/cursoemvideo_python_Curso de Python 3 - Mundo 1 Fundamentos_Curso Python #010 - Condi\u00e7\u00f5es (Parte 1)_34_desafio.py.html"}, {"name": "35_desafio.py", "type": "file", "ext": ".py", "path": ".viewers/cursoemvideo_python_Curso de Python 3 - Mundo 1 Fundamentos_Curso Python #010 - Condi\u00e7\u00f5es (Parte 1)_35_desafio.py.html"}]}, {"name": "Curso Python #011 - Condi\u00e7\u00f5es (Parte 2)", "type": "folder", "path": "cursoemvideo_python/Curso de Python 3 - Mundo 1 Fundamentos/Curso Python #011 - Condi\u00e7\u00f5es (Parte 2)", "children": [{"name": "11_cores_no_terminal.py", "type": "file", "ext": ".py", "path": ".viewers/cursoemvideo_python_Curso de Python 3 - Mundo 1 Fundamentos_Curso Python #011 - Condi\u00e7\u00f5es (Parte 2)_11_cores_no_terminal.py.html"}]}, {"name": "Curso Python #04 - Primeiros comandos em Python3", "type": "folder", "path": "cursoemvideo_python/Curso de Python 3 - Mundo 1 Fundamentos/Curso Python #04 - Primeiros comandos em Python3", "children": [{"name": "aula4_primeiros_comandos.py", "type": "file", "ext": ".py", "path": ".viewers/cursoemvideo_python_Curso de Python 3 - Mundo 1 Fundamentos_Curso Python #04 - Primeiros comandos em Python3_aula4_primeiros_comandos.py.html"}]}, {"name": "Curso Python #05 - Instalando o PyCharm e o QPython3", "type": "folder", "path": "cursoemvideo_python/Curso de Python 3 - Mundo 1 Fundamentos/Curso Python #05 - Instalando o PyCharm e o QPython3", "children": [{"name": "01_desafio.py", "type": "file", "ext": ".py", "path": ".viewers/cursoemvideo_python_Curso de Python 3 - Mundo 1 Fundamentos_Curso Python #05 - Instalando o PyCharm e o QPython3_01_desafio.py.html"}, {"name": "02_desafio.py", "type": "file", "ext": ".py", "path": ".viewers/cursoemvideo_python_Curso de Python 3 - Mundo 1 Fundamentos_Curso Python #05 - Instalando o PyCharm e o QPython3_02_desafio.py.html"}]}, {"name": "Curso Python #06 - Tipos Primitivos e Sa\u00edda de Dados", "type": "folder", "path": "cursoemvideo_python/Curso de Python 3 - Mundo 1 Fundamentos/Curso Python #06 - Tipos Primitivos e Sa\u00edda de Dados", "children": [{"name": "03_desafio.py", "type": "file", "ext": ".py", "path": ".viewers/cursoemvideo_python_Curso de Python 3 - Mundo 1 Fundamentos_Curso Python #06 - Tipos Primitivos e Sa\u00edda de Dados_03_desafio.py.html"}, {"name": "04_desafio.py", "type": "file", "ext": ".py", "path": ".viewers/cursoemvideo_python_Curso de Python 3 - Mundo 1 Fundamentos_Curso Python #06 - Tipos Primitivos e Sa\u00edda de Dados_04_desafio.py.html"}, {"name": "aula06_tipos_primitivos_e_saida_de_dados.py", "type": "file", "ext": ".py", "path": ".viewers/cursoemvideo_python_Curso de Python 3 - Mundo 1 Fundamentos_Curso Python #06 - Tipos Primitivos e Sa\u00edda de Dados_aula06_tipos_primitivos_e_saida_de_dados.py.html"}]}, {"name": "Curso Python #07 - Operadores Aritm\u00e9ticos", "type": "folder", "path": "cursoemvideo_python/Curso de Python 3 - Mundo 1 Fundamentos/Curso Python #07 - Operadores Aritm\u00e9ticos", "children": [{"name": "05_desafio.py", "type": "file", "ext": ".py", "path": ".viewers/cursoemvideo_python_Curso de Python 3 - Mundo 1 Fundamentos_Curso Python #07 - Operadores Aritm\u00e9ticos_05_desafio.py.html"}, {"name": "06_desafio.py", "type": "file", "ext": ".py", "path": ".viewers/cursoemvideo_python_Curso de Python 3 - Mundo 1 Fundamentos_Curso Python #07 - Operadores Aritm\u00e9ticos_06_desafio.py.html"}, {"name": "07_desafio.py", "type": "file", "ext": ".py", "path": ".viewers/cursoemvideo_python_Curso de Python 3 - Mundo 1 Fundamentos_Curso Python #07 - Operadores Aritm\u00e9ticos_07_desafio.py.html"}, {"name": "08_desafio.py", "type": "file", "ext": ".py", "path": ".viewers/cursoemvideo_python_Curso de Python 3 - Mundo 1 Fundamentos_Curso Python #07 - Operadores Aritm\u00e9ticos_08_desafio.py.html"}, {"name": "09_desafio.py", "type": "file", "ext": ".py", "path": ".viewers/cursoemvideo_python_Curso de Python 3 - Mundo 1 Fundamentos_Curso Python #07 - Operadores Aritm\u00e9ticos_09_desafio.py.html"}, {"name": "10_desafio.py", "type": "file", "ext": ".py", "path": ".viewers/cursoemvideo_python_Curso de Python 3 - Mundo 1 Fundamentos_Curso Python #07 - Operadores Aritm\u00e9ticos_10_desafio.py.html"}, {"name": "11_desafio.py", "type": "file", "ext": ".py", "path": ".viewers/cursoemvideo_python_Curso de Python 3 - Mundo 1 Fundamentos_Curso Python #07 - Operadores Aritm\u00e9ticos_11_desafio.py.html"}, {"name": "12_desafio.py", "type": "file", "ext": ".py", "path": ".viewers/cursoemvideo_python_Curso de Python 3 - Mundo 1 Fundamentos_Curso Python #07 - Operadores Aritm\u00e9ticos_12_desafio.py.html"}, {"name": "13_desafio.py", "type": "file", "ext": ".py", "path": ".viewers/cursoemvideo_python_Curso de Python 3 - Mundo 1 Fundamentos_Curso Python #07 - Operadores Aritm\u00e9ticos_13_desafio.py.html"}, {"name": "14_desafio.py", "type": "file", "ext": ".py", "path": ".viewers/cursoemvideo_python_Curso de Python 3 - Mundo 1 Fundamentos_Curso Python #07 - Operadores Aritm\u00e9ticos_14_desafio.py.html"}, {"name": "15_desafio.py", "type": "file", "ext": ".py", "path": ".viewers/cursoemvideo_python_Curso de Python 3 - Mundo 1 Fundamentos_Curso Python #07 - Operadores Aritm\u00e9ticos_15_desafio.py.html"}, {"name": "aula7_operadores_aritimeticos.py", "type": "file", "ext": ".py", "path": ".viewers/cursoemvideo_python_Curso de Python 3 - Mundo 1 Fundamentos_Curso Python #07 - Operadores Aritm\u00e9ticos_aula7_operadores_aritimeticos.py.html"}]}, {"name": "Curso Python #08 - Utilizando M\u00f3dulos", "type": "folder", "path": "cursoemvideo_python/Curso de Python 3 - Mundo 1 Fundamentos/Curso Python #08 - Utilizando M\u00f3dulos", "children": [{"name": "16_desafio.py", "type": "file", "ext": ".py", "path": ".viewers/cursoemvideo_python_Curso de Python 3 - Mundo 1 Fundamentos_Curso Python #08 - Utilizando M\u00f3dulos_16_desafio.py.html"}, {"name": "17_desafio.py", "type": "file", "ext": ".py", "path": ".viewers/cursoemvideo_python_Curso de Python 3 - Mundo 1 Fundamentos_Curso Python #08 - Utilizando M\u00f3dulos_17_desafio.py.html"}, {"name": "18_desafio.py", "type": "file", "ext": ".py", "path": ".viewers/cursoemvideo_python_Curso de Python 3 - Mundo 1 Fundamentos_Curso Python #08 - Utilizando M\u00f3dulos_18_desafio.py.html"}, {"name": "19_desafio.py", "type": "file", "ext": ".py", "path": ".viewers/cursoemvideo_python_Curso de Python 3 - Mundo 1 Fundamentos_Curso Python #08 - Utilizando M\u00f3dulos_19_desafio.py.html"}, {"name": "20_desafio.py", "type": "file", "ext": ".py", "path": ".viewers/cursoemvideo_python_Curso de Python 3 - Mundo 1 Fundamentos_Curso Python #08 - Utilizando M\u00f3dulos_20_desafio.py.html"}, {"name": "21_desafio.py", "type": "file", "ext": ".py", "path": ".viewers/cursoemvideo_python_Curso de Python 3 - Mundo 1 Fundamentos_Curso Python #08 - Utilizando M\u00f3dulos_21_desafio.py.html"}, {"name": "audio.mp3", "type": "file", "ext": ".mp3", "path": "cursoemvideo_python/Curso de Python 3 - Mundo 1 Fundamentos/Curso Python #08 - Utilizando M\u00f3dulos/audio.mp3"}, {"name": "aula8_utilizando_modulos.py", "type": "file", "ext": ".py", "path": ".viewers/cursoemvideo_python_Curso de Python 3 - Mundo 1 Fundamentos_Curso Python #08 - Utilizando M\u00f3dulos_aula8_utilizando_modulos.py.html"}]}, {"name": "Curso Python #09 - Manipulando Texto", "type": "folder", "path": "cursoemvideo_python/Curso de Python 3 - Mundo 1 Fundamentos/Curso Python #09 - Manipulando Texto", "children": [{"name": "22_desafio.py", "type": "file", "ext": ".py", "path": ".viewers/cursoemvideo_python_Curso de Python 3 - Mundo 1 Fundamentos_Curso Python #09 - Manipulando Texto_22_desafio.py.html"}, {"name": "23_desafio.py", "type": "file", "ext": ".py", "path": ".viewers/cursoemvideo_python_Curso de Python 3 - Mundo 1 Fundamentos_Curso Python #09 - Manipulando Texto_23_desafio.py.html"}, {"name": "24_desafio.py", "type": "file", "ext": ".py", "path": ".viewers/cursoemvideo_python_Curso de Python 3 - Mundo 1 Fundamentos_Curso Python #09 - Manipulando Texto_24_desafio.py.html"}, {"name": "25_desafio.py", "type": "file", "ext": ".py", "path": ".viewers/cursoemvideo_python_Curso de Python 3 - Mundo 1 Fundamentos_Curso Python #09 - Manipulando Texto_25_desafio.py.html"}, {"name": "26_desafio.py", "type": "file", "ext": ".py", "path": ".viewers/cursoemvideo_python_Curso de Python 3 - Mundo 1 Fundamentos_Curso Python #09 - Manipulando Texto_26_desafio.py.html"}, {"name": "27_desafio.py", "type": "file", "ext": ".py", "path": ".viewers/cursoemvideo_python_Curso de Python 3 - Mundo 1 Fundamentos_Curso Python #09 - Manipulando Texto_27_desafio.py.html"}, {"name": "aula9_manipulando_texto.py", "type": "file", "ext": ".py", "path": ".viewers/cursoemvideo_python_Curso de Python 3 - Mundo 1 Fundamentos_Curso Python #09 - Manipulando Texto_aula9_manipulando_texto.py.html"}]}]}, {"name": "Curso de Python 3 - Mundo 2 Estruturas de Controle", "type": "folder", "path": "cursoemvideo_python/Curso de Python 3 - Mundo 2 Estruturas de Controle", "children": [{"name": "Curso Python #012 - Condi\u00e7\u00f5es Aninhadas", "type": "folder", "path": "cursoemvideo_python/Curso de Python 3 - Mundo 2 Estruturas de Controle/Curso Python #012 - Condi\u00e7\u00f5es Aninhadas", "children": [{"name": "36_desafio.py", "type": "file", "ext": ".py", "path": ".viewers/cursoemvideo_python_Curso de Python 3 - Mundo 2 Estruturas de Controle_Curso Python #012 - Condi\u00e7\u00f5es Aninhadas_36_desafio.py.html"}, {"name": "37_desafio.py", "type": "file", "ext": ".py", "path": ".viewers/cursoemvideo_python_Curso de Python 3 - Mundo 2 Estruturas de Controle_Curso Python #012 - Condi\u00e7\u00f5es Aninhadas_37_desafio.py.html"}, {"name": "38_desafio.py", "type": "file", "ext": ".py", "path": ".viewers/cursoemvideo_python_Curso de Python 3 - Mundo 2 Estruturas de Controle_Curso Python #012 - Condi\u00e7\u00f5es Aninhadas_38_desafio.py.html"}, {"name": "39_desafio.py", "type": "file", "ext": ".py", "path": ".viewers/cursoemvideo_python_Curso de Python 3 - Mundo 2 Estruturas de Controle_Curso Python #012 - Condi\u00e7\u00f5es Aninhadas_39_desafio.py.html"}, {"name": "40_desafio.py", "type": "file", "ext": ".py", "path": ".viewers/cursoemvideo_python_Curso de Python 3 - Mundo 2 Estruturas de Controle_Curso Python #012 - Condi\u00e7\u00f5es Aninhadas_40_desafio.py.html"}, {"name": "41_desafio.py", "type": "file", "ext": ".py", "path": ".viewers/cursoemvideo_python_Curso de Python 3 - Mundo 2 Estruturas de Controle_Curso Python #012 - Condi\u00e7\u00f5es Aninhadas_41_desafio.py.html"}, {"name": "42_desafio.py", "type": "file", "ext": ".py", "path": ".viewers/cursoemvideo_python_Curso de Python 3 - Mundo 2 Estruturas de Controle_Curso Python #012 - Condi\u00e7\u00f5es Aninhadas_42_desafio.py.html"}, {"name": "43_desafio.py", "type": "file", "ext": ".py", "path": ".viewers/cursoemvideo_python_Curso de Python 3 - Mundo 2 Estruturas de Controle_Curso Python #012 - Condi\u00e7\u00f5es Aninhadas_43_desafio.py.html"}, {"name": "44_desafio.py", "type": "file", "ext": ".py", "path": ".viewers/cursoemvideo_python_Curso de Python 3 - Mundo 2 Estruturas de Controle_Curso Python #012 - Condi\u00e7\u00f5es Aninhadas_44_desafio.py.html"}, {"name": "45_desafio.py", "type": "file", "ext": ".py", "path": ".viewers/cursoemvideo_python_Curso de Python 3 - Mundo 2 Estruturas de Controle_Curso Python #012 - Condi\u00e7\u00f5es Aninhadas_45_desafio.py.html"}, {"name": "aula12_condicoes_aninhadas.py", "type": "file", "ext": ".py", "path": ".viewers/cursoemvideo_python_Curso de Python 3 - Mundo 2 Estruturas de Controle_Curso Python #012 - Condi\u00e7\u00f5es Aninhadas_aula12_condicoes_aninhadas.py.html"}]}, {"name": "Curso Python #013 - Estrutura de repeti\u00e7\u00e3o for", "type": "folder", "path": "cursoemvideo_python/Curso de Python 3 - Mundo 2 Estruturas de Controle/Curso Python #013 - Estrutura de repeti\u00e7\u00e3o for", "children": [{"name": "46_desafio.py", "type": "file", "ext": ".py", "path": ".viewers/cursoemvideo_python_Curso de Python 3 - Mundo 2 Estruturas de Controle_Curso Python #013 - Estrutura de repeti\u00e7\u00e3o for_46_desafio.py.html"}, {"name": "47_desafio.py", "type": "file", "ext": ".py", "path": ".viewers/cursoemvideo_python_Curso de Python 3 - Mundo 2 Estruturas de Controle_Curso Python #013 - Estrutura de repeti\u00e7\u00e3o for_47_desafio.py.html"}, {"name": "48_desafio.py", "type": "file", "ext": ".py", "path": ".viewers/cursoemvideo_python_Curso de Python 3 - Mundo 2 Estruturas de Controle_Curso Python #013 - Estrutura de repeti\u00e7\u00e3o for_48_desafio.py.html"}, {"name": "49_desafio.py", "type": "file", "ext": ".py", "path": ".viewers/cursoemvideo_python_Curso de Python 3 - Mundo 2 Estruturas de Controle_Curso Python #013 - Estrutura de repeti\u00e7\u00e3o for_49_desafio.py.html"}, {"name": "50_desafio.py", "type": "file", "ext": ".py", "path": ".viewers/cursoemvideo_python_Curso de Python 3 - Mundo 2 Estruturas de Controle_Curso Python #013 - Estrutura de repeti\u00e7\u00e3o for_50_desafio.py.html"}, {"name": "51_desafio.py", "type": "file", "ext": ".py", "path": ".viewers/cursoemvideo_python_Curso de Python 3 - Mundo 2 Estruturas de Controle_Curso Python #013 - Estrutura de repeti\u00e7\u00e3o for_51_desafio.py.html"}, {"name": "52_desafio.py", "type": "file", "ext": ".py", "path": ".viewers/cursoemvideo_python_Curso de Python 3 - Mundo 2 Estruturas de Controle_Curso Python #013 - Estrutura de repeti\u00e7\u00e3o for_52_desafio.py.html"}, {"name": "53_desafio.py", "type": "file", "ext": ".py", "path": ".viewers/cursoemvideo_python_Curso de Python 3 - Mundo 2 Estruturas de Controle_Curso Python #013 - Estrutura de repeti\u00e7\u00e3o for_53_desafio.py.html"}, {"name": "54_desafio.py", "type": "file", "ext": ".py", "path": ".viewers/cursoemvideo_python_Curso de Python 3 - Mundo 2 Estruturas de Controle_Curso Python #013 - Estrutura de repeti\u00e7\u00e3o for_54_desafio.py.html"}, {"name": "55_desafio.py", "type": "file", "ext": ".py", "path": ".viewers/cursoemvideo_python_Curso de Python 3 - Mundo 2 Estruturas de Controle_Curso Python #013 - Estrutura de repeti\u00e7\u00e3o for_55_desafio.py.html"}, {"name": "56_desafio.py", "type": "file", "ext": ".py", "path": ".viewers/cursoemvideo_python_Curso de Python 3 - Mundo 2 Estruturas de Controle_Curso Python #013 - Estrutura de repeti\u00e7\u00e3o for_56_desafio.py.html"}, {"name": "aula13_estrutura_de_repeticao_for.py", "type": "file", "ext": ".py", "path": ".viewers/cursoemvideo_python_Curso de Python 3 - Mundo 2 Estruturas de Controle_Curso Python #013 - Estrutura de repeti\u00e7\u00e3o for_aula13_estrutura_de_repeticao_for.py.html"}]}, {"name": "Curso Python #014 - Estrutura de repeti\u00e7\u00e3o while", "type": "folder", "path": "cursoemvideo_python/Curso de Python 3 - Mundo 2 Estruturas de Controle/Curso Python #014 - Estrutura de repeti\u00e7\u00e3o while", "children": [{"name": "57_desafio.py", "type": "file", "ext": ".py", "path": ".viewers/cursoemvideo_python_Curso de Python 3 - Mundo 2 Estruturas de Controle_Curso Python #014 - Estrutura de repeti\u00e7\u00e3o while_57_desafio.py.html"}, {"name": "58_desafio.py", "type": "file", "ext": ".py", "path": ".viewers/cursoemvideo_python_Curso de Python 3 - Mundo 2 Estruturas de Controle_Curso Python #014 - Estrutura de repeti\u00e7\u00e3o while_58_desafio.py.html"}, {"name": "59_desafio.py", "type": "file", "ext": ".py", "path": ".viewers/cursoemvideo_python_Curso de Python 3 - Mundo 2 Estruturas de Controle_Curso Python #014 - Estrutura de repeti\u00e7\u00e3o while_59_desafio.py.html"}, {"name": "60_desafio.py", "type": "file", "ext": ".py", "path": ".viewers/cursoemvideo_python_Curso de Python 3 - Mundo 2 Estruturas de Controle_Curso Python #014 - Estrutura de repeti\u00e7\u00e3o while_60_desafio.py.html"}, {"name": "61_desafio.py", "type": "file", "ext": ".py", "path": ".viewers/cursoemvideo_python_Curso de Python 3 - Mundo 2 Estruturas de Controle_Curso Python #014 - Estrutura de repeti\u00e7\u00e3o while_61_desafio.py.html"}, {"name": "62_desafio.py", "type": "file", "ext": ".py", "path": ".viewers/cursoemvideo_python_Curso de Python 3 - Mundo 2 Estruturas de Controle_Curso Python #014 - Estrutura de repeti\u00e7\u00e3o while_62_desafio.py.html"}, {"name": "63_desafio.py", "type": "file", "ext": ".py", "path": ".viewers/cursoemvideo_python_Curso de Python 3 - Mundo 2 Estruturas de Controle_Curso Python #014 - Estrutura de repeti\u00e7\u00e3o while_63_desafio.py.html"}, {"name": "64_desafio.py", "type": "file", "ext": ".py", "path": ".viewers/cursoemvideo_python_Curso de Python 3 - Mundo 2 Estruturas de Controle_Curso Python #014 - Estrutura de repeti\u00e7\u00e3o while_64_desafio.py.html"}, {"name": "65_desafio.py", "type": "file", "ext": ".py", "path": ".viewers/cursoemvideo_python_Curso de Python 3 - Mundo 2 Estruturas de Controle_Curso Python #014 - Estrutura de repeti\u00e7\u00e3o while_65_desafio.py.html"}, {"name": "aula14_estrutura_de_repeticao_while.py", "type": "file", "ext": ".py", "path": ".viewers/cursoemvideo_python_Curso de Python 3 - Mundo 2 Estruturas de Controle_Curso Python #014 - Estrutura de repeti\u00e7\u00e3o while_aula14_estrutura_de_repeticao_while.py.html"}]}, {"name": "Curso Python #015 - Interrompendo repeti\u00e7\u00f5es while", "type": "folder", "path": "cursoemvideo_python/Curso de Python 3 - Mundo 2 Estruturas de Controle/Curso Python #015 - Interrompendo repeti\u00e7\u00f5es while", "children": [{"name": "66_desafio.py", "type": "file", "ext": ".py", "path": ".viewers/cursoemvideo_python_Curso de Python 3 - Mundo 2 Estruturas de Controle_Curso Python #015 - Interrompendo repeti\u00e7\u00f5es while_66_desafio.py.html"}, {"name": "67_desafio.py", "type": "file", "ext": ".py", "path": ".viewers/cursoemvideo_python_Curso de Python 3 - Mundo 2 Estruturas de Controle_Curso Python #015 - Interrompendo repeti\u00e7\u00f5es while_67_desafio.py.html"}, {"name": "68_desafio.py", "type": "file", "ext": ".py", "path": ".viewers/cursoemvideo_python_Curso de Python 3 - Mundo 2 Estruturas de Controle_Curso Python #015 - Interrompendo repeti\u00e7\u00f5es while_68_desafio.py.html"}, {"name": "69_desafio.py", "type": "file", "ext": ".py", "path": ".viewers/cursoemvideo_python_Curso de Python 3 - Mundo 2 Estruturas de Controle_Curso Python #015 - Interrompendo repeti\u00e7\u00f5es while_69_desafio.py.html"}, {"name": "70_desafio.py", "type": "file", "ext": ".py", "path": ".viewers/cursoemvideo_python_Curso de Python 3 - Mundo 2 Estruturas de Controle_Curso Python #015 - Interrompendo repeti\u00e7\u00f5es while_70_desafio.py.html"}, {"name": "71_desafio.py", "type": "file", "ext": ".py", "path": ".viewers/cursoemvideo_python_Curso de Python 3 - Mundo 2 Estruturas de Controle_Curso Python #015 - Interrompendo repeti\u00e7\u00f5es while_71_desafio.py.html"}, {"name": "aula15_interrompendo_repeticoes_while.py", "type": "file", "ext": ".py", "path": ".viewers/cursoemvideo_python_Curso de Python 3 - Mundo 2 Estruturas de Controle_Curso Python #015 - Interrompendo repeti\u00e7\u00f5es while_aula15_interrompendo_repeticoes_while.py.html"}]}]}, {"name": "Curso de Python 3 - Mundo 3 Estruturas Compostas", "type": "folder", "path": "cursoemvideo_python/Curso de Python 3 - Mundo 3 Estruturas Compostas", "children": [{"name": "Curso Python #016 - Tuplas", "type": "folder", "path": "cursoemvideo_python/Curso de Python 3 - Mundo 3 Estruturas Compostas/Curso Python #016 - Tuplas", "children": [{"name": "72_desafio.py", "type": "file", "ext": ".py", "path": ".viewers/cursoemvideo_python_Curso de Python 3 - Mundo 3 Estruturas Compostas_Curso Python #016 - Tuplas_72_desafio.py.html"}, {"name": "73_desafio.py", "type": "file", "ext": ".py", "path": ".viewers/cursoemvideo_python_Curso de Python 3 - Mundo 3 Estruturas Compostas_Curso Python #016 - Tuplas_73_desafio.py.html"}, {"name": "74_desafio.py", "type": "file", "ext": ".py", "path": ".viewers/cursoemvideo_python_Curso de Python 3 - Mundo 3 Estruturas Compostas_Curso Python #016 - Tuplas_74_desafio.py.html"}, {"name": "75_desafio.py", "type": "file", "ext": ".py", "path": ".viewers/cursoemvideo_python_Curso de Python 3 - Mundo 3 Estruturas Compostas_Curso Python #016 - Tuplas_75_desafio.py.html"}, {"name": "76_desafio.py", "type": "file", "ext": ".py", "path": ".viewers/cursoemvideo_python_Curso de Python 3 - Mundo 3 Estruturas Compostas_Curso Python #016 - Tuplas_76_desafio.py.html"}, {"name": "77_desafio.py", "type": "file", "ext": ".py", "path": ".viewers/cursoemvideo_python_Curso de Python 3 - Mundo 3 Estruturas Compostas_Curso Python #016 - Tuplas_77_desafio.py.html"}, {"name": "aula16_tuplas.py", "type": "file", "ext": ".py", "path": ".viewers/cursoemvideo_python_Curso de Python 3 - Mundo 3 Estruturas Compostas_Curso Python #016 - Tuplas_aula16_tuplas.py.html"}]}, {"name": "Curso Python #017 - Listas (Parte 1)", "type": "folder", "path": "cursoemvideo_python/Curso de Python 3 - Mundo 3 Estruturas Compostas/Curso Python #017 - Listas (Parte 1)", "children": [{"name": "78_desafio.py", "type": "file", "ext": ".py", "path": ".viewers/cursoemvideo_python_Curso de Python 3 - Mundo 3 Estruturas Compostas_Curso Python #017 - Listas (Parte 1)_78_desafio.py.html"}, {"name": "79_desafio.py", "type": "file", "ext": ".py", "path": ".viewers/cursoemvideo_python_Curso de Python 3 - Mundo 3 Estruturas Compostas_Curso Python #017 - Listas (Parte 1)_79_desafio.py.html"}, {"name": "80_desafio.py", "type": "file", "ext": ".py", "path": ".viewers/cursoemvideo_python_Curso de Python 3 - Mundo 3 Estruturas Compostas_Curso Python #017 - Listas (Parte 1)_80_desafio.py.html"}, {"name": "81_desafio.py", "type": "file", "ext": ".py", "path": ".viewers/cursoemvideo_python_Curso de Python 3 - Mundo 3 Estruturas Compostas_Curso Python #017 - Listas (Parte 1)_81_desafio.py.html"}, {"name": "82_desafio.py", "type": "file", "ext": ".py", "path": ".viewers/cursoemvideo_python_Curso de Python 3 - Mundo 3 Estruturas Compostas_Curso Python #017 - Listas (Parte 1)_82_desafio.py.html"}, {"name": "83_desafio.py", "type": "file", "ext": ".py", "path": ".viewers/cursoemvideo_python_Curso de Python 3 - Mundo 3 Estruturas Compostas_Curso Python #017 - Listas (Parte 1)_83_desafio.py.html"}, {"name": "aula17_listas_1.py", "type": "file", "ext": ".py", "path": ".viewers/cursoemvideo_python_Curso de Python 3 - Mundo 3 Estruturas Compostas_Curso Python #017 - Listas (Parte 1)_aula17_listas_1.py.html"}]}, {"name": "Curso Python #018 - Listas (Parte 2)", "type": "folder", "path": "cursoemvideo_python/Curso de Python 3 - Mundo 3 Estruturas Compostas/Curso Python #018 - Listas (Parte 2)", "children": [{"name": "84_desafio.py", "type": "file", "ext": ".py", "path": ".viewers/cursoemvideo_python_Curso de Python 3 - Mundo 3 Estruturas Compostas_Curso Python #018 - Listas (Parte 2)_84_desafio.py.html"}, {"name": "85_desafio.py", "type": "file", "ext": ".py", "path": ".viewers/cursoemvideo_python_Curso de Python 3 - Mundo 3 Estruturas Compostas_Curso Python #018 - Listas (Parte 2)_85_desafio.py.html"}, {"name": "86_desafio.py", "type": "file", "ext": ".py", "path": ".viewers/cursoemvideo_python_Curso de Python 3 - Mundo 3 Estruturas Compostas_Curso Python #018 - Listas (Parte 2)_86_desafio.py.html"}, {"name": "87_desafio.py", "type": "file", "ext": ".py", "path": ".viewers/cursoemvideo_python_Curso de Python 3 - Mundo 3 Estruturas Compostas_Curso Python #018 - Listas (Parte 2)_87_desafio.py.html"}, {"name": "88_desafio.py", "type": "file", "ext": ".py", "path": ".viewers/cursoemvideo_python_Curso de Python 3 - Mundo 3 Estruturas Compostas_Curso Python #018 - Listas (Parte 2)_88_desafio.py.html"}, {"name": "89_desafio.py", "type": "file", "ext": ".py", "path": ".viewers/cursoemvideo_python_Curso de Python 3 - Mundo 3 Estruturas Compostas_Curso Python #018 - Listas (Parte 2)_89_desafio.py.html"}, {"name": "aula18_listas_2.py", "type": "file", "ext": ".py", "path": ".viewers/cursoemvideo_python_Curso de Python 3 - Mundo 3 Estruturas Compostas_Curso Python #018 - Listas (Parte 2)_aula18_listas_2.py.html"}]}, {"name": "Curso Python #019 - Dicion\u00e1rios", "type": "folder", "path": "cursoemvideo_python/Curso de Python 3 - Mundo 3 Estruturas Compostas/Curso Python #019 - Dicion\u00e1rios", "children": [{"name": "90_desafio.py", "type": "file", "ext": ".py", "path": ".viewers/cursoemvideo_python_Curso de Python 3 - Mundo 3 Estruturas Compostas_Curso Python #019 - Dicion\u00e1rios_90_desafio.py.html"}, {"name": "91_desafio.py", "type": "file", "ext": ".py", "path": ".viewers/cursoemvideo_python_Curso de Python 3 - Mundo 3 Estruturas Compostas_Curso Python #019 - Dicion\u00e1rios_91_desafio.py.html"}, {"name": "92_desafio.py", "type": "file", "ext": ".py", "path": ".viewers/cursoemvideo_python_Curso de Python 3 - Mundo 3 Estruturas Compostas_Curso Python #019 - Dicion\u00e1rios_92_desafio.py.html"}, {"name": "93_desafio.py", "type": "file", "ext": ".py", "path": ".viewers/cursoemvideo_python_Curso de Python 3 - Mundo 3 Estruturas Compostas_Curso Python #019 - Dicion\u00e1rios_93_desafio.py.html"}, {"name": "94_desafio.py", "type": "file", "ext": ".py", "path": ".viewers/cursoemvideo_python_Curso de Python 3 - Mundo 3 Estruturas Compostas_Curso Python #019 - Dicion\u00e1rios_94_desafio.py.html"}, {"name": "95_desafio.py", "type": "file", "ext": ".py", "path": ".viewers/cursoemvideo_python_Curso de Python 3 - Mundo 3 Estruturas Compostas_Curso Python #019 - Dicion\u00e1rios_95_desafio.py.html"}, {"name": "aula19_dicionarios.py", "type": "file", "ext": ".py", "path": ".viewers/cursoemvideo_python_Curso de Python 3 - Mundo 3 Estruturas Compostas_Curso Python #019 - Dicion\u00e1rios_aula19_dicionarios.py.html"}]}, {"name": "Curso Python #020 - Fun\u00e7\u00f5es (Parte 1)", "type": "folder", "path": "cursoemvideo_python/Curso de Python 3 - Mundo 3 Estruturas Compostas/Curso Python #020 - Fun\u00e7\u00f5es (Parte 1)", "children": [{"name": "100_desafio.py", "type": "file", "ext": ".py", "path": ".viewers/cursoemvideo_python_Curso de Python 3 - Mundo 3 Estruturas Compostas_Curso Python #020 - Fun\u00e7\u00f5es (Parte 1)_100_desafio.py.html"}, {"name": "96_desafio.py", "type": "file", "ext": ".py", "path": ".viewers/cursoemvideo_python_Curso de Python 3 - Mundo 3 Estruturas Compostas_Curso Python #020 - Fun\u00e7\u00f5es (Parte 1)_96_desafio.py.html"}, {"name": "97_desafio.py", "type": "file", "ext": ".py", "path": ".viewers/cursoemvideo_python_Curso de Python 3 - Mundo 3 Estruturas Compostas_Curso Python #020 - Fun\u00e7\u00f5es (Parte 1)_97_desafio.py.html"}, {"name": "98_desafio.py", "type": "file", "ext": ".py", "path": ".viewers/cursoemvideo_python_Curso de Python 3 - Mundo 3 Estruturas Compostas_Curso Python #020 - Fun\u00e7\u00f5es (Parte 1)_98_desafio.py.html"}, {"name": "99_desafio.py", "type": "file", "ext": ".py", "path": ".viewers/cursoemvideo_python_Curso de Python 3 - Mundo 3 Estruturas Compostas_Curso Python #020 - Fun\u00e7\u00f5es (Parte 1)_99_desafio.py.html"}, {"name": "aula20_funcoes_1.py", "type": "file", "ext": ".py", "path": ".viewers/cursoemvideo_python_Curso de Python 3 - Mundo 3 Estruturas Compostas_Curso Python #020 - Fun\u00e7\u00f5es (Parte 1)_aula20_funcoes_1.py.html"}]}, {"name": "Curso Python #021 - Fun\u00e7\u00f5es (Parte 2)", "type": "folder", "path": "cursoemvideo_python/Curso de Python 3 - Mundo 3 Estruturas Compostas/Curso Python #021 - Fun\u00e7\u00f5es (Parte 2)", "children": [{"name": "101_desafio.py", "type": "file", "ext": ".py", "path": ".viewers/cursoemvideo_python_Curso de Python 3 - Mundo 3 Estruturas Compostas_Curso Python #021 - Fun\u00e7\u00f5es (Parte 2)_101_desafio.py.html"}, {"name": "102_desafio.py", "type": "file", "ext": ".py", "path": ".viewers/cursoemvideo_python_Curso de Python 3 - Mundo 3 Estruturas Compostas_Curso Python #021 - Fun\u00e7\u00f5es (Parte 2)_102_desafio.py.html"}, {"name": "103_desafio.py", "type": "file", "ext": ".py", "path": ".viewers/cursoemvideo_python_Curso de Python 3 - Mundo 3 Estruturas Compostas_Curso Python #021 - Fun\u00e7\u00f5es (Parte 2)_103_desafio.py.html"}, {"name": "104_desafio.py", "type": "file", "ext": ".py", "path": ".viewers/cursoemvideo_python_Curso de Python 3 - Mundo 3 Estruturas Compostas_Curso Python #021 - Fun\u00e7\u00f5es (Parte 2)_104_desafio.py.html"}, {"name": "105_desafio.py", "type": "file", "ext": ".py", "path": ".viewers/cursoemvideo_python_Curso de Python 3 - Mundo 3 Estruturas Compostas_Curso Python #021 - Fun\u00e7\u00f5es (Parte 2)_105_desafio.py.html"}, {"name": "106_desafio.py", "type": "file", "ext": ".py", "path": ".viewers/cursoemvideo_python_Curso de Python 3 - Mundo 3 Estruturas Compostas_Curso Python #021 - Fun\u00e7\u00f5es (Parte 2)_106_desafio.py.html"}, {"name": "aula21_funcoes_2.py", "type": "file", "ext": ".py", "path": ".viewers/cursoemvideo_python_Curso de Python 3 - Mundo 3 Estruturas Compostas_Curso Python #021 - Fun\u00e7\u00f5es (Parte 2)_aula21_funcoes_2.py.html"}]}, {"name": "Curso Python #022 - M\u00f3dulos e Pacotes", "type": "folder", "path": "cursoemvideo_python/Curso de Python 3 - Mundo 3 Estruturas Compostas/Curso Python #022 - M\u00f3dulos e Pacotes", "children": [{"name": "uteis", "type": "folder", "path": "cursoemvideo_python/Curso de Python 3 - Mundo 3 Estruturas Compostas/Curso Python #022 - M\u00f3dulos e Pacotes/uteis", "children": [{"name": "datas", "type": "folder", "path": "cursoemvideo_python/Curso de Python 3 - Mundo 3 Estruturas Compostas/Curso Python #022 - M\u00f3dulos e Pacotes/uteis/datas", "children": [{"name": "__init__.py", "type": "file", "ext": ".py", "path": ".viewers/cursoemvideo_python_Curso de Python 3 - Mundo 3 Estruturas Compostas_Curso Python #022 - M\u00f3dulos e Pacotes_uteis_datas___init__.py.html"}]}, {"name": "numeros", "type": "folder", "path": "cursoemvideo_python/Curso de Python 3 - Mundo 3 Estruturas Compostas/Curso Python #022 - M\u00f3dulos e Pacotes/uteis/numeros", "children": [{"name": "__init__.py", "type": "file", "ext": ".py", "path": ".viewers/cursoemvideo_python_Curso de Python 3 - Mundo 3 Estruturas Compostas_Curso Python #022 - M\u00f3dulos e Pacotes_uteis_numeros___init__.py.html"}]}, {"name": "strings", "type": "folder", "path": "cursoemvideo_python/Curso de Python 3 - Mundo 3 Estruturas Compostas/Curso Python #022 - M\u00f3dulos e Pacotes/uteis/strings", "children": [{"name": "__init__.py", "type": "file", "ext": ".py", "path": ".viewers/cursoemvideo_python_Curso de Python 3 - Mundo 3 Estruturas Compostas_Curso Python #022 - M\u00f3dulos e Pacotes_uteis_strings___init__.py.html"}]}, {"name": "__init__.py", "type": "file", "ext": ".py", "path": ".viewers/cursoemvideo_python_Curso de Python 3 - Mundo 3 Estruturas Compostas_Curso Python #022 - M\u00f3dulos e Pacotes_uteis___init__.py.html"}]}, {"name": "utilidadescev", "type": "folder", "path": "cursoemvideo_python/Curso de Python 3 - Mundo 3 Estruturas Compostas/Curso Python #022 - M\u00f3dulos e Pacotes/utilidadescev", "children": [{"name": "dados.py", "type": "file", "ext": ".py", "path": ".viewers/cursoemvideo_python_Curso de Python 3 - Mundo 3 Estruturas Compostas_Curso Python #022 - M\u00f3dulos e Pacotes_utilidadescev_dados.py.html"}, {"name": "moeda.py", "type": "file", "ext": ".py", "path": ".viewers/cursoemvideo_python_Curso de Python 3 - Mundo 3 Estruturas Compostas_Curso Python #022 - M\u00f3dulos e Pacotes_utilidadescev_moeda.py.html"}, {"name": "__init__.py", "type": "file", "ext": ".py", "path": ".viewers/cursoemvideo_python_Curso de Python 3 - Mundo 3 Estruturas Compostas_Curso Python #022 - M\u00f3dulos e Pacotes_utilidadescev___init__.py.html"}]}, {"name": "107_desafio.py", "type": "file", "ext": ".py", "path": ".viewers/cursoemvideo_python_Curso de Python 3 - Mundo 3 Estruturas Compostas_Curso Python #022 - M\u00f3dulos e Pacotes_107_desafio.py.html"}, {"name": "108_desafio.py", "type": "file", "ext": ".py", "path": ".viewers/cursoemvideo_python_Curso de Python 3 - Mundo 3 Estruturas Compostas_Curso Python #022 - M\u00f3dulos e Pacotes_108_desafio.py.html"}, {"name": "109_desafio.py", "type": "file", "ext": ".py", "path": ".viewers/cursoemvideo_python_Curso de Python 3 - Mundo 3 Estruturas Compostas_Curso Python #022 - M\u00f3dulos e Pacotes_109_desafio.py.html"}, {"name": "110_desafio.py", "type": "file", "ext": ".py", "path": ".viewers/cursoemvideo_python_Curso de Python 3 - Mundo 3 Estruturas Compostas_Curso Python #022 - M\u00f3dulos e Pacotes_110_desafio.py.html"}, {"name": "111_desafio.py", "type": "file", "ext": ".py", "path": ".viewers/cursoemvideo_python_Curso de Python 3 - Mundo 3 Estruturas Compostas_Curso Python #022 - M\u00f3dulos e Pacotes_111_desafio.py.html"}, {"name": "112_desafio.py", "type": "file", "ext": ".py", "path": ".viewers/cursoemvideo_python_Curso de Python 3 - Mundo 3 Estruturas Compostas_Curso Python #022 - M\u00f3dulos e Pacotes_112_desafio.py.html"}, {"name": "aula22_modulos_e_pacotes.py", "type": "file", "ext": ".py", "path": ".viewers/cursoemvideo_python_Curso de Python 3 - Mundo 3 Estruturas Compostas_Curso Python #022 - M\u00f3dulos e Pacotes_aula22_modulos_e_pacotes.py.html"}, {"name": "moeda.py", "type": "file", "ext": ".py", "path": ".viewers/cursoemvideo_python_Curso de Python 3 - Mundo 3 Estruturas Compostas_Curso Python #022 - M\u00f3dulos e Pacotes_moeda.py.html"}]}, {"name": "Curso Python #23 - Tratamento de Erros e Exce\u00e7\u00f5es", "type": "folder", "path": "cursoemvideo_python/Curso de Python 3 - Mundo 3 Estruturas Compostas/Curso Python #23 - Tratamento de Erros e Exce\u00e7\u00f5es", "children": [{"name": "sisteminha", "type": "folder", "path": "cursoemvideo_python/Curso de Python 3 - Mundo 3 Estruturas Compostas/Curso Python #23 - Tratamento de Erros e Exce\u00e7\u00f5es/sisteminha", "children": [{"name": "__init__.py", "type": "file", "ext": ".py", "path": ".viewers/cursoemvideo_python_Curso de Python 3 - Mundo 3 Estruturas Compostas_Curso Python #23 - Tratamento de Erros e Exce\u00e7\u00f5es_sisteminha___init__.py.html"}]}, {"name": "113_desafio.py", "type": "file", "ext": ".py", "path": ".viewers/cursoemvideo_python_Curso de Python 3 - Mundo 3 Estruturas Compostas_Curso Python #23 - Tratamento de Erros e Exce\u00e7\u00f5es_113_desafio.py.html"}, {"name": "114_desafio.py", "type": "file", "ext": ".py", "path": ".viewers/cursoemvideo_python_Curso de Python 3 - Mundo 3 Estruturas Compostas_Curso Python #23 - Tratamento de Erros e Exce\u00e7\u00f5es_114_desafio.py.html"}, {"name": "115_desafio.py", "type": "file", "ext": ".py", "path": ".viewers/cursoemvideo_python_Curso de Python 3 - Mundo 3 Estruturas Compostas_Curso Python #23 - Tratamento de Erros e Exce\u00e7\u00f5es_115_desafio.py.html"}, {"name": "aula23_tratamento_de_erros_e_excecoes.py", "type": "file", "ext": ".py", "path": ".viewers/cursoemvideo_python_Curso de Python 3 - Mundo 3 Estruturas Compostas_Curso Python #23 - Tratamento de Erros e Exce\u00e7\u00f5es_aula23_tratamento_de_erros_e_excecoes.py.html"}, {"name": "pessoas.txt", "type": "file", "ext": ".txt", "path": "cursoemvideo_python/Curso de Python 3 - Mundo 3 Estruturas Compostas/Curso Python #23 - Tratamento de Erros e Exce\u00e7\u00f5es/pessoas.txt"}]}]}]}, {"name": "mimo_app", "type": "folder", "path": "mimo_app", "children": [{"name": "html", "type": "folder", "path": "mimo_app/html", "children": [{"name": "Aulas", "type": "folder", "path": "mimo_app/html/Aulas", "children": [{"name": "01.1_descobrindo_html_e_tags.html", "type": "file", "ext": ".html", "path": "mimo_app/html/Aulas/01.1_descobrindo_html_e_tags.html"}, {"name": "01.2_textos_e_titulos.html", "type": "file", "ext": ".html", "path": "mimo_app/html/Aulas/01.2_textos_e_titulos.html"}, {"name": "02.1_estruturando_textos_com_tags.htm", "type": "file", "ext": ".htm", "path": "mimo_app/html/Aulas/02.1_estruturando_textos_com_tags.htm"}, {"name": "03.1_construindo_botoes.html.html", "type": "file", "ext": ".html", "path": "mimo_app/html/Aulas/03.1_construindo_botoes.html.html"}, {"name": "04.1_criando_links.html", "type": "file", "ext": ".html", "path": "mimo_app/html/Aulas/04.1_criando_links.html"}, {"name": "05.1_adicionando_imagens.html", "type": "file", "ext": ".html", "path": "mimo_app/html/Aulas/05.1_adicionando_imagens.html"}, {"name": "06.1_coletando_input.html", "type": "file", "ext": ".html", "path": "mimo_app/html/Aulas/06.1_coletando_input.html"}, {"name": "07.1_agrupando_elementos.html", "type": "file", "ext": ".html", "path": "mimo_app/html/Aulas/07.1_agrupando_elementos.html"}, {"name": "08.1_construindo_listas.html", "type": "file", "ext": ".html", "path": "mimo_app/html/Aulas/08.1_construindo_listas.html"}, {"name": "08.2_construindo_listas.html", "type": "file", "ext": ".html", "path": "mimo_app/html/Aulas/08.2_construindo_listas.html"}, {"name": "08.3_construindo_listas.html", "type": "file", "ext": ".html", "path": "mimo_app/html/Aulas/08.3_construindo_listas.html"}, {"name": "09.1_vinculando_paginas.html", "type": "file", "ext": ".html", "path": "mimo_app/html/Aulas/09.1_vinculando_paginas.html"}, {"name": "10.1_alternativas_semanticas.html", "type": "file", "ext": ".html", "path": "mimo_app/html/Aulas/10.1_alternativas_semanticas.html"}, {"name": "11.1_estrutura_semantica_pagina copy.html", "type": "file", "ext": ".html", "path": "mimo_app/html/Aulas/11.1_estrutura_semantica_pagina copy.html"}, {"name": "11.2_conteineres_semanticos.html", "type": "file", "ext": ".html", "path": "mimo_app/html/Aulas/11.2_conteineres_semanticos.html"}, {"name": "12.1_elementos_que_mudam_aparencia.html", "type": "file", "ext": ".html", "path": "mimo_app/html/Aulas/12.1_elementos_que_mudam_aparencia.html"}, {"name": "13.1_acessibilidade copy.html", "type": "file", "ext": ".html", "path": "mimo_app/html/Aulas/13.1_acessibilidade copy.html"}, {"name": "13.2_atributos_acessiveis_do.html.html", "type": "file", "ext": ".html", "path": "mimo_app/html/Aulas/13.2_atributos_acessiveis_do.html.html"}, {"name": "14.1_acessibilidade_waiaria.html.html", "type": "file", "ext": ".html", "path": "mimo_app/html/Aulas/14.1_acessibilidade_waiaria.html.html"}, {"name": "14.2_aria.html", "type": "file", "ext": ".html", "path": "mimo_app/html/Aulas/14.2_aria.html"}, {"name": "15.1_formularios.html", "type": "file", "ext": ".html", "path": "mimo_app/html/Aulas/15.1_formularios.html"}, {"name": "15.2_area_de_texto.html", "type": "file", "ext": ".html", "path": "mimo_app/html/Aulas/15.2_area_de_texto.html"}, {"name": "15.3_atributos_e_rotulos.html", "type": "file", "ext": ".html", "path": "mimo_app/html/Aulas/15.3_atributos_e_rotulos.html"}]}, {"name": "Projetos", "type": "folder", "path": "mimo_app/html/Projetos", "children": [{"name": "01_linktree.html", "type": "file", "ext": ".html", "path": "mimo_app/html/Projetos/01_linktree.html"}]}, {"name": "Resumos", "type": "folder", "path": "mimo_app/html/Resumos", "children": [{"name": "01.mkd", "type": "file", "ext": ".mkd", "path": "mimo_app/html/Resumos/01.mkd"}]}]}, {"name": "python", "type": "folder", "path": "mimo_app/python", "children": [{"name": "Aulas", "type": "folder", "path": "mimo_app/python/Aulas", "children": [{"name": "01.1_criando_variaveis.py", "type": "file", "ext": ".py", "path": ".viewers/mimo_app_python_Aulas_01.1_criando_variaveis.py.html"}, {"name": "01.2_usando_variaveis.py", "type": "file", "ext": ".py", "path": ".viewers/mimo_app_python_Aulas_01.2_usando_variaveis.py.html"}, {"name": "01.3_verdadeiro_ou_falso.py", "type": "file", "ext": ".py", "path": ".viewers/mimo_app_python_Aulas_01.3_verdadeiro_ou_falso.py.html"}, {"name": "01.4_verificando_igualdede_numerica.py", "type": "file", "ext": ".py", "path": ".viewers/mimo_app_python_Aulas_01.4_verificando_igualdede_numerica.py.html"}, {"name": "02.1_comparando_numeros.py", "type": "file", "ext": ".py", "path": ".viewers/mimo_app_python_Aulas_02.1_comparando_numeros.py.html"}, {"name": "02.2_comparando_strings.py", "type": "file", "ext": ".py", "path": ".viewers/mimo_app_python_Aulas_02.2_comparando_strings.py.html"}, {"name": "02.3_descobrindo_tipos.py", "type": "file", "ext": ".py", "path": ".viewers/mimo_app_python_Aulas_02.3_descobrindo_tipos.py.html"}, {"name": "02.4_formatando_strings.py", "type": "file", "ext": ".py", "path": ".viewers/mimo_app_python_Aulas_02.4_formatando_strings.py.html"}, {"name": "03.1_tomando.decisoes.py", "type": "file", "ext": ".py", "path": ".viewers/mimo_app_python_Aulas_03.1_tomando.decisoes.py.html"}, {"name": "03.2_usando_condicoes.py", "type": "file", "ext": ".py", "path": ".viewers/mimo_app_python_Aulas_03.2_usando_condicoes.py.html"}, {"name": "03.3_programando_condicoes_else.py", "type": "file", "ext": ".py", "path": ".viewers/mimo_app_python_Aulas_03.3_programando_condicoes_else.py.html"}, {"name": "03.4_incorporando_um_elif.py", "type": "file", "ext": ".py", "path": ".viewers/mimo_app_python_Aulas_03.4_incorporando_um_elif.py.html"}, {"name": "03.5_usando_decisoes_complexas.py", "type": "file", "ext": ".py", "path": ".viewers/mimo_app_python_Aulas_03.5_usando_decisoes_complexas.py.html"}, {"name": "04.1_autoatribuicao_e_operadores.py", "type": "file", "ext": ".py", "path": ".viewers/mimo_app_python_Aulas_04.1_autoatribuicao_e_operadores.py.html"}, {"name": "04.2_loops_while.py", "type": "file", "ext": ".py", "path": ".viewers/mimo_app_python_Aulas_04.2_loops_while.py.html"}, {"name": "04.3_parando_loops_while.py", "type": "file", "ext": ".py", "path": ".viewers/mimo_app_python_Aulas_04.3_parando_loops_while.py.html"}, {"name": "04.4_controlando_loops_while.py", "type": "file", "ext": ".py", "path": ".viewers/mimo_app_python_Aulas_04.4_controlando_loops_while.py.html"}, {"name": "04.5_parando_loops.py", "type": "file", "ext": ".py", "path": ".viewers/mimo_app_python_Aulas_04.5_parando_loops.py.html"}, {"name": "04.6_controle_avancado_de_loops.py", "type": "file", "ext": ".py", "path": ".viewers/mimo_app_python_Aulas_04.6_controle_avancado_de_loops.py.html"}, {"name": "05.1_agrupando_dados_em_listas.py", "type": "file", "ext": ".py", "path": ".viewers/mimo_app_python_Aulas_05.1_agrupando_dados_em_listas.py.html"}, {"name": "05.2_alterando_dados_em_listas.py", "type": "file", "ext": ".py", "path": ".viewers/mimo_app_python_Aulas_05.2_alterando_dados_em_listas.py.html"}, {"name": "05.3_atualizando_listas.py", "type": "file", "ext": ".py", "path": ".viewers/mimo_app_python_Aulas_05.3_atualizando_listas.py.html"}, {"name": "05.4_loop_sobre_listas.py", "type": "file", "ext": ".py", "path": ".viewers/mimo_app_python_Aulas_05.4_loop_sobre_listas.py.html"}, {"name": "05.5_decidindo_com_listas.py", "type": "file", "ext": ".py", "path": ".viewers/mimo_app_python_Aulas_05.5_decidindo_com_listas.py.html"}, {"name": "06.1_encontrando_dados_extremos.py", "type": "file", "ext": ".py", "path": ".viewers/mimo_app_python_Aulas_06.1_encontrando_dados_extremos.py.html"}, {"name": "06.2_classificando_dados.py", "type": "file", "ext": ".py", "path": ".viewers/mimo_app_python_Aulas_06.2_classificando_dados.py.html"}, {"name": "06.3_somando_dados.py", "type": "file", "ext": ".py", "path": ".viewers/mimo_app_python_Aulas_06.3_somando_dados.py.html"}, {"name": "06.4_unindo_listas.py", "type": "file", "ext": ".py", "path": ".viewers/mimo_app_python_Aulas_06.4_unindo_listas.py.html"}, {"name": "06.5_contando_elementos.py", "type": "file", "ext": ".py", "path": ".viewers/mimo_app_python_Aulas_06.5_contando_elementos.py.html"}, {"name": "07.1_dividindo_strings.py", "type": "file", "ext": ".py", "path": ".viewers/mimo_app_python_Aulas_07.1_dividindo_strings.py.html"}, {"name": "07.2_atualizando_strings.py", "type": "file", "ext": ".py", "path": ".viewers/mimo_app_python_Aulas_07.2_atualizando_strings.py.html"}, {"name": "08.1_reutilizando_codigos_com_funcoes.py", "type": "file", "ext": ".py", "path": ".viewers/mimo_app_python_Aulas_08.1_reutilizando_codigos_com_funcoes.py.html"}, {"name": "08.2_criando_parametros.py", "type": "file", "ext": ".py", "path": ".viewers/mimo_app_python_Aulas_08.2_criando_parametros.py.html"}, {"name": "08.3_retornando_valores.py", "type": "file", "ext": ".py", "path": ".viewers/mimo_app_python_Aulas_08.3_retornando_valores.py.html"}, {"name": "08.4_usando_varios_parametros.py", "type": "file", "ext": ".py", "path": ".viewers/mimo_app_python_Aulas_08.4_usando_varios_parametros.py.html"}, {"name": "08.5_compreendendo_as_funcoes.py", "type": "file", "ext": ".py", "path": ".viewers/mimo_app_python_Aulas_08.5_compreendendo_as_funcoes.py.html"}, {"name": "08.6_escopo_variavel.py", "type": "file", "ext": ".py", "path": ".viewers/mimo_app_python_Aulas_08.6_escopo_variavel.py.html"}, {"name": "08.7_decidindo_com_funcoes.py", "type": "file", "ext": ".py", "path": ".viewers/mimo_app_python_Aulas_08.7_decidindo_com_funcoes.py.html"}, {"name": "08.8_funcoes_com_listas.py", "type": "file", "ext": ".py", "path": ".viewers/mimo_app_python_Aulas_08.8_funcoes_com_listas.py.html"}, {"name": "08.9_funcoes_com_loops.py", "type": "file", "ext": ".py", "path": ".viewers/mimo_app_python_Aulas_08.9_funcoes_com_loops.py.html"}, {"name": "09.1_criando_tuplas.py", "type": "file", "ext": ".py", "path": ".viewers/mimo_app_python_Aulas_09.1_criando_tuplas.py.html"}, {"name": "09.2_tuplas_e_listas.py", "type": "file", "ext": ".py", "path": ".viewers/mimo_app_python_Aulas_09.2_tuplas_e_listas.py.html"}, {"name": "09.3_retornando_tuplas.py", "type": "file", "ext": ".py", "path": ".viewers/mimo_app_python_Aulas_09.3_retornando_tuplas.py.html"}, {"name": "09.4_criando_dicionarios.py", "type": "file", "ext": ".py", "path": ".viewers/mimo_app_python_Aulas_09.4_criando_dicionarios.py.html"}, {"name": "09.5_usando_dicionarios.py", "type": "file", "ext": ".py", "path": ".viewers/mimo_app_python_Aulas_09.5_usando_dicionarios.py.html"}, {"name": "09.6_criando_conjuntos.py", "type": "file", "ext": ".py", "path": ".viewers/mimo_app_python_Aulas_09.6_criando_conjuntos.py.html"}, {"name": "09.7_usando_conjuntos.py", "type": "file", "ext": ".py", "path": ".viewers/mimo_app_python_Aulas_09.7_usando_conjuntos.py.html"}, {"name": "09.8_conjuntos_e_listas.py", "type": "file", "ext": ".py", "path": ".viewers/mimo_app_python_Aulas_09.8_conjuntos_e_listas.py.html"}, {"name": "09.9_definir_operacoes.py", "type": "file", "ext": ".py", "path": ".viewers/mimo_app_python_Aulas_09.9_definir_operacoes.py.html"}, {"name": "10.1_usando_compreensoes_de_listas copy.py", "type": "file", "ext": ".py", "path": ".viewers/mimo_app_python_Aulas_10.1_usando_compreensoes_de_listas copy.py.html"}, {"name": "10.2_funcoes_como_expressoes copy.py", "type": "file", "ext": ".py", "path": ".viewers/mimo_app_python_Aulas_10.2_funcoes_como_expressoes copy.py.html"}, {"name": "10.3_filtrando com_instrucoes_if copy.py", "type": "file", "ext": ".py", "path": ".viewers/mimo_app_python_Aulas_10.3_filtrando com_instrucoes_if copy.py.html"}, {"name": "10.4_indexa\u00e7\u00e3o_e_exlusao_negativa copy.py", "type": "file", "ext": ".py", "path": ".viewers/mimo_app_python_Aulas_10.4_indexa\u00e7\u00e3o_e_exlusao_negativa copy.py.html"}, {"name": "10.5_notacao_de_slice.py", "type": "file", "ext": ".py", "path": ".viewers/mimo_app_python_Aulas_10.5_notacao_de_slice.py.html"}, {"name": "11.1_classes.py", "type": "file", "ext": ".py", "path": ".viewers/mimo_app_python_Aulas_11.1_classes.py.html"}, {"name": "11.2_criando_instancias.py", "type": "file", "ext": ".py", "path": ".viewers/mimo_app_python_Aulas_11.2_criando_instancias.py.html"}, {"name": "11.3_classes_com_metodos.py", "type": "file", "ext": ".py", "path": ".viewers/mimo_app_python_Aulas_11.3_classes_com_metodos.py.html"}, {"name": "11.4_construtores.py", "type": "file", "ext": ".py", "path": ".viewers/mimo_app_python_Aulas_11.4_construtores.py.html"}, {"name": "11.5_compreendendo_as_classes.py", "type": "file", "ext": ".py", "path": ".viewers/mimo_app_python_Aulas_11.5_compreendendo_as_classes.py.html"}, {"name": "12.1.programacao_orientada_objetos.py", "type": "file", "ext": ".py", "path": ".viewers/mimo_app_python_Aulas_12.1.programacao_orientada_objetos.py.html"}, {"name": "12.2_heranca.py", "type": "file", "ext": ".py", "path": ".viewers/mimo_app_python_Aulas_12.2_heranca.py.html"}, {"name": "12.3_abstraindo_objetos.py", "type": "file", "ext": ".py", "path": ".viewers/mimo_app_python_Aulas_12.3_abstraindo_objetos.py.html"}, {"name": "12.4_objetos_polimorficos.py", "type": "file", "ext": ".py", "path": ".viewers/mimo_app_python_Aulas_12.4_objetos_polimorficos.py.html"}, {"name": "13.1_modulos.py", "type": "file", "ext": ".py", "path": ".viewers/mimo_app_python_Aulas_13.1_modulos.py.html"}, {"name": "13.2_bibliotecas.py", "type": "file", "ext": ".py", "path": ".viewers/mimo_app_python_Aulas_13.2_bibliotecas.py.html"}, {"name": "13.3_introducao_numpy.py", "type": "file", "ext": ".py", "path": ".viewers/mimo_app_python_Aulas_13.3_introducao_numpy.py.html"}, {"name": "14.1_erros_excecoes.py", "type": "file", "ext": ".py", "path": ".viewers/mimo_app_python_Aulas_14.1_erros_excecoes.py.html"}, {"name": "14.2_levantando_excecoes.py", "type": "file", "ext": ".py", "path": ".viewers/mimo_app_python_Aulas_14.2_levantando_excecoes.py.html"}, {"name": "14.3_comunicando_com_uma_api.py", "type": "file", "ext": ".py", "path": ".viewers/mimo_app_python_Aulas_14.3_comunicando_com_uma_api.py.html"}, {"name": "14.4_introducao_ao_requests.py", "type": "file", "ext": ".py", "path": ".viewers/mimo_app_python_Aulas_14.4_introducao_ao_requests.py.html"}, {"name": "15.1_trabalhando_com_apis_privadas.py", "type": "file", "ext": ".py", "path": ".viewers/mimo_app_python_Aulas_15.1_trabalhando_com_apis_privadas.py.html"}, {"name": "15.2_personalizando_chamadas.py", "type": "file", "ext": ".py", "path": ".viewers/mimo_app_python_Aulas_15.2_personalizando_chamadas.py.html"}, {"name": "15.3_nanipulacao_respostas.py", "type": "file", "ext": ".py", "path": ".viewers/mimo_app_python_Aulas_15.3_nanipulacao_respostas.py.html"}, {"name": "aula01.ipynb", "type": "file", "ext": ".ipynb", "path": ".viewers/mimo_app_python_Aulas_aula01.ipynb.html"}, {"name": "aula02.ipynb", "type": "file", "ext": ".ipynb", "path": ".viewers/mimo_app_python_Aulas_aula02.ipynb.html"}, {"name": "aula03.ipynb", "type": "file", "ext": ".ipynb", "path": ".viewers/mimo_app_python_Aulas_aula03.ipynb.html"}, {"name": "aula04.ipynb", "type": "file", "ext": ".ipynb", "path": ".viewers/mimo_app_python_Aulas_aula04.ipynb.html"}, {"name": "aula05.ipynb", "type": "file", "ext": ".ipynb", "path": ".viewers/mimo_app_python_Aulas_aula05.ipynb.html"}, {"name": "aula06.ipynb", "type": "file", "ext": ".ipynb", "path": ".viewers/mimo_app_python_Aulas_aula06.ipynb.html"}, {"name": "aula07.ipynb", "type": "file", "ext": ".ipynb", "path": ".viewers/mimo_app_python_Aulas_aula07.ipynb.html"}]}, {"name": "Desafios", "type": "folder", "path": "mimo_app/python/Desafios", "children": [{"name": "01_desafio_1.py", "type": "file", "ext": ".py", "path": ".viewers/mimo_app_python_Desafios_01_desafio_1.py.html"}, {"name": "01_desafio_2.py", "type": "file", "ext": ".py", "path": ".viewers/mimo_app_python_Desafios_01_desafio_2.py.html"}, {"name": "01_desafio_3.py", "type": "file", "ext": ".py", "path": ".viewers/mimo_app_python_Desafios_01_desafio_3.py.html"}, {"name": "02_desafio_1.py", "type": "file", "ext": ".py", "path": ".viewers/mimo_app_python_Desafios_02_desafio_1.py.html"}, {"name": "02_desafio_2.py", "type": "file", "ext": ".py", "path": ".viewers/mimo_app_python_Desafios_02_desafio_2.py.html"}, {"name": "02_desafio_3.py", "type": "file", "ext": ".py", "path": ".viewers/mimo_app_python_Desafios_02_desafio_3.py.html"}, {"name": "03_desafio_1.py", "type": "file", "ext": ".py", "path": ".viewers/mimo_app_python_Desafios_03_desafio_1.py.html"}, {"name": "03_desafio_2.py", "type": "file", "ext": ".py", "path": ".viewers/mimo_app_python_Desafios_03_desafio_2.py.html"}, {"name": "03_desafio_3.py", "type": "file", "ext": ".py", "path": ".viewers/mimo_app_python_Desafios_03_desafio_3.py.html"}, {"name": "04_desafio_1.py", "type": "file", "ext": ".py", "path": ".viewers/mimo_app_python_Desafios_04_desafio_1.py.html"}, {"name": "04_desafio_2.py", "type": "file", "ext": ".py", "path": ".viewers/mimo_app_python_Desafios_04_desafio_2.py.html"}, {"name": "04_desafio_3.py", "type": "file", "ext": ".py", "path": ".viewers/mimo_app_python_Desafios_04_desafio_3.py.html"}, {"name": "05_desafio_1.py", "type": "file", "ext": ".py", "path": ".viewers/mimo_app_python_Desafios_05_desafio_1.py.html"}, {"name": "05_desafio_2.py", "type": "file", "ext": ".py", "path": ".viewers/mimo_app_python_Desafios_05_desafio_2.py.html"}, {"name": "05_desafio_3.py", "type": "file", "ext": ".py", "path": ".viewers/mimo_app_python_Desafios_05_desafio_3.py.html"}, {"name": "06_desafio_1.py", "type": "file", "ext": ".py", "path": ".viewers/mimo_app_python_Desafios_06_desafio_1.py.html"}, {"name": "06_desafio_2.py", "type": "file", "ext": ".py", "path": ".viewers/mimo_app_python_Desafios_06_desafio_2.py.html"}, {"name": "06_desafio_3.py", "type": "file", "ext": ".py", "path": ".viewers/mimo_app_python_Desafios_06_desafio_3.py.html"}, {"name": "07_desafio_1.py", "type": "file", "ext": ".py", "path": ".viewers/mimo_app_python_Desafios_07_desafio_1.py.html"}, {"name": "07_desafio_2.py", "type": "file", "ext": ".py", "path": ".viewers/mimo_app_python_Desafios_07_desafio_2.py.html"}, {"name": "07_desafio_3.py", "type": "file", "ext": ".py", "path": ".viewers/mimo_app_python_Desafios_07_desafio_3.py.html"}, {"name": "08_desafio_1.py", "type": "file", "ext": ".py", "path": ".viewers/mimo_app_python_Desafios_08_desafio_1.py.html"}, {"name": "08_desafio_2.py", "type": "file", "ext": ".py", "path": ".viewers/mimo_app_python_Desafios_08_desafio_2.py.html"}, {"name": "08_desafio_3.py", "type": "file", "ext": ".py", "path": ".viewers/mimo_app_python_Desafios_08_desafio_3.py.html"}, {"name": "09_desafio_1.py", "type": "file", "ext": ".py", "path": ".viewers/mimo_app_python_Desafios_09_desafio_1.py.html"}, {"name": "09_desafio_2.py", "type": "file", "ext": ".py", "path": ".viewers/mimo_app_python_Desafios_09_desafio_2.py.html"}, {"name": "09_desafio_3.py", "type": "file", "ext": ".py", "path": ".viewers/mimo_app_python_Desafios_09_desafio_3.py.html"}, {"name": "10_desafio_1.py", "type": "file", "ext": ".py", "path": ".viewers/mimo_app_python_Desafios_10_desafio_1.py.html"}, {"name": "10_desafio_2.py", "type": "file", "ext": ".py", "path": ".viewers/mimo_app_python_Desafios_10_desafio_2.py.html"}, {"name": "10_desafio_3.py", "type": "file", "ext": ".py", "path": ".viewers/mimo_app_python_Desafios_10_desafio_3.py.html"}, {"name": "11_desafio_1.py", "type": "file", "ext": ".py", "path": ".viewers/mimo_app_python_Desafios_11_desafio_1.py.html"}, {"name": "11_desafio_2.py", "type": "file", "ext": ".py", "path": ".viewers/mimo_app_python_Desafios_11_desafio_2.py.html"}, {"name": "11_desafio_3.py", "type": "file", "ext": ".py", "path": ".viewers/mimo_app_python_Desafios_11_desafio_3.py.html"}, {"name": "12_desafio_1.py", "type": "file", "ext": ".py", "path": ".viewers/mimo_app_python_Desafios_12_desafio_1.py.html"}, {"name": "12_desafio_2.py", "type": "file", "ext": ".py", "path": ".viewers/mimo_app_python_Desafios_12_desafio_2.py.html"}, {"name": "12_desafio_3.py", "type": "file", "ext": ".py", "path": ".viewers/mimo_app_python_Desafios_12_desafio_3.py.html"}, {"name": "13_desafio_1.py", "type": "file", "ext": ".py", "path": ".viewers/mimo_app_python_Desafios_13_desafio_1.py.html"}, {"name": "13_desafio_2.py", "type": "file", "ext": ".py", "path": ".viewers/mimo_app_python_Desafios_13_desafio_2.py.html"}, {"name": "13_desafio_3.py", "type": "file", "ext": ".py", "path": ".viewers/mimo_app_python_Desafios_13_desafio_3.py.html"}, {"name": "14_desafio_1.py", "type": "file", "ext": ".py", "path": ".viewers/mimo_app_python_Desafios_14_desafio_1.py.html"}, {"name": "14_desafio_2.py", "type": "file", "ext": ".py", "path": ".viewers/mimo_app_python_Desafios_14_desafio_2.py.html"}, {"name": "14_desafio_3.py", "type": "file", "ext": ".py", "path": ".viewers/mimo_app_python_Desafios_14_desafio_3.py.html"}]}, {"name": "Projetos", "type": "folder", "path": "mimo_app/python/Projetos", "children": [{"name": "01_organizadore_de_almocos.py", "type": "file", "ext": ".py", "path": ".viewers/mimo_app_python_Projetos_01_organizadore_de_almocos.py.html"}]}]}]}, {"name": "py-estudos", "type": "folder", "path": "py-estudos", "children": [{"name": "public", "type": "folder", "path": "py-estudos/public", "children": [{"name": "desafios", "type": "folder", "path": "py-estudos/public/desafios", "children": [{"name": "01_desafio_1.py", "type": "file", "ext": ".py", "path": ".viewers/py-estudos_public_desafios_01_desafio_1.py.html"}, {"name": "01_desafio_2.py", "type": "file", "ext": ".py", "path": ".viewers/py-estudos_public_desafios_01_desafio_2.py.html"}, {"name": "01_desafio_3.py", "type": "file", "ext": ".py", "path": ".viewers/py-estudos_public_desafios_01_desafio_3.py.html"}, {"name": "02_desafio_1.py", "type": "file", "ext": ".py", "path": ".viewers/py-estudos_public_desafios_02_desafio_1.py.html"}, {"name": "02_desafio_2.py", "type": "file", "ext": ".py", "path": ".viewers/py-estudos_public_desafios_02_desafio_2.py.html"}, {"name": "02_desafio_3.py", "type": "file", "ext": ".py", "path": ".viewers/py-estudos_public_desafios_02_desafio_3.py.html"}, {"name": "03_desafio_1.py", "type": "file", "ext": ".py", "path": ".viewers/py-estudos_public_desafios_03_desafio_1.py.html"}, {"name": "03_desafio_2.py", "type": "file", "ext": ".py", "path": ".viewers/py-estudos_public_desafios_03_desafio_2.py.html"}, {"name": "03_desafio_3.py", "type": "file", "ext": ".py", "path": ".viewers/py-estudos_public_desafios_03_desafio_3.py.html"}, {"name": "04_desafio_1.py", "type": "file", "ext": ".py", "path": ".viewers/py-estudos_public_desafios_04_desafio_1.py.html"}, {"name": "04_desafio_2.py", "type": "file", "ext": ".py", "path": ".viewers/py-estudos_public_desafios_04_desafio_2.py.html"}, {"name": "04_desafio_3.py", "type": "file", "ext": ".py", "path": ".viewers/py-estudos_public_desafios_04_desafio_3.py.html"}, {"name": "05_desafio_1.py", "type": "file", "ext": ".py", "path": ".viewers/py-estudos_public_desafios_05_desafio_1.py.html"}, {"name": "05_desafio_2.py", "type": "file", "ext": ".py", "path": ".viewers/py-estudos_public_desafios_05_desafio_2.py.html"}, {"name": "05_desafio_3.py", "type": "file", "ext": ".py", "path": ".viewers/py-estudos_public_desafios_05_desafio_3.py.html"}, {"name": "06_desafio_1.py", "type": "file", "ext": ".py", "path": ".viewers/py-estudos_public_desafios_06_desafio_1.py.html"}, {"name": "06_desafio_2.py", "type": "file", "ext": ".py", "path": ".viewers/py-estudos_public_desafios_06_desafio_2.py.html"}, {"name": "06_desafio_3.py", "type": "file", "ext": ".py", "path": ".viewers/py-estudos_public_desafios_06_desafio_3.py.html"}, {"name": "07_desafio_1.py", "type": "file", "ext": ".py", "path": ".viewers/py-estudos_public_desafios_07_desafio_1.py.html"}, {"name": "07_desafio_2.py", "type": "file", "ext": ".py", "path": ".viewers/py-estudos_public_desafios_07_desafio_2.py.html"}, {"name": "07_desafio_3.py", "type": "file", "ext": ".py", "path": ".viewers/py-estudos_public_desafios_07_desafio_3.py.html"}, {"name": "08_desafio_1.py", "type": "file", "ext": ".py", "path": ".viewers/py-estudos_public_desafios_08_desafio_1.py.html"}, {"name": "08_desafio_2.py", "type": "file", "ext": ".py", "path": ".viewers/py-estudos_public_desafios_08_desafio_2.py.html"}, {"name": "08_desafio_3.py", "type": "file", "ext": ".py", "path": ".viewers/py-estudos_public_desafios_08_desafio_3.py.html"}, {"name": "09_desafio_1.py", "type": "file", "ext": ".py", "path": ".viewers/py-estudos_public_desafios_09_desafio_1.py.html"}, {"name": "09_desafio_2.py", "type": "file", "ext": ".py", "path": ".viewers/py-estudos_public_desafios_09_desafio_2.py.html"}, {"name": "09_desafio_3.py", "type": "file", "ext": ".py", "path": ".viewers/py-estudos_public_desafios_09_desafio_3.py.html"}, {"name": "10_desafio_1.py", "type": "file", "ext": ".py", "path": ".viewers/py-estudos_public_desafios_10_desafio_1.py.html"}, {"name": "10_desafio_2.py", "type": "file", "ext": ".py", "path": ".viewers/py-estudos_public_desafios_10_desafio_2.py.html"}, {"name": "10_desafio_3.py", "type": "file", "ext": ".py", "path": ".viewers/py-estudos_public_desafios_10_desafio_3.py.html"}, {"name": "11_desafio_1.py", "type": "file", "ext": ".py", "path": ".viewers/py-estudos_public_desafios_11_desafio_1.py.html"}, {"name": "11_desafio_2.py", "type": "file", "ext": ".py", "path": ".viewers/py-estudos_public_desafios_11_desafio_2.py.html"}, {"name": "11_desafio_3.py", "type": "file", "ext": ".py", "path": ".viewers/py-estudos_public_desafios_11_desafio_3.py.html"}, {"name": "12_desafio_1.py", "type": "file", "ext": ".py", "path": ".viewers/py-estudos_public_desafios_12_desafio_1.py.html"}, {"name": "12_desafio_2.py", "type": "file", "ext": ".py", "path": ".viewers/py-estudos_public_desafios_12_desafio_2.py.html"}, {"name": "12_desafio_3.py", "type": "file", "ext": ".py", "path": ".viewers/py-estudos_public_desafios_12_desafio_3.py.html"}, {"name": "13_desafio_1.py", "type": "file", "ext": ".py", "path": ".viewers/py-estudos_public_desafios_13_desafio_1.py.html"}, {"name": "13_desafio_2.py", "type": "file", "ext": ".py", "path": ".viewers/py-estudos_public_desafios_13_desafio_2.py.html"}, {"name": "13_desafio_3.py", "type": "file", "ext": ".py", "path": ".viewers/py-estudos_public_desafios_13_desafio_3.py.html"}, {"name": "14_desafio_1.py", "type": "file", "ext": ".py", "path": ".viewers/py-estudos_public_desafios_14_desafio_1.py.html"}, {"name": "14_desafio_2.py", "type": "file", "ext": ".py", "path": ".viewers/py-estudos_public_desafios_14_desafio_2.py.html"}, {"name": "14_desafio_3.py", "type": "file", "ext": ".py", "path": ".viewers/py-estudos_public_desafios_14_desafio_3.py.html"}]}, {"name": "01_introducao.ipynb", "type": "file", "ext": ".ipynb", "path": ".viewers/py-estudos_public_01_introducao.ipynb.html"}, {"name": "02_variaveis.ipynb", "type": "file", "ext": ".ipynb", "path": ".viewers/py-estudos_public_02_variaveis.ipynb.html"}, {"name": "03_tipos_de_dados.ipynb", "type": "file", "ext": ".ipynb", "path": ".viewers/py-estudos_public_03_tipos_de_dados.ipynb.html"}, {"name": "04_operadores.ipynb", "type": "file", "ext": ".ipynb", "path": ".viewers/py-estudos_public_04_operadores.ipynb.html"}, {"name": "05_funcoes_basicas.ipynb", "type": "file", "ext": ".ipynb", "path": ".viewers/py-estudos_public_05_funcoes_basicas.ipynb.html"}, {"name": "06_manipulando_texto.ipynb", "type": "file", "ext": ".ipynb", "path": ".viewers/py-estudos_public_06_manipulando_texto.ipynb.html"}, {"name": "07_estruturas_de_controle.ipynb", "type": "file", "ext": ".ipynb", "path": ".viewers/py-estudos_public_07_estruturas_de_controle.ipynb.html"}, {"name": "08_estruturas_de_repeticao.ipynb", "type": "file", "ext": ".ipynb", "path": ".viewers/py-estudos_public_08_estruturas_de_repeticao.ipynb.html"}, {"name": "09_funcoes.ipynb", "type": "file", "ext": ".ipynb", "path": ".viewers/py-estudos_public_09_funcoes.ipynb.html"}, {"name": "10_mais_funcoes.ipynb", "type": "file", "ext": ".ipynb", "path": ".viewers/py-estudos_public_10_mais_funcoes.ipynb.html"}, {"name": "11_listas.ipynb", "type": "file", "ext": ".ipynb", "path": ".viewers/py-estudos_public_11_listas.ipynb.html"}, {"name": "12_mais_listas.ipynb", "type": "file", "ext": ".ipynb", "path": ".viewers/py-estudos_public_12_mais_listas.ipynb.html"}, {"name": "13_bubblesort.ipynb", "type": "file", "ext": ".ipynb", "path": ".viewers/py-estudos_public_13_bubblesort.ipynb.html"}, {"name": "14_funcoes_loops_listas.ipynb", "type": "file", "ext": ".ipynb", "path": ".viewers/py-estudos_public_14_funcoes_loops_listas.ipynb.html"}, {"name": "15_tuplas.ipynb", "type": "file", "ext": ".ipynb", "path": ".viewers/py-estudos_public_15_tuplas.ipynb.html"}, {"name": "16_dicionarios.ipynb", "type": "file", "ext": ".ipynb", "path": ".viewers/py-estudos_public_16_dicionarios.ipynb.html"}, {"name": "17_conjuntos.ipynb", "type": "file", "ext": ".ipynb", "path": ".viewers/py-estudos_public_17_conjuntos.ipynb.html"}, {"name": "18_classes.ipynb", "type": "file", "ext": ".ipynb", "path": ".viewers/py-estudos_public_18_classes.ipynb.html"}, {"name": "19_erros.ipynb", "type": "file", "ext": ".ipynb", "path": ".viewers/py-estudos_public_19_erros.ipynb.html"}, {"name": "20_API.ipynb", "type": "file", "ext": ".ipynb", "path": ".viewers/py-estudos_public_20_API.ipynb.html"}, {"name": "vite.svg", "type": "file", "ext": ".svg", "path": "py-estudos/public/vite.svg"}]}, {"name": "src", "type": "folder", "path": "py-estudos/src", "children": [{"name": "assets", "type": "folder", "path": "py-estudos/src/assets", "children": [{"name": "react.svg", "type": "file", "ext": ".svg", "path": "py-estudos/src/assets/react.svg"}]}, {"name": "components", "type": "folder", "path": "py-estudos/src/components", "children": [{"name": "NotebookReader.css", "type": "file", "ext": ".css", "path": "py-estudos/src/components/NotebookReader.css"}, {"name": "NotebookReader.tsx", "type": "file", "ext": ".tsx", "path": "py-estudos/src/components/NotebookReader.tsx"}, {"name": "PythonSandbox.css", "type": "file", "ext": ".css", "path": "py-estudos/src/components/PythonSandbox.css"}, {"name": "PythonSandbox.tsx", "type": "file", "ext": ".tsx", "path": "py-estudos/src/components/PythonSandbox.tsx"}, {"name": "QuizPanel.css", "type": "file", "ext": ".css", "path": "py-estudos/src/components/QuizPanel.css"}, {"name": "QuizPanel.tsx", "type": "file", "ext": ".tsx", "path": "py-estudos/src/components/QuizPanel.tsx"}, {"name": "Sidebar.css", "type": "file", "ext": ".css", "path": "py-estudos/src/components/Sidebar.css"}, {"name": "Sidebar.tsx", "type": "file", "ext": ".tsx", "path": "py-estudos/src/components/Sidebar.tsx"}, {"name": "StatsPanel.css", "type": "file", "ext": ".css", "path": "py-estudos/src/components/StatsPanel.css"}, {"name": "StatsPanel.tsx", "type": "file", "ext": ".tsx", "path": "py-estudos/src/components/StatsPanel.tsx"}]}, {"name": "utils", "type": "folder", "path": "py-estudos/src/utils", "children": [{"name": "notebook.ts", "type": "file", "ext": ".ts", "path": "py-estudos/src/utils/notebook.ts"}]}, {"name": "App.css", "type": "file", "ext": ".css", "path": "py-estudos/src/App.css"}, {"name": "App.tsx", "type": "file", "ext": ".tsx", "path": "py-estudos/src/App.tsx"}, {"name": "data.ts", "type": "file", "ext": ".ts", "path": "py-estudos/src/data.ts"}, {"name": "index.css", "type": "file", "ext": ".css", "path": "py-estudos/src/index.css"}, {"name": "main.tsx", "type": "file", "ext": ".tsx", "path": "py-estudos/src/main.tsx"}, {"name": "types.ts", "type": "file", "ext": ".ts", "path": "py-estudos/src/types.ts"}]}, {"name": "eslint.config.js", "type": "file", "ext": ".js", "path": "py-estudos/eslint.config.js"}, {"name": "package-lock.json", "type": "file", "ext": ".json", "path": "py-estudos/package-lock.json"}, {"name": "package.json", "type": "file", "ext": ".json", "path": "py-estudos/package.json"}, {"name": "README.md", "type": "file", "ext": ".md", "path": ".viewers/py-estudos_README.md.html"}, {"name": "tsconfig.app.json", "type": "file", "ext": ".json", "path": "py-estudos/tsconfig.app.json"}, {"name": "tsconfig.json", "type": "file", "ext": ".json", "path": "py-estudos/tsconfig.json"}, {"name": "tsconfig.node.json", "type": "file", "ext": ".json", "path": "py-estudos/tsconfig.node.json"}, {"name": "vite.config.ts", "type": "file", "ext": ".ts", "path": "py-estudos/vite.config.ts"}]}, {"name": "Python", "type": "folder", "path": "Python", "children": [{"name": "01_introducao.html", "type": "file", "ext": ".html", "path": "Python/01_introducao.html"}, {"name": "02_variaveis.html", "type": "file", "ext": ".html", "path": "Python/02_variaveis.html"}, {"name": "03_tipos_de_dados.html", "type": "file", "ext": ".html", "path": "Python/03_tipos_de_dados.html"}, {"name": "04_operadores.html", "type": "file", "ext": ".html", "path": "Python/04_operadores.html"}, {"name": "05_funcoes_basicas.html", "type": "file", "ext": ".html", "path": "Python/05_funcoes_basicas.html"}, {"name": "1.png", "type": "file", "ext": ".png", "path": "Python/1.png"}, {"name": "1_Python_A_Arte_de_Comunicar.pdf", "type": "file", "ext": ".pdf", "path": ".viewers/Python_1_Python_A_Arte_de_Comunicar.pdf.html"}, {"name": "2.png", "type": "file", "ext": ".png", "path": "Python/2.png"}, {"name": "2_Variaveis_em_Python_Gestao_de_Memoria_e_Codigo_Limpo.pdf", "type": "file", "ext": ".pdf", "path": ".viewers/Python_2_Variaveis_em_Python_Gestao_de_Memoria_e_Codigo_Limpo.pdf.html"}, {"name": "3.png", "type": "file", "ext": ".png", "path": "Python/3.png"}, {"name": "3_Python_Data_Types_The_Programming_Foundation.pdf", "type": "file", "ext": ".pdf", "path": ".viewers/Python_3_Python_Data_Types_The_Programming_Foundation.pdf.html"}, {"name": "4.png", "type": "file", "ext": ".png", "path": "Python/4.png"}, {"name": "4_Python_Operadores_L\u00f3gica_e_Identidade.pdf", "type": "file", "ext": ".pdf", "path": ".viewers/Python_4_Python_Operadores_L\u00f3gica_e_Identidade.pdf.html"}]}, {"name": "Resumos", "type": "folder", "path": "Resumos", "children": [{"name": "01_introducao.ipynb", "type": "file", "ext": ".ipynb", "path": ".viewers/Resumos_01_introducao.ipynb.html"}, {"name": "02_variaveis.ipynb", "type": "file", "ext": ".ipynb", "path": ".viewers/Resumos_02_variaveis.ipynb.html"}, {"name": "03_tipos_de_dados.ipynb", "type": "file", "ext": ".ipynb", "path": ".viewers/Resumos_03_tipos_de_dados.ipynb.html"}, {"name": "04_operadores.ipynb", "type": "file", "ext": ".ipynb", "path": ".viewers/Resumos_04_operadores.ipynb.html"}, {"name": "05_funcoes_basicas.ipynb", "type": "file", "ext": ".ipynb", "path": ".viewers/Resumos_05_funcoes_basicas.ipynb.html"}, {"name": "06_manipulando_texto.ipynb", "type": "file", "ext": ".ipynb", "path": ".viewers/Resumos_06_manipulando_texto.ipynb.html"}, {"name": "07_estruturas_de_controle.ipynb", "type": "file", "ext": ".ipynb", "path": ".viewers/Resumos_07_estruturas_de_controle.ipynb.html"}, {"name": "08_estruturas_de_repeticao.ipynb", "type": "file", "ext": ".ipynb", "path": ".viewers/Resumos_08_estruturas_de_repeticao.ipynb.html"}, {"name": "09_funcoes.ipynb", "type": "file", "ext": ".ipynb", "path": ".viewers/Resumos_09_funcoes.ipynb.html"}, {"name": "10_mais_funcoes.ipynb", "type": "file", "ext": ".ipynb", "path": ".viewers/Resumos_10_mais_funcoes.ipynb.html"}, {"name": "11_listas.ipynb", "type": "file", "ext": ".ipynb", "path": ".viewers/Resumos_11_listas.ipynb.html"}, {"name": "12_mais_listas.ipynb", "type": "file", "ext": ".ipynb", "path": ".viewers/Resumos_12_mais_listas.ipynb.html"}, {"name": "13_bubblesort.ipynb", "type": "file", "ext": ".ipynb", "path": ".viewers/Resumos_13_bubblesort.ipynb.html"}, {"name": "14_funcoes_loops_listas.ipynb", "type": "file", "ext": ".ipynb", "path": ".viewers/Resumos_14_funcoes_loops_listas.ipynb.html"}, {"name": "15_tuplas.ipynb", "type": "file", "ext": ".ipynb", "path": ".viewers/Resumos_15_tuplas.ipynb.html"}, {"name": "16_dicionarios.ipynb", "type": "file", "ext": ".ipynb", "path": ".viewers/Resumos_16_dicionarios.ipynb.html"}, {"name": "17_conjuntos.ipynb", "type": "file", "ext": ".ipynb", "path": ".viewers/Resumos_17_conjuntos.ipynb.html"}, {"name": "18_classes.ipynb", "type": "file", "ext": ".ipynb", "path": ".viewers/Resumos_18_classes.ipynb.html"}, {"name": "19_erros.ipynb", "type": "file", "ext": ".ipynb", "path": ".viewers/Resumos_19_erros.ipynb.html"}, {"name": "20_API.ipynb", "type": "file", "ext": ".ipynb", "path": ".viewers/Resumos_20_API.ipynb.html"}, {"name": "download.py", "type": "file", "ext": ".py", "path": ".viewers/Resumos_download.py.html"}]}, {"name": "README.md", "type": "file", "ext": ".md", "path": ".viewers/README.md.html"}]};
+        
+        let currentPathNodes = [fileTree];
+        
+        const gridView = document.getElementById('gridView');
+        const breadcrumb = document.getElementById('breadcrumb');
+        const sidebarList = document.getElementById('sidebarList');
+        const searchInput = document.getElementById('searchInput');
+
+        function getIconForFile(ext) {
+            switch(ext) {
+                case '.py': return '<i class="fa-brands fa-python file-icon icon-py"></i>';
+                case '.html': return '<i class="fa-brands fa-html5 file-icon icon-html"></i>';
+                case '.css': return '<i class="fa-brands fa-css3-alt file-icon icon-css"></i>';
+                case '.js': return '<i class="fa-brands fa-js file-icon" style="color:#f7df1e"></i>';
+                case '.ts': case '.tsx': return '<i class="fa-brands fa-react file-icon icon-tsx"></i>';
+                case '.pdf': return '<i class="fa-solid fa-file-pdf file-icon icon-pdf"></i>';
+                case '.ipynb': return '<i class="fa-solid fa-book-open file-icon icon-ipynb"></i>';
+                case '.json': return '<i class="fa-solid fa-file-code file-icon icon-json"></i>';
+                case '.md': return '<i class="fa-brands fa-markdown file-icon icon-md"></i>';
+                case '.png': case '.jpg': case '.jpeg': return '<i class="fa-solid fa-image file-icon" style="color:#a855f7"></i>';
+                default: return '<i class="fa-solid fa-file file-icon icon-file"></i>';
+            }
+        }
+        
+        function formatExt(ext) {
+            return ext ? ext.replace('.', '').toUpperCase() : 'FILE';
+        }
+
+        function renderSidebar() {
+            sidebarList.innerHTML = '';
+            // Render top level folders
+            const topFolders = fileTree.children.filter(c => c.type === 'folder');
+            
+            const homeLi = document.createElement('li');
+            homeLi.className = 'nav-item ' + (currentPathNodes.length === 1 ? 'active' : '');
+            homeLi.innerHTML = `<i class="fa-solid fa-house"></i> Início`;
+            homeLi.onclick = () => navigateToHome();
+            sidebarList.appendChild(homeLi);
+            
+            topFolders.forEach(folder => {
+                const li = document.createElement('li');
+                // Check if active
+                const isActive = currentPathNodes.length > 1 && currentPathNodes[1].name === folder.name;
+                li.className = 'nav-item ' + (isActive ? 'active' : '');
+                li.innerHTML = `<i class="fa-solid fa-folder-open"></i> ${folder.name.replace(/_/g, ' ')}`;
+                li.onclick = () => navigateToNode([fileTree, folder]);
+                sidebarList.appendChild(li);
+            });
+        }
+
+        function renderBreadcrumb() {
+            breadcrumb.innerHTML = '';
+            currentPathNodes.forEach((node, index) => {
+                const span = document.createElement('span');
+                if(index === currentPathNodes.length - 1) {
+                    span.className = 'current';
+                    span.textContent = node.name === fileTree.name ? 'Meus Estudos' : node.name;
+                } else {
+                    span.textContent = node.name === fileTree.name ? 'Meus Estudos' : node.name;
+                    span.onclick = () => {
+                        currentPathNodes = currentPathNodes.slice(0, index + 1);
+                        renderView();
+                    };
+                }
+                
+                breadcrumb.appendChild(span);
+                
+                if (index < currentPathNodes.length - 1) {
+                    const icon = document.createElement('i');
+                    icon.className = 'fa-solid fa-chevron-right';
+                    breadcrumb.appendChild(icon);
+                }
+            });
+        }
+
+        function renderGrid(nodes) {
+            gridView.innerHTML = '';
+            if (!nodes || nodes.length === 0) {
+                gridView.innerHTML = `
+                    <div class="empty-state" style="grid-column: 1 / -1;">
+                        <i class="fa-solid fa-folder-open"></i>
+                        <h2>Pasta Vazia</h2>
+                        <p>Não há arquivos ou pastas aqui.</p>
+                    </div>`;
+                return;
+            }
+            
+            // Sort: folders first, then files
+            const sortedNodes = [...nodes].sort((a, b) => {
+                if (a.type === b.type) return a.name.localeCompare(b.name);
+                return a.type === 'folder' ? -1 : 1;
+            });
+
+            sortedNodes.forEach(node => {
+                const el = document.createElement(node.type === 'folder' ? 'div' : 'a');
+                el.className = `file-card ${node.type}`;
+                
+                if (node.type === 'folder') {
+                    el.onclick = () => {
+                        currentPathNodes.push(node);
+                        searchInput.value = '';
+                        renderView();
+                    };
+                    el.innerHTML = `
+                        <i class="fa-solid fa-folder file-icon" style="color: var(--icon-folder)"></i>
+                        <div class="file-name">${node.name}</div>
+                        <div class="file-meta">Pasta</div>
+                    `;
+                } else {
+                    el.href = node.path;
+                    el.target = '_blank';
+                    el.innerHTML = `
+                        ${getIconForFile(node.ext)}
+                        <div class="file-name">${node.name}</div>
+                        <div class="file-meta">${formatExt(node.ext)}</div>
+                    `;
+                }
+                gridView.appendChild(el);
+            });
+        }
+
+        function renderView() {
+            renderSidebar();
+            renderBreadcrumb();
+            const currentNode = currentPathNodes[currentPathNodes.length - 1];
+            renderGrid(currentNode.children);
+        }
+
+        function navigateToHome() {
+            currentPathNodes = [fileTree];
+            searchInput.value = '';
+            renderView();
+        }
+
+        function navigateToNode(pathArray) {
+            currentPathNodes = pathArray;
+            searchInput.value = '';
+            renderView();
+        }
+
+        // Search Implementation
+        function searchTree(node, query, results) {
+            if (node.name.toLowerCase().includes(query) && node !== fileTree) {
+                results.push(node);
+            }
+            if (node.children) {
+                node.children.forEach(child => searchTree(child, query, results));
+            }
+        }
+
+        searchInput.addEventListener('input', (e) => {
+            const query = e.target.value.toLowerCase();
+            if (!query) {
+                renderView();
+                return;
+            }
+            
+            const results = [];
+            searchTree(fileTree, query, results);
+            
+            // Update breadcrumb for search
+            breadcrumb.innerHTML = `<span class="current">Resultados de busca para: "${query}"</span>`;
+            
+            // Remove active states from sidebar
+            document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
+            
+            renderGrid(results);
+        });
+
+        // Initial render
+        renderView();
+    </script>
+</body>
+</html>

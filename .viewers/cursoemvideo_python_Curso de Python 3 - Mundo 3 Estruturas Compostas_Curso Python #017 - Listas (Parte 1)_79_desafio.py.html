@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>79_desafio.py</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="https://pyscript.net/releases/2024.1.1/core.css">
+    <script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>
+    <style>
+        .sandbox-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
+        .sandbox-header h2 { font-size: 1.2rem; color: var(--primary); display: flex; align-items: center; gap: 0.5rem; }
+        .py-repl-container { border-radius: 8px; overflow: hidden; border: 1px solid var(--glass-border); background: #1e293b; }
+    </style>
+    
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --glass-bg: rgba(30, 41, 59, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --primary: #38bdf8;
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        header {
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            border-bottom: 1px solid var(--glass-border);
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .back-btn {
+            color: var(--text-main);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            background: rgba(255,255,255,0.05);
+            transition: 0.3s;
+        }
+        .back-btn:hover {
+            background: rgba(56, 189, 248, 0.2);
+            color: var(--primary);
+        }
+        .file-title {
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+        main {
+            flex: 1;
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        .container {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="../index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Voltar</a>
+        <div class="file-title">79_desafio.py</div>
+    </header>
+    <main>
+        
+    <div class="container">
+        <div class="sandbox-header">
+            <h2><i class="fa-brands fa-python"></i> Sandbox PyScript</h2>
+            <span>Edite e execute (Shift + Enter) ou no botão verde ▶</span>
+        </div>
+        <div class="py-repl-container">
+            <script type="py" id="main-script"></script>
+            <py-repl auto-generate="true">
+# Exercício Python #079 - Valores únicos em uma Lista - Aula 00 até 17 - Mundo 3
+# Crie um programa onde o usuário possa digitar vários valores numéricos e cadastre-os em uma lista. Caso o número já exista lá dentro, ele não será adicionado. No final, serão exibidos todos os valores únicos digitados, em ordem crescente.
+
+
+def adicionar_valores(mensagem):
+	while True:
+		try:
+			return int(input(mensagem))
+		except ValueError:
+			print(f&#x27;{&#x27;Apenas valores numéricos!&#x27;:^30}&#x27;)
+
+
+lista = []
+
+while True:
+	valor = adicionar_valores(f&#x27;\033[1;34m{&#x27;Digite um valor: &#x27;:^30}\033[m&#x27;)
+	if valor not in lista:
+		print(f&#x27;\033[1;32m{&#x27;-&#x27; * 30}&#x27;)
+		print(f&#x27;{&#x27;Valor adicionado!&#x27;:^30}&#x27;)
+		print(f&#x27;{&#x27;-&#x27; * 30}\033[m&#x27;)
+		lista.append(valor)
+	else:
+		print(f&#x27;\033[1;31m{&#x27;-&#x27; * 30}&#x27;)
+		print(&#x27;Valor repetido! Vou desconsidera-lo...&#x27;)
+		print(f&#x27;{&#x27;-&#x27; * 30}\033[m&#x27;)
+	while True:
+		continuar = input(f&#x27;\033[1m{&#x27;Deseja continuar? S/N&#x27;:^30}\033[m&#x27;).strip().upper()
+		print(f&#x27;\033[1;34m{&#x27;-&#x27; * 30}\033[m&#x27;)
+		if continuar not in &#x27;SN&#x27;:
+			continue
+		else:
+			break
+	if continuar == &#x27;N&#x27;:
+		break
+
+lista.sort()
+
+print(f&#x27;Os valores digitados foram: &#x27;, end=&#x27;&#x27;)
+for a, i in enumerate(sorted(lista), 1):
+	print(i, end=&#x27;, &#x27; if a != len(lista) else &#x27;.&#x27;)
+
+# Estou compartilhando minhas anotações sobre os exercícios. Quem quiser, pode copiar e colar em um documento .py pois está tudo formatado e comentado.
+
+# Nesse exercício, vamos criar um programa onde o usuário possa digitar vários valores numéricos e cadastre-os em uma lista. Caso o número já exista lá dentro, ele não será adicionado. No final, serão exibidos todos os valores únicos digitados, em ordem crescente.
+
+# Existem várias formas de resolver esse exercício.  Nossa abordagem será a seguinte: Vamos avaliar se o valor digitado já está na lista. Se não estiver, vamos adicionar o valor na lista. Se estiver, vamos desconsiderar o valor. No final, vamos exibir os valores únicos digitados, em ordem crescente.
+
+# Primeiro, criar uma lista vazia para armazenar os valores.
+lista = []
+
+# Em seguida, vamos criar um laço de repetição para adicionar os valores na lista. Como o usuário pode digitar vários valores, vamos usar um laço while True para continuar solicitando valores ao usuário até que ele decida parar.
+while True:
+	valor = int(input(&#x27;Digite um valor: &#x27;)) # Solicitando um valor numérico ao usuário.
+	if valor not in lista: # Se o valor não estiver na lista, adicionar o valor na lista.
+		print(&#x27;-&#x27; * 30)
+		print(&#x27;Valor adicionado!&#x27;)
+		print(&#x27;-&#x27; * 30)
+		lista.append(valor)
+	else: # Se o valor já estiver na lista, desconsiderar o valor.
+		print(&#x27;-&#x27; * 30)
+		print(&#x27;Valor repetido! Vou desconsidera-lo...&#x27;)
+		print(&#x27;-&#x27; * 30)
+	while True:
+		continuar = input(&#x27;Deseja continuar? [S/N]&#x27;).strip().upper() # Perguntando se o usuário deseja continuar.
+		print(&#x27;-&#x27; * 30)
+		if continuar not in &#x27;SN&#x27;: # Se a resposta for diferente de S ou N, continuar perguntando.
+			continue
+		else:
+			break
+	if continuar == &#x27;N&#x27;: # Se a resposta for N, sair do laço de repetição.
+		break
+
+# Vamos exibir os valores digitados em ordem crescente.
+# Existem duas de ordenar a lista: usando o método sort() ou a função sorted(). 
+
+# Um método é uma função que pertence a um objeto. O método sort() ordena a lista em ordem crescente e altera a lista original. A sintaxe é: lista.sort()
+
+# Um função é um bloco de código que executa uma tarefa específica e pode retornar um valor ou causar um efeito colateral.
+# A função sorted() ordena a lista em ordem crescente e retorna uma nova lista ordenada. A sintaxe é: sorted(lista)
+
+# Resumindo: lista.sort() altera a lista original e sorted(lista) retorna uma nova lista ordenada.
+
+lista.sort() # Ordenando a lista de valores.
+
+print(&#x27;Os valores digitados foram: &#x27;, end=&#x27;&#x27;) # Exibindo os valores digitados.
+for a, i in enumerate(sorted(lista), 1):
+	print(i, end=&#x27;, &#x27; if a != len(lista) else &#x27;.&#x27;) # Exibindo os valores. Se o índice for diferente do tamanho da lista, exibimos uma vírgula, senão, exibimos um ponto.
+
+# Para treinar a lógica, você pode estudar sobre o bubble sort. É um algoritmo de ordenação simples que percorre a lista várias vezes, comparando elementos adjacentes e trocando-os de posição se estiverem na ordem errada. O bubble sort é um algoritmo lento e ineficiente, mas é um bom exercício para entender como os algoritmos de ordenação funcionam.
+
+# Vamos a um pequeno exemplo com 5 valores:
+lista = [5, 3, 2, 4, 1]
+
+# A lista está na ordem decrescente. Vamos ordenar a lista em ordem crescente usando o bubble sort.
+# O bubble sort compara os elementos adjacentes e troca de posição se estiverem na ordem errada.
+
+# Primeira passagem:
+# 5 &gt; 3? Sim. Trocar 5 por 3.
+# 5 &gt; 2? Sim. Trocar 5 por 2.
+# 5 &gt; 4? Sim. Trocar 5 por 4.
+# 5 &gt; 1? Sim. Trocar 5 por 1.
+# Resultado: [3, 2, 4, 1, 5]
+
+# Segunda passagem:
+# 3 &gt; 2? Sim. Trocar 3 por 2.
+# 3 &gt; 4? Não.
+# 4 &gt; 1? Sim. Trocar 4 por 1.
+# 4 &gt; 5? Não.
+# Resultado: [2, 3, 1, 4, 5]
+
+# Já deu para entender como o bubble sort funciona? Vamos ao código:
+
+for i in range(len(lista)): # len(lista) retorna o tamanho da lista.
+    print(i)
+    for j in range(len(lista) - 1): # len(lista) - 1 para não ultrapassar o tamanho da lista.
+        print(j)
+        if lista[j] &gt; lista[j + 1]: # Se o elemento atual for maior que o próximo elemento.
+            lista[j], lista[j + 1] = lista[j + 1], lista[j] # Trocar os elementos de posição.
+
+# Para ficar mais claro, veja essa versão com a explicação passo a passo:
+
+lista = [5, 4, 3, 2, 1]
+
+for i in range(len(lista)):
+    print(f&#x27;Passagem {i + 1}:&#x27;) # Exibindo o número da passagem.
+
+    for j in range(len(lista) - 1 - i):  # A cada passagem, não precisamos verificar os últimos elementos já ordenados
+        print(f&#x27;  Comparando {lista[j]} e {lista[j + 1]}...&#x27;, end=&#x27; &#x27;) # Exibindo os elementos que estão sendo comparados.
+        
+        if lista[j] &gt; lista[j + 1]: # Se o elemento atual for maior que o próximo elemento.
+            print(&#x27;Troca feita!&#x27;)
+            lista[j], lista[j + 1] = lista[j + 1], lista[j] # Trocando os elementos de posição.
+        else: # Se o elemento atual não for maior que o próximo elemento.
+            print(&#x27;Sem troca.&#x27;) # Exibindo que não houve troca.
+        
+        print(f&#x27;  Estado atual da lista: {lista}&#x27;) # Exibindo o estado atual da lista.
+    
+    print(f&#x27;Fim da passagem {i + 1}. Lista: {lista}&#x27;) # Exibindo o fim da passagem e o estado atual da lista.
+    print(&#x27;-&#x27; * 40)
+
+            </py-repl>
+        </div>
+    </div>
+    
+    </main>
+</body>
+</html>

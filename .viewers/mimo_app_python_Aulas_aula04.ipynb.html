@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>aula04.ipynb</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/monokai-sublime.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/python.min.js"></script>
+    
+    <style>
+        .cell { margin-bottom: 1.5rem; }
+        .cell-markdown { font-size: 1.05rem; line-height: 1.6; color: #cbd5e1; }
+        .cell-markdown h1, .cell-markdown h2, .cell-markdown h3 { color: #f1f5f9; margin-top: 1rem; margin-bottom: 0.5rem; }
+        .cell-markdown code { background: rgba(0,0,0,0.3); padding: 0.2rem 0.4rem; border-radius: 4px; color: #eab308; }
+        .cell-markdown pre { background: rgba(0,0,0,0.3); padding: 1rem; border-radius: 8px; overflow-x: auto; border: 1px solid var(--glass-border); margin: 1rem 0; }
+        .cell-code { background: #23241f; border-radius: 8px; padding: 1rem; overflow-x: auto; position: relative; border: 1px solid #333; }
+        .cell-output { background: #000; color: #a3e635; padding: 1rem; border-radius: 8px; margin-top: 0.5rem; font-family: monospace; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;}
+        .prompt { position: absolute; top: 0.5rem; right: 0.5rem; color: #64748b; font-size: 0.8rem; user-select: none; }
+    </style>
+    
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --glass-bg: rgba(30, 41, 59, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --primary: #38bdf8;
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        header {
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            border-bottom: 1px solid var(--glass-border);
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .back-btn {
+            color: var(--text-main);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            background: rgba(255,255,255,0.05);
+            transition: 0.3s;
+        }
+        .back-btn:hover {
+            background: rgba(56, 189, 248, 0.2);
+            color: var(--primary);
+        }
+        .file-title {
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+        main {
+            flex: 1;
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        .container {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="../index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Voltar</a>
+        <div class="file-title">aula04.ipynb</div>
+    </header>
+    <main>
+        <div class="container">
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python"># MIMO - 04 - Loops
+</code></pre>
+            </div>
+            
+            <div class="cell cell-markdown" id="md-1"></div>
+            <script>
+                (function(){
+                    const b64 = "IyMjIDQuMSAtIEF1dG9hdHJpYnVpw6fDo28gZSBvcGVyYWRvcmVzCgpWYW1vcyBhcHJlbmRlciB1bSBub3ZvIGNvbmNlaXRvIHF1ZSBleHBsaWNhIGNvbW8gYXMgdmFyacOhdmVpcyBjb250cm9sYW0gYXMgY29pc2FzIGNvbW8gYWRpY2lvbmFyIG91IHJldGlyYXIgcmVhaXMgZGUgdW1hIGNhcnRlaXJhLgoKUXVhbmRvIGNyaWFtb3MgdW1hIHZhcmnDoXZlbCwgYXRyaWJ1w61tb3MgdW0gdmFsb3IgYSBlbGEsIGNvbW8gYXRyaWJ1aXIgMyBhIGNhcnRlaXJh";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-1').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [2]</div>
+                <pre><code class="language-python">carteira = 3
+print(f&#x27;carteira = {carteira}&#x27;)</code></pre>
+            </div>
+            <div class="cell-output">carteira = 3
+</div>
+            <div class="cell cell-markdown" id="md-3"></div>
+            <script>
+                (function(){
+                    const b64 = "QXV0b2F0aWJ1acOnw6NvIMOpIHF1YW5kbyBkZWZpbmltb3MgdW1hIHZhcmnDoXZlbCBjb20gc2V1IHByw7NwcmlvIHZhbG9yLiBQb3IgZXhlbXBsbywgcG9kZW1vcyBkZWZpbmlyIGNhcnRlaXJhIGNvbSB2YWxvciAzIGNvbQ==";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-3').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [3]</div>
+                <pre><code class="language-python">carteira = carteira
+print(f&#x27;carteira = {carteira}&#x27;)</code></pre>
+            </div>
+            <div class="cell-output">carteira = 3
+</div>
+            <div class="cell cell-markdown" id="md-5"></div>
+            <script>
+                (function(){
+                    const b64 = "Q29tbyBwb2RlbW9zIGF1dG9hdHJpYnVpciB2YXJpw6F2ZWlzLCBwb2RlbW9zIGF1bWVudGFyIG91IGRpbWludWlyIHZhcmnDoXZlaXMgZGVmaW5pZGFzIGNvbSBuw7ptZXJvcy4=";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-5').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [4]</div>
+                <pre><code class="language-python">carteira = carteira + 1
+print(f&#x27;carteira + 1: {carteira}&#x27;)
+
+carteira = carteira + 1
+print(f&#x27;carteira + 1: {carteira}&#x27;)</code></pre>
+            </div>
+            <div class="cell-output">carteira + 1: 4
+carteira + 1: 5
+</div>
+            <div class="cell cell-markdown" id="md-7"></div>
+            <script>
+                (function(){
+                    const b64 = "VmFyacOhdmVpcyBhdXRvYXRyaWJ1w61kYXMgbm9zIHBlcm1pdGVtIHJhc3RyZWFyIGRhZG9zIHF1ZSBtdWRhbSBhbyBsb25nbyBkbyB0ZW1wby4=";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-7').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python">carteira = 3
+carteira = carteira + 2
+carteira = carteira - 1
+print(carteira)</code></pre>
+            </div>
+            
+            <div class="cell cell-markdown" id="md-9"></div>
+            <script>
+                (function(){
+                    const b64 = "VmFyacOhdmVpcyBkZWZpbmlkYXMgY29tIHN0cmluZ3MgZnVuY2lvbmFtIGRhIG1lc21hIGZvcm1hLg==";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-9').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python">titulo = &#x27;Senhor: &#x27;
+nome = titulo + &#x27;Maycon&#x27;
+nome = nome + &#x27; Douglas.&#x27;
+print(nome)</code></pre>
+            </div>
+            
+            <div class="cell cell-markdown" id="md-11"></div>
+            <script>
+                (function(){
+                    const b64 = "Q29tbyBhIGF1dG9hdHJpYnVpw6fDo28gw6kgdW1hIGZlcnJhbWVudGEgcG9kZXJvc2EgcGFyYSBjcmlhciBwcm9ncmFtYXMsIHZhbW9zIGFwcmVuZGVyIGFsZ3VucyBvcGVyYWRvcmVzIHF1ZSBub3MgYWp1ZGFtIGEgZXNjcmV2ZXIgY8OzZGlnbyBjb20gbWFpcyByYXBpZGV6LgoKU2FiZW1vcyBxdWUgcG9kZW1vcyBhZGljaW9uYXIgMSBhIHVtYSB2YXJpw6F2ZWwgZXNjcmV2ZW5kbyBvIG5vbWUgZGEgdmFyacOhdmVsLg==";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-11').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python">likes = 5
+likes = likes + 1 # 5 + 1 = 6
+print(likes)</code></pre>
+            </div>
+            
+            <div class="cell cell-markdown" id="md-13"></div>
+            <script>
+                (function(){
+                    const b64 = "RW0gdmV6IGRlIGVzY3JldmVyIG8gbm9tZSBkYSB2YXJpw6F2ZWwsIHBvZGVtb3MgdXNhciBvIG9wZXJhZG9yICs9IHBhcmEgYWRpY2lvbmFyIHVtIG7Dum1lcm8gY29tIGxpa2VzICs9IDE=";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-13').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python">likes = 5
+likes += 1  # é o mesmo que likes = likes + 1
+print(likes)</code></pre>
+            </div>
+            
+            <div class="cell cell-markdown" id="md-15"></div>
+            <script>
+                (function(){
+                    const b64 = "UGFyYSBzdWJ0cmFpciBkbyB2YWxvciBkZSB1bWEgdmFyacOhdmVsLCB1c2Ftb3MgLT0=";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-15').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python">likes -= 1  # é o mesmo que likes = likes - 1 
+print(likes)</code></pre>
+            </div>
+            
+            <div class="cell cell-markdown" id="md-17"></div>
+            <script>
+                (function(){
+                    const b64 = "IyMjIDQuMiAtIExvb3BzIHdoaWxlCgpPcyBwcm9ncmFtYXMgcmVwZXRlbSBhcyBtZXNtYXMgbGluaGFzIGRlIGPDs2RpZ28gY29udGludWFtZW50ZSBwYXJhIGNvbnN0cnVpciB0b2RvIG8gdGlwbyBkZSBjb2lzYXMsIGNvbW8gZWxlbWVudG9zIHJlcGV0aWRvcyBkZSBhcGxpY2F0aXZvcy4KClVtYSBtYW5laXJhIGRlIHJlcGV0aXIgbGluaGFzIGRlIGPDs2RpZ28gw6kgZXNjcmV2w6otbGFzIHJlcGV0aWRhbWVudGUsIG1hcyBpc3NvIGxldmEgbXVpdG8gdGVtcG8gc2UgcXVpc2VybW9zIGNyaWFyIHByb2dyYW1hcyBtYWlvcmVzLgoKUGFyYSBjb25zdHJ1aXIgcHJvZ3JhbWFzIGUgc2l0ZXMgbWFpb3JlcywgcmVwZXRpbW9zIGxpbmhhcyBkZSBjw7NkaWdvIHVzYW5kbyB1bSBsb29wIHdoaWxlLgoKVXNhciB1bSBsb29wIHdoaWxlIHBhcmEgcmVwZXRpciBsaW5oYXMgZGUgY8OzZGlnbyBjb21lw6dhIGNvbSBhIHBhbGF2cmEgY2hhdmUgd2hpbGUuCgpPIGxvb3Agd2hpbGUgcmVwZXRlIHNldSBibG9jbyBkZSBjw7NkaWdvIGVucXVhbnRvIHN1YSBjb25kacOnw6NvIGUgVHJ1ZS4KCk8gY8OzZGlnbyBxdWUgbyBsb29wIHdoaWxlIHJlcGV0ZSB2ZW0gZGVwb2lzIGRlIDosIGRlbnRybyBkbyBibG9jbyBkZSBjw7NkaWdvIHJlY3VhZG8uCgpTZSBhIGNvbmRpw6fDo28gZGUgdW0gbG9vcCB3aGlsZSBwZXJtYW5lY2VyIFRydWUgcGFyYSBzZW1wcmUsIG7Ds3MgbyBjaGFtYXJlbW9zIGRlIGxvb3AgaW5maW5pdG8u";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-17').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [5]</div>
+                <pre><code class="language-python">verdade = True
+
+# O código dentro do loop while é repetido enquanto a condição for True
+while verdade:
+    
+# Repetimos o comando print() com a string &#x27;Repita&#x27; enquanto a condição for True
+    print(&#x27;Repita&#x27;) 
+    
+# Se não mudarmos a condição, o loop while será infinito e nunca terminará. Mudamos a condição para False para que o loop while termine
+    verdade = False </code></pre>
+            </div>
+            <div class="cell-output">Repita
+</div>
+            <div class="cell cell-markdown" id="md-19"></div>
+            <script>
+                (function(){
+                    const b64 = "UG9kZW1vcyB1c2FyIHVtIGxvb3Agd2hpbGUgcGFyYSByZXBldGlyIGxpbmhhcyBkZSBjw7NkaWdvIHVtIG7Dum1lcm8gZXNwZWPDrWZpY28gZGUgdmV6ZXMuCgpEZWZpbmltb3MgdW1hIHZhcmnDoXZlbCBxdWFudGlkYWRlIGNvbnRhZG9yYSBjb20gdmFsb3IgaWd1YWwgYSB6ZXJvLiBFbGEgc2Vyw6EgYXR1YWxpemFkYSBkZW50cm8gZG8gbG9vcCwgYSBjYWRhIHJlcGV0acOnw6NvLiBBbMOpbSBkaXNzbyBlbGEgc2Vyw6EgdXNhZGEgbmEgZGVjbGFyYcOnw6NvIGNvbmRpY2lvbmFsLiBWZWphbW9zIG8gZXhlbXBsbzo=";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-19').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [7]</div>
+                <pre><code class="language-python">quantidade = 0
+
+# O código dentro do loop while é repetido enquanto a condição for True. Nesse caso, enquanto quantidade for menor que 10
+while quantidade &lt;= 10:
+
+# Repetimos o comando print() com a string &#x27;Adicionando&#x27; enquanto a condição for True    
+    print(f&#x27;{quantidade} - Adicionando&#x27;)
+# Adicionamos 1 ao contador para atualizá-lo a cada repetição do loop
+    quantidade += 1</code></pre>
+            </div>
+            <div class="cell-output">0 - Adicionando
+1 - Adicionando
+2 - Adicionando
+3 - Adicionando
+4 - Adicionando
+5 - Adicionando
+6 - Adicionando
+7 - Adicionando
+8 - Adicionando
+9 - Adicionando
+10 - Adicionando
+</div>
+            <div class="cell cell-markdown" id="md-21"></div>
+            <script>
+                (function(){
+                    const b64 = "IyMjIDQuMyAtIFBhcmFuZG8gbG9vcHMgd2hpbGUKClZhbW9zIG5vcyBjb25jZW50cmFyIGVtIGNvbW8gaW1wZWRpciBkZSBmYXplciB1bSBsb29wIGluZmluaXRvLgoKQ29tbyB2aW1vcywgcGFyYSBwYXJhciB1bSBsb29wLCBjb21lw6dhbW9zIGNyaWFuZG8gdW1hIHZhcmnDoXZlbCBmb3JhIGRvIGxvb3Au";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-21').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python">continuar = True
+
+while continuar: # É o mesmo que comparar se continuar == True
+    print(&#x27;De novo...&#x27;)  # O loop while repete seu bloco de código enquanto continuar for True
+    # Dentro do bloco de código, paramos o loop definindo continuar como False
+    continuar = False
+    
+    print(&#x27;Só dessa vez.&#x27;)</code></pre>
+            </div>
+            
+            <div class="cell cell-markdown" id="md-23"></div>
+            <script>
+                (function(){
+                    const b64 = "TyBsb29wIGV4ZWN1dGEgdG9kbyBvIHNldSBibG9jbyBwb3JxdWUgY29udGludWFyIMOpIFRydWUgbm8gaW7DrWNpbywgbWFzIG7Do28gw6kgZXhlY3V0YWRvIG5vdmFtZW50ZSBzZSBkZWZpbmltb3MgY29udGludWFyIGNvbW8gRmFsc2U=";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-23').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-markdown" id="md-24"></div>
+            <script>
+                (function(){
+                    const b64 = "IyMjIDQuNCAtIENvbnRyb2xhbmRvIGxvb3BzIHdoaWxlCgpWYW1vcyBub3MgYXByb2Z1bmRhciBubyBjb250cm9sZSBkb3MgdGVtcG9zIGVtIHF1ZSB1bSBsb29wIHdoaWxlIHJlcGV0ZSBzZXUgY8OzZGlnby4KClBhcmEgY29udHJvbGFyIG8gdGVtcG8gZGUgcmVwZXRpw6fDo28gZGUgdW0gbG9vcCB3aGlsZSwgY29tZcOnYW1vcyBjb20gdW1hIHZhcmnDoXZlbCBkZWZpbmlkYSBjb20gdW0gbsO6bWVyby4gQ2hhbWFtb3MgZXNzYSB2YXJpw6F2ZWwgZGUgY29udGFkb3IuCgpFbSBzZWd1aWRhLCB1c2Ftb3MgdW1hIGNvbXBhcmHDp8OjbyBuYSBjb25kacOnw6NvIHBhcmEgY29tcGFyYXIgYSB2YXJpw6F2ZWwgZGUgY29udGFkb3IgY29tIHVtIG7Dum1lcm8uCgpEZW50cm8gZG8gYmxvY28gZGUgY8OzZGlnbywgZmF6ZW1vcyBhIGNvbmRpw6fDo28gcmV0b3JuYXIgRmFsc2UgZSBwYXJhbW9zIG8gbG9vcCBpbmNyZW1lbnRhbmRvIGEgdmFyacOhdmVsIGRlIGNvbnRhZG9yLgoKTmVzdGUgY2FzbyB1c2Ftb3MgKz0gZSBhdW1lbnRhbW9zIG8gdmFsb3IgZGEgdmFyacOhdmVsIGVtIDEgY2FkYSB2ZXogcXVlIG8gbG9vcCDDqSBleGVjdXRhZG8uCg==";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-24').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [8]</div>
+                <pre><code class="language-python">contador = 1
+# O loop while repete seu bloco de código enquanto a condição for True
+while contador &lt; 4:
+    # Nesse caso, enquanto contador for menor que 4
+    print(f&#x27;{contador} - Agora temos um limite de repetições&#x27;)
+    contador += 1 # Adicionamos 1 ao contador para atualizá-lo a cada repetição do loop</code></pre>
+            </div>
+            <div class="cell-output">1 - Agora temos um limite de repetições
+2 - Agora temos um limite de repetições
+3 - Agora temos um limite de repetições
+</div>
+            <div class="cell cell-markdown" id="md-26"></div>
+            <script>
+                (function(){
+                    const b64 = "QWx0ZXJhciBvIHZhbG9yIGRhIHZhcmnDoXZlbCBkZSBjb250YWRvciBtdWRhIHF1YW5kbyBvIGxvb3Agw6kgaW5pY2lhZG8uCgpBbHRlcmFyIGEgY29uZGnDp8OjbyBpbmZvcm1hIGFvIGxvb3AgcXVhbmRvIHBhcmFyLgoKQSBvcmRlbSBkbyBjw7NkaWdvIGFmZXRhIG8gcXVlIG8gY29uc29sZSBleGliZSEgU2UgY29sb2NhciBvIGluY3JlbWVudG8gYW50ZXMgZG8gcHJpbnQgcHJvIGV4ZW1wbG8=";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-26').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [9]</div>
+                <pre><code class="language-python">contador = 1  
+# O loop while repete seu bloco de código enquanto a condição for True
+while contador &lt; 4:
+    contador += 1  # Adicionamos 1 ao contador para atualizá-lo a cada repetição do loop. Nesse caso o contador é atualizado antes do print, então ele começa em 2 e vai até 4
+    print(f&#x27;{contador} - Agora temos um limite de repetições&#x27;) #  O contador irá até o 4 pois o incremento é feito antes do print, sendo assim o print() é executado pois a condição é verificada após o incremento</code></pre>
+            </div>
+            <div class="cell-output">2 - Agora temos um limite de repetições
+3 - Agora temos um limite de repetições
+4 - Agora temos um limite de repetições
+</div>
+            <div class="cell cell-markdown" id="md-28"></div>
+            <script>
+                (function(){
+                    const b64 = "IyMjIDQuNCAtIFBhcmFuZG8gbG9vcHMgZm9yCgpVc2FuZG8gbG9vcHMgZm9yLCBwb2RlbW9zIGVzY3JldmVyIHByb2dyYW1hcyBjb20gbXVpdG8gbWVub3MgY8OzZGlnbyBlIGZhY2lsaXRhciBvIGVudGVuZGltZW50byBkZSBvdXRyb3MgcHJvZ3JhbWFkb3Jlcy4KClBhcmEgY3JpYXIgdW0gbG9vcCBmb3IsIGFkaWNpb25hbW9zIGEgcGFsYXZyYS1jaGF2ZSBmb3IsIHVtYSB2YXJpw6F2ZWwgY29tbyBpIG91IHF1YWxxdWVyIG91dHJvIG5vbWUsIGEgcGFsYXZyYSBpbiBlLCBmaW5hbG1lbnRlIHJhbmdlKCkKCi0gZm9yIGkgaW4gcmFuZ2UoKToKCkVtIHVtIGxvb3AgZm9yLCBwb2RlbW9zIGVzcGVjaWZpY2FyIHF1YW50YXMgdmV6ZXMgZ29zdGFyw61hbW9zIHF1ZSBub3NzbyBsb29wIGZvc3NlIGV4ZWN1dGFkbyBjb20gYSBpbnN0cnXDp8OjbyByYW5nZSgpIGludGVydmFsby4KCkFkaWNpb25hciB1bSBuw7ptZXJvIGNvbW8gNiwgZGVudHJvIGRlIHJhbmdlKCkgc2lnbmlmaWNhIHF1ZSBlbGUgZmFyw6EgdW1hIGl0ZXJhw6fDo28gc29icmUgbyBibG9jbyBkZSBjw7NkaWdvIDYgdmV6ZXMgKDAgYSA1KSBwb2lzIGEgY29udGFnZW0gY29tZcOnYSBlbSAwIHF1ZSDDqSBvIHByaW1laXJvIG7Dum1lcm8gZGUgw61uZGljZS4KCk8gbG9vcCBmb3IgdGFtYsOpbSByZXBldGUgc2V1IGJsb2NvIGRlIGPDs2RpZ28gZW5xdWFudG8gYSBjb25kacOnw6NvIGZvciBUcnVl";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-28').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [13]</div>
+                <pre><code class="language-python">for i in range(6):  # O range() é o argumento de parada do loop for. Nesse caso, o loop for irá de 0 a 5
+    print(i)</code></pre>
+            </div>
+            <div class="cell-output">0
+1
+2
+3
+4
+5
+</div>
+            <div class="cell cell-markdown" id="md-30"></div>
+            <script>
+                (function(){
+                    const b64 = "QSB2YXJpw6F2ZWwgYW50ZXMgZGUgaW4sIG5lc3NlIGNhc28sIGksIMOpIGEgdmFyacOhdmVsIGRlIGNvbnRhZG9yLiBDb250YSBlbSBxdWUgaXRlcmHDp8OjbyBvIGxvb3AgZXN0w6EuCgpBIG1lc21hIGNvbnRhZ2VtIHV0aWxpemFuZG8gd2hpbGUgc2VyaWE6";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-30').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [12]</div>
+                <pre><code class="language-python">i = 0  # A variável de contador é definida antes do loop
+while i &lt; 6: # O loop while repete seu bloco de código enquanto a condição for True
+    print(i)
+    i += 1 # Adicionamos 1 ao contador para atualizá-lo a cada repetição do loop</code></pre>
+            </div>
+            <div class="cell-output">0
+1
+2
+3
+4
+5
+</div></div><script>hljs.highlightAll();</script>
+    </main>
+</body>
+</html>

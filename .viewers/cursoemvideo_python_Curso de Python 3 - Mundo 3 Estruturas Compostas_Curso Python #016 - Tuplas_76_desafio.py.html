@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>76_desafio.py</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="https://pyscript.net/releases/2024.1.1/core.css">
+    <script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>
+    <style>
+        .sandbox-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
+        .sandbox-header h2 { font-size: 1.2rem; color: var(--primary); display: flex; align-items: center; gap: 0.5rem; }
+        .py-repl-container { border-radius: 8px; overflow: hidden; border: 1px solid var(--glass-border); background: #1e293b; }
+    </style>
+    
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --glass-bg: rgba(30, 41, 59, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --primary: #38bdf8;
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        header {
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            border-bottom: 1px solid var(--glass-border);
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .back-btn {
+            color: var(--text-main);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            background: rgba(255,255,255,0.05);
+            transition: 0.3s;
+        }
+        .back-btn:hover {
+            background: rgba(56, 189, 248, 0.2);
+            color: var(--primary);
+        }
+        .file-title {
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+        main {
+            flex: 1;
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        .container {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="../index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Voltar</a>
+        <div class="file-title">76_desafio.py</div>
+    </header>
+    <main>
+        
+    <div class="container">
+        <div class="sandbox-header">
+            <h2><i class="fa-brands fa-python"></i> Sandbox PyScript</h2>
+            <span>Edite e execute (Shift + Enter) ou no botão verde ▶</span>
+        </div>
+        <div class="py-repl-container">
+            <script type="py" id="main-script"></script>
+            <py-repl auto-generate="true">
+# Exercício Python #076 - Lista de Preços com Tupla - Aula 00 até 16 - Mundo 3
+# Crie um programa que tenha uma tupla única com nomes de produtos e seus respectivos preços, na sequência. No final, mostre uma listagem de preços, organizando os dados em forma tabular.
+
+&quot;&quot;&quot;produtos = ((&#x27;Notebook&#x27;, 3399.99), (&#x27;Playstation 5&#x27;, 4799.99), (&#x27;TV 52&#x27;, 2499.99), (&#x27;Cadeira&#x27;, 999.99), (&#x27;Mesa&#x27;, 699.99), (&#x27;Monitor&#x27;, 1199.99), (&#x27;Iphone 15&#x27;, 7999.99))
+
+for item in produtos:
+    print(item)&quot;&quot;&quot;
+
+# Lista de itens do carrinho com seus respectivos preços
+carrinho = (&#x27;Notebook&#x27;, 3399.99, &#x27;Playstation 5&#x27;, 4799.99, &#x27;TV 52&#x27;, 2499.99, &#x27;Cadeira&#x27;, 999.99, &#x27;Mesa&#x27;, 699.99, &#x27;Monitor&#x27;, 1199.99, &#x27;Iphone 15&#x27;, 7999.99)
+
+# Imprime a nota fiscal
+print(&#x27;-&#x27;*45)
+print(f&#x27;{&quot;NOTA FISCAL&quot;: ^45}&#x27;)
+total = 0  # Inicializa a variável total para calcular o valor total da compra
+print(&#x27;-&#x27;*45)
+
+# Itera sobre os itens do carrinho e imprime a descrição e o preço
+for indice, item in enumerate(carrinho):
+    if indice % 2 == 0:  # Se o índice for par (posição da descrição)
+        print(f&#x27;{item:.&lt;30}&#x27;, end=&#x27;&#x27;)  # Imprime a descrição com ponto final e alinhado à esquerda
+    elif indice % 2 == 1:  # Se o índice for ímpar (posição do preço)
+        print(f&#x27; R${item:&gt;10.2f}&#x27;)  # Imprime o preço alinhado à direita com duas casas decimais
+        total += item  # Soma o preço ao total
+
+# Imprime a linha final da nota fiscal
+print(&#x27;-&#x27;*45)
+
+# Imprime o valor total da compra
+print(f&#x27;{&quot;Valor total&quot;: &lt;30} R${total: &gt;10.2f}&#x27;)
+
+# Versão 2
+
+tupla = &#x27;Lápis&#x27;, 1.75, &#x27;Borracha&#x27;, 2.00, &#x27;Caderno&#x27;, 15.90, &#x27;Estojo&#x27;, 25.00, &#x27;Transferidor&#x27;, 4.20, &#x27;Compasso&#x27;, 9.99, &#x27;Mochila&#x27;, 120.32, &#x27;Canetas&#x27;, 22.30, &#x27;Livro&#x27;, 34.90
+
+for índice, valor in enumerate(tupla, 1):
+	print(f&#x27;{valor:.&lt;15}&#x27; if índice % 2 else f&#x27;R${valor:&gt;8.2f}\n&#x27;, end=&#x27;&#x27;)
+
+# Versão 3
+
+produtos_precos = (
+	&quot;Arroz&quot;, 20.50,
+	&quot;Feijao&quot;, 8.75,
+	&quot;Macarrao&quot;, 4.20,
+	&quot;Acucar&quot;, 3.40,
+	&quot;Cafe&quot;, 12.80,
+	&quot;Leite&quot;, 5.30,
+	&quot;Manteiga&quot;, 7.90,
+	&quot;Oleo&quot;, 6.45,
+	&quot;Sal&quot;, 1.85,
+	&quot;Farinha&quot;, 4.70
+)
+print(f&#x27;{&#x27;-&#x27; * 30}&#x27;)
+print(f&#x27;{&#x27;NOTA FISCAL&#x27;:^30}&#x27;)
+print(f&#x27;{&#x27;-&#x27; * 30}&#x27;)
+
+total = 0
+for índice, produto in enumerate(produtos_precos, 1):
+	if índice % 2:
+		print(f&#x27;{produto:&lt;15}&#x27;, end=&#x27;&#x27;)
+	else:
+		print(f&#x27;{f&#x27;R$ {produto:5.2f}&#x27;:&gt;15}&#x27;)
+		total += produto
+print(f&#x27;{&#x27;-&#x27; * 30}&#x27;)
+print(f&#x27;{&#x27;Total:&#x27;:&lt;15}{f&#x27;R$ {total:5.2f}&#x27;:&gt;15}&#x27;)
+
+# Estou compartilhando minhas anotações sobre os exercícios. Quem quiser, pode copiar e colar em um documento .py pois está tudo formatado e comentado.
+
+# Nesse exercício, vamos criar um programa que tenha uma tupla única com nomes de produtos e seus respectivos preços, na sequência. No final, o programa deve mostrar uma listagem de preços, organizando os dados em forma tabular.
+
+# Primeiro vamos criar uma tupla com os produtos e seus respectivos preços. Você pode adicionar quantos produtos quiser.
+produtos = (
+	&#x27;Notebook&#x27;, 3399.99,
+	&#x27;Playstation 5&#x27;, 4799.99,
+	&#x27;TV 52&#x27;, 2499.99,
+	&#x27;Cadeira&#x27;, 999.99,
+	&#x27;Mesa&#x27;, 699.99,
+	&#x27;Monitor&#x27;, 1199.99,
+	&#x27;Iphone 15&#x27;, 7999.99
+)
+
+
+# Vamos percorrer a tupla com um laço de repetição for e exibir os produtos e preços. Os produtos estão nos índices pares e os preços nos ímpares.
+
+# Imprime a nota fiscal
+print(&#x27;-&#x27;*45)
+print(f&#x27;{&quot;NOTA FISCAL&quot;: ^45}&#x27;)
+total = 0  # Inicializa a variável total para calcular o valor total da compra
+print(&#x27;-&#x27;*45)
+
+# Itera sobre os itens do carrinho e imprime a descrição e o preço
+for indice, item in enumerate(carrinho):
+    if indice % 2 == 0:  # Se o índice for par (posição da descrição)
+        print(f&#x27;{item:.&lt;30}&#x27;, end=&#x27;&#x27;)  # Imprime a descrição com ponto final e alinhado à esquerda
+    elif indice % 2 == 1:  # Se o índice for ímpar (posição do preço)
+        print(f&#x27; R${item:&gt;10.2f}&#x27;)  # Imprime o preço alinhado à direita com duas casas decimais
+        total += item  # Soma o preço ao total
+
+# Imprime a linha final da nota fiscal
+print(&#x27;-&#x27;*45)
+
+# Imprime o valor total da compra
+print(f&#x27;{&quot;Valor total&quot;: &lt;30} R${total: &gt;10.2f}&#x27;)
+            </py-repl>
+        </div>
+    </div>
+    
+    </main>
+</body>
+</html>

@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>54_desafio.py</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="https://pyscript.net/releases/2024.1.1/core.css">
+    <script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>
+    <style>
+        .sandbox-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
+        .sandbox-header h2 { font-size: 1.2rem; color: var(--primary); display: flex; align-items: center; gap: 0.5rem; }
+        .py-repl-container { border-radius: 8px; overflow: hidden; border: 1px solid var(--glass-border); background: #1e293b; }
+    </style>
+    
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --glass-bg: rgba(30, 41, 59, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --primary: #38bdf8;
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        header {
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            border-bottom: 1px solid var(--glass-border);
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .back-btn {
+            color: var(--text-main);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            background: rgba(255,255,255,0.05);
+            transition: 0.3s;
+        }
+        .back-btn:hover {
+            background: rgba(56, 189, 248, 0.2);
+            color: var(--primary);
+        }
+        .file-title {
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+        main {
+            flex: 1;
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        .container {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="../index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Voltar</a>
+        <div class="file-title">54_desafio.py</div>
+    </header>
+    <main>
+        
+    <div class="container">
+        <div class="sandbox-header">
+            <h2><i class="fa-brands fa-python"></i> Sandbox PyScript</h2>
+            <span>Edite e execute (Shift + Enter) ou no botão verde ▶</span>
+        </div>
+        <div class="py-repl-container">
+            <script type="py" id="main-script"></script>
+            <py-repl auto-generate="true">
+# Exercício Python #054 - Grupo da Maioridade - Aula 00 até 13 - Mundo 2
+# Crie um programa que leia o ano de nascimento de sete pessoas. No final, mostre quantas pessoas ainda não atingiram a maioridade e quantas já são maiores.
+
+from time import sleep  # Importa a função sleep para pausas temporizadas
+from random import randint  # Importa a função randint para gerar anos de nascimento aleatórios
+from datetime import date  # Importa a classe date para obter o ano atual
+
+ano_atual = date.today().year  # Obtém o ano atual
+
+maiores = menores = 0  # Inicializa os contadores de maiores e menores de idade
+
+for i in range(1, 8):  # Loop para iterar sobre 7 pessoas
+    print(f&#x27;Pessoa {i}, seu ano de nascimento é: &#x27;, end=&#x27;&#x27;)
+    sleep(1)  # Pausa por 1 segundo
+    ano_nascimento = randint(1950, 2023)  # Gera um ano de nascimento aleatório entre 1950 e 2023
+    print(ano_nascimento)
+    idade = ano_atual - ano_nascimento  # Calcula a idade
+    print(f&#x27;{idade} anos de idade&#x27;)
+    sleep(1)  # Pausa por 1 segundo
+    if idade &gt;= 21:
+        print(&#x27;\033[1;32mMaior de idade\033[m&#x27;)  # Exibe em verde se for maior de idade
+        maiores += 1
+    else:
+        print(&#x27;\033[1;31mMenor de idade\033[m&#x27;)  # Exibe em vermelho se for menor de idade
+        menores += 1
+    sleep(1)  # Pausa por 1 segundo
+
+print(f&#x27;Ao todo temos {menores} menores e {maiores} maiores de idade.&#x27;)
+
+
+# Versões extras
+
+from random import randint
+from datetime import date
+from time import sleep
+
+ano_atual = date.today().year
+maiores = menores = 0
+while True:
+	try:
+		ano_inicial = int(input(&#x27;Digite o início do intervalo: &#x27;))
+		print(f&#x27;{&#x27;-&#x27;*40}&#x27;)
+		print(f&#x27;{&#x27;PESSOA&#x27;:^10}{&#x27;ANO NASC&#x27;:^10}{&#x27;IDADE&#x27;:^10}{&#x27;MAIOR?&#x27;:^10}&#x27;)
+		print(f&#x27;{&#x27;-&#x27;*40}&#x27;)
+		for pessoa in range(1,8):
+			sleep(1)
+			ano_nascimento = randint(ano_inicial, ano_atual)
+			idade = ano_atual - ano_nascimento
+			maioridade = &#x27;SIM&#x27; if idade &gt;= 18 else &#x27;NÃO&#x27;
+
+			if idade &gt;= 18:
+				print(f&#x27;\033[1;32m{pessoa:^10}{ano_nascimento:^10}{idade:^10}{maioridade:^10}\033[1;32m&#x27;)
+				maiores += 1
+			else:
+				print(f&#x27;\033[1;31m{pessoa:^10}{ano_nascimento:^10}{idade:^10}{maioridade:^10}\033[m&#x27;)
+				menores += 1
+		print(f&#x27;{&#x27;-&#x27;*40}&#x27;)
+		print(f&#x27;Total de maiores de idade: {maiores}&#x27;)
+		print(f&#x27;Total de menores de idade: {menores}&#x27;)
+		print(f&#x27;{&#x27;-&#x27;*40}&#x27;)
+
+		break
+	except ValueError:
+		print(&#x27;ERRO&#x27;)
+
+	&quot;&quot;&quot;from datetime import date
+ano_atual = date.today().year
+ano_nascimento = [int(input(f&#x27;Ano de nascimento da {i}ª pessoa: &#x27;)) for i, v in enumerate(range(7), 1)]
+maiores = [i for i in ano_nascimento if ano_atual - i &gt; 17]
+print(f&#x27;Ao todos temos {len(maiores)} maiores de idade e {len(ano_nascimento) - len(maiores)} menores de idade!&#x27;)&quot;&quot;&quot;
+
+
+# Estou compartilhando minhas anotações sobre os exercícios. Quem quiser, pode copiar e colar em um documento .py pois está tudo formatado e comentado.
+
+# Nesse exercício, vamos ler o ano de nascimento de sete pessoas e mostrar quantas são maiores de idade e quantas são menores de idade.
+# Para definir a idade precisamos saber o ano atual. Vamos usar a função date() da classe date para obter o ano atual.
+from datetime import date # Importa a classe date para obter o ano atual
+from time import sleep as pausa # Importa a função sleep para pausas temporizadas e renomeia para pausa
+
+ano_atual = date.today().year  # Obtém o ano atual
+
+# Inicializamos os contadores de maiores e menores de idade com zero.
+maiores = menores = 0
+
+# Vamos usar um laço de repetição for para iterar sobre as sete pessoas.
+for i in range(1, 8):  # Loop para iterar sobre 7 pessoas
+    print(f&#x27;Pessoa {i}, seu ano de nascimento é: &#x27;, end=&#x27;&#x27;)  # Mostra o nome da pessoa e solicita o ano de nascimento
+    pausa(1)  # Pausa por 1 segundo
+    
+    ano_nascimento = int(input())  # Lê o ano de nascimento da pessoa
+    idade = ano_atual - ano_nascimento  # Calcula a idade
+    
+    print(f&#x27;Você tem: {idade} anos de idade&#x27;)  # Mostra a idade da pessoa
+    pausa(1)  # Pausa por 1 segundo
+    
+    # Verifica se a pessoa é maior ou menor de idade e incrementa o contador correspondente.
+    if idade &gt;= 18:
+        print(&#x27;\033[1;32mMaior de idade\033[m&#x27;)
+        maiores += 1 
+    else:
+        print(&#x27;\033[1;31mMenor de idade\033[m&#x27;)
+        menores += 1
+        
+pausa(1)  # Pausa por 1 segundo
+print(f&#x27;Ao todo temos {menores} menores e {maiores} maiores de idade.&#x27;)  # Mostra o
+            </py-repl>
+        </div>
+    </div>
+    
+    </main>
+</body>
+</html>

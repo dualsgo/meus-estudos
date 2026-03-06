@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>90_desafio.py</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="https://pyscript.net/releases/2024.1.1/core.css">
+    <script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>
+    <style>
+        .sandbox-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
+        .sandbox-header h2 { font-size: 1.2rem; color: var(--primary); display: flex; align-items: center; gap: 0.5rem; }
+        .py-repl-container { border-radius: 8px; overflow: hidden; border: 1px solid var(--glass-border); background: #1e293b; }
+    </style>
+    
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --glass-bg: rgba(30, 41, 59, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --primary: #38bdf8;
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        header {
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            border-bottom: 1px solid var(--glass-border);
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .back-btn {
+            color: var(--text-main);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            background: rgba(255,255,255,0.05);
+            transition: 0.3s;
+        }
+        .back-btn:hover {
+            background: rgba(56, 189, 248, 0.2);
+            color: var(--primary);
+        }
+        .file-title {
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+        main {
+            flex: 1;
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        .container {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="../index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Voltar</a>
+        <div class="file-title">90_desafio.py</div>
+    </header>
+    <main>
+        
+    <div class="container">
+        <div class="sandbox-header">
+            <h2><i class="fa-brands fa-python"></i> Sandbox PyScript</h2>
+            <span>Edite e execute (Shift + Enter) ou no botão verde ▶</span>
+        </div>
+        <div class="py-repl-container">
+            <script type="py" id="main-script"></script>
+            <py-repl auto-generate="true">
+# Exercício Python #090 - Dicionário em Python - Aula 00 até 19 - Mundo 3
+# Faça um programa que leia nome e média de um aluno, guardando também a situação em um dicionário. No final, mostre o conteúdo da estrutura na tela.
+
+
+def obter_nota(mensagem):
+	while True:
+		try:
+			média = float(input(mensagem))
+			if 0 &lt;= média &lt;= 10:
+				return média
+			else:
+				print(&#x27;Entre 0 e 10&#x27;)
+		except ValueError:
+			print(&#x27;Tente novamente&#x27;)
+
+
+def obter_nome(mensagem):
+	while True:
+		entrada = input(mensagem).strip().title()
+		condição = entrada.replace(&#x27; &#x27;, &#x27;&#x27;).isalpha()
+
+		while not condição:
+			print(&#x27;Somente caracteres alfabéticos&#x27;)
+			break
+
+		if condição:
+			return entrada
+
+
+boletim = []
+
+while True:
+	aluno = dict(nome=obter_nome(&#x27;Digite o nome do aluno: &#x27;), media=obter_nota(&#x27;Digite a nota do aluno: &#x27;))
+
+	aluno[&#x27;situação&#x27;] = &#x27;\033[1;31mREPROVADO\033[m&#x27; if aluno[&#x27;media&#x27;] &lt; 5 else &quot;\033[1;33mEM RECUPERAÇÃO\033[m&quot; if aluno[&#x27;media&#x27;] &lt; 7 else &#x27;\033[1;32mAPROVADO\033[m&#x27;
+
+	boletim.append(aluno.copy())
+
+	continuar = str(input(&#x27;Continuar? S/N &#x27;)).strip().upper()
+	if continuar not in &#x27;SN&#x27;:
+		continuar = str(input(&#x27;Continuar? S/N &#x27;)).strip().upper()
+	else:
+		if continuar == &#x27;S&#x27;:
+			print(&#x27;Prosseguindo...&#x27;)
+		elif continuar == &#x27;N&#x27;:
+			print(&#x27;Encerrando...&#x27;)
+			break
+
+for i, aluno in enumerate(boletim):
+	print(f&quot;Aluno {aluno[&#x27;nome&#x27;]} teve a média {aluno[&#x27;media&#x27;]} e está {aluno[&#x27;situação&#x27;]}.&quot;)
+
+# Estou compartilhando minhas anotações sobre os exercícios. Quem quiser, pode copiar e colar em um documento .py pois está tudo formatado e comentado.
+
+# Nesse exercício, o professor pede para criar um programa que leia o nome e a média de um aluno, guardando também a situação em um dicionário. No final, mostrar o conteúdo da estrutura na tela.
+
+# Um dicionário é uma estrutura de dados que permite armazenar um conjunto de valores, cada um identificado por uma chave. Para criar um dicionário, usamos chaves {} e separamos os pares chave-valor por dois pontos :. Por exemplo, aluno = {&#x27;nome&#x27;: &#x27;Pedro&#x27;, &#x27;média&#x27;: 9.5, &#x27;situação&#x27;: &#x27;Aprovado&#x27;}.
+
+# Vamos criar um dicionário chamado aluno e dentro dele vamos armazenar o nome, a média e a situação do aluno. Para isso, vamos criar uma lista chamada boletim para armazenar todos os alunos.
+aluno = dict()
+boletim = []
+
+# Vamos criar um laço de repetição para adicionar vários alunos ao boletim. Dentro do laço, vamos pedir o nome e a média do aluno.
+
+while True:
+    
+    # Vamos adicionar os valores para as chaves nome e média do dicionário aluno.
+	aluno[&#x27;nome&#x27;] = str(input(&#x27;Nome: &#x27;)).strip().title()
+	aluno[&#x27;média&#x27;] = float(input(f&#x27;Média de {aluno[&quot;nome&quot;]}: &#x27;))
+
+	# Vamos adicionar a situação do aluno de acordo com a média. Se a média for menor que 5, o aluno está reprovado. Se a média for maior ou igual a 5 e menor que 7, o aluno está de recuperação. Se a média for maior ou igual a 7, o aluno está aprovado.
+	if aluno[&#x27;média&#x27;] &lt; 5:
+		aluno[&#x27;situação&#x27;] = &#x27;Reprovado&#x27;
+	elif 5 &lt;= aluno[&#x27;média&#x27;] &lt; 7:
+		aluno[&#x27;situação&#x27;] = &#x27;Recuperação&#x27;
+	else:
+		aluno[&#x27;situação&#x27;] = &#x27;Aprovado&#x27;
+
+	# Por fim, vamos adicionar o dicionário aluno à lista boletim. Para isso, vamos usar o método copy() para criar uma cópia do dicionário aluno.
+	boletim.append(aluno.copy())
+
+	# Verificamos se o usuário quer continuar adicionando alunos ao boletim. Se a resposta for &#x27;N&#x27;, o laço de repetição é interrompido.
+	continuar = str(input(&#x27;Quer continuar? [S/N] &#x27;)).strip().upper()
+	if continuar in &#x27;N&#x27;:
+		break
+
+# No final, vamos mostrar o conteúdo do boletim na tela.
+for aluno in boletim:
+	print(f&#x27;O aluno {aluno[&quot;nome&quot;]} teve a média {aluno[&quot;média&quot;]} e está {aluno[&quot;situação&quot;]}.&#x27;)
+
+            </py-repl>
+        </div>
+    </div>
+    
+    </main>
+</body>
+</html>

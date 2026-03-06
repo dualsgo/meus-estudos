@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>15.3_nanipulacao_respostas.py</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="https://pyscript.net/releases/2024.1.1/core.css">
+    <script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>
+    <style>
+        .sandbox-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
+        .sandbox-header h2 { font-size: 1.2rem; color: var(--primary); display: flex; align-items: center; gap: 0.5rem; }
+        .py-repl-container { border-radius: 8px; overflow: hidden; border: 1px solid var(--glass-border); background: #1e293b; }
+    </style>
+    
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --glass-bg: rgba(30, 41, 59, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --primary: #38bdf8;
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        header {
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            border-bottom: 1px solid var(--glass-border);
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .back-btn {
+            color: var(--text-main);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            background: rgba(255,255,255,0.05);
+            transition: 0.3s;
+        }
+        .back-btn:hover {
+            background: rgba(56, 189, 248, 0.2);
+            color: var(--primary);
+        }
+        .file-title {
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+        main {
+            flex: 1;
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        .container {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="../index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Voltar</a>
+        <div class="file-title">15.3_nanipulacao_respostas.py</div>
+    </header>
+    <main>
+        
+    <div class="container">
+        <div class="sandbox-header">
+            <h2><i class="fa-brands fa-python"></i> Sandbox PyScript</h2>
+            <span>Edite e execute (Shift + Enter) ou no botão verde ▶</span>
+        </div>
+        <div class="py-repl-container">
+            <script type="py" id="main-script"></script>
+            <py-repl auto-generate="true">
+# MIMO - 15 - Trabalhando com APIS privadas
+
+# 15.3 - Manipulação de respostas
+
+# Fazer a chamada da API é apenas a primeira parte; você também precisa lidar adequadamente com a resposta, verificar o status e extrair os dados de que precisa.
+
+# Ao fazer uma chamada de API, recebemos de volta um objeto de resposta que contém o código de status, os cabeçalhos e o conteúdo real que recebemos.
+
+# Se imprimirmos o objeto de resposta, veremos o código de status. Cada objeto de resposta inclui um código de status indicando o resultado da solicitação.
+
+# Nós acessamos o código de status usando response.status_code.
+
+import requests
+
+response = requests.get(&quot;https://pokedex.mimo.dev/api/pokemon/pikachu&quot;)
+print(response.status_code)
+
+# Um código de status 2xx indica uma solicitação bem-sucedida. Códigos específicos como 200 OK significam que a solicitação foi processada corretamente, enquanto 201 Created indica que um novo recurso foi criado com sucesso.
+
+# Um código de status 4xx indica um erro do cliente, o que significa que a solicitação foi inválida ou não pode ser atendida. Exemplos incluem 400 Bad Request, 401 Unauthorized e 404 Not Found.
+
+# Vamos explorar como trabalhar com dados JSON em respostas de API, um formato comum para troca de informações entre clientes e servidores. Já vimos o objeto de resposta; precisamos do mesmo para analisar e trabalhar com dados JSON retornados da API.
+
+# Podemos descompactar os dados JSON desta resposta usando a função json. Ao trabalhar com uma API, muitas vezes é útil imprimir todos os dados da resposta para ver se recebemos o que esperamos.
+
+import requests
+
+response = requests.get(&quot;https://pokedex.mimo.dev/api/pokemon/pikachu&quot;)
+data = response.json()
+print(data)
+
+# Em Python, os dados JSON são analisados em uma estrutura semelhante a um dicionário, permitindo que você acesse os valores usando chaves. Definimos a chave como uma string dentro de colchetes para acessar o valor correspondente no dicionário.
+
+response = requests.get(&quot;https://pokedex.mimo.dev/api/pokemon/pikachu&quot;)
+data = response.json()
+print(data[&quot;name&quot;])
+
+# Desde que o dicionário tenha a chave que estamos usando, podemos acessar quantos campos quisermos.
+
+# Ao trabalhar com dados JSON, às vezes o nível superior é um array, o que significa que toda a resposta é uma lista de objetos em vez de um único objeto.
+
+response = requests.get(&quot;https://pokedex.mimo.dev/api/pokemon&quot;)
+data = response.json()
+print(data)
+
+# Depois de desempacotar o array, você pode percorrer seus elementos ou acessar diretamente um item pelo seu índice.
+
+response = requests.get(&quot;https://pokedex.mimo.dev/api/pokemon&quot;)
+data = response.json()
+for pokemon in data:
+  print(f&quot;Name: {pokemon[&#x27;name&#x27;]}, ID: {pokemon[&#x27;id&#x27;]}&quot;) 
+  
+# Você pode acessar diretamente os elementos usando seu índice se estiver trabalhando com um array como a estrutura de nível superior.
+
+response = requests.get(&quot;https://pokedex.mimo.dev/api/pokemon&quot;)
+data = response.json()
+print(data[0])
+            </py-repl>
+        </div>
+    </div>
+    
+    </main>
+</body>
+</html>

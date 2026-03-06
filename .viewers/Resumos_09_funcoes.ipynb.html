@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>09_funcoes.ipynb</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/monokai-sublime.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/python.min.js"></script>
+    
+    <style>
+        .cell { margin-bottom: 1.5rem; }
+        .cell-markdown { font-size: 1.05rem; line-height: 1.6; color: #cbd5e1; }
+        .cell-markdown h1, .cell-markdown h2, .cell-markdown h3 { color: #f1f5f9; margin-top: 1rem; margin-bottom: 0.5rem; }
+        .cell-markdown code { background: rgba(0,0,0,0.3); padding: 0.2rem 0.4rem; border-radius: 4px; color: #eab308; }
+        .cell-markdown pre { background: rgba(0,0,0,0.3); padding: 1rem; border-radius: 8px; overflow-x: auto; border: 1px solid var(--glass-border); margin: 1rem 0; }
+        .cell-code { background: #23241f; border-radius: 8px; padding: 1rem; overflow-x: auto; position: relative; border: 1px solid #333; }
+        .cell-output { background: #000; color: #a3e635; padding: 1rem; border-radius: 8px; margin-top: 0.5rem; font-family: monospace; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;}
+        .prompt { position: absolute; top: 0.5rem; right: 0.5rem; color: #64748b; font-size: 0.8rem; user-select: none; }
+    </style>
+    
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --glass-bg: rgba(30, 41, 59, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --primary: #38bdf8;
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        header {
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            border-bottom: 1px solid var(--glass-border);
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .back-btn {
+            color: var(--text-main);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            background: rgba(255,255,255,0.05);
+            transition: 0.3s;
+        }
+        .back-btn:hover {
+            background: rgba(56, 189, 248, 0.2);
+            color: var(--primary);
+        }
+        .file-title {
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+        main {
+            flex: 1;
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        .container {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="../index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Voltar</a>
+        <div class="file-title">09_funcoes.ipynb</div>
+    </header>
+    <main>
+        <div class="container">
+            <div class="cell cell-markdown" id="md-0"></div>
+            <script>
+                (function(){
+                    const b64 = "IyAqRnVuw6fDtWVzKgoKLS0tCgpQcm9ncmFtYXMgZnJlcXVlbnRlbWVudGUgcHJlY2lzYW0gZXhlY3V0YXIgdGFyZWZhcyByZXBldGl0aXZhcy4gRW0gdmV6IGRlIHJlZXNjcmV2ZXIgbyBtZXNtbyBjw7NkaWdvIHbDoXJpYXMgdmV6ZXMsIHBvZGVtb3MgdXNhciBmdW7Dp8O1ZXMgcGFyYSBhZ3J1cGFyIGPDs2RpZ28gcmVsYWNpb25hZG8gZSBleGVjdXRhciBhIHRhcmVmYSBlbSB1bSDDum5pY28gbHVnYXIuCgoqYGBPIHF1ZSBzw6NvIGZ1bsOnw7Vlcz9gYCoKCkVtIHByb2dyYW1hw6fDo28sIHVtYSBmdW7Dp8OjbyDDqSB1bWEgcm90aW5hIHF1ZSBjb250w6ltIGF0aXZpZGFkZXMgb3UgYcOnw7VlcyBxdWUgc8OjbyBleGVjdXRhZGFzIHJlZ3VsYXJtZW50ZSwgZW5jYXBzdWxhZGFzIGVtIHVtYSBwYXJ0ZSBzZXBhcmFkYSBkbyBjw7NkaWdvLiBBcyBmdW7Dp8O1ZXMgcG9kZW0gcmVhbGl6YXIgdsOhcmlhcyB0YXJlZmFzLCBjb21vOgoKLSBDYXVzYXIgYWxndW0gZWZlaXRvLCBjb21vIGV4aWJpciB1bSB0ZXh0byBuYSB0ZWxhLgotIEF2YWxpYXIgdW0gdmFsb3IsIGNvbW8gY2FsY3VsYXIgdW1hIHNvbWEuCi0gUmV0b3JuYXIgdW0gdmFsb3IsIGNvbW8gbyByZXN1bHRhZG8gZGUgdW1hIG9wZXJhw6fDo28uCgoqVGlwb3MgZGUgZnVuw6fDtWVzOioKCjEuICpGdW7Dp8O1ZXMgaW50ZXJuYXMgZG8gUHl0aG9uOiogU8OjbyBmdW7Dp8O1ZXMgcXVlIGZhemVtIHBhcnRlIGRhIGxpbmd1YWdlbSBQeXRob24gZSBuw6NvIHJlcXVlcmVtIGluc3RhbGHDp8OjbyBhZGljaW9uYWwgcGFyYSBzZXJlbSB1dGlsaXphZGFzLiBVbSBleGVtcGxvIMOpIGEgZnVuw6fDo28gYHByaW50KClgLCBxdWUgaW1wcmltZSBuYSB0ZWxhLgoKMi4gKkZ1bsOnw7VlcyBkZSBiaWJsaW90ZWNhcyBleHRlcm5hczoqIFPDo28gZnVuw6fDtWVzIGRpc3BvbsOtdmVpcyBlbSBiaWJsaW90ZWNhcyBleHRlcm5hcyBxdWUgcHJlY2lzYW0gc2VyIGluc3RhbGFkYXMgYW50ZXMgZGUgc2VyZW0gdXRpbGl6YWRhcy4gVW0gZXhlbXBsbyDDqSBhIGZ1bsOnw6NvIGBzcXJ0KClgIGRhIGJpYmxpb3RlY2EgYG1hdGhgLCBxdWUgY2FsY3VsYSBhIHJhaXogcXVhZHJhZGEgZGUgdW0gbsO6bWVyby4KCjMuICpGdW7Dp8O1ZXMgZGVmaW5pZGFzIHBlbG8gdXN1w6FyaW86KiBTw6NvIGZ1bsOnw7VlcyBjcmlhZGFzIHBlbG8gcHLDs3ByaW8gcHJvZ3JhbWFkb3IgcGFyYSByZWFsaXphciB0YXJlZmFzIGVzcGVjw61maWNhcy4gRWxhcyBzw6NvIGRlZmluaWRhcyB1c2FuZG8gYSBwYWxhdnJhLWNoYXZlIGBkZWZgIHNlZ3VpZGEgcGVsbyBub21lIGRhIGZ1bsOnw6NvIGUgc3VhIHNpbnRheGUuIFBvciBleGVtcGxvLCBhIGZ1bsOnw6NvIGBzb21hKClgIHBvZGUgc2VyIGRlZmluaWRhIHBhcmEgY2FsY3VsYXIgYSBzb21hIGRlIGRvaXMgbsO6bWVyb3MuCgpBbyB1c2FyIGZ1bsOnw7VlcywgcG9kZW1vcyB0b3JuYXIgbm9zc28gY8OzZGlnbyBtYWlzIG9yZ2FuaXphZG8sIGxlZ8OtdmVsIGUgZsOhY2lsIGRlIG1hbnRlci4gRWxhcyBhanVkYW0gYSBtb2R1bGFyaXphciBvIGPDs2RpZ28sIHBlcm1pdGluZG8gYSByZXV0aWxpemHDp8OjbyBkZSBibG9jb3MgZGUgY8OzZGlnbyBlbSBkaWZlcmVudGVzIHBhcnRlcyBkbyBwcm9ncmFtYS4=";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-0').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-markdown" id="md-1"></div>
+            <script>
+                (function(){
+                    const b64 = "IyMgKkRlZmluaW5kbyB1bWEgZnVuw6fDo28qCgotLS0KClBhcmEgZGVjbGFyYXIgdW1hIGZ1bsOnw6NvIGVtIFB5dGhvbiwgdXRpbGl6YW1vcyBhIHNlZ3VpbnRlIHNpbnRheGU6CgotIEEgcGFsYXZyYS1jaGF2ZSBgZGVmYCAocXVlIHNpZ25pZmljYSAiZGVmaW5pciIsIGluZGljYW5kbyBxdWUgZXN0YW1vcyBkZWZpbmluZG8gdW1hIGZ1bsOnw6NvKS4KLSBPIG5vbWUgZGEgZnVuw6fDo28sIHNlZ3VpbmRvIGFzIG1lc21hcyByZWdyYXMgZGUgbm9tZW5jbGF0dXJhIHF1ZSBhcyB2YXJpw6F2ZWlzLgotIEFiZXJ0dXJhIGUgZmVjaGFtZW50byBkZSBwYXLDqm50ZXNlcy4gRGVudHJvIGRlc3RlcyBwYXLDqm50ZXNlcywgcG9kZW0gb3UgbsOjbyBoYXZlciBwYXLDom1ldHJvcy4KLSBQYXJhIGluZGljYXIgbyBpbsOtY2lvIGRvIGJsb2NvIGRlIGPDs2RpZ28gZGEgZnVuw6fDo28sIHVzYW1vcyBkb2lzIHBvbnRvcyBgOmAuCi0gTyBibG9jbyBkZSBjw7NkaWdvIGRhIGZ1bsOnw6NvIMOpIGVudMOjbyBpbmRlbnRhZG8uIEEgaW5kZW50YcOnw6NvIMOpIHVtIGVzcGHDp28gZW0gYnJhbmNvIG5vIGluw61jaW8gZGUgdW1hIGxpbmhhIGRlIGPDs2RpZ28uIEVtIFB5dGhvbiwgYSBpbmRlbnRhw6fDo28gw6kgZnVuZGFtZW50YWwsIHBvaXMgaW5kaWNhIHF1ZSBvIGPDs2RpZ28gaW5kZW50YWRvIGZheiBwYXJ0ZSBkbyBibG9jbyBkZSBjw7NkaWdvIGFudGVyaW9yLiBBcyByZWdyYXMgZGUgaW5kZW50YcOnw6NvIHPDo28gYXMgbWVzbWFzIHBhcmEgaW5zdHJ1w6fDtWVzIGBpZmAsIGBmb3JgLCBgd2hpbGVgLCBldGMuIFZvY8OqIHBvZGUgdXNhciBlc3Bhw6dvcyBvdSB0YWJ1bGHDp8O1ZXMsIG1hcyBuw6NvIGRldmUgbWlzdHVyYXIgb3MgZG9pcy4=";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-1').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [5]</div>
+                <pre><code class="language-python">def funcao():
+    print(&#x27;Código que será executado.&#x27;)
+
+
+# Para executar o código, precisamos chamar a função. Fazemos isso codificando seu nome seguido de parênteses.
+funcao()
+
+# Nossa função de exemplo é simples. Ela não requer argumentos para ser executada e não retorna nenhum valor e sim um efeito (Não podemos fazer nada com o valor retornado, pois não há valor retornado. A função apenas imprime uma mensagem na tela).
+
+# Observação: Ao dizer que nossa função não retorna nenhum valor, isso não está totalmente correto. Na verdade, todas as funções em Python retornam um valor. Se não especificarmos um valor de retorno, a função retornará None. None é um valor especial em Python que representa a ausência de um valor. Se uma função não tiver uma instrução return, ela retornará None.
+
+# Vamos alterar um pouco a função. Agora ela irá receber um parâmetro e imprimir o valor desse parâmetro.
+
+def funcao_com_parametro(parametro):
+    print(f&#x27;O valor do parâmetro é: {parametro}&#x27;)
+
+
+# Agora, ao chamar a função, precisamos passar um valor para o parâmetro.
+funcao_com_parametro(&#x27;Olá, mundo!&#x27;)</code></pre>
+            </div>
+            <div class="cell-output">Código que será executado.
+None
+</div>
+            <div class="cell cell-markdown" id="md-3"></div>
+            <script>
+                (function(){
+                    const b64 = "T2JzZXJ2YcOnw7VlczoKCkFvIGVzY3JldmVyIHN1YXMgcHLDs3ByaWFzIGZ1bsOnw7VlcywgZGV2ZW1vcyBkYXIgYSBlbGFzIG5vbWVzIHNpZ25pZmljYXRpdm9zIHF1ZSBkZWl4YW0gY2xhcm8gbyBxdWUgZWxhcyBmYXplbS4gUG9yIGV4ZW1wbG8sIHNlIHZvY8OqIGVzY3JldmVyIHVtYSBmdW7Dp8OjbyBxdWUgZXhpYmUgdW0gdGV4dG8gbmEgdGVsYSwgdm9jw6ogcG9kZSBjaGFtw6EtbGEgZGUgZXhpYmVfdGV4dG8oKS4KCk8gcHJvZ3JhbWEgcHJpbmNpcGFsIGRldmUgZXN0YXIgYSBkdWFzIGxpbmhhcyBkZSBkaXN0w6JuY2lhIGRhIGZ1bsOnw6NvLg==";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-3').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-markdown" id="md-4"></div>
+            <script>
+                (function(){
+                    const b64 = "IyMgKlBhcsOibWV0cm9zIGUgQXJndW1lbnRvcyoKCi0tLQoKRW0gbXVpdGFzIHNpdHVhw6fDtWVzLCBhcyBmdW7Dp8O1ZXMgcHJlY2lzYW0gZGUgaW5mb3JtYcOnw7VlcyBlc3BlY8OtZmljYXMgcGFyYSBleGVjdXRhciBzdWFzIHRhcmVmYXMgZGUgbWFuZWlyYSBhZGVxdWFkYS4gQSBjYXBhY2lkYWRlIGRlIHJlY2ViZXIgZGFkb3MgZG8gaW52b2NhZG9yIHRvcm5hIHVtYSBmdW7Dp8OjbyBtYWlzIHBvZGVyb3NhLCBmbGV4w612ZWwgZSBhZGFwdMOhdmVsIMOgcyBjb25kacOnw7VlcyB2YXJpw6F2ZWlzLgoKKlBhcsOibWV0cm9zIGVtIEZ1bsOnw7VlczoqCgpPcyBwYXLDom1ldHJvcyBzw6NvIG9zIG1lY2FuaXNtb3MgcGVsb3MgcXVhaXMgYXMgZnVuw6fDtWVzIHJlY2ViZW0gZGFkb3MgcGFyYSBzZXJlbSBwcm9jZXNzYWRvcy4gRW0gUHl0aG9uLCB1bWEgZnVuw6fDo28gcG9kZSB0ZXIgemVybyBvdSBtYWlzIHBhcsOibWV0cm9zLCBkZXBlbmRlbmRvIGRhcyBuZWNlc3NpZGFkZXMgZXNwZWPDrWZpY2FzLiBFc3NlcyBwYXLDom1ldHJvcyBzw6NvIGVzcGVjaWZpY2Fkb3MgZW50cmUgcGFyw6pudGVzZXMgbmEgZGVjbGFyYcOnw6NvIGRhIGZ1bsOnw6NvIGUgYXR1YW0gY29tbyB2YXJpw6F2ZWlzIGRlbnRybyBkbyBlc2NvcG8gZGEgZnVuw6fDo28uCgoqRXhlbXBsbzoqCmBgYHB5dGhvbgpkZWYgc2F1ZGFjYW8obm9tZSk6CiAgICBwcmludCgiT2zDoSwiLCBub21lKQoKc2F1ZGFjYW8oIk1hcmlhIikKYGBgCgpOZXN0ZSBleGVtcGxvLCBgbm9tZWAgw6kgdW0gcGFyw6JtZXRybyBkYSBmdW7Dp8OjbyBgc2F1ZGFjYW8oKWAuIFF1YW5kbyBhIGZ1bsOnw6NvIMOpIGNoYW1hZGEgY29tIG8gYXJndW1lbnRvIGAiTWFyaWEiYCwgbyB2YWxvciBgIk1hcmlhImAgw6kgYXRyaWJ1w61kbyBhbyBwYXLDom1ldHJvIGBub21lYC4KCipBcmd1bWVudG9zIGVtIEZ1bsOnw7VlczoqCgpPcyBhcmd1bWVudG9zIHPDo28gb3MgdmFsb3JlcyBmb3JuZWNpZG9zIHF1YW5kbyB1bWEgZnVuw6fDo28gw6kgY2hhbWFkYS4gRWxlcyBjb3JyZXNwb25kZW0gYW9zIHBhcsOibWV0cm9zIGVzcGVjaWZpY2Fkb3MgbmEgZGVjbGFyYcOnw6NvIGRhIGZ1bsOnw6NvIGUgc8OjbyBwYXNzYWRvcyBlbnRyZSBwYXLDqm50ZXNlcyBkdXJhbnRlIGEgY2hhbWFkYSBkYSBmdW7Dp8Ojby4KCipFeGVtcGxvOioKYGBgcHl0aG9uCmRlZiBzb21hKGEsIGIpOgogICAgcmV0dXJuIGEgKyBiCgpyZXN1bHRhZG8gPSBzb21hKDMsIDUpCmBgYAoKTmVzdGUgZXhlbXBsbywgYDNgIGUgYDVgIHPDo28gYXJndW1lbnRvcyBwYXNzYWRvcyBwYXJhIG9zIHBhcsOibWV0cm9zIGBhYCBlIGBiYCwgcmVzcGVjdGl2YW1lbnRlLCBkYSBmdW7Dp8OjbyBgc29tYSgpYC4gTyByZXN1bHRhZG8gZGEgZnVuw6fDo28gw6kgYXRyaWJ1w61kbyDDoCB2YXJpw6F2ZWwgYHJlc3VsdGFkb2AuCgrDiSBpbXBvcnRhbnRlIG5vdGFyIHF1ZSBvcyBwYXLDqm50ZXNlcyBzw6NvIG5lY2Vzc8OhcmlvcyBtZXNtbyBxdWUgbsOjbyBoYWphIGFyZ3VtZW50b3MuIFBvciBleGVtcGxvLCBgcHJpbnQoKWAgw6kgdW1hIGZ1bsOnw6NvIHF1ZSBwb2RlIHNlciBjaGFtYWRhIHNlbSBhcmd1bWVudG9zIHBhcmEgaW1wcmltaXIgdW1hIGxpbmhhIGVtIGJyYW5jby4KCk9zIHBhcsOibWV0cm9zIGV4aXN0ZW0gYXBlbmFzIG5vIGVzY29wbyBkYSBmdW7Dp8OjbyBlbSBxdWUgc8OjbyBkZWZpbmlkb3MgZSBzw6NvIGF0cmlidcOtZG9zIHZhbG9yZXMgcXVhbmRvIGEgZnVuw6fDo28gw6kgY2hhbWFkYSwgZXNwZWNpZmljYW5kbyBvcyBhcmd1bWVudG9zIGNvcnJlc3BvbmRlbnRlcy4=";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-4').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [2]</div>
+                <pre><code class="language-python"># Nossa função de exemplo tem a tarefa de exibir uma mensagem na tela, utilizando o nome fornecido pelo usuário.
+
+# Para passar o valor para uma função, primeiro adicionamos uma variável chamada parâmetro entre os parênteses.
+def ola_nome(nome):
+    print(f&#x27;Olá, {nome}&#x27;)
+
+# O parâmetro atua como uma variável que armazena um valor.
+# Ainda não tem um valor interno. O valor é passado para a função quando a chamamos.
+
+# Para passar um valor para a variável, colocamos entre parênteses quando chamamos a função
+ola_nome(&#x27;Douglas&#x27;)
+
+# O valor passado para a função é chamado de argumento.
+
+# Altere o valor do argumento para ver como ele afeta a saída da função.
+ola_nome(&#x27;João&#x27;)</code></pre>
+            </div>
+            <div class="cell-output">Olá, Douglas
+Olá, João
+</div>
+            <div class="cell cell-markdown" id="md-6"></div>
+            <script>
+                (function(){
+                    const b64 = "TyDDum5pY28gYXJndW1lbnRvIGVudHJlZ3VlIMOgIGZ1bsOnw6NvIHByaW50KCkgbmVzdGUgZXhlbXBsbyDDqSB1bWEgc3RyaW5nOgoKTsOjbyBzZSBlc3F1ZcOnYToKLSBwYXLDom1ldHJvcyB2aXZlbSBlbSBmdW7Dp8O1ZXMgaW50ZXJuYXMgKGVzdGUgw6kgbyBhbWJpZW50ZSBuYXR1cmFsKQotIGFyZ3VtZW50b3MgZXhpc3RlbSBmb3JhIGRhcyBmdW7Dp8O1ZXMgZSBzw6NvIHBvcnRhZG9yZXMgZGUgdmFsb3JlcyBwYXNzYWRvcyBwYXJhIG9zIHBhcsOibWV0cm9zIGNvcnJlc3BvbmRlbnRlcy4=";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-6').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-markdown" id="md-7"></div>
+            <script>
+                (function(){
+                    const b64 = "IyMgKkNoYW1hZGEgZGUgRnVuw6fDo28qCgotLS0KCkVtIFB5dGhvbiwgYXMgZGVmaW5pw6fDtWVzIGRlIGZ1bsOnw6NvIHPDo28gbGlkYXMgZSBhcm1hemVuYWRhcyBuYSBtZW3Ds3JpYSwgbWFzIG7Do28gc8OjbyBleGVjdXRhZGFzIGF1dG9tYXRpY2FtZW50ZS4gw4kgbmVjZXNzw6FyaW8gaW5zdHJ1aXIgbyBQeXRob24gYSBleGVjdXRhciB1bWEgZnVuw6fDo28sIG8gcXVlIMOpIGNvbmhlY2lkbyBjb21vIGludm9jYcOnw6NvIGRhIGZ1bsOnw6NvLgoKKkNvbW8gaW52b2NhciB1bWEgZnVuw6fDo286KgoKQSBpbnZvY2HDp8OjbyBkZSB1bWEgZnVuw6fDo28gw6kgZmVpdGEgdXRpbGl6YW5kbyBvIG5vbWUgZGEgZnVuw6fDo28sIHNlZ3VpZG8gcGVsb3MgcGFyw6pudGVzZXMgY29udGVuZG8gb3MgYXJndW1lbnRvcywgc2UgaG91dmVyLgoKUG9yIGV4ZW1wbG86CmBgYHB5dGhvbgpzYXVkYWNhbygiTWFyaWEiKQpgYGAKCk5lc3RlIGNhc28sIGBzYXVkYWNhb2Agw6kgbyBub21lIGRhIGZ1bsOnw6NvIGUgYCJNYXJpYSJgIMOpIG8gYXJndW1lbnRvIHBhc3NhZG8gcGFyYSBvIHBhcsOibWV0cm8gYG5vbWVgLgoKKk8gcXVlIGFjb250ZWNlIGR1cmFudGUgYSBpbnZvY2HDp8OjbzoqCgpRdWFuZG8gdW1hIGZ1bsOnw6NvIMOpIGludm9jYWRhLCBvIFB5dGhvbjoKCjEuIFZlcmlmaWNhIHNlIG8gbm9tZSBlc3BlY2lmaWNhZG8gY29ycmVzcG9uZGUgYSB1bWEgZnVuw6fDo28gZGVmaW5pZGEgbm8gY8OzZGlnby4gU2UgbsOjbyBlbmNvbnRyYXIgYSBmdW7Dp8OjbywgbyBQeXRob24gcmV0b3JuYXLDoSB1bSBlcnJvLgoKMi4gVmVyaWZpY2Egc2UgbyBuw7ptZXJvIGRlIGFyZ3VtZW50b3MgcGFzc2Fkb3MgY29ycmVzcG9uZGUgYW9zIHJlcXVpc2l0b3MgZGEgZnVuw6fDo28uIFNlIG8gbsO6bWVybyBkZSBhcmd1bWVudG9zIGVzdGl2ZXIgaW5jb3JyZXRvIChhIG1lbm9zIHF1ZSBvcyBhcmd1bWVudG9zIHNlamFtIG9wY2lvbmFpcyksIG8gUHl0aG9uIHJldG9ybmFyw6EgdW0gZXJyby4KCjMuIFNhbHRhIHBhcmEgbyBjb3JwbyBkYSBmdW7Dp8OjbyBlIGV4ZWN1dGEgbyBjw7NkaWdvIGNvbnRpZG8gbmVsZSwgdXRpbGl6YW5kbyBvcyBhcmd1bWVudG9zIHBhc3NhZG9zLgoKNC4gQXDDs3MgYSBleGVjdcOnw6NvIGRvIGNvcnBvIGRhIGZ1bsOnw6NvLCBvIFB5dGhvbiByZXRvcm5hIGFvIHBvbnRvIGRlIGNoYW1hZGEgbm8gY8OzZGlnbyBvcmlnaW5hbC4KCipCb2FzIHByw6F0aWNhczoqCgotIEV2aXRlIGludm9jYXIgdW1hIGZ1bsOnw6NvIHF1ZSBuw6NvIHRlbmhhIHNpZG8gZGVmaW5pZGEgcHJldmlhbWVudGUuIE8gUHl0aG9uIGzDqiBvIGPDs2RpZ28gZGUgY2ltYSBwYXJhIGJhaXhvIGUgbsOjbyBpcsOhIHByb2N1cmFyIHBvciBmdW7Dp8O1ZXMgcXVlIGFpbmRhIG7Do28gZm9yYW0gZGVmaW5pZGFzLgoKLSBFdml0ZSB1dGlsaXphciBvIG1lc21vIG5vbWUgcGFyYSBmdW7Dp8O1ZXMgZSB2YXJpw6F2ZWlzLCBwb2lzIGlzc28gcG9kZSBjYXVzYXIgY29uZnVzw6NvIGUgZXJyb3Mgbm8gY8OzZGlnby4KCi0gVXRpbGl6ZSBub21lcyBkZXNjcml0aXZvcyBwYXJhIHN1YXMgZnVuw6fDtWVzLCBzZWd1aW5kbyB1bSBwYWRyw6NvIHF1ZSB0b3JuZSBzdWEgZnVuw6fDo28gZmFjaWxtZW50ZSBjb21wcmVlbnPDrXZlbCBlIGlkZW50aWZpY8OhdmVsLgoKRHVyYW50ZSBhIGludm9jYcOnw6NvIGRlIHVtYSBmdW7Dp8Ojbywgb3MgcGFyw6JtZXRyb3Mgc8OjbyBwYXNzYWRvcyBlbnRyZSBwYXLDqm50ZXNlcyBlIG8gcHJvZ3JhbWEgZXhlY3V0YSBhcyB0YXJlZmFzIGNvbSBvcyB2YWxvcmVzIGZvcm5lY2lkb3Mu";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-7').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [4]</div>
+                <pre><code class="language-python"># A definição especifica que nossa função opera em apenas um parâmetro chamado number. Você pode usá-lo como uma variável comum, mas apenas dentro da função - não é visível em nenhum outro lugar.
+
+def message(number):
+    print(&quot;Digite um número:&quot;, number)
+
+
+message(1) 
+message(598)
+
+# Você consegue ver como isso funciona? O valor do argumento usado durante a invocação foi passado para a função, definindo o valor inicial do parâmetro chamado number.</code></pre>
+            </div>
+            <div class="cell-output">Digite um número: 1
+Digite um número: 598
+</div>
+            <div class="cell cell-markdown" id="md-9"></div>
+            <script>
+                (function(){
+                    const b64 = "VW0gdmFsb3IgcGFyYSBvIHBhcsOibWV0cm8gY2hlZ2Fyw6EgZG8gYW1iaWVudGUgZGEgZnVuw6fDo28uIExlbWJyZS1zZTogZXNwZWNpZmljYXIgdW0gb3UgbWFpcyBwYXLDom1ldHJvcyBuYSBkZWZpbmnDp8OjbyBkZSB1bWEgZnVuw6fDo28gdGFtYsOpbSDDqSB1bSByZXF1aXNpdG8sIGUgdm9jw6ogcHJlY2lzYSBwcmVlbmNow6otbG8gZHVyYW50ZSBhIGNoYW1hZGEuIFZvY8OqIGRldmUgZm9ybmVjZXIgcXVhbnRvcyBhcmd1bWVudG9zIGhvdXZlciBwYXLDom1ldHJvcyBkZWZpbmlkb3MuIE7Do28gZmF6ZXIgaXNzbyBjYXVzYXLDoSB1bSBlcnJvLg==";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-9').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [5]</div>
+                <pre><code class="language-python">def message(number): # Função definida com um parâmetro
+  print(&quot;Digite um número:&quot;, number)
+
+
+message() # Função chamada sem argumento
+
+# Error: message() missing 1 required positional argument: &#x27;number&#x27;
+# A função requer um argumento, mas não foi fornecido nenhum.</code></pre>
+            </div>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [5]</div>
+                <pre><code class="language-python">def message(number): # Função definida com um parâmetro
+    print(&quot;Digite um número:&quot;, number)
+
+
+message(1, 2) # Função chamada com dois argumentos
+
+# Error: message() takes 1 positional argument but 2 were given
+# A função foi definida para aceitar um argumento, mas você tentou passar dois argumentos para ela.</code></pre>
+            </div>
+            
+            <div class="cell cell-markdown" id="md-12"></div>
+            <script>
+                (function(){
+                    const b64 = "VGVtb3MgcXVlIHRvcm7DoS1sbyBzZW5zw612ZWwgYSB1bWEgY2lyY3Vuc3TDom5jaWEgaW1wb3J0YW50ZS4gw4kgbGVnYWwgZSBwb3Nzw612ZWwgdGVyIHVtYSB2YXJpw6F2ZWwgY29tIG8gbWVzbW8gcGFyw6JtZXRybyBkZSBmdW7Dp8Ojby4=";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-12').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [8]</div>
+                <pre><code class="language-python"># O trecho ilustra o fenômeno:
+def message(number):
+    print(&quot;Argumento da função:&quot;, number)
+# Aqui, a função message() é definida com um parâmetro chamado number.
+
+
+# A variável number é definida fora da função.
+number = 1234
+
+# A função é chamada com um valor arbitrário.
+message(1)
+
+# Exibimos o valor da variável number.
+print(f&#x27;Exibindo a variável: {number}&#x27;)
+
+# Agora usamos a variável number como argumento da função.
+message(number) </code></pre>
+            </div>
+            <div class="cell-output">Argumento da função: 1
+Exibindo a variável: 1234
+Argumento da função: 1234
+</div>
+            <div class="cell cell-markdown" id="md-14"></div>
+            <script>
+                (function(){
+                    const b64 = "VW1hIHNpdHVhw6fDo28gY29tbyBlc3NhIGF0aXZhIHVtIG1lY2FuaXNtbyBjaGFtYWRvIHNoYWRvd2luZzoKCk8gcGFyw6JtZXRybyBkYSBmdW7Dp8OjbyDDqSBvYnNjdXJlY2lkbyBwZWxhIHZhcmnDoXZlbCBnbG9iYWwgY29tIG8gbWVzbW8gbm9tZS4KTyBwYXLDom1ldHJvIGFpbmRhIGV4aXN0ZSwgbWFzIG7Do28gw6kgdmlzw612ZWwgZGVudHJvIGRhIGZ1bsOnw6NvLgpFdml0YW1vcyBlc3NlIGZlbsO0bWVubywgZGFuZG8gbm9tZXMgZGlmZXJlbnRlcyDDoHMgdmFyacOhdmVpcyBlIHBhcsOibWV0cm9zLg==";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-14').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [9]</div>
+                <pre><code class="language-python">x = 10  # Variável global
+
+def funcao():
+    x = 20  # Variável local que sombreia a variável global
+    print(&quot;Dentro da função:&quot;, x)
+
+print(&quot;Fora da função:&quot;, x)  # Aqui x mantém o valor global
+
+funcao() # Chamamos a função para exibir o valor da variável local x
+
+print(&quot;Fora da função:&quot;, x)  # Aqui x mantém o valor global
+
+# Note que apesar de a variável x ser definida fora da função, ela não é acessível dentro da função. A variável x dentro da função é uma variável local que sombreia a variável global x.
+</code></pre>
+            </div>
+            <div class="cell-output">Fora da função: 10
+Dentro da função: 20
+Fora da função: 10
+</div>
+            <div class="cell cell-markdown" id="md-16"></div>
+            <script>
+                (function(){
+                    const b64 = "VW1hIGZ1bsOnw6NvIHBvZGUgdGVyIHF1YW50b3MgcGFyw6JtZXRyb3Mgdm9jw6ogcXVpc2VyLCBtYXMgcXVhbnRvIG1haXMgcGFyw6JtZXRyb3MgdGl2ZXIsIG1haXMgZGlmw61jaWwgc2Vyw6EgbWVtb3JpemFyIHN1YXMgZnVuw6fDtWVzIGUgcHJvcMOzc2l0b3Mu";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-16').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [9]</div>
+                <pre><code class="language-python">def mensagem(primeiro, segundo):
+    print(&quot;Primeiro:&quot;, primeiro, &quot;\nSegundo:&quot;, segundo)
+    
+# Isso também significa que a invocação da função exigirá dois argumentos.
+mensagem(&quot;um&quot;, 1)</code></pre>
+            </div>
+            <div class="cell-output">Primeiro: um 
+Segundo: 1
+</div>
+            <div class="cell cell-markdown" id="md-18"></div>
+            <script>
+                (function(){
+                    const b64 = "IyMgKmBFc2NvcG9gKgotLS0KTyBlc2NvcG8gZGUgdW0gbm9tZSAocG9yIGV4ZW1wbG8sIHVtIG5vbWUgZGUgdmFyacOhdmVsKSDDqSBhIHBhcnRlIGRlIHVtIGPDs2RpZ28gb25kZSBvIG5vbWUgw6kgcmVjb25oZWPDrXZlbCBjb3JyZXRhbWVudGUuCgpQb3IgZXhlbXBsbywgbyBlc2NvcG8gZG8gcGFyw6JtZXRybyBkZSB1bWEgZnVuw6fDo28gw6kgYSBwcsOzcHJpYSBmdW7Dp8Ojby4gTyBwYXLDom1ldHJvIGVzdMOhIGluYWNlc3PDrXZlbCBmb3JhIGRhIGZ1bsOnw6NvLg==";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-18').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [11]</div>
+                <pre><code class="language-python">def teste_escopo():
+	y = 123  # definimos que y é uma variável local para teste_escopo() - não pode ser usada fora da função
+	print(y)  # Efeito
+
+
+# Ao chamar a função o efeito fica visível
+teste_escopo()  # saídas: 123
+
+# Mas se tentarmos acessar a variável y fora da função, o Python retornará um erro pois y não foi definido (globalmente, somente dentro da função)
+print(y)
+
+# Erro de execução: NameError: name &#x27;y&#x27; is not defined
+# A variável y não foi definida globalmente, então não pode ser acessada fora da função.</code></pre>
+            </div>
+            <div class="cell-output">123
+</div>
+            <div class="cell cell-markdown" id="md-20"></div>
+            <script>
+                (function(){
+                    const b64 = "VmFtb3MgY29tZcOnYXIgdmVyaWZpY2FuZG8gc2UgdW1hIHZhcmnDoXZlbCBjcmlhZGEgZm9yYSBkZSBxdWFscXVlciBmdW7Dp8OjbyDDqSB2aXPDrXZlbCBkZW50cm8gZGFzIGZ1bsOnw7Vlcy4gRW0gb3V0cmFzIHBhbGF2cmFzLCBvIG5vbWUgZGUgdW1hIHZhcmnDoXZlbCBzZSBwcm9wYWdhIG5vIGNvcnBvIGRlIHVtYSBmdW7Dp8Ojbz8=";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-20').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [10]</div>
+                <pre><code class="language-python">def my_function():
+	print(var)  # Repare que var ainda não foi definida, mas...
+
+
+var = 3  # ao definir a variável fora da função, ela é visível dentro da função. Parece contra intuitivo, já que a variável foi utilizada antes de ser definida.
+
+# Ao chamar a função o efeito fica visível - Isso é possível pois o Python não executa o corpo da função até que a função seja chamada. Então, quando a função é chamada, a variável já foi definida mesmo que o código que define venha depois da função.
+my_function()
+
+# Se exibir a variavel, o valor será exibido normalmente
+print(var)</code></pre>
+            </div>
+            <div class="cell-output">3
+3
+</div>
+            <div class="cell cell-markdown" id="md-22"></div>
+            <script>
+                (function(){
+                    const b64 = "RXNzYSByZWdyYSB0ZW0gdW1hIGV4Y2XDp8OjbyBtdWl0byBpbXBvcnRhbnRlLiBWYW1vcyB0ZW50YXIgZW5jb250cmFyLg==";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-22').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [4]</div>
+                <pre><code class="language-python">def my_function():
+	var = 2  # var foi definida dentro da função, isso a torna uma variável local
+	print(var)
+
+
+var = 1  # de novo, definimos a variável com o mesmo nome fora da função e com um valor diferente
+
+# Ao chamar a função o valor da variável local é o que é impresso, pois a variável local tem precedência sobre a variável global.
+my_function()  
+
+# Se chamarmos a variável fora da função, o valor da variável global é impresso.
+print(var)</code></pre>
+            </div>
+            <div class="cell-output">2
+1
+</div>
+            <div class="cell cell-markdown" id="md-24"></div>
+            <script>
+                (function(){
+                    const b64 = "UG9kZW1vcyB0b3JuYXIgYSByZWdyYSBhbnRlcmlvciBtYWlzIHByZWNpc2EgZSBhZGVxdWFkYToKCi0gVW1hIHZhcmnDoXZlbCBleGlzdGVudGUgZm9yYSBkZSB1bWEgZnVuw6fDo28gdGVtIGVzY29wbyBkZW50cm8gZG8gY29ycG8gZGEgZnVuw6fDo28sIGV4Y2x1aW5kbyBhcXVlbGFzIHF1ZSBkZWZpbmVtIHVtYSB2YXJpw6F2ZWwgY29tIG8gbWVzbW8gbm9tZS4KLSBUYW1iw6ltIHNpZ25pZmljYSBxdWUgbyBlc2NvcG8gZGUgdW1hIHZhcmnDoXZlbCBleGlzdGVudGUgZm9yYSBkZSB1bWEgZnVuw6fDo28gw6kgc3Vwb3J0YWRvIGFwZW5hcyBhbyBvYnRlciBzZXUgdmFsb3IgKGxlaXR1cmEpLiBBIGF0cmlidWnDp8OjbyBkZSB1bSB2YWxvciBmb3LDp2EgYSBjcmlhw6fDo28gZGEgcHLDs3ByaWEgdmFyacOhdmVsIGRhIGZ1bsOnw6NvLgoKUmVzdW1pbmRvIGF0w6kgYXF1aTsKCkVzY29wbyBHbG9iYWw6ClNlIHVtYSB2YXJpw6F2ZWwgw6kgZGVmaW5pZGEgZm9yYSBkZSB1bWEgZnVuw6fDo28sIGVsYSB0ZW0gdW0gZXNjb3BvIGdsb2JhbC4gSXNzbyBzaWduaWZpY2EgcXVlIGVsYSBwb2RlIHNlciBhY2Vzc2FkYSBkZSBxdWFscXVlciBsdWdhciBubyBwcm9ncmFtYSwgaW5jbHVpbmRvIGRlbnRybyBkZSBmdW7Dp8O1ZXMuClNlIHVtYSBmdW7Dp8OjbyB0ZW50YXIgbW9kaWZpY2FyIG8gdmFsb3IgZGVzc2EgdmFyacOhdmVsIHVzYW5kbyBhIGF0cmlidWnDp8OjbyAoPSksIGEgZnVuw6fDo28gY3JpYXLDoSB1bWEgdmFyacOhdmVsIGxvY2FsIGNvbSBvIG1lc21vIG5vbWUsIG7Do28gYWZldGFuZG8gYSB2YXJpw6F2ZWwgZ2xvYmFsIGZvcmEgZGEgZnVuw6fDo28uCgpFc2NvcG8gTG9jYWw6ClNlIHZvY8OqIGRlZmluZSB1bWEgdmFyacOhdmVsIGRlbnRybyBkZSB1bWEgZnVuw6fDo28sIGVsYSB0ZW0gdW0gZXNjb3BvIGxvY2FsLiBJc3NvIHNpZ25pZmljYSBxdWUgZWxhIHPDsyDDqSBhY2Vzc8OtdmVsIGRlbnRybyBkZXNzYSBmdW7Dp8Ojby4KU2UgaG91dmVyIHVtYSB2YXJpw6F2ZWwgZ2xvYmFsIGNvbSBvIG1lc21vIG5vbWUsIGEgZnVuw6fDo28gaXLDoSBwcmVmZXJpciBhIHZhcmnDoXZlbCBsb2NhbC4gQSBmdW7Dp8OjbyBwb2RlIGxlciBhIHZhcmnDoXZlbCBnbG9iYWwsIG1hcyBzZSB2b2PDqiBhdHJpYnVpciB1bSB2YWxvciBhIGVsYSwgYSBmdW7Dp8OjbyBjcmlhcsOhIHVtYSBub3ZhIHZhcmnDoXZlbCBsb2NhbC4KCg==";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-24').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-markdown" id="md-25"></div>
+            <script>
+                (function(){
+                    const b64 = "IyMjICpgQSBwYWxhdnJhLWNoYXZlIGdsb2JhbGAqCi0tLQpIw6EgdW0gbcOpdG9kbyBQeXRob24gZXNwZWNpYWwgcXVlIHBvZGUgZXN0ZW5kZXIgbyBlc2NvcG8gZGUgdW1hIHZhcmnDoXZlbCBkZSB1bWEgZm9ybWEgcXVlIGluY2x1YSBvIGNvcnBvIGRhIGZ1bsOnw6NvIChtZXNtbyBzZSB2b2PDqiBxdWlzZXIgbsOjbyBhcGVuYXMgbGVyIG9zIHZhbG9yZXMsIG1hcyB0YW1iw6ltIG1vZGlmaWPDoS1sb3MpLgoKVGFsIGVmZWl0byDDqSBjYXVzYWRvIHBvciB1bWEgcGFsYXZyYS1jaGF2ZSBjaGFtYWRhIGdsb2JhbDoKClVzYXIgZXNzYSBwYWxhdnJhLWNoYXZlIGRlbnRybyBkZSB1bWEgZnVuw6fDo28gY29tIG8gbm9tZSAob3Ugbm9tZXMgc2VwYXJhZG9zIHBvciB2w61yZ3VsYXMpIGRlIHVtYSB2YXJpw6F2ZWwgKG91IHZhcmnDoXZlaXMpLCBmb3LDp2EgbyBQeXRob24gYSBuw6NvIGNyaWFyIHVtYSBub3ZhIHZhcmnDoXZlbCBkZW50cm8gZGEgZnVuw6fDo28gLSBhIHF1ZSBwb2RlIHNlciBhY2Vzc2FkYSBkZSBmb3JhIHNlcsOhIHVzYWRhLg==";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-25').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [14]</div>
+                <pre><code class="language-python">def my_function():
+	global var  # com a palavra-chave global, definimos que a variável var é global
+	var = 2  # modificando a variável global - ou seja, seu valor será modificado fora da função também
+	print(var)
+
+
+# redefinimos o valor da variável, como sabemos, seu valor será o mais recente
+var = 1  # portanto agora var vale 1
+print(var)
+
+# ao chamar a função, executamos o corpo da função, que contém uma instrução global que modifica o valor da variável dentro e fora da função. A partir de agora, var vale 2
+my_function()
+
+print(var)  # saída: 2
+# Observe que a mudança de valor só ocorre após a chamada da função. Se você tentar imprimir o valor da variável antes de chamar a função, o valor será o original.</code></pre>
+            </div>
+            <div class="cell-output">1
+2
+2
+</div>
+            <div class="cell cell-markdown" id="md-27"></div>
+            <script>
+                (function(){
+                    const b64 = "IyMjICpgVXNhbmRvIHbDoXJpb3MgcGFyw6JtZXRyb3NgKgotLS0KTyB1c28gZGUgYCpgIGFudGVzIGRlIHVtIHBhcsOibWV0cm8gcGVybWl0ZSBxdWUgYSBmdW7Dp8OjbyBhY2VpdGUgdW0gbsO6bWVybyB2YXJpw6F2ZWwgZGUgYXJndW1lbnRvcy4gSXNzbyDDqSBjaGFtYWRvIGRlIGBlbXBhY290YW1lbnRvIGRlIGFyZ3VtZW50b3NgLiBObyBjYXNvIGRhIGZ1bsOnw6NvIGNvbnRhZG9yLCBlbGEgYWNlaXRhIHF1YWxxdWVyIG7Dum1lcm8gZGUgYXJndW1lbnRvcyBlIG9zIGl0ZXJhLg==";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-27').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [15]</div>
+                <pre><code class="language-python"># Note que há somente um parâmetro na definição da função...
+def contador(*num):
+    for valor in num: # é como dizer &quot;para cada valor em num...&quot; considerando que num é uma lista de valores
+        print(valor, end=&#x27; - &#x27;)
+    print()
+
+# ... mas a função pode ser chamada com vários argumentos sem exibir erros
+contador(2, &#x27;h&#x27;, 7.5)
+contador(None, 0)
+contador(4, 4, True, 6, 2)</code></pre>
+            </div>
+            <div class="cell-output">2 - h - 7.5 - 
+None - 0 - 
+4 - 4 - True - 6 - 2 - 
+</div>
+            <div class="cell cell-markdown" id="md-29"></div>
+            <script>
+                (function(){
+                    const b64 = "T3MgdGlwb3MgZGUgcGFyw6JtZXRyb3MgZSBhcmd1bWVudG9zIG7Do28gc8OjbyB2ZXJpZmljYWRvcyBwZWxvIFB5dGhvbi4gVm9jw6ogcG9kZSBwYXNzYXIgcXVhbHF1ZXIgdmFsb3IgcGFyYSBxdWFscXVlciBwYXLDom1ldHJvLiBPIFB5dGhvbiBuw6NvIHNlIGltcG9ydGEgY29tIGlzc28uICrDiSBzdWEgcmVzcG9uc2FiaWxpZGFkZSBnYXJhbnRpciBxdWUgb3MgdmFsb3JlcyBzZWphbSBhZGVxdWFkb3MgcGFyYSBvIHByb3DDs3NpdG8gZGEgZnVuw6fDo28uKgoKQXMgZnVuw6fDtWVzIHByZWNpc2FtIGRlIHbDoXJpb3MgcGFyw6JtZXRyb3MgcGFyYSBleGVjdXRhciB0YXJlZmFzIGVtIG1haXMgZGFkb3MuIFBvZGVtb3MgY3JpYXIgZnVuw6fDtWVzIGNvbSB1bSDDum5pY28gcGFyw6JtZXRybyBvdSBhZGljaW9uYXIgbWFpcywgb3Mgc2VwYXJhbmRvIGNvbSB2w61yZ3VsYS4KClBhcmEgcGFzc2FyIG9zIHZhbG9yZXMgcGFyYSBhIGZ1bsOnw6NvIHRhbWLDqW0gb3Mgc2VwYXJhbW9zIGNvbSB2w61yZ3VsYS4gUGFzc2Ftb3Mgb3MgdmFsb3JlcyBwYXJhIHVtYSBmdW7Dp8OjbyBuYSBvcmRlbSBkb3MgcGFyw6JtZXRyb3MuIFBvZGVtb3MgYWRpY2lvbmFyIHF1YW50b3MgdmFsb3JlcyBxdWlzZXJtb3MsIGRlc2RlIHF1ZSBvcyBzZXBhcmVtb3MgcG9yIHbDrXJndWxhLg==";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-29').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [8]</div>
+                <pre><code class="language-python">def infos(nome, idade, sexo):
+    texto = f&#x27;Olá, {nome}. Sua idade é {idade} e o seu sexo é {sexo}.&#x27;
+    return texto # retorna um valor
+
+# Altere os valores dos argumentos para ver como eles afetam a saída da função.
+
+print(infos(&#x27;Douglas&#x27;, 25, &#x27;masculino&#x27;))
+# Obs.: Aqui usamos a função print() para exibir o valor retornado pela função infos() pois a função infos() não contém uma instrução print(). Estamos retornando um valor, não um efeito.
+
+
+# Como nossa função retorna um valor, podemos armazenar esse valor em uma variável ou exibi-lo diretamente.
+informacoes = infos(&#x27;Maria&#x27;, 19, &#x27;feminino&#x27;)
+print(informacoes)</code></pre>
+            </div>
+            <div class="cell-output">Olá, Douglas. Sua idade é 25 e o seu sexo é masculino.
+Olá, Maria. Sua idade é 19 e o seu sexo é feminino.
+</div>
+            <div class="cell cell-markdown" id="md-31"></div>
+            <script>
+                (function(){
+                    const b64 = "VW1hIHTDqWNuaWNhIHF1ZSBhdHJpYnVpIG8gaS3DqXNpbW8gKHByaW1laXJvLCBzZWd1bmRvIGUgYXNzaW0gcG9yIGRpYW50ZSkgYXJndW1lbnRvIHBhcmEgbyBpLcOpc2ltbyAocHJpbWVpcm8sIHNlZ3VuZG8sIGV0Yy4pIHBhcsOibWV0cm8gZGUgZnVuw6fDo28gw6kgY2hhbWFkYSBkZSBwYXNzYWdlbSBkZSBwYXLDom1ldHJvIHBvc2ljaW9uYWwsIGVucXVhbnRvIGFyZ3VtZW50b3MgcGFzc2Fkb3MgZGVzc2EgbWFuZWlyYSBzw6NvIGNoYW1hZG9zIGRlIGFyZ3VtZW50byBwb3NpY2lvbmFsLgoKT3MgdmFsb3JlcyBkb3MgYXJndW1lbnRvcyBwcmVjaXNhbSBzZXIgcGFzc2Fkb3MgbmEgb3JkZW0gZW0gcXVlIGVzdMOjbyBvcyB2YWxvcmVzIGRvcyBwYXLDom1ldHJvcy4=";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-31').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [18]</div>
+                <pre><code class="language-python">def my_function(a, b, c): # a, b, c são parâmetros, exatamente nessa ordem
+    print(f&#x27;a = {a}, b = {b}, c = {c}&#x27;)
+
+
+# Isso significa que os argumentos passados para a função devem ser colocados na mesma ordem.
+#           a, b, c 
+my_function(1, 2, 3)
+my_function(3, 2, 1)
+my_function(1, 3, 2)
+my_function(2, 1, 3)
+
+# É seu dever garantir que os argumentos sejam passados na ordem correta. Se você inverter a ordem, os valores serão atribuídos aos parâmetros de maneira diferente e causarão resultados inesperados.</code></pre>
+            </div>
+            <div class="cell-output">a = 1, b = 2, c = 3
+a = 3, b = 2, c = 1
+a = 1, b = 3, c = 2
+a = 2, b = 1, c = 3
+</div>
+            <div class="cell cell-markdown" id="md-33"></div>
+            <script>
+                (function(){
+                    const b64 = "TyBQeXRob24gb2ZlcmVjZSBvdXRyYSBjb252ZW7Dp8OjbyBwYXJhIGEgcGFzc2FnZW0gZGUgYXJndW1lbnRvcywgZW0gcXVlIG8gc2lnbmlmaWNhZG8gZG8gYXJndW1lbnRvIMOpIGRldGVybWluYWRvIHBvciBzZXUgbm9tZSwgZSBuw6NvIHBvciBzdWEgcG9zacOnw6NvIC0gw6kgY2hhbWFkbyBkZSBwYXNzYWdlbSBkZSBhcmd1bWVudG8gZGUgcGFsYXZyYS1jaGF2ZS4KCk8gY29uY2VpdG8gw6kgY2xhcm8gLSBvcyB2YWxvcmVzIHBhc3NhZG9zIHBhcmEgb3MgcGFyw6JtZXRyb3Mgc8OjbyBwcmVjZWRpZG9zIHBlbG9zIG5vbWVzIGRvcyBwYXLDom1ldHJvcyBkZSBkZXN0aW5vLCBzZWd1aWRvcyBwZWxvIHNpbmFsID0uCgpBIHBvc2nDp8OjbyBuw6NvIGltcG9ydGEgYXF1aSAtIG8gdmFsb3IgZGUgY2FkYSBhcmd1bWVudG8gc2FiZSBzZXUgZGVzdGlubyBjb20gYmFzZSBubyBub21lIHVzYWRvLgoKT2J2aWFtZW50ZSwgdm9jw6ogbsOjbyBkZXZlIHVzYXIgdW0gbm9tZSBkZSBwYXLDom1ldHJvIGluZXhpc3RlbnRlLiBPIFB5dGhvbiBuw6NvIGFjZWl0YXLDoSBpc3NvIGUgZ2VyYXLDoSB1bSBlcnJvLg==";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-33').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [19]</div>
+                <pre><code class="language-python">def introducao(primeiro_nome, sobrenome):
+    print(&quot;Olá meu nome é&quot;, primeiro_nome, sobrenome)
+
+
+introducao(primeiro_nome = &quot;James&quot;, sobrenome = &quot;Bond&quot;) # Olá meu nome é James Bond
+introducao(sobrenome = &quot;Skywalker&quot;, primeiro_nome = &quot;Luke&quot;) # Olá meu nome é Luke Skywalker</code></pre>
+            </div>
+            <div class="cell-output">Olá meu nome é James Bond
+Olá meu nome é Luke Skywalker
+</div>
+            <div class="cell cell-markdown" id="md-35"></div>
+            <script>
+                (function(){
+                    const b64 = "Vm9jw6ogcG9kZSBjb21iaW5hciBvcyBkb2lzIGVzdGlsb3MsIHNlIHF1aXNlciAtIGjDoSBhcGVuYXMgdW1hIHJlZ3JhIGlucXVlYnLDoXZlbDoKCipgVm9jw6ogcHJlY2lzYSBjb2xvY2FyIGFyZ3VtZW50b3MgcG9zaWNpb25haXMgYW50ZXMgZG9zIGFyZ3VtZW50b3MgZGFzIHBhbGF2cmFzLWNoYXZlLmAqCgpTZSB2b2PDqiBwZW5zYXIgcG9yIHVtIG1vbWVudG8sIGNlcnRhbWVudGUgZW50ZW5kZXLDoSBvIHBvcnF1w6ou";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-35').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [1]</div>
+                <pre><code class="language-python">def adding(a, b, c):
+    print(a, &quot;+&quot;, b, &quot;+&quot;, c, &quot;=&quot;, a + b + c)
+
+
+# A função, quando chamada da seguinte maneira:
+adding(1, 2, 3)
+#      a  b  c
+
+# Essa é a forma posicional, onde a assume o valor passado como 1, b assume o valor passado como 2 e c assume o valor passado como 3.
+
+# Obviamente, você pode substituir essa chamada por uma variante de palavra-chave, como esta:
+adding(c = 3, a = 1, b = 2)
+# ou esta:
+adding(b = 2, c = 3, a = 1)
+# até mesmo esta:
+adding(a = 1, c = 3, b = 2)
+
+# Vamos tentar combinar os dois estilos agora.
+adding(1, c = 3, b = 2)</code></pre>
+            </div>
+            <div class="cell-output">1 + 2 + 3 = 6
+1 + 2 + 3 = 6
+1 + 2 + 3 = 6
+1 + 2 + 3 = 6
+1 + 2 + 3 = 6
+</div>
+            <div class="cell cell-markdown" id="md-37"></div>
+            <script>
+                (function(){
+                    const b64 = "VmFtb3MgYW5hbGlzYXI6CgpObyBwcmltZWlybyBleGVtcGxvLCBvIGFyZ3VtZW50byBjIMOpIHBhc3NhZG8gYW50ZXMgZG9zIGFyZ3VtZW50b3MgYSBlIGIsIG1hcyBvIFB5dGhvbiBhaW5kYSBjb25zZWd1ZSBhc3NvY2lhciBvIHZhbG9yIGNvcnJldG8gYSBjYWRhIHBhcsOibWV0cm8uCgpgYGBweXRob24KYWRkaW5nKGMgPSAzLCBhID0gMSwgYiA9IDIpCmBgYAoKTm8gc2VndW5kbyBjYXNvLCBvIGFyZ3VtZW50byBhIMOpIHBhc3NhZG8gcHJpbWVpcm8sIGFwZXNhciBkZSBuw6NvIGVzdGFyIGV4cGxpY2l0by4gU2VndWlkbyBwb3IgYyBlIGIuIE8gUHl0aG9uIGFpbmRhIGNvbnNlZ3VlIGFzc29jaWFyIG9zIHZhbG9yZXMgY29ycmV0b3MgYSBjYWRhIHBhcsOibWV0cm8uCgpgYGBweXRob24KYWRkaW5nKDEsIGMgPSAzLCBiID0gMikKYGBgCgpDb20gaXNzbyBjb25jbHXDrW1vcyBxdWUgYSBvcmRlbSBkb3MgYXJndW1lbnRvcyDDqSBpbXBvcnRhbnRlIHF1YW5kbyBzZSB0cmF0YSBkZSBhcmd1bWVudG9zIHBvc2ljaW9uYWlzLCBtYXMgbsOjbyDDqSBpbXBvcnRhbnRlIHF1YW5kbyBzZSB0cmF0YSBkZSBhcmd1bWVudG9zIGRlIHBhbGF2cmEtY2hhdmUuCgpWZWphbW9zIG8gZXhlbXBsbyBhIHNlZ3Vpcjo=";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-37').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [2]</div>
+                <pre><code class="language-python">def adding(a, b, c):
+    print(a, &quot;+&quot;, b, &quot;+&quot;, c, &quot;=&quot;, a + b + c)
+
+
+# Porém, se você tentar fazer isso:
+adding(3, a = 1, b = 2)
+
+# Aqui, a função foi chamada com três argumentos, mas dois deles foram passados como palavras-chave.
+# O primeiro argumento foi passado como 3, mas os outros dois foram passados como palavras-chave, o que é um erro.
+
+# Pela posição, o Python atribuiu 3 ao parâmetro a, mas então você tentou atribuir 1 ao parâmetro a novamente, o que é um erro.
+
+# Portando, ao combinar argumentos posicionais e de palavra-chave, você deve garantir que os argumentos posicionais sejam passados antes dos argumentos de palavra-chave, além de garantir que cada parâmetro seja passado apenas uma vez.</code></pre>
+            </div>
+            
+            <div class="cell cell-markdown" id="md-39"></div>
+            <script>
+                (function(){
+                    const b64 = "Vm9jw6ogcmVjZWJlcsOhIHVtIGVycm8gZGUgdGVtcG8gZGUgZXhlY3XDp8Ojby4gTyBQeXRob24gbsOjbyBwb2RlIGFjZWl0YXIgaXNzbywgcG9pcyBuw6NvIHBvZGUgZGVjaWRpciBxdWFsIHZhbG9yIGRldmUgc2VyIGF0cmlidcOtZG8gYW8gcGFyw6JtZXRybyBhIC0gbyB2YWxvciBwb3NpY2lvbmFsICgzKSBvdSBvIHZhbG9yIGRhIHBhbGF2cmEtY2hhdmUgKDEpLgoKVGVuaGEgY3VpZGFkbyBlIGN1aWRhZG8gY29tIG9zIGVycm9zLiBTZSB2b2PDqiB0ZW50YXIgcGFzc2FyIG1haXMgZGUgdW0gdmFsb3IgcGFyYSB1bSBhcmd1bWVudG8sIHR1ZG8gcXVlIG9idGVyw6Egc2Vyw6EgdW0gZXJybyBkZSB0ZW1wbyBkZSBleGVjdcOnw6NvLg==";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-39').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-markdown" id="md-40"></div>
+            <script>
+                (function(){
+                    const b64 = "ICMjIyAqYFZhbG9yZXMgcGFkcm9uaXphZG9zYCoKLS0tCiBQb2RlbW9zIGRlZmluaXIgdW0gdmFsb3IgcGFkcsOjbyBwYXJhIHVtIHBhcsOibWV0cm8uCiDDgHMgdmV6ZXMsIG9zIHZhbG9yZXMgZGUgdW0gZGV0ZXJtaW5hZG8gcGFyw6JtZXRybyBzw6NvIHVzYWRvcyBjb20gbWFpcyBmcmVxdcOqbmNpYSBkbyBxdWUgb3V0cm9zLiBFc3NlcyBhcmd1bWVudG9zIHBvZGVtIHRlciBzZXVzIHZhbG9yZXMgcGFkcsOjbyAocHJlZGVmaW5pZG9zKSBjb25zaWRlcmFkb3MgcXVhbmRvIHNldXMgYXJndW1lbnRvcyBjb3JyZXNwb25kZW50ZXMgZm9yYW0gb21pdGlkb3MuIElzc28gw6kgY2hhbWFkbyBkZSBwYXLDom1ldHJvIHBhZHLDo28uIFRhbWLDqW0gw6kgdXNhZG8gcGFyYSBldml0YXIgZXJyb3MgZGUgdGVtcG8gZGUgZXhlY3XDp8Ojby4=";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-40').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [17]</div>
+                <pre><code class="language-python"># Nesse primeiro exemplo, vamos solicitar três argumentos e passar três argumentos mas só dois deles serão passados.
+def infos(nome, idade, sexo):
+    texto = f&#x27;Olá, {nome}. Sua idade é {idade} e o seu sexo é {sexo}.&#x27;
+    return texto
+
+
+# Ao fazer isso, o Python retornará um erro, pois a função espera três argumentos, mas você só passou dois.
+print(infos(&#x27;Maycon&#x27;, 30))</code></pre>
+            </div>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [18]</div>
+                <pre><code class="language-python"># Se definirmos um valor padrão para o parâmetro sexo, a função poderá ser chamada sem passar um valor para esse parâmetro.
+def infos(nome, idade, sexo=&#x27;não informado&#x27;):
+    texto = f&#x27;Olá, {nome}. Sua idade é {idade} e o seu sexo é {sexo}.&#x27;
+    return texto
+
+
+# Agora podemos chamar a função sem passar um valor para o parâmetro sexo.
+print(infos(&#x27;Maycon&#x27;, 30))</code></pre>
+            </div>
+            <div class="cell-output">Olá, Maycon. Sua idade é 30 e o seu sexo é não informado.
+</div>
+            <div class="cell cell-markdown" id="md-43"></div>
+            <script>
+                (function(){
+                    const b64 = "Vm9jw6ogcG9kZSBpciBhbMOpbSBzZSBmb3Igw7p0aWwuCk9zIHZhbG9yZXMgcGFkcsOjbyBzw6NvIHVzYWRvcyBxdWFuZG8gbmVuaHVtIGFyZ3VtZW50byDDqSBwYXNzYWRvIHBhcmEgbyBwYXLDom1ldHJvIGNvcnJlc3BvbmRlbnRlLiBEaWZlcmVudGUgZGUgY2FzbyB2b2PDqiBuw6NvIGRlZmluYSB2YWxvcmVzIHBhZHLDo28gZSBuw6NvIHBhc3NlIGFyZ3VtZW50b3MsIHZvY8OqIHJlY2ViZXLDoSB1bSBlcnJvIGRlIHRlbXBvIGRlIGV4ZWN1w6fDo28uCkFtYm9zIG9zIHBhcsOibWV0cm9zIHTDqm0gc2V1cyB2YWxvcmVzIHBhZHLDo28gYWdvcmEsIHZlamEgbyBjw7NkaWdvIGFiYWl4bzoK";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-43').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [21]</div>
+                <pre><code class="language-python">def introducao(primeiro_nome=&quot;John&quot;, sobrenome=&quot;Smith&quot;):
+    print(&quot;Olá meu nome é&quot;, primeiro_nome, sobrenome)
+
+
+# Isso torna a seguinte chamada absolutamente válida:
+introducao()</code></pre>
+            </div>
+            <div class="cell-output">Olá meu nome é John Smith
+</div>
+            <div class="cell cell-markdown" id="md-45"></div>
+            <script>
+                (function(){
+                    const b64 = "IyMjIFJldG9ybmFuZG8gdmFsb3JlcwoKVG9kYXMgYXMgZnVuw6fDtWVzIGFwcmVzZW50YWRhcyBhbnRlcmlvcm1lbnRlIHTDqm0gYWxndW0gdGlwbyBkZSBlZmVpdG8gLSBlbGFzIHByb2R1emVtIGFsZ3VtIHRleHRvIGUgbyBlbnZpYW0gcGFyYSBvIGNvbnNvbGUuCk9idmlhbWVudGUsIGZ1bsOnw7VlcyAtIGNvbW8gc2V1cyBpcm3Do29zIG1hdGVtw6F0aWNvcyAtIHBvZGVtIHRlciByZXN1bHRhZG9zLgpQYXJhIHF1ZSBhcyBmdW7Dp8O1ZXMgcmV0b3JuZW0gdW0gdmFsb3IgKG1hcyBuw6NvIGFwZW5hcyBwYXJhIGVzc2EgZmluYWxpZGFkZSksIHVzZSBhIGluc3RydcOnw6NvIHJldHVybi4KCkEgaW5zdHJ1w6fDo28gcmV0dXJuIHRlbSBkdWFzIHZhcmlhbnRlcyBkaWZlcmVudGVzIC0gdmFtb3MgY29uc2lkZXLDoS1sYXMgc2VwYXJhZGFtZW50ZS4=";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-45').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [22]</div>
+                <pre><code class="language-python"># return sem uma expressão
+def ano_novo(desejos = True):
+
+    print(&quot;Três...&quot;)
+    print(&quot;Dois...&quot;)
+    print(&quot;Um...&quot;)
+    
+    # a condição a seguir verifica se o argumento é True
+    if not desejos: # se desejos for False
+        return # a função termina aqui
+
+    print(&quot;Feliz Ano Novo!&quot;) # se desejos for True a função continua até aqui
+
+
+# Quando invocado sem nenhum argumento:
+ano_novo()
+
+
+# Fornecendo False como um argumento para testar a condição if:
+ano_novo(False)
+
+# Vai modificar o comportamento da função - ela não imprimirá o texto final - sua execução terminará imediatamente após a instrução return ser executada.
+
+</code></pre>
+            </div>
+            <div class="cell-output">Três...
+Dois...
+Um...
+Feliz Ano Novo!
+Três...
+Dois...
+Um...
+</div>
+            <div class="cell cell-markdown" id="md-47"></div>
+            <script>
+                (function(){
+                    const b64 = "QSBzZWd1bmRhIHZhcmlhbnRlIGRlIHJldHVybiDDqSBlc3RlbmRpZGEgY29tIHVtYSBleHByZXNzw6NvIGUgaMOhIGR1YXMgY29uc2VxdcOqbmNpYXMgZGUgdXPDoS1sbzoKCi0gY2F1c2EgbyB0w6lybWlubyBpbWVkaWF0byBkYSBleGVjdcOnw6NvIGRhIGZ1bsOnw6NvIChuYWRhIGRlIG5vdm8gc2UgY29tcGFyYWRvIMOgIHByaW1laXJhIHZhcmlhbnRlKQotIGFsw6ltIGRpc3NvLCBhIGZ1bsOnw6NvIGF2YWxpYXLDoSBvIHZhbG9yIGRhIGV4cHJlc3PDo28gZSBvIHJldG9ybmFyw6EgKGRhw60gbyBub21lIG1haXMgdW1hIHZleikgY29tbyBvIHJlc3VsdGFkbyBkYSBmdW7Dp8Ojby4=";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-47').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [8]</div>
+                <pre><code class="language-python"># return com uma expressão
+def numero_qualquer():
+    return 123 # a função retorna o valor 123 sempre que é chamada
+
+
+x = numero_qualquer() # x recebe o valor de retorno da função numero_qualquer (123)
+
+print(&quot;A função numero_qualquer retornou seu resultado. Isso é:&quot;, x) # imprime o valor de x</code></pre>
+            </div>
+            <div class="cell-output">A função numero_qualquer retornou seu resultado. Isso é: 123
+</div>
+            <div class="cell cell-markdown" id="md-49"></div>
+            <script>
+                (function(){
+                    const b64 = "QSBpbnN0cnXDp8OjbyBkZSByZXR1cm4sICJ0cmFuc3BvcnRhIiBvIHZhbG9yIGRhIGV4cHJlc3PDo28gcGFyYSBvIGxvY2FsIG9uZGUgYSBmdW7Dp8OjbyBmb2kgY2hhbWFkYS4gTyByZXN1bHRhZG8gcG9kZSBzZXIgdXNhZG8gbGl2cmVtZW50ZSBhcXVpLCBwb3IgZXhlbXBsbywgcGFyYSBzZXIgYXRyaWJ1w61kbyBhIHVtYSB2YXJpw6F2ZWwuCgpUYW1iw6ltIHBvZGUgc2VyIGNvbXBsZXRhbWVudGUgaWdub3JhZG8gZSBwZXJkaWRvIHNlbSBkZWl4YXIgdmVzdMOtZ2lvcy4KCk9ic2VydmUgcXVlIG7Do28gZXN0YW1vcyBzZW5kbyBtdWl0byBlZHVjYWRvcyBhcXVpIC0gYSBmdW7Dp8OjbyByZXRvcm5hIHVtIHZhbG9yIGUgbsOzcyBvIGlnbm9yYW1vcyAobsOjbyBvIHVzYW1vcyBkZSBmb3JtYSBhbGd1bWEpOg==";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-49').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [24]</div>
+                <pre><code class="language-python">def numero_qualquer():
+    print(&quot;&#x27;Modo de tédio&#x27; ON.&quot;)
+    return 123 # a função retorna o valor 123 sempre que é chamada
+
+
+print(&quot;Esta lição é interessante!&quot;)
+numero_qualquer() # mas não usamos seu resultado! Ao chamar a função apenas o efeito é visível devido a instrução print() dentro da função.
+print(&quot;Essa aula é chata...&quot;)
+
+# É punível? Não mesmo. A única desvantagem é que o resultado foi irremediavelmente perdido.</code></pre>
+            </div>
+            <div class="cell-output">Esta lição é interessante!
+&#x27;Modo de tédio&#x27; ON.
+Essa aula é chata...
+</div>
+            <div class="cell cell-markdown" id="md-51"></div>
+            <script>
+                (function(){
+                    const b64 = "TsOjbyBzZSBlc3F1ZcOnYToKCi0gdm9jw6ogc2VtcHJlIHBvZGUgaWdub3JhciBvIHJlc3VsdGFkbyBkYSBmdW7Dp8OjbyBlIGZpY2FyIHNhdGlzZmVpdG8gY29tIG8gZWZlaXRvIGRhIGZ1bsOnw6NvIChzZSBhIGZ1bsOnw6NvIHRpdmVyIGFsZ3VtKQotIHNlIHVtYSBmdW7Dp8OjbyBzZSBkZXN0aW5hIGEgcmV0b3JuYXIgdW0gcmVzdWx0YWRvIMO6dGlsLCBlbGEgZGV2ZSBjb250ZXIgYSBzZWd1bmRhIHZhcmlhbnRlIGRhIGluc3RydcOnw6NvIGRlIHJldHVybi4=";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-51').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [25]</div>
+                <pre><code class="language-python"># Mesmo sem parâmetros, se o código após return for funcional, ao chamar a função ele será exibido
+
+def teste():
+    # Nesse programa o return é simplesmente uma expressão matemática que não depende de nenhum parâmetro
+    return 1 + 1  # O valor de retorno será 2 sempre que a função for chamada
+
+print(teste())</code></pre>
+            </div>
+            <div class="cell-output">2
+</div>
+            <div class="cell cell-markdown" id="md-53"></div>
+            <script>
+                (function(){
+                    const b64 = "IyMjIyBWYWxvciBOb25lCgpWYW1vcyBhcHJlc2VudGFyIHVtIHZhbG9yIG11aXRvIGN1cmlvc28gKHBhcmEgc2VyIGhvbmVzdG8sIHVtIHZhbG9yIG5lbmh1bSkgY2hhbWFkbyBOb25lLgoKU2V1cyBkYWRvcyBuw6NvIHJlcHJlc2VudGFtIG5lbmh1bSB2YWxvciByYXpvw6F2ZWwgLSBuYSB2ZXJkYWRlLCBuw6NvIMOpIHVtIHZhbG9yOyBwb3J0YW50bywgbsOjbyBkZXZlIHBhcnRpY2lwYXIgZGUgbmVuaHVtYSBleHByZXNzw6NvLg==";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-53').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [11]</div>
+                <pre><code class="language-python"># Por exemplo, um trecho como este:
+print(None + 2)</code></pre>
+            </div>
+            
+            <div class="cell cell-markdown" id="md-55"></div>
+            <script>
+                (function(){
+                    const b64 = "Q2F1c2Fyw6EgdW0gZXJybyBkZSB0ZW1wbyBkZSBleGVjdcOnw6NvLCBkZXNjcml0byBwZWxhIHNlZ3VpbnRlIG1lbnNhZ2VtIGRlIGRpYWduw7NzdGljbzoKCj5UeXBlRXJyb3I6IHVuc3VwcG9ydGVkIG9wZXJhbmQgdHlwZShzKSBmb3IgKzogJ05vbmVUeXBlJyBhbmQgJ2ludCcKCkV4aXN0ZW0gYXBlbmFzIGRvaXMgdGlwb3MgZGUgY2lyY3Vuc3TDom5jaWFzIGVtIHF1ZSBOb25lIHBvZGUgc2VyIHVzYWRhIGNvbSBzZWd1cmFuw6dhOg==";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-55').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [48]</div>
+                <pre><code class="language-python"># quando você a atribui a uma variável (ou a retorna como resultado de uma função)
+value = None
+
+# quando você a compara com uma variável para diagnosticar seu estado interno.
+if value is None:
+    print(&quot;Desculpe, você não carrega nenhum valor&quot;)</code></pre>
+            </div>
+            <div class="cell-output">Desculpe, você não carrega nenhum valor
+</div>
+            <div class="cell cell-markdown" id="md-57"></div>
+            <script>
+                (function(){
+                    const b64 = "TsOjbyBzZSBlc3F1ZcOnYSBkaXNzbzogc2UgdW1hIGZ1bsOnw6NvIG7Do28gcmV0b3JuYSB1bSBkZXRlcm1pbmFkbyB2YWxvciB1c2FuZG8gYSBjbMOhdXN1bGEgcmV0dXJuLCBwcmVzc3Vww7VlLXNlIHF1ZSBlbGUgcmV0b3JuZSBpbXBsaWNpdGFtZW50ZSBOb25lLiBJc3NvIHNpZ25pZmljYSBxdWUgbyByZXN1bHRhZG8gZGEgZnVuw6fDo28gcG9kZSBzZXIgaWdub3JhZG8gc2VtIGNvbnNlcXXDqm5jaWFzLCBldml0YSBlcnJvcyBkZSB0ZW1wbyBkZSBleGVjdcOnw6NvLg==";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-57').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [26]</div>
+                <pre><code class="language-python">def strange_function(n):
+  if(n % 2 == 0):
+    return True
+
+
+# É óbvio que a função strange_function retorna True quando seu argumento é par. 
+# Vamos verificar:
+print(strange_function(2)) # True
+
+# O que ele retorna no outro caso?
+print(strange_function(1)) # None</code></pre>
+            </div>
+            <div class="cell-output">True
+None
+</div>
+            <div class="cell cell-markdown" id="md-59"></div>
+            <script>
+                (function(){
+                    const b64 = "Tm9zc2EgZnVuw6fDo28gbsOjbyB0ZW0gdW1hIGNsw6F1c3VsYSByZXR1cm4gcGFyYSBvIGNhc28gw61tcGFyLCBlbnTDo28gZWxhIHJldG9ybmEgaW1wbGljaXRhbWVudGUgTm9uZS4gUGVuc2UgY29tbyB1bSBlbHNlOiByZXR1cm4gTm9uZS4KCk7Do28gZmlxdWUgc3VycHJlc28gbmEgcHLDs3hpbWEgdmV6IHF1ZSBuw6NvIHZpciBvIE5vbmUgY29tbyByZXN1bHRhZG8gZGUgdW1hIGZ1bsOnw6NvIC0gcG9kZSBzZXIgbyBzaW50b21hIGRlIHVtIGVycm8gc3V0aWwgZGVudHJvIGRhIGZ1bsOnw6NvLg==";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-59').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-markdown" id="md-60"></div>
+            <script>
+                (function(){
+                    const b64 = "IyMjICoqQ29tbyBgYWxsKClgIGZ1bmNpb25hPyoqICAKQSBzaW50YXhlIGLDoXNpY2Egw6k6ICAKCmBgYHB5dGhvbgphbGwoaXRlcsOhdmVsKQpgYGAKRWxhIHJldG9ybmE6ICAKLSBgVHJ1ZWAg4oaSIHNlICoqdG9kb3MqKiBvcyBlbGVtZW50b3MgZG8gaXRlcsOhdmVsIGZvcmVtICoqdmVyZGFkZWlyb3MqKi4gIAotIGBGYWxzZWAg4oaSIHNlICoqcXVhbHF1ZXIqKiBlbGVtZW50byBmb3IgKipmYWxzbyoqLiAgCgrimqDvuI8gTGVtYnJlLXNlOiBFbSBQeXRob24sICoqdmFsb3JlcyAiZmFsc29zIioqIGluY2x1ZW0gYEZhbHNlYCwgYDBgLCBgTm9uZWAsIGAnJ2AgKHN0cmluZyB2YXppYSksIGV0Yy4gIAoKLS0tCgojIyMgKipFeGVtcGxvIFNpbXBsZXMqKgpgYGBweXRob24KbnVtZXJvcyA9IFsxLCAyLCAzLCA0LCA1XQpwcmludChhbGwobiA+IDAgZm9yIG4gaW4gbnVtZXJvcykpICAjIFRydWUgKHRvZG9zIHPDo28gbWFpb3JlcyBxdWUgMCkKCm51bWVyb3MgPSBbMSwgLTIsIDMsIDQsIDVdCnByaW50KGFsbChuID4gMCBmb3IgbiBpbiBudW1lcm9zKSkgICMgRmFsc2UgKGjDoSB1bSBuw7ptZXJvIG5lZ2F0aXZvKQpgYGAKTm8gc2VndW5kbyBjYXNvLCBjb21vIGAtMmAgbsOjbyBhdGVuZGUgw6AgY29uZGnDp8OjbywgYGFsbCgpYCByZXRvcm5hIGBGYWxzZWAuICAKCi0tLQoKIyMjICoqVXNhbmRvIGBhbGwoKWAgcGFyYSBWYWxpZGFyIG8gTm9tZSoqICAKTm8gc2V1IGPDs2RpZ28sIHVzYW1vczoKCmBgYHB5dGhvbgppZiBhbGwoYy5pc2FscGhhKCkgb3IgYyA9PSAnICcgZm9yIGMgaW4gZW50cmFkYSk6CmBgYApJc3NvIHNpZ25pZmljYTogIAotIFBhcmEgY2FkYSBjYXJhY3RlcmUgYGNgIG5hIHN0cmluZyBgZW50cmFkYWAsIHZlcmlmaWNhIHNlIGBjLmlzYWxwaGEoKWAgKMOpIHVtYSBsZXRyYSkgb3Ugc2UgYGMgPT0gJyAnYCAow6kgdW0gZXNwYcOnbykuICAKLSBTZSAqKnRvZG9zKiogb3MgY2FyYWN0ZXJlcyBmb3JlbSBsZXRyYXMgb3UgZXNwYcOnb3MsIGBhbGwoKWAgcmV0b3JuYSBgVHJ1ZWAsIGUgbyBub21lIMOpIGFjZWl0by4gIAotIFNlICoqYWxndW0qKiBjYXJhY3RlcmUgbsOjbyBmb3IgdsOhbGlkbywgYGFsbCgpYCByZXRvcm5hIGBGYWxzZWAsIGUgbyB1c3XDoXJpbyB2w6ogYSBtZW5zYWdlbSBkZSBlcnJvLiAgCgpJc3NvIGV2aXRhIGEgbmVjZXNzaWRhZGUgZGUgdW0gYGZvcmAgc2VwYXJhZG8gZSBkZWl4YSBvIGPDs2RpZ28gbWFpcyAqKmxpbXBvIGUgbGVnw612ZWwqKi4gIAoKLS0tCgojIyMgKipDb21wYXJhw6fDo28gY29tIHVtIGBmb3JgIFRyYWRpY2lvbmFsKiogIApTZXUgY8OzZGlnbyBvcmlnaW5hbCBmYXppYSBhbGdvIGFzc2ltOgoKYGBgcHl0aG9uCmZvciBpIGluIGVudHJhZGE6CiAgICBpZiBub3QgKGkuaXNhbHBoYSgpIG9yIGkgPT0gJyAnKToKICAgICAgICBwcmludCgnQ2FyYWN0ZXJlIGludsOhbGlkbyBkZXRlY3RhZG8uJykKICAgICAgICBicmVhawpgYGAKQXF1aSwgdXNhbW9zIHVtIGBmb3JgIG1hbnVhbG1lbnRlLCB2ZXJpZmljYW5kbyBjYWRhIGNhcmFjdGVyZSB1bSBwb3IgdW0uICAKQ29tIGBhbGwoKWAsIGNvbnNlZ3VpbW9zIGZhemVyIGlzc28gZGUgZm9ybWEgbWFpcyBkaXJldGEgZSBQeXRob25pY2EuIPCfmoAgIAoKLS0tCgpBZ29yYSBxdWUgY29uaGVjZSBgYWxsKClgLCBleHBlcmltZW50ZSB1c8OhLWxvIG1haXMhIEVsZSDDqSDDunRpbCBwYXJhIGRpdmVyc2FzIHZhbGlkYcOnw7Vlcy4gIApEw7p2aWRhcz8gTWUgYXZpc2UhIPCfmIM=";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-60').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            </div><script>hljs.highlightAll();</script>
+    </main>
+</body>
+</html>

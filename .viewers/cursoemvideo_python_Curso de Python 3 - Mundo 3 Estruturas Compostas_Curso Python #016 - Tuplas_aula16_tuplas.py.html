@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>aula16_tuplas.py</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="https://pyscript.net/releases/2024.1.1/core.css">
+    <script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>
+    <style>
+        .sandbox-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
+        .sandbox-header h2 { font-size: 1.2rem; color: var(--primary); display: flex; align-items: center; gap: 0.5rem; }
+        .py-repl-container { border-radius: 8px; overflow: hidden; border: 1px solid var(--glass-border); background: #1e293b; }
+    </style>
+    
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --glass-bg: rgba(30, 41, 59, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --primary: #38bdf8;
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        header {
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            border-bottom: 1px solid var(--glass-border);
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .back-btn {
+            color: var(--text-main);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            background: rgba(255,255,255,0.05);
+            transition: 0.3s;
+        }
+        .back-btn:hover {
+            background: rgba(56, 189, 248, 0.2);
+            color: var(--primary);
+        }
+        .file-title {
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+        main {
+            flex: 1;
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        .container {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="../index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Voltar</a>
+        <div class="file-title">aula16_tuplas.py</div>
+    </header>
+    <main>
+        
+    <div class="container">
+        <div class="sandbox-header">
+            <h2><i class="fa-brands fa-python"></i> Sandbox PyScript</h2>
+            <span>Edite e execute (Shift + Enter) ou no botão verde ▶</span>
+        </div>
+        <div class="py-repl-container">
+            <script type="py" id="main-script"></script>
+            <py-repl auto-generate="true">
+# Curso Python #16 - Tuplas
+# Nessa aula, vamos aprender o que são TUPLAS e como utilizar tuplas em Python. As tuplas são variáveis compostas e imutáveis que permitem armazenar vários valores em uma mesma estrutura, acessíveis por chaves individuais.
+
+# Variáveis simples - Toda variável simples é um espaço na memória. Quando atribuímos um valor a variável, o espaço é preenchido. Quando desejamos atribuir um novo valor, ele substitui o valor anterior
+lanche = &#x27;hambúrguer&#x27;
+print(lanche)
+
+lanche = &#x27;suco&#x27;
+print(lanche)
+
+# Variáveis compostas - Se quisermos atribuir mais de um valor a uma variável, devemos criar uma variável composta. Temos quatro possibilidades
+# Tuplas, listas, dicionários e conjuntos
+
+# Tuplas são identificadas por parênteses.
+# Seus valores são cercados por parênteses (ou não) sendo separados por vírgulas. Cada um deles é um elemento possuindo seu próprio índice, iniciando em zero.
+lanche = (&#x27;hambúrguer&#x27;, &#x27;suco&#x27;, &#x27;pizza&#x27;, &#x27;pudim&#x27;)
+print(lanche)
+
+# Observação: strings tecnicamente são variáveis compostas. Cada caractere tem um índice!
+# Podemos usar o fatiamento nas tuplas, como nas strings
+
+# Exibir o elemento no índice 2
+print(lanche[2])  # Este é o índice do valor &#x27;pizza&#x27;
+
+# Exibir os elementos de um intervalo
+print(lanche[0:2])  # Acessando um intervalo com final determinado, do primeiro até valor anterior ao índice 2
+print(lanche[1:])  # Indicando o início, mas não o fim. Será considerado até o final.
+print(lanche[-1])  # Acessando o último elemento. Se diminuírmos, serão exibidos o penúltimo, antepenúltimo e assim por diante.
+
+# O método len() exibe a quantidade de elementos da Tupla
+print(len(lanche))
+
+# Podemos usar um laço para iterar através dos elementos de uma tupla.
+
+for elemento in lanche:  # Para cada elemento na tupla lanche - elemento será o valor
+    print(f&#x27;Eu vou beber {elemento}&#x27; if elemento == &#x27;suco&#x27; else f&#x27;Eu vou comer {elemento}&#x27;)  # Exiba essa mensagem formatada.
+
+# As tuplas em Python tem uma limitação. Elas são imutáveis!
+# Não podemos atualizá-las durante a execução do programa.
+
+# Iterando de outra forma - Caso precise do índice
+for contador in range(len(lanche)):  # O contador será o índice
+    print(f&#x27;{contador}: Eu vou comer {lanche[contador]}&#x27;)  # lanche[contador] exibirá o valor naquele índice
+
+# UTILIZANDO enumerate()
+# enumerate() mostra a posição e o valor, então podemos usar dois contadores.
+for indice, elemento in enumerate(lanche):
+    print(f&#x27;{indice}: Eu vou beber {elemento}&#x27; if elemento == &#x27;suco&#x27; else f&#x27;{indice}: Eu vou comer {elemento}&#x27;)
+
+# Podemos usar o método sorted() para organizar a tupla em ordem alfabética
+print(sorted(lanche))
+nova_lista = sorted(lanche)
+
+# O método não altera a tupla, a ordenação é mostrada somente naquela instância. Mas podemos atribuir os elementos ordenados a outra variável ou atualizar a própria variável original
+print(lanche)
+print(nova_lista)
+
+# Ao unir tuplas com o operador + elas serão exibidas na ordem em que forem colocadas.
+
+tupla_a = (2, 5, 4)
+tupla_b = (5, 8, 1, 2)
+
+tupla_a_b = tupla_a + tupla_b
+print(tupla_a_b)
+
+tupla_b_a = tupla_b + tupla_a
+print(tupla_b_a)
+
+# Além do len() temos outros métodos que podem ser utilizados nas tuplas.
+
+# .count(elemento) verifica as ocorrências de um elemento dentro da tupla
+print(tupla_a_b.count(2))
+
+# .index(elemento) verifica o índice de um elemento. Havendo mais de uma, exibe a primeira ocorrência
+print(tupla_a_b.index(5))
+
+# Podemos definir um intervalo pré-determinado com fatiamento.
+print(tupla_b_a.index(5, 1))
+
+# Tuplas aceitam valores de todos os tipos
+pessoa = (&#x27;Gustavo&#x27;, 39, &#x27;M&#x27;, 99.88)
+print(pessoa)
+
+# O método &#x27;del&#x27; elimina as variáveis
+            </py-repl>
+        </div>
+    </div>
+    
+    </main>
+</body>
+</html>

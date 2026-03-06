@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>06_manipulando_texto.ipynb</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/monokai-sublime.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/python.min.js"></script>
+    
+    <style>
+        .cell { margin-bottom: 1.5rem; }
+        .cell-markdown { font-size: 1.05rem; line-height: 1.6; color: #cbd5e1; }
+        .cell-markdown h1, .cell-markdown h2, .cell-markdown h3 { color: #f1f5f9; margin-top: 1rem; margin-bottom: 0.5rem; }
+        .cell-markdown code { background: rgba(0,0,0,0.3); padding: 0.2rem 0.4rem; border-radius: 4px; color: #eab308; }
+        .cell-markdown pre { background: rgba(0,0,0,0.3); padding: 1rem; border-radius: 8px; overflow-x: auto; border: 1px solid var(--glass-border); margin: 1rem 0; }
+        .cell-code { background: #23241f; border-radius: 8px; padding: 1rem; overflow-x: auto; position: relative; border: 1px solid #333; }
+        .cell-output { background: #000; color: #a3e635; padding: 1rem; border-radius: 8px; margin-top: 0.5rem; font-family: monospace; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;}
+        .prompt { position: absolute; top: 0.5rem; right: 0.5rem; color: #64748b; font-size: 0.8rem; user-select: none; }
+    </style>
+    
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --glass-bg: rgba(30, 41, 59, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --primary: #38bdf8;
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        header {
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            border-bottom: 1px solid var(--glass-border);
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .back-btn {
+            color: var(--text-main);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            background: rgba(255,255,255,0.05);
+            transition: 0.3s;
+        }
+        .back-btn:hover {
+            background: rgba(56, 189, 248, 0.2);
+            color: var(--primary);
+        }
+        .file-title {
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+        main {
+            flex: 1;
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        .container {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="../index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Voltar</a>
+        <div class="file-title">06_manipulando_texto.ipynb</div>
+    </header>
+    <main>
+        <div class="container">
+            <div class="cell cell-markdown" id="md-0"></div>
+            <script>
+                (function(){
+                    const b64 = "IyAqKmBNYW5pcHVsYW5kbyBUZXh0b3NgKioKLS0tCgpVbWEgY2FkZWlhIGRlIGNhcmFjdGVyZXMsIGNvbmhlY2lkYSBjb21vIHN0cmluZywgcmVwcmVzZW50YSB1bSB0ZXh0byBkZWxpbWl0YWRvIHBvciBhc3BhcyBzaW1wbGVzIG91IGR1cGxhcy4KClF1YW5kbyB1bWEgcGFsYXZyYSBvdSBmcmFzZSDDqSBhdHJpYnXDrWRhIGEgdW1hIHZhcmnDoXZlbCBjb21vIHN0cmluZywgZWxhIMOpIGFybWF6ZW5hZGEgZW0gdW0gbG9jYWwgZGEgbWVtw7NyaWEgZSBjYWRhIGNhcmFjdGVyZSBpbmRpdmlkdWFsLCBpbmNsdWluZG8gZXNwYcOnb3MsIHJlY2ViZSB1bSDDrW5kaWNlIHF1ZSBpZGVudGlmaWNhIHN1YSBwb3Npw6fDo28gZGVudHJvIGRhIHN0cmluZywgY29tZcOnYW5kbyBlbSB6ZXJvLgoKRW0gUHl0aG9uLCBzdHJpbmdzIHPDo28gaW11dMOhdmVpcywgbyBxdWUgc2lnbmlmaWNhIHF1ZSB1bWEgdmV6IGNyaWFkYXMsIGVsYXMgbsOjbyBwb2RlbSBzZXIgbW9kaWZpY2FkYXMgZGlyZXRhbWVudGUuIE5vIGVudGFudG8sIHZvY8OqIHBvZGUgYWNlc3NhciBlIG1hbmlwdWxhciBvcyBjYXJhY3RlcmVzIGRhIHN0cmluZyB1c2FuZG8gc2V1cyDDrW5kaWNlcy4KCkVzc2UgY29tcG9ydGFtZW50byDDqSBzZW1lbGhhbnRlIGFvIGRlIHVtYSBsaXN0YSwgcG9pcyB1bWEgc3RyaW5nIHBvZGUgc2VyIHZpc3RhIGNvbW8gdW1hIHNlcXXDqm5jaWEgZGUgY2FyYWN0ZXJlcy4gTWFzIHZhbGUgbGVtYnJhciBxdWUgc3RyaW5ncyBlIGxpc3RhcyB0w6ptIGRpZmVyZW7Dp2FzIGltcG9ydGFudGVzLCBjb21vIG8gZmF0byBkZSBxdWUgc3RyaW5ncyBzw6NvIGltdXTDoXZlaXMsIGVucXVhbnRvIGxpc3RhcyBzw6NvIG11dMOhdmVpcy4=";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-0').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python"># Armazenamos a frase em uma variável. Assim podemos realizar operações com ela.
+
+frase = &#x27;Curso em Vídeo Python&#x27; 
+#        012345678901234567890 &lt;- Índices
+
+# Organizamos assim, nivelados aos caracteres, para facilitar a visualização. A cada sequenência de 0 a 9, temos 10 caracteres.
+
+# Mostrando o tamanho da frase (número de caracteres)
+print(len(frase)) # 21
+
+# Usamos a função len() para contar o número de caracteres da frase. A função recebe um argumento, que pode ser uma string, lista, tupla, etc. E retorna o número de elementos que ela possui.
+
+# A contagem de caracteres começa em 0.
+# O primeiro caractere é o 0, o segundo é o 1, e assim por diante.
+# Por isso temos 21 caracteres, mas o último índice é 20.</code></pre>
+            </div>
+            
+            <div class="cell cell-markdown" id="md-2"></div>
+            <script>
+                (function(){
+                    const b64 = "IyMgYEZhdGlhbWVudG8gZGUgU3RyaW5nc2AKLS0tCgpQb2RlbW9zIHJlYWxpemFyIGRpdmVyc2FzIG9wZXJhw6fDtWVzIGNvbSAqKnN0cmluZ3MqKiBlbSBQeXRob24uCgpQb2RlbW9zIGFjZXNzYXIgb3MgY2FyYWN0ZXJlcyBkZSB1bWEgc3RyaW5nIGluZGl2aWR1YWxtZW50ZSBvdSBleHRyYWlyIHBhcnRlcyBkZWxhIChmYXRpYW1lbnRvKSB1c2FuZG8gw61uZGljZXMsIGFzc2ltIGNvbW8gZmFyw61hbW9zIGNvbSB1bWEgbGlzdGEuCgpUZWNuaWNhbWVudGUsIHVtYSBzdHJpbmcgw6kgdW1hICoqc2VxdcOqbmNpYSBpbXV0w6F2ZWwgZGUgY2FyYWN0ZXJlcyoqLiBFbWJvcmEgdW1hIHN0cmluZyB0ZW5oYSBjb21wb3J0YW1lbnRvIHNlbWVsaGFudGUgYSB1bWEgbGlzdGEgZGUgY2FyYWN0ZXJlcywgw6kgaW1wb3J0YW50ZSBsZW1icmFyIHF1ZSBlbGEgw6kgaW11dMOhdmVsLCBvIHF1ZSBzaWduaWZpY2EgcXVlLCBhbyBjb250csOhcmlvIGRlIGxpc3RhcywgbsOjbyBwb2RlbW9zIG1vZGlmaWNhciBzZXVzIGVsZW1lbnRvcyBkaXJldGFtZW50ZS4KClBvciBleGVtcGxvLCBzZSB0aXZlcm1vcyBhIHN0cmluZyBgZnJhc2UgPSAnQ3Vyc28gZW0gVsOtZGVvIFB5dGhvbidgLCBwb2RlbW9zIGFjZXNzYXIgY2FyYWN0ZXJlcyBpbmRpdmlkdWFpcyBvdSBmYXRpYXMgZGEgc3RyaW5nIHVzYW5kbyDDrW5kaWNlczoKCmBgYHB5dGhvbgpmcmFzZSA9ICdDdXJzbyBlbSBWw61kZW8gUHl0aG9uJwoKIyBBY2Vzc2FuZG8gY2FyYWN0ZXJlcyBpbmRpdmlkdWFpcwpwcmludChmcmFzZVswXSkgICAgIyBTYcOtZGE6ICdDJwpwcmludChmcmFzZVs2XSkgICAgIyBTYcOtZGE6ICdlJwoKIyBGYXRpYW1lbnRvIChzbGljZSkgcGFyYSBhY2Vzc2FyIHBhcnRlcyBkYSBzdHJpbmcKcHJpbnQoZnJhc2VbOToxNF0pICMgU2HDrWRhOiAnVsOtZGVvJwpgYGAKCiMjIyBEZXRhbGhlczoKMS4gYGZyYXNlWzBdYCBub3MgZMOhIG8gcHJpbWVpcm8gY2FyYWN0ZXJlIGRhIHN0cmluZzogYCdDJ2AuCjIuIGBmcmFzZVs2XWAgbm9zIGTDoSBvIGNhcmFjdGVyZSBuYSBwb3Npw6fDo28gNjogYCdlJ2AuCjMuIGBmcmFzZVs5OjE0XWAgcmV0b3JuYSB1bWEgZmF0aWEgZGEgc3RyaW5nIHF1ZSB2YWkgZG8gw61uZGljZSA5IGFvIDEzIChQeXRob24gZXhjbHVpIG8gw61uZGljZSBmaW5hbCBubyBmYXRpYW1lbnRvKSwgbyBxdWUgcmVzdWx0YSBlbSBgJ1bDrWRlbydgLgoKRXN0YSDDqSB1bWEgZGFzIG1hbmVpcmFzIHBlbGFzIHF1YWlzIHBvZGVtb3MgbWFuaXB1bGFyIHN0cmluZ3MgZW0gUHl0aG9uLCB1dGlsaXphbmRvIHNldXMgw61uZGljZXMgcGFyYSBhY2Vzc2FyIGUgZXh0cmFpciBwYXJ0ZXMgZGEgc2VxdcOqbmNpYSBkZSBjYXJhY3RlcmVzLiBObyBlbnRhbnRvLCBsZW1icmUtc2UgZGUgcXVlIGFzIHN0cmluZ3Mgc8OjbyBpbXV0w6F2ZWlzLiBTZSBxdWlzZXJtb3MgbW9kaWZpY2FyIHVtYSBzdHJpbmcsIHByZWNpc2FyZW1vcyBjcmlhciB1bWEgbm92YSBhIHBhcnRpciBkYSBvcmlnaW5hbCBvdSByZWFsaXphciBvcGVyYcOnw7VlcyBxdWUgZ2VyZW0gbm92YXMgc3RyaW5ncy4=";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-2').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [1]</div>
+                <pre><code class="language-python"># Vamos aos exemplos práticos:
+
+# Salvaremos uma frase em uma variável para realizar operações com ela.
+frase = &#x27;Curso em Vídeo Python&#x27;
+
+# Estamos atribuindo à variável o primeiro caractere da string. Isso é feito acessando o índice 0 da string.
+primeiro_caractere = frase[0] 
+
+print(primeiro_caractere) # Saída: C
+
+# Os índices iniciam em 0 e terminam em n-1, onde n é o tamanho da string.
+# Para saber o tamanho da string, podemos utilizar a função len().
+tamanho = len(frase)
+print(tamanho) # Saída: 21
+
+# Além de caracteres individuais, podemos acessar fatias da string. Para isso, utilizamos o intervalo de caracteres que queremos acessar.
+
+# O intervalo é definido por dois pontos (:). O primeiro número indica o início do intervalo e o segundo número indica o final do intervalo.
+
+print(frase[9:14]) # Mostra os caracteres da posição 9 até a 13
+
+# O intervalo é fechado à esquerda e aberto à direita. Ou seja, o caractere da posição 14 não é incluído.
+
+# Também podemos indicar além do intevalo de caracteres, o passo. Isso seria o terceiro parâmetro que indica de quantos em quantos caracteres queremos pular.
+
+print(frase[9:21:2]) # Mostra os caracteres da posição 9 até a 20, pulando de 2 em 2 - ou seja, os caracteres nas posições 9, 11, 13, 15, 17 e 19. Saída: &#x27;VdoPto&#x27;</code></pre>
+            </div>
+            <div class="cell-output">C
+21
+Vídeo
+VdoPto
+</div>
+            <div class="cell cell-markdown" id="md-4"></div>
+            <script>
+                (function(){
+                    const b64 = "IyMgYGxlbigpYAoKTyBtw6l0b2RvICoqYGxlbigpYCoqIHJldG9ybmEgbyAqKmNvbXByaW1lbnRvKiogZGUgdW1hIGNhZGVpYSBkZSBjYXJhY3RlcmVzLCBvdSBzZWphLCBvIG7Dum1lcm8gdG90YWwgZGUgY2FyYWN0ZXJlcyBuYSBzdHJpbmcsIGluY2x1aW5kbyBlc3Bhw6dvcyBlIHPDrW1ib2xvcy4gU3VhIHNpbnRheGUgw6kgc2ltcGxlczogKipgbGVuKClgKiogc2VndWlkbyBkZSBwYXLDqm50ZXNlcywgZGVudHJvIGRvcyBxdWFpcyBjb2xvY2Ftb3MgYSB2YXJpw6F2ZWwgb3UgYSBzdHJpbmcgcXVlIHF1ZXJlbW9zIGFuYWxpc2FyLgoKIyMjIFVzb3MgZG8gYGxlbigpYDoKMS4gKipJdGVyYXIgc29icmUgdW1hIHN0cmluZyoqOiBBbyBwZXJjb3JyZXIgb3MgY2FyYWN0ZXJlcyBkZSB1bWEgc3RyaW5nIGVtIHVtIGxvb3AsIG8gYGxlbigpYCBwb2RlIHNlciB1c2FkbyBwYXJhIGRldGVybWluYXIgYXTDqSBvbmRlIGEgaXRlcmHDp8OjbyBkZXZlIGlyLiBQb3IgZXhlbXBsbywgYSBzdHJpbmcgIkN1cnNvIGVtIFbDrWRlbyBQeXRob24iIHBvc3N1aSAyMSBjYXJhY3RlcmVzLCBtYXMgbyDDumx0aW1vIMOtbmRpY2Ugw6kgbyAyMCwgcG9pcyBjb21lw6dhIGVtIDAuIFNlbmRvICBhc3NpbSwgcGFyYSBhY2Vzc2FyIG8gw7psdGltbyDDrW5kaWNlLCB1c2FyaWFtb3MgbGVuKHN0cmluZykgLSAxLgoKMi4gKipWYWxpZGHDp8OjbyBkZSBjb21wcmltZW50byoqOiBWb2PDqiBwb2RlIHVzYXIgbyBgbGVuKClgIHBhcmEgdmVyaWZpY2FyIHNlIHVtYSBzdHJpbmcgYXRlbmRlIGEgcmVxdWlzaXRvcyBkZSBjb21wcmltZW50bywgY29tbyBzZW5oYXMgb3Ugbm9tZXMgZGUgdXN1w6FyaW9zLgoKMy4gKipFeGliaXIgaW5mb3JtYcOnw7VlcyoqOiBUYW1iw6ltIMOpIMO6dGlsIHBhcmEgZm9ybmVjZXIgaW5mb3JtYcOnw7VlcyBzb2JyZSBvIHRhbWFuaG8gZGUgdW1hIHN0cmluZyBwYXJhIG8gdXN1w6FyaW8sIGNvbW8gcXVhbmRvIHZvY8OqIHF1ZXIgaW5mb3JtYXIgcXVhbnRvcyBjYXJhY3RlcmVzIGZvcmFtIGluc2VyaWRvcyBlbSB1bSBjYW1wby4=";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-4').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [45]</div>
+                <pre><code class="language-python"># Exemplo de verificação de comprimento:
+
+senha = &#x27;minha_senha123&#x27;
+if len(senha) &lt; 8:
+    print(&quot;Senha muito curta!&quot;)
+else:
+    print(&quot;Senha válida!&quot;)
+
+# Neste exemplo, usamos len(senha) para garantir que a senha tenha pelo menos 8 caracteres.
+
+# Aqui está outro exemplo básico:
+
+frase = &#x27;Curso em Vídeo Python&#x27;
+tamanho = len(frase)
+print(tamanho)  # Saída: 21
+
+# No exemplo acima, len(frase) retorna o valor 21, que é o número total de caracteres na string, incluindo os espaços.
+
+# CURSO EM VÍDEO PYTHON &lt;- Frase
+# 012345678901234567890 &lt;- Índices
+
+# Não se esqueça: o último índice é 20, pois começa do 0 e termina em n-1.
+# Podemos afirmar que o último índice é o tamanho da frase - 1, ou seja, 21 - 1 = 20.</code></pre>
+            </div>
+            <div class="cell-output">Senha válida!
+21
+</div>
+            <div class="cell cell-markdown" id="md-6"></div>
+            <script>
+                (function(){
+                    const b64 = "IyMjIEludHJvZHXDp8OjbyBhb3MgTcOpdG9kb3MgZW0gUHl0aG9uCgpFbSBQeXRob24sIHR1ZG8gw6kgdHJhdGFkbyBjb21vIHVtIG9iamV0by4gT3Mgb2JqZXRvcyB0w6ptICoqbcOpdG9kb3MqKiBxdWUgc8OjbyBmdW7Dp8O1ZXMgcXVlIGVzdMOjbyBhc3NvY2lhZGFzIGEgb2JqZXRvcyBlc3BlY8OtZmljb3MsIGNvbW8gc3RyaW5ncywgbGlzdGFzIG91IGRpY2lvbsOhcmlvcy4gRWxlcyBwZXJtaXRlbSBtYW5pcHVsYXIgZSBpbnRlcmFnaXIgY29tIGVzc2VzIG9iamV0b3MgZGUgbWFuZWlyYSBjb252ZW5pZW50ZS4gQ2FkYSB0aXBvIGRlIG9iamV0byB0ZW0gc2V1cyBwcsOzcHJpb3MgbcOpdG9kb3MsIHF1ZSBzw6NvIGZ1bsOnw7VlcyBwcsOpLWRlZmluaWRhcyBxdWUgZXhlY3V0YW0gb3BlcmHDp8O1ZXMgcmVsYWNpb25hZGFzIGFvIHRpcG8gZG8gb2JqZXRvLgoKTm8gY2FzbyBkZSAqKnN0cmluZ3MqKiwgUHl0aG9uIGZvcm5lY2UgdW1hIGFtcGxhIHZhcmllZGFkZSBkZSBtw6l0b2RvcyBxdWUgZmFjaWxpdGFtIGEgbWFuaXB1bGHDp8OjbyBkZSB0ZXh0b3MuIEVzc2VzIG3DqXRvZG9zIHBvZGVtLCBwb3IgZXhlbXBsbywgdHJhbnNmb3JtYXIsIGRpdmlkaXIgb3UgZm9ybWF0YXIgc3RyaW5ncywgZW50cmUgb3V0cmFzIG9wZXJhw6fDtWVzLgoKQSBzaW50YXhlIHBhcmEgY2hhbWFyIHVtIG3DqXRvZG8gZW0gdW0gb2JqZXRvIChjb21vIHVtYSBzdHJpbmcpIMOpIGEgc2VndWludGU6CmBgYHB5dGhvbgpvYmpldG8ubWV0b2RvKCkKYGBgCgpQb3IgZXhlbXBsbywgc2UgdGl2ZXJtb3MgdW1hIHN0cmluZyBgdGV4dG8gPSAiT2zDoSwgTXVuZG8hImAsIHBvZGVtb3MgY2hhbWFyIHVtIG3DqXRvZG8gYXNzb2NpYWRvIGEgZXNzZSBvYmpldG8gcGFyYSByZWFsaXphciB1bWEgb3BlcmHDp8OjbywgY29tbyB0cmFuc2Zvcm1hciBvIHRleHRvIGVtIG1pbsO6c2N1bGFzOgoKYGBgcHl0aG9uCnRleHRvID0gIk9sw6EsIE11bmRvISIKcHJpbnQodGV4dG8ubG93ZXIoKSkgICMgU2HDrWRhOiAnb2zDoSwgbXVuZG8hJwpgYGAKCkFxdWksIG8gbcOpdG9kbyBgbG93ZXIoKWAgdHJhbnNmb3JtYSB0b2RvcyBvcyBjYXJhY3RlcmVzIGRhIHN0cmluZyBlbSBtaW7DunNjdWxhcy4KClBhcmEgc3RyaW5ncywgaMOhIHVtYSB2YXJpZWRhZGUgZGUgbcOpdG9kb3MgZGlzcG9uw612ZWlzIHBhcmEgcmVhbGl6YXIgYW7DoWxpc2VzIGUgbWFuaXB1bGHDp8O1ZXMu";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-6').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-markdown" id="md-7"></div>
+            <script>
+                (function(){
+                    const b64 = "IyMgYGRpcigpYAotLS0KClBhcmEgbGlzdGFyIHRvZG9zIG9zIG3DqXRvZG9zIGRpc3BvbsOtdmVpcyBwYXJhIHVtYSBzdHJpbmcsIHBvZGVtb3MgdXNhciBhIGZ1bsOnw6NvIGBkaXIoKWAuIFBvciBleGVtcGxvOg==";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-7').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [51]</div>
+                <pre><code class="language-python">texto = &quot;Exemplo de string&quot;
+print(dir(texto))
+
+# Isso imprimirá uma lista de todos os métodos disponíveis para a string `texto`.
+
+# Agora, você pode explorar e experimentar diversos métodos para analisar e manipular strings em Python!</code></pre>
+            </div>
+            <div class="cell-output">[&#x27;__add__&#x27;, &#x27;__class__&#x27;, &#x27;__contains__&#x27;, &#x27;__delattr__&#x27;, &#x27;__dir__&#x27;, &#x27;__doc__&#x27;, &#x27;__eq__&#x27;, &#x27;__format__&#x27;, &#x27;__ge__&#x27;, &#x27;__getattribute__&#x27;, &#x27;__getitem__&#x27;, &#x27;__getnewargs__&#x27;, &#x27;__getstate__&#x27;, &#x27;__gt__&#x27;, &#x27;__hash__&#x27;, &#x27;__init__&#x27;, &#x27;__init_subclass__&#x27;, &#x27;__iter__&#x27;, &#x27;__le__&#x27;, &#x27;__len__&#x27;, &#x27;__lt__&#x27;, &#x27;__mod__&#x27;, &#x27;__mul__&#x27;, &#x27;__ne__&#x27;, &#x27;__new__&#x27;, &#x27;__reduce__&#x27;, &#x27;__reduce_ex__&#x27;, &#x27;__repr__&#x27;, &#x27;__rmod__&#x27;, &#x27;__rmul__&#x27;, &#x27;__setattr__&#x27;, &#x27;__sizeof__&#x27;, &#x27;__str__&#x27;, &#x27;__subclasshook__&#x27;, &#x27;capitalize&#x27;, &#x27;casefold&#x27;, &#x27;center&#x27;, &#x27;count&#x27;, &#x27;encode&#x27;, &#x27;endswith&#x27;, &#x27;expandtabs&#x27;, &#x27;find&#x27;, &#x27;format&#x27;, &#x27;format_map&#x27;, &#x27;index&#x27;, &#x27;isalnum&#x27;, &#x27;isalpha&#x27;, &#x27;isascii&#x27;, &#x27;isdecimal&#x27;, &#x27;isdigit&#x27;, &#x27;isidentifier&#x27;, &#x27;islower&#x27;, &#x27;isnumeric&#x27;, &#x27;isprintable&#x27;, &#x27;isspace&#x27;, &#x27;istitle&#x27;, &#x27;isupper&#x27;, &#x27;join&#x27;, &#x27;ljust&#x27;, &#x27;lower&#x27;, &#x27;lstrip&#x27;, &#x27;maketrans&#x27;, &#x27;partition&#x27;, &#x27;removeprefix&#x27;, &#x27;removesuffix&#x27;, &#x27;replace&#x27;, &#x27;rfind&#x27;, &#x27;rindex&#x27;, &#x27;rjust&#x27;, &#x27;rpartition&#x27;, &#x27;rsplit&#x27;, &#x27;rstrip&#x27;, &#x27;split&#x27;, &#x27;splitlines&#x27;, &#x27;startswith&#x27;, &#x27;strip&#x27;, &#x27;swapcase&#x27;, &#x27;title&#x27;, &#x27;translate&#x27;, &#x27;upper&#x27;, &#x27;zfill&#x27;]
+</div>
+            <div class="cell cell-markdown" id="md-9"></div>
+            <script>
+                (function(){
+                    const b64 = "QWxndW1zIG3DqXRvZG9zIGRlIHN0cmluZyBzw6NvOg==";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-9').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [48]</div>
+                <pre><code class="language-python">algo = &quot;Exemplo123&quot;
+
+print(algo.isnumeric())  # Verifica se o valor é um número para dizer se é possível converter para int ou float
+
+print(algo.isalpha())  # Verifica se o valor é alfabético
+
+print(algo.isalnum())  # Verifica se o valor possui letras e números.
+
+print(algo.isupper())  # Verifica se o valor está em maiúsculo.
+
+print(algo.islower())  # Verifica se o valor está em minúsculo.
+
+print(algo.isspace())  # Verifica se o valor é um espaço (espaço, tab, quebra de linha)
+
+print(algo.istitle())  # Verifica se o valor está em formato de título. Ex: Curso em Vídeo
+
+print(algo.isprintable())  # Verifica se o valor é imprimível. Ex: \n não é imprimível
+
+print(algo.isascii())  # Verifica se o valor está em formato ASCII. Acentos não são ASCII
+
+print(algo.isdecimal())  # Verifica se o valor é decimal
+
+print(algo.isdigit())  # Verifica se o valor é um dígito. Diferente de isnumeric, isdigit não aceita números fracionados
+
+print(algo.isidentifier())  # Verifica se o valor é um identificador. Ex: Nome de variável, função, classe, etc.
+
+# Além dos métodos de verificação, existem métodos para transformar strings.
+
+print(algo.casefold())  # exemplo123 (todas as letras em minúsculo). Semelhante ao lower, mas mais abrangente, pois lida com caracteres de outros idiomas.
+
+print(algo.center(20, &#x27;-&#x27;))  # ---Exemplo123---- (centraliza a string com espaços ou o caractere fornecido)
+
+print(algo.ljust(20, &#x27;*&#x27;))  # &#x27;Exemplo123*********&#x27; (justifica a string à esquerda em um campo de largura total de 20 caracteres, preenchendo os espaços extras com &#x27;*&#x27;)
+print(algo.rjust(20, &#x27;*&#x27;))  # &#x27;*********Exemplo123&#x27; (justifica a string à direita em um campo de largura total de 20 caracteres, preenchendo os espaços extras com &#x27;*&#x27;)
+
+print(algo.center(20))  # &#x27;    Exemplo123     &#x27; (centraliza a string com espaços)
+
+print(algo.swapcase())  # eXEMPLO123 (troca letras maiúsculas por minúsculas e vice-versa)
+
+print(algo.index(&#x27;p&#x27;))  # 4 (retorna o índice da primeira ocorrência de &#x27;p&#x27; na string)
+
+print(algo.rindex(&#x27;1&#x27;))  # 7 (retorna o índice da última ocorrência de &#x27;1&#x27; na string)
+
+print(algo.zfill(15))  # 0000000Exemplo123 (preenche a string com zeros à esquerda até alcançar o tamanho especificado)
+
+# Lembre-se de que esses métodos retornam uma nova string e não modificam a original. Se você deseja modificar a string original, você deve reatribuir a nova string à variável original.</code></pre>
+            </div>
+            <div class="cell-output">False
+False
+True
+False
+False
+False
+True
+True
+True
+False
+False
+True
+exemplo123
+-----Exemplo123-----
+Exemplo123**********
+**********Exemplo123
+eXEMPLO123
+4
+7
+00000Exemplo123
+</div>
+            <div class="cell cell-code">
+                <div class="prompt">In [1]</div>
+                <pre><code class="language-python"># Vamos ver um exemplo prático, passo a passo:
+
+# Solicita ao usuário para digitar um número
+entrada_usuario = input(&#x27;Digite um número inteiro: &#x27;)
+
+# Verifica se a entrada do usuário é numérica (ou seja, se é um número inteiro) com o método isnumeric()
+
+if entrada_usuario.isnumeric(): # Se a entrada do usuário for numérica, o bloco de código abaixo será executado
+    
+    # Converte a entrada para um número inteiro
+    numero_inteiro = int(entrada_usuario)
+    
+    # Realiza alguma operação com o número (por exemplo, dobrá-lo)
+    resultado = numero_inteiro * 2
+    
+    # Exibe o resultado
+    print(f&#x27;O dobro do número digitado é: {resultado}&#x27;)
+    
+else: # Se a entrada do usuário não for numérica, o bloco de código abaixo será executado
+    print(&#x27;Por favor, digite um número inteiro válido.&#x27;)</code></pre>
+            </div>
+            <div class="cell-output">Por favor, digite um número inteiro válido.
+</div>
+            <div class="cell cell-markdown" id="md-12"></div>
+            <script>
+                (function(){
+                    const b64 = "IyMgTcOpdG9kbyBgLmNvdW50KCd2YWxvcicpYAoKTyBtw6l0b2RvICoqYC5jb3VudCgndmFsb3InKWAqKiDDqSB1dGlsaXphZG8gcGFyYSBjb250YXIgcXVhbnRhcyB2ZXplcyB1bSBkZXRlcm1pbmFkbyAqKnZhbG9yKiogKHVtYSBzdWJzdHJpbmcpIG9jb3JyZSBkZW50cm8gZGUgdW1hIHN0cmluZy4gRWxlIHJldG9ybmEgdW0gbsO6bWVybyBpbnRlaXJvLCBxdWUgw6kgbyB0b3RhbCBkZSBvY29ycsOqbmNpYXMgZGEgc3Vic3RyaW5nIGVzcGVjaWZpY2FkYS4KCiMjIyBTaW50YXhlOgpgYGBweXRob24Kc3RyaW5nLmNvdW50KCd2YWxvcicpCmBgYAotICoqYHN0cmluZ2AqKjogw4kgYSBzdHJpbmcgbmEgcXVhbCBvIG3DqXRvZG8gc2Vyw6EgYXBsaWNhZG8uCi0gKipgdmFsb3JgKio6IEEgc3Vic3RyaW5nIChzZXF1w6puY2lhIGRlIGNhcmFjdGVyZXMpIHF1ZSBxdWVyZW1vcyBjb250YXIgbmEgc3RyaW5nIHByaW5jaXBhbC4KCiMjIyBFeGVtcGxvIGRlIHVzbyBiw6FzaWNvOgpgYGBweXRob24KZnJhc2UgPSAiUHl0aG9uIMOpIG11aXRvIGRpdmVydGlkbywgUHl0aG9uIMOpIGluY3LDrXZlbCEiCmNvbnRhZ2VtID0gZnJhc2UuY291bnQoJ1B5dGhvbicpCnByaW50KGNvbnRhZ2VtKSAgIyBTYcOtZGE6IDIKYGBgCk5vIGV4ZW1wbG8gYWNpbWEsIGEgc3RyaW5nIGAiUHl0aG9uImAgYXBhcmVjZSAyIHZlemVzIG5hIGZyYXNlLiBMb2dvLCBvIG3DqXRvZG8gYC5jb3VudCgnUHl0aG9uJylgIHJldG9ybmEgbyB2YWxvciAqKjIqKi4KCiMjIyBEZXRhbGhlcyBlIHVzb3M6Ci0gTyAqKm3DqXRvZG8gYC5jb3VudCgpYCoqIGRpZmVyZW5jaWEgbWFpw7pzY3VsYXMgZGUgbWluw7pzY3VsYXMsIG91IHNlamEsIGAnUHl0aG9uJ2AgZSBgJ3B5dGhvbidgIHNlcmlhbSBjb25zaWRlcmFkb3MgdmFsb3JlcyBkaWZlcmVudGVzLgotIE8gbcOpdG9kbyBwb2RlIHNlciDDunRpbCBwYXJhIHZlcmlmaWNhciBhICoqZnJlcXXDqm5jaWEqKiBkZSBwYWxhdnJhcywgY2FyYWN0ZXJlcyBvdSBzdWJzdHJpbmdzIGVtIHRleHRvcyBtYWlvcmVzLCBjb21vIGEgY29udGFnZW0gZGUgbGV0cmFzIGVzcGVjw61maWNhcyBvdSBkZSB1bWEgcGFsYXZyYSBlbSB1bSBwYXLDoWdyYWZvLgoKIyMjIEV4ZW1wbG8gcGFyYSBjb250YXIgY2FyYWN0ZXJlczoKYGBgcHl0aG9uCmZyYXNlID0gIlB5dGhvbiDDqSBmYW50w6FzdGljbyEiCmNvbnRhZ2VtID0gZnJhc2UuY291bnQoJ2EnKQpwcmludChjb250YWdlbSkgICMgU2HDrWRhOiAyCmBgYApBcXVpLCBvIG3DqXRvZG8gYC5jb3VudCgnYScpYCByZXRvcm5hICoqMioqLCBqw6EgcXVlIGEgbGV0cmEgYCdhJ2AgYXBhcmVjZSBkdWFzIHZlemVzIG5hIHN0cmluZy4KCiMjIyBVc28gZGUgcGFyw6JtZXRyb3Mgb3BjaW9uYWlzOgpPIG3DqXRvZG8gYC5jb3VudCgpYCB0YW1iw6ltIHBlcm1pdGUgYSB1dGlsaXphw6fDo28gZGUgZG9pcyBwYXLDom1ldHJvcyBvcGNpb25haXM6Ci0gKipgc3RhcnRgKio6IEEgcG9zacOnw6NvIGluaWNpYWwgZGEgc3RyaW5nIG9uZGUgbyBtw6l0b2RvIGNvbWXDp2Fyw6EgYSBjb250YXIuCi0gKipgZW5kYCoqOiBBIHBvc2nDp8OjbyBmaW5hbCBkYSBzdHJpbmcgYXTDqSBvbmRlIG8gbcOpdG9kbyBpcsOhIGNvbnRhci4KCkV4ZW1wbG86CmBgYHB5dGhvbgpmcmFzZSA9ICJQeXRob24gw6kgbXVpdG8gZGl2ZXJ0aWRvLCBQeXRob24gw6kgaW5jcsOtdmVsISIKY29udGFnZW0gPSBmcmFzZS5jb3VudCgnUHl0aG9uJywgMTUpICAjIENvbWXDp2EgYSBjb250YXIgYSBwYXJ0aXIgZG8gw61uZGljZSAxNQpwcmludChjb250YWdlbSkgICMgU2HDrWRhOiAxCmBgYApOZXN0ZSBjYXNvLCBhIGNvbnRhZ2VtIGNvbWXDp2EgYSBwYXJ0aXIgZGEgcG9zacOnw6NvIDE1IG5hIHN0cmluZywgZSBvIHJlc3VsdGFkbyDDqSAqKjEqKiwgcG9pcyBow6EgYXBlbmFzIHVtYSBvY29ycsOqbmNpYSBkZSBgIlB5dGhvbiJgIGFww7NzIGVzc2UgcG9udG8u";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-12').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python">frase = &#x27;Curso em Vídeo Python&#x27;
+
+# Irá exibir a quantidade de ocorrências de o minúsculo.
+print(frase.count(&#x27;o&#x27;)) # 3
+
+# Esse método aceita a indicação de um intervalo em seus argumentos
+
+print(frase.count(&#x27;o&#x27;, 0, 13)) # 1
+# O índice 13 não é incluído na contagem. Com isso percebemos o comportamento de intervalo de Python. O intervalo é sempre aberto à direita, ou seja, o último índice não é incluído.
+
+# Curso em Víde - Corresponde ao intervalo 0, 13
+# 0123456789012
+
+# Lembrando que se o intervalo for omitido, a contagem será feita em toda a string.
+# Se o início for omitido, a contagem será feita a partir do início da string.
+# Se o final for omitido, a contagem será feita até o final da string.</code></pre>
+            </div>
+            
+            <div class="cell cell-markdown" id="md-14"></div>
+            <script>
+                (function(){
+                    const b64 = "IyMjIE3DqXRvZG8gYGluZGV4KClgCgpPIG3DqXRvZG8gKipgaW5kZXgoKWAqKiBlbSBQeXRob24gw6kgdXRpbGl6YWRvIHBhcmEgZW5jb250cmFyIGEgKipwcmltZWlyYSBvY29ycsOqbmNpYSoqIGRlIHVtYSBzdWJzdHJpbmcgZW0gdW1hIHN0cmluZy4gU2UgYSBzdWJzdHJpbmcgZm9yIGVuY29udHJhZGEsIGVsZSByZXRvcm5hIG8gw61uZGljZSBkYSBwcmltZWlyYSBvY29ycsOqbmNpYS4gQ2FzbyBjb250csOhcmlvLCBlbGUgZ2VyYSB1bWEgZXhjZcOnw6NvIGRvIHRpcG8gKipWYWx1ZUVycm9yKiosIGluZGljYW5kbyBxdWUgYSBzdWJzdHJpbmcgbsOjbyBmb2kgZW5jb250cmFkYS4KCiMjIyBTaW50YXhlOgpgYGBweXRob24Kc3RyaW5nLmluZGV4KHN1YnN0cmluZywgc3RhcnQsIGVuZCkKYGBgCi0gKipgc3Vic3RyaW5nYCoqOiBBIHNlcXXDqm5jaWEgZGUgY2FyYWN0ZXJlcyBxdWUgdm9jw6ogZXN0w6EgcHJvY3VyYW5kby4KLSAqKmBzdGFydGAqKiAqKG9wY2lvbmFsKSo6IE8gw61uZGljZSBpbmljaWFsIHBhcmEgYSBwZXNxdWlzYS4gTyBwYWRyw6NvIMOpIDAuCi0gKipgZW5kYCoqICoob3BjaW9uYWwpKjogTyDDrW5kaWNlIGZpbmFsIHBhcmEgYSBwZXNxdWlzYS4gTyBwYWRyw6NvIMOpIG8gY29tcHJpbWVudG8gdG90YWwgZGEgc3RyaW5nLgoKIyMjIEV4ZW1wbG8gYsOhc2ljbzoKYGBgcHl0aG9uCmZyYXNlID0gIlB5dGhvbiDDqSBpbmNyw612ZWwiCmluZGljZSA9IGZyYXNlLmluZGV4KCJpbmNyw612ZWwiKQpwcmludChpbmRpY2UpICAjIFNhw61kYTogOQpgYGAKCiMjIyBDb21wb3J0YW1lbnRvIGFvIG7Do28gZW5jb250cmFyIGEgc3Vic3RyaW5nOgpgYGBweXRob24KZnJhc2UgPSAiUHl0aG9uIMOpIGluY3LDrXZlbCIKaW5kaWNlID0gZnJhc2UuaW5kZXgoIkphdmEiKSAgIyBMZXZhbnRhIFZhbHVlRXJyb3I6IHN1YnN0cmluZyBub3QgZm91bmQKYGBgCgojIyMgRXhlbXBsbyBjb20gYHN0YXJ0YCBlIGBlbmRgOgpgYGBweXRob24KZnJhc2UgPSAiUHl0aG9uIMOpIGluY3LDrXZlbC4gUHl0aG9uIMOpIHBvZGVyb3NvLiIKaW5kaWNlID0gZnJhc2UuaW5kZXgoIlB5dGhvbiIsIDEwKSAgIyBDb21lw6dhIGEgYnVzY2EgYSBwYXJ0aXIgZG8gw61uZGljZSAxMApwcmludChpbmRpY2UpICAjIFNhw61kYTogMjIKYGBgCgojIyMgQ29uY2x1c8OjbzoKTyBtw6l0b2RvICoqYGluZGV4KClgKiogw6kgw7p0aWwgcXVhbmRvIHZvY8OqIHF1ZXIgZ2FyYW50aXIgcXVlIGEgc3Vic3RyaW5nIGVzdMOhIHByZXNlbnRlLCBwb2lzIGVsZSBnZXJhIHVtYSBleGNlw6fDo28gc2UgYSBzdWJzdHJpbmcgbsOjbyBmb3IgZW5jb250cmFkYS4gQ2FzbyBhIHN1YnN0cmluZyBlc3RlamEgcHJlc2VudGUsIGVsZSByZXRvcm5hIG8gw61uZGljZSBkYSBwcmltZWlyYSBvY29ycsOqbmNpYS4=";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-14').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python">frase = &#x27;Curso em Vídeo Python&#x27;
+
+# Exemplo de retorno de index
+print(frase.index(&#x27;Vídeo&#x27;)) # 9
+
+# Existe uma variante rindex() que retorna o índice da última ocorrência da substring na string.
+print(frase.rindex(&#x27;o&#x27;)) # 19
+
+# Exemplo de retorno de index com substring não encontrada
+# print(frase.index(&#x27;vídeo&#x27;))
+# ValueError: substring not found
+
+# Podemos tratar esse erro com um bloco try/except ou if/else com o operador in. Mas o método find() é mais recomendado para esses casos. Ele retorna -1 se a substring não for encontrada.</code></pre>
+            </div>
+            <div class="cell-output">9
+19
+</div>
+            <div class="cell cell-markdown" id="md-16"></div>
+            <script>
+                (function(){
+                    const b64 = "IyMgTcOpdG9kbyBgZmluZCgpYAoKTyBtw6l0b2RvICoqYGZpbmQoKWAqKiBlbSBQeXRob24gw6kgdXRpbGl6YWRvIHBhcmEgbG9jYWxpemFyIGEgcHJpbWVpcmEgb2NvcnLDqm5jaWEgZGUgdW1hICoqc3Vic3RyaW5nKiogZGVudHJvIGRlIHVtYSBzdHJpbmcuIEVsZSByZXRvcm5hIG8gw61uZGljZSAoYSBwb3Npw6fDo28pIG9uZGUgYSBzdWJzdHJpbmcgZm9pIGVuY29udHJhZGEgcGVsYSBwcmltZWlyYSB2ZXouIENhc28gYSBzdWJzdHJpbmcgbsOjbyBzZWphIGVuY29udHJhZGEsIG8gbcOpdG9kbyByZXRvcm5hICoqLTEqKi4KCiMjIyBTaW50YXhlOgpgYGBweXRob24Kc3RyaW5nLmZpbmQoc3Vic3RyaW5nLCBzdGFydCwgZW5kKQpgYGAKLSAqKmBzdWJzdHJpbmdgKio6IEEgc2VxdcOqbmNpYSBkZSBjYXJhY3RlcmVzIHF1ZSB2b2PDqiBkZXNlamEgZW5jb250cmFyLgotICoqYHN0YXJ0YCoqICoob3BjaW9uYWwpKjogTyDDrW5kaWNlIGluaWNpYWwgYSBwYXJ0aXIgZG8gcXVhbCBhIHBlc3F1aXNhIGNvbWXDp2EuIE8gcGFkcsOjbyDDqSAwIChpbsOtY2lvIGRhIHN0cmluZykuCi0gKipgZW5kYCoqICoob3BjaW9uYWwpKjogTyDDrW5kaWNlIGZpbmFsIGF0w6kgbyBxdWFsIGEgcGVzcXVpc2Egw6kgZmVpdGEuIE8gcGFkcsOjbyDDqSBvIGNvbXByaW1lbnRvIHRvdGFsIGRhIHN0cmluZy4KCiMjIyBFeGVtcGxvIGLDoXNpY286CmBgYHB5dGhvbgpmcmFzZSA9ICJQeXRob24gw6kgaW5jcsOtdmVsIgppbmRpY2UgPSBmcmFzZS5maW5kKCJpbmNyw612ZWwiKQpwcmludChpbmRpY2UpICAjIFNhw61kYTogOQpgYGAKQXF1aSwgYSBzdWJzdHJpbmcgYCJpbmNyw612ZWwiYCBmb2kgZW5jb250cmFkYSBubyDDrW5kaWNlICoqOSoqIGRhIHN0cmluZyBgIlB5dGhvbiDDqSBpbmNyw612ZWwiYC4KCiMjIyBTZSBhIHN1YnN0cmluZyBuw6NvIGZvciBlbmNvbnRyYWRhOgpTZSBhIHN1YnN0cmluZyBuw6NvIGVzdGl2ZXIgcHJlc2VudGUsIG8gbcOpdG9kbyByZXRvcm5hICoqLTEqKjoKYGBgcHl0aG9uCmZyYXNlID0gIlB5dGhvbiDDqSBpbmNyw612ZWwiCmluZGljZSA9IGZyYXNlLmZpbmQoIkphdmEiKQpwcmludChpbmRpY2UpICAjIFNhw61kYTogLTEKYGBgCkNvbW8gYCJKYXZhImAgbsOjbyBlc3TDoSBuYSBzdHJpbmcsIG8gbcOpdG9kbyByZXRvcm5hICoqLTEqKi4KCiMjIyBQYXLDom1ldHJvcyBgc3RhcnRgIGUgYGVuZGA6ClZvY8OqIHBvZGUgbGltaXRhciBhIGJ1c2NhIGEgdW1hIHBhcnRlIGRhIHN0cmluZywgdXNhbmRvIG9zIHBhcsOibWV0cm9zICoqYHN0YXJ0YCoqIGUgKipgZW5kYCoqIHBhcmEgZGVmaW5pciB1bSBpbnRlcnZhbG8gZGUgcGVzcXVpc2EuCgpFeGVtcGxvIGNvbSBgc3RhcnRgOgpgYGBweXRob24KZnJhc2UgPSAiUHl0aG9uIMOpIGluY3LDrXZlbC4gUHl0aG9uIMOpIHBvZGVyb3NvLiIKaW5kaWNlID0gZnJhc2UuZmluZCgiUHl0aG9uIiwgMTApICAjIENvbWXDp2EgYSBidXNjYSBhIHBhcnRpciBkbyDDrW5kaWNlIDEwCnByaW50KGluZGljZSkgICMgU2HDrWRhOiAyMgpgYGAKQXF1aSwgYSBwZXNxdWlzYSBjb21lw6dhIG5vIMOtbmRpY2UgKioxMCoqLCBpZ25vcmFuZG8gYSBwcmltZWlyYSBvY29ycsOqbmNpYSBkZSBgIlB5dGhvbiJgIGUgZW5jb250cmFuZG8gYSBwcsOzeGltYSBubyDDrW5kaWNlICoqMjIqKi4KCkV4ZW1wbG8gY29tIGBzdGFydGAgZSBgZW5kYDoKYGBgcHl0aG9uCmZyYXNlID0gIlB5dGhvbiDDqSBpbmNyw612ZWwuIFB5dGhvbiDDqSBwb2Rlcm9zby4iCmluZGljZSA9IGZyYXNlLmZpbmQoIlB5dGhvbiIsIDEwLCAyNSkgICMgQnVzY2EgZW50cmUgb3Mgw61uZGljZXMgMTAgZSAyNQpwcmludChpbmRpY2UpICAjIFNhw61kYTogMjIKYGBgCk5lc3RlIGNhc28sIGEgYnVzY2Egw6kgbGltaXRhZGEgYW8gaW50ZXJ2YWxvIGRlIMOtbmRpY2VzIGVudHJlICoqMTAqKiBlICoqMjUqKiwgZW5jb250cmFuZG8gYCJQeXRob24iYCBubyDDrW5kaWNlICoqMjIqKi4KCiMjIyBEaWZlcmVuw6dhIGVudHJlIGBmaW5kKClgIGUgYGluZGV4KClgOgotICoqYGZpbmQoKWAqKjogUmV0b3JuYSAqKi0xKiogc2UgYSBzdWJzdHJpbmcgbsOjbyBmb3IgZW5jb250cmFkYS4KLSAqKmBpbmRleCgpYCoqOiBMYW7Dp2EgdW1hIGV4Y2XDp8OjbyAoKipWYWx1ZUVycm9yKiopIHNlIGEgc3Vic3RyaW5nIG7Do28gZm9yIGVuY29udHJhZGEuCgpQb3J0YW50bywgbyAqKmBmaW5kKClgKiogw6kgbWFpcyBzZWd1cm8gcXVhbmRvIG7Do28gdGVtb3MgY2VydGV6YSBzZSBhIHN1YnN0cmluZyBlc3TDoSBwcmVzZW50ZSwgasOhIHF1ZSBldml0YSBlcnJvcyBlIHNpbXBsZXNtZW50ZSByZXRvcm5hICoqLTEqKi4KCiMjIyBDb25jbHVzw6NvOgpPIG3DqXRvZG8gKipgZmluZCgpYCoqIMOpIHVtYSBtYW5laXJhIHNpbXBsZXMgZSBlZmljaWVudGUgZGUgcHJvY3VyYXIgYSBwcmltZWlyYSBvY29ycsOqbmNpYSBkZSB1bWEgc3Vic3RyaW5nIGRlbnRybyBkZSB1bWEgc3RyaW5nIGVtIFB5dGhvbi4gRWxlIHBvZGUgc2VyIMO6dGlsIGVtIGRpdmVyc2FzIHNpdHVhw6fDtWVzLCBjb21vIG5hIHZlcmlmaWNhw6fDo28gZGEgcHJlc2Vuw6dhIGRlIHVtYSBwYWxhdnJhLCBjYXJhY3RlcmVzIG91IGZyYWdtZW50b3MgZXNwZWPDrWZpY29zIGRlIHRleHRvLg==";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-16').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python">frase = &#x27;Curso em Vídeo Python&#x27;
+#        012345678901234567890  &lt;- Índices
+
+# Exibe 11, que é a posição do caractere d
+print(frase.find(&#x27;deo&#x27;)) # Substring 
+
+# Exibe 19, que é a posição do caractere o a partir do índice 14
+print(frase.find(&#x27;o&#x27;, 14)) # Substring com intervalo opcional
+
+# Se o valor não for encontrado, o retorno será -1
+print(frase.find(&#x27;do&#x27;))</code></pre>
+            </div>
+            
+            <div class="cell cell-markdown" id="md-18"></div>
+            <script>
+                (function(){
+                    const b64 = "IyMgTcOpdG9kbyBgcmZpbmQoKWAKCk8gbcOpdG9kbyAqKmByZmluZCgpYCoqIGZ1bmNpb25hIGRlIGZvcm1hIHNlbWVsaGFudGUgYW8gKipgZmluZCgpYCoqLCBtYXMgYW8gaW52w6lzIGRlIHJldG9ybmFyIGEgKipwcmltZWlyYSoqIG9jb3Jyw6puY2lhIGRlIHVtYSBzdWJzdHJpbmcsIGVsZSByZXRvcm5hIGEgKirDumx0aW1hKiouIEEgYnVzY2Egw6kgcmVhbGl6YWRhIGRhIGRpcmVpdGEgcGFyYSBhIGVzcXVlcmRhLCBlbWJvcmEgbyDDrW5kaWNlIHJldG9ybmFkbyBhaW5kYSBzZWphIGVtIHJlbGHDp8OjbyBhbyBpbsOtY2lvIGRhIHN0cmluZy4KCiMjIyBEaWZlcmVuw6dhcyBwcmluY2lwYWlzOgotICoqYGZpbmQoKWAqKjogUmV0b3JuYSBvIMOtbmRpY2UgZGEgKipwcmltZWlyYSoqIG9jb3Jyw6puY2lhIGRhIHN1YnN0cmluZy4KLSAqKmByZmluZCgpYCoqOiBSZXRvcm5hIG8gw61uZGljZSBkYSAqKsO6bHRpbWEqKiBvY29ycsOqbmNpYSBkYSBzdWJzdHJpbmcuCgpTZSBhIHN1YnN0cmluZyBuw6NvIGZvciBlbmNvbnRyYWRhLCBhbWJvcyByZXRvcm5hbSAqKi0xKiouCgojIyMgRXhlbXBsbzoKYGBgcHl0aG9uCmZyYXNlID0gIlB5dGhvbiDDqSBpbmNyw612ZWwuIFB5dGhvbiDDqSBwb2Rlcm9zby4iCmluZGljZSA9IGZyYXNlLnJmaW5kKCJQeXRob24iKQpwcmludChpbmRpY2UpICAjIFNhw61kYTogMjIKYGBgCgpPICoqYHJmaW5kKClgKiogdGFtYsOpbSBhY2VpdGEgb3MgcGFyw6JtZXRyb3Mgb3BjaW9uYWlzICoqYHN0YXJ0YCoqIGUgKipgZW5kYCoqIHBhcmEgZGVsaW1pdGFyIGEgw6FyZWEgZGUgYnVzY2EsIGFzc2ltIGNvbW8gbyBgZmluZCgpYC4=";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-18').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [9]</div>
+                <pre><code class="language-python"># Exibe 19, que é a posição do caractere o a partir do índice 14
+print(frase.find(&#x27;o&#x27;, 14)) # Substring com intervalo opcional
+
+# Se quisermos encontrar a última ocorrência de o minúsculo
+print(frase.rfind(&#x27;o&#x27;)) # Exibe 19</code></pre>
+            </div>
+            <div class="cell-output">19
+19
+</div>
+            <div class="cell cell-markdown" id="md-20"></div>
+            <script>
+                (function(){
+                    const b64 = "IyMgT3BlcmFkb3IgZGUgcGVydGVuY2ltZW50byBgaW5gCi0tLQpPIG9wZXJhZG9yIGBpbmAgcG9kZSBzZXIgdXRpbGl6YWRvIGVtIFB5dGhvbiBwYXJhIHZlcmlmaWNhciBzZSB1bWEgZGV0ZXJtaW5hZGEgc3Vic3RyaW5nIGVzdMOhIGNvbnRpZGEgZGVudHJvIGRlIHVtYSBzdHJpbmcgbWFpb3IuIEVsZSByZXRvcm5hIHVtIHZhbG9yIGJvb2xlYW5vIGluZGljYW5kbyBzZSBhIHN1YnN0cmluZyBlc3TDoSBwcmVzZW50ZSBvdSBuw6NvIG5hIHN0cmluZy4KCkEgc2ludGF4ZSBkbyBvcGVyYWRvciBgaW5gIMOpIGEgc2VndWludGU6CgpgYGBweXRob24Kc3Vic3RyaW5nIGluIHN0cmluZwpgYGAKCk9uZGU6Ci0gYHN1YnN0cmluZ2Agw6kgbyB2YWxvciBxdWUgZGVzZWphbW9zIHZlcmlmaWNhciBzZSBlc3TDoSBwcmVzZW50ZSBuYSBzdHJpbmcuCi0gYHN0cmluZ2Agw6kgYSBzdHJpbmcgbmEgcXVhbCBxdWVyZW1vcyByZWFsaXphciBhIHZlcmlmaWNhw6fDo28uCgpTZSBhIGBzdWJzdHJpbmdgIGVzdGl2ZXIgcHJlc2VudGUgZW0gYHN0cmluZ2AsIG8gb3BlcmFkb3IgYGluYCByZXRvcm5hcsOhIGBUcnVlYC4gQ2FzbyBjb250csOhcmlvLCByZXRvcm5hcsOhIGBGYWxzZWAuCgpQb3IgZXhlbXBsbzo=";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-20').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [10]</div>
+                <pre><code class="language-python">frase = &#x27;Curso em Vídeo Python&#x27; # String original
+
+print(&#x27;Curso&#x27; in frase) # Exibe True pois a palavra corresponde ao conteúdo da variável
+print(&#x27;curso&#x27; in frase) # Exibe False pois a palavra está com a primeira letra minúscula, diferente do conteúdo da variável</code></pre>
+            </div>
+            <div class="cell-output">True
+False
+</div>
+            <div class="cell cell-markdown" id="md-22"></div>
+            <script>
+                (function(){
+                    const b64 = "IyMgTcOpdG9kb3MgYHN0YXJ0c3dpdGgoKWAgZSBgZW5kc3dpdGgoKWAKLS0tCk8gbcOpdG9kbyBgc3RhcnRzd2l0aCgpYCBlIGBlbmRzd2l0aCgpYCBzw6NvIGR1YXMgZnVuw6fDtWVzIGVtYnV0aWRhcyBlbSBQeXRob24gdXNhZGFzIHBhcmEgdmVyaWZpY2FyIHNlIHVtYSBzdHJpbmcgY29tZcOnYSBvdSB0ZXJtaW5hIGNvbSB1bSBkZXRlcm1pbmFkbyBwcmVmaXhvIG91IHN1Zml4bywgcmVzcGVjdGl2YW1lbnRlLgoKQXF1aSBlc3TDoSBhIHNpbnRheGUgcGFyYSBjYWRhIG3DqXRvZG86";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-22').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-markdown" id="md-23"></div>
+            <script>
+                (function(){
+                    const b64 = "IyMjIE3DqXRvZG8gYHN0YXJ0c3dpdGgoKWA6Ci0tLQpgYGBweXRob24Kc3RyaW5nLnN0YXJ0c3dpdGgocHJlZml4bywgaW7DrWNpbywgZmltKQpgYGAKCi0gYHN0cmluZ2A6IEEgc3RyaW5nIHF1ZSBxdWVyZW1vcyB2ZXJpZmljYXIuCi0gYHByZWZpeG9gOiBPIHByZWZpeG8gcXVlIGVzdGFtb3MgdmVyaWZpY2FuZG8gc2UgYSBzdHJpbmcgY29tZcOnYSBjb20gZWxlLgotIGBpbsOtY2lvYCAob3BjaW9uYWwpOiBPIMOtbmRpY2UgYSBwYXJ0aXIgZG8gcXVhbCBhIHZlcmlmaWNhw6fDo28gZGV2ZSBjb21lw6dhci4gUG9yIHBhZHLDo28sIMOpIDAuCi0gYGZpbWAgKG9wY2lvbmFsKTogTyDDrW5kaWNlIGF0w6kgbyBxdWFsIGEgdmVyaWZpY2HDp8OjbyBkZXZlIHNlciBmZWl0YS4gUG9yIHBhZHLDo28sIMOpIG8gY29tcHJpbWVudG8gZGEgc3RyaW5nLgoKRXN0ZSBtw6l0b2RvIHJldG9ybmEgYFRydWVgIHNlIGEgc3RyaW5nIGNvbWXDp2FyIGNvbSBvIHByZWZpeG8gZXNwZWNpZmljYWRvIGUgYEZhbHNlYCBjYXNvIGNvbnRyw6FyaW8u";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-23').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [3]</div>
+                <pre><code class="language-python"># Queremos verificar se o nome começa com Silva
+nome = &quot;Silvana&quot;
+
+# Verifica se a nome começa com &quot;Silva&quot;
+if nome.startswith(&quot;Silva&quot;):
+    print(&quot;O nome começa com &#x27;Silva&#x27;&quot;)
+else:
+    print(&quot;A nome não começa com &#x27;Silva&#x27;&quot;)</code></pre>
+            </div>
+            <div class="cell-output">O nome começa com &#x27;Silva&#x27;
+</div>
+            <div class="cell cell-markdown" id="md-25"></div>
+            <script>
+                (function(){
+                    const b64 = "IyMjIE3DqXRvZG8gYGVuZHN3aXRoKClgOgotLS0KYGBgcHl0aG9uCnN0cmluZy5lbmRzd2l0aChzdWZpeG8sIGluw61jaW8sIGZpbSkKYGBgCgotIGBzdHJpbmdgOiBBIHN0cmluZyBxdWUgcXVlcmVtb3MgdmVyaWZpY2FyLgotIGBzdWZpeG9gOiBPIHN1Zml4byBxdWUgZXN0YW1vcyB2ZXJpZmljYW5kbyBzZSBhIHN0cmluZyB0ZXJtaW5hIGNvbSBlbGUuCi0gYGluw61jaW9gIChvcGNpb25hbCk6IE8gw61uZGljZSBhIHBhcnRpciBkbyBxdWFsIGEgdmVyaWZpY2HDp8OjbyBkZXZlIGNvbWXDp2FyLiBQb3IgcGFkcsOjbywgw6kgMC4KLSBgZmltYCAob3BjaW9uYWwpOiBPIMOtbmRpY2UgYXTDqSBvIHF1YWwgYSB2ZXJpZmljYcOnw6NvIGRldmUgc2VyIGZlaXRhLiBQb3IgcGFkcsOjbywgw6kgbyBjb21wcmltZW50byBkYSBzdHJpbmcuCgpFc3RlIG3DqXRvZG8gcmV0b3JuYSBgVHJ1ZWAgc2UgYSBzdHJpbmcgdGVybWluYXIgY29tIG8gc3VmaXhvIGVzcGVjaWZpY2FkbyBlIGBGYWxzZWAgY2FzbyBjb250csOhcmlvLgoKRXNzZXMgbcOpdG9kb3Mgc8OjbyDDunRlaXMgcGFyYSB2ZXJpZmljYXIgcGFkcsO1ZXMgc2ltcGxlcyBubyBpbsOtY2lvIG91IG5vIGZpbmFsIGRlIHVtYSBzdHJpbmcsIGZhY2lsaXRhbmRvIGEgaW1wbGVtZW50YcOnw6NvIGRlIGzDs2dpY2FzIGNvbmRpY2lvbmFpcyBiYXNlYWRhcyBuZXNzYXMgdmVyaWZpY2HDp8O1ZXMu";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-25').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python"># Queremos verificar se o último nome é Silva
+nome = &quot;Thiago Silva&quot;
+
+# Verifica se a nome termina com &quot;Silva&quot;
+if nome.endswith(&quot;Silva&quot;):
+    print(&quot;O nome termina com &#x27;Silva&#x27;&quot;)
+else:
+    print(&quot;A nome não termina com &#x27;Silva&#x27;&quot;)</code></pre>
+            </div>
+            
+            <div class="cell cell-markdown" id="md-27"></div>
+            <script>
+                (function(){
+                    const b64 = "IyMgYC5yZXBsYWNlKClgCi0tLQpQb2RlbW9zIHN1YnN0aXR1aXIgdW1hIHBhcnRlIGRlIHVtYSBzdHJpbmcgYXJtYXplbmFkYSBudW1hIHZhcmnDoXZlbCBjb2RpZmljYW5kbyBwcmltZWlybyBvIG5vbWUgZGEgdmFyacOhdmVsIGUgZGVwb2lzIG8gbcOpdG9kbyBgLnJlcGxhY2UoKWAKCk8gbcOpdG9kbyBgLnJlcGxhY2UoKWAgw6kgdXRpbGl6YWRvIHBhcmEgc3Vic3RpdHVpciBwYXJ0ZSBkZSB1bWEgc3RyaW5nIHBvciBvdXRyYSBwYXJ0ZSBlc3BlY2lmaWNhZGEuIEVzdGUgbcOpdG9kbyBuw6NvIGFsdGVyYSBhIHN0cmluZyBvcmlnaW5hbCwgbWFzIHJldG9ybmEgdW1hIG5vdmEgc3RyaW5nIGNvbSBhcyBzdWJzdGl0dWnDp8O1ZXMgZmVpdGFzLgoKQXF1aSBlc3TDoSBhIHNpbnRheGUgZG8gbcOpdG9kbyBgLnJlcGxhY2UoKWA6CgpgYGBweXRob24Kc3RyaW5nLnJlcGxhY2UodmFsb3JfYW50aWdvLCBub3ZvX3ZhbG9yLCBxdWFudGlkYWRlKQpgYGAKCi0gYHN0cmluZ2A6IEEgc3RyaW5nIG5hIHF1YWwgcXVlcmVtb3MgZmF6ZXIgYSBzdWJzdGl0dWnDp8Ojby4KLSBgdmFsb3JfYW50aWdvYDogQSBwYXJ0ZSBkYSBzdHJpbmcgcXVlIHF1ZXJlbW9zIHN1YnN0aXR1aXIuCi0gYG5vdm9fdmFsb3JgOiBBIHBhcnRlIHBlbGEgcXVhbCBxdWVyZW1vcyBzdWJzdGl0dWlyIG8gdmFsb3JfYW50aWdvLgotIGBxdWFudGlkYWRlYCAob3BjaW9uYWwpOiBPIG7Dum1lcm8gbcOheGltbyBkZSBzdWJzdGl0dWnDp8O1ZXMgYSBzZXJlbSBmZWl0YXMuIFBvciBwYWRyw6NvLCB0b2RhcyBhcyBvY29ycsOqbmNpYXMgc2Vyw6NvIHN1YnN0aXR1w61kYXMuCgpPIG3DqXRvZG8gYC5yZXBsYWNlKClgIMOpIMO6dGlsIG7Do28gYXBlbmFzIHBhcmEgc3Vic3RpdHVpciBwYXJ0ZXMgZXNwZWPDrWZpY2FzIGRlIHVtYSBzdHJpbmcsIG1hcyB0YW1iw6ltIHBhcmEgcmVtb3ZlciBjYXJhY3RlcmVzIGluZGVzZWphZG9zLiBQb3IgZXhlbXBsbywgc2UgcXVpc2VybW9zIHJlbW92ZXIgdG9kb3Mgb3MgZXNwYcOnb3MgZW0gYnJhbmNvIGRlIHVtYSBzdHJpbmcsIHBvZGVtb3MgdXNhciBgc3RyaW5nLnJlcGxhY2UoJyAnLCAnJylgLg==";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-27').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python"># Salvamos uma frase em uma variável
+frase = &#x27;Curso em Vídeo Python&#x27;
+
+# Utilizamos o método .replace() para substituir a palavra Python por Android
+frase.replace(&#x27;Python&#x27;, &#x27;Android&#x27;)
+
+# Se codificarmos a variável original, notaremos que o valor dela permanece inalterado. Isso ocorre pois o método .replace() não altera o valor da variável original, mas cria uma nova string com o valor atualizado.
+print(frase)
+
+# Podemos armazenar o valor atualizado em uma nova variável
+nova_frase = frase.replace(&#x27;Python&#x27;, &#x27;Android&#x27;)
+
+# Agora, ao exibir a nova variável, notaremos que o valor foi atualizado
+print(nova_frase) 
+
+# Executamos novamente a variável original para confirmar que o valor permanece inalterado
+print(frase)
+
+# Este método também nos permite incluir caracteres
+teste = &#x27;Podemos inserir caracteres&#x27; # Cada caractere possui um espaço entre si
+print(teste.replace(&#x27;&#x27;, &#x27; &#x27;)) # Aqui estamos incluindo um espaço entre cada caractere
+
+# Saída: P o d e m o s   i n s e r i r   c a r a c t e r e s</code></pre>
+            </div>
+            
+            <div class="cell cell-markdown" id="md-29"></div>
+            <script>
+                (function(){
+                    const b64 = "IyMgYC51cHBlcigpYCBlIGAubG93ZXIoKWAKLS0tCk9zIG3DqXRvZG9zIGAudXBwZXIoKWAgZSBgLmxvd2VyKClgIHPDo28gdXNhZG9zIHBhcmEgdHJhbnNmb3JtYXIgb3MgY2FyYWN0ZXJlcyBkZSB1bWEgc3RyaW5nIGVtIG1hacO6c2N1bGFzIGUgbWluw7pzY3VsYXMsIHJlc3BlY3RpdmFtZW50ZS4gRWxlcyBzw6NvIG3DqXRvZG9zIGRlIHRyYW5zZm9ybWHDp8OjbyBxdWUgYWp1ZGFtIGEgcGFkcm9uaXphciBvIHRleHRvIGRlIGFjb3JkbyBjb20gYXMgbmVjZXNzaWRhZGVzIGRvIHByb2dyYW1hLgoKLSBPIG3DqXRvZG8gYC51cHBlcigpYCB0cmFuc2Zvcm1hIHRvZG9zIG9zIGNhcmFjdGVyZXMgZGEgc3RyaW5nIGVtIGxldHJhcyBtYWnDunNjdWxhcy4KLSBPIG3DqXRvZG8gYC5sb3dlcigpYCB0cmFuc2Zvcm1hIHRvZG9zIG9zIGNhcmFjdGVyZXMgZGEgc3RyaW5nIGVtIGxldHJhcyBtaW7DunNjdWxhcy4KCkVzc2VzIG3DqXRvZG9zIHPDo28gw7p0ZWlzIHF1YW5kbyBwcmVjaXNhbW9zIGNvbXBhcmFyIHN0cmluZ3Mgc2VtIGRpZmVyZW5jaWFyIG1hacO6c2N1bGFzIGRlIG1pbsO6c2N1bGFzLCBvdSBxdWFuZG8gcXVlcmVtb3MgYXByZXNlbnRhciBhIHNhw61kYSBlbSB1bSBmb3JtYXRvIGNvbnNpc3RlbnRlLiAKClBvciBleGVtcGxvOg==";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-29').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python">print(frase.upper()) # Exibe a frase em maiúsculo. 
+print(frase) # O método .upper() não altera o valor da variável original, mas cria uma nova string com o valor atualizado.
+
+print(frase.lower()) # Exibe a frase em minúsculo.
+print(frase) # O método .lower() não altera o valor da variável original, mas cria uma nova string com o valor atualizado.</code></pre>
+            </div>
+            
+            <div class="cell cell-markdown" id="md-31"></div>
+            <script>
+                (function(){
+                    const b64 = "IyMgYC50aXRsZSgpYAotLS0KTyBtw6l0b2RvIGAudGl0bGUoKWAgw6kgdXNhZG8gcGFyYSBjYXBpdGFsaXphciBvIHByaW1laXJvIGNhcmFjdGVyZSBkZSBjYWRhIHBhbGF2cmEgZW0gdW1hIHN0cmluZywgdHJhbnNmb3JtYW5kbyBhcyBvdXRyYXMgbGV0cmFzIGVtIG1pbsO6c2N1bGFzLiBJc3NvIMOpIMO6dGlsIHF1YW5kbyBxdWVyZW1vcyBmb3JtYXRhciBvIHRleHRvIHBhcmEgcXVlIGNhZGEgcGFsYXZyYSBjb21lY2UgY29tIHVtYSBsZXRyYSBtYWnDunNjdWxhLCBjb21vIGVtIHTDrXR1bG9zIG91IG5vbWVzIHByw7Nwcmlvcy4KClBvciBleGVtcGxvOg==";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-31').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python">print(frase.title()) # Exibe a frase com a primeira letra de cada palavra em maiúsculo. Também não altera o valor da variável original.
+
+print(frase) # Exibe a frase original
+
+# Como você pode ver, o método `.title()` capitaliza o primeiro caractere de cada palavra na string `frase`, enquanto as letras restantes são convertidas em minúsculas. Isso resulta em uma formatação adequada para um título ou cabeçalho.</code></pre>
+            </div>
+            
+            <div class="cell cell-markdown" id="md-33"></div>
+            <script>
+                (function(){
+                    const b64 = "IyMgYC5jYXBpdGFsaXplKClgCi0tLQpPIG3DqXRvZG8gYC5jYXBpdGFsaXplKClgIMOpIHVzYWRvIHBhcmEgdHJhbnNmb3JtYXIgYXBlbmFzIG8gcHJpbWVpcm8gY2FyYWN0ZXJlIGRlIHVtYSBzdHJpbmcgZW0gbWFpw7pzY3VsYSwgZW5xdWFudG8gdG9kYXMgYXMgb3V0cmFzIGxldHJhcyBzw6NvIGNvbnZlcnRpZGFzIGVtIG1pbsO6c2N1bGFzLiBJc3NvIMOpIMO6dGlsIHF1YW5kbyBxdWVyZW1vcyBjYXBpdGFsaXphciBhcGVuYXMgbyBwcmltZWlybyBjYXJhY3RlcmUgZGUgdW1hIGZyYXNlLCBtYW50ZW5kbyBhcyBvdXRyYXMgbGV0cmFzIGluYWx0ZXJhZGFzLgoKUG9yIGV4ZW1wbG86";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-33').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [11]</div>
+                <pre><code class="language-python">print(frase.capitalize()) # Exibe a frase com a primeira letra em maiúsculo e as demais em minúsculo. Também não altera o valor da variável original.
+
+print(frase) # Exibe a frase original
+
+# Como você pode ver, o método `.capitalize()` capitaliza apenas o primeiro caractere da string `frase`, mantendo as outras letras como estão. Isso é útil quando queremos garantir que a primeira letra de uma frase seja maiúscula, independentemente do restante da string.</code></pre>
+            </div>
+            <div class="cell-output">Curso em vídeo python
+Curso em Vídeo Python
+</div>
+            <div class="cell cell-markdown" id="md-35"></div>
+            <script>
+                (function(){
+                    const b64 = "IyMgYC5zcGxpdCgpYAotLS0KQW8gdHJhYmFsaGFyIGNvbSBkaWZlcmVudGVzIHRpcG9zIGRlIGRhZG9zLCBtdWl0YXMgdmV6ZXMgb3MgcmVjZWJlcmVtb3MgZW0gdW0gZm9ybWF0byBxdWUgcG9kZSBkaWZpY3VsdGFyIG8gdHJhYmFsaG8uCgpDb25zZWd1aW1vcyBkaXZpZGlyIHN0cmluZ3MgZSBhcm1hemVuYXIgb3MgdmFsb3JlcyBpbmRpdmlkdWFpcyBudW1hIGxpc3RhIHV0aWxpemFuZG8gbyBtw6l0b2RvIC5zcGxpdCgpIC0gc3BsaXQgc2lnbmlmaWNhIGRpdmlkaXIuCgpPIG3DqXRvZG8gYC5zcGxpdCgpYCDDqSB1c2FkbyBwYXJhIGRpdmlkaXIgdW1hIHN0cmluZyBlbSBzdWJzdHJpbmdzIGNvbSBiYXNlIGVtIHVtIHNlcGFyYWRvciBlc3BlY2lmaWNhZG8gZSByZXRvcm5hciB1bWEgbGlzdGEgZGFzIHN1YnN0cmluZ3MgcmVzdWx0YW50ZXMuCgpQb3IgcGFkcsOjbywgbyBtw6l0b2RvIGAuc3BsaXQoKWAgdXNhIGVzcGHDp29zIGVtIGJyYW5jbyBjb21vIHNlcGFyYWRvciBwYXJhIGRpdmlkaXIgYSBzdHJpbmcuIE5vIGVudGFudG8sIHZvY8OqIHBvZGUgZXNwZWNpZmljYXIgdW0gc2VwYXJhZG9yIHBlcnNvbmFsaXphZG8gcGFzc2FuZG8tbyBjb21vIGFyZ3VtZW50byBwYXJhIG8gbcOpdG9kbyBgLnNwbGl0KClgLgoKUG9yIGV4ZW1wbG86";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-35').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [14]</div>
+                <pre><code class="language-python">frase = &#x27;Curso em Vídeo Python&#x27;
+
+# O método .split() divide a string em uma lista de strings.
+# O padrão é dividir a string nos espaços em branco.
+
+print(frase.split())
+# Será exibida uma lista com as palavras da frase: [&#x27;Curso&#x27;, &#x27;em&#x27;, &#x27;Vídeo&#x27;, &#x27;Python&#x27;]
+
+# O método .split() não altera o valor da variável original.
+print(frase)
+
+# Podemos armazenar o valor da lista em uma variável
+frase_dividida = frase.split()
+print(frase_dividida) # Exibe a lista [&#x27;Curso&#x27;, &#x27;em&#x27;, &#x27;Vídeo&#x27;, &#x27;Python&#x27;]
+
+# Como veremos ao tratar de listas mais adiante, podemos acessar os valores da lista por meio de índices. Assim como acessamos caracteres de uma string, em listas, podemos os elementos por meio de índices.
+
+# Nesse exemplo, o primeiro valor indica a palavra e o segundo o caractere
+print(frase_dividida[2]) # Exibe &#x27;Vídeo&#x27; pois é o terceiro [2] valor da lista
+
+# Se a lista for composta por strings, podemos acessar caracteres de uma palavra por meio de índices. Indicamos a palavra e o caractere.
+
+print(frase_dividida[2][0]) # Exibe &#x27;V&#x27; pois é o primeiro [0] caractere da palavra &#x27;Vídeo&#x27; cujo índice é 2 </code></pre>
+            </div>
+            <div class="cell-output">[&#x27;Curso&#x27;, &#x27;em&#x27;, &#x27;Vídeo&#x27;, &#x27;Python&#x27;]
+Curso em Vídeo Python
+[&#x27;Curso&#x27;, &#x27;em&#x27;, &#x27;Vídeo&#x27;, &#x27;Python&#x27;]
+Vídeo
+V
+</div>
+            <div class="cell cell-markdown" id="md-37"></div>
+            <script>
+                (function(){
+                    const b64 = "TyBtw6l0b2RvIGAuc3BsaXQoKWAgcG9kZSBzZXIgdXNhZG8gcGFyYSBkaXZpZGlyIHVtYSBzdHJpbmcgY29tIGJhc2UgZW0gcXVhbHF1ZXIgY2FyYWN0ZXJlIGVzcGVjw61maWNvLCBuw6NvIGFwZW5hcyBlc3Bhw6dvcyBlbSBicmFuY28gKEVzcGHDp29zIGVtIGJyYW5jbywgbsOjbyBlc3Bhw6dvcyB2YXppb3MpLgoKU2Ugdm9jw6ogZGVzZWphIGRpdmlkaXIgdW1hIHN0cmluZyBlbSB1bSBjYXJhY3RlcmUgZGlmZXJlbnRlIGRlIGVzcGHDp28gZW0gYnJhbmNvLCBwb2RlIGVzcGVjaWZpY2FyIGVzc2UgY2FyYWN0ZXJlIGNvbW8gYXJndW1lbnRvIHBhcmEgbyBtw6l0b2RvIGAuc3BsaXQoKWAuCgpQb3IgZXhlbXBsbzo=";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-37').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [15]</div>
+                <pre><code class="language-python"># O texto está separado por vírgula e espaço. Portanto usaremos o método split() para separar o texto em uma lista 
+texto = &#x27;Maycon, Masculino, Pardo, Douglas, Masculino, Branco, Maria, Feminino, Branca&#x27;
+
+# Como o método split() não altera o valor da variável original, podemos armazenar o valor da lista em uma variável
+lista_texto = texto.split(&#x27;, &#x27;)
+
+# A nossa saída será uma lista com os nomes, gêneros e etnias
+print(lista_texto)
+
+# Agora podemos manipular a lista
+print(lista_texto[0::3]) # Exibe os nomes que estão na posição 0, 3, 6, 9
+print(lista_texto[1::3]) # Exibe os sexos que estão na posição 1, 4, 7, 10
+print(lista_texto[2::3]) # Exibe as etnias que estão na posição 2, 5, 8, 11</code></pre>
+            </div>
+            <div class="cell-output">[&#x27;Maycon&#x27;, &#x27;Masculino&#x27;, &#x27;Pardo&#x27;, &#x27;Douglas&#x27;, &#x27;Masculino&#x27;, &#x27;Branco&#x27;, &#x27;Maria&#x27;, &#x27;Feminino&#x27;, &#x27;Branca&#x27;]
+[&#x27;Maycon&#x27;, &#x27;Douglas&#x27;, &#x27;Maria&#x27;]
+[&#x27;Masculino&#x27;, &#x27;Masculino&#x27;, &#x27;Feminino&#x27;]
+[&#x27;Pardo&#x27;, &#x27;Branco&#x27;, &#x27;Branca&#x27;]
+</div>
+            <div class="cell cell-markdown" id="md-39"></div>
+            <script>
+                (function(){
+                    const b64 = "IyMgYCcnLmpvaW4oKWAKLS0tCk8gbcOpdG9kbyBgLmpvaW4oKWAgw6kgdXNhZG8gcGFyYSBqdW50YXIgb3MgaXRlbnMgZGUgdW1hIHNlcXXDqm5jaWEgKGNvbW8gdW1hIGxpc3RhKSBlbSB1bWEgw7puaWNhIHN0cmluZywgc2VwYXJhbmRvLW9zIGNvbSB1bSBzZXBhcmFkb3IgZXNwZWNpZmljYWRvLgoKUG9yIGV4ZW1wbG86";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-39').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [16]</div>
+                <pre><code class="language-python"># Temos uma lista de frutas
+frutas = [&#x27;maçã&#x27;, &#x27;banana&#x27;, &#x27;laranja&#x27;, &#x27;uva&#x27;]
+
+# Desejamos unir os itens da lista em uma única string. Como o método não altera o valor da variável original, podemos armazenar o valor da string em uma variável
+
+# Usamos um separador para unir os itens da lista
+frutas_str = &#x27;, &#x27;.join(frutas)
+
+# Ao exibir a variável, notaremos que os itens da lista foram unidos em uma única string
+print(frutas_str)
+
+# Veja a diferença para a exibição da lista
+print(frutas)
+
+# Neste exemplo, o método `.join()` é usado para juntar os itens da lista `frutas`, separando-os por vírgula e espaço. O resultado é uma única string contendo todas as frutas, separadas por vírgula e espaço.
+
+# Lista - [&#x27;maçã&#x27;, &#x27;banana&#x27;, &#x27;laranja&#x27;, &#x27;uva&#x27;]
+# String - &#x27;maçã, banana, laranja, uva&#x27;</code></pre>
+            </div>
+            <div class="cell-output">maçã, banana, laranja, uva
+[&#x27;maçã&#x27;, &#x27;banana&#x27;, &#x27;laranja&#x27;, &#x27;uva&#x27;]
+</div>
+            <div class="cell cell-markdown" id="md-41"></div>
+            <script>
+                (function(){
+                    const b64 = "IE8gbcOpdG9kbyBgLmpvaW4oKWAgcG9kZSBzZXIgdXNhZG8gcGFyYSB1bmlyIG9zIGNhcmFjdGVyZXMgZGUgdW1hIHN0cmluZywgc2VwYXJhbmRvLW9zIGNvbSBvIHNlcGFyYWRvciBlc3BlY2lmaWNhZG8uIEFxdWkgZXN0w6EgdW0gZXhlbXBsbzo=";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-41').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [18]</div>
+                <pre><code class="language-python"># String original - É apenas uma palavra
+texto = &quot;Python&quot;
+
+# Caractere que será utilizado para separar os caracteres da string
+separador = &quot;-&quot;
+
+# O método .join() une os caracteres da string, separando-os com o caractere indicado
+texto_separado = separador.join(texto)
+
+# Agora veremos cada letra separada por um hífen
+print(texto_separado) # P-y-t-h-o-n</code></pre>
+            </div>
+            <div class="cell-output">P-y-t-h-o-n
+</div>
+            <div class="cell cell-markdown" id="md-43"></div>
+            <script>
+                (function(){
+                    const b64 = "IyMgYC5zdHJpcCgpYAotLS0KTyBtw6l0b2RvIGAuc3RyaXAoKWAgw6kgdXNhZG8gcGFyYSByZW1vdmVyIGVzcGHDp29zIGVtIGJyYW5jbyBkZXNuZWNlc3PDoXJpb3Mgbm8gaW7DrWNpbyBlIG5vIGZpbmFsIGRlIHVtYSBzdHJpbmcuIEFxdWkgZXN0w6EgdW0gZXhlbXBsbzo=";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-43').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [19]</div>
+                <pre><code class="language-python"># Colocamos propositalmente espaços em branco à esquerda e à direita da frase
+frase = &#x27;    Aprenda Python   &#x27;
+
+# Exibe a frase com espaços à esquerda e à direita
+print(frase)
+
+# len(frase) exibe 21, que é o tamanho da frase incluindo os espaços
+print(len(frase))
+
+# Usamos strip para tratar a string. Agora o print() exibe a frase sem os espaços à esquerda e à direita
+print(frase.strip())
+
+# Novamente, usamos len(frase) que exibe 13, que é o tamanho da frase sem os espaços à esquerda e à direita
+print(len(frase.strip()))
+
+# Há duas variações: Somente da direita rstrip() e somente da esquerda lstrip()
+print(frase.rstrip()) # Exibe a frase sem os espaços à direita
+print(frase.lstrip()) # Exibe a frase sem os espaços à esquerda
+
+# Este método é útil para tratar strings recebidas de usuários, removendo espaços em branco extras que podem causar problemas ao processar os dados.</code></pre>
+            </div>
+            <div class="cell-output">    Aprenda Python   
+21
+Aprenda Python
+14
+    Aprenda Python
+Aprenda Python   
+</div></div><script>hljs.highlightAll();</script>
+    </main>
+</body>
+</html>

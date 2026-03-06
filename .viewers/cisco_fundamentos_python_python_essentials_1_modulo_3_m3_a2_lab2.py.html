@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>m3_a2_lab2.py</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="https://pyscript.net/releases/2024.1.1/core.css">
+    <script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>
+    <style>
+        .sandbox-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
+        .sandbox-header h2 { font-size: 1.2rem; color: var(--primary); display: flex; align-items: center; gap: 0.5rem; }
+        .py-repl-container { border-radius: 8px; overflow: hidden; border: 1px solid var(--glass-border); background: #1e293b; }
+    </style>
+    
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --glass-bg: rgba(30, 41, 59, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --primary: #38bdf8;
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        header {
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            border-bottom: 1px solid var(--glass-border);
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .back-btn {
+            color: var(--text-main);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            background: rgba(255,255,255,0.05);
+            transition: 0.3s;
+        }
+        .back-btn:hover {
+            background: rgba(56, 189, 248, 0.2);
+            color: var(--primary);
+        }
+        .file-title {
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+        main {
+            flex: 1;
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        .container {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="../index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Voltar</a>
+        <div class="file-title">m3_a2_lab2.py</div>
+    </header>
+    <main>
+        
+    <div class="container">
+        <div class="sandbox-header">
+            <h2><i class="fa-brands fa-python"></i> Sandbox PyScript</h2>
+            <span>Edite e execute (Shift + Enter) ou no botão verde ▶</span>
+        </div>
+        <div class="py-repl-container">
+            <script type="py" id="main-script"></script>
+            <py-repl auto-generate="true">
+# 3.2.7 LAB Essenciais do loop for – contando Mississippi
+# Cenário
+# Você sabe o que é o Mississippi? Bem, é o nome de um dos estados e riachos dos Estados Unidos. O Rio Mississippi tem cerca de 2.340 milhas de comprimento, o que o torna o segundo maior rio dos Estados Unidos (o mais longo é o Rio Missouri). É tão longo que uma única gota de água precisa de 90 dias para percorrer todo o seu comprimento!
+
+# A palavra Mississippi também é usada para uma finalidade ligeiramente diferente: contar com erros de sorte.
+# Se você não está familiarizado com a frase, estamos aqui para explicar o que ela significa: ela é usada para contar segundos.
+
+# A ideia por trás disso é que adicionar a palavra Mississippi a um número ao contar segundos em voz alta faz com que soem mais perto do relógio e, &quot;um Mississippi, dois Mississippi, três Mississippi&quot; levará aproximadamente três segundos reais!
+# É frequentemente usado por crianças que brincam de esconde-esconde para garantir que o candidato faça uma contagem honesta.
+
+# Sua tarefa é muito simples aqui: escreva um programa que use um loop for para &quot;contar de forma incorreta&quot; para cinco.
+# Após contar até cinco, o programa deve imprimir na tela a mensagem final &quot;Pronto ou não, aqui vou eu!&quot;
+
+from time import sleep
+for contagem in range(1, 6):
+    # Escreva um loop for que conte até cinco
+    # Corpo do loop - exiba o número de iteração do loop e a palavra &quot;Mississippi&quot;.
+    print(f&#x27;{contagem} Mississippi&#x27;)
+    # Corpo do loop - use: time.sleep(1)
+    sleep(1)
+# Escreva uma função print() com a mensagem final.
+print(&quot;Pronto ou não, aqui vou eu!&quot;)
+            </py-repl>
+        </div>
+    </div>
+    
+    </main>
+</body>
+</html>

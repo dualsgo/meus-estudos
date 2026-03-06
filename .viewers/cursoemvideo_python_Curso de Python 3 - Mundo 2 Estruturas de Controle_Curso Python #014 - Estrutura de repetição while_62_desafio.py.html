@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>62_desafio.py</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="https://pyscript.net/releases/2024.1.1/core.css">
+    <script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>
+    <style>
+        .sandbox-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
+        .sandbox-header h2 { font-size: 1.2rem; color: var(--primary); display: flex; align-items: center; gap: 0.5rem; }
+        .py-repl-container { border-radius: 8px; overflow: hidden; border: 1px solid var(--glass-border); background: #1e293b; }
+    </style>
+    
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --glass-bg: rgba(30, 41, 59, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --primary: #38bdf8;
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        header {
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            border-bottom: 1px solid var(--glass-border);
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .back-btn {
+            color: var(--text-main);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            background: rgba(255,255,255,0.05);
+            transition: 0.3s;
+        }
+        .back-btn:hover {
+            background: rgba(56, 189, 248, 0.2);
+            color: var(--primary);
+        }
+        .file-title {
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+        main {
+            flex: 1;
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        .container {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="../index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Voltar</a>
+        <div class="file-title">62_desafio.py</div>
+    </header>
+    <main>
+        
+    <div class="container">
+        <div class="sandbox-header">
+            <h2><i class="fa-brands fa-python"></i> Sandbox PyScript</h2>
+            <span>Edite e execute (Shift + Enter) ou no botão verde ▶</span>
+        </div>
+        <div class="py-repl-container">
+            <script type="py" id="main-script"></script>
+            <py-repl auto-generate="true">
+# Exercício Python #062 - Super Progressão Aritmética v3.0 - Aula 00 até 14 - Mundo 2
+# Melhore o DESAFIO 061, perguntando para o usuário se ele quer mostrar mais alguns termos. O programa encerrará quando ele disser que quer mostrar 0 termos.
+
+while True:
+
+    try:
+        primeiro_termo = int(input(&#x27;Digite o primeiro termo: &#x27;))
+        razão = int(input(&#x27;Digite a razão da progressão: &#x27;))
+        acumulador = primeiro_termo
+        contador = 0
+        termos = 10
+
+        while True:
+            while contador &lt; termos:
+                print(f&#x27;{acumulador}&#x27;, end=&#x27; ⮕ &#x27; if contador &lt; termos - 1 else &#x27; ⮕ PAUSA\n&#x27;)
+                acumulador += razão
+                contador += 1
+            mais_termos = int(input(&#x27;Quantos termos deseja visualizar? &#x27;))
+            if mais_termos == 0:
+                print(f&#x27;Exibindo {mais_termos} termos...&#x27;)
+                break
+            termos += mais_termos
+
+        print(f&#x27;Encerrando o programa! {termos} termos exibidos&#x27;)
+
+        break
+
+    except ValueError:
+        print(f&#x27;Valor de um tipo inválido para essa operação.&#x27;)
+        
+# Estou compartilhando minhas anotações sobre os exercícios. Quem quiser, pode copiar e colar em um documento .py pois está tudo formatado e comentado.
+
+# Nesse exercício, vamos melhorar o DESAFIO 061, perguntando ao usuário se ele deseja mostrar mais alguns termos da Progressão Aritmética (PA). O programa encerrará quando o usuário disser que deseja mostrar 0 termos.
+
+primeiro_termo = int(input(&#x27;Digite o primeiro termo: &#x27;))  # Solicita ao usuário que digite o primeiro termo da PA.
+razão = int(input(&#x27;Digite a razão da progressão: &#x27;))  # Solicita ao usuário que digite a razão da PA.
+acumulador = primeiro_termo  # Inicializa o acumulador com o primeiro termo da PA.
+contador = 0  # Inicializa o contador de termos mostrados.
+termos = 10  # Inicializa o número de termos a serem mostrados.
+condicao = True  # Inicializa a condição para continuar exibindo termos adicionais.
+
+while condicao:  # Laço de repetição principal para controlar a exibição de termos adicionais.
+    while contador &lt; termos:  # Laço de repetição para mostrar os termos da PA.
+        print(f&#x27;{acumulador}&#x27;, end=&#x27; ⮕ &#x27; if contador &lt; termos - 1 else &#x27; ⮕ PAUSA\n&#x27;)  # Exibe o termo atual e a seta se não for o último termo, senão, exibe o termo atual e a seta com a palavra PAUSA.
+        acumulador += razão  # Atualiza o acumulador somando a razão da PA.
+        contador += 1  # Incrementa o contador de termos mostrados.
+        
+    mais_termos = int(input(&#x27;Quantos termos deseja visualizar? &#x27;))  # Pergunta ao usuário quantos termos adicionais deseja visualizar.
+    
+    if mais_termos == 0:  # Se o usuário deseja visualizar 0 termos adicionais, o programa encerra.
+        print(f&#x27;Exibindo {mais_termos} termos...&#x27;)  # Exibe o número total de termos exibidos.
+        condicao = False  # Altera a condição para encerrar o programa.
+
+    termos += mais_termos  # Atualiza o número de termos a serem mostrados com os termos adicionais.
+    
+    # Se o usuário deseja visualizar mais termos, o programa continua exibindo os termos adicionais.
+    
+
+print(f&#x27;Encerrando o programa! {termos} termos exibidos&#x27;)  # Exibe uma mensagem de encerramento do programa com o número total de termos exibidos.  
+
+# NOTA: Temos dois laços de repetição aninhados. O laço interno é responsável por exibir os termos da PA, enquanto o laço externo controla a exibição de termos adicionais. O programa só encerra quando o usuário deseja visualizar 0 termos adicionais.
+            </py-repl>
+        </div>
+    </div>
+    
+    </main>
+</body>
+</html>

@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>73_desafio.py</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="https://pyscript.net/releases/2024.1.1/core.css">
+    <script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>
+    <style>
+        .sandbox-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
+        .sandbox-header h2 { font-size: 1.2rem; color: var(--primary); display: flex; align-items: center; gap: 0.5rem; }
+        .py-repl-container { border-radius: 8px; overflow: hidden; border: 1px solid var(--glass-border); background: #1e293b; }
+    </style>
+    
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --glass-bg: rgba(30, 41, 59, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --primary: #38bdf8;
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        header {
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            border-bottom: 1px solid var(--glass-border);
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .back-btn {
+            color: var(--text-main);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            background: rgba(255,255,255,0.05);
+            transition: 0.3s;
+        }
+        .back-btn:hover {
+            background: rgba(56, 189, 248, 0.2);
+            color: var(--primary);
+        }
+        .file-title {
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+        main {
+            flex: 1;
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        .container {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="../index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Voltar</a>
+        <div class="file-title">73_desafio.py</div>
+    </header>
+    <main>
+        
+    <div class="container">
+        <div class="sandbox-header">
+            <h2><i class="fa-brands fa-python"></i> Sandbox PyScript</h2>
+            <span>Edite e execute (Shift + Enter) ou no botão verde ▶</span>
+        </div>
+        <div class="py-repl-container">
+            <script type="py" id="main-script"></script>
+            <py-repl auto-generate="true">
+# Exercício Python #073 - Tuplas com Times de Futebol - Aula 00 até 16 - Mundo 3
+# Crie uma tupla preenchida com os 20 primeiros colocados da Tabela do Campeonato Brasileiro de Futebol, na ordem de colocação. Depois mostre:
+# a) Os 5 primeiros times.
+# b) Os últimos 4 colocados.
+# c) Times em ordem alfabética.
+# d) Em que posição está o time da Chapecoense.
+
+# Versão 1
+
+from random import choice
+
+cores_ansi = {
+    &#x27;azul_escuro&#x27;: &#x27;\033[44;30m&#x27;,  # Fundo azul escuro, texto preto
+    &#x27;azul_claro&#x27;: &#x27;\033[104;30m&#x27;,  # Fundo azul claro, texto preto
+    &#x27;verde&#x27;: &#x27;\033[42;30m&#x27;,        # Fundo verde, texto preto
+    &#x27;cinza&#x27;: &#x27;\033[47;30m&#x27;,        # Fundo cinza, texto preto
+    &#x27;vermelho&#x27;: &#x27;\033[41;30m&#x27;,     # Fundo vermelho, texto preto
+    &#x27;reset&#x27;: &#x27;\033[0m&#x27;             # Reset para o padrão
+}
+
+times = (
+    &#x27;Flamengo&#x27;, &#x27;Botafogo&#x27;, &#x27;Palmeiras&#x27;, &#x27;Fortaleza&#x27;, &#x27;Cruzeiro&#x27;,
+    &#x27;São Paulo&#x27;, &#x27;Bahia&#x27;, &#x27;Athletico-PR&#x27;, &#x27;Atlético-MG&#x27;, &#x27;Bragantino&#x27;,
+    &#x27;Vasco&#x27;, &#x27;Criciúma&#x27;, &#x27;Juventude&#x27;, &#x27;Internacional&#x27;, &#x27;Corinthians&#x27;,
+    &#x27;Grêmio&#x27;, &#x27;Vitória&#x27;, &#x27;Cuiabá&#x27;, &#x27;Fluminense&#x27;, &#x27;Atlético-GO&#x27;
+)
+
+lista_times = list(times)
+time_escolhido = choice(lista_times)
+posição_time = None
+
+título = f&#x27;  Tabela Campeonato Brasileiro 2024 - 20ª Rodada  &#x27;
+tamanho = len(título)
+print(f&#x27;{&quot;-&quot; * tamanho}&#x27;)
+print(título)
+print(f&#x27;{&quot;-&quot; * tamanho}&#x27;)
+
+for posição, equipe in enumerate(times, 1):
+    if equipe == time_escolhido:
+        posição_time = posição
+    if 1 &lt;= posição &lt;= 4:
+        cor = cores_ansi[&#x27;azul_escuro&#x27;]
+    elif 5 &lt;= posição &lt;= 6:
+        cor = cores_ansi[&#x27;azul_claro&#x27;]
+    elif 7 &lt;= posição &lt;= 12:
+        cor = cores_ansi[&#x27;verde&#x27;]
+    elif 13 &lt;= posição &lt;= 16:
+        cor = cores_ansi[&#x27;cinza&#x27;]
+    else:
+        cor = cores_ansi[&#x27;vermelho&#x27;]
+
+    print(f&#x27;{cor}{posição:2}º | {equipe:&lt;20}{cores_ansi[&quot;reset&quot;]}&#x27;)
+
+print(&#x27;Times em ordem alfabética:&#x27;)
+em_ordem = sorted(times)
+
+for i, time in enumerate(em_ordem):
+    print(time, end=&#x27;, &#x27; if i &lt; (len(em_ordem) -1) else &#x27;.\n&#x27;)
+
+print(f&#x27;Time: {time_escolhido} - Posição atual: {posição_time}&#x27;)
+
+# Lista de times do Brasileirão 2023
+times = (&#x27;Palmeiras - SP&#x27;, &#x27;Gremio - RS&#x27;, &#x27;Atlético Mineiro - MG&#x27;, &#x27;Flamengo - RJ&#x27;, &#x27;Botafogo - RJ&#x27;, &#x27;Red Bull Bragantino - SP&#x27;, &#x27;Fluminense - RJ&#x27;, &#x27;Athletico - PR&#x27;, &#x27;Internacional - RS&#x27;, &#x27;Fortaleza - CE&#x27;, &#x27;São Paulo - SP&#x27;, &#x27;Cuiaba - MT&#x27;, &#x27;Corinthians - SP&#x27;, &#x27;Cruzeiro - MG&#x27;, &#x27;Vasco da Gama - RJ&#x27;, &#x27;Bahia - BA&#x27;, &#x27;Santos - SP&#x27;, &#x27;Goias - GO&#x27;, &#x27;Coritiba - PR&#x27;, &#x27;America - MG&#x27;)
+
+# Imprime os participantes do Brasileirão 2023 em ordem alfabética
+print(&#x27;\033[1mPARTICIPANTES BRASILEIRÃO 2023\033[m&#x27;)
+times_em_ordem = sorted(times)
+for equipe in times_em_ordem:
+    print(f&#x27;{equipe}&#x27;)
+print(&#x27;\n&#x27;)
+
+# Imprime a tabela completa do Brasileirão 2023
+print(&#x27;TABELA BRASILEIRÃO 2023&#x27;)
+for posicao, equipe in enumerate(times):
+    print(f&#x27;{posicao+1:2}º - {equipe}&#x27;)
+print(&#x27;\n&#x27;)
+
+# Separa as equipes nas diferentes zonas (Libertadores, Pré-Libertadores, Sul-Americana, Zona Neutra e Rebaixamento)
+libertadores = times[:4]
+print(&#x27;\033[1;32mZona da Libertadores - Brasileirão 2023\033[m&#x27;)
+for posicao, equipe in enumerate(libertadores):
+    print(f&#x27;{posicao+1:2}º - {equipe}&#x27;)
+
+pre_libertadores = times[4:6]
+print(&#x27;\033[1;36mZona da Pré Libertadores - Brasileirão 2023\033[m&#x27;)
+for posicao, equipe in enumerate(pre_libertadores, start=4):
+    print(f&#x27;{posicao+1:2}º - {equipe}&#x27;)
+
+sulamericana = times[6:14]
+print(&#x27;\033[1;34mZona da Sul-Americana - Brasileirão 2023\033[m&#x27;)
+for posicao, equipe in enumerate(sulamericana, start=6):
+    print(f&#x27;{posicao+1:2}º - {equipe}&#x27;)
+
+nada = times[14:16]
+print(&#x27;\033[1;37mZona Neutra - Brasileirão 2023\033[m&#x27;)
+for posicao, equipe in enumerate(nada, start=14):
+    print(f&#x27;{posicao+1:2}º - {equipe}&#x27;)
+
+rebaixados = times[16:]
+print(&#x27;\033[1;31mZona de Rebaixamento - Brasileirão 2023\033[m&#x27;)
+for posicao, equipe in enumerate(rebaixados, start=17):
+    print(f&#x27;{posicao:2}º - {equipe}&#x27;)
+print(&#x27;\n&#x27;)
+
+# Letra D - Imprime a posição do CR Vasco da Gama - RJ
+print(&#x27;Posição do CR Vasco da Gama- RJ&#x27;)
+posicao_vasco = times.index(&#x27;CR Vasco da Gama - RJ&#x27;) + 1
+print(f&#x27;O Vasco terminou o campeonato em {posicao_vasco}º&#x27;)
+
+
+# Estou compartilhando minhas anotações sobre os exercícios. Quem quiser, pode copiar e colar em um documento .py pois está tudo formatado e comentado.
+
+# Nessse exercício, vamos criar um programa que tenha uma tupla preenchida com os 20 primeiros colocados da Tabela do Campeonato Brasileiro de Futebol, na ordem de colocação. O programa deve mostrar:
+
+# Vamos importar a função choice da biblioteca random para escolher um time aleatório.
+from random import choice
+
+# Vamos criar um dicionário com as cores ANSI para colorir a saída do programa. Um dicinário é uma coleção de objetos que são indexados por chaves. Este tópicos será abordado em detalhes futuramente
+cores_ansi = {
+    &#x27;azul_escuro&#x27;: &#x27;\033[44;30m&#x27;,  # Fundo azul escuro, texto preto
+    &#x27;azul_claro&#x27;: &#x27;\033[104;30m&#x27;,  # Fundo azul claro, texto preto
+    &#x27;verde&#x27;: &#x27;\033[42;30m&#x27;,        # Fundo verde, texto preto
+    &#x27;cinza&#x27;: &#x27;\033[47;30m&#x27;,        # Fundo cinza, texto preto
+    &#x27;vermelho&#x27;: &#x27;\033[41;30m&#x27;,     # Fundo vermelho, texto preto
+    &#x27;reset&#x27;: &#x27;\033[0m&#x27;             # Reset para o padrão
+}
+
+# Vamos criar uma tupla com os times do Campeonato Brasileiro de 2024. A ordem dos times é aleatória.
+# OBS.: Você pode organizar a lista de times baseado na tabela atual
+times = (
+    &#x27;Flamengo&#x27;, &#x27;Botafogo&#x27;, &#x27;Palmeiras&#x27;, &#x27;Fortaleza&#x27;, &#x27;Cruzeiro&#x27;,
+    &#x27;São Paulo&#x27;, &#x27;Bahia&#x27;, &#x27;Athletico-PR&#x27;, &#x27;Atlético-MG&#x27;, &#x27;Bragantino&#x27;,
+    &#x27;Vasco&#x27;, &#x27;Criciúma&#x27;, &#x27;Juventude&#x27;, &#x27;Internacional&#x27;, &#x27;Corinthians&#x27;,
+    &#x27;Grêmio&#x27;, &#x27;Vitória&#x27;, &#x27;Cuiabá&#x27;, &#x27;Fluminense&#x27;, &#x27;Atlético-GO&#x27;
+)
+
+# Vamos criar uma lista a partir da tupla times para poder manipular os dados.
+lista_times = list(times)
+# Vamos escolher um time aleatório da lista de times.
+time_escolhido = choice(lista_times)
+# Vamos criar uma variável para armazenar a posição do time escolhido. O valor inicial é None. None é um tipo de dado que representa a ausência de valor.
+posição_time = None
+
+# Vamos criar uma variável título para exibir o título do programa. Assim podemos centralizar o texto.
+título = f&#x27;  Tabela Campeonato Brasileiro 2024 - 20ª Rodada  &#x27;
+# Vamos calcular o tamanho do título para centralizar a mensagem.
+tamanho = len(título)
+
+# Vamos exibir o título do programa. Como sabemos o tamanho do título, podemos criar uma linha com o mesmo tamanho.
+print(f&#x27;{&quot;-&quot; * tamanho}&#x27;)
+print(título)
+print(f&#x27;{&quot;-&quot; * tamanho}&#x27;)
+
+# Vamos percorrer a lista de times e exibir a posição e o nome do time. Vamos colorir a saída de acordo com a posição do time.
+for posição, equipe in enumerate(times, 1):
+    if equipe == time_escolhido:
+        posição_time = posição
+    if 1 &lt;= posição &lt;= 4:
+        cor = cores_ansi[&#x27;azul_escuro&#x27;]
+    elif 5 &lt;= posição &lt;= 6:
+        cor = cores_ansi[&#x27;azul_claro&#x27;]
+    elif 7 &lt;= posição &lt;= 12:
+        cor = cores_ansi[&#x27;verde&#x27;]
+    elif 13 &lt;= posição &lt;= 16:
+        cor = cores_ansi[&#x27;cinza&#x27;]
+    else:
+        cor = cores_ansi[&#x27;vermelho&#x27;]
+# Vamos exibir a posição e o nome do time. Vamos resetar a cor para o padrão.
+    print(f&#x27;{cor}{posição:2}º | {equipe:&lt;20}{cores_ansi[&quot;reset&quot;]}&#x27;)
+
+# Vamos exibir os times em ordem alfabética.
+print(&#x27;Times em ordem alfabética:&#x27;)
+em_ordem = sorted(times) # Para organizar em ordem alfabética, vamos usar a função sorted. Esta função retorna uma nova lista ordenada a partir dos elementos da sequência, então não altera a lista original. Precisamos armazenar o resultado em uma nova variável.
+
+
+# Vamos percorrer a lista de times em ordem alfabética e exibir o nome do time. Vamos separar os times por vírgula, exceto o último time que será seguido de um ponto final.
+for i, time in enumerate(em_ordem):
+    print(time, end=&#x27;, &#x27; if i &lt; (len(em_ordem) -1) else &#x27;.\n&#x27;)
+
+# Vamos exibir o time escolhido e a posição atual do time na tabela.
+print(f&#x27;Time: {time_escolhido} - Posição atual: {posição_time}&#x27;)
+
+
+            </py-repl>
+        </div>
+    </div>
+    
+    </main>
+</body>
+</html>

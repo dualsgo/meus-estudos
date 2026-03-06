@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>15_tuplas.ipynb</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/monokai-sublime.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/python.min.js"></script>
+    
+    <style>
+        .cell { margin-bottom: 1.5rem; }
+        .cell-markdown { font-size: 1.05rem; line-height: 1.6; color: #cbd5e1; }
+        .cell-markdown h1, .cell-markdown h2, .cell-markdown h3 { color: #f1f5f9; margin-top: 1rem; margin-bottom: 0.5rem; }
+        .cell-markdown code { background: rgba(0,0,0,0.3); padding: 0.2rem 0.4rem; border-radius: 4px; color: #eab308; }
+        .cell-markdown pre { background: rgba(0,0,0,0.3); padding: 1rem; border-radius: 8px; overflow-x: auto; border: 1px solid var(--glass-border); margin: 1rem 0; }
+        .cell-code { background: #23241f; border-radius: 8px; padding: 1rem; overflow-x: auto; position: relative; border: 1px solid #333; }
+        .cell-output { background: #000; color: #a3e635; padding: 1rem; border-radius: 8px; margin-top: 0.5rem; font-family: monospace; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;}
+        .prompt { position: absolute; top: 0.5rem; right: 0.5rem; color: #64748b; font-size: 0.8rem; user-select: none; }
+    </style>
+    
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --glass-bg: rgba(30, 41, 59, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --primary: #38bdf8;
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        header {
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            border-bottom: 1px solid var(--glass-border);
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .back-btn {
+            color: var(--text-main);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            background: rgba(255,255,255,0.05);
+            transition: 0.3s;
+        }
+        .back-btn:hover {
+            background: rgba(56, 189, 248, 0.2);
+            color: var(--primary);
+        }
+        .file-title {
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+        main {
+            flex: 1;
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        .container {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="../index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Voltar</a>
+        <div class="file-title">15_tuplas.ipynb</div>
+    </header>
+    <main>
+        <div class="container">
+            <div class="cell cell-markdown" id="md-0"></div>
+            <script>
+                (function(){
+                    const b64 = "IyBUdXBsYXMKClR1cGxhcyBzw6NvIGVzdHJ1dHVyYXMgZGUgZGFkb3MgZW0gUHl0aG9uIGlkZW50aWZpY2FkYXMgcG9yIHBhcsOqbnRlc2VzLiBTZW1lbGhhbnRlcyDDoHMgbGlzdGFzLCBlbGFzIHBvZGVtIGNvbnRlciB1bWEgY29sZcOnw6NvIGRlIGVsZW1lbnRvcywgcG9yw6ltLCBhbyBjb250csOhcmlvIGRhcyBsaXN0YXMsIGFzIHR1cGxhcyBzw6NvIGltdXTDoXZlaXMsIG8gcXVlIHNpZ25pZmljYSBxdWUgc2V1cyBlbGVtZW50b3MgbsOjbyBwb2RlbSBzZXIgYWx0ZXJhZG9zLCBhZGljaW9uYWRvcyBvdSByZW1vdmlkb3MgYXDDs3MgYSBjcmlhw6fDo28gZGEgdHVwbGEuCgpTZXVzIHZhbG9yZXMgc8OjbyBjZXJjYWRvcyBwb3IgcGFyw6pudGVzZXMgKG91IG7Do28pIGUgc2VwYXJhZG9zIHBvciB2w61yZ3VsYXMuIENhZGEgdmFsb3IgZGVudHJvIGRlIHVtYSB0dXBsYSDDqSBjaGFtYWRvIGRlIGVsZW1lbnRvIGUgcG9zc3VpIHNldSBwcsOzcHJpbyDDrW5kaWNlLCBxdWUgY29tZcOnYSBlbSB6ZXJvLiBFc3NhIGNhcmFjdGVyw61zdGljYSB0b3JuYSBhcyB0dXBsYXMgw7p0ZWlzIHBhcmEgYXJtYXplbmFyIGNvbGXDp8O1ZXMgZGUgZGFkb3MgcXVlIG7Do28gZGV2ZW0gc2VyIG1vZGlmaWNhZG9zIGFvIGxvbmdvIGRvIHRlbXBvLCBjb21vIGNvb3JkZW5hZGFzIGdlb2dyw6FmaWNhcywgaW5mb3JtYcOnw7VlcyBkZSBjb250YXRvIG91IGRhZG9zIGRlIGNvbmZpZ3VyYcOnw6NvLg==";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-0').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [1]</div>
+                <pre><code class="language-python"># Criamos uma tupla colocando os valores entre parênteses, utilizando a função tuple() ou separando os valores por vírgula.
+
+lanche = &#x27;hambúrguer&#x27;, &#x27;suco&#x27;, &#x27;pizza&#x27;, &#x27;pudim&#x27;
+lanche = (&#x27;hambúrguer&#x27;, &#x27;suco&#x27;, &#x27;pizza&#x27;, &#x27;pudim&#x27;)
+lanche = tuple((&#x27;hambúrguer&#x27;, &#x27;suco&#x27;, &#x27;pizza&#x27;, &#x27;pudim&#x27;))
+
+print(lanche) # (&#x27;hambúrguer&#x27;, &#x27;suco&#x27;, &#x27;pizza&#x27;, &#x27;pudim&#x27;)
+
+# O método `len()` exibe a quantidade de elementos da Tupla. Cada valor é um elemento.
+
+print(len(lanche)) # 4
+
+# Podemos usar o fatiamento nas tuplas, como nas strings e listas.
+
+# Exibir o elemento no índice 2
+print(lanche[2])  # Este é o índice do valor &#x27;pizza&#x27;
+
+# Exibir os elementos do índice 1 ao 3
+print(lanche[1:3])  # (&#x27;suco&#x27;, &#x27;pizza&#x27;)
+
+# As tuplas em Python têm uma limitação. Elas são imutáveis!
+# Não podemos atualizá-las durante a execução do programa.
+# Se tentarmos, receberemos uma mensagem de erro &quot;TypeError - &#x27;tuple&#x27; object does not support item assignment&quot;.
+
+# Um caso especial são as tuplas com apenas um elemento. Precisamos adicionar uma vírgula após o valor para que o Python reconheça como uma tupla. Caso contrário, ele considerará apenas um valor.
+
+tupla = (&#x27;valor&#x27;,)  # Tupla com um elemento
+print(type(tupla))  # &lt;class &#x27;tuple&#x27;&gt;
+tupla = (&#x27;valor&#x27;)  # Apenas um valor
+print(type(tupla))  # &lt;class &#x27;str&#x27;&gt;
+
+# Podemos usar um laço para iterar através dos elementos de uma tupla.
+for elemento in lanche:  # Para cada elemento na tupla lanche - elemento será o valor
+    print(f&#x27;Eu vou beber {elemento}&#x27; if elemento == &#x27;suco&#x27; else f&#x27;Eu vou comer {elemento}&#x27;)  # Exiba essa mensagem formatada.
+
+# Iterando de outra forma - Caso precise do índice
+for contador in range(len(lanche)):  # O contador será o índice
+    print(f&#x27;{contador}: Eu vou comer {lanche[contador]}&#x27;)  # lanche[contador] exibirá o valor naquele índice
+
+# Podemos usar a função enumerate() para obter o índice e o valor.</code></pre>
+            </div>
+            <div class="cell-output">(&#x27;hambúrguer&#x27;, &#x27;suco&#x27;, &#x27;pizza&#x27;, &#x27;pudim&#x27;)
+4
+pizza
+(&#x27;suco&#x27;, &#x27;pizza&#x27;)
+Eu vou comer hambúrguer
+Eu vou beber suco
+Eu vou comer pizza
+Eu vou comer pudim
+0: Eu vou comer hambúrguer
+1: Eu vou comer suco
+2: Eu vou comer pizza
+3: Eu vou comer pudim
+</div>
+            <div class="cell cell-markdown" id="md-2"></div>
+            <script>
+                (function(){
+                    const b64 = "IyMgYGVudW1lcmF0ZSgpYAoKQSBmdW7Dp8OjbyBgZW51bWVyYXRlKClgIMOpIHVtYSBmZXJyYW1lbnRhIMO6dGlsIGVtIFB5dGhvbiBwYXJhIGl0ZXJhciBzb2JyZSBvcyBlbGVtZW50b3MgZGUgdW1hIHNlcXXDqm5jaWEgZW5xdWFudG8gYWNvbXBhbmhhIGEgcG9zacOnw6NvIGRlIGNhZGEgZWxlbWVudG8uIEVzc2VuY2lhbG1lbnRlLCBlbGEgcmV0b3JuYSB1bWEgc2VxdcOqbmNpYSBkZSB0dXBsYXMsIG9uZGUgY2FkYSB0dXBsYSBjb250w6ltIHVtIMOtbmRpY2UgZSBvIHZhbG9yIGNvcnJlc3BvbmRlbnRlIGRvIGVsZW1lbnRvIG5hIHNlcXXDqm5jaWEuIElzc28gc2ltcGxpZmljYSBhIG5lY2Vzc2lkYWRlIGRlIGFjb21wYW5oYXIgbWFudWFsbWVudGUgb3Mgw61uZGljZXMgYW8gcGVyY29ycmVyIHVtYSBzZXF1w6puY2lhLgoKVW0gZXhlbXBsbyBwcsOhdGljbyBkbyB1c28gZG8gYGVudW1lcmF0ZSgpYCDDqSBxdWFuZG8gcHJlY2lzYW1vcyBuw6NvIGFwZW5hcyBkb3MgdmFsb3JlcyBkZSB1bWEgbGlzdGEsIHR1cGxhIG91IG91dHJvIHRpcG8gZGUgc2VxdcOqbmNpYSwgbWFzIHRhbWLDqW0gZG9zIMOtbmRpY2VzIGNvcnJlc3BvbmRlbnRlcy4KCkFxdWkgZXN0w6EgYSBlc3RydXR1cmEgYsOhc2ljYSBkbyBgZW51bWVyYXRlKClgOgoKYGBgcHl0aG9uCmVudW1lcmF0ZShpdGVyYWJsZSwgc3RhcnQ9MCkKYGBgCgotIGBpdGVyYWJsZWA6IG8gb2JqZXRvIGl0ZXLDoXZlbCBxdWUgdm9jw6ogZGVzZWphIHBlcmNvcnJlci4KLSBgc3RhcnRgOiB1bSBuw7ptZXJvIG9wY2lvbmFsIHF1ZSBlc3BlY2lmaWNhIG8gdmFsb3IgaW5pY2lhbCBkbyDDrW5kaWNlLiBQb3IgcGFkcsOjbywgbyB2YWxvciBpbmljaWFsIMOpIDAuCgpBZ29yYSwgdmFtb3MgdmVyIHVtIGV4ZW1wbG8gYXBsaWNhZG8gYSB1bWEgbGlzdGEgZGUgYWxpbWVudG9zOg==";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-2').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [7]</div>
+                <pre><code class="language-python">lanche = (&#x27;hambúrguer&#x27;, &#x27;suco&#x27;, &#x27;pizza&#x27;, &#x27;pudim&#x27;)
+
+for indice, elemento in enumerate(lanche):
+    print(f&#x27;{indice}: Eu vou beber {elemento}&#x27; if elemento == &#x27;suco&#x27; else f&#x27;{indice}: Eu vou comer {elemento}&#x27;)
+
+# enumerate() começa a contar a partir do índice 0.
+# Podemos alterar o índice inicial passando um segundo argumento opcional para a função enumerate() - enumerate(lanche, 1) - o valor indicado será o índice inicial.
+
+for indice, elemento in enumerate(lanche, 1):
+    print(f&#x27;{indice}: Eu vou beber {elemento}&#x27; if elemento == &#x27;suco&#x27; else f&#x27;{indice}: Eu vou comer {elemento}&#x27;)</code></pre>
+            </div>
+            <div class="cell-output">0: Eu vou comer hambúrguer
+1: Eu vou beber suco
+2: Eu vou comer pizza
+3: Eu vou comer pudim
+1: Eu vou comer hambúrguer
+2: Eu vou beber suco
+3: Eu vou comer pizza
+4: Eu vou comer pudim
+</div>
+            <div class="cell cell-markdown" id="md-4"></div>
+            <script>
+                (function(){
+                    const b64 = "LSBBcXVpLCBgbGFuY2hlYCDDqSB1bWEgdHVwbGEgcXVlIGNvbnTDqW0gZGlmZXJlbnRlcyB0aXBvcyBkZSBhbGltZW50b3MuCi0gVXNhbW9zIG8gbG9vcCBgZm9yYCBwYXJhIGl0ZXJhciBzb2JyZSBjYWRhIGVsZW1lbnRvIGRhIHR1cGxhIGBsYW5jaGVgLgotIERlbnRybyBkbyBsb29wLCB1c2Ftb3MgYGVudW1lcmF0ZSgpYCBwYXJhIG9idGVyIHRhbnRvIG8gw61uZGljZSBxdWFudG8gbyB2YWxvciBkZSBjYWRhIGVsZW1lbnRvIGRhIHR1cGxhLgotIEEgY29uZGnDp8OjbyBgaWZgIHZlcmlmaWNhIHNlIG8gYGVsZW1lbnRvYCBhdHVhbCDDqSBpZ3VhbCBhICdzdWNvJy4gU2UgZm9yLCB1bWEgbWVuc2FnZW0gZXNwZWPDrWZpY2EgcGFyYSBiZWJlciBzdWNvIMOpIGltcHJlc3NhOyBjYXNvIGNvbnRyw6FyaW8sIHVtYSBtZW5zYWdlbSBwYWRyw6NvIHBhcmEgY29tZXIgbyBlbGVtZW50byDDqSBpbXByZXNzYS4KLSBBIHV0aWxpemHDp8OjbyBkZSBmLXN0cmluZ3MgcGVybWl0ZSB1bWEgZm9ybWF0YcOnw6NvIGxpbXBhIGUgbGVnw612ZWwgZGFzIG1lbnNhZ2VucyBkZSBzYcOtZGEsIGluY2x1aW5kbyB2YXJpw6F2ZWlzIGRpcmV0YW1lbnRlIG5vIHRleHRvLg==";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-4').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-markdown" id="md-5"></div>
+            <script>
+                (function(){
+                    const b64 = "IyMgYHNvcnRlZCgpYAoKUXVhbmRvIHRyYWJhbGhhbW9zIGNvbSB0dXBsYXMgZW0gUHl0aG9uLCBtdWl0YXMgdmV6ZXMgw6kgw7p0aWwgb3JkZW5hciBvcyBlbGVtZW50b3MgZGUgYWNvcmRvIGNvbSBhbGd1bSBjcml0w6lyaW8gZXNwZWPDrWZpY28sIGNvbW8gb3JkZW5hw6fDo28gYWxmYWLDqXRpY2EgcGFyYSBzdHJpbmdzLiBQYXJhIGlzc28sIHBvZGVtb3MgdXNhciBvIG3DqXRvZG8gYHNvcnRlZCgpYC4KCk8gbcOpdG9kbyBgc29ydGVkKClgIMOpIHVtYSBmdW7Dp8OjbyBpbnRlZ3JhZGEgZG8gUHl0aG9uIHF1ZSByZXRvcm5hIHVtYSBub3ZhIGxpc3RhIGNvbnRlbmRvIG9zIGVsZW1lbnRvcyBkbyBpdGVyw6F2ZWwgcGFzc2FkbyBjb21vIGFyZ3VtZW50bywgbWFzIG9yZGVuYWRvcyBlbSBvcmRlbSBhbGZhYsOpdGljYSBvdSBudW3DqXJpY2EsIGRlcGVuZGVuZG8gZG8gdGlwbyBkZSBlbGVtZW50by4gCgpBbyBhcGxpY2FyIGBzb3J0ZWQoKWAgYSB1bWEgdHVwbGEsIGNvbW8gZXhlbXBsaWZpY2FkbyBhYmFpeG86CgpgYGBweXRob24KcHJpbnQoc29ydGVkKGxhbmNoZSkpCm5vdmFfbGlzdGEgPSBzb3J0ZWQobGFuY2hlKQpgYGAKCk9idGVtb3MgdW1hIGxpc3RhIHRlbXBvcsOhcmlhIG9yZGVuYWRhIGNvbnRlbmRvIG9zIGVsZW1lbnRvcyBkYSB0dXBsYSBgbGFuY2hlYCwgc2VtIGFsdGVyYXIgYSBvcmRlbSBvcmlnaW5hbCBkb3MgZWxlbWVudG9zIG5hIHByw7NwcmlhIHR1cGxhLiBJc3NvIHNpZ25pZmljYSBxdWUgYSB0dXBsYSBvcmlnaW5hbCBwZXJtYW5lY2UgaW5hbHRlcmFkYSBhcMOzcyBhIG9yZGVuYcOnw6NvLgoKU2UgZGVzZWphcm1vcyBtYW50ZXIgYSBsaXN0YSBvcmRlbmFkYSBwYXJhIHVzbyBmdXR1cm8sIHBvZGVtb3MgYXRyaWJ1w60tbGEgYSB1bWEgbm92YSB2YXJpw6F2ZWwsIGNvbW8gbW9zdHJhZG8gZW0gYG5vdmFfbGlzdGEgPSBzb3J0ZWQobGFuY2hlKWAuIElzc28gY3JpYSB1bWEgbm92YSBsaXN0YSBjb250ZW5kbyBvcyBlbGVtZW50b3Mgb3JkZW5hZG9zIGRhIHR1cGxhIGBsYW5jaGVgLCBxdWUgcG9kZSBzZXIgYWNlc3NhZGEgcG9zdGVyaW9ybWVudGUuCgpQYXJhIGNvbmZpcm1hciBxdWUgYSB0dXBsYSBvcmlnaW5hbCBuw6NvIGZvaSBtb2RpZmljYWRhLCBwb2RlbW9zIGltcHJpbWlyIGBsYW5jaGVgIG5vdmFtZW50ZToKCmBgYHB5dGhvbgpwcmludChsYW5jaGUpCmBgYAoKRXN0YSBsaW5oYSBkZSBjw7NkaWdvIGV4aWJpcsOhIGEgdHVwbGEgb3JpZ2luYWwgYGxhbmNoZWAsIG1hbnRlbmRvIHN1YSBvcmRlbSBvcmlnaW5hbCBkZSBlbGVtZW50b3MuCgpQb3IgZmltLCBhbyBpbXByaW1pciBgbm92YV9saXN0YWAsIGNvbmZpcm1hbW9zIHF1ZSBhIGxpc3RhIG9yZGVuYWRhIGZvaSBjcmlhZGEgY29tIHN1Y2Vzc286CgpgYGBweXRob24KcHJpbnQobm92YV9saXN0YSkKYGBg";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-5').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [9]</div>
+                <pre><code class="language-python"># Podemos ordenar uma tupla com a função sorted().
+# A função sorted() retorna uma lista ordenada.
+
+print(sorted(lanche))  # [&#x27;hambúrguer&#x27;, &#x27;pizza&#x27;, &#x27;pudim&#x27;, &#x27;suco&#x27;]
+
+# sorted() não altera a tupla original.
+print(lanche)  # (&#x27;hambúrguer&#x27;, &#x27;suco&#x27;, &#x27;pizza&#x27;, &#x27;pudim&#x27;)
+
+# Podemos salvar a lista ordenada em uma nova variável.
+lanche_ordenado = sorted(lanche)</code></pre>
+            </div>
+            <div class="cell-output">[&#x27;hambúrguer&#x27;, &#x27;pizza&#x27;, &#x27;pudim&#x27;, &#x27;suco&#x27;]
+(&#x27;hambúrguer&#x27;, &#x27;suco&#x27;, &#x27;pizza&#x27;, &#x27;pudim&#x27;)
+</div>
+            <div class="cell cell-markdown" id="md-7"></div>
+            <script>
+                (function(){
+                    const b64 = "IyMgYENvbnRhdGVuYW5kbyB0dXBsYXNgCgpRdWFuZG8gcHJlY2lzYW1vcyBjb21iaW5hciBvcyBlbGVtZW50b3MgZGUgZHVhcyB0dXBsYXMgZW0gdW1hIMO6bmljYSBlc3RydXR1cmEgZGUgZGFkb3MsIHBvZGVtb3MgdXNhciBvIG9wZXJhZG9yIGArYCBwYXJhIHJlYWxpemFyIGEgY29uY2F0ZW5hw6fDo28uIEFvIGZhemVyIGlzc28sIG9zIGVsZW1lbnRvcyBkYXMgdHVwbGFzIHPDo28gc2ltcGxlc21lbnRlIHVuaWRvcywgc2VndWluZG8gYSBvcmRlbSBlbSBxdWUgYXMgdHVwbGFzIHPDo28gY29sb2NhZGFzIG5hIG9wZXJhw6fDo28uCgpQb3IgZXhlbXBsbywgY29uc2lkZXJlbW9zIGR1YXMgdHVwbGFzLCBgdHVwbGFfYWAgZSBgdHVwbGFfYmAsIGRlZmluaWRhcyBkYSBzZWd1aW50ZSBmb3JtYToKCmBgYHB5dGhvbgp0dXBsYV9hID0gKDIsIDUsIDQpCnR1cGxhX2IgPSAoNSwgOCwgMSwgMikKYGBgCgpQYXJhIGNvbWJpbmFyIGVzc2FzIGR1YXMgdHVwbGFzLCBwb2RlbW9zIHVzYXIgbyBvcGVyYWRvciBgK2AsIGNvbmZvcm1lIG1vc3RyYWRvIGFiYWl4bzoKCmBgYHB5dGhvbgp0dXBsYV9hX2IgPSB0dXBsYV9hICsgdHVwbGFfYgpwcmludCh0dXBsYV9hX2IpCmBgYAoKRXN0ZSBjw7NkaWdvIHByb2R1eiB1bWEgbm92YSB0dXBsYSwgYHR1cGxhX2FfYmAsIHF1ZSBjb250w6ltIG9zIGVsZW1lbnRvcyBkZSBgdHVwbGFfYWAgc2VndWlkb3MgcGVsb3MgZWxlbWVudG9zIGRlIGB0dXBsYV9iYCwgbWFudGVuZG8gYSBvcmRlbSBvcmlnaW5hbCBkZSBjYWRhIHVtYS4KCkRhIG1lc21hIGZvcm1hLCBwb2RlbW9zIGludmVydGVyIGEgb3JkZW0gZGFzIHR1cGxhcyBuYSBvcGVyYcOnw6NvIGRlIGNvbmNhdGVuYcOnw6NvLCBjb21vIG1vc3RyYWRvIGFxdWk6CgpgYGBweXRob24KdHVwbGFfYl9hID0gdHVwbGFfYiArIHR1cGxhX2EKcHJpbnQodHVwbGFfYl9hKQpgYGAKCk5lc3RlIGNhc28sIGEgbm92YSB0dXBsYSBgdHVwbGFfYl9hYCBjb250ZXLDoSBvcyBlbGVtZW50b3MgZGUgYHR1cGxhX2JgIHNlZ3VpZG9zIHBlbG9zIGVsZW1lbnRvcyBkZSBgdHVwbGFfYWAuCgrDiSBpbXBvcnRhbnRlIG9ic2VydmFyIHF1ZSBhIGNvbmNhdGVuYcOnw6NvIGRlIHR1cGxhcyBjb20gbyBvcGVyYWRvciBgK2AgbsOjbyBtb2RpZmljYSBhcyB0dXBsYXMgb3JpZ2luYWlzLiBFbSB2ZXogZGlzc28sIGNyaWEgdW1hIG5vdmEgdHVwbGEgY29udGVuZG8gb3MgZWxlbWVudG9zIGNvbWJpbmFkb3MgZGFzIHR1cGxhcyBvcmlnaW5haXMsIHByZXNlcnZhbmRvIGEgaW50ZWdyaWRhZGUgZGFzIHR1cGxhcyBvcmlnaW5haXMuCgpFbSByZXN1bW8sIG8gb3BlcmFkb3IgYCtgIMOpIHVtYSBtYW5laXJhIGNvbnZlbmllbnRlIGUgc2ltcGxlcyBkZSBjb21iaW5hciBvcyBlbGVtZW50b3MgZGUgZHVhcyB0dXBsYXMgZW0gdW1hIMO6bmljYSBlc3RydXR1cmEgZGUgZGFkb3MsIG1hbnRlbmRvIGEgb3JkZW0gb3JpZ2luYWwgZG9zIGVsZW1lbnRvcyBkZSBjYWRhIHR1cGxhLg==";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-7').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python">tupla_a = (2, 5, 4)
+tupla_b = (5, 8, 1, 2)
+
+# Ao somar duas tuplas, elas são concatenadas na ordem em que foram somadas.
+tupla_c = tupla_a + tupla_b
+print(tupla_c)  # (2, 5, 4, 5, 8, 1, 2)
+tupla_d = tupla_b + tupla_a
+print(tupla_d)  # (5, 8, 1, 2, 2, 5, 4)
+
+# O operador * repete os elementos da tupla.
+
+tupla_e = tupla_a * 3
+print(tupla_e)  # (2, 5, 4, 2, 5, 4, 2, 5, 4)</code></pre>
+            </div>
+            
+            <div class="cell cell-markdown" id="md-9"></div>
+            <script>
+                (function(){
+                    const b64 = "IyMgYE3DqXRvZG9zIGRlIHR1cGxhc2AKClR1cGxhcyBzw6NvIGVzdHJ1dHVyYXMgZGUgZGFkb3MgZW0gUHl0aG9uIHF1ZSBvZmVyZWNlbSBkaXZlcnNhcyBmdW5jaW9uYWxpZGFkZXMgcGFyYSBtYW5pcHVsYXIgZSBhbmFsaXNhciBjb25qdW50b3Mgb3JkZW5hZG9zIGRlIGVsZW1lbnRvcy4gQWzDqW0gZG8gbcOpdG9kbyBgbGVuKClgIHBhcmEgb2J0ZXIgbyB0YW1hbmhvIGRhIHR1cGxhLCBleGlzdGVtIG91dHJvcyBtw6l0b2RvcyDDunRlaXMgcXVlIHBvZGVtIHNlciBhcGxpY2Fkb3MgYSB0dXBsYXM6CgoxLiBgLmNvdW50KGVsZW1lbnRvKWA6IEVzdGUgbcOpdG9kbyBjb250YSBvIG7Dum1lcm8gZGUgb2NvcnLDqm5jaWFzIGRlIHVtIGVsZW1lbnRvIGVzcGVjw61maWNvIGRlbnRybyBkYSB0dXBsYS4gUG9yIGV4ZW1wbG86CgpgYGBweXRob24KdHVwbGFfYV9iID0gKDIsIDUsIDQsIDUsIDgsIDEsIDIpCnByaW50KHR1cGxhX2FfYi5jb3VudCgyKSkgICMgU2HDrWRhOiAyCmBgYAoKMi4gYC5pbmRleChlbGVtZW50bylgOiBPIG3DqXRvZG8gYGluZGV4KClgIHJldG9ybmEgbyDDrW5kaWNlIGRhIHByaW1laXJhIG9jb3Jyw6puY2lhIGRlIHVtIGVsZW1lbnRvIG5hIHR1cGxhLiBQb3IgZXhlbXBsbzoKCmBgYHB5dGhvbgp0dXBsYV9hX2IgPSAoMiwgNSwgNCwgNSwgOCwgMSwgMikKcHJpbnQodHVwbGFfYV9iLmluZGV4KDUpKSAgIyBTYcOtZGE6IDEKYGBgCgozLiBgLnNvcnRlZCgpYDogRXN0ZSBtw6l0b2RvIG9yZGVuYSBvcyBlbGVtZW50b3MgZGEgdHVwbGEgZSByZXRvcm5hIHVtYSBub3ZhIGxpc3RhIGNvbSBvcyBlbGVtZW50b3Mgb3JkZW5hZG9zLiBQb3IgZXhlbXBsbzoKCmBgYHB5dGhvbgp0dXBsYV9hID0gKDIsIDUsIDQpCnR1cGxhX2Ffb3JkZW5hZGEgPSB0dXBsZShzb3J0ZWQodHVwbGFfYSkpCnByaW50KHR1cGxhX2Ffb3JkZW5hZGEpICAjIFNhw61kYTogKDIsIDQsIDUpCmBgYAoKNC4gYC5taW4oKWAgZSBgLm1heCgpYDogRXNzZXMgbcOpdG9kb3MgcmV0b3JuYW0gbyBtZW5vciBlIG8gbWFpb3IgZWxlbWVudG8gZGEgdHVwbGEsIHJlc3BlY3RpdmFtZW50ZS4gUG9yIGV4ZW1wbG86CgpgYGBweXRob24KdHVwbGFfYyA9ICgxMCwgNSwgOCwgMTIsIDMpCnByaW50KG1pbih0dXBsYV9jKSkgICMgU2HDrWRhOiAzCnByaW50KG1heCh0dXBsYV9jKSkgICMgU2HDrWRhOiAxMgpgYGAKCjUuIGAuam9pbigpYDogRW1ib3JhIG7Do28gc2VqYSB1bSBtw6l0b2RvIGRpcmV0YW1lbnRlIGFzc29jaWFkbyBhIHR1cGxhcywgYGpvaW4oKWAgw6kgw7p0aWwgcGFyYSBjcmlhciB1bWEgc3RyaW5nIGNvbmNhdGVuYW5kbyBvcyBlbGVtZW50b3MgZGUgdW1hIHR1cGxhIGNvbSB1bSBzZXBhcmFkb3IgZXNwZWPDrWZpY28uIFBvciBleGVtcGxvOgoKYGBgcHl0aG9uCnR1cGxhX2QgPSAoJ2EnLCAnYicsICdjJykKc3RyaW5nX2p1bnRhID0gJy0nLmpvaW4odHVwbGFfZCkKcHJpbnQoc3RyaW5nX2p1bnRhKSAgIyBTYcOtZGE6IGEtYi1jCmBgYAoKRXNzZXMgbcOpdG9kb3MgYW1wbGlhbSBhcyBmdW5jaW9uYWxpZGFkZXMgZGFzIHR1cGxhcyBlbSBQeXRob24sIG9mZXJlY2VuZG8gb3DDp8O1ZXMgYWRpY2lvbmFpcyBwYXJhIG1hbmlwdWxhciBlIGFuYWxpc2FyIG9zIGRhZG9zIGFybWF6ZW5hZG9zIG5lbGFzLg==";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-9').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-markdown" id="md-10"></div>
+            <script>
+                (function(){
+                    const b64 = "IyMgYFR1cGxhcyBlIExpc3Rhc2AKCkVzdGEgbGlzdGEgY29udMOpbSBmaWxtZXMgZSBkYXRhcyBkZSBsYW7Dp2FtZW50bywgbWFzIG7Do28gZXN0w6EgY2xhcm8gcXVhbCBkYXRhIHBlcnRlbmNlIGEgcXVhbCBmaWxtZQoKYGBgcHl0aG9uCmZpbG1lcyA9IFsnVmVydGlnbycsICdQYXJhc2l0ZScsIDE5NTgsIDIwMTBdCmBgYAoKUG9kZW1vcyBhZ3J1cGFyIGRhZG9zIHJlbGFjaW9uYWRvcyBjb20gdW1hIHR1cGxhLgoKQXMgdHVwbGFzIG5vcyBhanVkYW0gYSBhZ3J1cGFyIGRpZmVyZW50ZXMgcGFydGVzIGRlIGRhZG9zIHF1ZSBwZXJ0ZW5jZW0gdW1hcyDDoHMgb3V0cmFzLgoKQ3JpYW1vcyB0dXBsYXMgZGUgZm9ybWEgc2VtZWxoYW50ZSBhIGxpc3RhcywgbWFzIHV0aWxpemFtb3MgcGFyw6pudGVzZXMgZW0gdmV6IGRlIGNvbGNoZXRlcyBwYXJhIGVudm9sdmVyIG9zIHZhbG9yZXMuIEFzc2ltIGNvbW8gbmFzIGxpc3RhcywgdGFtYsOpbSBzZXBhcmFtb3Mgb3MgZWxlbWVudG9zIGNvbSB2w61yZ3VsYS4KCmBgYHB5dGhvbgpmaWxtZXNfdHVwbGEgPSBbKCdWZXJ0aWdvJywgMTk1OCksICgnUGFyYXNpdGUnLCAyMDEwKV0KcHJpbnQoZmlsbWVzX3R1cGxhWzFdKQpgYGAKCkNvbW8gdW0gY2FzbyBlc3BlY2lhbCwgdHVwbGFzIGNvbSBhcGVuYXMgdW0gdmFsb3IgdGVybWluYW0gZW0gdsOtcmd1bGEgZGUgcXVhbHF1ZXIgbWFuZWlyYS4KCkFzIHR1cGxhcyBwb2RlbSB0ZXIgcXVhbnRvcyB2YWxvcmVzIHF1aXNlcm1vcy4gUG9kZW1vcyBzYWx2YXIgdW1hIHR1cGxhIGVtIHVtYSB2YXJpw6F2ZWwsIGFzc2ltIGNvbW8gcXVhbHF1ZXIgdmFsb3IKCmBgYHB5dGhvbgp0dXBsYV9lc3BlY2lhbCA9ICgnVmFsb3InLCkKYGBgCgpQb2RlbW9zIGFybWF6ZW5hciB0dXBsYXMgZW0gdW1hIGxpc3RhIGNvbW8gcXVhbHF1ZXIgb3V0cm8gdmFsb3IuIENvbnNpZGVyYW1vcyBxdWUgY2FkYSB0dXBsYSB0ZW0gdW0gdmFsb3IgZSBhc3NpbSBjb21vIHF1YWxxdWVyIHZhbG9yLCB1c2Ftb3MgdsOtcmd1bGEgcGFyYSBzZXBhcsOhLWxvcy4KClBvZGVtb3MgdXNhciB1bWEgdHVwbGEgZXNwZWPDrWZpY2EgbmEgbGlzdGEgdXNhbmRvIG8gc2V1IMOtbmRpY2UuIEFww7NzIGFjZXNzYXIgbyDDrW5kaWNlLCBwb2RlbW9zIHNhbHZhciBhIHR1cGxhIGVtIHVtYSB2YXJpw6F2ZWwuCgpQb2RlbW9zIHVzYXIgdW0gbG9vcCBwYXJhIGl0ZXJhciB1bWEgbGlzdGEgZGUgdHVwbGFzLgoKYGBgcHl0aG9uCnNjb3JlID0gWygnTWlhJywgNzUpLCAoJ0xlZScsIDkwKV0KCmZvciB1c2VyX3Njb3JlIGluIHNjb3JlOgogICAgcHJpbnQoZidSZXN1bHQ6IHt1c2VyX3Njb3JlfScpCmBgYAoKVmVqYW1vcyBhcyBzZW1lbGhhbsOnYXMgZSBkaWZlcmVuw6dhcyBlbnRyZSB0dXBsYXMgZSBsaXN0YXM6CgpgYGBweXRob24KZXZlbnRfdHVwbGUgPSAoJ1NhdHVyZGF5JywgJzIxOjAwJywgIkFubmEncyBiaXJ0aGRheSIpCmRheXNfbGlzdCA9IFsnU2F0dXJkYXknLCAnU3VuZGF5J10KYGBgCgpEYSBtZXNtYSBmb3JtYSBxdWUgbmFzIGxpc3RhcywgcG9kZW1vcyBhY2Vzc2FyIG9zIHZhbG9yZXMgZGUgdW1hIHR1cGxhIHBlbG8gc2V1IMOtbmRpY2UKCmBgYHB5dGhvbgpwcmludChldmVudF90dXBsZVsxXSkgIyAyMTowMApwcmludChkYXlzX2xpc3RbMV0pICMgU3VuZGF5CmBgYAoKQSBwcmluY2lwYWwgZGlmZXJlbsOnYSDDqSBxdWUsIGRpZmVyZW50ZW1lbnRlIGRhcyBsaXN0YXMsIG7Do28gcG9kZW1vcyBhdHVhbGl6YXIsIGFkaWNpb25hciBvdSBleGNsdWlyIHZhbG9yZXMgZGUgdHVwbGFzLgoKRGl6ZW1vcyBxdWUgYXMgdHVwbGFzIHPDo28gaW11dMOhdmVpcywgcG9pcyB0ZW50YXIgbW9kaWZpY8OhLWxhcyByZXN1bHRhIGVtIGVycm8uCgpDb21vIHPDo28gaW11dMOhdmVpcywgbsOzcyB1c2Ftb3MgdHVwbGFzIHBhcmEgYXJtYXplbmFyIGluZm9ybWHDp8O1ZXMgcXVlIG7Do28gZGV2ZW0gc2VyIG1vZGlmaWNhZGFzCgojIyBSZXRvcm5hbmRvIFR1cGxhcwoKQXMgdHVwbGFzIHPDo28gw7p0ZWlzIHBvcnF1ZSBub3MgcGVybWl0ZW0gcmV0b3JuYXIgdsOhcmlvcyB2YWxvcmVzIGRlIHVtYSBmdW7Dp8Ojby4KClBhcmEgcmV0b3JuYXIgdW1hIHR1cGxhLCBjb2RpZmljYW1vcyBvcyB2YWxvcmVzIHF1ZSBkZXNlamFtb3MgcmV0b3JuYXIgc2VwYXJhZG9zIHBvciB2w61yZ3VsYS4KCkVzdGEgZnVuw6fDo28gcmV0b3JuYSB1bWEgdHVwbGEgY29tIGEgbWFpb3IgZSBhIG1lbm9yIHBvbnR1YcOnw6NvIGRlIHVtYSBsaXN0YSBkZSBwb250dWHDp8O1ZXMuCgpgYGBweXRob24KZGVmIGdldF9zY29yZXNfZGF0YShzY29yZXNfbGlzdCk6CiAgICAjIEEgZnVuw6fDo28gbWF4KCkgcmV0b3JuYSBvIG1haW9yIHZhbG9yIGRlIHVtYSBsaXN0YSBlIG1pbigpIHJldG9ybmEgbyBtZW5vcgogICAgaGlnaGVzdF9zY29yZSA9IG1heChzY29yZXNfbGlzdCkKICAgIGxvd2VzdF9zY29yZSA9IG1pbihzY29yZXNfbGlzdCkKICAgICMgQSB0dXBsYSDDqSByZXRvcm5hZGEKICAgIHJldHVybiAgaGlnaGVzdF9zY29yZSwgbG93ZXN0X3Njb3JlICMgKDEwMCwgNSkKYGBgCgpQYXJhIGFybWF6ZW5hciB1bWEgdHVwbGEgcmV0b3JuYWRhIHBvciB1bWEgZnVuw6fDo28sIGF0cmlidcOtbW9zIG8gcmVzdWx0YWRvIGRhIGNoYW1hZGEgZGUgZnVuw6fDo28gYSB1bWEgdmFyacOhdmVsIGNvbW8gZGF0YQoKYGBgcHl0aG9uCnNjb3JlcyA9IFszMCwgMTcsIDgwLCAxMDAsIDkwLCAxMCwgMzAsIDVdICMgRXNzYSBsaXN0YSBkZSBwb250dWHDp8O1ZXMgw6kgcGFzc2FkYSBwYXJhIGEgZnVuw6fDo28KZGF0YSA9IGdldF9zY29yZXNfZGF0YShzY29yZXMpICMgQSB0dXBsYSByZXRvcm5hZGEgw6kgYXJtYXplbmFkYSBlbSBkYXRhCnByaW50KGRhdGEpCmBgYA==";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-10').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python"># Podemos povoar uma tupla com list comprehension.
+
+tupla_f = tuple(range(0, 11))
+print(tupla_f)  # (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
+
+# Uma condição pode ser aplicada para filtrar os valores.
+tupla_g = tuple(x for x in range(0, 11) if x % 2 == 0) # Apenas os valores pares
+print(tupla_g)  # (0, 2, 4, 6, 8, 10)</code></pre>
+            </div>
+            </div><script>hljs.highlightAll();</script>
+    </main>
+</body>
+</html>

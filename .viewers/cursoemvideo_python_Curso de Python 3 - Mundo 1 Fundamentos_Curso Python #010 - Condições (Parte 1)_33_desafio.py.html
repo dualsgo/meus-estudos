@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>33_desafio.py</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="https://pyscript.net/releases/2024.1.1/core.css">
+    <script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>
+    <style>
+        .sandbox-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
+        .sandbox-header h2 { font-size: 1.2rem; color: var(--primary); display: flex; align-items: center; gap: 0.5rem; }
+        .py-repl-container { border-radius: 8px; overflow: hidden; border: 1px solid var(--glass-border); background: #1e293b; }
+    </style>
+    
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --glass-bg: rgba(30, 41, 59, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --primary: #38bdf8;
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        header {
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            border-bottom: 1px solid var(--glass-border);
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .back-btn {
+            color: var(--text-main);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            background: rgba(255,255,255,0.05);
+            transition: 0.3s;
+        }
+        .back-btn:hover {
+            background: rgba(56, 189, 248, 0.2);
+            color: var(--primary);
+        }
+        .file-title {
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+        main {
+            flex: 1;
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        .container {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="../index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Voltar</a>
+        <div class="file-title">33_desafio.py</div>
+    </header>
+    <main>
+        
+    <div class="container">
+        <div class="sandbox-header">
+            <h2><i class="fa-brands fa-python"></i> Sandbox PyScript</h2>
+            <span>Edite e execute (Shift + Enter) ou no botão verde ▶</span>
+        </div>
+        <div class="py-repl-container">
+            <script type="py" id="main-script"></script>
+            <py-repl auto-generate="true">
+# Exercício Python #033 - Maior e menor valores - Aula 00 até 09 - Mundo 1
+# Faça um programa que leia três números e mostre qual é o maior e qual é o menor.
+
+# Versão 1 - Usando a técnica de sentinela
+
+maior = float(&#x27;-inf&#x27;)
+menor = float(&#x27;inf&#x27;)
+
+for _ in range(1, 4):
+	numero = int(input(f&#x27;Digite o {_}º valor: &#x27;))
+	if numero &gt; maior:
+		maior = numero
+	if numero &lt; menor:
+		menor = numero
+
+print(f&#x27;Maior: {maior}&#x27;)
+print(f&#x27;Menor: {menor}&#x27;)
+
+# Versão 2 
+
+from random import randint
+# Tarefa 1: Ler três números
+primeiro = randint(0, 999)
+segundo = randint(0, 999)
+terceiro = randint(0, 999)
+maior = menor = 0
+
+# Tarefa 2: Mostrar o maior e o menor
+if primeiro &lt; segundo &lt; terceiro:
+    print(&#x27;Primeiro caso atendido&#x27;)
+    maior = terceiro
+    menor = primeiro
+if primeiro &lt; segundo &gt; terceiro:
+    print(&#x27;Segundo caso atendido&#x27;)
+    maior = segundo
+    if primeiro &gt; terceiro:
+        menor = terceiro
+    else:
+        menor = primeiro
+if primeiro &gt; segundo &gt; terceiro:
+    print(&#x27;Terceiro caso atendido&#x27;)
+    maior = primeiro
+    if segundo &gt; terceiro:
+        menor = terceiro
+    else:
+        menor = primeiro
+if primeiro &gt; segundo &lt; terceiro:
+    print(&#x27;Quarto caso atendido&#x27;)
+    menor = segundo
+    if primeiro &gt; terceiro:
+        maior = primeiro
+    else:
+        maior = terceiro
+
+print(f&#x27;Entre {primeiro}, {segundo} e {terceiro}.&#x27;)
+print(f&#x27;O maior é {maior} e o menor {menor}.&#x27;)
+
+
+# Se limitando ao conteúdo até a aula atual:
+
+# Podemos diminuir o número de verificações se considerarmos o primeiro valor como maior e menor
+maior = menor = a = int(input(&#x27;A= &#x27;))
+b = int(input(&#x27;B= &#x27;))
+c = int(input(&#x27;C= &#x27;))
+
+# Depois só precisamos comparar se o segundo é maior que o maior, que atualmente é o valor do primeiro. Se for maior atualizamos, se for menor ou igual fazemos a mesma verificação para o terceiro
+if b &gt; maior:
+	maior = b
+if c &gt; maior:
+	maior = c
+
+# Faremos as mesmas verificações para descobrir e precisamos atualizar o menor valor
+if b &lt; menor:
+	menor = b
+if c &lt; menor:
+	menor = c
+
+print(f&#x27;Maior {maior}\nMenor {menor}&#x27;)
+
+# Nessa versão usamos um pouco mais de conhecimentos e adicionamos tratamento de erro. Se o primeiro valor for inválido, o programa pede que digite novamente, porém se o usuário digitar o segundo ou o terceiro valor inválido, os anteriores serão perdidos e terá que digitar todos novamente
+while True:
+	try:
+		maior = menor = número = int(input(&#x27;Digite um valor: &#x27;))
+
+		for i in range(2):
+			número = int(input(&#x27;Digite um valor: &#x27;))
+
+			if número &gt; maior:
+				maior = número
+			elif número &lt; menor:
+				menor = número
+
+		print(f&#x27;O maior é {maior} e o menor é {menor}&#x27;)
+		break
+
+	except ValueError:
+		print(f&#x27;Valor inválido.&#x27;)
+
+# Usando uma lista tornamos a tarefa mais fácil, porém sujeita a muitos erros se não forem adicionados tratamentos. Nessa versão, usando uma função para obter cada valor o programa só irá ser concluído quando o usuário digitar os 3 valores. Se um valor não for aceito, o anterior não é perdido
+def obter_valor(msg):
+	while True:
+		try:
+			return int(input(msg))
+		except ValueError:
+			print(&#x27;Erro&#x27;)
+
+# Preenchemos a lista e exibimos o maior valor com max() e o menor com min()
+lista = [obter_valor(&#x27;Digite um valor: &#x27;) for i in range(3)]
+print(f&#x27;Maior: {max(lista)}\nMenor: {min(lista)}&#x27;)
+
+
+# Estou compartilhando minhas anotações sobre os exercícios. Quem quiser, pode copiar e colar em um documento .py pois está tudo formatado e comentado.
+
+# Nesse exercício, o programa deve ler três números e mostrar qual é o maior e qual é o menor.
+
+# A primeira coisa a ser feita é ler os três números digitados pelo usuário. Para isso, vamos utilizar a função input() para ler os números e a função int() para converter os valores para inteiros.
+valor1 = int(input(&#x27;Digite o primeiro valor: &#x27;))
+valor2 = int(input(&#x27;Digite o segundo valor: &#x27;))
+valor3 = int(input(&#x27;Digite o terceiro valor: &#x27;))
+
+# Em seguida, vamos comparar os valores para encontrar o maior e o menor. Para isso, vamos utilizar uma estrutura condicional com a palavra-chave if para verificar as condições.
+# Vamos começar definindo o maior e o menor valor como o primeiro valor digitado pelo usuário.
+maior = valor1
+menor = valor1
+
+# Agora, vamos comparar o segundo valor com o maior e o menor valor. Se o segundo valor for maior que o maior valor, atualizamos o maior valor. Se o segundo valor for menor que o menor valor, atualizamos o menor valor.
+if valor2 &gt; maior:
+    maior = valor2
+if valor2 &lt; menor:
+    menor = valor2
+    
+# Por fim, vamos comparar o terceiro valor com o maior e o menor valor. Se o terceiro valor for maior que o maior valor, atualizamos o maior valor. Se o terceiro valor for menor que o menor valor, atualizamos o menor valor.
+if valor3 &gt; maior:
+    maior = valor3
+if valor3 &lt; menor:
+    menor = valor3
+    
+# Agora, basta exibir o maior e o menor valor na tela.
+
+print(f&#x27;O maior valor é {maior} e o menor valor é {menor}&#x27;)
+
+# Essa é uma forma simples de encontrar o maior e o menor valor entre três números usando os conhecimentos que temos até o momento. Podemos simplificar o código e torná-lo mais eficiente, mas isso envolve o uso de estruturas de dados mais avançadas, como listas e funções. Por enquanto, essa é uma solução válida e funcional para o problema proposto.
+
+            </py-repl>
+        </div>
+    </div>
+    
+    </main>
+</body>
+</html>

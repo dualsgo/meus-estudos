@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>106_desafio.py</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="https://pyscript.net/releases/2024.1.1/core.css">
+    <script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>
+    <style>
+        .sandbox-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
+        .sandbox-header h2 { font-size: 1.2rem; color: var(--primary); display: flex; align-items: center; gap: 0.5rem; }
+        .py-repl-container { border-radius: 8px; overflow: hidden; border: 1px solid var(--glass-border); background: #1e293b; }
+    </style>
+    
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --glass-bg: rgba(30, 41, 59, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --primary: #38bdf8;
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        header {
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            border-bottom: 1px solid var(--glass-border);
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .back-btn {
+            color: var(--text-main);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            background: rgba(255,255,255,0.05);
+            transition: 0.3s;
+        }
+        .back-btn:hover {
+            background: rgba(56, 189, 248, 0.2);
+            color: var(--primary);
+        }
+        .file-title {
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+        main {
+            flex: 1;
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        .container {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="../index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Voltar</a>
+        <div class="file-title">106_desafio.py</div>
+    </header>
+    <main>
+        
+    <div class="container">
+        <div class="sandbox-header">
+            <h2><i class="fa-brands fa-python"></i> Sandbox PyScript</h2>
+            <span>Edite e execute (Shift + Enter) ou no botão verde ▶</span>
+        </div>
+        <div class="py-repl-container">
+            <script type="py" id="main-script"></script>
+            <py-repl auto-generate="true">
+# Exercício Python #106 - Sistema interativo de ajuda em Python - Aula 00 até 21 - Mundo 3
+# Faça um mini-sistema que utilize o Interactive Help do Python. O usuário vai digitar o comando e o manual vai aparecer. Quando o usuário digitar a palavra &#x27;FIM&#x27;, o programa se encerrará. Importante: use cores.
+
+def ajuda():
+	while True:
+		entrada = input(&#x27;\033[1;34mDigite o comando que deseja visualizar ou FIM para sair: \033[m&#x27;).strip().lower()
+		if entrada == &#x27;fim&#x27;:
+			print(&#x27;\033[1;31mFINALIZANDO O PROGRAMA\033[m&#x27;)
+			break
+
+		print(&#x27;\033[7;37;40m&#x27;, end=&#x27;&#x27;)
+		help(entrada)
+		print(&#x27;\033[m&#x27;)
+
+
+ajuda()
+
+
+&quot;&quot;&quot;
+def ajuda():
+    while True:
+        entrada = input(&#x27;\033[1;34mDigite o comando que deseja visualizar ou FIM para sair: \033[m&#x27;).strip().lower()
+        if entrada == &#x27;fim&#x27;:
+            print(&#x27;\033[1;31mFINALIZANDO O PROGRAMA\033[m&#x27;)
+            break
+        
+        # Tenta capturar a saída do help() e verificar o conteúdo
+        import io
+        import sys
+        
+        # Redireciona a saída padrão para capturar o texto gerado pelo help()
+        old_stdout = sys.stdout
+        new_stdout = io.StringIO()
+        sys.stdout = new_stdout
+        
+        try:
+            help(entrada)
+            output = new_stdout.getvalue()
+        finally:
+            sys.stdout = old_stdout  # Restaura a saída padrão
+        
+        # Verifica se &quot;No Python documentation found for&quot; está na saída
+        if &quot;No Python documentation found for&quot; in output:
+            print(&#x27;\033[1;30;43m&#x27;, end=&#x27;&#x27;)  # Texto preto com fundo amarelo
+        else:
+            print(&#x27;\033[7;37;40m&#x27;, end=&#x27;&#x27;)  # Fundo inverso
+        
+        print(output)
+        print(&#x27;\033[m&#x27;, end=&#x27;&#x27;)  # Reseta as cores
+
+ajuda()
+
+&quot;&quot;&quot;
+
+# Estou compartilhando minhas anotações sobre os exercícios. Quem quiser, pode copiar e colar em um documento .py pois está tudo formatado e comentado.
+
+# Nesse exercício, temos que criar um mini-sistema que utilize o Interactive Help do Python. O usuário vai digitar o comando e o manual vai aparecer. Quando o usuário digitar a palavra &#x27;FIM&#x27;, o programa se encerrará. Importante: use cores.
+
+def ajuda():
+    # O programa vai continuar em loop até o usuário digitar a palavra &#x27;FIM&#x27;
+	while True:
+		entrada = input(&#x27;\033[1;34mDigite o comando que deseja visualizar ou FIM para sair: \033[m&#x27;).strip().lower()
+        # Se o usuário digitar &#x27;FIM&#x27;, o programa vai exibir a mensagem &#x27;FINALIZANDO O PROGRAMA&#x27; e vai encerrar o loop
+		if entrada == &#x27;fim&#x27;:
+			print(&#x27;\033[1;31mFINALIZANDO O PROGRAMA\033[m&#x27;)
+			break
+        # Se o usuário digitar um comando válido, o programa vai exibir o manual do comando
+		print(&#x27;\033[7;37;40m&#x27;, end=&#x27;&#x27;)
+		help(entrada)
+		print(&#x27;\033[m&#x27;)
+
+
+ajuda()
+            </py-repl>
+        </div>
+    </div>
+    
+    </main>
+</body>
+</html>

@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>99_desafio.py</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="https://pyscript.net/releases/2024.1.1/core.css">
+    <script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>
+    <style>
+        .sandbox-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
+        .sandbox-header h2 { font-size: 1.2rem; color: var(--primary); display: flex; align-items: center; gap: 0.5rem; }
+        .py-repl-container { border-radius: 8px; overflow: hidden; border: 1px solid var(--glass-border); background: #1e293b; }
+    </style>
+    
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --glass-bg: rgba(30, 41, 59, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --primary: #38bdf8;
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        header {
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            border-bottom: 1px solid var(--glass-border);
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .back-btn {
+            color: var(--text-main);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            background: rgba(255,255,255,0.05);
+            transition: 0.3s;
+        }
+        .back-btn:hover {
+            background: rgba(56, 189, 248, 0.2);
+            color: var(--primary);
+        }
+        .file-title {
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+        main {
+            flex: 1;
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        .container {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="../index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Voltar</a>
+        <div class="file-title">99_desafio.py</div>
+    </header>
+    <main>
+        
+    <div class="container">
+        <div class="sandbox-header">
+            <h2><i class="fa-brands fa-python"></i> Sandbox PyScript</h2>
+            <span>Edite e execute (Shift + Enter) ou no botão verde ▶</span>
+        </div>
+        <div class="py-repl-container">
+            <script type="py" id="main-script"></script>
+            <py-repl auto-generate="true">
+# Exercício Python #099 - Função que descobre o maior - Aula 00 até 20 - Mundo 3
+# Faça um programa que tenha uma função chamada maior(), que receba vários parâmetros com valores inteiros. Seu programa tem que analisar todos os valores e dizer qual deles é o maior.
+
+from random import randint
+from time import sleep
+lista_parametros = []
+
+
+def cria_lista(quantidade, inicio, fim):
+    if quantidade == 0:
+        print(f&#x27;Nenhum valor informado!&#x27;)
+    elif quantidade == 1:
+        print(f&#x27;Apenas um valor informado.&#x27;)
+    else:
+        print(f&#x27;Sorteando {quantidade} números entre {inicio} e {fim}&#x27;)
+        for i in range(quantidade):
+            lista_parametros.append(randint(inicio, fim))
+
+
+cria_lista(randint(0, 10), randint(0, 99), randint(100, 999))
+
+
+def maior(*varios_parametros):
+    if len(lista_parametros) == 0:
+        print()
+    elif len(lista_parametros) == 1:
+        print(f&#x27;{lista_parametros} é o único número informado.&#x27;)
+    else:
+        print(f&#x27;Os {len(lista_parametros)} valores adicionados foram: &#x27;)
+        for v in varios_parametros:
+            sleep(.5)
+            if v == varios_parametros[-1]:
+                print(f&#x27;{v}.&#x27;)
+            else:
+                print(v, end=&#x27;, &#x27;)
+        sleep(1)
+        print(f&#x27;O menor valor da lista é o {min(varios_parametros)}&#x27;)
+        sleep(1)
+        print(f&#x27;O maior valor da lista é o {max(varios_parametros)}&#x27;)
+
+
+# Usando * para desempacotar a lista ao passá-la como argumento
+maior(*lista_parametros)
+
+
+# Estou compartilhando minhas anotações sobre os exercícios. Quem quiser, pode copiar e colar em um documento .py pois está tudo formatado e comentado.
+
+# Nesse exercício, precisamos criar uma função chamada maior() que recebe vários parâmetros com valores inteiros. A função deve analisar todos os valores e dizer qual deles é o maior.
+
+# Vamos criar o programa &quot;auto-suficiente&quot; que sorteia uma quantidade aleatória de números entre 0 e 99 e chama a função maior() passando esses números como argumentos.
+
+from random import randint # Importa a função randint() do módulo random.
+from time import sleep # Importa a função sleep() do módulo time.
+
+lista_parametros = [] # Cria uma lista vazia chamada lista_parametros.
+
+# A função cria_lista() recebe três parâmetros: quantidade, início e fim. A função sorteia uma quantidade de números entre início e fim e adiciona esses números à lista lista_parametros.
+def cria_lista(quantidade, inicio, fim):
+        
+        # Se a quantidade de números for igual a zero, exibe a mensagem &quot;Nenhum valor informado!&quot;.
+        if quantidade == 0:
+            print(f&#x27;Nenhum valor informado!&#x27;)
+        
+        # Se a quantidade de números for igual a um, exibe a mensagem &quot;Apenas um valor informado.&quot;.
+        elif quantidade == 1:
+            print(f&#x27;Apenas um valor informado.&#x27;)
+        
+        # Se a quantidade de números for maior que um, exibe a mensagem &quot;Sorteando quantidade números entre início e fim&quot; e adiciona os números sorteados à lista lista_parametros.
+        else:
+            print(f&#x27;Sorteando {quantidade} números entre {inicio} e {fim}&#x27;)
+            for i in range(quantidade):
+                lista_parametros.append(randint(inicio, fim))
+                
+                
+# A função cria_lista() é chamada com três argumentos: um número aleatório entre 0 e 10, um número aleatório entre 0 e 99 e um número aleatório entre 100 e 999.
+cria_lista(randint(0, 10), randint(0, 99), randint(100, 999))
+
+# randint(0, 10) sorteia um número aleatório entre 0 e 10 que será a quantidade de números a serem sorteados.
+# randint(0, 99) sorteia um número aleatório entre 0 e 99 que será o início do intervalo dos números a serem sorteados.
+# randint(100, 999) sorteia um número aleatório entre 100 e 999 que será o fim do intervalo dos números a serem sorteados.
+
+# A função maior() recebe vários parâmetros. A função exibe os valores adicionados à lista lista_parametros, o menor valor da lista e o maior valor da lista.
+
+# O *
+def maior(*varios_parametros):
+        
+        # Se a lista de parâmetros estiver vazia, exibe uma linha em branco.
+        if len(lista_parametros) == 0:
+            print()
+        
+        # Se a lista de parâmetros tiver apenas um valor, exibe o valor da lista.
+        elif len(lista_parametros) == 1:
+            print(f&#x27;{lista_parametros} é o único número informado.&#x27;)
+        
+        # Se a lista de parâmetros tiver mais de um valor, exibe os valores da lista, o menor valor e o maior valor.
+        else:
+            print(f&#x27;Os {len(lista_parametros)} valores adicionados foram: &#x27;)
+            for v in varios_parametros:
+                sleep(.5)
+                if v == varios_parametros[-1]:
+                    print(f&#x27;{v}.&#x27;)
+                else:
+                    print(v, end=&#x27;, &#x27;)
+            sleep(1)
+            print(f&#x27;O menor valor da lista é o {min(varios_parametros)}&#x27;)
+            sleep(1)
+            print(f&#x27;O maior valor da lista é o {max(varios_parametros)}&#x27;)
+
+# Usando * para desempacotar a lista ao passá-la como argumento
+maior(*lista_parametros)
+
+# Desempacotar é o processo de converter uma lista em uma sequência de argumentos. O operador * é usado para desempacotar uma lista ao passá-la como argumento para uma função. O operador * é colocado antes do nome da lista. Quando a função é chamada, os elementos da lista são passados como argumentos separados.
+
+# Então se a lista_parametros for [1, 2, 3], ao chamar a função maior(*lista_parametros), a função maior() receberá os argumentos 1, 2 e 3. Se a lista for maior, a função receberá todos os elementos da lista como argumentos.
+            </py-repl>
+        </div>
+    </div>
+    
+    </main>
+</body>
+</html>

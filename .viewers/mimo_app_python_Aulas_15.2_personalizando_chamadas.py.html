@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>15.2_personalizando_chamadas.py</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="https://pyscript.net/releases/2024.1.1/core.css">
+    <script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>
+    <style>
+        .sandbox-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
+        .sandbox-header h2 { font-size: 1.2rem; color: var(--primary); display: flex; align-items: center; gap: 0.5rem; }
+        .py-repl-container { border-radius: 8px; overflow: hidden; border: 1px solid var(--glass-border); background: #1e293b; }
+    </style>
+    
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --glass-bg: rgba(30, 41, 59, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --primary: #38bdf8;
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        header {
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            border-bottom: 1px solid var(--glass-border);
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .back-btn {
+            color: var(--text-main);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            background: rgba(255,255,255,0.05);
+            transition: 0.3s;
+        }
+        .back-btn:hover {
+            background: rgba(56, 189, 248, 0.2);
+            color: var(--primary);
+        }
+        .file-title {
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+        main {
+            flex: 1;
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        .container {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="../index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Voltar</a>
+        <div class="file-title">15.2_personalizando_chamadas.py</div>
+    </header>
+    <main>
+        
+    <div class="container">
+        <div class="sandbox-header">
+            <h2><i class="fa-brands fa-python"></i> Sandbox PyScript</h2>
+            <span>Edite e execute (Shift + Enter) ou no botão verde ▶</span>
+        </div>
+        <div class="py-repl-container">
+            <script type="py" id="main-script"></script>
+            <py-repl auto-generate="true">
+# MIMO - 15 - Trabalhando com APIS privadas
+
+# 15.2 - Personalizando chamadas de APIs
+
+# Vamos explorar como utilizar cabeçalhos e o corpo em requisições de API para enviar dados de forma segura e personalizar o comportamento das requisições.
+
+# APIs frequentemente exigem que detalhes de autenticação sejam enviados através de cabeçalhos de API. Podemos especificar esses cabeçalhos ao fazer a solicitação de API.
+
+import requests
+
+headers = {&quot;api-key&quot;: &quot;MY_SECRET_KEY&quot;}
+
+requests.get(&quot;http://mimo.org/api/exclusive_guest_book&quot;, headers=headers)
+
+# Os headers em uma solicitação de API são normalmente definidos como um dicionário, com cada chave representando o nome do header.
+
+# Podemos passar diretamente o dicionário para o parâmetro headers sem salvá-lo em uma variável primeiro. No entanto, para a legibilidade, é melhor definir os headers separadamente, especialmente se eles forem complexos ou reutilizados em várias requisições.
+
+headers = {&quot;api-key&quot;: &quot;MY_SECRET_KEY&quot;}
+
+requests.get(&quot;http://mimo.org/api/exclusive_guest_book&quot;, headers=headers)
+
+# Para acessar uma API que requer autenticação, inclua as credenciais nos headers, ou o acesso será negado. No cabeçalho, normalmente adicionamos informações de autenticação, como chaves de API, tokens ou outros metadados necessários para a solicitação.
+
+# Algumas APIs exigem que os dados sejam enviados no corpo da solicitação, além dos cabeçalhos. Nós os anexamos como json à chamada da API. No corpo, normalmente adicionamos os dados, como entrada do usuário, objetos JSON ou outro conteúdo a ser enviado para o servidor.
+
+headers = {&quot;api-key&quot;: &quot;MY_SECRET_KEY&quot;}
+body = {&quot;my-message&quot;: &quot;I was here!&quot;}
+
+requests.post(&quot;http://mimo.org/api/exclusive_guest_book&quot;, headers=headers, json=body)
+
+# Adicionar o header e o body faz parte da formação da solicitação da API. Dependendo do endpoint, devemos fornecer isso para garantir que o servidor entenda e processe nossa solicitação.
+
+headers = {&quot;api-key&quot;: &quot;MY_SECRET_KEY&quot;}
+body = {&quot;my-message&quot;: &quot;I was here!&quot;}
+
+response = requests.post(&quot;http://mimo.org/api/exclusive_guest_book&quot;, headers=headers, json=body)
+print(response.content)
+
+# Os parâmetros de consulta são pares chave-valor adicionados a uma URL para enviar dados adicionais ao servidor, frequentemente usados para filtragem, ordenação, etc.
+
+# Eles fazem parte da URL e especificam filtros ou opções, enquanto os headers e o corpo carregam metadados e dados.
+
+# Para adicionar parâmetros de consulta à URL, você escreve um ponto de interrogação ? seguido pelo parâmetro de consulta. Após o ?, especificamos a chave, um sinal de igual =, e o valor.
+
+url = &quot;https://mimo.org/api/languages?popularity=high&quot;
+
+# Podemos também encadear múltiplos parâmetros de consulta juntos, separando-os com um &amp;.
+
+url = &quot;https://mimo.org/api/languages?popularity=high&amp;limit=1&quot;
+
+# Adicionar parâmetros de consulta é tedioso. Felizmente, podemos defini-los como um dicionário também. Um dicionário como este é muito mais simples de ler e manter.
+
+import requests
+
+params = {
+  &quot;popularity&quot;: &quot;high&quot;,
+  &quot;limit&quot;: 1
+}
+
+# # Podemos passar o dicionário com os parâmetros de consulta como params para requests.get. Isso garante que a URL esteja formatada corretamente e torna o código mais limpo e fácil de manter.
+
+import requests
+
+params = {
+  &quot;popularity&quot;: &quot;high&quot;,
+  &quot;limit&quot;: 1
+}
+
+response = requests.get(&quot;https://mimo.org/api/languages&quot;, params=params)
+print(response.json())
+
+# Por último, vamos trabalhar com paginação através de parâmetros de consulta. A paginação limita a quantidade de dados retornados para melhor legibilidade.
+
+# import requests
+
+params = {
+  &quot;page&quot;: 3
+}
+
+response = requests.get(&quot;https://mimo.org/api/exercises&quot;, params=params)
+print(response.json())
+
+
+            </py-repl>
+        </div>
+    </div>
+    
+    </main>
+</body>
+</html>

@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>m1_aula2.ipynb</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/monokai-sublime.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/python.min.js"></script>
+    
+    <style>
+        .cell { margin-bottom: 1.5rem; }
+        .cell-markdown { font-size: 1.05rem; line-height: 1.6; color: #cbd5e1; }
+        .cell-markdown h1, .cell-markdown h2, .cell-markdown h3 { color: #f1f5f9; margin-top: 1rem; margin-bottom: 0.5rem; }
+        .cell-markdown code { background: rgba(0,0,0,0.3); padding: 0.2rem 0.4rem; border-radius: 4px; color: #eab308; }
+        .cell-markdown pre { background: rgba(0,0,0,0.3); padding: 1rem; border-radius: 8px; overflow-x: auto; border: 1px solid var(--glass-border); margin: 1rem 0; }
+        .cell-code { background: #23241f; border-radius: 8px; padding: 1rem; overflow-x: auto; position: relative; border: 1px solid #333; }
+        .cell-output { background: #000; color: #a3e635; padding: 1rem; border-radius: 8px; margin-top: 0.5rem; font-family: monospace; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;}
+        .prompt { position: absolute; top: 0.5rem; right: 0.5rem; color: #64748b; font-size: 0.8rem; user-select: none; }
+    </style>
+    
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --glass-bg: rgba(30, 41, 59, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --primary: #38bdf8;
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        header {
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            border-bottom: 1px solid var(--glass-border);
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .back-btn {
+            color: var(--text-main);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            background: rgba(255,255,255,0.05);
+            transition: 0.3s;
+        }
+        .back-btn:hover {
+            background: rgba(56, 189, 248, 0.2);
+            color: var(--primary);
+        }
+        .file-title {
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+        main {
+            flex: 1;
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        .container {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="../index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Voltar</a>
+        <div class="file-title">m1_aula2.ipynb</div>
+    </header>
+    <main>
+        <div class="container">
+            <div class="cell cell-markdown" id="md-0"></div>
+            <script>
+                (function(){
+                    const b64 = "KioxLjIgU2XDp8OjbyAyIOKAkyBNw7NkdWxvcyBQeXRob24gc2VsZWNpb25hZG9zIChtYXRlbcOhdGljYSwgYWxlYXTDs3JpYSwgcGxhdGFmb3JtYSkqKgoKTmVzdGEgc2XDp8OjbywgZXhwbG9yYXJlbW9zIGFsZ3VucyBtw7NkdWxvcyBpbXBvcnRhbnRlcyBkbyBQeXRob24sIGluY2x1aW5kbyBtYXRlbcOhdGljYSwgYWxlYXTDs3JpYSBlIHBsYXRhZm9ybWEuCgoqKjEuMi4xIFRyYWJhbGhhbmRvIGNvbSBtw7NkdWxvcyBwYWRyw6NvKioKCkFudGVzIGRlIG1lcmd1bGhhcm1vcyBub3MgbcOzZHVsb3MgcGFkcsOjbyBkbyBQeXRob24sIMOpIGltcG9ydGFudGUgYXByZXNlbnRhciBhIGZ1bsOnw6NvIGBkaXIoKWAgcGFyYSB2b2PDqi4gQXBlc2FyIGRlIG7Do28gZXN0YXIgcmVsYWNpb25hZGEgYW8gY29tYW5kbyBgZGlyZXTDs3Jpb2AgZG9zIGNvbnNvbGVzIFdpbmRvd3MgZSBVbml4LCBhIGZ1bsOnw6NvIGBkaXIoKWAgZGVzZW1wZW5oYSB1bWEgZnVuw6fDo28gc2VtZWxoYW50ZSBhbyByZXZlbGFyIHRvZG9zIG9zIG5vbWVzIGZvcm5lY2lkb3MgcG9yIHVtIG3Ds2R1bG8gZXNwZWPDrWZpY28uCgpQYXJhIHV0aWxpemFyIGEgZnVuw6fDo28gYGRpcigpYCwgbyBtw7NkdWxvIGRldmUgdGVyIHNpZG8gaW1wb3J0YWRvIHByZXZpYW1lbnRlIGVtIHN1YSB0b3RhbGlkYWRlIChvdSBzZWphLCB1c2FuZG8gYSBpbnN0cnXDp8OjbyBgaW1wb3J0IG1vZHVsb2ApLiBBIGZ1bsOnw6NvIHJldG9ybmEgdW1hIGxpc3RhIG9yZGVuYWRhIGFsZmFiZXRpY2FtZW50ZSBjb250ZW5kbyB0b2RvcyBvcyBub21lcyBkZSBlbnRpZGFkZXMgZGlzcG9uw612ZWlzIG5vIG3Ds2R1bG8gaWRlbnRpZmljYWRvcyBwb3IgdW0gbm9tZSBwYXNzYWRvIMOgIGZ1bsOnw6NvIGNvbW8gYXJndW1lbnRvLgoKUG9yIGV4ZW1wbG8sIHBvZGVtb3MgaW1wcmltaXIgb3Mgbm9tZXMgZGUgdG9kYXMgYXMgZW50aWRhZGVzIG5vIG3Ds2R1bG8gbWF0ZW3DoXRpY28gZGEgc2VndWludGUgbWFuZWlyYToKCmBgYHB5dGhvbgppbXBvcnQgbWF0aAogIApmb3IgbmFtZSBpbiBkaXIobWF0aCk6CiAgICBwcmludChuYW1lLCBlbmQ9IuKIlnQiKQpgYGAKCkFvIGV4ZWN1dGFyIGVzdGUgY8OzZGlnbywgb2J0ZXLDrWFtb3MgdW1hIHNhw61kYSBzZW1lbGhhbnRlIMOgIHNlZ3VpbnRlOgoKYGBgCl9fZG9jX18gX19sb2FkZXJfXyBfX25hbWVfXyBfX3BhY2thZ2VfXyBfX3NwZWNfXyBhY29zIGFjb3NoIGFzaW4gYXNpbmggYXRhbiBhdGFuMgphdGFuMiBhdGFuaCBjZWlsIGNvcHlzaWduIGNvcyBjb3NoIGRlZ3JlZXMgZSBlcmYgZXJmYyBleHAgZXhwbTEgZmFicyBmYWN0b3JpYWwgZmxvb3IKZm1vZCBmcmV4cCBmc3VtIGdhbW1hIGh5cG90IGlzZmluaXRlIGlzaW5mIGlzbmFuIGxkZXhwIGxnYW1tYSBsb2cgbG9nMTAgbG9nMXAKbG9nMiBtb2RmIHBpIHBvdyByYWRpYW5zIHNpbiBzaW5oIHNxcnQgdGFuIHRhbmggdHJ1bmMKYGBgCgpFc3NlcyBub21lcyBlc3RyYW5ob3MgY29tZcOnYW5kbyBjb20gYF9fYCBubyB0b3BvIGRhIGxpc3RhIHPDo28gZGV0YWxoZXMgcXVlIGRpc2N1dGlyZW1vcyBtYWlzIHF1YW5kbyBhYm9yZGFybW9zIGEgZXNjcml0YSBkZSBzZXVzIHByw7NwcmlvcyBtw7NkdWxvcy4gQWxndW1hcyBkZXNzYXMgZW50aWRhZGVzIHTDqm0gbm9tZXMgZmFtaWxpYXJlcyBkYSBtYXRlbcOhdGljYSwgbyBxdWUgdG9ybmEgc3VhIGNvbXByZWVuc8OjbyBtYWlzIGbDoWNpbC4KCkVtYm9yYSBvIHVzbyBkYSBmdW7Dp8OjbyBgZGlyKClgIGRlbnRybyBkZSB1bSBjw7NkaWdvIHBvc3NhIHBhcmVjZXIgbGltaXRhZG8sIMOpIMO6dGlsIHBhcmEgZXhwbG9yYXIgbyBjb250ZcO6ZG8gZGUgdW0gbcOzZHVsbyBhbnRlcyBkZSBlc2NyZXZlciBlIGV4ZWN1dGFyIG8gY8OzZGlnby4gTm8gZW50YW50bywgbm8gY29uc29sZSBQeXRob24gKElETEUpLCB2b2PDqiBwb2RlIGV4ZWN1dGFyIGEgZnVuw6fDo28gZGlyZXRhbWVudGUsIGNvbW8gbW9zdHJhZG8gYWJhaXhvOgoKYGBgcHl0aG9uCmltcG9ydCBtYXRoCmRpcihtYXRoKQpgYGAKCklzc28gcmV0b3JuYXLDoSB1bWEgc2HDrWRhIHNlbWVsaGFudGUsIHBlcm1pdGluZG8gcXVlIHZvY8OqIGV4cGxvcmUgb3Mgbm9tZXMgZGlzcG9uw612ZWlzIG5vIG3Ds2R1bG8gYG1hdGhgLg==";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-0').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [1]</div>
+                <pre><code class="language-python">import math
+dir(math)</code></pre>
+            </div>
+            <div class="cell-output">[&#x27;__doc__&#x27;,
+ &#x27;__loader__&#x27;,
+ &#x27;__name__&#x27;,
+ &#x27;__package__&#x27;,
+ &#x27;__spec__&#x27;,
+ &#x27;acos&#x27;,
+ &#x27;acosh&#x27;,
+ &#x27;asin&#x27;,
+ &#x27;asinh&#x27;,
+ &#x27;atan&#x27;,
+ &#x27;atan2&#x27;,
+ &#x27;atanh&#x27;,
+ &#x27;cbrt&#x27;,
+ &#x27;ceil&#x27;,
+ &#x27;comb&#x27;,
+ &#x27;copysign&#x27;,
+ &#x27;cos&#x27;,
+ &#x27;cosh&#x27;,
+ &#x27;degrees&#x27;,
+ &#x27;dist&#x27;,
+ &#x27;e&#x27;,
+ &#x27;erf&#x27;,
+ &#x27;erfc&#x27;,
+ &#x27;exp&#x27;,
+ &#x27;exp2&#x27;,
+ &#x27;expm1&#x27;,
+ &#x27;fabs&#x27;,
+ &#x27;factorial&#x27;,
+ &#x27;floor&#x27;,
+ &#x27;fmod&#x27;,
+ &#x27;frexp&#x27;,
+ &#x27;fsum&#x27;,
+ &#x27;gamma&#x27;,
+ &#x27;gcd&#x27;,
+ &#x27;hypot&#x27;,
+ &#x27;inf&#x27;,
+ &#x27;isclose&#x27;,
+ &#x27;isfinite&#x27;,
+ &#x27;isinf&#x27;,
+ &#x27;isnan&#x27;,
+ &#x27;isqrt&#x27;,
+ &#x27;lcm&#x27;,
+ &#x27;ldexp&#x27;,
+ &#x27;lgamma&#x27;,
+ &#x27;log&#x27;,
+ &#x27;log10&#x27;,
+ &#x27;log1p&#x27;,
+ &#x27;log2&#x27;,
+ &#x27;modf&#x27;,
+ &#x27;nan&#x27;,
+ &#x27;nextafter&#x27;,
+ &#x27;perm&#x27;,
+ &#x27;pi&#x27;,
+ &#x27;pow&#x27;,
+ &#x27;prod&#x27;,
+ &#x27;radians&#x27;,
+ &#x27;remainder&#x27;,
+ &#x27;sin&#x27;,
+ &#x27;sinh&#x27;,
+ &#x27;sqrt&#x27;,
+ &#x27;sumprod&#x27;,
+ &#x27;tan&#x27;,
+ &#x27;tanh&#x27;,
+ &#x27;tau&#x27;,
+ &#x27;trunc&#x27;,
+ &#x27;ulp&#x27;]</div>
+            <div class="cell cell-markdown" id="md-2"></div>
+            <script>
+                (function(){
+                    const b64 = "KipGdW7Dp8O1ZXMgZG8gTcOzZHVsbyBNYXRlbcOhdGljbyBlbSBQeXRob24qKgoKVmFtb3MgZXhwbG9yYXIgYWxndW1hcyBmdW7Dp8O1ZXMgZXNzZW5jaWFpcyBmb3JuZWNpZGFzIHBlbG8gbcOzZHVsbyBgbWF0aGAgZW0gUHl0aG9uLgoKQ29tZcOnYW1vcyBjb20gZnVuw6fDtWVzIHRyaWdvbm9tw6l0cmljYXM6CgotIGBzaW4oeClgOiBzZW5vIGRlIHg7Ci0gYGNvcyh4KWA6IGNvc3Nlbm8gZGUgeDsKLSBgdGFuKHgpYDogdGFuZ2VudGUgZGUgeC4KCkFsw6ltIGRpc3NvLCB0ZW1vcyBhcyB2ZXJzw7VlcyBpbnZlcnNhczoKCi0gYGFzaW4oeClgOiBhcmNvIHNlbm8gZGUgeDsKLSBgYWNvcyh4KWA6IGFyY28gY29zc2VubyBkZSB4OwotIGBhdGFuKHgpYDogYXJjbyB0YW5nZW50ZSBkZSB4LgoKUGFyYSBmYWNpbGl0YXIgYSBtYW5pcHVsYcOnw6NvIGRlIMOibmd1bG9zLCBvIG3Ds2R1bG8gdGFtYsOpbSBvZmVyZWNlOgoKLSBgcGlgOiB1bWEgY29uc3RhbnRlIGFwcm94aW1hZGEgZGUgz4A7Ci0gYHJhZGlhbnMoeClgOiBjb252ZXJ0ZSB4IGRlIGdyYXVzIHBhcmEgcmFkaWFub3M7Ci0gYGRlZ3JlZXMoeClgOiBjb252ZXJ0ZSB4IGRlIHJhZGlhbm9zIHBhcmEgZ3JhdXMuCgpPIG3Ds2R1bG8gYG1hdGhgIHRhbWLDqW0gaW5jbHVpIGZ1bsOnw7VlcyBoaXBlcmLDs2xpY2FzIGFuw6Fsb2dhcyBlIG9wZXJhw6fDtWVzIGRlIGV4cG9uZW5jaWHDp8OjbywgY29tbzoKCi0gYHNpbmgoeClgLCBgY29zaCh4KWAsIGB0YW5oKHgpYCwgYGFzaW5oKHgpYCwgYGFjb3NoKHgpYCwgYGF0YW5oKHgpYDsKLSBgZWA6IGNvbnN0YW50ZSBhcHJveGltYWRhIGRvIG7Dum1lcm8gZGUgRXVsZXI7Ci0gYGV4cCh4KWAsIGBsb2coeClgLCBgbG9nKHgsIGIpYCwgYGxvZzEwKHgpYCwgYGxvZzIoeClgOwotIGBwb3coeCwgeSlgOiBwYXJhIHggZWxldmFkbyBhIHkuCgpGaW5hbG1lbnRlLCBhbGd1bWFzIGZ1bsOnw7VlcyDDunRlaXMgZ2VyYWlzIHPDo286CgotIGBjZWlsKHgpYDogbWVub3IgaW50ZWlybyBtYWlvciBvdSBpZ3VhbCBhIHg7Ci0gYGZsb29yKHgpYDogbWFpb3IgaW50ZWlybyBtZW5vciBvdSBpZ3VhbCBhIHg7Ci0gYHRydW5jKHgpYDogdmFsb3IgZGUgeCB0cnVuY2FkbyBwYXJhIHVtIGludGVpcm87Ci0gYGZhY3RvcmlhbCh4KWA6IGZhdG9yaWFsIGRlIHg7Ci0gYGh5cG90KHgsIHkpYDogY29tcHJpbWVudG8gZGEgaGlwb3RlbnVzYSBkZSB1bSB0cmnDom5ndWxvIHJldMOibmd1bG8gY29tIHBlcm5hcyB4IGUgeS4KCkVzdGFzIHPDo28gYXBlbmFzIGFsZ3VtYXMgZGFzIG11aXRhcyBmdW7Dp8O1ZXMgZGlzcG9uw612ZWlzIG5vIG3Ds2R1bG8gYG1hdGhgLiBBIGV4cGxvcmHDp8OjbyBtYWlzIGFwcm9mdW5kYWRhIHBlcm1pdGlyw6EgZGVzY29icmlyIGFpbmRhIG1haXMgZnVuY2lvbmFsaWRhZGVzLg==";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-2').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-markdown" id="md-3"></div>
+            <script>
+                (function(){
+                    const b64 = "KioxLjIuNCBGdW7Dp8O1ZXMgU2VsZWNpb25hZGFzIGRvIE3Ds2R1bG8gQWxlYXTDs3JpbyoqCgpPIG3Ds2R1bG8gYHJhbmRvbWAgb2ZlcmVjZSB1bWEgc8OpcmllIGRlIGZ1bsOnw7VlcyDDunRlaXMgcGFyYSBsaWRhciBjb20gbsO6bWVyb3MgcHNldWRvYWxlYXTDs3Jpb3MuCgoqKkZ1bsOnw6NvIGByYW5kb21gKioKCkEgZnVuw6fDo28gbWFpcyBnZXJhbCwgY2hhbWFkYSBgcmFuZG9tYCwgcHJvZHV6IHVtIG7Dum1lcm8gZGUgcG9udG8gZmx1dHVhbnRlIG5hIGZhaXhhIGRlICgwLjAsIDEuMCkuIFBvciBleGVtcGxvOgoKYGBgcHl0aG9uCmltcG9ydCByYW5kb20KCmZvciBfIGluIHJhbmdlKDUpOgogICAgcHJpbnQocmFuZG9tLnJhbmRvbSgpKQpgYGAKCklzc28gcmVzdWx0YXJpYSBlbSBhbGdvIGNvbW86CgpgYGAKMC45NTM1NzY4OTI3NDExMjA4CjAuNTMxMjcxMDA5NjI0NDUzNAowLjg3Mzc2OTE5ODM0Nzc3MzEKMC41ODk2Nzk5MTcyNDUyMTI1CjAuMDIxMTY3MTYyOTcwMjIwOTIKYGBgCgoqKkZ1bsOnw6NvIGBzZWVkYCoqCgpBIGZ1bsOnw6NvIGBzZWVkKClgIHBvZGUgc2VyIHVzYWRhIHBhcmEgZGVmaW5pciBkaXJldGFtZW50ZSBhIHNlbWVudGUgZG8gZ2VyYWRvciBkZSBuw7ptZXJvcyBwc2V1ZG9hbGVhdMOzcmlvcy4gRHVhcyBkZSBzdWFzIHZhcmlhbnRlcyBjb211bnMgc8OjbzoKCi0gYHNlZWQoKWA6IGRlZmluZSBhIHNlbWVudGUgY29tIGJhc2UgbmEgaG9yYSBhdHVhbDsKLSBgc2VlZChpbnRfdmFsdWUpYDogZGVmaW5lIGEgc2VtZW50ZSBjb20gdW0gdmFsb3IgaW50ZWlybyBlc3BlY8OtZmljby4KClBvciBleGVtcGxvOgoKYGBgcHl0aG9uCnJhbmRvbS5zZWVkKCkKCmZvciBfIGluIHJhbmdlKDUpOgogICAgcHJpbnQocmFuZG9tLnJhbmRvbSgpKQpgYGAKCklzc28gcHJvZHV6aXLDoSB1bWEgc2VxdcOqbmNpYSBkZSB2YWxvcmVzIHBzZXVkb2FsZWF0w7NyaW9zIHF1ZSBwYXJlY2Vyw6NvIGNvbnNpc3RlbnRlcyBzZW1wcmUgcXVlIG8gcHJvZ3JhbWEgZm9yIGV4ZWN1dGFkby4KCioqRnVuw6fDtWVzIGByYW5kcmFuZ2VgIGUgYHJhbmRpbnRgKioKClNlIHZvY8OqIHByZWNpc2EgZGUgdmFsb3JlcyBpbnRlaXJvcyBhbGVhdMOzcmlvcywgcG9kZSB1c2FyIGFzIHNlZ3VpbnRlcyBmdW7Dp8O1ZXM6CgotIGByYW5kcmFuZ2Uoc3RvcClgLCBgcmFuZHJhbmdlKHN0YXJ0LCBzdG9wKWAsIGByYW5kcmFuZ2Uoc3RhcnQsIHN0b3AsIHN0ZXApYDsKLSBgcmFuZGludChsZWZ0LCByaWdodClgLgoKUG9yIGV4ZW1wbG86CgpgYGBweXRob24KZm9yIF8gaW4gcmFuZ2UoNCk6CiAgICBwcmludChyYW5kb20ucmFuZHJhbmdlKDIpLCBlbmQ9IiAiKQpwcmludCgpCmZvciBfIGluIHJhbmdlKDQpOgogICAgcHJpbnQocmFuZG9tLnJhbmRpbnQoMCwgMSksIGVuZD0iICIpCmBgYAoKSXNzbyBwb2RlIHJlc3VsdGFyIGVtIHVtYSBzYcOtZGEgY29tbzoKCmBgYAowIDAgMCAxCjEgMCAwIDEKYGBgCgoqKkZ1bsOnw7VlcyBgY2hvaWNlYCBlIGBzYW1wbGVgKioKClBhcmEgZXNjb2xoZXIgZWxlbWVudG9zIGFsZWF0w7NyaW9zIGRlIHVtYSBzZXF1w6puY2lhLCB2b2PDqiBwb2RlIHVzYXIgYXMgZnVuw6fDtWVzIGBjaG9pY2VgIGUgYHNhbXBsZWA6CgpgYGBweXRob24KcHJpbnQocmFuZG9tLmNob2ljZShbMSwgMiwgMywgNCwgNV0pKQpwcmludChyYW5kb20uc2FtcGxlKFsxLCAyLCAzLCA0LCA1LCA2LCA3LCA4LCA5LCAxMF0sIDUpKQpgYGAKCklzc28gcG9kZSByZXN1bHRhciBlbToKCmBgYAo0ClszLCAxLCA4LCA5LCAxMF0KYGBgCgpFc3NhcyBmdW7Dp8O1ZXMgZ2FyYW50ZW0gcXVlIG9zIGVsZW1lbnRvcyBzZWxlY2lvbmFkb3Mgc2VqYW0gZXhjbHVzaXZvcywgdG9ybmFuZG8tYXMgw7p0ZWlzIHBhcmEgY2Vuw6FyaW9zIGNvbW8gc29ydGVpb3MgZGUgbG90ZXJpYS4=";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-3').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-markdown" id="md-4"></div>
+            <script>
+                (function(){
+                    const b64 = "KioxLjIuNSBDb21vIFNhYmVyIE9uZGUgVm9jw6ogRXN0w6E/KioKCsOAcyB2ZXplcywgcG9kZSBzZXIgw7p0aWwgb2J0ZXIgaW5mb3JtYcOnw7VlcyBzb2JyZSBvIGFtYmllbnRlIG9uZGUgc2V1IHByb2dyYW1hIGVzdMOhIHNlbmRvIGV4ZWN1dGFkbywgY29tbyBkZXRhbGhlcyBzb2JyZSBvIGhhcmR3YXJlLCBzaXN0ZW1hIG9wZXJhY2lvbmFsIGUgdmVyc8OjbyBkbyBpbnRlcnByZXRhZG9yIFB5dGhvbi4gTyBtw7NkdWxvIGBwbGF0Zm9ybWAgZm9ybmVjZSBhbGd1bWFzIGZlcnJhbWVudGFzIHBhcmEgaXNzby4KCioqRnVuw6fDo28gYHBsYXRmb3JtYCoqCgpBIGZ1bsOnw6NvIGBwbGF0Zm9ybSgpYCByZXRvcm5hIHVtYSBzdHJpbmcgZGVzY3JldmVuZG8gbyBhbWJpZW50ZSBlbSBxdWUgbyBQeXRob24gZXN0w6Egc2VuZG8gZXhlY3V0YWRvLiBWb2PDqiBwb2RlIGVzcGVjaWZpY2FyIHNlIGRlc2VqYSBub21lcyBhbHRlcm5hdGl2b3MgZGFzIGNhbWFkYXMgc3ViamFjZW50ZXMgb3UgdW1hIGZvcm1hIG1haXMgY29uY2lzYSBkbyByZXN1bHRhZG8uIFBvciBleGVtcGxvOgoKYGBgcHl0aG9uCmZyb20gcGxhdGZvcm0gaW1wb3J0IHBsYXRmb3JtCnByaW50KHBsYXRmb3JtKCkpCnByaW50KHBsYXRmb3JtKDEpKQpwcmludChwbGF0Zm9ybSgwLCAxKSkKYGBgCgpJc3NvIHBvZGUgcHJvZHV6aXIgc2HDrWRhcyBjb21vOgoKYGBgCldpbmRvd3MtVmlzdGEtNi4wLjYwMDItU1AyCkxpbnV4LTMuMTguNjItZzYteDg2XzY0LUludGVsLVItX0NvcmUtVE0tX2kzLTIzMzBNX0NQVV9AXzIuMjBHSHotd2l0aC1nZW50b28tMi4zCkxpbnV4LTQuNC4wLTEtcnBpMi1hcm12N2wtd2l0aC1nbGliYzIuMy40CmBgYAoKKipGdW7Dp8O1ZXMgZGUgSWRlbnRpZmljYcOnw6NvIGRvIFNpc3RlbWEqKgoKQWzDqW0gZGlzc28sIGV4aXN0ZW0gdsOhcmlhcyBvdXRyYXMgZnVuw6fDtWVzIG5vIG3Ds2R1bG8gYHBsYXRmb3JtYCBxdWUgZm9ybmVjZW0gaW5mb3JtYcOnw7VlcyBlc3BlY8OtZmljYXMgc29icmUgbyBzaXN0ZW1hOgoKLSBgbWFjaGluZSgpYDogUmV0b3JuYSBvIG5vbWUgZ2Vuw6lyaWNvIGRvIHByb2Nlc3NhZG9yLgotIGBwcm9jZXNzb3IoKWA6IFJldG9ybmEgbyBub21lIHJlYWwgZG8gcHJvY2Vzc2Fkb3IuCi0gYHN5c3RlbSgpYDogUmV0b3JuYSBvIG5vbWUgZ2Vuw6lyaWNvIGRvIHNpc3RlbWEgb3BlcmFjaW9uYWwuCi0gYHZlcnNpb24oKWA6IFJldG9ybmEgYSB2ZXJzw6NvIGRvIHNpc3RlbWEgb3BlcmFjaW9uYWwuCgpQb3IgZXhlbXBsbzoKCmBgYHB5dGhvbgpmcm9tIHBsYXRmb3JtIGltcG9ydCBtYWNoaW5lLCBwcm9jZXNzb3IsIHN5c3RlbSwgdmVyc2lvbgpwcmludChtYWNoaW5lKCkpCnByaW50KHByb2Nlc3NvcigpKQpwcmludChzeXN0ZW0oKSkKcHJpbnQodmVyc2lvbigpKQpgYGAKCklzc28gcG9kZSByZXN1bHRhciBlbSBzYcOtZGFzIGNvbW86CgpgYGAKeDg2CkludGVsKFIpIENvcmUoVE0pIGkzLTIzMzBNIENQVSBAIDIuMjBHSHoKV2luZG93cwo2LjAuNjAwMgpgYGAKCioqRnVuw6fDtWVzIGRlIElkZW50aWZpY2HDp8OjbyBkbyBQeXRob24qKgoKU2Ugdm9jw6ogcHJlY2lzYSBzYWJlciBxdWFsIHZlcnPDo28gZG8gUHl0aG9uIGVzdMOhIHNlbmRvIGV4ZWN1dGFkYSwgcG9kZSB1c2FyIGFzIHNlZ3VpbnRlcyBmdW7Dp8O1ZXM6CgotIGBweXRob25faW1wbGVtZW50YXRpb24oKWA6IFJldG9ybmEgYSBpbXBsZW1lbnRhw6fDo28gZG8gUHl0aG9uIChnZXJhbG1lbnRlIGBDUHl0aG9uYCkuCi0gYHB5dGhvbl92ZXJzaW9uX3R1cGxlKClgOiBSZXRvcm5hIHVtYSB0dXBsYSBjb20gYSB2ZXJzw6NvIGRvIFB5dGhvbi4KClBvciBleGVtcGxvOgoKYGBgcHl0aG9uCmZyb20gcGxhdGZvcm0gaW1wb3J0IHB5dGhvbl9pbXBsZW1lbnRhdGlvbiwgcHl0aG9uX3ZlcnNpb25fdHVwbGUKcHJpbnQocHl0aG9uX2ltcGxlbWVudGF0aW9uKCkpCnByaW50KHB5dGhvbl92ZXJzaW9uX3R1cGxlKCkpCmBgYAoKSXNzbyBwb2RlIHByb2R1emlyIHNhw61kYXMgY29tbzoKCmBgYApDUHl0aG9uCignMycsICc3JywgJzcnKQpgYGAKCkVzc2FzIGluZm9ybWHDp8O1ZXMgcG9kZW0gc2VyIMO6dGVpcyBwYXJhIGVudGVuZGVyIG1lbGhvciBvIGFtYmllbnRlIGRlIGV4ZWN1w6fDo28gZG8gc2V1IHByb2dyYW1hIFB5dGhvbi4=";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-4').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-markdown" id="md-5"></div>
+            <script>
+                (function(){
+                    const b64 = "KioxLjIuNyDDjW5kaWNlIGRvIE3Ds2R1bG8gUHl0aG9uKioKCkV4cGxvcmFtb3MgYXBlbmFzIGEgc3VwZXJmw61jaWUgZG9zIG3Ds2R1bG9zIFB5dGhvbiBhcXVpLiBPcyBtw7NkdWxvcyBjb25zdGl0dWVtIHVtIHZhc3RvIHVuaXZlcnNvIHBvciBzaSBzw7MsIG9uZGUgbyBQeXRob24gw6kgYXBlbmFzIHVtYSBnYWzDoXhpYS4gw4kgc2VndXJvIGRpemVyIHF1ZSBleHBsb3JhciBjb21wbGV0YW1lbnRlIGVzc2VzIG3Ds2R1bG9zIHBvZGUgbGV2YXIgbXVpdG8gbWFpcyB0ZW1wbyBkbyBxdWUgZG9taW5hciBvIFB5dGhvbiAicHVybyIuCgpBbMOpbSBkaXNzbywgYSBjb211bmlkYWRlIFB5dGhvbiBlbSB0b2RvIG8gbXVuZG8gZGVzZW52b2x2ZSBlIG1hbnTDqW0gY2VudGVuYXMgZGUgbcOzZHVsb3MgYWRpY2lvbmFpcyBwYXJhIGFwbGljYcOnw7VlcyBlc3BlY8OtZmljYXMsIGNvbW8gZ2Vuw6l0aWNhLCBwc2ljb2xvZ2lhIG91IGF0w6kgbWVzbW8gYXN0cm9sb2dpYS4gRXNzZXMgbcOzZHVsb3MgbsOjbyBzw6NvIGRpc3RyaWJ1w61kb3MganVudG8gY29tIG8gUHl0aG9uIG91IGF0cmF2w6lzIGRlIGNhbmFpcyBvZmljaWFpcywgbyBxdWUgYW1wbGlhIGFpbmRhIG1haXMgbyB1bml2ZXJzbyBQeXRob24gLSBxdWFzZSBpbmZpbml0by4KClZvY8OqIHBvZGUgZW5jb250cmFyIHVtYSBsaXN0YSBkZSB0b2RvcyBvcyBtw7NkdWxvcyBwYWRyw6NvIGRvIFB5dGhvbiBhcXVpOiBbaHR0cHM6Ly9kb2NzLnB5dGhvbi5vcmcvMy9weS1tb2RpbmRleC5odG1sXShodHRwczovL2RvY3MucHl0aG9uLm9yZy8zL3B5LW1vZGluZGV4Lmh0bWwpLgoKTsOjbyBzZSBwcmVvY3VwZSAtIHZvY8OqIG7Do28gcHJlY2lzYSBkb21pbmFyIHRvZG9zIGVzc2VzIG3Ds2R1bG9zLiBNdWl0b3MgZGVsZXMgc8OjbyBtdWl0byBlc3BlY8OtZmljb3MuIFR1ZG8gbyBxdWUgdm9jw6ogcHJlY2lzYSBmYXplciDDqSBlbmNvbnRyYXIgb3MgbcOzZHVsb3MgcmVsZXZhbnRlcyBlIGFwcmVuZGVyIGNvbW8gdXPDoS1sb3MuIMOJIHNpbXBsZXMuCgpOYSBwcsOzeGltYSBzZcOnw6NvLCB2YW1vcyBkYXIgdW1hIG9saGFkYSBlbSBjb21vIGVzY3JldmVyIHNldSBwcsOzcHJpbyBtw7NkdWxvLgoKKioxLjIuOCBSRVNVTU8gREEgU0XDh8ODTyoqCgoxLiBBIGZ1bsOnw6NvIGBkaXIoKWAgcG9kZSBzZXIgdXNhZGEgcGFyYSBsaXN0YXIgYXMgZW50aWRhZGVzIGNvbnRpZGFzIGVtIHVtIG3Ds2R1bG8gaW1wb3J0YWRvLCBmb3JuZWNlbmRvIHVtYSB2aXPDo28gZ2VyYWwgZG9zIHJlY3Vyc29zIGRpc3BvbsOtdmVpcy4KCjIuIE8gbcOzZHVsbyBgbWF0aGAgb2ZlcmVjZSBtYWlzIGRlIDUwIHPDrW1ib2xvcyBwYXJhIHJlYWxpemFyIG9wZXJhw6fDtWVzIG1hdGVtw6F0aWNhcywgY29tbyBgc2luKClgLCBgcG93KClgLCBgZmFjdG9yaWFsKClgLCBlIHRhbWLDqW0gZm9ybmVjZSB2YWxvcmVzIGltcG9ydGFudGVzLCBjb21vIM+AIGUgbyBuw7ptZXJvIGRlIEV1bGVyLgoKMy4gTyBtw7NkdWxvIGByYW5kb21gIGFncnVwYSBtYWlzIGRlIDYwIGVudGlkYWRlcyBwYXJhIG1hbmlwdWxhw6fDo28gZGUgbsO6bWVyb3MgcHNldWRvLWFsZWF0w7NyaW9zLCByZXNzYWx0YW5kbyBxdWUgbsOjbyBleGlzdGVtIG7Dum1lcm9zIGFsZWF0w7NyaW9zIHJlYWlzIGFvIGdlcsOhLWxvcyBjb20gYWxnb3JpdG1vcyBkZSBjb21wdXRhZG9yLgoKNC4gTyBtw7NkdWxvIGBwbGF0Zm9ybWAgY29udMOpbSBjZXJjYSBkZSA3MCBmdW7Dp8O1ZXMgcGFyYSBleHBsb3JhciBhcyBjYW1hZGFzIHN1YmphY2VudGVzIGRvIHNpc3RlbWEgb3BlcmFjaW9uYWwgZSBoYXJkd2FyZSwgb2ZlcmVjZW5kbyBpbmZvcm1hw6fDtWVzIGRldGFsaGFkYXMgc29icmUgbyBhbWJpZW50ZSBkZSBleGVjdcOnw6NvIGRvIGPDs2RpZ28uCgo1LiBPIMONbmRpY2UgZGUgTcOzZHVsb3MgUHl0aG9uIMOpIHVtIGRpcmV0w7NyaW8gZGUgbcOzZHVsb3MgbWFudGlkbyBwZWxhIGNvbXVuaWRhZGUsIG9mZXJlY2VuZG8gdW1hIHZhc3RhIGdhbWEgZGUgb3DDp8O1ZXMgcGFyYSBhdGVuZGVyIMOgcyBuZWNlc3NpZGFkZXMgZXNwZWPDrWZpY2FzIGRlIHByb2dyYW1hw6fDo28uIMOJIHVtIGJvbSBwb250byBkZSBwYXJ0aWRhIHBhcmEgZW5jb250cmFyIG9zIG3Ds2R1bG9zIGRlc2VqYWRvcy4=";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-5').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            </div><script>hljs.highlightAll();</script>
+    </main>
+</body>
+</html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>49_desafio.py</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="https://pyscript.net/releases/2024.1.1/core.css">
+    <script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>
+    <style>
+        .sandbox-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
+        .sandbox-header h2 { font-size: 1.2rem; color: var(--primary); display: flex; align-items: center; gap: 0.5rem; }
+        .py-repl-container { border-radius: 8px; overflow: hidden; border: 1px solid var(--glass-border); background: #1e293b; }
+    </style>
+    
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --glass-bg: rgba(30, 41, 59, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --primary: #38bdf8;
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        header {
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            border-bottom: 1px solid var(--glass-border);
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .back-btn {
+            color: var(--text-main);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            background: rgba(255,255,255,0.05);
+            transition: 0.3s;
+        }
+        .back-btn:hover {
+            background: rgba(56, 189, 248, 0.2);
+            color: var(--primary);
+        }
+        .file-title {
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+        main {
+            flex: 1;
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        .container {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="../index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Voltar</a>
+        <div class="file-title">49_desafio.py</div>
+    </header>
+    <main>
+        
+    <div class="container">
+        <div class="sandbox-header">
+            <h2><i class="fa-brands fa-python"></i> Sandbox PyScript</h2>
+            <span>Edite e execute (Shift + Enter) ou no botão verde ▶</span>
+        </div>
+        <div class="py-repl-container">
+            <script type="py" id="main-script"></script>
+            <py-repl auto-generate="true">
+# Exercício Python #049 - Tabuada v.2.0 - Aula 00 até 13 - Mundo 2
+# Refaça o DESAFIO 009, mostrando a tabuada de um número que o usuário escolher, só que agora utilizando um laço for.
+
+def tabuada(mensagem):
+	while True:
+		try:
+			fator = int(input(mensagem))
+			for i in range(1, 11):
+				print(f&#x27;{fator:^3} x {i:^3} = {fator * i:3}&#x27;)
+			break
+		except ValueError:
+			print(&#x27;Valor de tipo inválido.&#x27;)
+
+
+tabuada(&#x27;Digite o valor que deseja verificar a tabuada: &#x27;)
+
+# Estou compartilhando minhas anotações sobre os exercícios. Quem quiser, pode copiar e colar em um documento .py pois está tudo formatado e comentado.
+
+# Nesse exercício, vamos refazer o DESAFIO 009, que pedia para mostrar a tabuada de um número que o usuário escolhesse. A diferença é que agora vamos usar um laço de repetição for para fazer a tabuada.
+
+# Vamos usar um laço de repetição for para mostrar a tabuada de um número que o usuário escolher. O laço de repetição for é usado quando sabemos quantas vezes queremos repetir um bloco de código. No caso, queremos repetir 10 vezes, de 1 até 10, pois queremos mostrar a tabuada de 1 até 10. Sabendo do comportamento do range(), podemos definir o intervalo de 1 a 11, pois o número 11 não será incluído.
+
+# Primeiro solicitamos ao usuário que digite o número que deseja verificar a tabuada. Em seguida, usamos um laço de repetição for para mostrar a tabuada desse número. A cada iteração do laço, mostramos o resultado da multiplicação do número escolhido pelo número da iteração.
+num = int(input(&#x27;Digite um número para ver sua tabuada: &#x27;))
+for i in range(1, 11):
+	print(f&#x27;{num} x {i} = {num * i}&#x27;)
+# Assim, a cada iteração do laço, o valor de i é incrementado em 1 e o resultado da multiplicação é mostrado na tela. O resultado é formatado para que os números fiquem alinhados. O número digitado pelo usuário é multiplicado por cada número de 1 a 10 e o resultado é mostrado na tela.
+
+            </py-repl>
+        </div>
+    </div>
+    
+    </main>
+</body>
+</html>

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>10.4_indexação_e_exlusao_negativa copy.py</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="https://pyscript.net/releases/2024.1.1/core.css">
+    <script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>
+    <style>
+        .sandbox-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
+        .sandbox-header h2 { font-size: 1.2rem; color: var(--primary); display: flex; align-items: center; gap: 0.5rem; }
+        .py-repl-container { border-radius: 8px; overflow: hidden; border: 1px solid var(--glass-border); background: #1e293b; }
+    </style>
+    
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --glass-bg: rgba(30, 41, 59, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --primary: #38bdf8;
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        header {
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            border-bottom: 1px solid var(--glass-border);
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .back-btn {
+            color: var(--text-main);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            background: rgba(255,255,255,0.05);
+            transition: 0.3s;
+        }
+        .back-btn:hover {
+            background: rgba(56, 189, 248, 0.2);
+            color: var(--primary);
+        }
+        .file-title {
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+        main {
+            flex: 1;
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        .container {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="../index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Voltar</a>
+        <div class="file-title">10.4_indexação_e_exlusao_negativa copy.py</div>
+    </header>
+    <main>
+        
+    <div class="container">
+        <div class="sandbox-header">
+            <h2><i class="fa-brands fa-python"></i> Sandbox PyScript</h2>
+            <span>Edite e execute (Shift + Enter) ou no botão verde ▶</span>
+        </div>
+        <div class="py-repl-container">
+            <script type="py" id="main-script"></script>
+            <py-repl auto-generate="true">
+# MIMO - 10 - Compreeensões de listas
+# 10.4 - Indexação e exlusão negativa
+
+# Python nos permite usar indexação negativa pra recuperar valores do final de um objeto indexável, como uma lista ou string.
+scores = [4.5, 5, 3, 4, 3.5, 4]
+#        [  0, 1, 2, 3,   4, 5]
+#        [ -6,-5,-4,-3,  -2,-1]
+latest = scores[-1] # 4
+print(latest)
+
+# A indexação negatiava significa que recuperamos um elemento do lado direito de uma lista. Usamos o símbolo de menos (-) antes do índice para indicar um índice negativo.
+# Podemos usar qualquer valor negativo até o comprimento da lista, inclusive o que recuperaria o primeiro elemento, nesse caso -6.
+
+# Com esse recurso, também podemos modificar elementos de uma lista começando pelo final.
+# Encontraremos um erro se tentarmos recuperar um valor em uma posição fora do intervalo do comprimento da lista.
+
+# As tuplas também são estruturas de dados ordenadas e os valores podem ser recuperados, mas são imutáveis, ou seja, não podem ser modificados.
+
+# A palavra chave del nos permite excluir objetos ou itens de uma estrutura da dados
+# Para excluir um elemento de uma lista, usamos a instrução del seguida do nome da lista e do índice do elemento entre colchetes.
+del scores[0] # Exclui o primeiro elemento da lista
+print(scores)   # [5, 3, 4, 3.5, 4] antes era [4.5, 5, 3, 4, 3.5, 4]
+# del pode ser usado para exluir qualquer objeto, incluindo variáveis, tuplas, dicionários e conjuntos.
+
+# Podemos usar del com uma chave dentro de um dicionário para excluir um par chave-valor indesejado do dicionário.
+
+product = {
+  &#x27;category&#x27;: &#x27;book&#x27;,
+  &#x27;price&#x27;: 4.99,
+  &#x27;in_shop&#x27;: True}
+
+del product[&#x27;in_shop&#x27;]
+print(product) # {&#x27;category&#x27;: &#x27;book&#x27;, &#x27;price&#x27;: 4.99}  
+            </py-repl>
+        </div>
+    </div>
+    
+    </main>
+</body>
+</html>

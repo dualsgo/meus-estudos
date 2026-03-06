@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>16_dicionarios.ipynb</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/monokai-sublime.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/python.min.js"></script>
+    
+    <style>
+        .cell { margin-bottom: 1.5rem; }
+        .cell-markdown { font-size: 1.05rem; line-height: 1.6; color: #cbd5e1; }
+        .cell-markdown h1, .cell-markdown h2, .cell-markdown h3 { color: #f1f5f9; margin-top: 1rem; margin-bottom: 0.5rem; }
+        .cell-markdown code { background: rgba(0,0,0,0.3); padding: 0.2rem 0.4rem; border-radius: 4px; color: #eab308; }
+        .cell-markdown pre { background: rgba(0,0,0,0.3); padding: 1rem; border-radius: 8px; overflow-x: auto; border: 1px solid var(--glass-border); margin: 1rem 0; }
+        .cell-code { background: #23241f; border-radius: 8px; padding: 1rem; overflow-x: auto; position: relative; border: 1px solid #333; }
+        .cell-output { background: #000; color: #a3e635; padding: 1rem; border-radius: 8px; margin-top: 0.5rem; font-family: monospace; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;}
+        .prompt { position: absolute; top: 0.5rem; right: 0.5rem; color: #64748b; font-size: 0.8rem; user-select: none; }
+    </style>
+    
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --glass-bg: rgba(30, 41, 59, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --primary: #38bdf8;
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        header {
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            border-bottom: 1px solid var(--glass-border);
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .back-btn {
+            color: var(--text-main);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            background: rgba(255,255,255,0.05);
+            transition: 0.3s;
+        }
+        .back-btn:hover {
+            background: rgba(56, 189, 248, 0.2);
+            color: var(--primary);
+        }
+        .file-title {
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+        main {
+            flex: 1;
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        .container {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="../index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Voltar</a>
+        <div class="file-title">16_dicionarios.ipynb</div>
+    </header>
+    <main>
+        <div class="container">
+            <div class="cell cell-markdown" id="md-0"></div>
+            <script>
+                (function(){
+                    const b64 = "IyBgRGljaW9uw6FyaW9zIGVtIFB5dGhvbmAKCkVucXVhbnRvIGFzIGxpc3RhcyBlbSBQeXRob24gYXJtYXplbmFtIGVsZW1lbnRvcyBvcmRlbmFkb3MgcG9yIMOtbmRpY2UsIG9zIGRpY2lvbsOhcmlvcyBhcm1hemVuYW0gZWxlbWVudG9zIGFjZXNzw612ZWlzIHBvciBtZWlvIGRlIGNoYXZlcyDDum5pY2FzLCBwcm9wb3JjaW9uYW5kbyB1bWEgbWFuZWlyYSBlZmljaWVudGUgZGUgbWFwZWFyIGRhZG9zLgoKRW0gUHl0aG9uLCB1bSBkaWNpb27DoXJpbyDDqSB1bWEgZXN0cnV0dXJhIGRlIGRhZG9zIHBvZGVyb3NhIHF1ZSBhcm1hemVuYSBkYWRvcyBlbSBwYXJlcyBjaGF2ZS12YWxvci4gSW1hZ2luZSB1bSBkaWNpb27DoXJpbyByZWFsOiBjYWRhIHBhbGF2cmEgw6kgdW1hIGNoYXZlIGUgc3VhIGRlZmluacOnw6NvIMOpIG8gdmFsb3IgYXNzb2NpYWRvLiBFbSB1bSBkaWNpb27DoXJpbyBQeXRob24sIGZ1bmNpb25hIGRhIG1lc21hIG1hbmVpcmE6CgpgQ2hhdmVgOiDDiSB1bSBpZGVudGlmaWNhZG9yIMO6bmljbyBxdWUgcmVmZXJlbmNpYSB1bSB2YWxvci4gQXMgY2hhdmVzIHBvZGVtIHNlciBzdHJpbmdzLCBuw7ptZXJvcywgdHVwbGFzIG91IG91dHJvcyB0aXBvcyBpbXV0w6F2ZWlzLgoKYFZhbG9yYDogw4kgbyBkYWRvIHF1ZSB2b2PDqiBkZXNlamEgYXJtYXplbmFyLiBQb2RlIHNlciBxdWFscXVlciB0aXBvIGRlIGRhZG8gZW0gUHl0aG9uLCBjb21vIHN0cmluZ3MsIG7Dum1lcm9zLCBsaXN0YXMsIGV0Yy4KCkRpY2lvbsOhcmlvcyBzw6NvIHV0ZWlzIHBhcmEgYXJtYXplbmFyIGluZm9ybWHDp8O1ZXMgZGUgdW0gdXN1w6FyaW8sIGNvbW8gbm9tZSwgaWRhZGUgZSBjaWRhZGUuCkNyaWFyIHVtIGNhdMOhbG9nbyBkZSBwcm9kdXRvcyBjb20gbm9tZSwgcHJlw6dvIGUgZGVzY3Jpw6fDo28uIE1hcGVhciBwYWxhdnJhcyBlbSB1bSB0ZXh0byBwYXJhIHNldXMgc2luw7RuaW1vcyBlbnRyZSBvdXRyb3MgdXNvcy4KCioqU2ludGF4ZSBkZSBDcmlhw6fDo286KioKClBhcmEgY3JpYXIgdW0gZGljaW9uw6FyaW8gZW0gUHl0aG9uLCB1dGlsaXphbW9zIGNoYXZlcyBge31gIGUgc2VwYXJhbW9zIGNhZGEgcGFyIGNoYXZlLXZhbG9yIHBvciBkb2lzIHBvbnRvcyBgOmA=";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-0').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [13]</div>
+                <pre><code class="language-python"># Criando um dicionário vazio
+dicionario = {} # ou dicionario = dict()
+
+# Criando um dicionário com alguns elementos
+dicionario = {&quot;nome&quot;: &quot;João&quot;, &quot;idade&quot;: 25, &quot;cidade&quot;: &quot;Rio de Janeiro&quot;}
+
+# A sintaxe exige que a chave seja digitada entre aspas, independente do tipo de dado que ela representa</code></pre>
+            </div>
+            
+            <div class="cell cell-markdown" id="md-2"></div>
+            <script>
+                (function(){
+                    const b64 = "KipBY2Vzc2FuZG8gb3MgVmFsb3JlczoqKgoKUG9kZW1vcyBhY2Vzc2FyIG9zIHZhbG9yZXMgZGUgdW0gZGljaW9uw6FyaW8gZm9ybmVjZW5kbyBhIGNoYXZlIGNvcnJlc3BvbmRlbnRlIGVudHJlIGNvbGNoZXRlcyBgW11gLiAKCk8gdmFsb3IgcmV0b3JuYWRvIMOpIG8gdmFsb3IgYXNzb2NpYWRvIGEgZXNzYSBjaGF2ZSBlIHNlIGEgY2hhdmUgbsOjbyBleGlzdGlyLCB1bWEgZXhjZcOnw6NvIMOpIGxhbsOnYWRhLiBQb2RlbW9zIGFybWF6ZW5hciBvIHZhbG9yIHJldG9ybmFkbyBlbSB1bWEgdmFyacOhdmVsLg==";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-2').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [14]</div>
+                <pre><code class="language-python">dicionario = {&quot;nome&quot;: &quot;João&quot;, &quot;idade&quot;: 25, &quot;cidade&quot;: &quot;Rio de Janeiro&quot;}
+
+nome = dicionario[&quot;nome&quot;] # Retorna &quot;João&quot;
+idade = dicionario[&quot;idade&quot;] # Retorna 25
+
+# KeyError é lançado quando tentamos acessar uma chave que não existe no dicionário.
+# excessao = dicionario[&quot;excessao&quot;] # Retorna KeyError
+
+# Podemos verificar se uma chave existe no dicionário com o operador in.
+existe_nome = &quot;nome&quot; in dicionario # Retorna True
+existe_excessao = &quot;excessao&quot; in dicionario # Retorna False
+
+# Outras formas são utilizando métodos.
+
+# O método get() retorna o valor da chave se ela existir. Caso contrário, ele retorna None.
+excessao = dicionario.get(&quot;excessao&quot;) # Retorna None se a chave não existir
+
+# O método get() possui um segundo argumento opcional que é retornado caso a chave não exista. Ele é uma string vazia por padrão. Podemos alterrar esse valor.
+excessao = dicionario.get(&quot;excessao&quot;, &quot;Chave não encontrada&quot;) # Retorna &quot;Chave não encontrada&quot;
+
+# Outra opção seria usar o método setdefault(). Ele retorna o valor da chave se ela existir. Caso contrário, ele insere a chave com o valor padrão e retorna esse valor.
+excessao = dicionario.setdefault(&quot;excessao&quot;, &quot;Chave não encontrada&quot;) # Retorna &quot;Chave não encontrada&quot;</code></pre>
+            </div>
+            
+            <div class="cell cell-markdown" id="md-4"></div>
+            <script>
+                (function(){
+                    const b64 = "KipBdHVhbGl6YW5kbywgYWRpY2lvbmFuZG8gZSByZW1vdmVuZG8gZWxlbWVudG9zOioqCgpEaWNpb27DoXJpb3Mgc8OjbyBlc3RydXR1cmFzIG11dMOhdmVpcywgcG9ydGFudG8gcG9kZW1vcyBhZGljaW9uYXIgb3UgcmVtb3ZlciBlbGVtZW50b3MuIFBvZGVtb3MgbW9kaWZpY2FyIG9zIHZhbG9yZXMgZGUgdW0gZGljaW9uw6FyaW8gYXRyaWJ1aW5kbyBub3ZvcyB2YWxvcmVzIGEgdW1hIGNoYXZlIGVzcGVjw61maWNhLg==";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-4').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [1]</div>
+                <pre><code class="language-python">dicionario = {&quot;nome&quot;: &quot;João&quot;, &quot;idade&quot;: 25, &quot;cidade&quot;: &quot;Rio de Janeiro&quot;}
+print(dicionario[&quot;nome&quot;]) # Retorna &quot;João&quot;
+dicionario[&quot;nome&quot;] = &quot;José&quot; # Altera o valor da chave &quot;nome&quot;
+print(dicionario[&quot;nome&quot;]) # Retorna &quot;José&quot;</code></pre>
+            </div>
+            <div class="cell-output">João
+José
+</div>
+            <div class="cell cell-markdown" id="md-6"></div>
+            <script>
+                (function(){
+                    const b64 = "IyMgKirDiSBmw6FjaWwgYWRpY2lvbmFyIG5vdm9zIGVsZW1lbnRvcy4qKgoKQWRpY2lvbmFtb3MgdW0gbm92byBlbGVtZW50byBhbyBkaWNpb27DoXJpbyBzaW1wbGVzbWVudGUgYXRyaWJ1aW5kbyB1bSB2YWxvciBhIHVtYSBub3ZhIGNoYXZlLgo=";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-6').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [2]</div>
+                <pre><code class="language-python">dicionario[&quot;profissao&quot;] = &quot;Desenvolvedor&quot; # Adiciona uma nova chave ao dicionário</code></pre>
+            </div>
+            
+            <div class="cell cell-markdown" id="md-8"></div>
+            <script>
+                (function(){
+                    const b64 = "IyMgKipSZW1vdmVyIHRhbWLDqW0gw6kgZsOhY2lsKioKClBvZGVtb3MgcmVtb3ZlciB1bSBlbGVtZW50byBkbyBkaWNpb27DoXJpbyBjb20gbyBtw6l0b2RvIHBvcCgpLiBFbGUgcmVtb3ZlIGEgY2hhdmUgZXNwZWNpZmljYWRhIGUgcmV0b3JuYSBvIHZhbG9yIGFzc29jaWFkbyBhIGVsYS4g";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-8').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [3]</div>
+                <pre><code class="language-python">dicionario = {&quot;nome&quot;: &quot;João&quot;, &quot;idade&quot;: 25, &quot;cidade&quot;: &quot;Rio de Janeiro&quot;}
+print(dicionario) # O dicionário possui as chaves &quot;nome&quot;, &quot;idade&quot; e &quot;cidade&quot;
+
+# Removemos um elemento do dicionário com o método pop(). Esse método remove a chave e retorna o valor associado a ela. Vamos atribuir esse valor a uma variável.
+idade = dicionario.pop(&quot;idade&quot;) # Retorna 25 e remove a chave &quot;idade&quot; do dicionário
+
+print(dicionario) # Agora o dicionário não possui a chave &quot;idade&quot;
+
+# Podemos remover um elemento do dicionário com o operador del.
+del dicionario[&quot;cidade&quot;] # Remove a chave &quot;cidade&quot; do dicionário
+
+print(dicionario) # Agora o dicionário não possui as chaves &quot;idade&quot; e &quot;cidade&quot;
+
+# Assim como as listas, podemos usar o método clear() para remover todos os elementos do dicionário sem precisar deletá-lo.
+
+dicionario = {&quot;nome&quot;: &quot;João&quot;, &quot;idade&quot;: 25, &quot;cidade&quot;: &quot;Rio de Janeiro&quot;}
+dicionario.clear() # Remove todos os elementos do dicionário
+print(dicionario) # O dicionário está vazio {}
+
+# del, pop() e clear() lançam um erro KeyError se a chave não existir no dicionário.
+
+</code></pre>
+            </div>
+            <div class="cell-output">{&#x27;nome&#x27;: &#x27;João&#x27;, &#x27;idade&#x27;: 25, &#x27;cidade&#x27;: &#x27;Rio de Janeiro&#x27;}
+{&#x27;nome&#x27;: &#x27;João&#x27;, &#x27;cidade&#x27;: &#x27;Rio de Janeiro&#x27;}
+{&#x27;nome&#x27;: &#x27;João&#x27;}
+{}
+</div>
+            <div class="cell cell-markdown" id="md-10"></div>
+            <script>
+                (function(){
+                    const b64 = "IyMgTWFpcyBzb2JyZSBvcyBtw6l0b2RvcyBgcG9wKClgLCBgZGVsYCBlIGBjbGVhcigpYAoKMS4gKipgcG9wKGNoYXZlKWA6KioKICAgLSBPIG3DqXRvZG8gYHBvcCgpYCDDqSB1c2FkbyBwYXJhIHJlbW92ZXIgdW0gZWxlbWVudG8gZXNwZWPDrWZpY28gZG8gZGljaW9uw6FyaW8sIGVzcGVjaWZpY2FuZG8gYSBjaGF2ZS4KICAgLSBFbGUgcmV0b3JuYSBvIHZhbG9yIGFzc29jaWFkbyDDoCBjaGF2ZSByZW1vdmlkYS4KICAgLSBFeGVtcGxvOgogICAgIGBgYHB5dGhvbgogICAgIGRpY2lvbmFyaW8gPSB7Im5vbWUiOiAiSm/Do28iLCAiaWRhZGUiOiAyNSwgImNpZGFkZSI6ICJSaW8gZGUgSmFuZWlybyJ9CiAgICAgaWRhZGUgPSBkaWNpb25hcmlvLnBvcCgiaWRhZGUiKSAgIyBSZXRvcm5hIDI1IGUgcmVtb3ZlIGEgY2hhdmUgImlkYWRlIgogICAgIHByaW50KGRpY2lvbmFyaW8pICAjIFNhw61kYTogeydub21lJzogJ0pvw6NvJywgJ2NpZGFkZSc6ICdSaW8gZGUgSmFuZWlybyd9CiAgICAgYGBgCgoyLiAqKmBkZWwgZGljaW9uYXJpb1tjaGF2ZV1gOioqCiAgIC0gTyBvcGVyYWRvciBgZGVsYCByZW1vdmUgdW0gZWxlbWVudG8gZG8gZGljaW9uw6FyaW8gZXNwZWNpZmljYW5kbyBhIGNoYXZlLgogICAtIE7Do28gcmV0b3JuYSBuZW5odW0gdmFsb3IuCiAgIC0gRXhlbXBsbzoKICAgICBgYGBweXRob24KICAgICBkaWNpb25hcmlvID0geyJub21lIjogIkpvw6NvIiwgImlkYWRlIjogMjUsICJjaWRhZGUiOiAiUmlvIGRlIEphbmVpcm8ifQogICAgIGRlbCBkaWNpb25hcmlvWyJjaWRhZGUiXSAgIyBSZW1vdmUgYSBjaGF2ZSAiY2lkYWRlIgogICAgIHByaW50KGRpY2lvbmFyaW8pICAjIFNhw61kYTogeydub21lJzogJ0pvw6NvJywgJ2lkYWRlJzogMjV9CiAgICAgYGBgCgozLiAqKmBjbGVhcigpYDoqKgogICAtIE8gbcOpdG9kbyBgY2xlYXIoKWAgcmVtb3ZlIHRvZG9zIG9zIGVsZW1lbnRvcyBkbyBkaWNpb27DoXJpbywgZGVpeGFuZG8tbyB2YXppby4KICAgLSBOw6NvIHJldG9ybmEgbmVuaHVtIHZhbG9yLgogICAtIEV4ZW1wbG86CiAgICAgYGBgcHl0aG9uCiAgICAgZGljaW9uYXJpbyA9IHsibm9tZSI6ICJKb8OjbyIsICJpZGFkZSI6IDI1LCAiY2lkYWRlIjogIlJpbyBkZSBKYW5laXJvIn0KICAgICBkaWNpb25hcmlvLmNsZWFyKCkgICMgUmVtb3ZlIHRvZG9zIG9zIGVsZW1lbnRvcyBkbyBkaWNpb27DoXJpbwogICAgIHByaW50KGRpY2lvbmFyaW8pICAjIFNhw61kYToge30KICAgICBgYGAKCkVzc2VzIG3DqXRvZG9zIGUgb3BlcmFkb3JlcyBzw6NvIMO6dGVpcyBwYXJhIG1hbmlwdWxhciBkaWNpb27DoXJpb3MsIHBlcm1pdGluZG8gcmVtb3ZlciBlbGVtZW50b3MgZXNwZWPDrWZpY29zIG91IGxpbXBhciBjb21wbGV0YW1lbnRlIG8gZGljaW9uw6FyaW8sIGRlcGVuZGVuZG8gZGFzIG5lY2Vzc2lkYWRlcyBkbyBwcm9ncmFtYS4gRWxlcyBsYW7Dp2FtIHVtIGVycm8gYEtleUVycm9yYCBzZSBhIGNoYXZlIG7Do28gZXhpc3RpciBubyBkaWNpb27DoXJpbywgcG9ydGFudG8sIMOpIGltcG9ydGFudGUgdmVyaWZpY2FyIGEgZXhpc3TDqm5jaWEgZGEgY2hhdmUgYW50ZXMgZGUgdXRpbGl6YXIgZXNzZXMgbcOpdG9kb3MgcGFyYSBldml0YXIgZXJyb3Mu";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-10').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-markdown" id="md-11"></div>
+            <script>
+                (function(){
+                    const b64 = "IyMgKipgRnVuw6fDtWVzIMO6dGVpc2AqKgoKYGxlbihkaWNpb25hcmlvKTpgCgpFc3RhIGZ1bsOnw6NvIHJldG9ybmEgbyBuw7ptZXJvIGRlIGVsZW1lbnRvcyBubyBkaWNpb27DoXJpbywgb3Ugc2VqYSwgbyBuw7ptZXJvIGRlIHBhcmVzIGNoYXZlLXZhbG9yIHF1ZSBlc3TDo28gcHJlc2VudGVzIG5vIGRpY2lvbsOhcmlvLg==";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-11').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [5]</div>
+                <pre><code class="language-python"># Se quiser saber a quantidade da pares chave-valor de um dicionário, use o método len().
+
+dicionario = {&quot;nome&quot;: &quot;João&quot;, &quot;idade&quot;: 25, &quot;cidade&quot;: &quot;Rio de Janeiro&quot;}
+tamanho = len(dicionario) # Retorna 3
+
+print(tamanho)</code></pre>
+            </div>
+            <div class="cell-output">3
+</div>
+            <div class="cell cell-markdown" id="md-13"></div>
+            <script>
+                (function(){
+                    const b64 = "YGRpY2lvbmFyaW8ua2V5cygpOmAKClJldG9ybmEgdW1hIGxpc3RhIGNvbnRlbmRvIHRvZGFzIGFzIGNoYXZlcyBwcmVzZW50ZXMgbm8gZGljaW9uw6FyaW8uCklzc28gcGVybWl0ZSBpdGVyYXIgc29icmUgYXMgY2hhdmVzIGRvIGRpY2lvbsOhcmlvIG91IHZlcmlmaWNhciBhIGV4aXN0w6puY2lhIGRlIHVtYSBjaGF2ZSBlc3BlY8OtZmljYS4=";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-13').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [7]</div>
+                <pre><code class="language-python"># Podemos usar o método keys() para obter uma lista com todas as chaves do dicionário.
+dicionario = {&quot;nome&quot;: &quot;João&quot;, &quot;idade&quot;: 25, &quot;cidade&quot;: &quot;Rio de Janeiro&quot;}
+chaves = dicionario.keys() # Retorna [&quot;nome&quot;, &quot;idade&quot;, &quot;cidade&quot;]
+print(chaves)
+
+# Este método é utilizado para percorrer todas as chaves do dicionário.
+for chave in dicionario.keys():
+    print(chave)</code></pre>
+            </div>
+            <div class="cell-output">dict_keys([&#x27;nome&#x27;, &#x27;idade&#x27;, &#x27;cidade&#x27;])
+nome
+idade
+cidade
+</div>
+            <div class="cell cell-markdown" id="md-15"></div>
+            <script>
+                (function(){
+                    const b64 = "YGRpY2lvbmFyaW8udmFsdWVzKCk6YAoKUmV0b3JuYSB1bWEgbGlzdGEgY29udGVuZG8gdG9kb3Mgb3MgdmFsb3JlcyBwcmVzZW50ZXMgbm8gZGljaW9uw6FyaW8uCklzc28gcGVybWl0ZSBpdGVyYXIgc29icmUgb3MgdmFsb3JlcyBkbyBkaWNpb27DoXJpbyBvdSBhY2Vzc2FyIHZhbG9yZXMgZXNwZWPDrWZpY29zLgo=";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-15').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [8]</div>
+                <pre><code class="language-python"># Podemos usar o método values() para obter uma lista com todos os valores do dicionário.
+dicionario = {&quot;nome&quot;: &quot;João&quot;, &quot;idade&quot;: 25, &quot;cidade&quot;: &quot;Rio de Janeiro&quot;}
+valores = dicionario.values() # Retorna [&quot;João&quot;, 25, &quot;Rio de Janeiro&quot;]
+print(valores)
+
+# Este método é utilizado para percorrer todos os valores do dicionário.
+
+for valor in dicionario.values():
+    print(valor)</code></pre>
+            </div>
+            <div class="cell-output">dict_values([&#x27;João&#x27;, 25, &#x27;Rio de Janeiro&#x27;])
+João
+25
+Rio de Janeiro
+</div>
+            <div class="cell cell-markdown" id="md-17"></div>
+            <script>
+                (function(){
+                    const b64 = "YGRpY2lvbmFyaW8uaXRlbXMoKTpgCgpSZXRvcm5hIHVtYSBsaXN0YSBjb20gdG9kYXMgYXMgY2hhdmVzIGRvIGRpY2lvbsOhcmlv";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-17').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [9]</div>
+                <pre><code class="language-python"># Podemos usar o método items() para obter uma lista com todos os pares chave-valor do dicionário.
+
+dicionario = {&quot;nome&quot;: &quot;João&quot;, &quot;idade&quot;: 25, &quot;cidade&quot;: &quot;Rio de Janeiro&quot;}
+itens = dicionario.items() # Retorna [(&quot;nome&quot;, &quot;João&quot;), (&quot;idade&quot;, 25), (&quot;cidade&quot;, &quot;Rio de Janeiro&quot;)]
+print(itens)
+
+# Este método é utilizado para percorrer todos os pares chave-valor do dicionário.
+
+for chave, valor in dicionario.items():
+    print(chave, valor)</code></pre>
+            </div>
+            <div class="cell-output">dict_items([(&#x27;nome&#x27;, &#x27;João&#x27;), (&#x27;idade&#x27;, 25), (&#x27;cidade&#x27;, &#x27;Rio de Janeiro&#x27;)])
+nome João
+idade 25
+cidade Rio de Janeiro
+</div>
+            <div class="cell cell-markdown" id="md-19"></div>
+            <script>
+                (function(){
+                    const b64 = "IyMgKipgUGVyY29ycmVuZG8gZGljaW9uw6FyaW9zYCoqCgpQZXJjb3JyZXIgdW0gZGljaW9uw6FyaW8gZW0gUHl0aG9uIMOpIHVtYSB0YXJlZmEgY29tdW0gZSBwb2RlIHNlciBmZWl0YSBkZSB2w6FyaWFzIG1hbmVpcmFzLiAKCi0gVW1hIGRlbGFzIMOpIHVzYW5kbyB1bSBgbGHDp28gZm9yYCBwYXJhIHBlcmNvcnJlciBhcyBjaGF2ZXMgZG8gZGljaW9uw6FyaW8uCi0gT3V0cmEgw6kgdXNhbmRvIG8gbcOpdG9kbyBgaXRlbXMoKWAgcGFyYSBwZXJjb3JyZXIgb3MgcGFyZXMgY2hhdmUtdmFsb3IuCi0gT3UgbyBtw6l0b2RvIGB2YWx1ZXMoKWAgcGFyYSBwZXJjb3JyZXIgb3MgdmFsb3Jlcy4KLSBPdSBvIG3DqXRvZG8gYGtleXMoKWAgcGFyYSBwZXJjb3JyZXIgYXMgY2hhdmVzLg==";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-19').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-markdown" id="md-20"></div>
+            <script>
+                (function(){
+                    const b64 = "IyMgKipgTG9vcCBmb3IgbmFzIGNoYXZlczpgKioKCk5lc3RhIGFib3JkYWdlbSwgdm9jw6ogaXRlcmEgc29icmUgYXMgY2hhdmVzIGRvIGRpY2lvbsOhcmlvIGUgYWNlc3NhIG9zIHZhbG9yZXMgY29ycmVzcG9uZGVudGVzIHVzYW5kbyBlc3NhcyBjaGF2ZXMuCgpgYGBweXRob24KZm9yIGNoYXZlIGluIGRpY2lvbmFyaW86CiAgICAjIEFjZXNzYXIgdmFsb3IgdXNhbmRvIGRpY2lvbmFyaW9bY2hhdmVdCmBgYAoKLSBWYW50YWdlbnM6CiAgLSBTaW1wbGVzIGUgZGlyZXRvLgogIC0gw5p0aWwgc2UgYXBlbmFzIGFzIGNoYXZlcyBmb3JlbSBuZWNlc3PDoXJpYXMuCi0gRGVzdmFudGFnZW5zOgogIC0gw4kgbmVjZXNzw6FyaW8gYWNlc3NhciBleHBsaWNpdGFtZW50ZSBvcyB2YWxvcmVzIHVzYW5kbyBhcyBjaGF2ZXM=";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-20').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [31]</div>
+                <pre><code class="language-python">dicionario = {&quot;nome&quot;: &quot;João&quot;, &quot;idade&quot;: 25, &quot;cidade&quot;: &quot;Rio de Janeiro&quot;}
+
+# Aqui chave é uma variável que vai receber as chaves do dicionário. Nomeamos ela assim para facilitar a leitura do código.
+
+# Dicionário é iterável, então podemos usar um for para percorrer as chaves. Ele representa o dicionário criado acima.
+for chave in dicionario:
+    print(chave, &quot;:&quot;, dicionario[chave])
+    
+# Nesse método precisamos explicitar que queremos acessar o valor associado a chave. Isso é feito com dicionario[chave].</code></pre>
+            </div>
+            <div class="cell-output">nome : João
+idade : 25
+cidade : Rio de Janeiro
+</div>
+            <div class="cell cell-markdown" id="md-22"></div>
+            <script>
+                (function(){
+                    const b64 = "IyMgKipgVXNhbmRvIG8gbcOpdG9kbyBpdGVtcygpOmAqKgoKTmVzdGEgYWJvcmRhZ2VtLCB2b2PDqiBpdGVyYSBzb2JyZSBvcyBwYXJlcyBjaGF2ZS12YWxvciBkbyBkaWNpb27DoXJpbyB1c2FuZG8gbyBtw6l0b2RvIGl0ZW1zKCksIHF1ZSByZXRvcm5hIHVtYSBzZXF1w6puY2lhIGRlIHR1cGxhcyBvbmRlIGNhZGEgdHVwbGEgY29udMOpbSB1bWEgY2hhdmUgZSBzZXUgdmFsb3IgY29ycmVzcG9uZGVudGUuCgpgYGBweXRob24KZm9yIGNoYXZlLCB2YWxvciBpbiBkaWNpb25hcmlvLml0ZW1zKCk6CiAgICAjIEFjZXNzYXIgY2hhdmUgZSB2YWxvciBkaXJldGFtZW50ZQpgYGAKLSBWYW50YWdlbnM6CiAgICAtIE1haXMgZXhwbMOtY2l0bywgcG9pcyBmb3JuZWNlIHRhbnRvIGFzIGNoYXZlcyBxdWFudG8gb3MgdmFsb3JlcyBkaXJldGFtZW50ZS4KICAgIC0gUG9kZSBzZXIgbWFpcyBlZmljaWVudGUgZG8gcXVlIGFjZXNzYXIgZXhwbGljaXRhbWVudGUgb3MgdmFsb3JlcyB1c2FuZG8gYXMgY2hhdmVzLgotIERlc3ZhbnRhZ2VuczoKICAgIC0gUG9kZSBwYXJlY2VyIG1haXMgY29tcGxleG8gcGFyYSBpbmljaWFudGVzLCBwb2lzIGVudm9sdmUgbyBjb25jZWl0byBkZSBkZXNjb21wYWN0YcOnw6NvIGRlIHR1cGxhcy4=";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-22').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [10]</div>
+                <pre><code class="language-python">dicionario = {&quot;nome&quot;: &quot;João&quot;, &quot;idade&quot;: 25, &quot;cidade&quot;: &quot;Rio de Janeiro&quot;}
+# Aqui chave e valor são variáveis que vão receber as chaves e valores do dicionário. Nomeamos elas assim para facilitar a leitura do código.
+for chave, valor in dicionario.items():
+    print(chave, &quot;:&quot;, valor) 
+    
+# Nesse método, a função items() retorna uma lista com os pares chave-valor. Assim, podemos acessar a chave e o valor associado a ela com chave e valor, respectivamente.
+
+# Observação: Note que esse método se assemelha ao enumerate() que vimos nas listas. A diferença é que o enumerate() retorna o índice e o valor de uma lista, enquanto o items() retorna a chave e o valor de um dicionário.</code></pre>
+            </div>
+            <div class="cell-output">nome : João
+idade : 25
+cidade : Rio de Janeiro
+</div>
+            <div class="cell cell-markdown" id="md-24"></div>
+            <script>
+                (function(){
+                    const b64 = "IyMgKipgVXNhbmRvIGtleXMoKSBlIHZhbHVlcygpYCoqCgpUYW1iw6ltIHRlbW9zIG9zIG3DqXRvZG9zIGtleXMoKSBlIHZhbHVlcygpIHF1ZSByZXRvcm5hbSBhcyBjaGF2ZXMgZSBvcyB2YWxvcmVzIGRvIGRpY2lvbsOhcmlvLCByZXNwZWN0aXZhbWVudGUuIEVsZXMgc8OjbyDDunRlaXMgcXVhbmRvIHF1ZXJlbW9zIGFjZXNzYXIgYXBlbmFzIGFzIGNoYXZlcyBvdSBvcyB2YWxvcmVzIGRvIGRpY2lvbsOhcmlvLg==";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-24').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [36]</div>
+                <pre><code class="language-python">dicionario = {&quot;nome&quot;: &quot;João&quot;, &quot;idade&quot;: 25, &quot;cidade&quot;: &quot;Rio de Janeiro&quot;}
+
+# Aqui keys() retorna uma lista com as chaves do dicionário.
+for chave in dicionario.keys():
+    print(chave)
+
+# Aqui values() retorna uma lista com os valores do dicionário.
+for valor in dicionario.values():
+    print(valor)</code></pre>
+            </div>
+            <div class="cell-output">nome
+idade
+cidade
+João
+25
+Rio de Janeiro
+</div>
+            <div class="cell cell-code">
+                <div class="prompt">In [39]</div>
+                <pre><code class="language-python"># Estruturas aninhadas
+
+# Podemos criar dicionários aninhados, ou seja, dicionários dentro de dicionários.
+dicionario = {
+    &quot;pessoa&quot;: {
+        &quot;nome&quot;: &quot;João&quot;,
+        &quot;idade&quot;: 25,
+        &quot;cidade&quot;: &quot;Rio de Janeiro&quot;
+    },
+    &quot;profissao&quot;: &quot;Desenvolvedor&quot;
+}
+
+# Temos um dicionário com duas chaves: &quot;pessoa&quot; e &quot;profissao&quot;. A chave &quot;pessoa&quot; possui um dicionário com as chaves &quot;nome&quot;, &quot;idade&quot; e &quot;cidade&quot;.
+
+# Podemos acessar os valores de um dicionário aninhado da seguinte forma:
+nome = dicionario[&quot;pessoa&quot;][&quot;nome&quot;] # Retorna &quot;João&quot;
+idade = dicionario[&quot;pessoa&quot;][&quot;idade&quot;] # Retorna 25
+cidade = dicionario[&quot;pessoa&quot;][&quot;cidade&quot;] # Retorna &quot;Rio de Janeiro&quot;
+profissao = dicionario[&quot;profissao&quot;] # Retorna &quot;Desenvolvedor&quot;
+
+# Para percorrer um dicionário aninhado, podemos usar dois fors.
+
+# Aqui, o primeiro for percorre as chaves do dicionário. Se o valor associado a chave for um dicionário, o segundo for percorre as chaves desse dicionário. Caso contrário, ele imprime a chave e o valor associado a ela.
+for chave in dicionario:
+    # Verificamos se o valor associado a chave é um dicionário.
+    if type(dicionario[chave]) is dict: 
+        for chave_aninhada in dicionario[chave]:
+            print(chave_aninhada, &quot;:&quot;, dicionario[chave][chave_aninhada])
+    else:
+        print(chave, &quot;:&quot;, dicionario[chave])
+        
+# Se o valor aninhado for uma lista em vez de um dicionário? Por exemplo:
+dicionario = {&quot;cidades&quot;: [&quot;Rio de Janeiro&quot;, &quot;São Paulo&quot;]}
+
+# Acessamos os valores da lista combinando os métodos de acesso de listas e dicionários.
+cidades = dicionario[&quot;cidades&quot;] # Retorna [&quot;Rio de Janeiro&quot;, &quot;São Paulo&quot;]
+primeira_cidade = dicionario[&quot;cidades&quot;][0] # Retorna &quot;Rio de Janeiro&quot;
+</code></pre>
+            </div>
+            <div class="cell-output">nome : João
+idade : 25
+cidade : Rio de Janeiro
+profissao : Desenvolvedor
+</div>
+            <div class="cell cell-markdown" id="md-27"></div>
+            <script>
+                (function(){
+                    const b64 = "IyMgKipgT3JkZW5hw6fDo28gZGUgRGljaW9uw6FyaW9zOmAqKgoKT3MgZGljaW9uw6FyaW9zIGVtIFB5dGhvbiBuw6NvIG1hbnTDqm0gdW1hIG9yZGVtIGVzcGVjw61maWNhIHBhcmEgc2V1cyBlbGVtZW50b3MsIG8gcXVlIHNpZ25pZmljYSBxdWUgYSBvcmRlbSBkZSBhY2Vzc28gYW9zIGVsZW1lbnRvcyBwb2RlIHZhcmlhci4gTm8gZW50YW50bywgdm9jw6ogcG9kZSB1c2FyIGEgZnVuw6fDo28gYHNvcnRlZCgpYCBwYXJhIG9yZGVuYXIgYXMgY2hhdmVzIG91IHZhbG9yZXMgZGUgdW0gZGljaW9uw6FyaW8gZW0gdW1hIG9yZGVtIGVzcGVjw61maWNhLgoKKk8gYHNvcnRlZCgpYCByZXRvcm5hIHVtYSBub3ZhIHNlcXXDqm5jaWEgb3JkZW5hZGEsIGVucXVhbnRvIG8gZGljaW9uw6FyaW8gb3JpZ2luYWwgcGVybWFuZWNlIGluYWx0ZXJhZG8uKg==";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-27').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [17]</div>
+                <pre><code class="language-python">dicionario = {&quot;b&quot;: 2, &quot;a&quot;: 1, &quot;c&quot;: 3}
+
+# O método sorted() retorna uma lista com as chaves do dicionário ordenadas.
+chaves_ordenadas = sorted(dicionario.keys())
+print(chaves_ordenadas)  # Resultado: [&#x27;a&#x27;, &#x27;b&#x27;, &#x27;c&#x27;]
+
+# O dicionário original não é alterado.
+print(dicionario)  # Resultado: {&#x27;b&#x27;: 2, &#x27;a&#x27;: 1, &#x27;c&#x27;: 3}
+
+# O método sorted() possui um argumento opcional reverse que inverte a ordem da lista. O valor padrão é False.
+chaves_ordenadas = sorted(dicionario.keys(), reverse=True)
+print(chaves_ordenadas)  # Resultado: [&#x27;c&#x27;, &#x27;b&#x27;, &#x27;a&#x27;]
+
+# Além disso, temos o argumento key que recebe uma função que será aplicada a cada elemento da lista antes de ordená-la.
+# A função lambda é uma forma compacta de definir funções pequenas. No Python, lambdas são definidas usando a palavra-chave lambda.
+
+# Aqui, a função lambda x: dicionario[x] retorna o valor associado à chave x. Assim, a lista é ordenada de acordo com os valores do dicionário.
+# Vamos decompor isso:
+
+# A função lambda x: dicionario[x] pode ser entendida assim:
+# - &#x27;lambda&#x27; é uma palavra-chave que indica que estamos definindo uma função anônima (ou seja, uma função sem nome).
+# - &#x27;x&#x27; é o parâmetro de entrada da função. Neste caso, x representa cada uma das chaves do dicionário.
+# - &#x27;dicionario[x]&#x27; é a expressão que a função retorna. Para cada chave x, a função retorna o valor associado a essa chave no dicionário.
+
+# Então, sorted(dicionario.keys(), key=lambda x: dicionario[x]) significa:
+# - Pegue as chaves do dicionário.
+# - Para cada chave, aplique a função lambda (que retorna o valor associado a essa chave no dicionário).
+# - Ordene as chaves com base nesses valores retornados.
+
+chaves_ordenadas = sorted(dicionario.keys(), key=lambda x: dicionario[x])
+print(chaves_ordenadas)  # Resultado: [&#x27;a&#x27;, &#x27;b&#x27;, &#x27;c&#x27;]
+
+</code></pre>
+            </div>
+            <div class="cell-output">[&#x27;a&#x27;, &#x27;b&#x27;, &#x27;c&#x27;]
+{&#x27;b&#x27;: 2, &#x27;a&#x27;: 1, &#x27;c&#x27;: 3}
+[&#x27;c&#x27;, &#x27;b&#x27;, &#x27;a&#x27;]
+[&#x27;a&#x27;, &#x27;b&#x27;, &#x27;c&#x27;]
+</div>
+            <div class="cell cell-code">
+                <div class="prompt">In [18]</div>
+                <pre><code class="language-python"># Podemos simplificar usando dicionario.get no lugar de lambda x: dicionario[x]. O método get() retorna o valor associado a chave x.
+
+# chaves_ordenadas = sorted(dicionario.keys(), key=dicionario.get)
+print(chaves_ordenadas)  # Resultado: [&#x27;a&#x27;, &#x27;b&#x27;, &#x27;c&#x27;]
+
+# Para ordenar por valores, usamos o método items() para obter uma lista com os pares chave-valor. Assim, podemos ordenar a lista de acordo com os valores.
+
+dicionario = {&quot;b&quot;: 2, &quot;a&quot;: 1, &quot;c&quot;: 3}
+# O método items() retorna uma lista com os pares chave-valor.
+itens_ordenados = sorted(dicionario.items())
+print(itens_ordenados)  # Resultado: [(&#x27;a&#x27;, 1), (&#x27;b&#x27;, 2), (&#x27;c&#x27;, 3)]</code></pre>
+            </div>
+            <div class="cell-output">[&#x27;a&#x27;, &#x27;b&#x27;, &#x27;c&#x27;]
+[(&#x27;a&#x27;, 1), (&#x27;b&#x27;, 2), (&#x27;c&#x27;, 3)]
+</div>
+            <div class="cell cell-markdown" id="md-30"></div>
+            <script>
+                (function(){
+                    const b64 = "IyMgKipgQ29tcHJlZW5zw7VlcyBkZSBEaWNpb27DoXJpb3M6YCoqCgpBcyBjb21wcmVlbnPDtWVzIGRlIGRpY2lvbsOhcmlvcyBzw6NvIHVtYSBjb25zdHJ1w6fDo28gY29uY2lzYSBlIGVmaWNpZW50ZSBwYXJhIGNyaWFyIGRpY2lvbsOhcmlvcyBlbSBQeXRob24gdXNhbmRvIGxvb3BzIGZvci4gRWxhcyBzZWd1ZW0gdW1hIHNpbnRheGUgc2VtZWxoYW50ZSDDoHMgY29tcHJlZW5zw7VlcyBkZSBsaXN0YXMsIG1hcyBwcm9kdXplbSBkaWNpb27DoXJpb3MgZW0gdmV6IGRlIGxpc3Rhcy4=";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-30').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [44]</div>
+                <pre><code class="language-python">quadrados = {x: x**2 for x in range(5)}
+# x é a chave e x**2 é o valor associado a ela.
+# for x in range(5) percorre os valores de 0 a 4.
+
+print(quadrados)  # Resultado: {0: 0, 1: 1, 2: 4, 3: 9, 4: 16}</code></pre>
+            </div>
+            <div class="cell-output">{0: 0, 1: 1, 2: 4, 3: 9, 4: 16}
+</div>
+            <div class="cell cell-markdown" id="md-32"></div>
+            <script>
+                (function(){
+                    const b64 = "IyMgKipgTcOpdG9kbyB1cGRhdGUoKWAqKgoKTyBtw6l0b2RvIGB1cGRhdGUoKWAgw6kgdXNhZG8gcGFyYSBtZXNjbGFyIGRvaXMgZGljaW9uw6FyaW9zLCBhdHVhbGl6YW5kbyBhcyBjaGF2ZXMgZSB2YWxvcmVzIGRvIHByaW1laXJvIGRpY2lvbsOhcmlvIGNvbSBvcyBkbyBzZWd1bmRvLgoKU2UgdW1hIGNoYXZlIGV4aXN0aXIgZW0gYW1ib3Mgb3MgZGljaW9uw6FyaW9zLCBvIHZhbG9yIGNvcnJlc3BvbmRlbnRlIG5vIHByaW1laXJvIGRpY2lvbsOhcmlvIHNlcsOhIHN1YnN0aXR1w61kbyBwZWxvIHZhbG9yIG5vIHNlZ3VuZG8gZGljaW9uw6FyaW8uCgpFc3RlIG3DqXRvZG8gbW9kaWZpY2EgbyBkaWNpb27DoXJpbyBvcmlnaW5hbCBlIG7Do28gcmV0b3JuYSBuYWRhLg==";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-32').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [45]</div>
+                <pre><code class="language-python">dicionario1 = {&quot;a&quot;: 1, &quot;b&quot;: 2}
+dicionario2 = {&quot;b&quot;: 3, &quot;c&quot;: 4}
+# a é uma chave que existe apenas no dicionário1.
+# b é uma chave que existe nos dois dicionários. O valor associado a ela no dicionário2 é 3.
+# c é uma chave que existe apenas no dicionário2.
+
+dicionario1.update(dicionario2)
+print(dicionario1)  # Resultado: {&#x27;a&#x27;: 1, &#x27;b&#x27;: 3, &#x27;c&#x27;: 4}</code></pre>
+            </div>
+            <div class="cell-output">{&#x27;a&#x27;: 1, &#x27;b&#x27;: 3, &#x27;c&#x27;: 4}
+</div>
+            <div class="cell cell-markdown" id="md-34"></div>
+            <script>
+                (function(){
+                    const b64 = "IyMgKipgVmVyaWZpY2HDp8OjbyBkZSBDaGF2ZTpgKioKCk8gb3BlcmFkb3IgYGluYCBwb2RlIHNlciB1c2FkbyBwYXJhIHZlcmlmaWNhciBzZSB1bWEgY2hhdmUgZXhpc3RlIGVtIHVtIGRpY2lvbsOhcmlvLgpTZSBhIGNoYXZlIGV4aXN0aXIgbm8gZGljaW9uw6FyaW8sIG8gb3BlcmFkb3IgcmV0b3JuYXLDoSBUcnVlOyBjYXNvIGNvbnRyw6FyaW8sIHJldG9ybmFyw6EgRmFsc2Uu";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-34').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [49]</div>
+                <pre><code class="language-python">dicionario = {&quot;a&quot;: 1, &quot;b&quot;: 2}
+if &quot;a&quot; in dicionario:
+    print(&quot;A chave &#x27;a&#x27; existe!&quot;)
+    
+# in é útil para verificar se uma chave existe em um dicionário e evitar um erro KeyError.
+
+# Lembrando que para essa finalidade também podemos usar o método get().
+dicionario = {&quot;a&quot;: 1, &quot;b&quot;: 2}
+if dicionario.get(&quot;c&quot;) is None:
+    print(&quot;A chave &#x27;c&#x27; não existe!&quot;)
+# O método get() retorna None se a chave não existir no dicionário. Assim, podemos verificar se a chave existe ou não.</code></pre>
+            </div>
+            <div class="cell-output">A chave &#x27;a&#x27; existe!
+A chave &#x27;c&#x27; não existe!
+</div>
+            <div class="cell cell-markdown" id="md-36"></div>
+            <script>
+                (function(){
+                    const b64 = "IyMgKipgQ29udmVyc8OjbyBkZSBEaWNpb27DoXJpb3M6YCoqCgrDiSBwb3Nzw612ZWwgY29udmVydGVyIGRpY2lvbsOhcmlvcyBwYXJhIG91dHJhcyBlc3RydXR1cmFzIGRlIGRhZG9zLCBjb21vIGxpc3RhcyBvdSB0dXBsYXMsIHVzYW5kbyBhcyBmdW7Dp8O1ZXMgbGlzdCgpLCB0dXBsZSgpLCBldGMuCgpJc3NvIHBvZGUgc2VyIMO6dGlsIHBhcmEgbWFuaXB1bGFyIG9zIGRhZG9zIGRlIGRpZmVyZW50ZXMgbWFuZWlyYXMgb3UgcGFyYSBwYXNzw6EtbG9zIHBhcmEgZnVuw6fDtWVzIHF1ZSBlc3BlcmFtIHVtIHRpcG8gZGUgZGFkb3MgZXNwZWPDrWZpY28u";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-36').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [14]</div>
+                <pre><code class="language-python">dicionario = {&quot;a&quot;: 1, &quot;b&quot;: 2}
+lista_chave_valor = list(dicionario.items())
+print(lista_chave_valor)  # Resultado: [(&#x27;a&#x27;, 1), (&#x27;b&#x27;, 2)]
+
+# Se quiser somente os valores:
+
+dicionario = {&quot;a&quot;: 1, &quot;b&quot;: 2}
+lista_valores = list(dicionario.values())
+print(lista_valores)  # Resultado: [1, 2]
+
+# Ou até mesmo as chaves:
+
+dicionario = {&quot;a&quot;: 1, &quot;b&quot;: 2}
+lista_chaves = list(dicionario.keys())
+print(lista_chaves)  # Resultado: [&#x27;a&#x27;, &#x27;b&#x27;]
+</code></pre>
+            </div>
+            <div class="cell-output">[(&#x27;a&#x27;, 1), (&#x27;b&#x27;, 2)]
+[1, 2]
+[&#x27;a&#x27;, &#x27;b&#x27;]
+</div>
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python"># clear() remove todos os elementos do dicionário.
+# fromkeys() cria um novo dicionário com as chaves de uma sequência e os valores padrão.</code></pre>
+            </div>
+            </div><script>hljs.highlightAll();</script>
+    </main>
+</body>
+</html>

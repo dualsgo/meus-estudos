@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>10_desafio.py</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="https://pyscript.net/releases/2024.1.1/core.css">
+    <script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>
+    <style>
+        .sandbox-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
+        .sandbox-header h2 { font-size: 1.2rem; color: var(--primary); display: flex; align-items: center; gap: 0.5rem; }
+        .py-repl-container { border-radius: 8px; overflow: hidden; border: 1px solid var(--glass-border); background: #1e293b; }
+    </style>
+    
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --glass-bg: rgba(30, 41, 59, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --primary: #38bdf8;
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        header {
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            border-bottom: 1px solid var(--glass-border);
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .back-btn {
+            color: var(--text-main);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            background: rgba(255,255,255,0.05);
+            transition: 0.3s;
+        }
+        .back-btn:hover {
+            background: rgba(56, 189, 248, 0.2);
+            color: var(--primary);
+        }
+        .file-title {
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+        main {
+            flex: 1;
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        .container {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="../index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Voltar</a>
+        <div class="file-title">10_desafio.py</div>
+    </header>
+    <main>
+        
+    <div class="container">
+        <div class="sandbox-header">
+            <h2><i class="fa-brands fa-python"></i> Sandbox PyScript</h2>
+            <span>Edite e execute (Shift + Enter) ou no botão verde ▶</span>
+        </div>
+        <div class="py-repl-container">
+            <script type="py" id="main-script"></script>
+            <py-repl auto-generate="true">
+# Exercício Python #010 - Conversor de Moedas - Aula 00 até 07 - Mundo 1
+# Crie um programa que leia quanto dinheiro uma pessoa tem na carteira e mostre quantos dólares ela pode comprar. Considere US$1,00 = R$3,27.
+
+# 1 USD = 5,56 BRL
+# 1 EUR = 6,05 BRL
+
+from emoji import emojize
+
+while True:
+	try:
+		BRL = float(input(emojize(&#x27;:cifrão: Digite o valor em BRL: &#x27;, language=&#x27;pt&#x27;)))
+		USD = BRL / 5.56
+		EUR = BRL / 6.05
+
+		print(emojize(f&#x27;&#x27;&#x27;Na cotação atual (03/07/2024):
+:dinheiro_voando: {BRL:.2f} BRL
+:nota_de_dólar: {USD:.2f} USD
+:nota_de_euro: {EUR:.2f} EUR&#x27;&#x27;&#x27;, language=&#x27;pt&#x27;))
+		break
+
+	except ValueError:
+		print(f&#x27;Valor inválido!&#x27;)
+
+# Fazer um conversor com menu
+
+def menu():
+	while True:
+		try:
+			escolha = int(input(f&#x27;Qual a moeda: [1] Real [2] Dólar [3] Euro\n&#x27;))
+			while escolha != 1 and escolha != 2 and escolha != 3:
+				print(&#x27;Apenas 1, 2 ou 3&#x27;)
+				escolha = int(input(f&#x27;Qual a moeda: [1] Real [2] Dólar [3] Euro\n&#x27;))
+
+			else:
+				print(&#x27;Prosseguindo...&#x27;)
+				while True:
+					try:
+						print(f&#x27;Converter {valor_monetario:.2f} para qual moeda:&#x27;)
+						if escolha == 1:
+							opção = int(input(&#x27;[1] Dólar [2] Euro\n&#x27;))
+						elif escolha == 2:
+							opção = int(input(&#x27;[1] Real [2] Euro\n&#x27;))
+						elif escolha == 3:
+							opção = int(input(&#x27;[1] Real [2] Euro\n&#x27;))
+						else:
+							print(&#x27;Opção inválida&#x27;)
+							continue
+						break
+					except ValueError:
+						print(&#x27;Opção inválida!&#x27;)
+				return escolha, opção
+		except:
+			print(&#x27;Tipo de dado inválido&#x27;)
+
+
+def valor(msg):
+	while True:
+		try:
+			return float(input(msg))
+		except ValueError:
+			print(&#x27;Tipo de dado inválido&#x27;)
+
+
+def conversão(v, e, o):
+
+	if e == 1:
+		print(f&#x27;{valor_monetario:.2f} BRL = &#x27;, end=&#x27;&#x27;)
+		if o == 1:
+			print(&#x27;USD &#x27;, end=&#x27;&#x27;)
+			return v / 5.56
+		elif o == 2:
+			print(&#x27;EUR &#x27;, end=&#x27;&#x27;)
+			return v / 5.90
+	elif e == 2:
+		print(f&#x27;{valor_monetario:.2f} USD = &#x27;, end=&#x27;&#x27;)
+		if o == 1:
+			print(&#x27;BRL &#x27;, end=&#x27;&#x27;)
+			return v / 0.18
+		elif o == 2:
+			print(&#x27;EUR &#x27;, end=&#x27;&#x27;)
+			return v / 0.92
+	elif e == 3:
+		print(f&#x27;{valor_monetario:.2f} EUR = &#x27;, end=&#x27;&#x27;)
+		if o == 1:
+			print(&#x27;BRL &#x27;, end=&#x27;&#x27;)
+			return v / 0.17
+		elif o == 2:
+			print(f&#x27;USD &#x27;, end=&#x27;&#x27;)
+			return v / 1.09
+
+valor_monetario = valor(&#x27;Digite o valor: &#x27;)
+de, para = menu()
+valor_convertido = conversão(valor_monetario, de, para)
+print(f&#x27;{valor_convertido:.2f}&#x27;)
+
+# Versão 2
+
+while True:
+    carteira = float(input(&#x27;Digite quanto possui na carteira: R$ &#x27;))
+    print(&#x27;Qual moeda deseja converter?&#x27;)
+    print(&#x27;[1] R$ - Real&#x27;)
+    print(&#x27;[2] U$ - Dólar&#x27;)
+    print(&#x27;[3]  € - Euro&#x27;)
+    converter = int(input(&#x27;&#x27;))
+    while converter == 1 or 2 or 3:
+        if converter == 1:
+            print(&#x27;Deseja converter R$ - Real para qual moeda?&#x27;)
+            print(&#x27;[1] U$ - Dólar&#x27;)
+            print(&#x27;[2]  € - Euro&#x27;)
+            para = int(input(&#x27;&#x27;))
+            if para == 1:
+                print(&#x27;Converter R$ - Real para U$ - Dólar&#x27;)
+                cotacao_dolar = 4.90
+                dolar = carteira / cotacao_dolar
+                print(
+                    f&#x27;Você possui R$ {carteira:.2f}. Na cotação atual (US$ 1,00 = R$ 3.27) você pode comprar US$ {dolar:.2f}.&#x27;)
+            continuar = int(input(&#x27;[1] Continuar ou [2] Encerrar&#x27;))
+            while continuar != 1 or 2:
+                print(&#x27;Opção inválida!&#x27;)
+                continuar = int(input(&#x27;[1] Continuar ou [2] Encerrar&#x27;))
+                if continuar == 2:
+                    print(&#x27;Encerrando o programa!&#x27;)
+                    break
+                else:
+                    continue
+
+
+carteira = float(input(&#x27;Digite quanto possui na carteira: R$ &#x27;))
+
+cotacao_dolar = 4.90
+cotacao_euro = 5.36
+cotacao_peso = 72.89
+
+dolar = carteira / cotacao_dolar
+euro = carteira / cotacao_euro
+peso = carteira * cotacao_peso
+
+print(f&#x27;Você possui R$ {carteira:.2f}. Na cotação atual (US$ 1,00 = R$ 3.27) você pode comprar US$ {dolar:.2f}.&#x27;)
+print(&#x27;&#x27;)
+print(f&#x27;Você possui R$ {carteira:.2f}. Na cotação atual (1,00 € = R$ 5.36) você pode comprar {euro:.2f} €.&#x27;)
+print(&#x27;&#x27;)
+print(f&#x27;R$ {carteira:.2f} equivalem a $ {peso:.2f} pesos argentinos.&#x27;)
+
+
+# Estou compartilhando minhas anotações sobre os exercícios. Quem quiser, pode copiar e colar em um documento .py pois está tudo formatado e comentado.
+
+# Nesse exercício, o programa solicita ao usuário um valor em reais e exibe na tela quantos dólares ele pode comprar. Para isso, é feita uma divisão simples do valor em reais pela cotação do dólar.
+
+# Primeiro precisamos saber a cotação do dólar em reais. Salvaremos este valor eu uma variável chamada cotacao_dolar já que a cotação pode variar. Então, dessa forma podemos atualizar o valor da cotação facilmente.
+
+cotacao_dolar = 5.56 # Vamos considerar a cotação do dólar em 5.56 reais.
+
+# Depois, solicitamos ao usuário o valor em reais que ele deseja converter. O valor digitado é convertido para ponto flutuante e armazenado na variável BRL.
+
+BRL = float(input(&#x27;Digite o valor em BRL: &#x27;))
+
+# Para calcular quantos dólares o usuário pode comprar, basta dividir o valor em reais pela cotação do dólar. O resultado é armazenado na variável USD.
+
+USD = BRL / cotacao_dolar
+
+# Por fim, exibimos na tela o valor em reais e o valor em dólares que o usuário pode comprar.
+
+print(f&#x27;Você possui R$ {BRL:.2f}. Na cotação atual (US$ 1,00 = R$ {cotacao_dolar:.2f}) você pode comprar US$ {USD:.2f}.&#x27;)
+# Formatamos os valores para exibir apenas duas casas decimais utilizando a notação :.2f no f-string. Isso garante que o valor seja exibido de forma mais clara e legível.
+            </py-repl>
+        </div>
+    </div>
+    
+    </main>
+</body>
+</html>

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>01.1_criando_variaveis.py</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="https://pyscript.net/releases/2024.1.1/core.css">
+    <script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>
+    <style>
+        .sandbox-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
+        .sandbox-header h2 { font-size: 1.2rem; color: var(--primary); display: flex; align-items: center; gap: 0.5rem; }
+        .py-repl-container { border-radius: 8px; overflow: hidden; border: 1px solid var(--glass-border); background: #1e293b; }
+    </style>
+    
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --glass-bg: rgba(30, 41, 59, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --primary: #38bdf8;
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        header {
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            border-bottom: 1px solid var(--glass-border);
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .back-btn {
+            color: var(--text-main);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            background: rgba(255,255,255,0.05);
+            transition: 0.3s;
+        }
+        .back-btn:hover {
+            background: rgba(56, 189, 248, 0.2);
+            color: var(--primary);
+        }
+        .file-title {
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+        main {
+            flex: 1;
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        .container {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="../index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Voltar</a>
+        <div class="file-title">01.1_criando_variaveis.py</div>
+    </header>
+    <main>
+        
+    <div class="container">
+        <div class="sandbox-header">
+            <h2><i class="fa-brands fa-python"></i> Sandbox PyScript</h2>
+            <span>Edite e execute (Shift + Enter) ou no botão verde ▶</span>
+        </div>
+        <div class="py-repl-container">
+            <script type="py" id="main-script"></script>
+            <py-repl auto-generate="true">
+# MIMO - 01 - Noções básicas de Python
+
+# 01.1 - Criando variáveis
+
+# Python é uma linguagem de programação fantástica para iniciantes e especialistas.
+# É a linguagem de escolha para muitas empresas e uma escolha popular para projetos pessoais. Você pode usá-lo para automatizar tarefas, sair na frente no trabalho com análise de dados, aprendizado de máquina e muito mais!
+# Não importa o quão complexo seja um programa, ele começa com uma única linha de código. Essa primeira linha geralmente é uma variável. Os programas usam variáveis para lembrar informações. Como caixas móveis, as variáveis têm conteúdo e nomes que nos dizem o que está dentro.
+
+# Nomes das variáveis
+
+# Para criar uma variável, começamos digitando seu nome. 
+exemplo = &quot;Valor da variável&quot;
+
+# Os nomes das variáveis devem ser palavras únicas sem espaços ou, se quisermos um nome de variável com várias palavras, podemos separar as palavras com sublinhados (_) ou maiúsculas.
+
+# usamos sublinhado (_) para conectar as palavras adicionais (snake_case).
+exemplo_snake_case = &#x27;Parece um cobra&#x27; # minúsculas e sublinhado (snake_case)
+
+# Ou usamos maiúsculas para cada palavra adicional (CamelCase).
+exemploCamelCase = &#x27;Lembra as corcovas de um camelo&#x27; # maiúsculas e minúsculas (CamelCase)
+
+# Para nos ajudar a entender o que está numa variável, escolhemos nomes descritivos em vez de abreviações e etc
+ano_atual = 2024 
+
+# Após criar e nomear uma variável, usamos o operador de atribuição (=) para armazenar um valor dentro dela. Armazenar um valor em uma variável é como colocar coisas em uma caixa rotulada.
+caixa = &quot;Conteúdo&quot;
+
+# Valores das variáveis - Os valores das variáveis podem ser alterados a qualquer momento. Podemos alterar o valor de uma variável quantas vezes quisermos. O Python sempre usa o valor mais recente que armazenamos na variável.
+
+# As variáveis podem conter todos os tipos de valores. Vamos dar uma olhada no armazenamento de valores de texto (string).
+
+# Os valores de cadeia de caracteres são texto entre aspas duplas ou simples chamados strings.
+equipe_de_futebol = &quot;Vasco da Gama&quot;
+
+# A utilização do tipo de aspas depende do que queremos armazenar na variável. Por exemplo, se quisermos armazenar uma string que contenha aspas, usamos aspas simples para envolver a string e aspas duplas para envolver a citação dentro dela e vice versa. Caso isso não seja feito, o Python não saberá onde a string termina e gerará um erro.
+citacao = &quot;O técnico disse: &#x27;Vamos vencer!&#x27;&quot;
+
+# Uma forma de contornar esse problema é usar uma barra invertida (\), que é um caractere de escape antes da aspas que queremos armazenar na string. Porém isso pode ser um pouco confuso.
+citacao = &#x27;O técnico disse: \&#x27;Vamos vencer!\&#x27;&#x27;  # Dessa forma, o Python sabe que a aspas simples não é o fim da string.
+
+# É importante manter o padrão de uso no programa. Escolhemos um tipo e o usamos em todo o programa.
+
+# As strings podem conter todos os tipos de letras e símbolos, incluindo espaços
+exemplo_string = &#x27;Pode conter letras, números (1, 2, 3) e caracteres especiais (@, #, $)&#x27;
+
+# Console - Exibindo valores
+
+# Linhas de código são instruções para o computador seguir.
+# Quando executamos código, dizemos ao computador para seguir as instruções que montamos.
+# A ordem das instruções é importante porque o computador segue as instruções, linha por linha.
+# Com a instrução especial print(), dizemos ao computador para exibir um valor em uma área chamada console, também conhecida como shell.
+
+# Podemos usar a instrução quantas vezes quisermos. O computador exibe cada valor em uma nova linha no console.
+# print() - Exibe o valor entre os parênteses no console
+print(&#x27;Essa instrução irá aparecer primeiro!&#x27;) 
+print(&#x27;E essa em seguida, em ordem.&#x27;)
+
+# Podemos usar para exibir variáveis também - print(variavel) - Quando exibimos variáveis no console, seus valores aparecem em vez de seus nomes.
+nome = &#x27;Maycon&#x27;
+print(nome)  # Estamos dizendo - Mostre o que há dentro da caixa nome
+
+            </py-repl>
+        </div>
+    </div>
+    
+    </main>
+</body>
+</html>

@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>91_desafio.py</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="https://pyscript.net/releases/2024.1.1/core.css">
+    <script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>
+    <style>
+        .sandbox-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
+        .sandbox-header h2 { font-size: 1.2rem; color: var(--primary); display: flex; align-items: center; gap: 0.5rem; }
+        .py-repl-container { border-radius: 8px; overflow: hidden; border: 1px solid var(--glass-border); background: #1e293b; }
+    </style>
+    
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --glass-bg: rgba(30, 41, 59, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --primary: #38bdf8;
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        header {
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            border-bottom: 1px solid var(--glass-border);
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .back-btn {
+            color: var(--text-main);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            background: rgba(255,255,255,0.05);
+            transition: 0.3s;
+        }
+        .back-btn:hover {
+            background: rgba(56, 189, 248, 0.2);
+            color: var(--primary);
+        }
+        .file-title {
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+        main {
+            flex: 1;
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        .container {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="../index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Voltar</a>
+        <div class="file-title">91_desafio.py</div>
+    </header>
+    <main>
+        
+    <div class="container">
+        <div class="sandbox-header">
+            <h2><i class="fa-brands fa-python"></i> Sandbox PyScript</h2>
+            <span>Edite e execute (Shift + Enter) ou no botão verde ▶</span>
+        </div>
+        <div class="py-repl-container">
+            <script type="py" id="main-script"></script>
+            <py-repl auto-generate="true">
+# Exercício Python #091 - Jogo de Dados em Python - Aula 00 até 19 - Mundo 3
+# Crie um programa onde 4 jogadores joguem um dado e tenham resultados aleatórios. Guarde esses resultados em um dicionário em Python. No final, coloque esse dicionário em ordem, sabendo que o vencedor tirou o maior número no dado.
+
+from time import sleep
+from random import randint
+
+# Inicializa uma lista vazia para armazenar os jogadores
+jogadores = []
+
+# Loop para criar 4 jogadores
+for indice, _ in enumerate(range(4), 1):
+    # Cria um dicionário para representar um jogador
+    jogador = {&#x27;nome&#x27;: f&#x27;Jogador({indice})&#x27;, &#x27;pontuacao&#x27;: randint(1, 6)}
+
+    # Imprime a pontuação do jogador
+    print(f&quot;O {jogador[&#x27;nome&#x27;]} tirou {jogador[&#x27;pontuacao&#x27;]}&quot;)
+
+    # Aguarda por um segundo para simular um intervalo entre os jogadores
+    sleep(1)
+
+    # Adiciona o jogador à lista de jogadores
+    jogadores.append(jogador)
+
+# Imprime o título do ranking
+print(f&#x27;{&quot;Ranking&quot;:^20}&#x27;)
+
+# Ordena a lista de jogadores com base na pontuação, em ordem decrescente
+jogadores = sorted(jogadores, key=lambda jogador: jogador[&#x27;pontuacao&#x27;], reverse=True)
+
+# Imprime o ranking com a posição, nome do jogador e pontuação
+for indice, jogador in enumerate(jogadores, 1):
+    print(f&#x27;{indice:&lt;5} {jogador[&quot;nome&quot;]} - {jogador[&quot;pontuacao&quot;]}&#x27;)
+
+# V2
+
+from random import randint
+
+
+def jogada():
+    return randint(1, 6)
+
+
+def obter_nome(mensagem):
+    while True:
+        entrada = input(mensagem).strip().title()
+        condição = entrada.replace(&#x27; &#x27;, &#x27;&#x27;).isalpha()
+
+        if not condição:
+            print(&#x27;Somente caracteres alfabéticos&#x27;)
+        else:
+            return entrada
+
+
+competidores = []
+
+for jogador in range(1, 5):
+    nome = obter_nome(f&#x27;Jogador {jogador}: &#x27;)
+    resultado_jogada = jogada()
+    competidor = {nome: resultado_jogada}
+    print(f&quot;Adicionando competidor: {nome}&quot;)
+    competidores.append(competidor.copy())
+
+print(f&#x27;{&#x27;RANKING&#x27;:^20}&#x27;)
+
+competidores = sorted(competidores, key=lambda x: list(x.values())[0], reverse=True)
+
+print(f&#x27;{&#x27;JOGADOR&#x27;:^10}{&#x27;PONTOS&#x27;:^10}&#x27;)
+for competidor in competidores:
+    for nome, resultado in competidor.items():
+        print(f&#x27;{nome:^10}{resultado:^10}&#x27;)
+
+
+
+# V3
+
+from random import randint
+from time import sleep
+
+jogadores = {f&#x27;jogador{i}&#x27;: randint(1, 6) for i in range(1, 5)}
+
+print(f&#x27;{&quot;Sorteio dos jogadores:&quot;:^25}&#x27;)
+for jogador, pontuacao in jogadores.items():
+    sleep(1)
+    print(f&#x27;{jogador} tirou o número {pontuacao}&#x27;)
+
+ranking = sorted(jogadores, key=jogadores.get, reverse=True)
+
+print(f&#x27;{&quot;Ranking dos jogadores:&quot;:^25}&#x27;)
+for i, jogador in enumerate(ranking, 1):
+    print(f&#x27;{i}º - {jogador} com {jogadores[jogador]} pontos&#x27;)
+
+
+# V4
+
+from time import sleep
+from random import randint
+
+# Inicializa uma lista vazia para armazenar os jogadores
+jogadores = []
+
+# Loop para criar 4 jogadores
+for indice, _ in enumerate(range(4)):
+    # Cria um dicionário para representar um jogador
+    jogador = {&#x27;nome&#x27;: f&#x27;Jogador({indice + 1})&#x27;, &#x27;pontuacao&#x27;: randint(1, 6)}
+
+    # Imprime a pontuação do jogador
+    print(f&quot;O {jogador[&#x27;nome&#x27;]} tirou {jogador[&#x27;pontuacao&#x27;]}&quot;)
+
+    # Aguarda por um segundo para simular um intervalo entre os jogadores
+    sleep(1)
+
+    # Adiciona o jogador à lista de jogadores
+    jogadores.append(jogador)
+
+# Imprime o título do ranking
+print(f&#x27;{&quot;Ranking (sem sorted)&quot;:^30}&#x27;)
+
+# Implementa o algoritmo de ordenação Bubble Sort
+# O Bubble Sort é um algoritmo de ordenação simples que percorre repetidamente a lista, compara elementos adjacentes e os troca se estiverem na ordem errada. Esse processo continua até que a lista esteja ordenada.
+
+# n = len(jogadores): Obtém o número total de jogadores na lista. Isso servirá para definir os limites do loop.
+n = len(jogadores)
+
+# for i in range(n): O primeiro loop (i) percorre toda a lista.
+for i in range(n):
+
+    # for j in range(0, n-i-1): O segundo loop (j) percorre a lista até o elemento n-i-1. A ideia é que após cada passagem do loop externo, o maior elemento já está na posição correta, então podemos reduzir o alcance do loop interno.
+    for j in range(0, n - i - 1):
+
+        # Compara as pontuações e troca se necessário
+        # if jogadores[j][&#x27;pontuacao&#x27;] &lt; jogadores[j+1][&#x27;pontuacao&#x27;]:: Compara as pontuações de dois jogadores adjacentes. Se o jogador na posição j tiver uma pontuação menor que o jogador na posição j+1, então precisamos trocar os jogadores para colocar o jogador com a maior pontuação primeiro.
+
+        # jogadores[j], jogadores[j+1] = jogadores[j+1], jogadores[j]: Realiza a troca dos jogadores. Isso é feito usando a técnica de desempacotamento de tuplas no Python. Se a condição do passo anterior for verdadeira, trocamos os jogadores nas posições j e j+1.
+        if jogadores[j][&#x27;pontuacao&#x27;] &lt; jogadores[j + 1][&#x27;pontuacao&#x27;]:
+            jogadores[j], jogadores[j + 1] = jogadores[j + 1], jogadores[j]
+# Imprime o ranking com a posição, nome do jogador e pontuação
+for indice, jogador in enumerate(jogadores, 1):
+    print(f&#x27;{indice:&lt;5} {jogador[&quot;nome&quot;]} - {jogador[&quot;pontuacao&quot;]}&#x27;)
+    
+
+
+# Estou compartilhando minhas anotações sobre os exercícios. Quem quiser, pode copiar e colar em um documento .py pois está tudo formatado e comentado.
+
+# Nesse exercício, o professor pede para criar um programa que simule um jogo de dados com 4 jogadores. O programa deve sortear um número aleatório para cada jogador e, no final, mostrar o ranking dos jogadores de acordo com a pontuação.
+
+# Primeiramente, vamos importar as bibliotecas necessárias: randint da biblioteca random e sleep da biblioteca time.
+from random import randint
+from time import sleep
+
+# Vamos criar um dicionário chamado jogadores para armazenar os jogadores e suas pontuações. Para isso, vamos usar um laço de repetição para criar 4 jogadores.
+
+jogadores = {f&#x27;jogador{i}&#x27;: randint(1, 6) for i in range(1, 5)} # Essa linha de código cria um dicionário com 4 jogadores, onde a chave é o nome do jogador e o valor é um número aleatório entre 1 e 6. Os nomes serão &#x27;jogador1&#x27;, &#x27;jogador2&#x27;, &#x27;jogador3&#x27; e &#x27;jogador4&#x27;.
+
+# Vamos imprimir o sorteio dos jogadores. Para isso, vamos percorrer o dicionário jogadores e mostrar o nome do jogador e a pontuação.
+print(f&#x27;{&quot;Sorteio dos jogadores:&quot;:^25}&#x27;)
+for jogador, pontuacao in jogadores.items():
+    sleep(1) # Vamos aguardar 1 segundo para simular um intervalo entre os jogadores.
+    print(f&#x27;{jogador} tirou o número {pontuacao}&#x27;)
+
+# Para ordenar o dicionário com sorted, precisaremos realizar mais etapas que com uma lista. Primeiro, vamos criar uma lista chamada ranking com as chaves do dicionário jogadores.
+ranking = list(jogadores.keys()) # Essa linha de código cria uma lista ranking com as chaves do dicionário jogadores.
+
+# Vamos ordenar a lista ranking com base na pontuação dos jogadores. Para isso, vamos usar a função sorted() com a chave key=jogadores.get para ordenar os jogadores de acordo com a pontuação.
+ranking = sorted(ranking, key=jogadores.get, reverse=True) # Essa linha de código ordena a lista ranking com base na pontuação dos jogadores, em ordem decrescente. key=jogadores.get indica que a função de ordenação deve usar o valor da chave (pontuação) para ordenar os jogadores.
+
+# Caso não tenha ficado claro, vamos faser uma função lambda para explicar melhor
+# A função lambda é uma função anônima que pode ter qualquer número de argumentos, mas apenas uma expressão. Ela é usada para criar funções simples e pode ser usada em qualquer lugar onde uma função normal seria usada.
+
+# A função lambda é definida com a palavra-chave lambda, seguida pelos argumentos, seguida por dois pontos e, finalmente, pela expressão que será retornada. Por exemplo, lambda x: x + 1 é uma função lambda que recebe um argumento x e retorna x + 1.
+
+# Vamos criar uma função lambda que recebe um jogador e retorna a pontuação desse jogador. Essa função será usada como chave para ordenar os jogadores de acordo com a pontuação.
+# key=lambda jogador: jogadores[jogador]: Essa função lambda recebe um jogador e retorna a pontuação desse jogador. Ela será usada como chave para ordenar os jogadores de acordo com a pontuação.
+
+ranking = sorted(ranking, key=lambda jogador: jogadores[jogador], reverse=True) # Essa linha de código ordena a lista ranking com base na pontuação dos jogadores, em ordem decrescente. key=lambda jogador: jogadores[jogador] indica que a função de ordenação deve usar a pontuação do jogador para ordenar os jogadores.
+
+# Vamos imprimir o ranking dos jogadores. Para isso, vamos percorrer a lista ranking e mostrar a posição, o nome do jogador e a pontuação.
+print(f&#x27;{&quot;Ranking dos jogadores:&quot;:^25}&#x27;)
+for i, jogador in enumerate(ranking, 1):
+    print(f&#x27;{i}º - {jogador} com {jogadores[jogador]} pontos&#x27;)
+            </py-repl>
+        </div>
+    </div>
+    
+    </main>
+</body>
+</html>

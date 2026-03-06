@@ -1,0 +1,1223 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>04_operadores.ipynb</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/monokai-sublime.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/python.min.js"></script>
+    
+    <style>
+        .cell { margin-bottom: 1.5rem; }
+        .cell-markdown { font-size: 1.05rem; line-height: 1.6; color: #cbd5e1; }
+        .cell-markdown h1, .cell-markdown h2, .cell-markdown h3 { color: #f1f5f9; margin-top: 1rem; margin-bottom: 0.5rem; }
+        .cell-markdown code { background: rgba(0,0,0,0.3); padding: 0.2rem 0.4rem; border-radius: 4px; color: #eab308; }
+        .cell-markdown pre { background: rgba(0,0,0,0.3); padding: 1rem; border-radius: 8px; overflow-x: auto; border: 1px solid var(--glass-border); margin: 1rem 0; }
+        .cell-code { background: #23241f; border-radius: 8px; padding: 1rem; overflow-x: auto; position: relative; border: 1px solid #333; }
+        .cell-output { background: #000; color: #a3e635; padding: 1rem; border-radius: 8px; margin-top: 0.5rem; font-family: monospace; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;}
+        .prompt { position: absolute; top: 0.5rem; right: 0.5rem; color: #64748b; font-size: 0.8rem; user-select: none; }
+    </style>
+    
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --glass-bg: rgba(30, 41, 59, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --primary: #38bdf8;
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        header {
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            border-bottom: 1px solid var(--glass-border);
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .back-btn {
+            color: var(--text-main);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            background: rgba(255,255,255,0.05);
+            transition: 0.3s;
+        }
+        .back-btn:hover {
+            background: rgba(56, 189, 248, 0.2);
+            color: var(--primary);
+        }
+        .file-title {
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+        main {
+            flex: 1;
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        .container {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="../index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Voltar</a>
+        <div class="file-title">04_operadores.ipynb</div>
+    </header>
+    <main>
+        <div class="container">
+            <div class="cell cell-markdown" id="md-0"></div>
+            <script>
+                (function(){
+                    const b64 = "IyBgT3BlcmFkb3Jlc2AKLS0tCgpOYSBwcm9ncmFtYcOnw6NvLCBjcmlhciBzb2Z0d2FyZXMgaW50ZWxpZ2VudGVzIHNpZ25pZmljYSBlbnNpbsOhLWxvcyBhIHRvbWFyIGRlY2lzw7Vlcy4gUGFyYSBpc3NvLCBvIGPDs2RpZ28gcHJlY2lzYSBhdmFsaWFyIHNpdHVhw6fDtWVzIGUgZXNjb2xoZXIgcXVhbCBjYW1pbmhvIHNlZ3Vpci4KCkRpZmVyZW50ZSBkZSBuw7NzLCBxdWUgdGVtb3MgZMO6dmlkYXMsIG8gY29tcHV0YWRvciB0cmFiYWxoYSBjb20gbMOzZ2ljYSBhYnNvbHV0YS4gRWxlIGNvbXBhcmEgaW5mb3JtYcOnw7VlcyBlIG8gcmVzdWx0YWRvIMOpIHNlbXByZSBiaW7DoXJpbzogVmVyZGFkZWlybyAoVHJ1ZSkgb3UgRmFsc28gKEZhbHNlKS4KCsOJIGFxdWkgcXVlIGVudHJhbSBvcyBPcGVyYWRvcmVzLiBFbGVzIHPDo28gYXMgZmVycmFtZW50YXMgcXVlIG5vcyBwZXJtaXRlbSBmYXplciBlc3NhcyBjb21wYXJhw6fDtWVzLiBBc3NpbSBjb21vIHVzYW1vcyArIG91IC0gbmEgbWF0ZW3DoXRpY2EgcGFyYSBjYWxjdWxhciwgdXNhbW9zIG9wZXJhZG9yZXMgbmEgcHJvZ3JhbWHDp8OjbyBwYXJhIHZlcmlmaWNhciBpZ3VhbGRhZGVzLCBkaWZlcmVuw6dhcyBvdSBjb21iaW5hciBjb25kacOnw7VlcyBsw7NnaWNhcwoKVmFtb3MgZXhwbG9yYXIgYWxndW5zIGRvcyBvcGVyYWRvcmVzIG1haXMgY29tdW5zIGVtIFB5dGhvbjo=";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-0').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python"># O primeiro operador que vimos até agora foi o operador de atribuição (=). Ele é usado para atribuir valores a variáveis. Por exemplo:
+x = 10
+
+# Veremos mais a frente o uso combinado do operador de atribuição com outros operadores, como +=, -=, *=, etc.</code></pre>
+            </div>
+            
+            <div class="cell cell-markdown" id="md-2"></div>
+            <script>
+                (function(){
+                    const b64 = "IyMgYE9wZXJhZG9yZXMgQXJpdG3DqXRpY29zYAotLS0KCk9zIG9wZXJhZG9yZXMgYXJpdG3DqXRpY29zIHPDo28gZXNzZW5jaWFpcyBwYXJhIHJlYWxpemFyIG9wZXJhw6fDtWVzIG1hdGVtw6F0aWNhcyBlbSBQeXRob24uIEVsZXMgbm9zIHBlcm1pdGVtIHJlYWxpemFyIGPDoWxjdWxvcyBzaW1wbGVzIG91IGNvbXBsZXhvcywgZGVzZGUgYWRpw6fDo28gYXTDqSBvcGVyYcOnw7VlcyBkZSBwb3RlbmNpYcOnw6NvIGUgZGl2aXPDo28uCgpWYW1vcyBleHBsb3JhciBvcyBwcmluY2lwYWlzIG9wZXJhZG9yZXMgYXJpdG3DqXRpY29zIGVtIFB5dGhvbjoKCi0gYCtgIChBZGnDp8Ojbyk6IEVzdGUgb3BlcmFkb3IgYWRpY2lvbmEgZG9pcyB2YWxvcmVzLgotIGAtYCAoU3VidHJhw6fDo28pOiBTdWJ0cmFpIHVtIHZhbG9yIGRlIG91dHJvLgotIGAqYCAoTXVsdGlwbGljYcOnw6NvKTogTXVsdGlwbGljYSBkb2lzIHZhbG9yZXMuCi0gYCoqYCAoUG90ZW5jaWHDp8Ojbyk6IEVsZXZhIHVtIHZhbG9yIMOgIHBvdMOqbmNpYSBkZSBvdXRyby4KLSBgL2AgKERpdmlzw6NvKTogRGl2aWRlIHVtIHZhbG9yIHBvciBvdXRyby4KLSBgLy9gIChEaXZpc8OjbyBpbnRlaXJhKTogRGl2aWRlIHVtIHZhbG9yIHBvciBvdXRybywgYXJyZWRvbmRhbmRvIG8gcmVzdWx0YWRvIHBhcmEgYmFpeG8gcGFyYSBvIG7Dum1lcm8gaW50ZWlybyBtYWlzIHByw7N4aW1vLgotIGAlYCAoTcOzZHVsbyk6IENhbGN1bGEgbyByZXN0byBkYSBkaXZpc8OjbyBkZSB1bSB2YWxvciBwb3Igb3V0cm8uCgpFc3NlcyBvcGVyYWRvcmVzIHPDo28gZnVuZGFtZW50YWlzIHBhcmEgcmVhbGl6YXIgdW1hIHZhcmllZGFkZSBkZSBjw6FsY3Vsb3MgZW0gUHl0aG9uLiBWYW1vcyB2ZXIgY29tbyBlbGVzIGZ1bmNpb25hbSBlbSBhbGd1bnMgZXhlbXBsb3Mgc2ltcGxlcy4KCk7Do28gaXJlbW9zIGZvY2FyIG5hIGV4cGxpY2HDp8OjbyBtYXRlbcOhdGljYSwgdGVuZG8gZW0gdmlzdGEgcXVlIHN1YXMgZnVuw6fDtWVzIHPDo28gYXMgbWVzbWFzLiBBcGVuYXMgdmVyZW1vcyBvcyBhc3BlY3RvcyBwZXJ0aW5lbnRlcyBhbyBjb250ZXh0byBkZSBzZXUgdXNvIG5hIHByb2dyYW1hw6fDo28u";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-2').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-markdown" id="md-3"></div>
+            <script>
+                (function(){
+                    const b64 = "IyMjICoqYCoqYCBFeHBvbmVuY2lhw6fDo28qKgotLS0KCkEgb3BlcmHDp8OjbyBkZSBleHBvbmVuY2lhw6fDo28gZW0gUHl0aG9uIMOpIHJlcHJlc2VudGFkYSBwZWxvIG9wZXJhZG9yIGAqKmAuIEVsYSBjYWxjdWxhIG8gdmFsb3IgZGUgdW0gbsO6bWVybyBlbGV2YWRvIMOgIHBvdMOqbmNpYSBkZSBvdXRyby4KCk9zIGV4ZW1wbG9zIG1vc3RyYW0gdW1hIGNhcmFjdGVyw61zdGljYSBpbXBvcnRhbnRlIGRvcyBvcGVyYWRvcmVzIG51bcOpcmljb3MgZW0gUHl0aG9uOg==";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-3').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python"># Quando ambos os argumentos são inteiros, o resultado também é um número inteiro.
+
+# Por exemplo:
+print(2 ** 3, type(2 ** 3))  # É inteiro porque ambos são inteiros
+
+# Quando pelo menos um dos argumentos é um float, o resultado será um float.
+
+# Por exemplo:
+
+print(2 ** 3., type(2 ** 3.))  # É float porque 3. é float
+print(2. ** 3, type(2. ** 3))  # É float porque 2. é float
+print(2. ** 3., type(2. ** 3.)) # É float porque ambos são float</code></pre>
+            </div>
+            <div class="cell-output">8 &lt;class &#x27;int&#x27;&gt;
+8.0 &lt;class &#x27;float&#x27;&gt;
+8.0 &lt;class &#x27;float&#x27;&gt;
+8.0 &lt;class &#x27;float&#x27;&gt;
+</div>
+            <div class="cell cell-markdown" id="md-5"></div>
+            <script>
+                (function(){
+                    const b64 = "IyMjICoqYCpgIE11bHRpcGxpY2HDp8OjbyoqCi0tLQoKTyBvcGVyYWRvciBkZSBtdWx0aXBsaWNhw6fDo28gZW0gUHl0aG9uIMOpIHJlcHJlc2VudGFkbyBwZWxvIHPDrW1ib2xvICogKGFzdGVyaXNjbykuIEVsZSDDqSB1c2FkbyBwYXJhIG11bHRpcGxpY2FyIGRvaXMgdmFsb3Jlcy4KCsOJIGltcG9ydGFudGUgb2JzZXJ2YXIgcXVlIGVzc2Ugb3BlcmFkb3IgdGFtYsOpbSBwb2RlIHNlciB1c2FkbyBjb20gc3RyaW5ncy4gUXVhbmRvIGFwbGljYWRvIGEgdW1hIHN0cmluZywgbyBvcGVyYWRvciAqIHJlcGV0ZSBhIHN0cmluZyB1bSBkZXRlcm1pbmFkbyBuw7ptZXJvIGRlIHZlemVzLg==";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-5').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [2]</div>
+                <pre><code class="language-python"># Operador * (multiplicação) com números e strings
+
+# Multiplicação de números - Age como uma operação de multiplicação normal
+resultado = 5 * 3
+print(resultado, type(resultado))  # Saída: 15
+
+# A multiplicação segue a mesma lógica para floats
+resultado = 5. * 3 # O resultado é float porque 5. é float
+resultado = 5 * 3. # O resultado é float porque 3. é float
+resultado = 5. * 3. # O resultado é float porque ambos são float
+print(resultado, type(resultado))  # Saída: 15.0 </code></pre>
+            </div>
+            <div class="cell-output">15 &lt;class &#x27;int&#x27;&gt;
+15.0 &lt;class &#x27;float&#x27;&gt;
+</div>
+            <div class="cell cell-code">
+                <div class="prompt">In [4]</div>
+                <pre><code class="language-python"># Multiplicação de strings - Cria múltiplas cópias da string unidas em uma só
+
+texto = &quot;Python&quot;
+resultado = texto * 3
+print(resultado)  # Saída: PythonPythonPython
+
+# Mesmo que a string contenha números, o resultado é uma string
+texto = &quot;123&quot;
+resultado = texto * 3
+print(resultado)  # Saída: 123123123</code></pre>
+            </div>
+            <div class="cell-output">PythonPythonPython
+123123123
+</div>
+            <div class="cell cell-markdown" id="md-8"></div>
+            <script>
+                (function(){
+                    const b64 = "IyMjICoqYC9gIERpdmlzw6NvKioKLS0tCgpPIG9wZXJhZG9yIGRlIGRpdmlzw6NvIGVtIFB5dGhvbiDDqSByZXByZXNlbnRhZG8gcGVsbyBzw61tYm9sbyAvIChiYXJyYSkuIEVsZSDDqSB1c2FkbyBwYXJhIGRpdmlkaXIgdW0gdmFsb3IgcGVsbyBvdXRyby4KCk8gdmFsb3Igw6AgZXNxdWVyZGEgZGEgYmFycmEgw6kgbyBkaXZpZGVuZG8sIGVucXVhbnRvIG8gdmFsb3Igw6AgZGlyZWl0YSDDqSBvIGRpdmlzb3Iu";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-8').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [24]</div>
+                <pre><code class="language-python"># É importante observar que, mesmo se a divisão envolver apenas números inteiros, o resultado será um float.
+
+# Divisão de números inteiros
+resultado = 10 / 2
+print(resultado, type(resultado))  # Saída: 5.0
+
+# Divisão de números float
+resultado = 10.0 / 2
+print(resultado, type(resultado))  # Saída: 5.0
+resultado = 10 / 2.0
+print(resultado, type(resultado))  # Saída: 5.0</code></pre>
+            </div>
+            <div class="cell-output">5.0 &lt;class &#x27;float&#x27;&gt;
+5.0 &lt;class &#x27;float&#x27;&gt;
+5.0 &lt;class &#x27;float&#x27;&gt;
+</div>
+            <div class="cell cell-markdown" id="md-10"></div>
+            <script>
+                (function(){
+                    const b64 = "TmEgbWF0ZW3DoXRpY2EsIHF1YW5kbyByZWFsaXphbW9zIHVtYSBkaXZpc8OjbyBuw6NvIGV4YXRhLCBwb2RlbW9zIHNlZ3VpciBkb2lzIGNhbWluaG9zOiBvYnRlciBvIHF1b2NpZW50ZSBpbnRlaXJvIChwYXJ0ZSBpbnRlaXJhIGRhIGRpdmlzw6NvKSBlIG8gcmVzdG8sIG91IG9idGVyIHVtIHJlc3VsdGFkbyBkZWNpbWFsIChmbG9hdCkgcXVlIHJlcHJlc2VudGEgYSBkaXZpc8OjbyBjb21wbGV0YS4KCk8gcmVzdWx0YWRvIHByb2R1emlkbyBwZWxvIG9wZXJhZG9yIGRlIGRpdmlzw6NvICgvKSDDqSBzZW1wcmUgdW0gZmxvYXQsIGluZGVwZW5kZW50ZW1lbnRlIGRlIHBhcmVjZXIgb3UgbsOjbyBzZXIgdW0gZmx1dHVhbnRlIMOgIHByaW1laXJhIHZpc3RhLiBJc3NvIMOpIHVtIHByb2JsZW1hPyBTaW0uClRhbHZleiB2b2PDqiByZWFsbWVudGUgcHJlY2lzZSBkZSB1bWEgZGl2aXPDo28gcXVlIGZvcm5lw6dhIHVtIHZhbG9yIGludGVpcm8gKG5vIHNlbnRpZG8gZGUgdGlwbyBkZSBkYWRvKSwgbsOjbyB1bSB2YWxvciBmbHV0dWFudGUuCgpGZWxpem1lbnRlLCBvIFB5dGhvbiBwb2RlIGFqdWTDoS1sbyBjb20gaXNzby4gVGVtb3Mgb3BlcmFkb3JlcyBlc3BlY8OtZmljb3MgcGFyYSBjYWRhIHVtIGRlc3NlcyBjYXNvczogbyBvcGVyYWRvciBkZSBkaXZpc8OjbyBpbnRlaXJhICgvLykgZSBvIG9wZXJhZG9yIGRlIG3Ds2R1bG8gKCUpLg==";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-10').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-markdown" id="md-11"></div>
+            <script>
+                (function(){
+                    const b64 = "IyMjICoqYC8vYCBEaXZpc8OjbyBkZSBuw7ptZXJvIGludGVpcm8gKGRpdmlzw6NvIGFycmVkb25kYWRhKSoqCi0tLQpPIG9wZXJhZG9yIGRlIGRpdmlzw6NvIGludGVpcmEgZW0gUHl0aG9uIMOpIHJlcHJlc2VudGFkbyBwZWxvIHPDrW1ib2xvIGAvL2AgKGJhcnJhIGR1cGxhKS4gRWxlIMOpIHVzYWRvIHF1YW5kbyBzZSBkZXNlamEgb2J0ZXIgbyBxdW9jaWVudGUgaW50ZWlybyBkZSB1bWEgZGl2aXPDo28sIGRlc2NhcnRhbmRvIHF1YWxxdWVyIHBhcnRlIGZyYWNpb27DoXJpYSwgbWVzbW8gcXVlIHNlamEgemVyby4KCkVzdGUgb3BlcmFkb3IgZGlmZXJlIGRvIG9wZXJhZG9yIGRlIGRpdmlzw6NvIHBhZHLDo28gYC9gIGVtIGRvaXMgYXNwZWN0b3MgcHJpbmNpcGFpczoKClNldSByZXN1bHRhZG8gw6kgc2VtcHJlIHVtIG7Dum1lcm8gaW50ZWlybyBvdSB1bSBmbG9hdCBjb20gYSBwYXJ0ZSBkZWNpbWFsIHRydW5jYWRhLCBnYXJhbnRpbmRvIHF1ZSBuw6NvIGhhamEgcGFydGUgZnJhY2lvbsOhcmlhIG5vIHJlc3VsdGFkby4KRWxlIHNlZ3VlIGEgcmVncmEgZGUgZGl2aXPDo28gZGUgbsO6bWVybyBpbnRlaXJvIHZzLiBmbG9hdC4=";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-11').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [5]</div>
+                <pre><code class="language-python"># Divisão inteira de números inteiros - o resultado é um número inteiro
+resultado = 10 // 2
+print(resultado, type(resultado))  # Saída: 5
+
+# Lembre-se qua a divisão tradicional, mesmo entre inteiros, sempre resulta em um float.
+resultado = 10 / 2
+print(resultado, type(resultado))  # Saída: 5.0</code></pre>
+            </div>
+            <div class="cell-output">5 &lt;class &#x27;int&#x27;&gt;
+5.0 &lt;class &#x27;float&#x27;&gt;
+</div>
+            <div class="cell cell-code">
+                <div class="prompt">In [8]</div>
+                <pre><code class="language-python"># Observe as duas próximas divisões. A primeira é uma divisão tradicional de dois números float, e a segunda é uma divisão inteira de dois números float
+
+# Divisão tradicional de um número float
+resultado = 10.0 / 3
+print(resultado, type(resultado))  # Saída: 3.3333333333333335
+
+# Divisão inteira de números float
+resultado = 10.0 // 3.
+print(resultado, type(resultado))  # Saída: 3.0
+
+# A saída da divisão inteira é um número float, mesmo que o resultado seja um número inteiro (no sentido matemático de não ter parte decimal).
+# Isso ocorre porque o operador // sempre retorna um float quando pelo menos um dos operandos é um float e arrendonda para baixo para o inteiro mais próximo.</code></pre>
+            </div>
+            <div class="cell-output">3.3333333333333335 &lt;class &#x27;float&#x27;&gt;
+3.0 &lt;class &#x27;float&#x27;&gt;
+</div>
+            <div class="cell cell-markdown" id="md-14"></div>
+            <script>
+                (function(){
+                    const b64 = "T2JzZXJ2ZSBvIHRyZWNobyBhIHNlZ3VpcjoKClZlamFtb3MgYSB1dGlsaXphw6fDo28gZGUgYC9gIGUgZGUgYC8vYCAtIHZvY8OqIHBvZGVyaWEgcHJldmVyIG9zIHJlc3VsdGFkb3M/";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-14').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [10]</div>
+                <pre><code class="language-python"># Faremos os dois tipos de divisão com os mesmos valores, mudando apenas os tipos dos números.
+print(6 / 4)  # 1.5 - divisão normal de inteiros
+print(6. / 4)  # 1.5 - divisão normal de float com inteiro
+print(6. / 4.) # 1.5 - divisão normal de floats
+# O resultado: 4 * 1.5 = 6.0</code></pre>
+            </div>
+            <div class="cell-output">1.5
+1.5
+1.5
+</div>
+            <div class="cell cell-code">
+                <div class="prompt">In [9]</div>
+                <pre><code class="language-python"># Agora vejamos a divisão inteira
+print(6 // 4)  # 1 - divisão inteira de inteiros
+print(6. // 4)  # 1.0 - divisão inteira de float com inteiro
+print(6 // 4.)  # 1.0 - divisão inteira de inteiro com float
+# O resultado: 4 * 1 = 4
+
+# O resultado foi arredondado para baixo (truncate) para o número inteiro mais próximo.</code></pre>
+            </div>
+            <div class="cell-output">1
+1.0
+1.0
+</div>
+            <div class="cell cell-markdown" id="md-17"></div>
+            <script>
+                (function(){
+                    const b64 = "TyByZXN1bHRhZG8gZGEgZGl2aXPDo28gZG8gbsO6bWVybyBpbnRlaXJvIMOpIHNlbXByZSBhcnJlZG9uZGFkbyBwYXJhIG8gdmFsb3IgaW50ZWlybyBtYWlzIHByw7N4aW1vIHF1ZSDDqSBtZW5vciBxdWUgbyByZXN1bHRhZG8gcmVhbCAobsOjbyBhcnJlZG9uZGFkbykuCgpJc3NvIMOpIG11aXRvIGltcG9ydGFudGU6CgpgbyBhcnJlZG9uZGFtZW50byBzZW1wcmUgdmFpIHBhcmEgbyBuw7ptZXJvIGludGVpcm8gbWVub3JgCgpPYnNlcnZlIG8gY8OzZGlnbyBhYmFpeG8gZSB0ZW50ZSBwcmV2ZXIgb3MgcmVzdWx0YWRvcyBtYWlzIHVtYSB2ZXo6";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-17').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [11]</div>
+                <pre><code class="language-python"># O resultado real (não arredondado) é -1,5 em ambos os casos. 
+
+# No entanto, os resultados são sujeitos a arredondamento. O arredondamento vai em direção ao valor inteiro menor, e o valor inteiro menor é -2, portanto: -2 e -2.0.
+print(-6 // 4)  # -2
+print(6. // -4)  # -2.0
+# Pois 4 * -2 = -8 - 6 = -2
+
+# Note a diferença em relação à divisão tradicional
+print(-6 / 4)  # -1.5
+print(6 / -4)  # -1.5
+# Pois 4 * -1.5 = -6 + 6 = 0</code></pre>
+            </div>
+            <div class="cell-output">-2
+-2.0
+-1.5
+-1.5
+</div>
+            <div class="cell cell-markdown" id="md-19"></div>
+            <script>
+                (function(){
+                    const b64 = "IyMjICoqYCVgIFJlc3RhbnRlIChtw7NkdWxvKSoqCi0tLSAKClN1YSByZXByZXNlbnRhw6fDo28gZ3LDoWZpY2EgZW0gUHl0aG9uIMOpIG8gc2luYWwgZGUgKioqYCUgKHBlcmNlbnR1YWwpYCoqKiwgcXVlIHBvZGUgcGFyZWNlciB1bSBwb3VjbyBjb25mdXNvLiBPIHJlc3VsdGFkbyBkbyBvcGVyYWRvciDDqSBvIHJlc3RhbnRlIGFww7NzIGEgZGl2aXPDo28gZG8gbsO6bWVybyBpbnRlaXJvLiBFbSBvdXRyYXMgcGFsYXZyYXMsIMOpIG8gdmFsb3IgcXVlIGZhbHRhIGFww7NzIGRpdmlkaXIgdW0gdmFsb3IgcG9yIG91dHJvIHBhcmEgcHJvZHV6aXIgdW0gcXVvY2llbnRlIGludGVpcm8u";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-19').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [12]</div>
+                <pre><code class="language-python"># Se dividirmos 14 por 4 normalmente o resultado seria 3,5 - pois 4 * 3,5 = 14
+# Se quisermos um resultado inteiro, a divisão inteira seria: 4 * 3 = 12 - pois 12 é o maior número inteiro que cabe em 14
+# Portanto se quisesemos saber o resto da divisão?
+
+# Como você pode ver, o resultado é 2. Isso ocorre porque 14 dividido por 4 é 3 com um restante de 2. Aqui está o que acontece passo a passo:
+
+# 14 // 4 dá 3 → este é o quociente inteiro;
+# 3 * 4 dá 12 → como resultado da multiplicação de quociente e divisor;
+# 14 - 12 dá 2 → este é o restante.
+
+# O operador % é chamado de módulo. Ele retorna o restante da divisão de dois números. Por exemplo:
+print(14 % 4)  # 2</code></pre>
+            </div>
+            <div class="cell-output">2
+</div>
+            <div class="cell cell-markdown" id="md-21"></div>
+            <script>
+                (function(){
+                    const b64 = "RXN0ZSBleGVtcGxvIMOpIHVtIHBvdWNvIG1haXMgY29tcGxpY2Fkby4KClF1YWwgw6kgbyByZXN1bHRhZG8/";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-21').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [29]</div>
+                <pre><code class="language-python">print(12 % 4.5) # O resto da divisão de 12 por 4.5 é 3.0
+print(12 // 4.5) # O quocienete é 2. [2 * 4.5 = 9] [12 - 9 = 3]
+
+# 3.0 – não 3 mas 3.0
+
+# A regra ainda funciona: 12 dividido por 4,5 dá 2,6666666666666665.
+
+# O quociente é 2.
+# O produto de 2 e 4,5 é 9.
+# O restante é 12 - 9 = 3,0
+# O resultado é um float porque um dos operandos é um float.</code></pre>
+            </div>
+            <div class="cell-output">3.0
+2.0
+</div>
+            <div class="cell cell-markdown" id="md-23"></div>
+            <script>
+                (function(){
+                    const b64 = "IyMjIGBgQ29tbyBuw6NvIGRpdmlkaXJgYAotLS0KQ29tbyB2b2PDqiBwcm92YXZlbG1lbnRlIHNhYmUsIGEgZGl2aXPDo28gcG9yIHplcm8gbsOjbyBmdW5jaW9uYS4KCk7Do28gdGVudGU6Ci0gcmVhbGl6YXIgdW1hIGRpdmlzw6NvIHBvciB6ZXJvOwotIHJlYWxpemFyIHVtYSBkaXZpc8OjbyBpbnRlaXJhIHBvciB6ZXJvOwotIGVuY29udHJhciBvIHJlc3RvIGRlIHVtYSBkaXZpc8OjbyBwb3IgemVybwo=";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-23').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [13]</div>
+                <pre><code class="language-python"># Existem situações em que uma divisão por zero pode ocorrer. Nesses casos, o Python gera uma exceção chamada ZeroDivisionError. Podemos tratar essa exceção usando um bloco try-except para evitar que o programa termine abruptamente. Veja um exemplo:
+
+try:
+    divisão = 10 / 0 # ZeroDivisionError: division by zero
+except ZeroDivisionError:
+    print(&quot;Erro de divisão por zero&quot;)</code></pre>
+            </div>
+            <div class="cell-output">Erro de divisão por zero
+</div>
+            <div class="cell cell-markdown" id="md-25"></div>
+            <script>
+                (function(){
+                    const b64 = "IyMjICoqYCtgIEFkacOnw6NvKioKLS0tCgpPIG9wZXJhZG9yIGRlIGFkacOnw6NvLCByZXByZXNlbnRhZG8gcGVsbyBzw61tYm9sbyBgK2AgKG1haXMpLCBzZWd1ZSBvcyBwYWRyw7VlcyBtYXRlbcOhdGljb3MgY29udmVuY2lvbmFpcyBxdWFuZG8gdXRpbGl6YWRvIGNvbSB2YWxvcmVzIGRvIHRpcG8gaW50IG91IGZsb2F0LgoKQWzDqW0gZGlzc28sIG8gb3BlcmFkb3IgYCtgIHRhbWLDqW0gcG9kZSBzZXIgdXRpbGl6YWRvIGNvbSBzdHJpbmdzIGNvbW8gb3BlcmFkb3IgZGUgY29uY2F0ZW5hw6fDo28sIHF1ZSB1bmUgb3MgY2FyYWN0ZXJlcy4gUG9yIGV4ZW1wbG86";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-25').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [15]</div>
+                <pre><code class="language-python"># Neste caso, a adição de 2 e 3 resulta em 5, como esperado.
+print(2 + 3)  # Saída: 5
+
+# Aqui, o operador `+` concatena os valores das variáveis `texto1` e `texto2`, juntando as strings &quot;Olá&quot; e &quot;mundo&quot; com um espaço entre elas.
+texto1 = &quot;Olá&quot;
+texto2 = &quot;mundo&quot;
+print(texto1 + &quot; &quot; + texto2)  # Saída: Olá mundo</code></pre>
+            </div>
+            <div class="cell-output">5
+Olá mundo
+</div>
+            <div class="cell cell-code">
+                <div class="prompt">In [17]</div>
+                <pre><code class="language-python"># O operador `+` não pode ser usado para adicionar um número a uma string. O código abaixo resultará em um erro:
+# print(&quot;Olá &quot; + 5)  # Erro
+# Mas podemos usar variáveis para fazer isso e usa-las em uma expressão
+
+numero = 5
+print(5 + numero)  # Saída: 10</code></pre>
+            </div>
+            <div class="cell-output">10
+</div>
+            <div class="cell cell-code">
+                <div class="prompt">In [16]</div>
+                <pre><code class="language-python"># O operador de + pode ser usado de forma unária para converter um número em um número positivo. Mas isso não é muito útil, pois sabemos que ao omitir o sinal de um número ele é positivo.
+print(+5)</code></pre>
+            </div>
+            <div class="cell-output">5
+</div>
+            <div class="cell cell-markdown" id="md-29"></div>
+            <script>
+                (function(){
+                    const b64 = "IyMjICoqYC1gIFN1YnRyYcOnw6NvKioKLS0tCk8gb3BlcmFkb3IgZGUgc3VidHJhw6fDo28sIHJlcHJlc2VudGFkbyBwZWxvIHNpbmFsIGAtYCAobWVub3MpLCDDqSB1dGlsaXphZG8gcGFyYSBzdWJ0cmFpciB1bSB2YWxvciBkZSBvdXRyby4gTm8gZW50YW50bywgdmFsZSByZXNzYWx0YXIgcXVlIGVzc2Ugb3BlcmFkb3IgdGFtYsOpbSBwb2RlIHNlciBlbXByZWdhZG8gcGFyYSBhbHRlcmFyIG8gc2luYWwgZGUgdW0gbsO6bWVybywgbyBxdWUgbyB0b3JuYSB1bSBvcGVyYWRvciB1bsOhcmlvIGVtIHZleiBkZSBiaW7DoXJpby4KCkVtIG9wZXJhw6fDtWVzIGRlIHN1YnRyYcOnw6NvLCBvIG9wZXJhZG9yIGAtYCBlc3BlcmEgZG9pcyBhcmd1bWVudG9zOiBvIG1pbnVlbmRvIChvIHZhbG9yIGRhIGVzcXVlcmRhKSBlIG8gc3VidHJhZW5kbyAobyB2YWxvciBkYSBkaXJlaXRhKS4KClBvciBleGVtcGxvOgoKYGBgcHl0aG9uCnJlc3VsdGFkbyA9IDEwIC0gNQpwcmludChyZXN1bHRhZG8pICAjIFNhw61kYTogNQpgYGAKCk5lc3RlIGNhc28sIDEwIMOpIG8gbWludWVuZG8gZSA1IMOpIG8gc3VidHJhZW5kbywgZSBvIHJlc3VsdGFkbyBkYSBvcGVyYcOnw6NvIMOpIDUuCgpBbMOpbSBkaXNzbywgbyBvcGVyYWRvciBgLWAgcG9kZSBzZXIgdXRpbGl6YWRvIGRlIGZvcm1hIHVuw6FyaWEgcGFyYSBhbHRlcmFyIG8gc2luYWwgZGUgdW0gbsO6bWVyby4gUG9yIGV4ZW1wbG86CgpgYGBweXRob24KbnVtZXJvID0gNQpyZXN1bHRhZG9fbmVnYXRpdm8gPSAtbnVtZXJvCnByaW50KHJlc3VsdGFkb19uZWdhdGl2bykgICMgU2HDrWRhOiAtNQpgYGAKCk5lc3RlIGV4ZW1wbG8sIG8gb3BlcmFkb3IgYC1gIMOpIGFwbGljYWRvIGFvIG7Dum1lcm8gNSwgcmVzdWx0YW5kbyBlbSAtNSwgbyBxdWUgaW5kaWNhIHVtIHZhbG9yIG5lZ2F0aXZvLgoKUG9ydGFudG8sIG8gb3BlcmFkb3IgZGUgc3VidHJhw6fDo28gcG9kZSBmdW5jaW9uYXIgdGFudG8gY29tbyB1bSBvcGVyYWRvciBiaW7DoXJpbywgc3VidHJhaW5kbyB1bSB2YWxvciBkZSBvdXRybywgcXVhbnRvIGNvbW8gdW0gb3BlcmFkb3IgdW7DoXJpbywgYWx0ZXJhbmRvIG8gc2luYWwgZGUgdW0gbsO6bWVyby4=";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-29').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [32]</div>
+                <pre><code class="language-python">print(-4 - 4)   # -8 - operador binário: subtração
+print(4. - 8)  # -4.0 - operador binário: subtração
+print(-1.1)   # -1.1 - operador unário: altera o sinal do operando</code></pre>
+            </div>
+            <div class="cell-output">-8
+-4.0
+-1.1
+</div>
+            <div class="cell cell-code">
+                <div class="prompt">In [33]</div>
+                <pre><code class="language-python"># Os operadores aritiméticos podem ser combinados com o operador de atribuição para modificar o valor de uma variável. Por exemplo:
+
+numero = 9
+numero += 1  # Equivalente a numero = numero + 1
+print(numero)  # Saída: 10
+
+# Isso é chamado de operação de incremento. O mesmo pode ser feito com os outros operadores aritméticos: -=, *=, /=, //=, %=, **=.
+
+# Exemplos:
+numero = 9
+numero -= 1  # Equivalente a numero = numero - 1
+print(numero)  # Saída: 8
+
+numero = 9
+numero *= 2  # Equivalente a numero = numero * 2
+print(numero)  # Saída: 18
+
+numero = 9
+numero /= 2  # Equivalente a numero = numero / 2
+print(numero)  # Saída: 4.5
+
+numero = 9
+numero //= 2  # Equivalente a numero = numero // 2
+print(numero)  # Saída: 4
+
+numero = 9
+numero %= 2  # Equivalente a numero = numero % 2
+print(numero)  # Saída: 1
+
+numero = 9
+numero **= 2  # Equivalente a numero = numero ** 2
+print(numero)  # Saída: 81</code></pre>
+            </div>
+            <div class="cell-output">10
+8
+18
+4.5
+4
+1
+81
+</div>
+            <div class="cell cell-markdown" id="md-32"></div>
+            <script>
+                (function(){
+                    const b64 = "IyMjIGBPcmRlbSBkZSBwcmVjZWTDqm5jaWFgCi0tLQoKTyBQeXRob24gc2VndWUgdW1hIGhpZXJhcnF1aWEgZGUgcHJpb3JpZGFkZXMgcGFyYSBkZXRlcm1pbmFyIGEgb3JkZW0gZGUgZXhlY3XDp8OjbyBkYXMgb3BlcmHDp8O1ZXMgcXVhbmRvIGjDoSBtYWlzIGRlIHVtIG9wZXJhZG9yIG5hIG1lc21hIGV4cHJlc3PDo28uIEVzc2EgaGllcmFycXVpYSBnYXJhbnRlIHF1ZSBvcyBvcGVyYWRvcmVzIGRlIG1haW9yIHByaW9yaWRhZGUgc2VqYW0gZXhlY3V0YWRvcyBwcmltZWlybywgc2VndWlkb3MgcGVsb3MgZGUgbWVub3IgcHJpb3JpZGFkZS4KCkFxdWkgZXN0w6EgYSBoaWVyYXJxdWlhIGRlIHByaW9yaWRhZGVzIGRvcyBvcGVyYWRvcmVzIGVtIFB5dGhvbiwgZGEgbWFpcyBhbHRhIHBhcmEgYSBtYWlzIGJhaXhhOgoKLSBPcGVyYWRvcmVzIHVuw6FyaW9zOiBgK2AgKHBvc2l0aXZvKSBlIGAtYCAobmVnYXRpdm8pCi0gT3BlcmFkb3JlcyBkZSBtdWx0aXBsaWNhw6fDo28sIGRpdmlzw6NvIGUgcmVzdG8gZGEgZGl2aXPDo286IGAqYCwgYC9gLCBgLy9gIGUgYCVgCi0gT3BlcmFkb3JlcyBkZSBhZGnDp8OjbyBlIHN1YnRyYcOnw6NvOiBgK2AgZSBgLWAKClZhbGUgcmVzc2FsdGFyIHF1ZSBvIHVzbyBkZSBwYXLDqm50ZXNlcyBwb2RlIHNlciB1dGlsaXphZG8gcGFyYSBhbHRlcmFyIGEgb3JkZW0gZGUgZXhlY3XDp8OjbyBkYXMgb3BlcmHDp8O1ZXMu";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-32').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-markdown" id="md-33"></div>
+            <script>
+                (function(){
+                    const b64 = "IyMjIGBPcGVyYWRvcmVzIGUgc3VhcyBsaWdhw6fDtWVzYAotLS0KQSBsaWdhw6fDo28gZG9zIG9wZXJhZG9yZXMgZW0gdW1hIGV4cHJlc3PDo28gZGV0ZXJtaW5hIGEgb3JkZW0gZW0gcXVlIGFzIGNvbXB1dGHDp8O1ZXMgc8OjbyByZWFsaXphZGFzIHF1YW5kbyBow6Egb3BlcmFkb3JlcyBjb20gaWd1YWwgcHJpb3JpZGFkZSBjb2xvY2Fkb3MgbGFkbyBhIGxhZG8uIE5hIG1haW9yaWEgZG9zIGNhc29zLCBvcyBvcGVyYWRvcmVzIGVtIFB5dGhvbiB0w6ptIGxpZ2HDp8OjbyBkbyBsYWRvIGVzcXVlcmRvLCBvIHF1ZSBzaWduaWZpY2EgcXVlIGEgZXhwcmVzc8OjbyDDqSBhdmFsaWFkYSBkYSBlc3F1ZXJkYSBwYXJhIGEgZGlyZWl0YS4KClBvciBleGVtcGxvLCBjb25zaWRlcmUgYSBleHByZXNzw6NvIGA5ICUgNiAlIDJgLiBIw6EgZHVhcyBtYW5laXJhcyBwb3Nzw612ZWlzIGRlIGF2YWxpYXIgZXNzYSBleHByZXNzw6NvOgoKMS4gRGEgZXNxdWVyZGEgcGFyYSBhIGRpcmVpdGE6IHByaW1laXJvLCBgOSAlIDZgIGTDoSBgM2AsIGUgZW50w6NvIGAzICUgMmAgZMOhIGAxYC4KMi4gRGEgZGlyZWl0YSBwYXJhIGEgZXNxdWVyZGE6IHByaW1laXJvLCBgNiAlIDJgIGTDoSBgMGAgZSBkZXBvaXMgYDkgJSAwYCBjYXVzYXJpYSB1bSBlcnJvIGZhdGFsLgoKTyByZXN1bHRhZG8gY29ycmV0byDDqSBgMWAsIGluZGljYW5kbyBxdWUgbyBvcGVyYWRvciBkZSBtw7NkdWxvIChgJWApIHBvc3N1aSBsaWdhw6fDo28gZG8gbGFkbyBlc3F1ZXJkby4KCkVudHJldGFudG8sIGjDoSB1bWEgZXhjZcOnw6NvIGludGVyZXNzYW50ZSBxdWFuZG8gc2UgdHJhdGEgZG8gb3BlcmFkb3IgZGUgZXhwb25lbmNpYcOnw6NvIChgKipgKS4gRXN0ZSBvcGVyYWRvciBwb3NzdWkgbGlnYcOnw6NvIGRvIGxhZG8gZGlyZWl0by4gUG9yIGV4ZW1wbG8sIG5hIGV4cHJlc3PDo28gYDIgKiogMiAqKiAzYCwgZXhpc3RlbSBkb2lzIHJlc3VsdGFkb3MgcG9zc8OtdmVpczoKCjEuIGAyICoqIDJgIHJlc3VsdGEgZW0gYDRgLCBlIGVudMOjbyBgNCAqKiAzYCByZXN1bHRhIGVtIGA2NGAuCjIuIGAyICoqIDNgIHJlc3VsdGEgZW0gYDhgLCBlIGVudMOjbyBgMiAqKiA4YCByZXN1bHRhIGVtIGAyNTZgLgoKTyByZXN1bHRhZG8gZXNwZXJhZG8gw6kgYDI1NmAsIGluZGljYW5kbyBxdWUgbyBvcGVyYWRvciBkZSBleHBvbmVuY2lhw6fDo28gdXNhIGEgYXNzb2NpYcOnw6NvIGRvIGxhZG8gZGlyZWl0by4KCk9ic2VydmHDp8Ojbzogb3BlcmFkb3JlcyB1bsOhcmlvcyBsb2NhbGl6YWRvcyBhbyBsYWRvIGRpcmVpdG8gZG8gb3BlcmFkb3IgZGUgcG90w6puY2lhIHNlIHZpbmN1bGFtIG1haXMgZm9ydGVtZW50ZS4gUG9yIGV4ZW1wbG8sIGAtMyAqKiAyYCByZXN1bHRhIGVtIGAtOWAsIHBvaXMgbyBvcGVyYWRvciB1bsOhcmlvIGAtYCDDqSBhcGxpY2FkbyBkZXBvaXMgZG8gb3BlcmFkb3IgZGUgcG90w6puY2lhLiBQb3Igb3V0cm8gbGFkbywgYCgtMykgKiogMmAgcmVzdWx0YSBlbSBgOWAsIHBvaXMgbyBvcGVyYWRvciB1bsOhcmlvIGAtYCDDqSBhcGxpY2FkbyBhbnRlcyBkbyBvcGVyYWRvciBkZSBwb3TDqm5jaWEsIGRldmlkbyBhbyB1c28gZG9zIHBhcsOqbnRlc2VzIHBhcmEgYWx0ZXJhciBhIHByaW9yaWRhZGUu";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-33').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [34]</div>
+                <pre><code class="language-python"># Para ser mais preciso:
+
+# -3 ** 2 é intermpretado como -(3 ** 2) = -9
+# Isto é o mesmo que 3 ** 2 = 9, Assim, a operação entre os parenteses é realizada primeiro e então o sinal negativo é aplicado ao resultado.
+
+# (-3) ** 2 é interpretado como (-3) * (-3) = 9
+# Neste caso, o sinal negativo é aplicado ao 3 antes de ele ser elevado ao quadrado. Na multiplicação, dois números negativos resultam em um número positivo.
+
+# (-3) ** 3 é o mesmo que  ((-3) * (-3)) * (-3) = -27
+#                                9       * (-3) = -27
+
+# Nesse caso temos um positivo e um negativo. Na multiplicação de um positivo por um negativo o resultado é um negativo
+
+# Seguimos a regra matemática:
+# Sinais iguais resultam em um número positivo, sinais diferentes resultam em um número negativo.</code></pre>
+            </div>
+            
+            <div class="cell cell-markdown" id="md-35"></div>
+            <script>
+                (function(){
+                    const b64 = "IyMjIGBPcGVyYWRvciBkZSBwYXLDqm50ZXNlc2AKLS0tCk9zIHBhcsOqbnRlc2VzIGVtIHVtYSBleHByZXNzw6NvIG1hdGVtw6F0aWNhIGVtIFB5dGhvbiwgYXNzaW0gY29tbyBlbSBtdWl0YXMgb3V0cmFzIGxpbmd1YWdlbnMgZGUgcHJvZ3JhbWHDp8OjbywgdMOqbSB1bSBwYXBlbCBmdW5kYW1lbnRhbCBuYSBkZXRlcm1pbmHDp8OjbyBkYSBvcmRlbSBkZSBhdmFsaWHDp8OjbyBkYXMgb3BlcmHDp8O1ZXMuIEVsZXMgc8OjbyB1c2Fkb3MgcGFyYSBhZ3J1cGFyIHBhcnRlcyBkYSBleHByZXNzw6NvIGUgaW5kaWNhciBhbyBpbnRlcnByZXRhZG9yIFB5dGhvbiBhIG9yZGVtIGVtIHF1ZSBhcyBvcGVyYcOnw7VlcyBkZXZlbSBzZXIgcmVhbGl6YWRhcy4KClBvciBleGVtcGxvLCBuYSBleHByZXNzw6NvOgoKYGBgcHl0aG9uCnByaW50KCg1ICogKCgyNSAlIDEzKSArIDEwMCkgLyAoMiAqIDEzKSkgLy8gMikKYGBgCgpPcyBwYXLDqm50ZXNlcyBzw6NvIHVzYWRvcyBwYXJhIGRlZmluaXIgY2xhcmFtZW50ZSBhIG9yZGVtIGRhcyBvcGVyYcOnw7Vlcy4gU2VtIGVsZXMsIGEgZXhwcmVzc8OjbyBzZXJpYSBhdmFsaWFkYSBkZSBtYW5laXJhIGRpZmVyZW50ZSwgc2VndWluZG8gYXMgcmVncmFzIHBhZHLDo28gZGUgcHJlY2Vkw6puY2lhIGRlIG9wZXJhZG9yZXMuCgpPcyBwYXLDqm50ZXNlcyBtYWlzIGV4dGVybm9zIGAoIC4uLiApYCBzw6NvIHV0aWxpemFkb3MgcGFyYSBlbnZvbHZlciB0b2RhIGEgZXhwcmVzc8OjbywgaW5kaWNhbmRvIHF1ZSBvIHJlc3VsdGFkbyBmaW5hbCBkZXZlIHNlciBzdWJtZXRpZG8gw6Agb3BlcmHDp8OjbyBkZSBkaXZpc8OjbyBkZSBpbnRlaXJvcyBgLy8gMmAuCgpPcyBwYXLDqm50ZXNlcyBpbnRlcm5vcyBgKDI1ICUgMTMpYCBzw6NvIHVzYWRvcyBwYXJhIGNhbGN1bGFyIG8gcmVzdG8gZGEgZGl2aXPDo28gZGUgYDI1YCBwb3IgYDEzYC4gSXNzbyBnYXJhbnRlIHF1ZSBlc3NhIG9wZXJhw6fDo28gc2VqYSByZWFsaXphZGEgYW50ZXMgZGEgYWRpw6fDo28gY29tIGAxMDBgLgoKRW0gcmVzdW1vLCBvcyBwYXLDqm50ZXNlcyBzw6NvIGVzc2VuY2lhaXMgcGFyYSBnYXJhbnRpciBhIGNvcnJldGEgb3JkZW0gZGUgYXZhbGlhw6fDo28gZGFzIG9wZXJhw6fDtWVzIGVtIHVtYSBleHByZXNzw6NvLCBlc3BlY2lhbG1lbnRlIHF1YW5kbyBow6EgbcO6bHRpcGxvcyBvcGVyYWRvcmVzIGUgw6kgbmVjZXNzw6FyaW8gZXZpdGFyIGFtYmlndWlkYWRlcyBvdSBnYXJhbnRpciB1bSBjb21wb3J0YW1lbnRvIGVzcGVjw61maWNvLg==";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-35').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [1]</div>
+                <pre><code class="language-python"># Veja o impacto da precedência dos operadores:
+
+# Esta é a operação original:
+print(f&#x27;Expressão original: {(5 * ((25 % 13) + 100) / (2 * 13)) // 2}&#x27;)
+
+# Nesse exemplo não houve mudança, pois a precedência dos operadores foi mantida.
+
+# Aqui removemos os parênteses em torno de 5 * ((25 % 13) + 100) / (2 * 13)
+print(f&#x27;Primeira alteração: {5 * ((25 % 13) + 100) / (2 * 13) // 2}&#x27;)
+
+# As demais operações tiveram impacto no resultado devido a mudança na precedência dos operadores.
+
+# Aqui removemos os parênteses em torno de 2 * 13:
+print(f&#x27;Segunda alteração: {(5 * (25 % 13) + 100 / (2 * 13)) // 2}&#x27;)
+# Aqui removemos os parênteses em torno de 100 / (2 * 13):
+print(f&#x27;Terceira alteração: {(5 * ((25 % 13) + 100) / 2 * 13) // 2}&#x27;)
+# Aqui removemos os parênteses em torno de 5 * (25 % 13):
+print(f&#x27;Quarta alteração: {(5 * 25 % 13 + 100 / 2 * 13) // 2}&#x27;)
+# Aqui removemos os parênteses em torno de 100 / 2 * 13:
+print(f&#x27;Quinta alteração: {5 * 25 % 13 + 100 / 2 * 13 // 2}&#x27;)
+
+# Veja os resultados de cada operação:</code></pre>
+            </div>
+            <div class="cell-output">Expressão original: 10.0
+Primeira alteração: 10.0
+Segunda alteração: 31.0
+Terceira alteração: 1820.0
+Quarta alteração: 329.0
+Quinta alteração: 333.0
+</div>
+            <div class="cell cell-markdown" id="md-37"></div>
+            <script>
+                (function(){
+                    const b64 = "IyMgYGBPcGVyYWRvcmVzIGRlIGNvbXBhcmHDp8Ojb2BgCi0tLQoKRXNzZXMgb3BlcmFkb3JlcyBzw6NvIGVzc2VuY2lhaXMgcGFyYSBjb21wYXJhciB2YWxvcmVzIGUgdG9tYXIgZGVjaXPDtWVzIGNvbSBiYXNlIG5lc3NhcyBjb21wYXJhw6fDtWVzLiBFbGVzIGFqdWRhbSBhIGNvbnRyb2xhciBvIGZsdXhvIGRlIGV4ZWN1w6fDo28gZG8gcHJvZ3JhbWEsIHBlcm1pdGluZG8gcXVlIHZvY8OqIGVzY3JldmEgbMOzZ2ljYSBjb25kaWNpb25hbCBwYXJhIGxpZGFyIGNvbSBkaWZlcmVudGVzIHNpdHVhw6fDtWVzLgoKLSBgPT1gIDogVmVyaWZpY2Egc2UgZG9pcyB2YWxvcmVzIHPDo28gaWd1YWlzLgotIGAhPWAgOiBWZXJpZmljYSBzZSBkb2lzIHZhbG9yZXMgc8OjbyBkaWZlcmVudGVzLgotIGA+YCA6IFZlcmlmaWNhIHNlIG8gdmFsb3Igw6AgZXNxdWVyZGEgw6kgbWFpb3IgcXVlIG8gdmFsb3Igw6AgZGlyZWl0YS4KLSBgPGAgOiBWZXJpZmljYSBzZSBvIHZhbG9yIMOgIGVzcXVlcmRhIMOpIG1lbm9yIHF1ZSBvIHZhbG9yIMOgIGRpcmVpdGEuCi0gYD49YCA6IFZlcmlmaWNhIHNlIG8gdmFsb3Igw6AgZXNxdWVyZGEgw6kgbWFpb3Igb3UgaWd1YWwgYW8gdmFsb3Igw6AgZGlyZWl0YS4KLSBgPD1gIDogVmVyaWZpY2Egc2UgbyB2YWxvciDDoCBlc3F1ZXJkYSDDqSBtZW5vciBvdSBpZ3VhbCBhbyB2YWxvciDDoCBkaXJlaXRhLgoKVmFtb3MgdmVyIGVzc2VzIG9wZXJhZG9yZXMgZW0gYcOnw6NvIGVtIGFsZ3VucyBleGVtcGxvcyBzaW1wbGVzLg==";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-37').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-markdown" id="md-38"></div>
+            <script>
+                (function(){
+                    const b64 = "IyMjICoqYE9wZXJhZG9yIFJlbGFjaW9uYWwgZGUgSWd1YWxkYWRlICg9PSlgKioKLS0tCgpPIG9wZXJhZG9yIHJlbGFjaW9uYWwgZGUgaWd1YWxkYWRlIGAoPT0pYCDDqSB1bSBvcGVyYWRvciBiaW7DoXJpbyBjb20gbGlnYcOnw6NvIGRvIGxhZG8gZXNxdWVyZG8uIEVsZSBuZWNlc3NpdGEgZGUgZG9pcyBhcmd1bWVudG9zIGUgdmVyaWZpY2Egc2Ugc8OjbyBpZ3VhaXMuCgpPIG9wZXJhZG9yIGAoPT0pYCBjb21wYXJhIG9zIHZhbG9yZXMgZGUgZG9pcyBvcGVyYW5kb3MuIFNlIGVsZXMgZm9yZW0gaWd1YWlzLCBvIHJlc3VsdGFkbyBkYSBjb21wYXJhw6fDo28gw6kgYFRydWVgLiBDYXNvIGNvbnRyw6FyaW8sIHNlIG7Do28gZm9yZW0gaWd1YWlzLCBvIHJlc3VsdGFkbyBkYSBjb21wYXJhw6fDo28gw6kgYEZhbHNlYC4=";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-38').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python"># Detalhe importante:
+# Se a comparação for feita entre um número inteiro e um número float, o Python considera os valores iguais se forem iguais numericamente, mesmo que sejam de tipos diferentes.
+
+print(2 == 2) # Saída: True
+print(2.0 == 2) # Saída: True
+
+# Se a comparação for feita entre um número inteiro e uma string, o Python considera os valores diferentes, mesmo que sejam numericamente iguais.
+
+print(2 == &#x27;2&#x27;) # Saída: False
+
+# Podemos comparar variáveis também. Assim seus valores são comparados.
+valor_esquerdo = 2
+valor_direito = 2
+print(valor_esquerdo == valor_direito)</code></pre>
+            </div>
+            <div class="cell-output">True
+True
+False
+True
+</div>
+            <div class="cell cell-markdown" id="md-40"></div>
+            <script>
+                (function(){
+                    const b64 = "UG9kZW1vcyB1c2FyIGNvbXBhcmHDp8O1ZXMgcGFyYSB2ZXJpZmljYXIgc2UgdW1hIHN0cmluZyDDqSBpZ3VhbCBvdSBkaWZlcmVudGUgZGUgb3V0cmEgc3RyaW5nLgoKUGFyYSB2ZXJpZmljYXIgc2UgdW1hIHN0cmluZyDDqSBpZ3VhbCBhIG91dHJhLCB1dGlsaXphbW9zIG8gb3BlcmFkb3IgZGUgaWd1YWxkYWRlICg9PSkuCgpTZSBhIHN0cmluZyBkYSBlc3F1ZXJkYSBmb3IgaWd1YWwgw6Agc3RyaW5nIGRhIGRpcmVpdGEgbyByZXN1bHRhZG8gw6kgVHJ1ZS4gU2UgbsOjbywgbyByZXN1bHRhZG8gZSBGYWxzZS4=";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-40').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [37]</div>
+                <pre><code class="language-python"># A comparação é case-sensitive, ou seja, o Python diferencia letras maiúsculas de minúsculas.
+
+print(&#x27;online&#x27; == &#x27;online&#x27;)  # True
+print(&#x27;online&#x27; == &#x27;ONLINE&#x27;)  # False - Pois as letras maiúsculas e minúsculas são diferentes.</code></pre>
+            </div>
+            <div class="cell-output">True
+False
+</div>
+            <div class="cell cell-markdown" id="md-42"></div>
+            <script>
+                (function(){
+                    const b64 = "IyMjICoqYE9wZXJhZG9yIHJlbGFjaW9uYWwgZGUgZGVzaWd1YWxkYWRlICghPSlgKioKLS0tCgpPIG9wZXJhZG9yIGBgIiE9ImBgICgqIm7Do28gw6kgaWd1YWwgYSIqIG91ICoiZGlmZXJlbnRlIGRlIiopIHRhbWLDqW0gY29tcGFyYSBvcyB2YWxvcmVzIGRlIGRvaXMgb3BlcmFuZG9zLgoKQXF1aSBlc3TDoSBhIGRpZmVyZW7Dp2E6IHNlIGVsZXMgc8OjbyBpZ3VhaXMsIG8gcmVzdWx0YWRvIGRhIGNvbXBhcmHDp8OjbyDDqSBgRmFsc2VgLiBTZSBlbGVzIG7Do28gZm9yZW0gaWd1YWlzLCBvIHJlc3VsdGFkbyBkYSBjb21wYXJhw6fDo28gw6kgYFRydWVgLg==";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-42').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [38]</div>
+                <pre><code class="language-python"># Em outras palavras, queremos saber se os valores são diferentes. Se forem, a expressão é verdadeira. Se forem iguais, a expressão é falsa.
+print(valor_esquerdo != valor_direito)
+
+# É como perguntar: &quot;O valor à esquerda é diferente do valor à direita?&quot;</code></pre>
+            </div>
+            <div class="cell-output">False
+</div>
+            <div class="cell cell-markdown" id="md-44"></div>
+            <script>
+                (function(){
+                    const b64 = "UG9kZW1vcyB2ZXJpZmljYXIgYWzDqW0gZGUgdmFsb3JlcyBudW3DqXJpY29zLCBzdHJpbmdzIGUgdmFyacOhdmVpcywgdGFtYsOpbSBleHByZXNzw7Vlcy4gUG9yIGV4ZW1wbG86";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-44').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [39]</div>
+                <pre><code class="language-python">print(&#x27;online&#x27; != &#x27;offline&#x27;)  # True
+print(&#x27;online&#x27; != &#x27;online&#x27;)  # False
+print(&#x27;online&#x27; != &#x27;ONLINE&#x27;)  # True
+
+print(2 + 1 != 1 + 2)  # False
+# A expressão acima primeiro resolve as operações matemáticas e depois compara os resultados. Portanto, 3 não é diferente de 3, e a expressão é falsa.</code></pre>
+            </div>
+            <div class="cell-output">True
+False
+True
+False
+</div>
+            <div class="cell cell-markdown" id="md-46"></div>
+            <script>
+                (function(){
+                    const b64 = "VGFtYsOpbSBwb2RlbW9zIGNvbXBhcmFyIHZhcmnDoXZlaXMgcXVlIGFybWF6ZW5hbSBzdHJpbmdzIGVudHJlIHPDrS4=";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-46').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [40]</div>
+                <pre><code class="language-python">fruta_1 = &#x27;Maçã&#x27;
+fruta_2 = &#x27;Laranja&#x27;
+
+print(fruta_1 == fruta_2)  # False
+print(fruta_1 != fruta_2)  # True</code></pre>
+            </div>
+            <div class="cell-output">False
+True
+</div>
+            <div class="cell cell-markdown" id="md-48"></div>
+            <script>
+                (function(){
+                    const b64 = "IyMjICoqYENvbXBhcmFuZG8gbsO6bWVyb3MgLSBPcGVyYWRvcmVzIGRlIGNvbXBhcmHDp8Ojb2AqKgotLS0KClBvZGVtb3MgdXNhciBjb21wYXJhw6fDtWVzIHBhcmEgdmVyaWZpY2FyIHNlIHVtIG7Dum1lcm8gw6kgbWVub3Igb3UgbWFpb3IgcXVlIG91dHJvIG7Dum1lcm8uCgpQYXJhIGlzc28gdXRpbGl6YW1vcyBvcyBvcGVyYWRvcmVzIGBgIjwiYGAgKCptZW5vciBxdWUqKSBlIGBgIj4iYGAgKCptYWlvciBxdWUqKSBxdWUgcmV0b3JuYW0gVHJ1ZSBvdSBGYWxzZS4=";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-48').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [41]</div>
+                <pre><code class="language-python"># Pergunta: x é MENOR que y?
+
+# Se o número da esquerda for menor que o da direita, o resultado será True.
+print(1 &lt; 10) # 1 é menor que 10, portanto a expressão é verdadeira.  
+
+# Se o número da esquerda não for menor que o da direita, o resultado será False.
+print(10 &lt; 1) # 10 não é menor que 1, portanto a expressão é falsa.
+
+# Pergunta: x é MAIOR que y?
+
+# Se o número da esquerda não for maior que o da direita, o resultado será False.
+print(1 &gt; 10) # 1 não é maior que 10, portanto a expressão é falsa.
+
+# Se o número da esquerda for maior que o da direita, o resultado será True.  
+print(10 &gt; 1) # 10 é maior que 1, portanto a expressão é verdadeira.  </code></pre>
+            </div>
+            <div class="cell-output">True
+False
+False
+True
+</div>
+            <div class="cell cell-code">
+                <div class="prompt">In [2]</div>
+                <pre><code class="language-python"># Vejamos um exemplo prático do uso do operador de comparação maior que:
+
+# Vamos verificar se o salário de um funcionário é maior que R$ 1.250,00. Se for, ele receberá um aumento de 10%. Caso contrário, ele receberá um aumento de 15%.
+
+# Primeiro, pedimos ao usuário que insira seu salário:
+salario = float(input(&#x27;Digite aqui o seu salário: &#x27;))
+
+# Depois, criamos uma estrutura condicional para verificar se o salário é maior que R$ 1.250,00:
+
+# A condição é a comparação do salário digitado pelo usuário que armazenamos na variável salario com 1.250,00. Aqui precisamos representar o valor 1.250,00 como 1250.00, pois o Python não aceita o ponto de milhar.
+
+if salario &lt;= 1250.00:
+    
+    # Se salario for menor ou igual a 1250.00, o usuário receberá um aumento de 15% e nosso bloco de código relacionado a condição será if será executado
+    print(f&#x27;O seu novo salário é de R$ {(salario * 1.15):.2f}&#x27;)
+    
+    # Caso contrário, o usuário receberá um aumento de 10% e nosso bloco de código relacionado a condição else será executado
+else:
+    print(f&#x27;O seu novo salário é de R$ {(salario * 1.1):.2f}&#x27;)
+    
+# Observação: Nosso código não possui tratamento de erro. Se o usuário inserir um valor que não seja um número, o código irá gerar um erro.</code></pre>
+            </div>
+            <div class="cell-output">O seu novo salário é de R$ 57.50
+</div>
+            <div class="cell cell-markdown" id="md-51"></div>
+            <script>
+                (function(){
+                    const b64 = "Tm90ZSBlc3NhIHNpdHVhw6fDo286CgpDYXNvIG9zIG7Dum1lcm9zIHNlamFtIGlndWFpcyByZXRvcm5hcsOhIEZhbHNlIGVtIHRvZG9zIG9zIGNhc29zIQ==";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-51').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [3]</div>
+                <pre><code class="language-python">print(1 &gt; 1) # False
+print(1 &lt; 1) # False
+
+# Como ressolvemos isso?</code></pre>
+            </div>
+            <div class="cell-output">False
+False
+</div>
+            <div class="cell cell-markdown" id="md-53"></div>
+            <script>
+                (function(){
+                    const b64 = "IyMjICoqYFZlcmlmaWNhbmRvIGEgaWd1YWxkYWRlYCoqCi0tLQpDb21vIGVzdGFtb3MgdGVzdGFuZG8gYXBlbmFzIHVtYSBjb25kacOnw6NvIChzZSDDqSBtYWlvciBvdSBtZW5vciksIG7Do28gZXN0YW1vcyBjb25zaWRlcmFuZG8gYSBwb3NzaWJpbGlkYWRlIGRlIGlndWFsZGFkZS4KClBhcmEgdmVyaWZpY2FyIHNlIHVtIG7Dum1lcm8gw6kgbWFpb3Igb3UgaWd1YWwgb3Ugc2Ugw6kgbWVub3Igb3UgaWd1YWwgYSBvdXRybywgdXNhbW9zIG9zIG9wZXJhZG9yZXMgKGBgPD1gYCkgb3UgKGBgPj1gYCkKCkFnb3JhIHZlcmlmaWNhbW9zIGR1YXMgcG9zc2liaWxpZGFkZXMsIHNlIG8gbsO6bWVybyDDqSBtYWlvciBvdSBpZ3VhbCBvdSBzZSDDqSBtZW5vciBvdSBpZ3VhbCBhIG91dHJvLg==";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-53').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python">print(1 &gt;= 1) # True
+print(1 &lt;= 1) # True
+
+# Agora temos duas possibilidades de comparação: maior ou igual a (&gt;=) e menor ou igual a (&lt;=).</code></pre>
+            </div>
+            <div class="cell-output">True
+True
+</div>
+            <div class="cell cell-markdown" id="md-55"></div>
+            <script>
+                (function(){
+                    const b64 = "QXNzaW0gY29tbyBwb2RlbW9zIGNvbXBhcmFyIHZhcmnDoXZlaXMgdW1hcyBjb20gYXMgb3V0cmFzLgoKUG9kZW1vcyBhcm1hemVuYXIgbyByZXN1bHRhZG8gZGFzIGNvbXBhcmHDp8O1ZXMgZW0gdmFyacOhdmVpcy4=";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-55').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python"># Altere o valor das variáveis para ver como o resultado muda.
+primeiro_valor = 12
+segundo_valor = 12
+
+# Aqui comparamos se o primeiro valor é maior que o segundo valor. O resultado é um valor booleano (True ou False).
+resultado = primeiro_valor &lt;= segundo_valor
+
+print(resultado) # Exibimos o resultado da comparação
+
+# O resultado de uma comparação é sempre um valor booleano, ou seja, True ou False.
+
+# Salvar o resultado de uma comparação em uma variável nos premite usá-lo posteriormente.
+
+if resultado:
+    print(f&#x27;O resultao é True&#x27;)
+else:
+    print(f&#x27;O resultado é False&#x27;)</code></pre>
+            </div>
+            
+            <div class="cell cell-markdown" id="md-57"></div>
+            <script>
+                (function(){
+                    const b64 = "IyMgKipgT3BlcmFkb3JlcyBMw7NnaWNvc2AqKgotLS0KT3Mgb3BlcmFkb3JlcyBsw7NnaWNvcyBzw6NvIHV0aWxpemFkb3MgcGFyYSByZWFsaXphciBvcGVyYcOnw7VlcyBkZSBsw7NnaWNhIGJvb2xlYW5hIGVtIFB5dGhvbi4gRWxlcyBwZXJtaXRlbSBjb21iaW5hciBleHByZXNzw7VlcyBib29sZWFuYXMgZSB0b21hciBkZWNpc8O1ZXMgY29tIGJhc2UgbmVzc2FzIGNvbWJpbmHDp8O1ZXMuIE9zIHByaW5jaXBhaXMgb3BlcmFkb3JlcyBsw7NnaWNvcyBlbSBQeXRob24gc8OjbzoKCi0gYGFuZGA6IFJldG9ybmEgVHJ1ZSBzZSBhbWJhcyBhcyBleHByZXNzw7VlcyBmb3JlbSBUcnVlLgotIGBvcmA6IFJldG9ybmEgVHJ1ZSBzZSBwZWxvIG1lbm9zIHVtYSBkYXMgZXhwcmVzc8O1ZXMgZm9yIFRydWUuCi0gYG5vdGA6IFJldG9ybmEgVHJ1ZSBzZSBhIGV4cHJlc3PDo28gZm9yIEZhbHNlIGUgdmljZS12ZXJzYS4KCkVzc2VzIG9wZXJhZG9yZXMgc8OjbyBlc3NlbmNpYWlzIHBhcmEgY29uc3RydWlyIGNvbmRpw6fDtWVzIGNvbXBsZXhhcyBlbSBQeXRob24sIHBlcm1pdGluZG8gcXVlIHZvY8OqIGNvbnRyb2xlIG8gZmx1eG8gZG8gc2V1IHByb2dyYW1hIGNvbSBiYXNlIGVtIGRpZmVyZW50ZXMgY2Vuw6FyaW9zIGzDs2dpY29zLiBWYW1vcyB2ZXIgY29tbyBlbGVzIGZ1bmNpb25hbSBlbSBhbGd1bnMgZXhlbXBsb3MgcHLDoXRpY29zLg==";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-57').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-markdown" id="md-58"></div>
+            <script>
+                (function(){
+                    const b64 = "IyMgYENvbmp1bsOnw6NvIChBTkQpYAotLS0KRW0gUHl0aG9uLCBgYW5kYCDDqSB1bSBvcGVyYWRvciBkZSBjb25qdW7Dp8OjbyBsw7NnaWNhIHVzYWRvIHBhcmEgY29tYmluYXIgZHVhcyBleHByZXNzw7VlcyBib29sZWFuYXMuIEVsZSByZXRvcm5hIFRydWUgc2UgYW1iYXMgYXMgZXhwcmVzc8O1ZXMgZm9yZW0gdmVyZGFkZWlyYXMgZSBGYWxzZSBjYXNvIGNvbnRyw6FyaW8uCgpBIHByaW9yaWRhZGUgZG8gb3BlcmFkb3IgYW5kIMOpIG1lbm9yIHF1ZSBhIGRvcyBvcGVyYWRvcmVzIGRlIGNvbXBhcmHDp8OjbywgbyBxdWUgc2lnbmlmaWNhIHF1ZSBhcyBleHByZXNzw7VlcyBxdWUgZW52b2x2ZW0gYW5kIHNlcsOjbyBhdmFsaWFkYXMgZGVwb2lzIGRlIHF1YWlzcXVlciBleHByZXNzw7VlcyBxdWUgZW52b2x2YW0gb3BlcmFkb3JlcyBkZSBjb21wYXJhw6fDo28uCgpFbGEgbm9zIHBlcm1pdGUgY29kaWZpY2FyIGNvbmRpw6fDtWVzIGNvbXBsZXhhcy4KClZlamFtb3MgY29tbyBvcyBwcm9ncmFtYXMgYXR1YW0gZW0gZGVjaXPDtWVzIGNvbXBsZXhhcy4gU2FiZW1vcyBjb21vIGV4ZWN1dGFyIG91IHB1bGFyIGPDs2RpZ28gY29tbyBiYXNlIGVtIHVtYSBjb25kacOnw6NvLiBNYXMgZSBzZSBxdWlzw6lzc2Vtb3MgdmVyaWZpY2FyIGR1YXMgb3UgbWFpcyBjb25kacOnw7Vlcz8KCk8gb3BlcmFkb3IgYW5kIG5vcyBwZXJtaXRlIGV4ZWN1dGFyIGPDs2RpZ28gc29tZW50ZSBzZSBhbWJhcyBhcyBjb25kacOnw7VlcyBmb3JlbSBUcnVlLiBFbGUgaWdub3JhIG8gYmxvY28gZGUgY8OzZGlnbyBzZSB1bWEgb3UgbWFpcyBjb25kacOnw7VlcyBmb3JlbSBGYWxzZS4KCk8gcmVzdWx0YWRvIGZvcm5lY2lkbyBwZWxvIG9wZXJhZG9yIGFuZCBwb2RlIHNlciBkZXRlcm1pbmFkbyBjb20gYmFzZSBuYSB0YWJlbGEgdmVyZGFkZS4KCmBUUlVFICsgVFJVRSA9IFRSVUVgCgpgVFJVRSArIEZBTFNFID0gRkFMU0VgCgpgRkFMU0UgKyBUUlVFID0gRkFMU0VgCgpgRkFMU0UgKyBGQUxTRSA9IEZBTFNFYA==";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-58').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python"># Para facilitar a compreensão, vamos analisar a seguinte expressão:
+# &quot;Se tivermos tempo livre, e se o tempo estiver bom, vamos dar uma volta.&quot;
+
+# Em nossa expressão, temos duas condições. Vamos atribuir valores booleanos a essas condições. True significa que a condição é verdadeira, e False significa que a condição é falsa.
+
+# Não érealmente necessário, mas para ilustrar o máximo opossível,vamos criar uma variável para sim e outra para não.
+
+sim = True
+não = False
+
+tempo_livre = sim
+tempo_bom = sim
+
+# Usamos a conjunção and, o que significa que sair para passear depende do cumprimento simultâneo dessas duas condições. Precisamos ter tempo livre e o tempo precisa estar bom. Se uma ou ambas as condições não forem atendidas, não sairemos para passear.
+sair_para_passear = tempo_livre == sim and tempo_bom == sim # Esse formato é meramente didatico para mostrar que a precedencia dos operadores funciona da mesma forma em expressões lógicas como em expressões aritméticas. Aqui estamos comparando se tempo_livre é igual a sim e se tempo_bom é igual a sim antes de aplicar o operador and.
+
+# Se ambas as condições forem verdadeiras, a expressão será verdadeira e sairemos para passear.
+conjuncao = sair_para_passear
+
+if conjuncao:
+    print(&#x27;Vou sair para passear!&#x27;) # Se ambos os valores forem True, a expressão será True.
+else:
+    print(&#x27;Vou ficar em casa.&#x27;) # Se um dos valores for False, a expressão será False.
+    
+
+# Observação: Armazenamos o resultado da expressão em uma variável mas isso não é realmente necessário. Podemos usar a expressão diretamente no bloco if.
+
+# O uso do código acima é apenas para ilustrar o conceito de conjunção lógica com o operador and. Uma expressão sempre espera odo valores booleanos (True ou False) para ser avaliada.Logo, ao definir tempo_livre e tempo_bom como True ou False, podemos usar esses valores diretamente na expressão lógica, sem necessidade de criar a comparação explicita com sim e não.</code></pre>
+            </div>
+            <div class="cell-output">Vou sair para passear!
+</div>
+            <div class="cell cell-markdown" id="md-60"></div>
+            <script>
+                (function(){
+                    const b64 = "IyMgYERpc2p1bsOnw6NvIChPUilgCi0tLQpFbSBQeXRob24sIGBvcmAgw6kgdW0gb3BlcmFkb3IgZGUgZGlzanVuw6fDo28gbMOzZ2ljYSB1c2FkbyBwYXJhIGNvbWJpbmFyIGR1YXMgZXhwcmVzc8O1ZXMgYm9vbGVhbmFzLiBFbGUgcmV0b3JuYSBgVHJ1ZWAgc2UgcGVsbyBtZW5vcyB1bWEgZGFzIGV4cHJlc3PDtWVzIGZvciB2ZXJkYWRlaXJhIGUgYEZhbHNlYCBhcGVuYXMgc2UgYW1iYXMgYXMgZXhwcmVzc8O1ZXMgZm9yZW0gZmFsc2FzLgoKQXNzaW0gY29tbyBvIGFuZCwgYSBwcmlvcmlkYWRlIGRvIG9wZXJhZG9yIG9yIMOpIG1lbm9yIHF1ZSBhIGRvcyBvcGVyYWRvcmVzIGRlIGNvbXBhcmHDp8OjbywgbWFzIG1haW9yIHF1ZSBhIGRvIGFuZC4gSXNzbyBzaWduaWZpY2EgcXVlIGFzIGV4cHJlc3PDtWVzIHF1ZSBlbnZvbHZlbSBvciBzZXLDo28gYXZhbGlhZGFzIGRlcG9pcyBkYXMgZXhwcmVzc8O1ZXMgcXVlIGVudm9sdmVtIGFuZCwgbWFzIGFudGVzIGRhcyBleHByZXNzw7VlcyBxdWUgZW52b2x2ZW0gb3BlcmFkb3JlcyBkZSBjb21wYXJhw6fDo28uCgpQYXJhIGV4ZWN1dGFyIG8gY8OzZGlnbyBxdWFuZG8gdW1hIGRhcyBjb25kacOnw7VlcyBmb3IgVHJ1ZSwgdXNhbW9zIG8gb3BlcmFkb3Igb3IgKG91KS4gQ29tIGVsZSwgbyBjw7NkaWdvIHPDsyBzZXLDoSBpZ25vcmFkbyBzZSB0b2RhcyBhcyBjb25kacOnw7VlcyBmb3JlbSBGYWxzZS4KCmBUUlVFICsgVFJVRSA9IFRSVUVgCgpgVFJVRSArIEZBTFNFID0gVFJVRWAKCmBGQUxTRSArIFRSVUUgPSBUUlVFYAoKYEZBTFNFICsgRkFMU0UgPSBGQUxTRWA=";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-60').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [6]</div>
+                <pre><code class="language-python"># Vamos usar novamente uma frase para ilustrar a conjunção or:
+
+# &quot;Se eu for ao supermercado ou à feira, vou comprar frutas.&quot;
+
+supermercado = True
+feira = False
+
+# A conjunção or significa que compraremos frutas se formos ao supermercado ou à feira ou a ambos. Fica impliícito que se não formos a nenhum dos dois lugares, não compraremos frutas.
+
+if supermercado or feira:
+    print(&#x27;Vou comprar frutas.&#x27;) # Se um dos valores for True, a expressão será True.
+else:
+    print(&#x27;Só passei na farmácia.&#x27;) # Se ambos os valores forem False, a expressão será False.</code></pre>
+            </div>
+            <div class="cell-output">Vou comprar frutas.
+</div>
+            <div class="cell cell-markdown" id="md-62"></div>
+            <script>
+                (function(){
+                    const b64 = "IyMgT3BlcmFkb3IgZGUgbmVnYcOnw6NvIGBub3RgCi0tLQpPIG9wZXJhZG9yIGBub3RgIMOpIHVtIG9wZXJhZG9yIGzDs2dpY28gZW0gUHl0aG9uIHF1ZSByZWFsaXphIGEgbmVnYcOnw6NvIGRlIHVtYSBleHByZXNzw6NvIGJvb2xlYW5hLiBFbGUgaW52ZXJ0ZSBvIHZhbG9yIGRhIGV4cHJlc3PDo28sIG91IHNlamEsIHNlIGEgZXhwcmVzc8OjbyBmb3IgVHJ1ZSwgbyBvcGVyYWRvciBgbm90YCBhIHRvcm5hcsOhIEZhbHNlLCBlIHZpY2UtdmVyc2EuCgpBcXVpIGVzdMOhIGNvbW8gbyBvcGVyYWRvciBgbm90YCBmdW5jaW9uYToKCi0gU2UgYSBleHByZXNzw6NvIMOpIFRydWUsIGBub3RgIGEgdG9ybmEgRmFsc2UuCi0gU2UgYSBleHByZXNzw6NvIMOpIEZhbHNlLCBgbm90YCBhIHRvcm5hIFRydWUuCgpQb2RlbW9zIHVzw6EtbG8gcGFyYSBuZWdhciB1bWEgw7puaWNhIGV4cHJlc3PDo28gYm9vbGVhbmEgb3UgY29tbyBwYXJ0ZSBkZSBleHByZXNzw7VlcyBsw7NnaWNhcyBtYWlzIGNvbXBsZXhhcyBwYXJhIGNyaWFyIGNvbmRpw6fDtWVzIGNvbmRpY2lvbmFpcy4gUG9yIGV4ZW1wbG8sIHBvZGVtb3MgdXNhciBgbm90YCBwYXJhIHZlcmlmaWNhciBzZSBhbGdvIG7Do28gw6kgdmVyZGFkZWlyby4KClZlamFtb3MgdW0gZXhlbXBsbyBzaW1wbGVzOgoKYGBgcHl0aG9uCnggPSA1CnByaW50KG5vdCB4ID4gMTApICAjIElzc28gaW1wcmltaXLDoSBUcnVlLCBwb2lzIGEgZXhwcmVzc8OjbyB4ID4gMTAgw6kgRmFsc2UsIGUgbm90IGludmVydGUgaXNzbyBwYXJhIFRydWUKYGBgCgpPIG9wZXJhZG9yIGBub3RgIMOpIMO6dGlsIHF1YW5kbyBwcmVjaXNhbW9zIHZlcmlmaWNhciBzZSB1bWEgY29uZGnDp8OjbyBuw6NvIMOpIGF0ZW5kaWRhIGVtIHVtYSBpbnN0cnXDp8OjbyBjb25kaWNpb25hbC4gRWxlIGNvbXBsZW1lbnRhIG8gb3BlcmFkb3IgYGFuZGAsIGBvcmAgZSBvdXRyYXMgb3BlcmHDp8O1ZXMgbMOzZ2ljYXMsIHBlcm1pdGluZG8tbm9zIGNyaWFyIGzDs2dpY2FzIG1haXMgc29maXN0aWNhZGFzIGVtIG5vc3NvcyBwcm9ncmFtYXMu";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-62').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-markdown" id="md-63"></div>
+            <script>
+                (function(){
+                    const b64 = "CkFxdWkgZXN0w6EgYSBvcmRlbSBkZSBwcmVjZWTDqm5jaWEgZG9zIG9wZXJhZG9yZXMgbMOzZ2ljb3MgZW0gUHl0aG9uLCBkYSBtYWlvciBwYXJhIGEgbWVub3IgcHJpb3JpZGFkZToKCmBub3Q6IE9wZXJhZG9yIGRlIG5lZ2HDp8OjbyBsw7NnaWNhLmAKCmBhbmQ6IE9wZXJhZG9yIGRlIGNvbmp1bsOnw6NvIGzDs2dpY2EuYAoKYG9yOiBPcGVyYWRvciBkZSBkaXNqdW7Dp8OjbyBsw7NnaWNhLmAKCklzc28gc2lnbmlmaWNhIHF1ZSBvIG9wZXJhZG9yIG5vdCB0ZW0gYSBtYWlvciBwcmlvcmlkYWRlLCBzZWd1aWRvIHBlbG8gYW5kIGUgZGVwb2lzIHBlbG8gb3IuIFF1YW5kbyB2b2PDqiB0ZW0gZXhwcmVzc8O1ZXMgbMOzZ2ljYXMgbWlzdHVyYWRhcyBlbSB1bWEgbWVzbWEgbGluaGEgZGUgY8OzZGlnbywgbyBQeXRob24gYXZhbGlhcsOhIHByaW1laXJvIGFzIGV4cHJlc3PDtWVzIGRlbnRybyBkZSBwYXLDqm50ZXNlcywgc2VndWlkbyBkYSBuZWdhw6fDo28gKG5vdCksIGVtIHNlZ3VpZGEgYSBjb25qdW7Dp8OjbyAoYW5kKSBlLCBwb3Igw7psdGltbywgYSBkaXNqdW7Dp8OjbyAob3IpLCBzZSBuZWNlc3PDoXJpby4=";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-63').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python">resultado = not 5 &gt; 3 and 10 &lt; 5 or 7 == 7
+# Primeiro, a negação é aplicada ao valor 5 &gt; 3, que é True. O resultado é False.
+# Em seguida, a conjunção and é aplicada a False e 10 &lt; 5, que é False. O resultado é False.
+# Por fim, a disjunção or é aplicada a False e 7 == 7, que é True. O resultado é True.
+print(resultado) # Saída: True
+
+# resultado: False and False or True
+
+# Pela ordem de precedência dos operadores, a conjunção and é avaliada antes da disjunção or. Portanto, a expressão é avaliada da seguinte maneira:
+
+# False and False → False
+
+# Agora temos:
+# False or True → True pois um dos valores é True
+
+# Aqui vamos inverter a ordem dos operadores para ver como isso afeta o resultado.
+resultado = not 5 &gt; 3 or 7 == 7 and 10 &lt; 5
+
+# Primeiro, a negação é aplicada ao valor 5 &gt; 3, que é True. O resultado é False.
+# Em seguida, a disjunção or é aplicada a False e 7 == 7, que é True. O resultado é True.
+# Por fim, a conjunção and é aplicada a True e 10 &lt; 5, que é False. O resultado é False.
+
+print(resultado) # Saída: False
+
+# resultado: False or True and False
+
+# Pela ordem de precedência dos operadores, a conjunção and é avaliada antes da disjunção or. Portanto, a expressão é avaliada da seguinte maneira:
+
+# True and False → False
+
+# Agora temos:
+# False or False → False pois ambos os valores são False</code></pre>
+            </div>
+            
+            <div class="cell cell-markdown" id="md-65"></div>
+            <script>
+                (function(){
+                    const b64 = "IyBPcGVyYWRvcmVzIGBpbmAsIGBpc2AgZSBgaXMgbm90YCBlbSBQeXRob24KCiMjIE8gb3BlcmFkb3IgYGluYApPIG9wZXJhZG9yIGBpbmAgw6kgdXNhZG8gcGFyYSB2ZXJpZmljYXIgc2UgdW0gdmFsb3IgZXN0w6EgcHJlc2VudGUgZW0gdW1hIHNlcXXDqm5jaWEsIGNvbW8gdW1hIGxpc3RhLCB0dXBsYSwgc3RyaW5nIG91IGNvbmp1bnRvLiBBIGV4cHJlc3PDo28gcmV0b3JuYSBgVHJ1ZWAgc2UgbyB2YWxvciBlc3RpdmVyIHByZXNlbnRlIG5hIHNlcXXDqm5jaWEsIGUgYEZhbHNlYCBjYXNvIGNvbnRyw6FyaW8uIAoKLSAqKkV4ZW1wbG86KioKCmBgYHB5dGhvbgpmcnV0YXMgPSBbJ21hw6fDoycsICdiYW5hbmEnLCAnbGFyYW5qYSddCnByaW50KCdiYW5hbmEnIGluIGZydXRhcykgICMgU2HDrWRhOiBUcnVlCnByaW50KCd1dmEnIGluIGZydXRhcykgICAgICMgU2HDrWRhOiBGYWxzZQpgYGAKCiMjIyBJbXBvcnRhbnRlOiBPIG9wZXJhZG9yIGBpbmAgw6kgKipjYXNlLXNlbnNpdGl2ZSoqLCBvdSBzZWphLCBkaXN0aW5ndWUgbGV0cmFzIG1hacO6c2N1bGFzIGRlIG1pbsO6c2N1bGFzLgoKLSAqKkV4ZW1wbG86KioKCmBgYHB5dGhvbgpwYWxhdnJhID0gJ1B5dGhvbicKcHJpbnQoJ1AnIGluIHBhbGF2cmEpICAjIFNhw61kYTogVHJ1ZQpwcmludCgncCcgaW4gcGFsYXZyYSkgICMgU2HDrWRhOiBGYWxzZQpgYGAKCiMjIE9wZXJhZG9yZXMgYGlzYCBlIGBpcyBub3RgCk9zIG9wZXJhZG9yZXMgYGlzYCBlIGBpcyBub3RgIHZlcmlmaWNhbSBzZSBkdWFzIHZhcmnDoXZlaXMgKipyZWZlcmVtLXNlIGFvIG1lc21vIG9iamV0byoqIG5hIG1lbcOzcmlhLiBFbGVzICoqbsOjbyBjb21wYXJhbSB2YWxvcmVzKiosIG1hcyBzaW0gaWRlbnRpZGFkZXMgKG91IHNlamEsIHNlIGR1YXMgdmFyacOhdmVpcyBhcG9udGFtIHBhcmEgbyBtZXNtbyBsb2NhbCBuYSBtZW3Ds3JpYSkuCgotICoqRXhlbXBsbzoqKgoKYGBgcHl0aG9uCmEgPSBbMSwgMiwgM10KYiA9IGEKYyA9IFsxLCAyLCAzXQoKcHJpbnQoYSBpcyBiKSAgIyBTYcOtZGE6IFRydWUgKG1lc21vIG9iamV0bykKcHJpbnQoYSBpcyBjKSAgIyBTYcOtZGE6IEZhbHNlIChvYmpldG9zIGRpZmVyZW50ZXMpCmBgYAoKIyMjIENvbXBvcnRhbWVudG8gZXNwZWNpYWwgZGUgYGlzYCBwYXJhIHBlcXVlbm9zIHZhbG9yZXMKUHl0aG9uIGZheiBvdGltaXphw6fDtWVzIGludGVybmFzIHBhcmEgbsO6bWVyb3MgaW50ZWlyb3MgZGUgYXTDqSAyNTYgZSBzdHJpbmdzIGltdXTDoXZlaXMgY3VydGFzLiBOZXNzZXMgY2Fzb3MsIG8gUHl0aG9uIHJlYXByb3ZlaXRhIG8gbWVzbW8gbG9jYWwgbmEgbWVtw7NyaWEgcGFyYSBlc3NlcyB2YWxvcmVzLgoKLSAqKkV4ZW1wbG9zOioqCgpgYGBweXRob24KIyBOw7ptZXJvcyBpbnRlaXJvcyBhdMOpIDI1NgphID0gMjU2CmIgPSAyNTYKcHJpbnQoYSBpcyBiKSAgIyBTYcOtZGE6IFRydWUKCiMgTsO6bWVyb3MgbWFpb3JlcyBxdWUgMjU2CmEgPSAyNTcKYiA9IDI1NwpwcmludChhIGlzIGIpICAjIFNhw61kYTogRmFsc2UKCiMgU3RyaW5ncyBjdXJ0YXMKYSA9ICJQeXRob24iCmIgPSAiUHl0aG9uIgpwcmludChhIGlzIGIpICAjIFNhw61kYTogVHJ1ZQoKIyBTdHJpbmdzIGNvbSBkaWZlcmVuw6dhIGRlIGNhc2Ugb3UgY29tcHJpbWVudG8KYSA9ICJQeXRob24hIgpiID0gInB5dGhvbiEiCnByaW50KGEgaXMgYikgICMgU2HDrWRhOiBGYWxzZQpgYGAKCiMjIyBWZXJpZmljYW5kbyBhIGlkZW50aWRhZGUgZG9zIG9iamV0b3MKTyBjb21hbmRvIGBpZCgpYCByZXRvcm5hIG8gZW5kZXJlw6dvIGRlIG1lbcOzcmlhIGRlIHVtIG9iamV0bywgbW9zdHJhbmRvIGNsYXJhbWVudGUgc2UgZG9pcyBvYmpldG9zIG9jdXBhbSBvIG1lc21vIGVzcGHDp28gbmEgbWVtw7NyaWEuCgotICoqRXhlbXBsbzoqKgoKYGBgcHl0aG9uCmEgPSAiUHl0aG9uISIKYiA9ICJweXRob24hIgoKcHJpbnQoaWQoYSkpICAjIEV4aWJlIG8gZW5kZXJlw6dvIGRlIG1lbcOzcmlhIGRlICdhJwpwcmludChpZChiKSkgICMgRXhpYmUgbyBlbmRlcmXDp28gZGUgbWVtw7NyaWEgZGUgJ2InCmBgYAoKRXNzZSBjb21wb3J0YW1lbnRvIGlsdXN0cmEgbyB1c28gZGUgYGlzYCBwYXJhIHZlcmlmaWNhciBhICoqaWRlbnRpZGFkZSoqIGRvcyBvYmpldG9zIGUgbsOjbyBhcGVuYXMgc2V1cyB2YWxvcmVzLg==";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-65').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-markdown" id="md-66"></div>
+            <script>
+                (function(){
+                    const b64 = "IyMgKipgQmFzZXMgbnVtw6lyaWNhc2AqKgotLS0KIyMjIGBPY3RhaXNgCk7Dum1lcm9zIG9jdGFpcyBzw6NvIHJlcHJlc2VudGHDp8O1ZXMgbnVtw6lyaWNhcyBxdWUgdXRpbGl6YW0gYSBiYXNlIDguIE5vIFB5dGhvbiwgcG9kZW1vcyByZXByZXNlbnRhciBuw7ptZXJvcyBvY3RhaXMgcHJlZml4YW5kbyBvIHZhbG9yIGNvbSBgMG9gIG91IGAwT2AgKHplcm8tbykuCgpQb3IgZXhlbXBsbywgc2UgdW0gaW50ZWlybyBmb3IgcHJlY2VkaWRvIHBvciBgMG9gIG91IGAwT2AsIGNvbW8gZW0gYDBvMTIzYCwgZWxlIHNlcsOhIGludGVycHJldGFkbyBjb21vIHVtIG7Dum1lcm8gb2N0YWwuIElzc28gc2lnbmlmaWNhIHF1ZSBvcyBkw61naXRvcyBwZXJtaXRpZG9zIHPDo28gYXBlbmFzIGFxdWVsZXMgZG8gaW50ZXJ2YWxvIGRlIDAgYSA3LgoKTyBuw7ptZXJvIGAwbzEyM2Agw6kgdW0gZXhlbXBsbyBkZSBuw7ptZXJvIG9jdGFsLCBvbmRlIG8gdmFsb3IgZGVjaW1hbCBjb3JyZXNwb25kZW50ZSDDqSA4My4gUXVhbmRvIHV0aWxpemFtb3MgYSBmdW7Dp8OjbyBgcHJpbnQoKWAsIG8gUHl0aG9uIHJlYWxpemEgYSBjb252ZXJzw6NvIGF1dG9tYXRpY2FtZW50ZSwgZXhpYmluZG8gbyB2YWxvciBkZWNpbWFsIGFzc29jaWFkby4KCkVzc2EgY2FwYWNpZGFkZSBkZSByZXByZXNlbnRhciBuw7ptZXJvcyBvY3RhaXMgw6kgw7p0aWwgZW0gdsOhcmlhcyBzaXR1YcOnw7VlcywgZXNwZWNpYWxtZW50ZSBlbSBjb250ZXh0b3Mgb25kZSBhIG1hbmlwdWxhw6fDo28gZGUgYml0cyBlIG9wZXJhw6fDtWVzIGJpbsOhcmlhcyBzw6NvIGNvbXVucywgY29tbyBlbSBwcm9ncmFtYcOnw6NvIGRlIGJhaXhvIG7DrXZlbCBlIGVtIGFwbGljYcOnw7VlcyBxdWUgZW52b2x2ZW0gaGFyZHdhcmUuCgpWZWphbW9zIHVtIGV4ZW1wbG8gZGUgdXNvIGRlIG7Dum1lcm9zIG9jdGFpcyBlbSBQeXRob246CgpgYGBweXRob24KIyBSZXByZXNlbnRhbmRvIHVtIG7Dum1lcm8gb2N0YWwKbnVtZXJvX29jdGFsID0gMG8xMjMKCiMgRXhpYmluZG8gbyB2YWxvciBkZWNpbWFsIGNvcnJlc3BvbmRlbnRlCnByaW50KG51bWVyb19vY3RhbCkgICMgU2HDrWRhOiA4MwpgYGAKCkRlc3NhIGZvcm1hLCBwb2RlbW9zIHV0aWxpemFyIG7Dum1lcm9zIG9jdGFpcyBlbSBub3Nzb3MgcHJvZ3JhbWFzIFB5dGhvbiBxdWFuZG8gbmVjZXNzw6FyaW8sIGFwcm92ZWl0YW5kbyBzdWFzIHByb3ByaWVkYWRlcyBlIGFwbGljYcOnw7VlcyBlc3BlY8OtZmljYXMu";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-66').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python"># Primeiro vamos entender como funciona a base 8 (octal).
+
+# A base 8 (octal) é um sistema numérico que usa 8 dígitos: 0, 1, 2, 3, 4, 5, 6 e 7. O sistema octal é usado em programação para representar valores binários de uma maneira mais compacta.
+
+# Para representar um número octal em Python, você deve adicionar um zero à esquerda do número. Por exemplo, 0o123 é um número octal.
+
+# Vamos ver um exemplo:
+numero_octal = 0o123  # Este número é interpretado como octal
+print(numero_octal) # 83
+print(0o123)  # 83
+
+# Saída: 83 (pois 1*8^2 + 2*8^1 + 3*8^0 = 83)
+#                 1* 64 + 2* 8  + 3* 1  = 83
+
+# Podemos converter um número octal em decimal usando a função int() e especificando a base 8 como segundo argumento.
+print(int(&#x27;123&#x27;, 8))  # 8 é a base do número octal (0123)
+
+# Se utilizarmos valores fora do intervalo de 0 a 7 em um número octal, o Python retornará um erro.
+# print(0o18)  # Erro: invalid digit &#x27;8&#x27; in octal literal</code></pre>
+            </div>
+            
+            <div class="cell cell-markdown" id="md-68"></div>
+            <script>
+                (function(){
+                    const b64 = "IyMgYEhleGFkZWNpbWFpc2AKLS0tCkhleGFkZWNpbWFpcyBzw6NvIG7Dum1lcm9zIHF1ZSB1dGlsaXphbSBhIGJhc2UgMTYuIE5vIFB5dGhvbiwgcG9kZW1vcyByZXByZXNlbnRhciBuw7ptZXJvcyBoZXhhZGVjaW1haXMgcHJlZml4YW5kbyBvIHZhbG9yIGNvbSBgMHhgIG91IGAwWGAgKHplcm8teCkuCgpQb3IgZXhlbXBsbywgc2UgdW0gbsO6bWVybyBmb3IgcHJlY2VkaWRvIHBvciBgMHhgIG91IGAwWGAsIGNvbW8gZW0gYDB4MTIzYCwgZWxlIHNlcsOhIGludGVycHJldGFkbyBjb21vIHVtIG7Dum1lcm8gaGV4YWRlY2ltYWwuIElzc28gc2lnbmlmaWNhIHF1ZSBvcyBkw61naXRvcyBwZXJtaXRpZG9zIHPDo28gZGUgMCBhIDksIGFsw6ltIGRhcyBsZXRyYXMgZGUgQSBhIEYgKG91IGEsIGIsIGMsIGQsIGUsIGYpLCBxdWUgcmVwcmVzZW50YW0gb3MgdmFsb3JlcyBkZSAxMCBhIDE1LCByZXNwZWN0aXZhbWVudGUuCgpPIG7Dum1lcm8gYDB4MTIzYCDDqSB1bSBleGVtcGxvIGRlIG7Dum1lcm8gaGV4YWRlY2ltYWwsIG9uZGUgbyB2YWxvciBkZWNpbWFsIGNvcnJlc3BvbmRlbnRlIMOpIDI5MS4gQXNzaW0gY29tbyBjb20gbsO6bWVyb3Mgb2N0YWlzLCBhIGZ1bsOnw6NvIGBwcmludCgpYCB0YW1iw6ltIHBvZGUgbGlkYXIgY29tIG7Dum1lcm9zIGhleGFkZWNpbWFpcyBlIHJlYWxpemFyIGEgY29udmVyc8OjbyBhdXRvbWF0aWNhbWVudGUuCgpFc3NhIGNhcGFjaWRhZGUgZGUgcmVwcmVzZW50YXIgbsO6bWVyb3MgaGV4YWRlY2ltYWlzIMOpIGVzcGVjaWFsbWVudGUgw7p0aWwgZW0gY29udGV4dG9zIHJlbGFjaW9uYWRvcyDDoCBjb21wdXRhw6fDo28sIGNvbW8gcHJvZ3JhbWHDp8OjbyBkZSBiYWl4byBuw612ZWwsIG1hbmlwdWxhw6fDo28gZGUgZGFkb3MgYmluw6FyaW9zIGUgY29tdW5pY2HDp8OjbyBjb20gZGlzcG9zaXRpdm9zIGRlIGhhcmR3YXJlLgoKQXF1aSBlc3TDoSB1bSBleGVtcGxvIGRlIGNvbW8gcG9kZW1vcyB1c2FyIG7Dum1lcm9zIGhleGFkZWNpbWFpcyBlbSBQeXRob246CgpgYGBweXRob24KIyBSZXByZXNlbnRhbmRvIHVtIG7Dum1lcm8gaGV4YWRlY2ltYWwKbnVtZXJvX2hleGFkZWNpbWFsID0gMHgxMjMKCiMgRXhpYmluZG8gbyB2YWxvciBkZWNpbWFsIGNvcnJlc3BvbmRlbnRlCnByaW50KG51bWVyb19oZXhhZGVjaW1hbCkgICMgU2HDrWRhOiAyOTEKYGBgCgpEZXNzYSBmb3JtYSwgcG9kZW1vcyB1dGlsaXphciBuw7ptZXJvcyBoZXhhZGVjaW1haXMgZW0gbm9zc29zIHByb2dyYW1hcyBQeXRob24gcXVhbmRvIG5lY2Vzc8OhcmlvLCBhcHJvdmVpdGFuZG8gc3VhcyBwcm9wcmllZGFkZXMgZSBhcGxpY2HDp8O1ZXMgZXNwZWPDrWZpY2FzLg==";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-68').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python"># Como antes, primeiro vamos entender como se forma um número hexadecimal.
+
+# A base 16 (hexadecimal) é um sistema numérico que usa 16 dígitos: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, A, B, C, D, E e F. O sistema hexadecimal é usado em programação para representar valores binários de uma maneira mais compacta.
+
+# Para representar um número hexadecimal em Python, você deve adicionar 0x à esquerda do número. Por exemplo, 0x123 é um número hexadecimal.
+
+# Vamos ver um exemplo:
+numero_hexadecimal = 0x123
+print(numero_hexadecimal)
+# Saída: 291 (pois 1*16^2 + 2*16^1 + 3*16^0 = 291)
+#                  1* 256 + 2* 16  + 3* 1   = 291
+
+# Podemos converter um número hexadecimal em decimal usando a função int() e especificando a base do número hexadecimal (16) como segundo argumento:
+print(int(&#x27;123&#x27;, 16))  # 16 é a base do número hexadecimal (0x123)</code></pre>
+            </div>
+            
+            <div class="cell cell-markdown" id="md-70"></div>
+            <script>
+                (function(){
+                    const b64 = "QXNzaW0gdXRpbGl6YXJlbW9zIGEgZnVuw6fDo28gZm9ybWF0KCkgcGFyYSBjb252ZXJ0ZXIgdW0gbsO6bWVybyBkZWNpbWFsIGVtIG9jdGFsIG91IGhleGFkZWNpbWFsLgoKQmFzdGEgZXNwZWNpZmljYXIgYSBiYXNlIGNvbW8gc2VndW5kbyBhcmd1bWVudG8gZGEgZnVuw6fDo28gZm9ybWF0KCkuICdvJyBwYXJhIG9jdGFsIGUgJ3gnIHBhcmEgaGV4YWRlY2ltYWwu";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-70').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python"># Vejamos a conversão de uma base para outra:
+
+# Decimal para octal e vice-versa
+print(format(83, &#x27;o&#x27;)) # octal
+print(int(&#x27;123&#x27;, 8)) # 83
+
+# Decimal para hexadecimal e vice-versa
+print(format(83, &#x27;x&#x27;)) # hexadecimal
+print(int(&#x27;53&#x27;, 16)) # 291
+
+# Decimal para binário e vice-versa
+print(format(83, &#x27;b&#x27;)) # binário
+print(int(&#x27;1010011&#x27;, 2)) # 83
+
+# Formas de converter os valores:
+numero = 83
+
+# Usando funções built-in específicas para essa finalidade:
+print(bin(numero))  # 0b1010011
+print(oct(numero))  # 0o123
+print(hex(numero))  # 0x53
+
+# Com notação de dois pontos em uma string formatada:
+print(f&#x27;{numero:b}&#x27;)  # 1010011
+print(f&#x27;{numero:o}&#x27;)  # para inteiro usamos :d
+
+numero = 83
+# Usando a função format(numero, &#x27;base&#x27;):
+print(format(numero, &#x27;b&#x27;))  # 1010011
+print(format(numero, &#x27;o&#x27;))  # 123
+print(format(numero, &#x27;x&#x27;))  # 53
+
+# Com a função int(string, base):
+print(int(&#x27;1010011&#x27;, 2))  # 83
+print(int(&#x27;123&#x27;, 8))  # 83
+print(int(&#x27;53&#x27;, 16))  # 83
+</code></pre>
+            </div>
+            
+            <div class="cell cell-markdown" id="md-72"></div>
+            <script>
+                (function(){
+                    const b64 = "IyMgYEJpbsOhcmlvc2AKLS0tCk7Dum1lcm9zIGJpbsOhcmlvcyBzw6NvIGZ1bmRhbWVudGFpcyBwYXJhIGEgY29tcHV0YcOnw6NvIG1vZGVybmEsIHBvaXMgc8OjbyBhIGJhc2UgcGFyYSByZXByZXNlbnRhciB0b2RvcyBvcyB0aXBvcyBkZSBkYWRvcyBkZW50cm8gZGUgdW0gY29tcHV0YWRvci4gTm8gc2lzdGVtYSBiaW7DoXJpbywgb3MgbsO6bWVyb3Mgc8OjbyByZXByZXNlbnRhZG9zIHV0aWxpemFuZG8gYXBlbmFzIGRvaXMgZMOtZ2l0b3M6IDAgZSAxLiBFc3NlcyBkw61naXRvcyBwb2RlbSBzZXIgaW50ZXJwcmV0YWRvcyBjb21vICJkZXNsaWdhZG8iIGUgImxpZ2FkbyIsIHJlc3BlY3RpdmFtZW50ZS4KCk9zIGNvbXB1dGFkb3JlcyBmdW5jaW9uYW0gY29tIGVsZXRyaWNpZGFkZSwgcXVlIHBvZGUgZXN0YXIgZW0gZG9pcyBlc3RhZG9zOiBsaWdhZGEgb3UgZGVzbGlnYWRhLiBQb3J0YW50bywgbyBzaXN0ZW1hIGJpbsOhcmlvIMOpIHVtYSBlc2NvbGhhIG5hdHVyYWwgcGFyYSByZXByZXNlbnRhciBkYWRvcywgcG9pcyBjb3JyZXNwb25kZSBkaXJldGFtZW50ZSBhb3MgZXN0YWRvcyBmw61zaWNvcyBkb3MgY29tcG9uZW50ZXMgZWxldHLDtG5pY29zIGRlbnRybyBkZSB1bSBjb21wdXRhZG9yLgoKUGFyYSBpbmRpY2FyIHF1ZSB1bSBuw7ptZXJvIGVzdMOhIHNlbmRvIHJlcHJlc2VudGFkbyBubyBzaXN0ZW1hIGJpbsOhcmlvLCDDqSBjb211bSB1c2FyIHVtIHByZWZpeG8gYDBiYC4gSXNzbyBkaWZlcmVuY2lhIG9zIG7Dum1lcm9zIGJpbsOhcmlvcyBkZSBvdXRyb3Mgc2lzdGVtYXMgbnVtw6lyaWNvcywgY29tbyBkZWNpbWFsLCBvY3RhbCBvdSBoZXhhZGVjaW1hbC4KClBvciBleGVtcGxvLCBvIG7Dum1lcm8gYmluw6FyaW8gYDBiMTAxMGAgcG9kZSBzZXIgbGlkbyBjb21vICJ1bS16ZXJvLXVtLXplcm8iIGVtIGJpbsOhcmlvIGUgcmVwcmVzZW50YSBvIHZhbG9yIGRlY2ltYWwgMTAuCgpBcXVpIGVzdMOhIHVtIGV4ZW1wbG8gZGUgY29tbyBwb2RlbW9zIHVzYXIgbsO6bWVyb3MgYmluw6FyaW9zIGVtIFB5dGhvbjoKCmBgYHB5dGhvbgojIFJlcHJlc2VudGFuZG8gdW0gbsO6bWVybyBiaW7DoXJpbwpudW1lcm9fYmluYXJpbyA9IDBiMTAxMAoKIyBFeGliaW5kbyBvIHZhbG9yIGRlY2ltYWwgY29ycmVzcG9uZGVudGUKcHJpbnQobnVtZXJvX2JpbmFyaW8pICAjIFNhw61kYTogMTAKYGBg";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-72').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python"># Vamos tentar ilustrar a representação binária de um número decimal.
+
+# Pegamos como exemplo o número binário 1010011.
+print(0b1010011)
+
+# A combinacão de 1s e 0s representa uma potência de 2. Cada dígito binário é chamado de bit.
+
+#     1       0       1       0       0       1       1
+#    ON +   OFF +    ON +   OFF +   OFF +    ON +    ON
+
+# Se o bit estiver ligado, o valor é 1. Se estiver desligado, o valor é 0. Podemos afirmar que estes valores são booleanos, pois só podem ser True (1) ou False (0).
+
+# Da direita para a esquerda, os valores dos bit são dados por potencias de 2. Sendo assim, o valor do número binário 1010011 é:
+
+# 1*2^6 + 0*2^5 + 1*2^4 + 0*2^3 + 0*2^2 + 1*2^1 + 1*2^0 = 83
+# 1* 64 + 0* 32 + 1* 16 + 0* 8  + 0* 4  + 1* 2  + 1* 1  = 83
+
+# Após chegarmos aos valores das potências de 2, somamos todos os valores para obter o valor decimal do número binário.
+
+#    64 +     0 +    16 +    0  +    0  +    2  +    1  = 83</code></pre>
+            </div>
+            
+            <div class="cell cell-markdown" id="md-74"></div>
+            <script>
+                (function(){
+                    const b64 = "IyMjICoqYEFTQ0lJYCoqCi0tLQoKQ2FkYSBjYXJhY3RlcmUgw6kgcmVwcmVzZW50YWRvIHBvciB1bSBuw7ptZXJvIGludGVpcm8sIGUgdmljZS12ZXJzYS4gTyBQeXRob24gdXNhIG8gY8OzZGlnbyBBU0NJSSBwYXJhIGlzc28uIFZvY8OqIHBvZGUgdmVyIGEgdGFiZWxhIEFTQ0lJIGFxdWk6IGh0dHBzOi8vcHQud2lraXBlZGlhLm9yZy93aWtpL0FTQ0lJCgpQb3IgZXhlbXBsbywgbyBjYXJhY3RlcmUgJ0EnIMOpIHJlcHJlc2VudGFkbyBwZWxvIG7Dum1lcm8gNjUgKDAxMDAwMDAxIGVtIGJpbsOhcmlvKSwgJ0InIHBlbG8gNjYsIGV0Yy4KCk8gUHl0aG9uIHRlbSB1bWEgZnVuw6fDo28gY2hhbWFkYSBvcmQoKSBxdWUgcmV0b3JuYSBvIGPDs2RpZ28gQVNDSUkgZGUgdW0gY2FyYWN0ZXJlOg==";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-74').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python">ord(&#x27;T&#x27;) # retorna o valor Unicode do caractere &#x27;T&#x27; que é 84</code></pre>
+            </div>
+            
+            <div class="cell cell-markdown" id="md-76"></div>
+            <script>
+                (function(){
+                    const b64 = "Ck8gY29udHLDoXJpbyB0YW1iw6ltIMOpIHBvc3PDrXZlbC4gUG9kZW1vcyBjb252ZXJ0ZXIgdW0gbsO6bWVybyBwYXJhIHNldSBlcXVpdmFsZW50ZSBlbSBjYXJhY3RlcmUgdXNhbmRvIGEgZnVuw6fDo28gY2hyKCk6";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-76').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python">chr(84) # retorna o caractere correspondente ao valor Unicode 84 que é &#x27;T&#x27;
+
+# Tabela de números e letras em ASCII
+
+# 48-57: 0-9
+# 65-90: A-Z
+# 97-122: a-z</code></pre>
+            </div>
+            
+            <div class="cell cell-markdown" id="md-78"></div>
+            <script>
+                (function(){
+                    const b64 = "T3UgZXhpYmlyIHNldSBjb3JyZXNwb25kZW50ZSBiaW7DoXJpbyBjb20gYSBmdW7Dp8OjbyBiaW4oKToKCmJpbigpIMOpIHVtYSBmdW7Dp8OjbyBlbWJ1dGlkYSBxdWUgY29udmVydGUgdW0gbsO6bWVybyBpbnRlaXJvIGVtIHN1YSByZXByZXNlbnRhw6fDo28gYmluw6FyaWEuIE8gcmVzdWx0YWRvIMOpIHVtYSBzdHJpbmcgcHJlZml4YWRhIGNvbSAwYi4gCgpQYXJhIHJlbW92ZXIgbyBwcmVmaXhvLCB2b2PDqiBwb2RlIHVzYXIgYSBmdW7Dp8OjbyBmb3JtYXQoKSBwYXJhIGNvbnZlcnRlciBvIG7Dum1lcm8gZW0gdW1hIHN0cmluZyBlIGVzcGVjaWZpY2FyIG8gZm9ybWF0byBiaW7DoXJpbzo=";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-78').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python">print(bin(84)) # retorna a representação binária do número 84 que é 1010100
+
+print(format(84, &#x27;b&#x27;)) # retorna a representação binária do número sem o prefixo 0b</code></pre>
+            </div>
+            
+            <div class="cell cell-markdown" id="md-80"></div>
+            <script>
+                (function(){
+                    const b64 = "IyMgQSBPcmRlbSBkZSBQcmVjZWTDqm5jaWEgZG9zIE9wZXJhZG9yZXMgZW0gUHl0aG9uOiBVbWEgQW7DoWxpc2UgRGV0YWxoYWRhIHBhcmEgRGVzZW52b2x2ZWRvcmVzCgpObyBkb23DrW5pbyBkYSBwcm9ncmFtYcOnw6NvIFB5dGhvbiwgYSBvcmRlbSBkZSBwcmVjZWTDqm5jaWEgZG9zIG9wZXJhZG9yZXMgw6kgdW0gY29uY2VpdG8gZnVuZGFtZW50YWwgcXVlIHJlZ2UgYSBhdmFsaWHDp8OjbyBkZSBleHByZXNzw7VlcyBtYXRlbcOhdGljYXMsIGzDs2dpY2FzIGUgZGUgY29tcGFyYcOnw6NvLiBDb21wcmVlbmRlciBlc3NhIG9yZGVtIGNvbSBjbGFyZXphIMOpIGNydWNpYWwgcGFyYSBhIGNvbnN0cnXDp8OjbyBkZSB1bSBjw7NkaWdvIFB5dGhvbiBwcmVjaXNvLCBjb25zaXN0ZW50ZSBlIGxpdnJlIGRlIGFtYmlndWlkYWRlcy4KCioqMS4gSGllcmFycXVpYSBkb3MgT3BlcmFkb3JlcyBkZSBDb21wYXJhw6fDo286KioKCk9zIG9wZXJhZG9yZXMgZGUgY29tcGFyYcOnw6NvLCB1dGlsaXphZG9zIHBhcmEgZGV0ZXJtaW5hciBhIHJlbGHDp8OjbyBlbnRyZSB2YWxvcmVzLCBwb3NzdWVtIHVtYSBvcmRlbSBkZSBwcmVjZWTDqm5jaWEgZXNwZWPDrWZpY2EsIGNvbmZvcm1lIGFwcmVzZW50YWRvIGEgc2VndWlyLCBkbyBtYWlvciBwYXJhIG8gbWVub3IgbsOtdmVsIGRlIHByZWNlZMOqbmNpYToKCiogYD5gIChNYWlvciBxdWUpCiogYDxgIChNZW5vciBxdWUpCiogYD49YCAoTWFpb3Igb3UgaWd1YWwgYSkKKiBgPD1gIChNZW5vciBvdSBpZ3VhbCBhKQoqIGA9PWAgKElndWFsIGEpCiogYCE9YCAoRGlmZXJlbnRlIGRlKQoKw4kgaW1wb3J0YW50ZSBzYWxpZW50YXIgcXVlIGEgYXZhbGlhw6fDo28gZG9zIG9wZXJhZG9yZXMgZGUgY29tcGFyYcOnw6NvIGVtIFB5dGhvbiDDqSBlc3RyaXRhbWVudGUgKipkYSBlc3F1ZXJkYSBwYXJhIGEgZGlyZWl0YSoqLiBJc3NvIHNpZ25pZmljYSBxdWUsIGVtIHVtYSBleHByZXNzw6NvIGNvbSBtw7psdGlwbG9zIG9wZXJhZG9yZXMgZGUgY29tcGFyYcOnw6NvLCBhIGF2YWxpYcOnw6NvIHNlZ3VlIGEgb3JkZW0gbGluZWFyIGRvIHByaW1laXJvIG9wZXJhZG9yIMOgIGVzcXVlcmRhIHBhcmEgbyDDumx0aW1vIMOgIGRpcmVpdGEuCgoqKjIuIEV4ZW1wbGlmaWNhbmRvIGEgUHJlY2Vkw6puY2lhIEF0cmF2w6lzIGRlIENhc29zIFByw6F0aWNvczoqKgoKUGFyYSBzb2xpZGlmaWNhciBhIGNvbXByZWVuc8OjbyBkYSBvcmRlbSBkZSBwcmVjZWTDqm5jaWEsIHZhbW9zIGFuYWxpc2FyIGFsZ3VucyBleGVtcGxvcyBwcsOhdGljb3M6";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-80').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python">x = 5
+y = 10
+z = 15
+
+resultado = x &lt; y &lt; z
+print(resultado)  # Resultado: True</code></pre>
+            </div>
+            
+            <div class="cell cell-markdown" id="md-82"></div>
+            <script>
+                (function(){
+                    const b64 = "TmVzdGEgZGVtb25zdHJhw6fDo28sIGEgZXhwcmVzc8OjbyBgeCA8IHkgPCB6YCBlbnZvbHZlIHRyw6pzIG9wZXJhZG9yZXMgZGUgY29tcGFyYcOnw6NvLiBObyBlbnRhbnRvLCBhcGVuYXMgZHVhcyBvcGVyYcOnw7VlcyByZWFpcyBzw6NvIHJlYWxpemFkYXM6CgoxLiAqKnggPCB5OioqIENvbXBhcmEgc2UgYHhgIMOpIG1lbm9yIHF1ZSBgeWAuIENvbW8gNSDDqSBtZW5vciBxdWUgMTAsIG8gcmVzdWx0YWRvIMOpIGBUcnVlYC4KMi4gKipUcnVlIDwgejoqKiBTdWJzdGl0dWluZG8gYHggPCB5YCBwb3IgYFRydWVgLCBhIGNvbXBhcmHDp8OjbyBzZSB0b3JuYSBgVHJ1ZSA8IHpgLiBFbSBQeXRob24sIGBUcnVlYCDDqSBpbnRlcnByZXRhZG8gY29tbyAxLCByZXN1bHRhbmRvIG5hIGNvbXBhcmHDp8OjbyBgMSA8IHpgLiBDb21vIDEgw6kgbWVub3IgcXVlIDE1LCBvIHJlc3VsdGFkbyBmaW5hbCBwZXJtYW5lY2UgYFRydWVgLg==";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-82').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python">a = 3
+b = 3
+c = 6
+
+resultado = a == b != c
+print(resultado)  # Resultado: True</code></pre>
+            </div>
+            
+            <div class="cell cell-markdown" id="md-84"></div>
+            <script>
+                (function(){
+                    const b64 = "TmVzdGUgZXhlbXBsbywgYSBleHByZXNzw6NvIGBhID09IGIgIT0gY2AgZW52b2x2ZSBkb2lzIG9wZXJhZG9yZXMgZGUgY29tcGFyYcOnw6NvIGUgdW0gb3BlcmFkb3IgbMOzZ2ljby4gQSBhdmFsaWHDp8OjbyBzZWd1ZSBhIG9yZGVtIGRlIHByZWNlZMOqbmNpYToKCjEuICoqYSA9PSBiOioqIENvbXBhcmEgc2UgYGFgIMOpIGlndWFsIGEgYGJgLiBDb21vIGFtYm9zIHPDo28gaWd1YWlzIGEgMywgbyByZXN1bHRhZG8gw6kgYFRydWVgLgoyLiAqKlRydWUgIT0gYzoqKiBTdWJzdGl0dWluZG8gYGEgPT0gYmAgcG9yIGBUcnVlYCwgYSBleHByZXNzw6NvIHNlIHRvcm5hIGBUcnVlICE9IGNgLiBOb3ZhbWVudGUsIGBUcnVlYCDDqSBpbnRlcnByZXRhZG8gY29tbyAxLCByZXN1bHRhbmRvIG5hIGNvbXBhcmHDp8OjbyBgMSAhPSBjYC4gQ29tbyAxIMOpIGRpZmVyZW50ZSBkZSA2LCBvIHJlc3VsdGFkbyBmaW5hbCDDqSBgVHJ1ZWAu";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-84').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-markdown" id="md-85"></div>
+            <script>
+                (function(){
+                    const b64 = "KiozLiBBIE9yZGVtIGRlIFByZWNlZMOqbmNpYSBDb21wbGV0YSBwYXJhIENvbnN1bHRhOioqICAKClBhcmEgY29uc3VsdGEgZnV0dXJhLCDDqSBpbXBvcnRhbnRlIGFwcmVzZW50YXIgYSBsaXN0YSBjb21wbGV0YSBkYSBvcmRlbSBkZSBwcmVjZWTDqm5jaWEgZG9zIG9wZXJhZG9yZXMgZW0gUHl0aG9uLCBvcmdhbml6YWRhIGRvIG1haW9yIHBhcmEgbyBtZW5vciBuw612ZWwgZGUgcHJlY2Vkw6puY2lhOiAgCgoxLiAqKlBhcsOqbnRlc2VzKiogYCgpYAoyLiAqKkV4cG9uZW5jaWHDp8OjbyoqIGAqKmAKMy4gKipTaW5hbCBwb3NpdGl2by9uZWdhdGl2byoqIGAreGAsIGAteGAKNC4gKipNdWx0aXBsaWNhw6fDo28sIGRpdmlzw6NvLCByZXN0byBlIG11bHRpcGxpY2HDp8OjbyBkZSBtYXRyaXplcyoqIGAqYCwgYC9gLCBgLy9gLCBgJWAsIGBAYAo1LiAqKkFkacOnw6NvIGUgc3VidHJhw6fDo28qKiBgK2AsIGAtYAo2LiAqKk9wZXJhZG9yZXMgZGUgY29tcGFyYcOnw6NvKiogYDxgLCBgPD1gLCBgPmAsIGA+PWAsIGA9PWAsIGAhPWAKNy4gKipPcGVyYWRvcmVzIGRlIGlkZW50aWRhZGUqKiBgaXNgLCBgaXMgbm90YAo4LiAqKk9wZXJhZG9yZXMgZGUgYXNzb2NpYcOnw6NvKiogYGluYCwgYG5vdCBpbmAKOS4gKipPcGVyYWRvcmVzIGzDs2dpY29zKiogYG5vdGAsIGBhbmRgLCBgb3JgICAKCioqNC4gQ29udHJvbGUgUHJlY2lzbyBkYSBBdmFsaWHDp8OjbyBjb20gUGFyw6pudGVzZXM6KiogIAoKRW1ib3JhIGEgb3JkZW0gZGUgcHJlY2Vkw6puY2lhIGRlZmluYSBhIGF2YWxpYcOnw6NvIG5hdHVyYWwgZGFzIGV4cHJlc3PDtWVzLCBvcyBwYXLDqm50ZXNlcyBgKClgIGZvcm5lY2VtIGFvIGRlc2Vudm9sdmVkb3IgbyBwb2RlciBkZSBjb250cm9sYXIgZXhwbGljaXRhbWVudGUgYSBvcmRlbSBkZSBhdmFsaWHDp8Ojby4gSXNzbyBwb2RlIHNlciBwYXJ0aWN1bGFybWVudGUgw7p0aWwgcGFyYSBtZWxob3JhciBhIGxlZ2liaWxpZGFkZSBkbyBjw7NkaWdvIGUgZXZpdGFyIGFtYmlndWlkYWRlcyBlbSBleHByZXNzw7VlcyBjb21wbGV4YXMuICAKCkFvIHV0aWxpemFyIG9zIHBhcsOqbnRlc2VzLCBvIGRlc2Vudm9sdmVkb3IgZGVmaW5lIHF1YWlzIG9wZXJhw6fDtWVzIGRldmVtIHNlciBhdmFsaWFkYXMgcHJpbWVpcm8sIGdhcmFudGluZG8gY2xhcmV6YSBlIHByZXZpc2liaWxpZGFkZSBubyBjw7NkaWdvLg==";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-85').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            </div><script>hljs.highlightAll();</script>
+    </main>
+</body>
+</html>
