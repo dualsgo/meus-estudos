@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>55_desafio.py</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="https://pyscript.net/releases/2024.1.1/core.css">
+    <script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>
+    <style>
+        .sandbox-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
+        .sandbox-header h2 { font-size: 1.2rem; color: var(--primary); display: flex; align-items: center; gap: 0.5rem; }
+        .py-repl-container { border-radius: 8px; overflow: hidden; border: 1px solid var(--glass-border); background: #1e293b; }
+    </style>
+    
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --glass-bg: rgba(30, 41, 59, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --primary: #38bdf8;
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        header {
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            border-bottom: 1px solid var(--glass-border);
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .back-btn {
+            color: var(--text-main);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            background: rgba(255,255,255,0.05);
+            transition: 0.3s;
+        }
+        .back-btn:hover {
+            background: rgba(56, 189, 248, 0.2);
+            color: var(--primary);
+        }
+        .file-title {
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+        main {
+            flex: 1;
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        .container {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="../index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Voltar</a>
+        <div class="file-title">55_desafio.py</div>
+    </header>
+    <main>
+        
+    <div class="container">
+        <div class="sandbox-header">
+            <h2><i class="fa-brands fa-python"></i> Sandbox PyScript</h2>
+            <span>Edite e execute (Shift + Enter) ou no botão verde ▶</span>
+        </div>
+        <div class="py-repl-container">
+            <script type="py" id="main-script"></script>
+            <py-repl auto-generate="true">
+# Exercício Python #055 - Maior e menor da sequência - Aula 00 até 13 - Mundo 2
+# Faça um programa que leia o peso de cinco pessoas. No final, mostre qual foi o maior e o menor peso lidos.
+
+# Simples
+import random
+pesos = [round(random.uniform(60.0, 180.0), 1) for h in range(5)]
+for pessoa, peso in enumerate(pesos, 1):
+	print(f&#x27;Pessoa {pessoa}: {peso:&gt;8}kg&#x27;)
+
+# Completo
+from random import randint
+from time import sleep
+
+pesado = float(&#x27;-inf&#x27;)
+leve = float(&#x27;inf&#x27;)
+
+while True:
+    try:
+        print(f&#x27;{&quot;-&quot;*33}&#x27;)
+        print(f&#x27;|{&quot;PESSOA&quot;:^15}|{&quot;PESO KG&quot;:^15}|&#x27;)
+        print(f&#x27;{&quot;-&quot;*33}&#x27;)
+        for pessoa in range(1, 6):
+            sleep(1)
+            peso = randint(40, 200)
+            print(f&#x27;|{pessoa:^15}|{peso: ^15.2f}|&#x27;)
+            if peso &gt; pesado:
+                pesado = peso
+            if peso &lt; leve:
+                leve = peso
+        print(f&#x27;{&quot;-&quot;*31}&#x27;)
+        print(f&#x27;A pessoa mais pesada pesa: \033[1;32m{pesado:&gt;10.2f}Kg\033[m&#x27;)
+        print(f&#x27;A pessoa mais leve pesa: \033[1;31m{leve:&gt;10.2f}Kg\033[m&#x27;)
+        break
+    except Exception as e:
+        print(f&#x27;ERRO: {e}&#x27;)
+        
+# Estou compartilhando minhas anotações sobre os exercícios. Quem quiser, pode copiar e colar em um documento .py pois está tudo formatado e comentado.
+
+# Nesse exercício, vamos ler o peso de cinco pessoas e mostrar qual foi o maior e o menor peso lidos.
+
+# Quando quiser comparar valores, é uma boa prática inicializar as variáveis com o menor valor possível (para o menor peso) e o maior valor possível (para o maior peso). Isso garante que qualquer valor que você encontrar será maior ou menor que o valor inicial.
+
+# Em vez de digitar um valor arbritariamente grande ou pequeno, podemos usar os valores float(&#x27;-inf&#x27;) e float(&#x27;inf&#x27;) para representar o menor e o maior valor possível, respectivamente. Essa tecnica é útil para evitar erros de comparação e se chamam de sentinela.
+
+maior = float(&#x27;-inf&#x27;)  # Inicializamos a variável maior com o menor valor possível.
+menor = float(&#x27;inf&#x27;)  # Inicializamos a variável menor com o maior valor possível.
+
+# Entenda essa técnica. Pense no maior valor que vier na sua cabeça. Agora, pense em um valor maior que esse. Não importa o valor que você pensou, o valor float(&#x27;inf&#x27;) é maior que ele. O mesmo vale para o float(&#x27;-inf&#x27;).
+
+# Se definirmos o maior e menor valores antes do laço, evitamos a necessidade de verificar se é a primeira iteração. Se for a primeira iteração, o valor será substituído pelo valor lido. Se não for, o valor será comparado com o valor lido e substituído se necessário.
+
+for pessoa in range(1, 6):  # Vamos ler o peso de cinco pessoas.
+    peso = float(input(f&#x27;Peso da {pessoa}ª pessoa: &#x27;))  # Solicitamos ao usuário que digite o peso da pessoa.
+    
+    # Como usamos a tecnica da sentinela, não precisamos verificar se é a primeira iteração. Qualquer valor que for digitado será maior ou menor que o valor inicial. A partir daí, atualizamos os valores em cada iteração.
+    
+    if peso &gt; maior:  # Se o peso for maior que o maior peso
+        maior = peso  # Substituímos o maior peso pelo peso lido.
+        
+    if peso &lt; menor:  # Se o peso for menor que o menor peso
+        menor = peso  # Substituímos o menor peso pelo peso lido.
+
+# Após as cinco iterações, mostramos o maior e o menor peso lidos.
+print(f&#x27;O maior peso lido foi {maior:.2f}Kg&#x27;)  # Mostramos o maior peso lido.
+print(f&#x27;O menor peso lido foi {menor:.2f}Kg&#x27;)  # Mostramos o menor peso lido.
+            </py-repl>
+        </div>
+    </div>
+    
+    </main>
+</body>
+</html>

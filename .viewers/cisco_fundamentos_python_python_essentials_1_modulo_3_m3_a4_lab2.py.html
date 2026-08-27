@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>m3_a4_lab2.py</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="https://pyscript.net/releases/2024.1.1/core.css">
+    <script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>
+    <style>
+        .sandbox-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
+        .sandbox-header h2 { font-size: 1.2rem; color: var(--primary); display: flex; align-items: center; gap: 0.5rem; }
+        .py-repl-container { border-radius: 8px; overflow: hidden; border: 1px solid var(--glass-border); background: #1e293b; }
+    </style>
+    
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --glass-bg: rgba(30, 41, 59, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --primary: #38bdf8;
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        header {
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            border-bottom: 1px solid var(--glass-border);
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .back-btn {
+            color: var(--text-main);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            background: rgba(255,255,255,0.05);
+            transition: 0.3s;
+        }
+        .back-btn:hover {
+            background: rgba(56, 189, 248, 0.2);
+            color: var(--primary);
+        }
+        .file-title {
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+        main {
+            flex: 1;
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        .container {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="../index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Voltar</a>
+        <div class="file-title">m3_a4_lab2.py</div>
+    </header>
+    <main>
+        
+    <div class="container">
+        <div class="sandbox-header">
+            <h2><i class="fa-brands fa-python"></i> Sandbox PyScript</h2>
+            <span>Edite e execute (Shift + Enter) ou no botão verde ▶</span>
+        </div>
+        <div class="py-repl-container">
+            <script type="py" id="main-script"></script>
+            <py-repl auto-generate="true">
+# 3.4.11 LAB O básico de listas ‒ os Beatles
+# Cenário
+
+# Os Beatles foram um dos grupos de música mais populares dos anos 60, e a banda mais vendida na história. Algumas pessoas consideram que eles são o ato mais influente da era do rock. Na verdade, eles foram incluídos na compilação da revista Time das 100 pessoas mais influentes do século XX.
+
+# A banda passou por muitas mudanças na formação, culminando em 1962 com a formação de John Lennon, Paul McCartney, George Harrison e Richard Starkey (mais conhecido como Ringo Starr).
+
+# Escreva um programa que reflita essas mudanças e permita praticar com o conceito de listas. Sua tarefa:
+
+# A propósito, você é um fã dos Beatles? (Os Beatles são uma das bandas favoritas de Greg. Mas espere ... quem é Greg ...?)
+
+# etapa 1: criar uma lista vazia chamada beatles;
+beatles = []
+print(&quot;Etapa 1:&quot;, beatles)
+
+# etapa 2: use o método append() para adicionar os seguintes membros da banda à lista: John Lennon, Paul McCartney e George Harrison;
+beatles.append(&quot;John Lennon&quot;)
+beatles.append(&quot;Paul McCartney&quot;)
+beatles.append(&quot;George Harrison&quot;)
+print(&quot;Etapa 2:&quot;, beatles)
+
+# etapa 3: Use o loop for e o método append() para solicitar que o usuário adicione os seguintes membros da banda à lista: Stu Sutcliffe e Pete Best;
+for membro in range(len(beatles), 5):
+	novo_membro = str(input(&#x27;Digite o nome do novo membro: &#x27;)).strip().capitalize()
+	beatles.append(novo_membro)
+print(&quot;Etapa 3:&quot;, beatles)
+
+# etapa 4: use a instrução del para remover Stu Sutcliffe e Pete Best da lista;
+del beatles[-1]
+del beatles[-1]
+print(&quot;Etapa 4:&quot;, beatles)
+
+# etapa 5: Use o método insert() para adicionar Ringo Starr ao início da lista.
+beatles.insert(0, &#x27;Ringo Starr&#x27;)
+print(&quot;Etapa 5:&quot;, beatles)
+
+# testando o tamanho da lista
+(&quot;o fabuloso&quot;, len(beatles))
+            </py-repl>
+        </div>
+    </div>
+    
+    </main>
+</body>
+</html>

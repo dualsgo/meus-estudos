@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>m2_aula_2.py</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="https://pyscript.net/releases/2024.1.1/core.css">
+    <script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>
+    <style>
+        .sandbox-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
+        .sandbox-header h2 { font-size: 1.2rem; color: var(--primary); display: flex; align-items: center; gap: 0.5rem; }
+        .py-repl-container { border-radius: 8px; overflow: hidden; border: 1px solid var(--glass-border); background: #1e293b; }
+    </style>
+    
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --glass-bg: rgba(30, 41, 59, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --primary: #38bdf8;
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        header {
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            border-bottom: 1px solid var(--glass-border);
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .back-btn {
+            color: var(--text-main);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            background: rgba(255,255,255,0.05);
+            transition: 0.3s;
+        }
+        .back-btn:hover {
+            background: rgba(56, 189, 248, 0.2);
+            color: var(--primary);
+        }
+        .file-title {
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+        main {
+            flex: 1;
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        .container {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="../index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Voltar</a>
+        <div class="file-title">m2_aula_2.py</div>
+    </header>
+    <main>
+        
+    <div class="container">
+        <div class="sandbox-header">
+            <h2><i class="fa-brands fa-python"></i> Sandbox PyScript</h2>
+            <span>Edite e execute (Shift + Enter) ou no botão verde ▶</span>
+        </div>
+        <div class="py-repl-container">
+            <script type="py" id="main-script"></script>
+            <py-repl auto-generate="true">
+# 2.2.1 Literais - Os dados em sí
+
+# Literais são dados cujos valores são determinados pelo próprio literal. Em outras palavras, um literal representa um valor fixo, não variável. Por exemplo, a string &quot;Olá&quot; é um literal de string, enquanto a variável nome pode ser um literal de string ou um literal numérico, dependendo do valor que ela contém.
+
+# Neste exemplo, você encontrará dois tipos diferentes de literais:
+# Uma string, que você já conhece e um número inteiro, algo completamente novo.
+print(&quot;2&quot;)
+print(2)
+
+# A função print() os apresenta exatamente da mesma maneira ‒ este exemplo é óbvio, pois sua representação legível por humanos também é a mesma.
+
+# Internamente, na memória do computador, esses dois valores são armazenados de formas completamente diferentes ‒ a string existe apenas como uma string ‒ uma série de letras.
+# O número é convertido em representação de máquina (um conjunto de bits). A função print() é capaz de mostrar ambos em um formato legível para humanos.
+
+# 2.2.2 Inteiros
+
+# Os números manipulados pelos computadores podem ser de dois tipos:
+# inteiros, ou seja, aqueles desprovidos da parte fracionária (int)
+# e números de ponto flutuante (ou simplesmente float), que contêm (ou conseguem conter) a parte fracionária.
+
+# Tomemos, por exemplo, o número onze milhões cento e onze mil cento e onze. Se você pegasse um lápis na mão agora, escreveria o número assim: 11.111.111, ou até mesmo assim: 11 111 111.
+
+# É claro que essa disposição facilita a leitura, especialmente quando o número consiste em muitos dígitos. No entanto, o Python não aceita coisas como essas. É proibido. O que o Python 3.6+ permite, porém, é o uso de sublinhados em literais numéricos.*
+
+# Portanto, você pode escrever este número da seguinte forma: 11111111 ou desta forma: 11_111_111.
+# Para números negativos basta colocar o sinal de menos na frente do literal: -11111111 ou -11_111_111.
+# Números positivos não carecem de um sinal, mas você pode colocá-lo se quiser: +11111111 ou +11_111_111.
+
+# Números octais e hexadecimais
+# Se um número inteiro for precedido por um prefixo 0O ou 0o (zero-o), ele será tratado como um valor octal. Isso significa que o número deve conter dígitos retirados apenas do intervalo 0 a 7.
+# 0o123 é um número octal com um valor (decimal) igual a 83.
+# A função print() faz a conversão automaticamente.
+print(0o123)
+print(int(&#x27;0123&#x27;, 8))  # 8 é a base do número octal (0123)
+
+# Hexadecimais são números precedidos pelo prefixo 0x ou 0X (zero-x).
+# 0x123 é um número hexadecimal com um valor (decimal) igual a 291. A função print() também pode gerenciar esses valores.
+print(0x123)
+
+# Podemos converter um número hexadecimal em decimal usando a função int() e especificando a base do número hexadecimal (16) como segundo argumento:
+print(int(&#x27;0x&#x27; + &#x27;123&#x27;, 16))  # 16 é a base do número hexadecimal (0x123)
+
+# Assim utilizaremos a função format() para converter um número decimal em octal ou hexadecimal:
+print(format(83, &#x27;o&#x27;))
+# Basta especificar a base como segundo argumento da função format(). &#x27;o&#x27; para octal e &#x27;x&#x27; para hexadecimal.
+
+# 2.2.3 Floats
+
+# Valores float são aqueles que contêm uma parte fracionária. Eles são escritos com um ponto decimal como separador entre a parte inteira e a parte fracionária. Por exemplo: 2.5 ou -0.4
+
+# Embora se o seu idioma nativo preferir usar vírgula em vez de um ponto no número, você deve garantir que seu número não contenha nenhuma vírgula. O Python não aceitará isso, ou (em casos muito raros, mas possíveis) pode interpretar mal suas intenções, pois a própria vírgula tem seu próprio significado reservado em Python.
+
+# Se você quiser usar apenas um valor de dois e meio, escreva-o como mostrado acima. Observe mais uma vez: há um ponto entre 2 e 5, não uma vírgula.
+
+# Como você provavelmente pode imaginar, o valor de zero ponto quatro poderia ser escrito em Python como 0.4
+# Mas não se esqueça desta regra simples - você pode omitir zero quando for o único dígito antes ou depois da vírgula.
+
+# Em essência, você pode escrever o valor 0.4 como .4
+
+# O valor de 4.0 pode ser escrito como 4.
+# 4 é um número inteiro, enquanto 4.0 é um número de ponto flutuante.
+
+# Isso não mudará seu tipo nem seu valor de float para int, desde que haja um ponto decimal no literal.
+
+# Por outro lado, não são apenas os pontos que fazem um float. Você também pode usar a letra e.
+
+# A letra e (ou E) é usada para indicar a potência de dez. Por exemplo, para evitar escrever tantos zeros, os livros de física usam uma forma abreviada, que você provavelmente já viu: 3 x 10 ** 8. O Python permite que você escreva o mesmo valor como 3e8. A letra E (você também pode usar a letra minúscula e - vem da palavra expoente) é um registro conciso da frase vezes dez à potência de.
+
+# o expoente (o valor após o E) tem que ser um número inteiro;
+# a base (o valor na frente do E) pode ser um número inteiro ou um valor flutuante.
+
+# Codificação de flutuantes
+# Vamos ver como essa convenção é usada para registrar números muito pequenos (no sentido de seu valor absoluto, que é próximo de zero).
+
+# Uma constante física chamada constante de Planck (e indicada como h), conforme os livros didáticos, tem o valor de: 6,62607 x 10-34.
+
+# O Python permite que você escreva o mesmo valor como 6.62607e-34.
+
+# O Python sempre escolhe a forma mais econômica de apresentação do número, e você deve levar isso em consideração ao criar literais.
+print(0.0000000000000000000001)  # 1e-22
+
+# 2.2.4 Strings
+
+# Strings são usadas quando você precisa processar texto (como nomes de todos os tipos, endereços, romances, etc.), não números. Strings precisam de aspas assim como floats precisam de pontos.
+
+# O Python pode usar um apóstrofo em vez de uma aspa. Qualquer um desses caracteres pode delimitar cadeias de caracteres, mas você deve ser coerente. Se você abrir uma sequência com aspas, será necessário fechá-la com aspas.
+
+print(&#x27;Eu gosto &quot;Monty Python&quot;&#x27;)  # Eu gosto &quot;Monty Python&quot;
+
+# Também é possível usar barras invertidas para escapar de aspas numa string. Ou aspas triplas para strings de várias linhas.
+
+# Uma string vazia ainda permanece uma string:
+print(&#x27;&#x27;)
+print(&quot;&quot;)
+
+# 2.2.5 Valores boolean
+
+# Essas literais não são tão óbvias quanto as anteriores, pois são usadas para representar um valor muito abstrato - a veracidade. O nome vem do matemático George Boole, o primeiro a definir um sistema de álgebra booleana, a base da lógica moderna e da computação que usa apenas dois valores: verdadeiro e falso denotados como 1 e 0, respectivamente.
+
+# Cada vez que você pergunta ao Python se um número é maior que outro, a pergunta resulta na criação de alguns dados específicos - um valor booleano. Você nunca receberá uma resposta como: não sei ou Provavelmente, sim, mas não tenho certeza.
+
+# O Python sempre responderá com um dos dois valores: True ou False.
+
+# Você não pode mudar nada. É necessário aceitar esses símbolos como eles são, inclusive distinção entre maiúsculas e minúsculas.
+
+&quot;&quot;&quot;2.2.7 RESUMO DA SEÇÃO
+1. Literais são notações para representar alguns valores fixos no código. Python tem vários tipos de literais - por exemplo, um literal pode ser um número (literais numéricos, por exemplo, 123) ou uma string (literais de string, por exemplo, &quot;Eu sou um literal&quot;.).
+
+2. O sistema binário é um sistema de números que emprega 2 como base. Portanto, um número binário é composto de 0s e 1s apenas, por exemplo, 1010 é 10 em decimal.
+
+Os sistemas de numeração octal e hexadecimal, da mesma forma, empregam 8 e 16 como suas bases respectivamente. O sistema hexadecimal usa os números decimais e seis letras extras.
+3. Inteiros (ou simplesmente ints) são um dos tipos numéricos compatíveis com o Python. São números escritos sem um componente fracionário, por exemplo, 256 ou -1 (números inteiros negativos).
+
+4. Ponto flutuante (ou simplesmente float) são outro dos tipos numéricos compatíveis com o Python. São números que contêm (ou são capazes de conter) um componente fracionário, por exemplo, 1.27.
+
+5. Para codificar um apóstrofo ou uma aspas dentro de uma string, você pode 
+usar o caractere de escape, por exemplo, &#x27;I\&#x27;m happy.&#x27; ou abrir e fechar a string usando um conjunto oposto de símbolos aos que você deseja codificar, por exemplo, &quot;I&#x27;m happy.&quot; para codificar um apóstrofo e &#x27;Ele disse &quot;Python&quot;, não &quot;typhoon&quot;&#x27; para codificar uma aspas (dupla).
+
+6. Valores booleanos são os dois objetos constantes True e False usados para representar valores de verdade (em contextos numéricos, 1 é True, enquanto 0 é False.
+
+
+  Extra  
+
+Há mais um literal especial usado em Python: o literal None. Esse literal é um objeto NoneType e é usado para representar a ausência de um valor. Vamos contar mais sobre isso em breve.&quot;&quot;&quot;
+            </py-repl>
+        </div>
+    </div>
+    
+    </main>
+</body>
+</html>

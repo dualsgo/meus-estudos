@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>23_desafio.py</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="https://pyscript.net/releases/2024.1.1/core.css">
+    <script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>
+    <style>
+        .sandbox-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
+        .sandbox-header h2 { font-size: 1.2rem; color: var(--primary); display: flex; align-items: center; gap: 0.5rem; }
+        .py-repl-container { border-radius: 8px; overflow: hidden; border: 1px solid var(--glass-border); background: #1e293b; }
+    </style>
+    
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --glass-bg: rgba(30, 41, 59, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --primary: #38bdf8;
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        header {
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            border-bottom: 1px solid var(--glass-border);
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .back-btn {
+            color: var(--text-main);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            background: rgba(255,255,255,0.05);
+            transition: 0.3s;
+        }
+        .back-btn:hover {
+            background: rgba(56, 189, 248, 0.2);
+            color: var(--primary);
+        }
+        .file-title {
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+        main {
+            flex: 1;
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        .container {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="../index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Voltar</a>
+        <div class="file-title">23_desafio.py</div>
+    </header>
+    <main>
+        
+    <div class="container">
+        <div class="sandbox-header">
+            <h2><i class="fa-brands fa-python"></i> Sandbox PyScript</h2>
+            <span>Edite e execute (Shift + Enter) ou no botão verde ▶</span>
+        </div>
+        <div class="py-repl-container">
+            <script type="py" id="main-script"></script>
+            <py-repl auto-generate="true">
+# Exercício Python #023 - Separando dígitos de um número - Aulas 00 até 09 - Mundo 1
+# Faça um programa que leia um número de 0 a 9999 e mostre na tela cada um dos dígitos separados.
+from random import randint
+from tkinter import N
+
+# Tarefa 1: Ler um número (Irei usar um número aleatório sorteado)
+numero = randint(0, 9999)
+print(numero // 10)
+
+# Tarefa 2: Mostrar na tela cada um dos dígitos separados
+unidade = numero % 10
+dezena = (numero // 10) % 10
+centena = (numero // 100) % 10
+unidade_de_milhar = (numero // 1000) % 10
+
+print(f&#x27;O número digitado foi: {numero}.&#x27;)
+print(f&#x27;{&#x27;-&#x27; * 23}&#x27;)
+print(f&#x27;{&#x27;M&#x27;:^5}|{&#x27;C&#x27;:^5}|{&#x27;D&#x27;:^5}|{&#x27;U&#x27;:^5}&#x27;)
+print(f&#x27;{&#x27;-&#x27; * 23}&#x27;)
+print(f&#x27;{unidade_de_milhar:^5}|{centena:^5}|{dezena:^5}|{unidade:^5}&#x27;)
+print(f&#x27;{&#x27;-&#x27; * 23}&#x27;)
+# Versão 2 - Analisando a entrada do usuário
+
+while True:
+    número = input(&#x27;Digite um número entre 0 e 9999: &#x27;)
+
+    if número.isdigit() and 0 &lt;= int(número) &lt;= 9999:
+        # Preenche com zeros à esquerda até ter 4 caracteres
+        editado = número.zfill(4)
+        separar = editado.replace(&#x27;&#x27;, &#x27; &#x27;).split()
+
+        # Exibe os resultados formatados
+        print(f&#x27;{&quot;Unidade:&quot;:10}{separar[-1]}\n&#x27;
+              f&#x27;{&quot;Dezena:&quot;:10}{separar[-2]}\n&#x27;
+              f&#x27;{&quot;Centena:&quot;:10}{separar[-3]}\n&#x27;
+              f&#x27;{&quot;Milhar:&quot;:10}{separar[-4]}\n&#x27;)
+        break
+    else:
+        print(&#x27;Por favor, digite um número válido entre 0 e 9999.&#x27;)
+
+# Versão 3 - Utilizando a função divmod()
+
+while True:
+    número = input(&#x27;Digite um número entre 0 e 9999: &#x27;)
+
+    if número.isdigit() and 0 &lt;= int(número) &lt;= 9999:
+        # Preenche com zeros à esquerda até ter 4 caracteres
+        editado = número.zfill(4)
+
+        # Exibe os resultados formatados
+        print(f&#x27;{&quot;Unidade:&quot;:10}{editado[3]}\n&#x27;
+              f&#x27;{&quot;Dezena:&quot;:10}{editado[2]}\n&#x27;
+              f&#x27;{&quot;Centena:&quot;:10}{editado[1]}\n&#x27;
+              f&#x27;{&quot;Milhar:&quot;:10}{editado[0]}\n&#x27;)
+        break
+    else:
+        print(&#x27;Por favor, digite um número válido entre 0 e 9999.&#x27;)
+        
+# Estou compartilhando minhas anotações sobre os exercícios. Quem quiser, pode copiar e colar em um documento .py pois está tudo formatado e comentado.
+
+# Nesse exercício, o programa solicita ao usuário que digite um número entre 0 e 9999 e em seguida exibe cada um dos dígitos separados.
+
+# Para resolver esse exercício, vamos utilizar a função input() para ler o número digitado pelo usuário.
+# Precisamos decompor o número em suas unidades, dezenas, centenas e milhares.
+# Para isso, vamos utilizar a divisão inteira e o resto da divisão.
+
+# Primeiro, vamos ler o número digitado pelo usuário.
+# Vamos utilizar a função input() para isso.
+número = int(input(&#x27;Digite um número entre 0 e 9999: &#x27;))
+
+# Convertendo o número para inteiro para garantir que seja um número válido.
+
+# Para decompor o número, vamos utilizar a divisão inteira e o resto da divisão.
+# Para obter a unidade, vamos calcular o resto da divisão por 10. Por exemplo, se digitarmos 1234, o resto da divisão por 10 é 4 pois multiplos de 10 terminam em 0, sendo assim, o resto da divisão por 10 é o último número.
+unidade = número % 10
+
+# Para dezena, primeiro dividimos o número por 10 para remover a unidade e depois calculamos o resto da divisão por 10.
+# Por exemplo, se digitarmos 1234, ao dividir por 10, obtemos 123. O resto da divisão por 10 é 3, que é a dezena.
+dezena = (número // 10) % 10
+
+# Para centena, dividimos o número por 100 para remover as unidades e dezenas e depois calculamos o resto da divisão por 10.
+# Por exemplo, se digitarmos 1234, ao dividir por 100, obtemos 12. O resto da divisão por 10 é 2, que é a centena.
+centena = (número // 100) % 10
+
+# Para milhar, dividimos o número por 1000 para remover as unidades, dezenas e centenas.
+# Por exemplo, se digitarmos 1234, ao dividir por 1000, obtemos 1, que é o milhar.
+unidade_de_milhar = (número // 1000) % 10
+
+# Dessa forma, caso o número tenha menos de 4 dígitos, o resultado será 0 e não haverá erro.
+
+# Por fim, vamos exibir os resultados na tela.
+print(f&#x27;O número digitado foi: {número}.&#x27;)
+print(f&#x27;Unidade: {unidade}&#x27;)
+print(f&#x27;Dezena: {dezena}&#x27;)
+print(f&#x27;Centena: {centena}&#x27;)
+print(f&#x27;Milhar: {unidade_de_milhar}&#x27;)
+
+# É possível realizar o mesmo exercício apenas manipulando a string, sem necessidade de conversão para inteiro. Porém será necessário utilizar métodos que ainda não foram abordados no curso.
+            </py-repl>
+        </div>
+    </div>
+    
+    </main>
+</body>
+</html>

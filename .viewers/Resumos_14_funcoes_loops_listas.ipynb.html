@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>14_funcoes_loops_listas.ipynb</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/monokai-sublime.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/python.min.js"></script>
+    
+    <style>
+        .cell { margin-bottom: 1.5rem; }
+        .cell-markdown { font-size: 1.05rem; line-height: 1.6; color: #cbd5e1; }
+        .cell-markdown h1, .cell-markdown h2, .cell-markdown h3 { color: #f1f5f9; margin-top: 1rem; margin-bottom: 0.5rem; }
+        .cell-markdown code { background: rgba(0,0,0,0.3); padding: 0.2rem 0.4rem; border-radius: 4px; color: #eab308; }
+        .cell-markdown pre { background: rgba(0,0,0,0.3); padding: 1rem; border-radius: 8px; overflow-x: auto; border: 1px solid var(--glass-border); margin: 1rem 0; }
+        .cell-code { background: #23241f; border-radius: 8px; padding: 1rem; overflow-x: auto; position: relative; border: 1px solid #333; }
+        .cell-output { background: #000; color: #a3e635; padding: 1rem; border-radius: 8px; margin-top: 0.5rem; font-family: monospace; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;}
+        .prompt { position: absolute; top: 0.5rem; right: 0.5rem; color: #64748b; font-size: 0.8rem; user-select: none; }
+    </style>
+    
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --glass-bg: rgba(30, 41, 59, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --primary: #38bdf8;
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        header {
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            border-bottom: 1px solid var(--glass-border);
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .back-btn {
+            color: var(--text-main);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            background: rgba(255,255,255,0.05);
+            transition: 0.3s;
+        }
+        .back-btn:hover {
+            background: rgba(56, 189, 248, 0.2);
+            color: var(--primary);
+        }
+        .file-title {
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+        main {
+            flex: 1;
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        .container {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="../index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Voltar</a>
+        <div class="file-title">14_funcoes_loops_listas.ipynb</div>
+    </header>
+    <main>
+        <div class="container">
+            <div class="cell cell-markdown" id="md-0"></div>
+            <script>
+                (function(){
+                    const b64 = "IyAqKmBGdW7Dp8O1ZXMgY29tIGxvb3BzYCoqCi0tLQpJbnRlcnZhbG9zIGNvbW8gcmFuZ2UoMykgbm9zIGRpemVtIHF1YW50YXMgdmV6ZXMgbyBsb29wIGZvciDDqSBleGVjdXRhZG8sIGNvbW8gdHLDqnMgdmV6ZXMgbmVzc2UgY2Fzbw==";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-0').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [1]</div>
+                <pre><code class="language-python">def progress():
+    for i in range(1, 4):
+        print(f&#x27;Download file {i} out of 3&#x27;)
+
+progress()</code></pre>
+            </div>
+            <div class="cell-output">Download file 1 out of 3
+Download file 2 out of 3
+Download file 3 out of 3
+</div>
+            <div class="cell cell-markdown" id="md-2"></div>
+            <script>
+                (function(){
+                    const b64 = "UGFyYSByZXV0aWxpemFyIHVtIGxvb3AgZm9yIGNvbSBxdWFscXVlciBpbnRlcnZhbG8sIHBhc3NhbW9zIHVtIHBhcsOibWV0cm8gZW50cmUgcmFuZ2UoKQoKTyB2YWxvciBxdWUgcGFzc2Ftb3MgYW8gY2hhbWFyIGEgZnVuw6fDo28gw6kgYXJtYXplbmFkbyBubyBwYXLDom1ldHJvIGUgZGVwb2lzIHVzYWRvIGNvbW8gaW50ZXJ2YWxv";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-2').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [2]</div>
+                <pre><code class="language-python">def progress(files):
+    for i in range(files):
+        print(f&#x27;Download file {i+1} out of  {files}&#x27;)
+        
+qt_files = int(input(&#x27;Files = &#x27;))
+
+progress(qt_files)</code></pre>
+            </div>
+            <div class="cell-output">Download file 1 out of  8
+Download file 2 out of  8
+Download file 3 out of  8
+Download file 4 out of  8
+Download file 5 out of  8
+Download file 6 out of  8
+Download file 7 out of  8
+Download file 8 out of  8
+</div>
+            <div class="cell cell-markdown" id="md-4"></div>
+            <script>
+                (function(){
+                    const b64 = "UGFyYSByZXV0aWxpemFyIHVtIGxvb3AgcXVlIGl0ZXJhIHBybyB1bWEgbGlzdGEsIHBvZGVtb3MgYW5pbmjDoS1sbyBlbSB1bWEgZnVuw6fDo28sIGNvbW8gZXN0ZSBsb29wIGZvcgoKUGFyYSBpdGVyYXIgY29tIHF1YWxxdWVyIHRpcG8gZGUgbGlzdGEsIHVzYW1vcyBvIHBhcsOibWV0cm8gZGEgZnVuw6fDo28gZW0gdmV6IGRlIHVtYSBsaXN0YSBmaXhhLg==";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-4').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [3]</div>
+                <pre><code class="language-python">def metade_do_preco(carrinho):
+    for preco in carrinho:
+        print(f&#x27;Novo preço: {preco/2}&#x27;)
+
+lista_carrinho = [5, 20, 8]</code></pre>
+            </div>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [4]</div>
+                <pre><code class="language-python"># Ao percorre a lista no parâmetro, podemos chamar a função com qualquer lista, como lista_carrihno aqui
+metade_do_preco(lista_carrinho)</code></pre>
+            </div>
+            <div class="cell-output">Novo preço: 2.5
+Novo preço: 10.0
+Novo preço: 4.0
+</div>
+            <div class="cell cell-code">
+                <div class="prompt">In [5]</div>
+                <pre><code class="language-python"># Ou uma lista de compras 
+lista_compras = [10, 30, 80, 100, 200, 300]
+metade_do_preco(lista_compras)</code></pre>
+            </div>
+            <div class="cell-output">Novo preço: 5.0
+Novo preço: 15.0
+Novo preço: 40.0
+Novo preço: 50.0
+Novo preço: 100.0
+Novo preço: 150.0
+</div>
+            <div class="cell cell-markdown" id="md-8"></div>
+            <script>
+                (function(){
+                    const b64 = "IyMgKipgRnVuw6fDtWVzIGNvbSBsaXN0YXMgLSBMaXN0YXMgY29tbyBhcmd1bWVudG9zYCoqCi0tLQpRdWFscXVlciB0aXBvIGRlIHZhbG9yIHBvZGUgc2VydmlyIGNvbW8gZW50cmFkYSBvdSBzYcOtZGEgZGUgdW1hIGZ1bsOnw6NvLiBWZWphbW9zIGFzIGZ1bsOnw7VlcyBwb2RlbSB1c2FyIGxpc3RhcyBjb21vIHBsYXllcnMKCkVzc2EgZnVuw6fDo28gdmVyaWZpY2Egc2UgYSBsaXN0YSBkZSBqb2dhZG9yZXMgdGVtIG1haXMgZGUgdW0gZWxlbWVudG8sIG8gcXVlIHNpZ25pZmljYSBxdWUgw6kgdW0gam9nbyBtdWx0aXBsYXllci4=";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-8').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-markdown" id="md-9"></div>
+            <script>
+                (function(){
+                    const b64 = "IyMg";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-9').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [6]</div>
+                <pre><code class="language-python">def is_multiplayer(players):
+    return len(players) &gt;= 2
+
+# Passamos listas para funções assim como fazemos com qualquer outro valor: codificando um nome de lista entre os parênteses da função.
+players = [&#x27;Amy&#x27;, &#x27;Jay&#x27;]</code></pre>
+            </div>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [7]</div>
+                <pre><code class="language-python"># Após passarmos a lista para a função, podemos usar o parâmetro para exibi-la.
+print(is_multiplayer(players))</code></pre>
+            </div>
+            <div class="cell-output">True
+</div>
+            <div class="cell cell-markdown" id="md-12"></div>
+            <script>
+                (function(){
+                    const b64 = "TGVtYnJlLXNlIGRlIHF1ZSBvcyBwYXLDom1ldHJvcyBzw6NvIGNvbW8gdmFyacOhdmVpcyBxdWUgYXJtYXplbmFtIG9zIHZhbG9yZXMgcXVlIHBhc3NhbW9zIHBhcmEgdW1hIGZ1bsOnw6NvLiAKCkFxdWkgbyBwYXLDom1ldHJvIGZpbG1lcyBpcsOhIGFybWF6ZW5hciBvcyBlbGVtZW50b3MgZGEgbGlzdGFfZmlsbWVz";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-12').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [11]</div>
+                <pre><code class="language-python">def display_programme(filmes):
+    print(&#x27;Filmes disponíveis: &#x27;)
+    # A lista será exibida na sua formatação original com os elementos separados por vírgula entre colchetes
+    print(filmes)
+
+lista_filmes = [&#x27;Alien&#x27;, &#x27;Moon&#x27;]
+lista_tarefas = [&#x27;Fazer pipoca&#x27;, &#x27;Lavar a louça&#x27;]</code></pre>
+            </div>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [9]</div>
+                <pre><code class="language-python"># já que é com esse valor que chamamos a função.
+display_programme(lista_filmes)</code></pre>
+            </div>
+            <div class="cell-output">Filmes disponíveis: 
+[&#x27;Alien&#x27;, &#x27;Moon&#x27;]
+</div>
+            <div class="cell cell-code">
+                <div class="prompt">In [10]</div>
+                <pre><code class="language-python"># Se mudarmos o valor
+display_programme(lista_tarefas)</code></pre>
+            </div>
+            <div class="cell-output">Filmes disponíveis: 
+[&#x27;Fazer popoca&#x27;, &#x27;Lavar a louça&#x27;]
+</div>
+            <div class="cell cell-markdown" id="md-16"></div>
+            <script>
+                (function(){
+                    const b64 = "IERlbnRybyBkYSBmdW7Dp8OjbywgcG9kZW1vcyB1c2FyIHRvZGFzIGFzIG9wZXJhw6fDtWVzIGRlIGxpc3RhcywgY29tbyBsZW4oKSBwYXJhIG9idGVyIG8gbsO6bWVybyBkZSBwYXNzYWdlaXJvcw==";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-16').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [12]</div>
+                <pre><code class="language-python">def contagem_passageiros(passageiros):
+    return len(passageiros)
+
+lista_passageiros = [&#x27;Ana&#x27;, &#x27;Juan&#x27;, &#x27;Cláudia&#x27;, &#x27;Fátima&#x27;]
+print(f&#x27;Temos {contagem_passageiros(lista_passageiros)} passageiros&#x27;)</code></pre>
+            </div>
+            <div class="cell-output">Temos 4 passageiros
+</div>
+            <div class="cell cell-markdown" id="md-18"></div>
+            <script>
+                (function(){
+                    const b64 = "QSBmdW7Dp8OjbyBwb2RlIHVzYXIgbyBjdW1wcmltZW50byBkYSBsaXN0YSBwYXJhIGNvbXBhcmHDp8O1ZXMKCsOAcyB2ZXplcyBxdWVyZW1vcyBxdWUgbm9zc2EgZnVuw6fDo28gcmVjdXBlcmUgY2VydG9zIGVsZW1lbnRvcyBkZSB1bWEgbGlzdGEu";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-18').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [19]</div>
+                <pre><code class="language-python">def get_vencedor(competidores):
+    vencedor = competidores[0]
+    print(f&#x27;O vencedor foi: {vencedor}&#x27;)
+
+competidores = [&#x27;Jay&#x27;, &#x27;Meg&#x27;, &#x27;Cy&#x27;]
+get_vencedor(competidores)
+</code></pre>
+            </div>
+            <div class="cell-output">O vencedor foi: Jay
+</div>
+            <div class="cell cell-markdown" id="md-20"></div>
+            <script>
+                (function(){
+                    const b64 = "QXMgZnVuw6fDtWVzIHRhbWLDqW0gcG9kZW0gYXR1YWxpemFyIGxpc3RhcywgY29tbyBhdHVhbGl6YXIgbyBub21lIGVtIHRhYmVsYVswXSBwYXJhIGFxdWVsZSBubyBwYXLDom1ldHJvIHRpbWU=";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-20').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [21]</div>
+                <pre><code class="language-python">def mudar_lider(tabela, time):
+    tabela[0] = time
+    return tabela
+
+tabela = [&#x27;Botafogo&#x27;, &#x27;Palmeiras&#x27;, &#x27;Atlético&#x27;, &#x27;Flamengo&#x27;, &#x27;Gremio&#x27;]
+print(tabela)</code></pre>
+            </div>
+            <div class="cell-output">[&#x27;Botafogo&#x27;, &#x27;Palmeiras&#x27;, &#x27;Atlético&#x27;, &#x27;Flamengo&#x27;, &#x27;Gremio&#x27;]
+</div>
+            <div class="cell cell-code">
+                <div class="prompt">In [22]</div>
+                <pre><code class="language-python">tabela = mudar_lider(tabela, &#x27;Vasco&#x27;)
+print(tabela)</code></pre>
+            </div>
+            <div class="cell-output">[&#x27;Vasco&#x27;, &#x27;Palmeiras&#x27;, &#x27;Atlético&#x27;, &#x27;Flamengo&#x27;, &#x27;Gremio&#x27;]
+</div></div><script>hljs.highlightAll();</script>
+    </main>
+</body>
+</html>

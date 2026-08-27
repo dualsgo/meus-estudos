@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>07_estruturas_de_controle.ipynb</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/monokai-sublime.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/python.min.js"></script>
+    
+    <style>
+        .cell { margin-bottom: 1.5rem; }
+        .cell-markdown { font-size: 1.05rem; line-height: 1.6; color: #cbd5e1; }
+        .cell-markdown h1, .cell-markdown h2, .cell-markdown h3 { color: #f1f5f9; margin-top: 1rem; margin-bottom: 0.5rem; }
+        .cell-markdown code { background: rgba(0,0,0,0.3); padding: 0.2rem 0.4rem; border-radius: 4px; color: #eab308; }
+        .cell-markdown pre { background: rgba(0,0,0,0.3); padding: 1rem; border-radius: 8px; overflow-x: auto; border: 1px solid var(--glass-border); margin: 1rem 0; }
+        .cell-code { background: #23241f; border-radius: 8px; padding: 1rem; overflow-x: auto; position: relative; border: 1px solid #333; }
+        .cell-output { background: #000; color: #a3e635; padding: 1rem; border-radius: 8px; margin-top: 0.5rem; font-family: monospace; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;}
+        .prompt { position: absolute; top: 0.5rem; right: 0.5rem; color: #64748b; font-size: 0.8rem; user-select: none; }
+    </style>
+    
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --glass-bg: rgba(30, 41, 59, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --primary: #38bdf8;
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        header {
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            border-bottom: 1px solid var(--glass-border);
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .back-btn {
+            color: var(--text-main);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            background: rgba(255,255,255,0.05);
+            transition: 0.3s;
+        }
+        .back-btn:hover {
+            background: rgba(56, 189, 248, 0.2);
+            color: var(--primary);
+        }
+        .file-title {
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+        main {
+            flex: 1;
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        .container {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="../index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Voltar</a>
+        <div class="file-title">07_estruturas_de_controle.ipynb</div>
+    </header>
+    <main>
+        <div class="container">
+            <div class="cell cell-markdown" id="md-0"></div>
+            <script>
+                (function(){
+                    const b64 = "IyAqKmBDb25kacOnw7VlcyBlIEVzdHJ1dHVyYXMgQ29uZGljaW9uYWlzYCoqCi0tLQpBcyAqKmVzdHJ1dHVyYXMgY29uZGljaW9uYWlzKiogb2ZlcmVjZW0gcG9zc2liaWxpZGFkZXMgZGlzdGludGFzIHBhcmEgc2l0dWHDp8O1ZXMgZGlzdGludGFzLiBBc3NpbSBvcyBub3Nzb3MgcHJvZ3JhbWFzIHNlIHRvcm5hbSBtYWlzIGludGVsaWdlbnRlcyBlIHRvbWFtIGRlY2lzw7VlcywgZGVwZW5kZW5kbyBkYXMgY29uZGnDp8O1ZXMgYXByZXNlbnRhZGFzLgoKIyMgKipgQ29uZGnDp8O1ZXNgKioKLS0tClByb2dyYW1hcyBpbnRlbGlnZW50ZXMgdXNhbSAqKmJvb2xlYW5zKiogKGBUcnVlYCBlIGBGYWxzZWApIHBhcmEgdG9tYXIgZGVjaXPDtWVzIHNvYnJlIGV4ZWN1dGFyIGxpbmhhcyBkZSBjw7NkaWdvIG91IGlnbm9yw6EtbGFzLgoKQXMgKiplc3RydXR1cmFzIGNvbmRpY2lvbmFpcyoqIHV0aWxpemFtIGEgaW5kZW50YcOnw6NvIHBhcmEgZGVzdGFjYXIgc2V1cyBibG9jb3MgZGUgY8OzZGlnby4gQXMgaW5zdHJ1w6fDtWVzIGZvcmEgZGEgaW5kZW50YcOnw6NvIHNlcsOjbyBleGliaWRhcywgaW5kZXBlbmRlbnRlIGRhIGNvbmRpw6fDo28gc2VyIGF0ZW5kaWRhIG91IG7Do28uCgpWYWxvcmVzIGNvbW8gKipUcnVlKiogc8OjbyBjaGFtYWRvcyBkZSAqKmNvbmRpw6fDtWVzKiogZSBkZWNsYXJhw6fDtWVzIHF1ZSBkZXBlbmRlbSBkZSBjb25kacOnw7VlcyBzw6NvIGNoYW1hZGFzIGRlICoqY29uZGljaW9uYWlzKiouIEFzIGNvbmRpw6fDtWVzIGZpY2FtIGVudHJlIG8gYGlmYCBlIGA6YCwgZGVjaWRpbmRvIHNlIG8gY8OzZGlnbyBzZXLDoSBleGVjdXRhZG8gb3UgaWdub3JhZG8uCgpBIHNpbnRheGUgZGUgdW1hICoqZXN0cnV0dXJhIGNvbmRpY2lvbmFsKiogw6kgYSBzZWd1aW50ZTo=";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-0').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [1]</div>
+                <pre><code class="language-python"># Observação: Altere a variável condição para False/True e veja o que acontece.
+
+condição = False
+
+# A estrutura condicional if/else é utilizada para avaliar uma condição e executar um bloco de código caso a condição seja atendida e outro bloco caso a condição não seja atendida.
+
+# A condição é avaliada como True ou False. 
+if condição == True:
+# Caso a condição seja True, o bloco de código dentro do if é executado.
+    
+    # Bloco True: Observem a indentação, que é a forma como o Python identifica o início e o fim de um bloco de código.
+    print(&#x27;Bloco de código que será executado caso a condição seja atendida.&#x27;)
+    
+else:
+# Caso a condição seja False, o bloco de código dentro do else é executado.
+
+    # Bloco False
+    print(&quot;Bloco de código que será executado caso a condição não seja atendida.&quot;)
+
+# Instrução fora do bloco
+print(&#x27;Fim do programa.&#x27;)
+
+# if é a palavra chave para iniciar a estrutura condicional
+# O trecho condição == True é a condição que será avaliada.
+# : é o caractere que indica o início do bloco de código que será executado caso a condição seja atendida.
+# o primeiro bloco de código é executado caso a condição seja atendida. Podemos ter diversas instruções dentro do bloco desde que respeitem a indentação e a sintaxe da linguagem.
+# else é a palavra chave que indica o bloco de código que será executado caso a condição não seja atendida. É como uma resposta padrão caso a condição não seja atendida. Qualquer resultado que não seja True, será False. Este bloco é opcional se não quiser fazer nada caso a condição não seja atendida.
+# : é novamente o caractere que indica o início do bloco de código
+# o segundo bloco de código é executado caso a condição não seja atendida.
+# print(&#x27;Fim do programa.&#x27;) é executado após a estrutura condicional, pois está fora dos blocos de código. Essa instrução será executada independente do resultado da condição. Como dito antes, identação é importante para o Python. Códigos no mesmo nível de identação são executados, códigos com identação diferente são considerados blocos de código diferentes e podem ou não ser executados dependendo da condição.
+
+# Detalhe: Nesse exemplo, if condição == True: poderia ser simplificado para if condição: pois a condição já é avaliada como True ou False. Mesmo se  condição armazenar um valor diferente de True ou False, o Python irá avaliar a condição e retornar True ou False. Por exemplo, se condição = 1, a condição será avaliada como True. Se condição = 0, a condição será avaliada como False. Se for uma string, será avaliada como True se tiver conteúdo e False se estiver vazia. Se for uma lista, será avaliada como True se tiver elementos e False se estiver vazia. E assim por diante.</code></pre>
+            </div>
+            <div class="cell-output">Bloco de código que será executado caso a condição não seja atendida.
+Fim do programa.
+</div>
+            <div class="cell cell-markdown" id="md-2"></div>
+            <script>
+                (function(){
+                    const b64 = "IyMjICoqYERlY2xhcmHDp8OjbyBDb25kaWNpb25hbCBlbSBQeXRob25gKioKLS0tClVtYSBkZWNsYXJhw6fDo28gY29uZGljaW9uYWwgZW0gUHl0aG9uIGNvbnNpc3RlIG5vcyBzZWd1aW50ZXMgZWxlbWVudG9zLCBlc3RyaXRhbWVudGUgbmVjZXNzw6FyaW9zIGUgbmVzdGEgb3JkZW06CgotIEEgcGFsYXZyYS1jaGF2ZSBgaWZgOwotIFVtIGVzcGHDp28gcGFyYSBzZXBhcmFyIGEgcGFsYXZyYS1jaGF2ZTsKLSBVbWEgZXhwcmVzc8OjbyAodW1hIHBlcmd1bnRhIG91IHVtYSByZXNwb3N0YSkgY3VqbyB2YWxvciBzZXLDoSBpbnRlcnByZXRhZG8gYXBlbmFzIGVtIHRlcm1vcyBkZSBgVHJ1ZWAgKHF1YW5kbyBzZXUgdmFsb3IgZm9yIGRpZmVyZW50ZSBkZSB6ZXJvKSBlIGBGYWxzZWAgKHF1YW5kbyBmb3IgaWd1YWwgYSB6ZXJvKTsKLSBEb2lzIHBvbnRvcyBzZWd1aWRvcyBwb3IgdW1hIG5vdmEgbGluaGE7Ci0gVW1hIGluc3RydcOnw6NvIHJlY3VhZGEgb3UgdW0gY29uanVudG8gZGUgaW5zdHJ1w6fDtWVzIChwZWxvIG1lbm9zIHVtYSBpbnN0cnXDp8OjbyDDqSBhYnNvbHV0YW1lbnRlIG5lY2Vzc8OhcmlhKTsgbyByZWN1byBwb2RlIHNlciBvYnRpZG8gZGUgZHVhcyBtYW5laXJhczogaW5zZXJpbmRvIHVtIG7Dum1lcm8gZXNwZWPDrWZpY28gZGUgZXNwYcOnb3MgKGEgcmVjb21lbmRhw6fDo28gw6kgdXNhciBxdWF0cm8gZXNwYcOnb3MgZGUgcmVjdW8pIG91IHVzYW5kbyBvIGNhcmFjdGVyZSBkZSB0YWJ1bGHDp8Ojby4KCk5vdGE6IHNlIGhvdXZlciBtYWlzIGRlIHVtYSBpbnN0cnXDp8OjbyBuYSBwZcOnYSByZWN1YWRhLCBhIGluZGVudGHDp8OjbyBkZXZlIHNlciBhIG1lc21hIGVtIHRvZGFzIGFzIGxpbmhhczsgbWVzbW8gcXVlIHZvY8OqIHVzZSBhcyBndWlhcyBtaXN0dXJhZGFzIGNvbSBvcyBlc3Bhw6dvcywgw6kgaW1wb3J0YW50ZSB0b3JuYXIgdG9kb3Mgb3MgcmVjdW9zIGV4YXRhbWVudGUgaWd1YWlzIC0gbyBQeXRob24gMyBuw6NvIHBlcm1pdGUgYSBtaXN0dXJhIGRlIGVzcGHDp29zIGUgZ3VpYXMgcGFyYSBvIHJlY3VvLg==";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-2').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-markdown" id="md-3"></div>
+            <script>
+                (function(){
+                    const b64 = "IyMgKipgYGlmYGAqKgotLS0KVXNhbW9zIHVtYSBpbnN0cnXDp8OjbyAqKlNFIChpZikqKiBwYXJhIGVzY3JldmVyIGPDs2RpZ28gcXVlIHJlc3BvbmRhIGEgZGlmZXJlbnRlcyBzaXR1YcOnw7Vlcy4gTyBjb21hbmRvICoqaWYqKiDDqSB1bWEgaW5zdHJ1w6fDo28gY29uZGljaW9uYWwuCgpFbGUgcGVybWl0ZSBxdWUgdm9jw6ogZXhlY3V0ZSBhbGd1bWFzIGluc3RydcOnw7VlcyBzb21lbnRlIHNlIHVtYSBkZXRlcm1pbmFkYSBjb25kacOnw6NvIGZvciBhdGVuZGlkYS4gU2UgYSBjb25kacOnw6NvIG7Do28gZm9yIGF0ZW5kaWRhLCBhcyBpbnN0cnXDp8O1ZXMgbsOjbyBzZXLDo28gZXhlY3V0YWRhcy4KCsOJIGNvbW8gZGl6ZXIgJyoqU0UqKiBhbGdvIMOpIHZlcmRhZGUsIGZhw6dhIGlzc28nLgoKKippZioqIChzZSkgw6kgYSBjb25kaWNpb25hbCBpbmljaWFsLiBFbGEgZXNwZXJhIHF1ZSBhIGNvbmRpw6fDo28gc2VqYSBhdGVuZGlkYSwgcmV0b3JuYW5kbyAqKlRydWUqKi4KCkEgaW5zdHJ1w6fDo28gKippZioqIG7Do28gZGVjaWRlIHB1bGFyIG91IGV4ZWN1dGFyIG8gY8OzZGlnbyBpbnRlaXJvLiBFbGVzIHPDsyB0b21hbSBkZWNpc8O1ZXMgc29icmUgdW0gYmxvY28gZGUgY8OzZGlnby4KCkFzIGluc3RydcOnw7VlcyBxdWUgZGV2ZW0gc2VyIGV4ZWN1dGFkYXMgc2UgYSBjb25kacOnw6NvIGZvciBhdGVuZGlkYSBzw6NvIGNoYW1hZGFzIGRlIGJsb2NvICoqaWYqKi4gRWxhcyBkZXZlbSBzZXIgaWRlbnRhZGFzIHBhcmEgaWRlbnRpZmljYXIgbyBibG9jby4KClVtIGJsb2NvIGRlIGPDs2RpZ28gcG9kZSBzZXIgbWFpcyBkbyBxdWUgdW1hIGxpbmhhLiBUb2RhcyBhcyBsaW5oYXMgY29tIG8gbWVzbW8gcmVjdW8gcGVydGVuY2VtIGFvIG1lc21vIGJsb2NvIGRlIGPDs2RpZ28uCgpTZSBvIHJlY3VvIGVzdGl2ZXIgaW5jb3JyZXRvLCBvIGNvbXB1dGFkb3IgbsOjbyBjb25zZWd1aXLDoSBlbnRlbmRlciBzZXUgY8OzZGlnby4gSXNzbyByZXRvcm5hIHVtIGVycm8gKipJbmRlbnRhdGlvbiBFcnJvcioqIG5vIGNvbnNvbGUuCgpRdWFscXVlciBjw7NkaWdvIHF1ZSBuw6NvIGVzdGVqYSByZWN1YWRvIHNlcsOhIGV4ZWN1dGFkbyBpbmRlcGVuZGVudGVtZW50ZSBkYSBjb25kacOnw6NvLg==";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-3').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-markdown" id="md-4"></div>
+            <script>
+                (function(){
+                    const b64 = "IyMgKipgZWxpZmAqKgotLS0KQXMgaW5zdHJ1w6fDtWVzICoqZWxpZioqIHPDsyBzZXLDo28gdmVyaWZpY2FkYXMgc2UgYSBjb25kacOnw6NvICoqaWYqKiBuw6NvIGZvciBhdGVuZGlkYS4gU2UgYSBjb25kacOnw6NvICoqZWxpZioqIGZvciBhdGVuZGlkYSwgYXMgZGVtYWlzIGNvbmRpw6fDtWVzIHNlcsOjbyBpZ25vcmFkYXMuCgoqKk9CU0VSVkHDh8ODTyoqOgoKLSAqKmVsaWYqKiBwb2RlIHNlciB1c2FkbyBxdWFudGFzIHZlemVzIGZvciBuZWNlc3PDoXJpbywgbWFzIGRldmUgc2VtcHJlIHNlciB1c2FkbyBhcMOzcyB1bSAqKmlmKiouCi0gKiplbHNlKiogc8OzIHBvZGUgc2VyIHVzYWRvIGNvbW8gw7psdGltYSBvcMOnw6NvIG1hcyB0YW1iw6ltIHBvZGUgc2VyIG9taXRpZG8uCgpWYW1vcyBhcHJlbmRlciBjb21vIGVzY3JldmVyIGluc3RydcOnw7VlcyBjb25kaWNpb25haXMgcXVlIHRyYXRhbSBkZSBjb25kacOnw7VlcyBlc3BlY8OtZmljYXMsIGNvbW8gbm8gcHJvZ3JhbWEgYWJhaXhvLgoKRW0gbm9zc28gZXhlbXBsbywgbyBwcm9ncmFtYSB1c2EgaW5zdHJ1w6fDtWVzIGNvbmRpY2lvbmFpcyBwYXJhIG1vc3RyYXIgc2F1ZGHDp8O1ZXMgZGlmZXJlbnRlcyBkZXBlbmRlbmRvIGRhIGhvcmEuCgpVc2FuZG8gKippZioqIGUgKiplbHNlKiosIHBvZGVtb3MgZXNjcmV2ZXIgdW0gcHJvZ3JhbWEgcXVlIG1vc3RyZSB1bWEgc2F1ZGHDp8OjbyBzZSBob3JhIGZvciBtZW5vciBxdWUgMTIgZSBvdXRyYSBzZSBuw6NvIGF0ZW5kZXIgYSBjb25kacOnw6NvLgoKUGFyYSB1bWEgY29uZGnDp8OjbyBtYWlzIGVzcGVjw61maWNhLCBjb21vIHNlIGhvcmEgZm9yIG1haW9yIHF1ZSAxMiwgbWFzIG1lbm9yIHF1ZSAxNywgcG9kZW1vcyBjb2RpZmljYXIgKiplbGlmIGhvcmEgPCAxNyoqOgoKKiplbGlmKiogc2lnbmlmaWNhICdzZW7Do28gc2UnOiAqKmVsaWYqKiDDqSB1c2FkbyBxdWFuZG8gaMOhIHVtYSBzZWd1bmRhIGNvbmRpw6fDo28gYSBzZXIgdmVyaWZpY2FkYSBxdWFuZG8gYSBjb25kacOnw6NvIGRvIGJsb2NvICoqaWYqKiBuw6NvIGZvaSBhdGVuZGlkYS4gUG9yIHNlIHRyYXRhciBkZSB1bSBpbnRlcnZhbG8gbGltaXRhZG8sIHZhbW9zIGRlZmluaXIgYmVtIGFzIGNvbmRpw6fDtWVzLg==";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-4').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [5]</div>
+                <pre><code class="language-python"># Observação: Altere a variável hora para testar as condições
+
+hora = 10 # Define a hora atual
+
+# Verifica se a hora está entre 0 e 23, representando as 24 horas do dia
+
+# if 0 &lt;= hora and hora &lt;= 23: -&gt; Aqui, a condição é verificada de forma explícita as duas possibilidades. A condição é atendida se a hora for maior ou igual a 0 e menor ou igual a 23, mas podemos simplificar a condição para if 0 &lt;= hora &lt;= 23: que é mais legível e mais comum em Python.
+if 0 &lt;= hora &lt;= 23:
+    # Note que entramos em um novo bloco de código, pois a condição foi atendida. Todo código dentro do bloco será executado. Se forem novas estruturas condicionais, elas serão avaliadas e também terão seus blocos de código mais internos.
+        
+    # Se a hora for menor que 12, mas maior ou igual a 5 exibe &#x27;Bom dia!&#x27;. Em outras palavras, se a hora estiver entre 5 e 11, exibe &#x27;Bom dia!&#x27;.
+    if 5 &lt;= hora &lt;= 11:  # Manhã entre 5 e 11
+        print(&#x27;Bom dia!&#x27;)
+        
+        # Dentro do bloco de código do if, podemos ter outras estruturas condicionais. Isso é chamado de estrutura condicional aninhada. Recaptulando, se a execução do código chegou até aqui, significa que a hora está entre 0 e 23, e que está ente 5 e 11. Então, podemos fazer novas verificações dentro desse intervalo.
+        
+        # Se a hora for igual a 8, exibe &#x27;Hora do café da manhã!&#x27;
+        if hora == 8:
+            print(&#x27;Hora do café da manhã!&#x27;)
+            
+        # Se a hora for igual a 10, exibe &#x27;Hora do desenho!&#x27;
+        elif hora == 10:
+            print(&#x27;Hora do desenho!&#x27;)
+            
+        # Se estiver entre 5 e 11, mas não for 8 nem 10, não exibe nada, pois não definimos uma ação para esses casos. 
+    
+    # Se a hora for maior que 12, mas menor ou igual a 17, exibe &#x27;Boa tarde!&#x27;
+    elif 12 &lt;= hora &lt;= 17:  # Tarde entre 12 e 17
+        print(&#x27;Boa tarde!&#x27;)
+        
+    # Se a hora for maior que 17, mas menor ou igual 23, exibe &#x27;Boa noite!&#x27;
+    elif 18 &lt;= hora &lt;= 23:  # Noite entre 18 e 23
+        print(&#x27;Boa noite!&#x27;)
+
+    # Se a hora for maior que 23, mas menor que 5, exibe &#x27;Boa madrugada!&#x27;
+    else:  # Madrugada será entre 0 e 4
+        print(&#x27;Boa madrugada!&#x27;)
+        
+    # Basicamente, sem a estrutura aninhada, se nenhuma das condições acima fosse atendida, exibiria &#x27;Boa madrugada!&#x27; para qualquer valor inteiro digitado.
+        
+# Se a hora não estiver entre 0 e 23, exibe &#x27;Hora inválida!&#x27;        
+else:
+    print(&#x27;Hora inválida!&#x27;)</code></pre>
+            </div>
+            <div class="cell-output">Bom dia!
+Hora do desenho!
+</div>
+            <div class="cell cell-markdown" id="md-6"></div>
+            <script>
+                (function(){
+                    const b64 = "IyMjIERpZmVyZW7Dp2EgZW50cmUgdXNhciAqKmBpZiBlbGlmYCoqIGUgKipgaWYgaWZgKioKLS0tClNlIGEgaG9yYSBmb3IgZW50cmUgNSBlIDExLCBvIHByb2dyYW1hIGlyw6EgZXhpYmlyICdCb20gZGlhIScuIENvbW8gYSBjb25kacOnw6NvIGZvaSBhdGVuZGlkYSwgbyBwcm9ncmFtYSBuw6NvIGlyw6EgdmVyaWZpY2FyIGFzIG91dHJhcyBjb25kacOnw7Vlcy4gTWVzbW8gcXVlIHNlamEgMTAgaG9yYXMsIG8gcHJvZ3JhbWEgbsOjbyBpcsOhIGV4aWJpciAnU8OjbyAxMCBob3JhcyEnIHBvaXMgaW5zdHJ1w61tb3MgZWxlIGEgZXhpYmlyIGFwZW5hcyB1bWEgZGFzIGNvbmRpw6fDtWVzLg==";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-6').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [6]</div>
+                <pre><code class="language-python">hora = 10
+
+# if elif é usado quando queremos que o programa execute apenas uma das condições.
+
+# Exemplo de if elif
+if 5 &lt;= hora &lt;= 11:  # Dia entre 5 e 11
+    print(&#x27;Bom dia!&#x27;)
+    
+# Apesar de o elif atender a condição, ele não será executado, pois o if já foi atendido. Portanto o elif não precisa ser verificado.
+elif hora == 10:
+    print(&#x27;São 10 horas!&#x27;)</code></pre>
+            </div>
+            <div class="cell-output">Bom dia!
+</div>
+            <div class="cell cell-markdown" id="md-8"></div>
+            <script>
+                (function(){
+                    const b64 = "KipgaWYgaWZgKiogw6kgdXNhZG8gcXVhbmRvIHF1ZXJlbW9zIHF1ZSBvIHByb2dyYW1hIGV4ZWN1dGUgdG9kYXMgYXMgY29uZGnDp8O1ZXMgcXVlIGZvcmVtIGF0ZW5kaWRhcy4KCkV4ZW1wbG8gZGUgKipgaWYgaWZgKio6CgpTZSBhIGhvcmEgZm9yIGVudHJlIDUgZSAxMSwgbyBwcm9ncmFtYSBpcsOhIGV4aWJpciAnQm9tIGRpYSEnLiBDb21vIGjDoSBvdXRyYSBjb25kacOnw6NvLCBvIHByb2dyYW1hIGlyw6EgdmVyaWZpY2FyIHNlIGVsYSDDqSBhdGVuZGlkYS4gQ29tbyDDqSAxMCBob3JhcywgbyBwcm9ncmFtYSBpcsOhIGV4aWJpciAnU8OjbyAxMCBob3JhcyEnLiBDb21vIGluc3RydcOtbW9zIGVsZSBhIGV4aWJpciB0b2RhcyBhcyBjb25kacOnw7VlcywgZWxlIGlyw6EgZXhpYmlyIHRvZGFzIGFzIGNvbmRpw6fDtWVzIHF1ZSBmb3JlbSBhdGVuZGlkYXMu";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-8').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [8]</div>
+                <pre><code class="language-python"># Nesse exemplo, temos dois if, então ambos serão verificados. Se a hora for 10, ambos os blocos de código serão executados.
+
+hora = 10 
+
+if 5 &lt;= hora &lt;= 11:  # Dia entre 5 e 11
+    print(&#x27;Bom dia!&#x27;)
+if hora == 10:
+    print(&#x27;São 10 horas!&#x27;)</code></pre>
+            </div>
+            <div class="cell-output">Bom dia!
+São 10 horas!
+</div>
+            <div class="cell cell-markdown" id="md-10"></div>
+            <script>
+                (function(){
+                    const b64 = "IyMgKipgZWxzZWAqKgotLS0KVW0gw7N0aW1vIHByb2dyYW1hIG7Do28gZGVjaWRlIGFwZW5hcyBvIHF1ZSBmYXplciBxdWFuZG8gdW1hIGNvbmRpw6fDo28gw6kgVHJ1ZSwgbWFzIHRhbWLDqW0gcG9zc3VpIHVtIHBsYW5vIGRlIGJhY2t1cCBzZSBhIGNvbmRpw6fDo28gZm9yIEZhbHNlLgoKTyBjb21hbmRvIGVsc2Ugw6kgdW1hIGluc3RydcOnw6NvIGNvbmRpY2lvbmFsIHF1ZSBleGVjdXRhIGFsZ3VtYXMgaW5zdHJ1w6fDtWVzIGNhc28gYSBjb25kacOnw6NvIGRvIGNvbWFuZG8gaWYgKG91IGVsaWYpIG7Do28gc2VqYSBhdGVuZGlkYS4gRW0gb3V0cmFzIHBhbGF2cmFzLCBub3MgZm9ybmVjZSB1bWEgYWx0ZXJuYXRpdmEgcGFyYSBvIGJsb2NvIGlmLgoKQSBleGVjdcOnw6NvIHNlbsOjbyDDqSBhIHNlZ3VpbnRlOgoKLSBzZSBhIGNvbmRpw6fDo28gZm9yIGF2YWxpYWRhIGNvbW8gVHJ1ZSBhIGluc3RydcOnw6NvIGlmIMOpIGV4ZWN1dGFkYSBlIGEgaW5zdHJ1w6fDo28gY29uZGljaW9uYWwgY2hlZ2EgYW8gZmltOwoKLSBzZSBhIGNvbmRpw6fDo28gZm9yIGF2YWxpYWRhIGNvbW8gRmFsc2UsIGEgaW5zdHJ1w6fDo28gZWxzZSDDqSBleGVjdXRhZGEgZSBhIGluc3RydcOnw6NvIGNvbmRpY2lvbmFsIGNoZWdhIGFvIGZpbS4KClR1ZG8gbyBxdWUgZGlzc2Vtb3Mgc29icmUgYSBpbmRlbnRhw6fDo28gZnVuY2lvbmEgZGEgbWVzbWEgbWFuZWlyYSBkZW50cm8gZG8gcmFtbyBlbHNlOgplbHNlIChzZW7Do28pIMOpIGEgY29uZGljaW9uYWwgZmluYWwuIEVsYSBuw6NvIG5lY2Vzc2l0YSBkZSB1bWEgY29uZGnDp8OjbyBwcsOzcHJpYSwgcG9pcyBzZXLDoSBhIHJlc3Bvc3RhIHBhZHLDo28gY2FzbyBuZW5odW1hIGNvbmRpw6fDo28gc2VqYSBhdGVuZGlkYSwgcmV0b3JuYW5kbyBGYWxzZS4=";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-10').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [9]</div>
+                <pre><code class="language-python"># Por exemplo: Podemos pedir que o usuário adivinhe um número.
+
+número = 2 # Número que o usuário deve adivinhar
+usuário = 3 # Número que o usuário chutou
+
+if usuário == número:
+    print(&#x27;Parabéns! Você acertou!&#x27;)
+else:
+    print(&#x27;Que pena! Você errou!&#x27;)
+# else não precisa de condição, pois ele é executado quando a condição do if não é atendida. Ou seja, se o usuário não acertar o número, ele errou. Não precisamos de uma condição para verificar todos os outros números que não são o número correto.</code></pre>
+            </div>
+            <div class="cell-output">Que pena! Você errou!
+</div>
+            <div class="cell cell-markdown" id="md-12"></div>
+            <script>
+                (function(){
+                    const b64 = "IyMjICoqYENvbmRpw6fDtWVzIGUgZXhlY3XDp8OjbyBjb25kaWNpb25hbGAqKgoKVm9jw6ogasOhIHNhYmUgZmF6ZXIgcGVyZ3VudGFzIGVtIFB5dGhvbiwgbWFzIGFpbmRhIG7Do28gc2FiZSBjb21vIGZhemVyIHVzbyByYWNpb25hbCBkYXMgcmVzcG9zdGFzLiBWb2PDqiBwcmVjaXNhIHRlciB1bSBtZWNhbmlzbW8gcXVlIHBlcm1pdGEgcXVlIHZvY8OqIGZhw6dhIGFsZ28gc2UgdW1hIGNvbmRpw6fDo28gZm9yIGF0ZW5kaWRhLCBlIG7Do28gZmHDp2Egc2UgbsOjbyBmb3IuCgpPIHF1ZSB2b2PDqiBwb2RlIGZhemVyIGNvbSBhIHJlc3Bvc3RhIChvdSBzZWphLCBvIHJlc3VsdGFkbyBkZSB1bWEgb3BlcmHDp8OjbyBkZSBjb21wYXJhw6fDo28pIHF1ZSB2b2PDqiBvYnTDqW0gZG8gY29tcHV0YWRvcj8KCkjDoSBwZWxvIG1lbm9zIGR1YXMgcG9zc2liaWxpZGFkZXM6CgotIHByaW1laXJvLCB2b2PDqiBwb2RlIG1lbW9yaXrDoS1sYSAoYXJtYXplbsOhLWxhIGVtIHVtYSB2YXJpw6F2ZWwpIGUgdXPDoS1sYSBwb3N0ZXJpb3JtZW50ZS4gQ29tbyB2b2PDqiBmYXogaXNzbz8gQmVtLCB2b2PDqiB1c2EgdW1hIHZhcmnDoXZlbCBhcmJpdHLDoXJpYSBjb21vIGVzdGE6";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-12').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [14]</div>
+                <pre><code class="language-python">leoes = 3   # Número de leões
+leoas = 4   # Número de leoas
+
+pergunta = leoes &gt;= leoas  # False
+
+# pergunta armazena a resposta para a pergunta: &quot;O número de leões é maior ou igual ao número de leoas?&quot; Resposta: False 3 não é maior ou igual a 4</code></pre>
+            </div>
+            
+            <div class="cell cell-markdown" id="md-14"></div>
+            <script>
+                (function(){
+                    const b64 = "QSBzZWd1bmRhIHBvc3NpYmlsaWRhZGUgw6kgbWFpcyBjb252ZW5pZW50ZSBlIG11aXRvIG1haXMgY29tdW06IHZvY8OqIHBvZGUgdXNhciBhIHJlc3Bvc3RhIHBhcmEgZGVjaWRpciBzb2JyZSBvIGZ1dHVybyBkbyBwcm9ncmFtYS4KClBhcmEgdG9tYXIgZXNzYXMgZGVjaXPDtWVzLCBvIFB5dGhvbiBvZmVyZWNlIHVtYSBpbnN0cnXDp8OjbyBlc3BlY2lhbC4gRGV2aWRvIMOgIHN1YSBuYXR1cmV6YSBlIGFwbGljYcOnw6NvLCDDqSBjaGFtYWRhIGRlIGluc3RydcOnw6NvIGNvbmRpY2lvbmFsIChvdSBkZWNsYXJhw6fDo28gY29uZGljaW9uYWwpLgoKUXVhbmRvIHZvY8OqIGRlc2VqYSBleGVjdXRhciBhbGd1bSBjw7NkaWdvIGFwZW5hcyBzZSB1bWEgZGV0ZXJtaW5hZGEgY29uZGnDp8OjbyBmb3IgYXRlbmRpZGEsIHZvY8OqIHBvZGUgdXNhciB1bWEgZGVjbGFyYcOnw6NvIGNvbmRpY2lvbmFsOiB1bWEgw7puaWNhIGRlY2xhcmHDp8OjbyBpZiwgcG9yIGV4ZW1wbG86";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-14').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [9]</div>
+                <pre><code class="language-python"># Temos um número e queremos verificar se ele é igual a 10
+x = 10
+if x == 10:   # condição
+    print(f&quot;{x} é igual a 10&quot;)   # Executado se a condição for True.
+    
+# Com apenas uma codição podemos decidir o que fazer se a condição for atendida, mas não temos um bloco de código para executar caso a condição não seja atendida.</code></pre>
+            </div>
+            <div class="cell-output">10 é igual a 10
+</div>
+            <div class="cell cell-markdown" id="md-16"></div>
+            <script>
+                (function(){
+                    const b64 = "VW1hIHPDqXJpZSBkZSBkZWNsYXJhw6fDtWVzIGlmLCBwb3IgZXhlbXBsbzogQ2FkYSBkZWNsYXJhw6fDo28gaWYgw6kgdGVzdGFkYSBzZXBhcmFkYW1lbnRlLg==";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-16').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [17]</div>
+                <pre><code class="language-python"># Agora temos três condições para verificar. Cada verificação é feita separadamente, independente das outras.
+x = 10
+
+if x &gt; 5:  # condição um
+    print(f&quot;{x} é maior que 5&quot;)   # Executado se a condição um for True.
+    
+if x &lt; 10:  # condição dois
+    print(f&quot;{x} é menor que 10&quot;)   # Executado se a condição dois for True.
+    
+if x == 10:  # condição três
+    print(f&quot;{x} é igual a 10&quot;)   # Executado se a condição três for True.
+    
+# Fizemos três verificações separadas. Cada uma delas é independente das outras</code></pre>
+            </div>
+            <div class="cell-output">10 é maior que 5
+10 é igual a 10
+</div>
+            <div class="cell cell-markdown" id="md-18"></div>
+            <script>
+                (function(){
+                    const b64 = "VW1hIGRlY2xhcmHDp8OjbyBpZi1lbHNlLCBwb3IgZXhlbXBsbzo=";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-18').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [2]</div>
+                <pre><code class="language-python"># Aqui temos uma condicional composta. A condição é verificada e se for atendida, o bloco de código é executado. Se a condição não for atendida, o bloco de código do else é executado. Cabe a você garantir que a condição else faça sentido para o seu programa, pois ela será executada sempre que a condição do if não for atendida.
+
+x = 10
+
+if x &lt; 10:  # condição
+    print(f&quot;{x} é menor que 10&quot;)   # Executado se a condição for True.
+else:
+    print(f&quot;{x} é maior ou igual a 10&quot;)   # Executado se a condição for False.</code></pre>
+            </div>
+            <div class="cell-output">10 é maior ou igual a 10
+1 é igual a 10
+</div>
+            <div class="cell cell-markdown" id="md-20"></div>
+            <script>
+                (function(){
+                    const b64 = "VW1hIHPDqXJpZSBkZSBpbnN0cnXDp8O1ZXMgaWYgc2VndWlkYXMgZGUgdW0gZWxzZSwgcG9yIGV4ZW1wbG86";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-20').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [21]</div>
+                <pre><code class="language-python"># Aqui temos duas estruturas condicionais. A primeira é simples e a segunda é composta
+x = 4
+
+# Primeira estrutura condicional
+if x &lt; 10:  # condição
+    print(f&quot;{x} é menor que 10&quot;)   # Executado se a condição for True.
+
+# Segunda estrutura condicional
+if x &gt; 10:  # condição
+    print(f&quot;{x} é maior que 10&quot;)   # Executado se a condição for True.
+
+else: # Se a segunda condição for False. Isso pode causar um erro de lógica.
+    print(f&quot;{x} é igual a 10&quot;)
+
+# O código acima está sintaticamente correto, mas logicamente pode estar errado. De fato se x vale 4, ele não é maior que 10 e portanto a segunda condição não é atendida. O comportamento do código é executar a instrução dentro do bloco else. O ramo else não possui uma condição para avaliar. Ele é executado caso a condição do if seja False. Nesse caso, a condição do if é False e ele é executao mostrando uma mensagem incorreta</code></pre>
+            </div>
+            <div class="cell-output">4 é menor que 10
+4 é igual a 10
+</div>
+            <div class="cell cell-markdown" id="md-22"></div>
+            <script>
+                (function(){
+                    const b64 = "Q2FkYSB1bSBpZiDDqSB0ZXN0YWRvIHNlcGFyYWRhbWVudGUuIE8gY29ycG8gZG8gZWxzZSDDqSBleGVjdXRhZG8gc2UgbyDDumx0aW1vIGlmIGZvciBGYWxzZS4KCkEgZGVjbGFyYcOnw6NvIGlmLWVsaWYtZWxzZSwgcG9yIGV4ZW1wbG86";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-22').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [11]</div>
+                <pre><code class="language-python"># Outra estrutura condicional composta por mais de uma verificação.
+x = 16
+
+if x == 10: # Executado se a condição for True.
+    print(f&quot;{x} == 10&quot;)
+
+# Como temos duas instruções if, podemos considerar que temos duas condições independentes.
+# A que está acima e a que está abaixo.
+
+if x &gt; 15: # Executado se a condição for True. Será verificado mesmo que a condição anterior seja True.
+    print(f&quot;{x} &gt; 15&quot;)
+
+elif x &gt; 10: # Não será verificado se a condição anterior for True.
+    print(f&quot;{x} &gt; 10&quot;)
+
+elif x &gt; 5: # Não será verificado se a condição anterior for True.
+    print(f&quot;{x} &gt; 5&quot;)
+
+else: # Não será verificado se QUALQUER condição anterior for True.
+    print(&quot;senão não será executado&quot;)</code></pre>
+            </div>
+            <div class="cell-output">16 &gt; 15
+</div>
+            <div class="cell cell-markdown" id="md-24"></div>
+            <script>
+                (function(){
+                    const b64 = "U2UgYSBjb25kacOnw6NvIHBhcmEgaWYgZm9yIEZhbHNlLCBvIHByb2dyYW1hIHZlcmlmaWNhIGFzIGNvbmRpw6fDtWVzIGRvcyBibG9jb3MgZWxpZiBzdWJzZXF1ZW50ZXMgLSBvIHByaW1laXJvIGJsb2NvIGVsaWYgcXVlIMOpIFRydWUgw6kgZXhlY3V0YWRvLiBTZSB0b2RhcyBhcyBjb25kacOnw7VlcyBmb3JlbSBGYWxzZSwgbyBibG9jbyBlbHNlIHNlcsOhIGV4ZWN1dGFkby4KCkluc3RydcOnw7VlcyBjb25kaWNpb25hbCBhbmluaGFkYXMsIHBvciBleGVtcGxvOgo=";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-24').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [23]</div>
+                <pre><code class="language-python">x = 10
+
+# Basicamente, se x for menor ou igual a 5, o bloco if será ignorado e o bloco else será executado. Caso contrário, entramos no bloco if e verificamos se as
+if x &gt; 5:
+
+# Dentro do bloco if temos outras verificações.
+
+    if x == 6:  # Se a condição for True, o bloco será executado e o restante do código será ignorado.
+        print(f&quot;Executa elif aninhado\n{x} &gt; 5 é True\nA condição if aninhada {x} == 6 é True&quot;)
+
+    elif x == 10:  # Se a condição anterior for False e a condição atual for True, o bloco será executado e o restante do código será ignorado.
+        print(f&quot;Executa elif aninhado\n{x} &gt; 5 é True\nAcondição if aninhada {x} == 6 é False e elif {x} == 10 é True&quot;)
+
+    else: # Se a condição anterior for False o bloco if aninhado será executado.
+        print(f&quot;Executa else aninhado\n{x} &gt; 5 é True\nAcondição if aninhada {x} == 6 e elif {x} == 10 são False&quot;)
+
+# Se a primeira verificação for False, o bloco else será executado.
+else:
+    print(f&quot;Executa else\nA condição {x} &gt; 5 é False&quot;)</code></pre>
+            </div>
+            <div class="cell-output">Executa elif aninhado
+10 &gt; 5 é True
+Acondição if aninhada 10 == 6 é False e elif 10 == 10 é True
+</div>
+            <div class="cell cell-markdown" id="md-26"></div>
+            <script>
+                (function(){
+                    const b64 = "U2UgcXVhbHF1ZXIgdW1hIGRhcyByYW1pZmljYcOnw7VlcyBpZi1lbHNlIGNvbnRpdmVyIGFwZW5hcyB1bWEgaW5zdHJ1w6fDo28sIHZvY8OqIHBvZGVyw6EgY29kaWZpY8OhLWxhIGRlIGZvcm1hIG1haXMgYWJyYW5nZW50ZSAobsOjbyDDqSBuZWNlc3PDoXJpbyBjcmlhciB1bWEgbGluaGEgcmVjdWFkYSBhcMOzcyBhIHBhbGF2cmEtY2hhdmUsIG1hcyBhcGVuYXMgY29udGludWFyIGEgbGluaGEgYXDDs3Mgb3MgZG9pcyBwb250b3MpCgpBIHNpbnRheGUgw6kgYSBzZWd1aW50ZToKCnZhbG9yMSBpZiBjb25kacOnw6NvIGVsc2UgdmFsb3Iy";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-26').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [37]</div>
+                <pre><code class="language-python"># Ler dois números
+number1 = int(input(&quot;Digite o primeiro número: &quot;))
+number2 = int(input(&quot;Digite o segundo número: &quot;))
+
+# Escolha o número maior
+if number1 &gt; number2:
+    larger_number = number1
+else:
+    larger_number = number2
+
+# Imprimir o resultado
+print(&quot;O maior número é:&quot;, larger_number)</code></pre>
+            </div>
+            <div class="cell-output">O maior número é: 100
+</div>
+            <div class="cell cell-code">
+                <div class="prompt">In [38]</div>
+                <pre><code class="language-python"># Ler dois números
+number1 = int(input(&quot;Digite o primeiro número: &quot;))
+number2 = int(input(&quot;Digite o segundo número: &quot;))
+
+# A mesma estrutura pode ser simplificada
+larger_number = number1 if number1 &gt; number2 else number2
+
+# Imprimir o resultado
+print(&quot;O maior número é:&quot;, larger_number)</code></pre>
+            </div>
+            <div class="cell-output">O maior número é: 100
+</div></div><script>hljs.highlightAll();</script>
+    </main>
+</body>
+</html>

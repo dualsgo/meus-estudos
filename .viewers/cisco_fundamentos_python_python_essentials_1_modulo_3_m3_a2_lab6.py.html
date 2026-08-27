@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>m3_a2_lab6.py</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="https://pyscript.net/releases/2024.1.1/core.css">
+    <script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>
+    <style>
+        .sandbox-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
+        .sandbox-header h2 { font-size: 1.2rem; color: var(--primary); display: flex; align-items: center; gap: 0.5rem; }
+        .py-repl-container { border-radius: 8px; overflow: hidden; border: 1px solid var(--glass-border); background: #1e293b; }
+    </style>
+    
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --glass-bg: rgba(30, 41, 59, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --primary: #38bdf8;
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        header {
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            border-bottom: 1px solid var(--glass-border);
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .back-btn {
+            color: var(--text-main);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            background: rgba(255,255,255,0.05);
+            transition: 0.3s;
+        }
+        .back-btn:hover {
+            background: rgba(56, 189, 248, 0.2);
+            color: var(--primary);
+        }
+        .file-title {
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+        main {
+            flex: 1;
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        .container {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="../index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Voltar</a>
+        <div class="file-title">m3_a2_lab6.py</div>
+    </header>
+    <main>
+        
+    <div class="container">
+        <div class="sandbox-header">
+            <h2><i class="fa-brands fa-python"></i> Sandbox PyScript</h2>
+            <span>Edite e execute (Shift + Enter) ou no botão verde ▶</span>
+        </div>
+        <div class="py-repl-container">
+            <script type="py" id="main-script"></script>
+            <py-repl auto-generate="true">
+# 3.2.15   LAB   A hipótese de Collatz
+# Cenário
+
+# Em 1937, um matemático alemão chamado Lothar Collatz formulou uma hipótese intrigante (ainda não comprovada) que pode ser descrita da seguinte forma:
+
+# pegue qualquer número inteiro diferente de zero e nomeie-o c0;
+c0 = int(input(&#x27;Digite um número inteiro diferente de zero: &#x27;)) # Recebe o valor de c0
+contador = 0 # Contador de etapas para chegar a 1
+while True:
+  # se c0 for par, avalie um novo c0 como c0 ÷ 2; se não for par, só pode ser ímpar, então ele recebe uma nova avaliação: 3 × c0 + 1;
+	if c0 % 2 == 0: # Se o resto da divisão de c0 por 2 for 0, então é par
+		c0 = c0 / 2  # c0 recebe o valor de c0 dividido por 2
+		contador += 1 # Contador de etapas aumenta em 1
+		print(f&#x27;Etapa {contador}: {int(c0)}&#x27;) # Imprime o valor de c0
+	else:
+	# caso contrário, se for ímpar, avalie um novo c0 como 3 × c0 + 1;
+		if c0 != 1: # Se c0 for diferente de 1
+			c0 = 3 * c0 + 1 # c0 recebe o valor de 3 * c0 + 1
+			contador += 1 # Contador de etapas aumenta em 1
+		else: # Se c0 for igual a 1,
+			break # sai do loop
+		print(f&#x27;Etapa {contador}: {int(c0)}&#x27;) # Imprime o valor de c0
+
+# se c0 ≠ 1, volte ao ponto 2.
+print(f&#x27;Foram {contador} etapas&#x27;)
+
+# A hipótese diz que, independentemente do valor inicial de c0, ela sempre vai para 1.
+# Obviamente, é uma tarefa extremamente complexa usar um computador para provar a hipótese de qualquer número natural (pode até exigir inteligência artificial), mas você pode usar o Python para verificar alguns números individuais. Talvez você até encontre aquele que refutaria a hipótese.
+
+# Escreva um programa que leia um número natural e execute as etapas acima, desde que c0 permaneça diferente de 1. Também queremos que você conte as etapas necessárias para atingir o objetivo. Seu código deve gerar todos os valores intermediários de c0 também.
+            </py-repl>
+        </div>
+    </div>
+    
+    </main>
+</body>
+</html>

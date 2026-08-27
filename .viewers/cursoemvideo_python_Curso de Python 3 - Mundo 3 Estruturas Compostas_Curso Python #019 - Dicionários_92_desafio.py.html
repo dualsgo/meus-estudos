@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>92_desafio.py</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="https://pyscript.net/releases/2024.1.1/core.css">
+    <script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>
+    <style>
+        .sandbox-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
+        .sandbox-header h2 { font-size: 1.2rem; color: var(--primary); display: flex; align-items: center; gap: 0.5rem; }
+        .py-repl-container { border-radius: 8px; overflow: hidden; border: 1px solid var(--glass-border); background: #1e293b; }
+    </style>
+    
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --glass-bg: rgba(30, 41, 59, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --primary: #38bdf8;
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        header {
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            border-bottom: 1px solid var(--glass-border);
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .back-btn {
+            color: var(--text-main);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            background: rgba(255,255,255,0.05);
+            transition: 0.3s;
+        }
+        .back-btn:hover {
+            background: rgba(56, 189, 248, 0.2);
+            color: var(--primary);
+        }
+        .file-title {
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+        main {
+            flex: 1;
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        .container {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="../index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Voltar</a>
+        <div class="file-title">92_desafio.py</div>
+    </header>
+    <main>
+        
+    <div class="container">
+        <div class="sandbox-header">
+            <h2><i class="fa-brands fa-python"></i> Sandbox PyScript</h2>
+            <span>Edite e execute (Shift + Enter) ou no botão verde ▶</span>
+        </div>
+        <div class="py-repl-container">
+            <script type="py" id="main-script"></script>
+            <py-repl auto-generate="true">
+# Exercício Python #092 - Cadastro de Trabalhador em Python - Aula 00 até 19 - Mundo 3
+# Crie um programa que leia nome, ano de nascimento e carteira de trabalho e cadastre-o (com idade) em um dicionário. Se por acaso a CTPS for diferente de ZERO, o dicionário receberá também o ano de contratação e o salário. Calcule e acrescente, além da idade, com quantos anos a pessoa vai se aposentar.
+
+from datetime import datetime
+from random import randint
+
+dados = []
+ano_atual = datetime.now().year
+
+while True:
+	pessoa = {}  # Cria um novo dicionário para cada pessoa
+
+	pessoa[&#x27;nome&#x27;] = str(input(&#x27;Nome: &#x27;))
+	pessoa[&#x27;nascimento&#x27;] = int(input(&#x27;Ano de nascimento: &#x27;))
+	pessoa[&#x27;idade&#x27;] = ano_atual - pessoa[&#x27;nascimento&#x27;]
+
+	carteira = str(input(&#x27;Possui CTPS: S/N &#x27;)).strip().upper()
+
+	while carteira not in &#x27;SN&#x27;:
+		carteira = str(input(&#x27;Resposta inválida: S/N &#x27;)).strip().upper()
+
+	if carteira == &#x27;S&#x27;:
+		pessoa[&#x27;ctps&#x27;] = randint(1234567, 9999999)
+		pessoa[&#x27;contratacao&#x27;] = int(input(&#x27;Ano de contratação: &#x27;))
+		pessoa[&#x27;salario&#x27;] = float(input(&#x27;Salário: R$ &#x27;))
+
+	dados.append(pessoa.copy())
+
+	continuar = str(input(&#x27;Continuar? S/N &#x27;)).strip().upper()
+
+	while continuar not in &#x27;SN&#x27;:
+		continuar = str(input(&#x27;Continuar? S/N &#x27;)).strip().upper()
+
+	if continuar == &#x27;N&#x27;:
+		print(&#x27;Encerrando...&#x27;)
+		break
+	elif continuar == &#x27;S&#x27;:
+		print(&#x27;Prosseguindo...&#x27;)
+
+for pessoa in dados:
+	if &#x27;ctps&#x27; in pessoa:  # Verifica se a pessoa tem CTPS
+		print(
+			f&quot;{pessoa[&#x27;nome&#x27;]}, nasceu em {pessoa[&#x27;nascimento&#x27;]} possui {pessoa[&#x27;idade&#x27;]} anos, porta a CTPS nº {pessoa[&#x27;ctps&#x27;]}. Trabalha desde {pessoa[&#x27;contratacao&#x27;]} com salário de R$ {pessoa[&#x27;salario&#x27;]:.2f} e terá que contribuir mais {35 - (ano_atual - pessoa[&#x27;contratacao&#x27;])} anos para se aposentar.&quot;)
+	else:
+		print(
+			f&quot;{pessoa[&#x27;nome&#x27;]}, nascido em {pessoa[&#x27;nascimento&#x27;]} possui {pessoa[&#x27;idade&#x27;]} anos e ainda não é contribuinte.&quot;)
+
+# V2
+
+from datetime import datetime
+
+atual = datetime.today().year
+informacoes = dict()
+
+informacoes[&#x27;nome&#x27;] = input(&#x27;Digite o nome: &#x27;).strip().title()
+informacoes[&#x27;nascimento&#x27;] = int(input(&#x27;Digite o ano de nascimento: &#x27;))
+informacoes[&#x27;idade&#x27;] = atual - informacoes[&#x27;nascimento&#x27;]
+
+print(f&#x27;Nome: {informacoes[&quot;nome&quot;]}&#x27;)
+print(f&#x27;Ano de nascimento: {informacoes[&quot;nascimento&quot;]}&#x27;)
+print(f&#x27;Idade: {informacoes[&quot;idade&quot;]} anos&#x27;)
+
+if informacoes[&#x27;idade&#x27;] &gt;= 18:
+	ctps = input(&#x27;Possui CTPS? S/N: &#x27;).strip().upper()
+	if ctps == &#x27;S&#x27;:
+		informacoes[&#x27;CTPS&#x27;] = int(input(&#x27;Digite o número da CTPS: &#x27;))
+		print(f&#x27;CTPS nº: {informacoes[&quot;CTPS&quot;]}&#x27;)
+		if informacoes[&#x27;CTPS&#x27;]:
+			informacoes[&#x27;ano_contratacao&#x27;] = int(input(&#x27;Digite o ano de contratação: &#x27;))
+			informacoes[&#x27;salario&#x27;] = float(input(&#x27;Digite o salário: R$ &#x27;))
+			informacoes[&#x27;aposentadoria&#x27;] = (informacoes[&#x27;ano_contratacao&#x27;] + 30) - atual
+
+			print(f&#x27;Ano de contratação: {informacoes[&quot;ano_contratacao&quot;]}&#x27;)
+			print(f&#x27;Salário: R$ {informacoes[&quot;salario&quot;]:.2f}&#x27;)
+			print(f&#x27;Tempo para se aposentar: {informacoes[&quot;aposentadoria&quot;]} anos&#x27;)
+
+# V3
+
+
+from datetime import date
+
+ano_atual = date.today().year
+
+
+def print_divider():
+	print(&#x27;-&#x27; * 30)
+
+
+def print_error(message):
+	print(f&#x27;\033[1;31m{message}\033[m&#x27;)
+
+
+def obtem_nome():
+	while True:
+		print_divider()
+		entrada_nome = input(&#x27;Digite o nome: &#x27;).strip().title()
+		print_divider()
+		if entrada_nome.replace(&#x27; &#x27;, &#x27;&#x27;).isalpha():
+			return entrada_nome
+		else:
+			print_error(&#x27;NOME INVÁLIDO! Apenas caracteres alfabéticos.&#x27;)
+
+
+def obtem_idade():
+	while True:
+		try:
+			entrada_ano_nascimento = int(input(&#x27;Digite o ano de nascimento: &#x27;))
+			if not (1980 &lt; entrada_ano_nascimento &lt; 2006):
+				print_error(&#x27;Apenas maiores de 18 anos. Ano deve estar entre 1980 e 2006&#x27;)
+			else:
+				return ano_atual - entrada_ano_nascimento
+		except ValueError:
+			print_error(&#x27;ERRO! Apenas dados numéricos.&#x27;)
+
+
+def obtem_ctps():
+	while True:
+		try:
+			primeira_parte = input(&#x27;Digite os 7 dígitos iniciais: &#x27;)
+			if len(primeira_parte) != 7 or not primeira_parte.isdigit():
+				print_error(&#x27;Deve conter 7 dígitos.&#x27;)
+				continue
+			segunda_parte = input(&#x27;Digite os 4 dígitos finais: &#x27;)
+			if len(segunda_parte) != 4 or not segunda_parte.isdigit():
+				print_error(&#x27;Deve conter 4 dígitos.&#x27;)
+				continue
+			return f&#x27;{primeira_parte}/{segunda_parte}&#x27;
+		except ValueError:
+			print_error(&#x27;Dado inválido para essa operação.&#x27;)
+
+
+def obtem_ano_contratacao():
+	while True:
+		try:
+			entrada_ano_contratacao = int(input(&#x27;Digite o ano de contratação: &#x27;))
+			if not (1980 &lt; entrada_ano_contratacao &lt; 2024):
+				print_error(&#x27;Ano deve estar entre 1980 e 2024&#x27;)
+			else:
+				return entrada_ano_contratacao
+		except ValueError:
+			print_error(&#x27;ERRO! Apenas dados numéricos.&#x27;)
+
+
+def obtem_salario():
+	while True:
+		try:
+			entrada_salario = float(input(&#x27;Digite o salário em R$: &#x27;))
+			salario_formatado = f&#x27;R$ {entrada_salario:.2f}&#x27;
+			return salario_formatado.replace(&#x27;.&#x27;, &#x27;,&#x27;)
+		except ValueError:
+			print_error(&#x27;ERRO! Apenas dados numéricos.&#x27;)
+
+
+def obtem_sexo():
+	while True:
+		print_divider()
+		entrada_sexo = input(&#x27;Digite o sexo:\n[M] Masculino\n[F] Feminino\nSua resposta: &#x27;).strip().upper()
+		print_divider()
+		if entrada_sexo == &#x27;M&#x27;:
+			return &#x27;Masculino&#x27;
+		elif entrada_sexo == &#x27;F&#x27;:
+			return &#x27;Feminino&#x27;
+		else:
+			print_error(&#x27;Opção inválida! Tente novamente.&#x27;)
+
+
+dados = dict()
+
+while True:
+	dados[&#x27;nome&#x27;] = obtem_nome()
+	dados[&#x27;idade&#x27;] = obtem_idade()
+	dados[&#x27;sexo&#x27;] = obtem_sexo()
+	carteira = input(&#x27;Possui CTPS (Carteira de Trabalho e Previdência Social):\n[S] Sim\n[N] Não\nSua resposta: &#x27;).strip().upper()
+	if carteira == &#x27;S&#x27;:
+		dados[&#x27;ctps&#x27;] = obtem_ctps()
+		dados[&#x27;ano_contratacao&#x27;] = obtem_ano_contratacao()
+		dados[&#x27;salario&#x27;] = obtem_salario()
+		contribuicao = ano_atual - dados[&#x27;ano_contratacao&#x27;]
+		idade_minima = 65 if dados[&#x27;sexo&#x27;] == &#x27;Masculino&#x27; else 62
+		faltam = idade_minima - dados[&#x27;idade&#x27;]
+		dados[&#x27;contribuicao&#x27;] = contribuicao
+		dados[&#x27;anos_restantes&#x27;] = faltam
+		print(&#x27;\033[1;32mCadastro realizado com sucesso!\033[m&#x27;)
+	while True:
+		print_divider()
+		continuar = input(&#x27;Deseja continuar?\n[S] Sim\n[N] Não\nSua resposta: &#x27;).strip().upper()
+		print_divider()
+		if continuar in [&#x27;S&#x27;, &#x27;N&#x27;]:
+			break
+	if continuar == &#x27;N&#x27;:
+		break
+
+titulos = {
+	&#x27;nome&#x27;: &#x27;Nome&#x27;,
+	&#x27;idade&#x27;: &#x27;Idade&#x27;,
+	&#x27;sexo&#x27;: &#x27;Sexo&#x27;,
+	&#x27;ctps&#x27;: &#x27;CTPS&#x27;,
+	&#x27;ano_contratacao&#x27;: &#x27;Ano de Contratação&#x27;,
+	&#x27;salario&#x27;: &#x27;Salário&#x27;,
+	&#x27;contribuicao&#x27;: &#x27;Anos de Contribuição&#x27;,
+	&#x27;anos_restantes&#x27;: &#x27;Anos para Aposentadoria&#x27;
+}
+
+for chave, valor in dados.items():
+	titulo = titulos.get(chave, chave)
+	print(f&#x27;{titulo:&lt;30}{valor:&gt;15}&#x27;)
+
+# Estou compartilhando minhas anotações sobre os exercícios. Quem quiser, pode copiar e colar em um documento .py pois está tudo formatado e comentado.
+
+# Nesse exercício, o professor pede para criar um programa que leia o nome, o ano de nascimento e a carteira de trabalho de uma pessoa. Se a pessoa tiver carteira de trabalho, o programa deve ler o ano de contratação e o salário. No final, o programa deve mostrar o nome, a idade, o tempo de contribuição e quantos anos faltam para a pessoa se aposentar.
+
+# Primeiramente, vamos importar a função datetime da biblioteca datetime para obter o ano atual.
+from datetime import datetime
+
+# Vamos criar uma lista vazia chamada dados para armazenar as informações das pessoas.
+dados = []
+
+# Vamos obter o ano atual com a função today().year da biblioteca datetime.
+ano_atual = datetime.today().year
+
+# Vamos criar um loop while True para solicitar as informações das pessoas.
+while True:
+    # Vamos criar um dicionário chamado pessoa para armazenar as informações de cada pessoa.
+	pessoa = {}
+
+	# Vamos solicitar o nome da pessoa e armazenar no dicionário pessoa.
+	pessoa[&#x27;nome&#x27;] = str(input(&#x27;Nome: &#x27;))
+
+	# Vamos solicitar o ano de nascimento da pessoa e armazenar no dicionário pessoa.
+	pessoa[&#x27;nascimento&#x27;] = int(input(&#x27;Ano de nascimento: &#x27;))
+
+	# Vamos calcular a idade da pessoa e armazenar no dicionário pessoa.
+	pessoa[&#x27;idade&#x27;] = ano_atual - pessoa[&#x27;nascimento&#x27;]
+
+	# Vamos solicitar se a pessoa possui carteira de trabalho e armazenar na variável carteira.
+	carteira = str(input(&#x27;Possui CTPS: S/N &#x27;)).strip().upper()
+
+	# Vamos criar um loop while para verificar se a resposta é válida.
+	while carteira not in &#x27;SN&#x27;:
+		carteira = str(input(&#x27;Resposta inválida: S/N &#x27;)).strip().upper()
+
+	# Se a pessoa possuir carteira de trabalho, vamos solicitar o número da CTPS, o ano de contratação e o salário.
+	if carteira == &#x27;S&#x27;:
+		# Para não ficar vamos colocar um número aleatório para a CTPS
+		pessoa[&#x27;ctps&#x27;] = randint(1234567, 9999999)
+		# Os demais dados o usuário irá informar
+		pessoa[&#x27;contratacao&#x27;] = int(input(&#x27;Ano de contratação: &#x27;))
+		pessoa[&#x27;salario&#x27;] = float(input(&#x27;Salário: R$ &#x27;))
+
+	# Vamos adicionar o dicionário pessoa à lista dados.
+	dados.append(pessoa.copy())
+
+	# Vamos perguntar se deseja continuar e armazenar na variável continuar.
+	continuar = str(input(&#x27;Continuar? S/N &#x27;)).strip().upper()
+
+	# Vamos criar um loop while para verificar se a resposta é válida.
+	while continuar not in &#x27;SN&#x27;:
+		continuar = str(input(&#x27;Continuar? S/N &#x27;)).strip().upper()
+
+	# Se a resposta for N, vamos encerrar o programa.
+	if continuar == &#x27;N&#x27;:
+		print(&#x27;Encerrando...&#x27;)
+		break
+
+	# Se a resposta for S, vamos prosseguir com o programa.
+	elif continuar == &#x27;S&#x27;:
+		print(&#x27;Prosseguindo...&#x27;)
+
+# Vamos percorrer a lista dados e mostrar as informações das pessoas.
+for pessoa in dados:
+	# Se a pessoa possuir CTPS, vamos mostrar o nome, o ano de nascimento, a idade, o número da CTPS, o ano de contratação, o salário e quantos anos faltam para se aposentar.
+	if &#x27;ctps&#x27; in pessoa:
+		print(
+			f&quot;{pessoa[&#x27;nome&#x27;]}, nasceu em {pessoa[&#x27;nascimento&#x27;]} possui {pessoa[&#x27;idade&#x27;]} anos, porta a CTPS nº {pessoa[&#x27;ctps&#x27;]}. Trabalha desde {pessoa[&#x27;contratacao&#x27;]} com salário de R$ {pessoa[&#x27;salario&#x27;]:.2f} e terá que contribuir mais {35 - (ano_atual - pessoa[&#x27;contratacao&#x27;])} anos para se aposentar.&quot;)
+	# Se a pessoa não possuir CTPS, vamos mostrar o nome, o ano de nascimento e a idade.
+	else:
+		print(
+			f&quot;{pessoa[&#x27;nome&#x27;]}, nascido em {pessoa[&#x27;nascimento&#x27;]} possui {pessoa[&#x27;idade&#x27;]} anos e ainda não é contribuinte.&quot;)
+
+
+            </py-repl>
+        </div>
+    </div>
+    
+    </main>
+</body>
+</html>

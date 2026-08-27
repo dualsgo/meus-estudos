@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>03.3_programando_condicoes_else.py</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="https://pyscript.net/releases/2024.1.1/core.css">
+    <script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>
+    <style>
+        .sandbox-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
+        .sandbox-header h2 { font-size: 1.2rem; color: var(--primary); display: flex; align-items: center; gap: 0.5rem; }
+        .py-repl-container { border-radius: 8px; overflow: hidden; border: 1px solid var(--glass-border); background: #1e293b; }
+    </style>
+    
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --glass-bg: rgba(30, 41, 59, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --primary: #38bdf8;
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        header {
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            border-bottom: 1px solid var(--glass-border);
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .back-btn {
+            color: var(--text-main);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            background: rgba(255,255,255,0.05);
+            transition: 0.3s;
+        }
+        .back-btn:hover {
+            background: rgba(56, 189, 248, 0.2);
+            color: var(--primary);
+        }
+        .file-title {
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+        main {
+            flex: 1;
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        .container {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="../index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Voltar</a>
+        <div class="file-title">03.3_programando_condicoes_else.py</div>
+    </header>
+    <main>
+        
+    <div class="container">
+        <div class="sandbox-header">
+            <h2><i class="fa-brands fa-python"></i> Sandbox PyScript</h2>
+            <span>Edite e execute (Shift + Enter) ou no botão verde ▶</span>
+        </div>
+        <div class="py-repl-container">
+            <script type="py" id="main-script"></script>
+            <py-repl auto-generate="true">
+# MIMO - 03 - Declarações Condicionais
+
+# 03.3 - Programando condições ELSE
+
+# Um ótimo software não decide apenas o que fazer quando uma condição é True, mas também possui um plano de backup se a condição for False.
+
+# Já sabemos que as instruções if nos ajudam a executar o código se uma condição como disponivel for True.
+disponivel = True
+if disponivel:
+    # O código abaixo será executado, pois a condição é verdadeira.
+    print(&#x27;Em estoque!&#x27;)
+
+# Vamos adicionar outra instrução if que usa a variavel nao_diponivel para verificar se o item não está disponível.
+nao_disponivel = True  # Confirma que o item não está disponível.
+
+# Se o item não estiver disponível, queremos exibir uma mensagem diferente.
+if nao_disponivel:
+    # O código abaixo será executado, pois a condição é verdadeira.
+    print(&#x27;Sem estoque!&#x27;)
+
+# Em vez de criar duas instruções if, usamos uma instrução if/else para obter o mesmo resultado
+
+disponivel = False # Controla se o item está disponível ou não.
+
+# Se o item estiver disponível, queremos exibir uma mensagem.
+if disponivel:
+    # Se disponivel for True, o código abaixo será executado.
+    print(&#x27;Em estoque!&#x27;)
+    
+# Se o item não estiver disponível, queremos exibir uma mensagem diferente.
+else:
+    # Se disponivel for False, o código abaixo será executado.
+    print(&#x27;Sem estoque!&#x27;)
+
+# Se o valor de disponivel for atualizado para True, a estrutura acima irá avaliar novamente para decidir qual bloco de código executar.
+
+
+# A instrução else vai sempre no final. Ela não precisa de sua própria condição, pois trata de casos em que a condição if não é atendida.
+
+# É como uma resposta padrão. Aqui irá exibir &#x27;Número incorreto!&#x27; para todos os números diferentes de 1.
+numero = 13
+
+if numero == 1:
+    print(&#x27;Número correto!&#x27;)
+else:
+    print(&#x27;Número incorreto!&#x27;)
+    
+# As vezes não queremos apenas que o programa faça isso ou aquilo, mas queremos que ele faça isso e aquilo
+            </py-repl>
+        </div>
+    </div>
+    
+    </main>
+</body>
+</html>

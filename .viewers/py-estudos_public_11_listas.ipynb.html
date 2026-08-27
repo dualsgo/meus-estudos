@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>11_listas.ipynb</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/monokai-sublime.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/python.min.js"></script>
+    
+    <style>
+        .cell { margin-bottom: 1.5rem; }
+        .cell-markdown { font-size: 1.05rem; line-height: 1.6; color: #cbd5e1; }
+        .cell-markdown h1, .cell-markdown h2, .cell-markdown h3 { color: #f1f5f9; margin-top: 1rem; margin-bottom: 0.5rem; }
+        .cell-markdown code { background: rgba(0,0,0,0.3); padding: 0.2rem 0.4rem; border-radius: 4px; color: #eab308; }
+        .cell-markdown pre { background: rgba(0,0,0,0.3); padding: 1rem; border-radius: 8px; overflow-x: auto; border: 1px solid var(--glass-border); margin: 1rem 0; }
+        .cell-code { background: #23241f; border-radius: 8px; padding: 1rem; overflow-x: auto; position: relative; border: 1px solid #333; }
+        .cell-output { background: #000; color: #a3e635; padding: 1rem; border-radius: 8px; margin-top: 0.5rem; font-family: monospace; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;}
+        .prompt { position: absolute; top: 0.5rem; right: 0.5rem; color: #64748b; font-size: 0.8rem; user-select: none; }
+    </style>
+    
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --glass-bg: rgba(30, 41, 59, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --primary: #38bdf8;
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        header {
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            border-bottom: 1px solid var(--glass-border);
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .back-btn {
+            color: var(--text-main);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            background: rgba(255,255,255,0.05);
+            transition: 0.3s;
+        }
+        .back-btn:hover {
+            background: rgba(56, 189, 248, 0.2);
+            color: var(--primary);
+        }
+        .file-title {
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+        main {
+            flex: 1;
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        .container {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="../index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Voltar</a>
+        <div class="file-title">11_listas.ipynb</div>
+    </header>
+    <main>
+        <div class="container">
+            <div class="cell cell-markdown" id="md-0"></div>
+            <script>
+                (function(){
+                    const b64 = "IyAqKmBFbnRlbmRlbmRvIExpc3RhcyBlbSBQeXRob25gKioKLS0tCk5vIGNvbnRleHRvIGRhIGNpw6puY2lhIGRlIGRhZG9zIGUgZGEgcHJvZ3JhbWHDp8OjbyBlbSBnZXJhbCwgYSBvcmdhbml6YcOnw6NvIGVmaWNpZW50ZSBkZSBncmFuZGVzIGNvbmp1bnRvcyBkZSBkYWRvcyDDqSBmdW5kYW1lbnRhbC4gQXMgbGlzdGFzIGVtIFB5dGhvbiBmb3JuZWNlbSB1bWEgbWFuZWlyYSBwb2Rlcm9zYSBkZSBsaWRhciBjb20gZXNzYSB0YXJlZmEuIFZhbW9zIGV4cGxvcmFyIG8gcXVlIHPDo28gbGlzdGFzIGUgY29tbyB1c8OhLWxhcyBkZSBmb3JtYSBlZmljYXo6CgojIyMgTyBRdWUgU8OjbyBMaXN0YXM/CgotICoqRGVmaW5pw6fDo286KiogVW1hIGxpc3RhIMOpIHVtYSBlc3RydXR1cmEgZGUgZGFkb3MgZW0gUHl0aG9uIHF1ZSBwb2RlIGFybWF6ZW5hciBjb2xlw6fDtWVzIG9yZGVuYWRhcyBkZSBpdGVucy4KLSAqKkVsZW1lbnRvczoqKiBPcyBpdGVucyBlbSB1bWEgbGlzdGEgc8OjbyBjaGFtYWRvcyBkZSBlbGVtZW50b3MuCi0gKipGbGV4aWJpbGlkYWRlOioqIE9zIGVsZW1lbnRvcyBlbSB1bWEgbGlzdGEgcG9kZW0gc2VyIGRlIGRpZmVyZW50ZXMgdGlwb3MsIGNvbW8gbsO6bWVyb3MgaW50ZWlyb3MsIHN0cmluZ3MsIG91dHJhcyBsaXN0YXMgZSBhc3NpbSBwb3IgZGlhbnRlLgoKIyMjIENyaWFuZG8gdW1hIExpc3RhCgotICoqU2ludGF4ZToqKgogIC0gUGFyYSBjcmlhciB1bWEgbGlzdGEgdmF6aWEsIHZvY8OqIHBvZGUgdXNhciBgW11gIG91IGBsaXN0KClgLgogIC0gRXhlbXBsbzogYGxpc3RhX251bWVyb3MgPSBbXWAgb3UgYGxpc3RhX251bWVyb3MgPSBsaXN0KClgCgojIyMgQWNlc3NvIGFvcyBFbGVtZW50b3MgZGEgTGlzdGEKCi0gKipJbmRleGHDp8OjbzoqKiBFbSBQeXRob24sIG9zIGVsZW1lbnRvcyBlbSB1bWEgbGlzdGEgc8OjbyBudW1lcmFkb3MgY29tZcOnYW5kbyBkbyB6ZXJvLgotICoqQWNlc3NvOioqIFZvY8OqIHBvZGUgYWNlc3NhciBvcyBlbGVtZW50b3MgZGUgdW1hIGxpc3RhIHVzYW5kbyBzZXUgw61uZGljZSBjb3JyZXNwb25kZW50ZS4KICAtIEV4ZW1wbG86IGBwcmltZWlyb19lbGVtZW50byA9IGxpc3RhWzBdYAoKIyMjIE1hbmlwdWxhw6fDo28gZGUgTGlzdGFzCgotICoqQWRpw6fDo28gZGUgRWxlbWVudG9zOioqIFZvY8OqIHBvZGUgYWRpY2lvbmFyIG5vdm9zIGVsZW1lbnRvcyBhIHVtYSBsaXN0YSB1c2FuZG8gbcOpdG9kb3MgY29tbyBgYXBwZW5kKClgIGUgYGluc2VydCgpYC4KLSAqKlJlbW/Dp8OjbyBkZSBFbGVtZW50b3M6KiogT3MgZWxlbWVudG9zIGRlIHVtYSBsaXN0YSBwb2RlbSBzZXIgcmVtb3ZpZG9zIHVzYW5kbyBtw6l0b2RvcyBjb21vIGByZW1vdmUoKWAgZSBgcG9wKClgLgoKIyMjIEZ1bmNpb25hbGlkYWRlcyBBZGljaW9uYWlzCgotICoqQ29tcHJpbWVudG8gZGEgTGlzdGE6KiogVm9jw6ogcG9kZSB2ZXJpZmljYXIgbyBjb21wcmltZW50byBkZSB1bWEgbGlzdGEgdXNhbmRvIGEgZnVuw6fDo28gYGxlbigpYC4KLSAqKkNvbmNhdGVuYcOnw6NvIGRlIExpc3RhczoqKiBMaXN0YXMgcG9kZW0gc2VyIGNvbmNhdGVuYWRhcyB1c2FuZG8gbyBvcGVyYWRvciBgK2AuCi0gKipSZXBldGnDp8OjbyBkZSBFbGVtZW50b3M6KiogVW1hIGxpc3RhIHBvZGUgc2VyIHJlcGV0aWRhIHVzYW5kbyBvIG9wZXJhZG9yIGAqYC4KCiMjIyBgQ29uY2x1c8OjbzpgCgpBcyBsaXN0YXMgZW0gUHl0aG9uIHPDo28gdW1hIGZlcnJhbWVudGEgcG9kZXJvc2EgcGFyYSBsaWRhciBjb20gY29sZcOnw7VlcyBkZSBkYWRvcyBkZSBmb3JtYSBlZmljaWVudGUgZSBmbGV4w612ZWwuIENvbSB1bWEgY29tcHJlZW5zw6NvIGNsYXJhIGRlIGNvbW8gY3JpYXIsIGFjZXNzYXIgZSBtYW5pcHVsYXIgbGlzdGFzLCB2b2PDqiBwb2RlIHJlYWxpemFyIHVtYSBhbXBsYSB2YXJpZWRhZGUgZGUgdGFyZWZhcyBkZSBwcm9ncmFtYcOnw6NvLCBkZXNkZSBvIHByb2Nlc3NhbWVudG8gZGUgZGFkb3MgYXTDqSBhIGltcGxlbWVudGHDp8OjbyBkZSBhbGdvcml0bW9zIGNvbXBsZXhvcy4KCiMjIyBFeGVtcGxvIFByw6F0aWNvOg==";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-0').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [1]</div>
+                <pre><code class="language-python"># Criando uma lista de números
+lista_numeros = [1, 2, 3, 4, 5]
+print(lista_numeros)
+
+# Adicionando um novo número ao final da lista
+lista_numeros.append(6)
+print(lista_numeros)
+
+# Acessando o terceiro elemento da lista
+terceiro_numero = lista_numeros[2]
+print(f&#x27;O terceiro número é {terceiro_numero}&#x27;)
+
+# Removendo o segundo elemento da lista
+lista_numeros.pop(1)
+print(lista_numeros)
+
+# Verificando o comprimento da lista
+tamanho = len(lista_numeros)
+print(f&#x27;O tamanho da lista é {tamanho}&#x27;)</code></pre>
+            </div>
+            <div class="cell-output">[1, 2, 3, 4, 5]
+[1, 2, 3, 4, 5, 6]
+O terceiro número é 3
+[1, 3, 4, 5, 6]
+O tamanho da lista é 5
+</div>
+            <div class="cell cell-markdown" id="md-2"></div>
+            <script>
+                (function(){
+                    const b64 = "IyMjICoqYEluZGV4YcOnw6NvIGUgQWx0ZXJhw6fDo28gZGUgRWxlbWVudG9zIGVtIExpc3Rhc2AqKgoKRW0gUHl0aG9uLCB2b2PDqiBwb2RlIGFjZXNzYXIgZSBhbHRlcmFyIGVsZW1lbnRvcyBlc3BlY8OtZmljb3MgZW0gdW1hIGxpc3RhIHVzYW5kbyBpbmRleGHDp8Ojby4gVmFtb3MgZXhwbG9yYXIgY29tbyBpc3NvIMOpIGZlaXRvOgoKIyMjIEFjZXNzYW5kbyBFbGVtZW50b3M6CgotIFBhcmEgYWNlc3NhciB1bSBlbGVtZW50byBlc3BlY8OtZmljbyBlbSB1bWEgbGlzdGEsIHZvY8OqIHVzYSBhIGluZGV4YcOnw6NvLCBvbmRlIG8gw61uZGljZSBkbyBlbGVtZW50byBkZXNlamFkbyDDqSBjb2xvY2FkbyBlbnRyZSBjb2xjaGV0ZXMgYXDDs3MgbyBub21lIGRhIGxpc3RhLgotIE9zIMOtbmRpY2VzIGVtIFB5dGhvbiBjb21lw6dhbSBlbSAwLCBvIHF1ZSBzaWduaWZpY2EgcXVlIG8gcHJpbWVpcm8gZWxlbWVudG8gdGVtIMOtbmRpY2UgMCwgbyBzZWd1bmRvIHRlbSDDrW5kaWNlIDEgZSBhc3NpbSBwb3IgZGlhbnRlLgoKIyMjIEFsdGVyYW5kbyBFbGVtZW50b3M6CgotIFBhcmEgYWx0ZXJhciBvIHZhbG9yIGRlIHVtIGVsZW1lbnRvIGVtIHVtYSBsaXN0YSwgdm9jw6ogc2ltcGxlc21lbnRlIGF0cmlidWkgdW0gbm92byB2YWxvciBhbyBlbGVtZW50byB1c2FuZG8gYSBtZXNtYSBpbmRleGHDp8Ojby4KLSBWb2PDqiBwb2RlIGF0cmlidWlyIHVtIG5vdm8gdmFsb3IgZGlyZXRhbWVudGUgYW8gZWxlbWVudG8gZXNjb2xoaWRvIG5hIGxpc3RhLgoKIyMjIEV4ZW1wbG9zOgoKMS4gKipBbHRlcmFuZG8gbyBQcmltZWlybyBFbGVtZW50bzoqKgogICBgYGBweXRob24KICAgbGlzdGFfbnVtZXJvcyA9IFsxMiwgMjAsIDMwLCA0MCwgNTBdCiAgIGxpc3RhX251bWVyb3NbMF0gPSAxMTEKICAgIyBBbnRlcywgbHNpdGFfbnVtZXJvcyA9IFsxMiwgMjAsIDMwLCA0MCwgNTBdCiAgICMgQWdvcmEsIGxpc3RhX251bWVyb3MgPSBbMTExLCAyMCwgMzAsIDQwLCA1MF0KICAgYGBgCgoyLiAqKkNvcGlhbmRvIFZhbG9yIGRvIFF1aW50byBFbGVtZW50byBwYXJhIG8gU2VndW5kbzoqKgogICBgYGBweXRob24KICAgbGlzdGFfbnVtZXJvcyA9IFsxMCwgMjAsIDMwLCA0MCwgNjZdCiAgIGxpc3RhX251bWVyb3NbMV0gPSBsaXN0YV9udW1lcm9zWzRdCiAgICMgQW50ZXMsIGxpc3RhX251bWVyb3MgPSBbMTAsIDIwLCAzMCwgNDAsIDY2XQogICAjIEFnb3JhLCBsaXN0YV9udW1lcm9zID0gWzEwLCA2NiwgMzAsIDQwLCA2Nl0KICAgYGBgCgojIyMgQ29uc2lkZXJhw6fDtWVzIEZpbmFpczoKCi0gQSBvcGVyYcOnw6NvIGRlIHNlbGXDp8OjbyBkZSB1bSBlbGVtZW50byBlbSB1bWEgbGlzdGEgdXNhbmRvIGluZGV4YcOnw6NvIMOpIGNvbmhlY2lkYSBjb21vICoqaW5kZXhhw6fDo28qKi4KLSBBIGluZGV4YcOnw6NvIHBlcm1pdGUgcXVlIHZvY8OqIGFjZXNzZSBlIGFsdGVyZSBlbGVtZW50b3MgZXNwZWPDrWZpY29zIGVtIHVtYSBsaXN0YSwgcHJvcG9yY2lvbmFuZG8gZmxleGliaWxpZGFkZSBubyBwcm9jZXNzYW1lbnRvIGRlIGRhZG9zLgoKQ29tcHJlZW5kZXIgYSBpbmRleGHDp8OjbyBlIGEgYWx0ZXJhw6fDo28gZGUgZWxlbWVudG9zIGVtIGxpc3RhcyDDqSBmdW5kYW1lbnRhbCBwYXJhIG1hbmlwdWxhciBlZmljaWVudGVtZW50ZSBjb25qdW50b3MgZGUgZGFkb3MgZW0gUHl0aG9uLg==";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-2').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-markdown" id="md-3"></div>
+            <script>
+                (function(){
+                    const b64 = "IyMjICoqYE5vdGHDp8OjbyBkZSBzbGljZWAqKgoKw4BzIHZlemVzIHF1ZXJlbW9zIHJlY3VwZXJhciB2w6FyaW9zIHZhbG9yZXMgZGUgdW1hIGxpc3RhLiBQb2RlbW9zIGZhemVyIGlzc28gdXNhbmRvIGBzbGljaW5nYC4gVmVqYW1vcyBhIHNpbnRheGUgZGUgc2xpY2U6ICoqYFtzdGFydDpzdG9wOnN0ZXBdYCoqCgpPbmRlOiAKCmBzdGFydGA6IMOJIG8gw61uZGljZSBxdWUgcXVlcmVtb3MgY29tZcOnYXIuCgpgc3RvcGA6IMOJIG8gw61uZGljZSBxdWUgcXVlcmVtb3MgcXVlIHRlcm1pbmUuIE8gaW50ZXZhbG8gw6kgYWJlcnRvLCBvdSBzZWphLCBlc3RlIG7Do28gc2Vyw6EgaW5jbHXDrWRvLgoKYHN0ZXBgOiDDiSB1bSBhcmd1bWVudG8gb3BjaW9uYWwuIFNldSB2YWxvciBwYWRyw6NvIMOpIDEgZSByZXByZXNlbnRhIG8gbsO6bWVybyBkZSBlbGVtZW50b3MgcXVlIHZvY8OqIGRlc2VqYSBwdWxhci4=";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-3').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [37]</div>
+                <pre><code class="language-python">ingredientes = [&#x27;eggs&#x27;, &#x27;flour&#x27;, &#x27;sugar&#x27;, &#x27;salt&#x27;]
+print(ingredientes[0:2]) # [&#x27;eggs&#x27;, &#x27;flour&#x27;]
+
+# Podemos omitir o primeiro índice para começar do início ou o segundo para ir até o final.</code></pre>
+            </div>
+            <div class="cell-output">[&#x27;eggs&#x27;, &#x27;flour&#x27;]
+</div>
+            <div class="cell cell-markdown" id="md-5"></div>
+            <script>
+                (function(){
+                    const b64 = "TyB2YWxvciDDoCBlc3F1ZXJkYSBkb3MgZG9pcyBwb250b3Mgw6kgYSBwb3Npw6fDo28gaW5pY2lhbCBkbyBzbGljZS4gQ29tbyBhYm9yZGFtb3MgYW50ZXJpb3JtZW50ZSwgYSBpbmRleGHDp8OjbyBkbyBQeXRob24gY29tZcOnYSBlbSB6ZXJvLgoKQW8gY29kaWZpY2FyICoqYGluZ3JlZGluZXRlc1szOl1gKiosIHJlY3VwZXJhbW9zIHRvZG9zIG9zIGVsZW1lbnRvcyBkYSBsaXN0YSBhIHBhcnRpciBkYSBwb3Npw6fDo28gMyBhdMOpIG8gZmluYWwgZGEgbGlzdGEu";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-5').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [38]</div>
+                <pre><code class="language-python">print(ingredientes[3:]) # [&#x27;salt&#x27;]</code></pre>
+            </div>
+            <div class="cell-output">[&#x27;salt&#x27;]
+</div>
+            <div class="cell cell-markdown" id="md-7"></div>
+            <script>
+                (function(){
+                    const b64 = "Kipgc3RlcGAqKiBwb2RlIHNlciBuZWdhdGl2bywgbyBxdWUgbm9zIHBlcm1pdGUgdXNhciB1bSB2YWxvciAqKmBzdGFydGAqKiBtYWlvciBxdWUgbyB2YWxvciAqKmBzdG9wYCoqLiBOZXNzZSBjYXNvLCBvIHNsaWNlIGNvbWXDp2Egbm8gZmluYWwgZGEgbGlzdGEgZSB2YWkgYXTDqSBvIGluw61jaW8gZGEgbGlzdGEsIHB1bGFuZG8gbyBuw7ptZXJvIGRlIGVsZW1lbnRvcyBlc3BlY2lmaWNhZG8gcG9yIHN0ZXAu";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-7').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [39]</div>
+                <pre><code class="language-python">print(ingredientes[::-1]) # [&#x27;salt&#x27;, &#x27;sugar&#x27;, &#x27;flour&#x27;, &#x27;eggs&#x27;]</code></pre>
+            </div>
+            <div class="cell-output">[&#x27;salt&#x27;, &#x27;sugar&#x27;, &#x27;flour&#x27;, &#x27;eggs&#x27;]
+</div>
+            <div class="cell cell-markdown" id="md-9"></div>
+            <script>
+                (function(){
+                    const b64 = "IyMgYE9ic2VydmHDp8O1ZXM6YAoKLSBPIHZhbG9yIGluaWNpYWwgcG9kZSBzZXIgKipwb3NpdGl2byoqLCAqKm5lZ2F0aXZvKiogb3UgKipvbWl0aWRvKiouIFNlICoqb21pdGlkbyoqLCBvICoqc2xpY2UqKiBjb21lw6dhIG5vIGluw61jaW8gZGEgbGlzdGEuIFZhbG9yZXMgKipuZWdhdGl2b3MqKiBzaWduaWZpY2FtIHF1ZSBvICoqc2xpY2UqKiBjb21lw6dhIGEgcGFydGlyIGRvICoqZmluYWwqKiBkYSBsaXN0YS4KCmBgYHB5dGhvbgpsaXN0YSA9IFsxLCAyLCAzLCA0LCA1XQoKIyBWYWxvciBpbmljaWFsIHBvc2l0aXZvIChjb21lw6dhIG5vIMOtbmRpY2UgMSkKcHJpbnQobGlzdGFbMTpdKSAgIyBTYcOtZGE6IFsyLCAzLCA0LCA1XQoKIyBWYWxvciBpbmljaWFsIG5lZ2F0aXZvIChjb21lw6dhIG5vIMOtbmRpY2UgLTMsIGVxdWl2YWxlbnRlIGFvIMOtbmRpY2UgMiBjb250YW5kbyBkbyBmaW5hbCkKcHJpbnQobGlzdGFbLTM6XSkgICMgU2HDrWRhOiBbMywgNCwgNV0KCiMgVmFsb3IgaW5pY2lhbCBvbWl0aWRvIChjb21lw6dhIG5vIGluw61jaW8gZGEgbGlzdGEpCnByaW50KGxpc3RhWzozXSkgICMgU2HDrWRhOiBbMSwgMiwgM10KYGBgCgotIEVzcGVjaWZpY2FyIHVtICoqaW50ZXJ2YWxvKiogZm9yYSBkbyAqKmNvbXByaW1lbnRvKiogZGEgbGlzdGEgbsOjbyBjYXVzYSB1bSBlcnJvLiBFbSB2ZXogZGlzc28sIG8gKipzbGljZSoqIHJldG9ybmEgdW1hICoqbGlzdGEgdmF6aWEqKi4KCmBgYHB5dGhvbgpwcmludChsaXN0YVsxMDoxNV0pICAjIFNhw61kYTogW10KYGBgCgotIE8gdmFsb3Igw6AgZGlyZWl0YSBkb3MgZG9pcyBwb250b3Mgw6kgYSAqKnBvc2nDp8OjbyBmaW5hbCoqIGRvICoqc2xpY2UqKi4gTyAqKnNsaWNlKiogaW5jbHVpIHRvZG9zIG9zIGVsZW1lbnRvcyBkYSAqKnBvc2nDp8OjbyBpbmljaWFsKiogYXTDqSBhICoqcG9zacOnw6NvIGZpbmFsKiosIG1hcyAqKm7Do28gaW5jbHVpKiogbyBlbGVtZW50byBkYSAqKnBvc2nDp8OjbyBmaW5hbCoqLgoKYGBgcHl0aG9uCnByaW50KGxpc3RhWzE6M10pICAjIFNhw61kYTogWzIsIDNdCmBgYAoKLSBTZSB1c2FybW9zIHVtIHZhbG9yIGluaWNpYWwgZGUgemVybyBvdSBvbWl0aXJtb3MgbyB2YWxvciBpbmljaWFsLCBwb2RlbW9zIG9taXRpciBvICoqcHJpbWVpcm8gZG9pcyBwb250b3MqKi4gVW0gdmFsb3IgZGUgcGFyYSBkYSAqKnBvc2l0aXZvKiogc2Vyw6EgaWd1YWwgYW8gbsO6bWVybyBkZSAqKmVsZW1lbnRvcyoqIHJldG9ybmFkb3MuCgpgYGBweXRob24KcHJpbnQobGlzdGFbOjNdKSAgIyBFcXVpdmFsZW50ZSBhIGxpc3RhWzA6M10sIFNhw61kYTogWzEsIDIsIDNdCnByaW50KGxpc3RhWzpdKSAgICMgUmV0b3JuYSB1bWEgY8OzcGlhIGNvbXBsZXRhIGRhIGxpc3RhLCBTYcOtZGE6IFsxLCAyLCAzLCA0LCA1XQpgYGAKCi0gVW0gKirDrW5kaWNlIHN0YXJ0KiogbWFpb3IgcXVlIG8gKirDrW5kaWNlIHN0b3AqKiByZXN1bHRhIGVtIHVtYSAqKmxpc3RhIHZhemlhKiouCgpgYGBweXRob24KcHJpbnQobGlzdGFbMzoxXSkgICMgU2HDrWRhOiBbXQpgYGA=";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-9').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [40]</div>
+                <pre><code class="language-python">pontos = [100, 200, 300, 400, 500]
+# Aqui solicitamos os elementos do índice 0 ao 2, com um step de -1. Como start é menor que stop, a lista resultante é vazia.
+print(pontos[0:2:-1])
+
+# Aqui solicitamos os elementos do índice 4 ao 1, com um step de -1. Como start é maior que stop, iteramos de forma decrescente.
+print(pontos[4:1:-1])</code></pre>
+            </div>
+            <div class="cell-output">[]
+[500, 400, 300]
+</div>
+            <div class="cell cell-markdown" id="md-11"></div>
+            <script>
+                (function(){
+                    const b64 = "VGFtYsOpbSBwb2RlbW9zIHVzYXIgdW0gZm9ybWF0byBjb20gKipkb2lzIGRvaXMgcG9udG9zKiogcGFyYSBlc3BlY2lmaWNhciB1bSB2YWxvciBkZSAqKnN0ZXAqKi4gTyB2YWxvciBkZSAqKnN0ZXAqKiDDqSBvIG7Dum1lcm8gZGUgZWxlbWVudG9zIHF1ZSBvICoqc2xpY2UqKiBwdWxhIGEgY2FkYSBpdGVyYcOnw6NvLiBPIHZhbG9yIHBhZHLDo28gZGUgKipzdGVwKiogw6kgKioxKiouCgpQb2RlbW9zIHVzYXIgdW0gdmFsb3IgKipzdGVwKiogc2VtIHZhbG9yICoqc3RhcnQqKiBvdSAqKnN0b3AqKi4gTmVzc2UgY2FzbywgbyAqKnNsaWNlKiogY29tZcOnYSBubyBpbsOtY2lvIGRhIGxpc3RhIGUgdmFpIGF0w6kgbyBmaW5hbCBkYSBsaXN0YSwgcHVsYW5kbyBvIG7Dum1lcm8gZGUgZWxlbWVudG9zIGVzcGVjaWZpY2FkbyBwb3IgKipzdGVwKiou";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-11').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [41]</div>
+                <pre><code class="language-python">lista_numeros = [1, 2, 3, 4, 5]
+
+pares = lista_numeros[1::2] # A partir do índice 1, com um step de 2.
+# Não conta o 1, conta o 2, não conta o 3, conta o 4, não conta o 5. 
+
+ímpares = lista_numeros[::2] # A partir do índice 0, com um step de 2. 
+# Conta o 1, não conta o 2, conta o 3, não conta o 4, conta o 5.</code></pre>
+            </div>
+            
+            <div class="cell cell-markdown" id="md-13"></div>
+            <script>
+                (function(){
+                    const b64 = "IyMjICoqYEFjZXNzbyBhbyBjb250ZcO6ZG8gZGEgbGlzdGFgKioKQ2FkYSB1bSBkb3MgZWxlbWVudG9zIGRhIGxpc3RhIHBvZGUgc2VyIGFjZXNzYWRvIHNlcGFyYWRhbWVudGUuIFBvciBleGVtcGxvLCBlbGUgcG9kZSBzZXIgaW1wcmVzc286Cg==";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-13').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [42]</div>
+                <pre><code class="language-python">print(lista_numeros[0]) # Acessando o primeiro elemento da lista. 
+# Retorna 1.</code></pre>
+            </div>
+            <div class="cell-output">1
+</div>
+            <div class="cell cell-markdown" id="md-15"></div>
+            <script>
+                (function(){
+                    const b64 = "Q29tbyB2b2PDqiBwb2RlIHZlciBubyBlZGl0b3IsIGEgbGlzdGEgdGFtYsOpbSBwb2RlIHNlciBpbXByZXNzYSBjb21vIHVtIHRvZG8sIGFzc2ltIGNvbW8gYXF1aTo=";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-15').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [43]</div>
+                <pre><code class="language-python">print(lista_numeros) # Acessando a lista inteira.
+# Retorna [1, 2, 3, 4, 5].</code></pre>
+            </div>
+            <div class="cell-output">[1, 2, 3, 4, 5]
+</div>
+            <div class="cell cell-markdown" id="md-17"></div>
+            <script>
+                (function(){
+                    const b64 = "Q29tbyB2b2PDqiBwcm92YXZlbG1lbnRlIGrDoSBkZXZlIHRlciBub3RhZG8gYW50ZXMsIG8gUHl0aG9uIGFkb3RhIHVtYSBzYcOtZGEgZXNwZWNpYWwgcGFyYSBhcyBsaXN0YXMgLSBlbGFzIHPDo28gaW1wcmVzc2FzIGVudHJlIGNvbGNoZXRlcyBlIHNlcGFyYWRhcyBwb3IgdsOtcmd1bGFzLiBJc3NvIHRvcm5hIGEgbGlzdGEgbXVpdG8gZsOhY2lsIGRlIHJlY29uaGVjZXIu";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-17').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-markdown" id="md-18"></div>
+            <script>
+                (function(){
+                    const b64 = "IyMjICoqYE9zIMOtbmRpY2VzIG5lZ2F0aXZvcyBzw6NvIGxlZ2Fpc2AqKgoKUG9kZSBwYXJlY2VyIGVzdHJhbmhvLCBtYXMgb3Mgw61uZGljZXMgbmVnYXRpdm9zIHPDo28gbGVnYWlzIGUgcG9kZW0gc2VyIG11aXRvIMO6dGVpcy4KClVtIGVsZW1lbnRvIGNvbSB1bSDDrW5kaWNlIGlndWFsIGEgYC0xYCDDqSBvIGDDumx0aW1vYCBuYSBsaXN0YS4KCkEgaW5kZXhhw6fDo28gbmVnYXRpdmEgc2lnbmlmaWNhIHF1ZSByZWN1cGVyYW1vcyB1bSBlbGVtZW50byBkbyBsYWRvIGRpcmVpdG8gZGUgdW1hIGxpc3RhLiBVc2Ftb3MgbyBzw61tYm9sbyBkZSBtZW5vcyAoLSkgYW50ZXMgZG8gw61uZGljZSBwYXJhIGluZGljYXIgdW0gw61uZGljZSBuZWdhdGl2by4KClBvZGVtb3MgdXNhciBxdWFscXVlciB2YWxvciBuZWdhdGl2byBhdMOpIG8gY29tcHJpbWVudG8gZGEgbGlzdGEuIENvbSBlc3NlIHJlY3Vyc28sIHRhbWLDqW0gcG9kZW1vcyBtb2RpZmljYXIgZWxlbWVudG9zIGRlIHVtYSBsaXN0YSBjb21lw6dhbmRvIHBlbG8gZmluYWwuCgpFbmNvbnRyYXJlbW9zIHVtIGVycm8gc2UgdGVudGFybW9zIHJlY3VwZXJhciB1bSB2YWxvciBlbSB1bWEgcG9zacOnw6NvIGZvcmEgZG8gaW50ZXJ2YWxvIGRvIGNvbXByaW1lbnRvIGRhIGxpc3RhLgoKRGEgbWVzbWEgZm9ybWEsIG8gZWxlbWVudG8gY29tIHVtIMOtbmRpY2UgaWd1YWwgYSBgLTJgIMOpIG8gYHBlbsO6bHRpbW9gIG5hIGxpc3RhLCBlIGFzc2ltIHBvciBkaWFudGUu";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-18').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [44]</div>
+                <pre><code class="language-python">print(lista_numeros[-1]) # Acessando o último elemento da lista.
+# Retorna 5.</code></pre>
+            </div>
+            <div class="cell-output">5
+</div>
+            <div class="cell cell-markdown" id="md-20"></div>
+            <script>
+                (function(){
+                    const b64 = "IyMjICoqYEEgZnVuw6fDo28gbGVuKClgKioKCk8gY29tcHJpbWVudG8gZGUgdW1hIGxpc3RhIHBvZGUgdmFyaWFyIGR1cmFudGUgYSBleGVjdcOnw6NvLiBOb3ZvcyBlbGVtZW50b3MgcG9kZW0gc2VyIGFkaWNpb25hZG9zIMOgIGxpc3RhLCBlbnF1YW50byBvdXRyb3MgcG9kZW0gc2VyIHJlbW92aWRvcy4gSXNzbyBzaWduaWZpY2EgcXVlIGEgbGlzdGEgw6kgdW1hIGVudGlkYWRlIG11aXRvIGRpbsOibWljYS4KClNlIHF1aXNlciB2ZXJpZmljYXIgbyBjb21wcmltZW50byBhdHVhbCBkYSBsaXN0YSwgdm9jw6ogcG9kZSB1c2FyIHVtYSBmdW7Dp8OjbyBjaGFtYWRhIGBsZW4oKWAgKG8gbm9tZSB2ZW0gZG8gY29tcHJpbWVudG8pLgoKQSBmdW7Dp8OjbyB1c2EgbyBub21lIGRhIGxpc3RhIGNvbW8gYXJndW1lbnRvIGUgcmV0b3JuYSBvIG7Dum1lcm8gZGUgZWxlbWVudG9zIGFybWF6ZW5hZG9zIGF0dWFsbWVudGUgbmEgbGlzdGEgKGVtIG91dHJhcyBwYWxhdnJhcywgbyBjb21wcmltZW50byBkYSBsaXN0YSk=";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-20').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [45]</div>
+                <pre><code class="language-python">print(len(lista_numeros)) # Acessando o tamanho da lista.
+# Retorna 5.</code></pre>
+            </div>
+            <div class="cell-output">5
+</div>
+            <div class="cell cell-markdown" id="md-22"></div>
+            <script>
+                (function(){
+                    const b64 = "IyMjICoqYFJlbW92ZXIgZWxlbWVudG9zIGRlIHVtYSBsaXN0YWAqKgoKUXVhbHF1ZXIgdW0gZG9zIGVsZW1lbnRvcyBkYSBsaXN0YSBwb2RlIHNlciByZW1vdmlkbyBhIHF1YWxxdWVyIG1vbWVudG8gLSBpc3NvIMOpIGZlaXRvIGNvbSB1bWEgaW5zdHJ1w6fDo28gY2hhbWFkYSAqKmBkZWxgKiogKGRlbGV0ZSkuIAoKKipOb3RhOioqIMOpIHVtYSBpbnN0cnXDp8OjbywgbsOjbyB1bWEgZnVuw6fDo28uCgoqKlNpbnRheGU6KiogCgpgYGBweXRob24KZGVsIGxpc3RbaW5kZXhdCmBgYApWb2PDqiBwcmVjaXNhIGFwb250YXIgcGFyYSBvIGVsZW1lbnRvIGEgc2VyIHJlbW92aWRvIC0gZWxlIGRlc2FwYXJlY2Vyw6EgZGEgbGlzdGEgZSBvIGNvbXByaW1lbnRvIGRhIGxpc3RhIHNlcsOhIHJlZHV6aWRvIGVtIHVtLg==";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-22').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [46]</div>
+                <pre><code class="language-python"># Criando uma lista com 9 elementos.
+lista_numeros =  [111, 10, 32, 3, 66, 17, 42, 99, 20] 
+
+print(lista_numeros) # Acessando a lista inteira.
+# Resultado: [111, 10, 32, 3, 66, 17, 42, 99, 20]
+
+print(len(lista_numeros)) # Acessando o tamanho da lista.
+# Resultado: 9
+
+del lista_numeros[1] # Removendo o segundo elemento da lista que é 10
+
+print(lista_numeros) # Acessando a lista inteira.
+# Resultado: [111, 32, 3, 66, 17, 42, 99, 20]
+
+print(len(lista_numeros)) # Acessando o tamanho da lista após a remoção.
+# Resultado: 8</code></pre>
+            </div>
+            <div class="cell-output">[111, 10, 32, 3, 66, 17, 42, 99, 20]
+9
+[111, 32, 3, 66, 17, 42, 99, 20]
+8
+</div>
+            <div class="cell cell-markdown" id="md-24"></div>
+            <script>
+                (function(){
+                    const b64 = "Vm9jw6ogbsOjbyBwb2RlIGFjZXNzYXIgdW0gZWxlbWVudG8gcXVlIG7Do28gZXhpc3RlIC0gdm9jw6ogbsOjbyBwb2RlIG9idGVyIHNldSB2YWxvciBuZW0gYXRyaWJ1aXIgdW0gdmFsb3IgYSBlbGUuIEFtYmFzIGFzIGluc3RydcOnw7VlcyBjYXVzYXLDo28gZXJyb3MgZGUgdGVtcG8gZGUgZXhlY3XDp8OjbyBhZ29yYToKCmBgYHB5dGhvbgpwcmludChsaXN0YV9udW1lcm9zWzhdKQojIEFjZXNzYW5kbyB1bSBlbGVtZW50byBxdWUgbsOjbyBleGlzdGUuCiMgUmVzdWx0YWRvOiBJbmRleEVycm9yOiBsaXN0IGluZGV4IG91dCBvZiByYW5nZQpgYGAKCmRlbCB0YW1iw6ltIHBvZGUgYXBhZ2FyIHVtYSBsaXN0YSBjb21wbGV0YW1lbnRlLiBCYXN0YSBvbWl0aXIgbyDDrW5kaWNl";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-24').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-markdown" id="md-25"></div>
+            <script>
+                (function(){
+                    const b64 = "IyMjICoqYHJlbW92ZSgpYCoqCnJlbW92ZSgpIMOpIHVtIGBtw6l0b2RvYCBxdWUgcmVtb3ZlIG8gYHByaW1laXJvIGVsZW1lbnRvIGNvbSB1bSB2YWxvciBlc3BlY2lmaWNhZG9gLCBvdSBzZWphLCBhIHByaW1laXJhIG9jb3Jyw6puY2lhIGRlIHVtIHZhbG9yIGVzcGVjaWZpY2Fkby4KCk8gbcOpdG9kbyByZW1vdmUoKSBhY2VpdGEgdW0gYXJndW1lbnRvIHF1ZSDDqSBvIHZhbG9yIGRvIGVsZW1lbnRvIGEgc2VyIHJlbW92aWRvLiBTZSBuw6NvIGhvdXZlciBuZW5odW0gZWxlbWVudG8gY29tIG8gdmFsb3IgZXNwZWNpZmljYWRvLCBvIFB5dGhvbiBnZXJhcsOhIHVtIGVycm8uCgrDiSBib2EgcHLDoXRpY2EgdmVyaWZpY2FyIHNlIG8gZWxlbWVudG8gZXhpc3RlIG5hIGxpc3RhIGFudGVzIGRlIHJlbW92w6otbG8sIHV0aWxpemFuZG8gbyBvcGVyYWRvciBgaW5gLg==";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-25').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [47]</div>
+                <pre><code class="language-python"># Podemos verificar antes se o elemento existe com o operador in.
+# O operador in retorna True se o elemento existir na lista e False se não existir.
+valores = [21, 23]
+
+# Verificando se o elemento 24 existe na lista.
+if 24 in valores:
+    valores.remove(24)  # Removendo o elemento 24 da lista SE ele existir.
+else: # Se ele não existir, exibimos uma mensagem.
+    print(&quot;O elemento não existe&quot;)</code></pre>
+            </div>
+            <div class="cell-output">O elemento não existe
+</div>
+            <div class="cell cell-markdown" id="md-27"></div>
+            <script>
+                (function(){
+                    const b64 = "IyMjICoqYHBvcCgpYCoqCgpBbMOpbSBkZSBkZWwsIHZvY8OqIHBvZGUgdXNhciBvIGBtw6l0b2RvIHBvcCgpYCBwYXJhIHJlbW92ZXIgdW0gZWxlbWVudG8gZGEgbGlzdGEuIE8gbcOpdG9kbyBgcG9wKClgIHJlbW92ZSBvIGDDumx0aW1vIGVsZW1lbnRvIGRhIGxpc3RhYCBlIG8gcmV0b3JuYS4KClNlIHZvY8OqIG7Do28gZXNwZWNpZmljYXIgbyDDrW5kaWNlLCBvIG3DqXRvZG8gcG9wKCkgcmVtb3ZlcsOhIGUgcmV0b3JuYXLDoSBvIMO6bHRpbW8gZWxlbWVudG8gZGEgbGlzdGEsIG1hcyBwb3AoKSBhY2VpdGEgdW0gYXJndW1lbnRvIG9wY2lvbmFsIHF1ZSBlc3BlY2lmaWNhIG8gw61uZGljZSBkbyBlbGVtZW50byBhIHNlciByZW1vdmlkby4=";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-27').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [48]</div>
+                <pre><code class="language-python"># Dada a seguinte lista de valores.
+lista = [1, 3, 5, 7]
+print(f&#x27;Lisa original: {lista}&#x27;)
+# Podemos usar o método pop() para remover um elemento da lista.
+lista.pop() # Remove o último elemento da lista.
+# Resultado: 7
+print(f&#x27;Lista atualizada: {lista}&#x27;)
+
+# Podemos salvar o elemento removido em uma variável.
+elemento_removido = lista.pop()
+print(f&#x27;Removemos o {elemento_removido}&#x27;) # Acessando o elemento removido.
+# Resultado: 5
+print(lista) # Acessando a lista após a remoção.
+
+# Podemos remover um elemento específico da lista.
+lista.remove(3) # Remove o elemento 3 da lista.
+print(f&#x27;Lista após usar remove: {lista}&#x27;) # Acessando a lista após a remoção.</code></pre>
+            </div>
+            <div class="cell-output">Lisa original: [1, 3, 5, 7]
+Lista atualizada: [1, 3, 5]
+Removemos o 5
+[1, 3]
+Lista após usar remove: [1]
+</div>
+            <div class="cell cell-markdown" id="md-29"></div>
+            <script>
+                (function(){
+                    const b64 = "IyMjICoqYERpZmVyZW7Dp8OjczogZGVsLCByZW1vdmUgZSBwb3BgKioKCmRlbCBlIHJlbW92ZSBzw6NvIG3DqXRvZG9zIGRlIGxpc3RhIHF1ZSBhbHRlcmFtIGEgbGlzdGEuIEVsZXMgbsOjbyByZXRvcm5hbSBuZW5odW0gdmFsb3IuIFNlIHZvY8OqIHRlbnRhciBhdHJpYnVpciBvIHJlc3VsdGFkbyBhIHVtYSBub3ZhIHZhcmnDoXZlbCwgYSBub3ZhIHZhcmnDoXZlbCBzZXLDoSBOb25lLiAKCkNhZGEgdW0gZnVuY2lvbmEgbWVsaG9yIGVtIHNpdHVhw6fDtWVzIGRpZmVyZW50ZXMuIAoKLSBkZWwgcmVtb3ZlIHVtIGVsZW1lbnRvIGNvbSB1bSDDrW5kaWNlIGVzcGVjaWZpY2Fkby4gIAoKLSByZW1vdmUoKSByZW1vdmUgbyBwcmltZWlybyBlbGVtZW50byBjb20gdW0gdmFsb3IgZXNwZWNpZmljYWRvLgoKLSBwb3AgcmVtb3ZlIG8gw7psdGltbyBlbGVtZW50byBkYSBsaXN0YS4KCkFvIGNvbnRyw6FyaW8gZGUgZGVsIGUgcmVtb3ZlLCBvIHJlc3VsdGFkbyBkZSBwb3AgcG9kZSBzZXIgYXRyaWJ1w61kbyBhIHVtYSBub3ZhIHZhcmnDoXZlbC4gTyB2YWxvciBhdHJpYnXDrWRvIHNlcsOhIG8gZWxlbWVudG8gcmVtb3ZpZG8gZGEgbGlzdGEu";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-29').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [49]</div>
+                <pre><code class="language-python"># Utilizando pop()
+lista_numeros =  [111, 10, 32, 3, 66, 17, 42, 99, 20]
+
+# Removendo o último elemento da lista. 
+print(lista_numeros.pop()) # Resultado: 20
+
+print(lista_numeros)
+# [111, 10, 32, 3, 66, 17, 42, 99]
+
+# Removendo o elemento de índice 3 da lista.
+print(lista_numeros.pop(3))
+
+print(lista_numeros) 
+# [111, 10, 32, 66, 17, 42, 99]
+
+# Removendo o elemento de índice 3 da lista e atribuindo o valor removido à variável valor_removido.
+valor_removido = lista_numeros.pop(3) 
+
+print(valor_removido) # Resultado: 66</code></pre>
+            </div>
+            <div class="cell-output">20
+[111, 10, 32, 3, 66, 17, 42, 99]
+3
+[111, 10, 32, 66, 17, 42, 99]
+66
+</div>
+            <div class="cell cell-markdown" id="md-31"></div>
+            <script>
+                (function(){
+                    const b64 = "IyMjICoqYGNsZWFyYCoqCgpQb2RlbW9zIHV0aWxpemFyIG8gbcOpdG9kbyBjbGVhcigpIHBhcmEgcmVtb3ZlciB0b2RvcyBvcyBlbGVtZW50b3MgZGUgdW1hIGxpc3RhLgoKQSBzaW50YXhlIMOpOiAKCmBgYHB5dGhvbgpsaXN0LmNsZWFyKCkKYGBgCmNsZWFyKCkgZGlmZXJlIGRlIGRlbCwgcG9pcyBuw6NvIGV4Y2x1aSBhIGxpc3RhLCBhcGVuYXMgcmVtb3ZlIHRvZG9zIG9zIGVsZW1lbnRvcy4=";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-31').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [50]</div>
+                <pre><code class="language-python">lista = [1, 3, 5, 7]
+lista.clear() # Remove todos os elementos da lista.
+
+print(lista) # Resultado: []
+
+# clear aceita o argumento de índice.
+lista = [1, 3, 5, 7]</code></pre>
+            </div>
+            <div class="cell-output">[]
+</div>
+            <div class="cell cell-markdown" id="md-33"></div>
+            <script>
+                (function(){
+                    const b64 = "IyMjICoqYEVudGVuZGVuZG8gRnVuw6fDtWVzIGUgTcOpdG9kb3MgbmEgUHJvZ3JhbWHDp8Ojb2AqKgoKTmEgcHJvZ3JhbWHDp8OjbywgdGFudG8gZnVuw6fDtWVzIHF1YW50byBtw6l0b2RvcyBkZXNlbXBlbmhhbSBwYXDDqWlzIGltcG9ydGFudGVzLCBtYXMgZWxlcyB0w6ptIGRpZmVyZW7Dp2FzIGZ1bmRhbWVudGFpcyBlbSBzdWEgbmF0dXJlemEgZSB1c28uIFZhbW9zIGV4YW1pbmFyIGVzc2FzIGRpZmVyZW7Dp2FzIHBhcmEgdGVyIHVtYSBjb21wcmVlbnPDo28gY2xhcmEgZGUgY29tbyBjYWRhIHVtIGZ1bmNpb25hLgoKKipGdW7Dp8O1ZXM6KioKClVtYSBmdW7Dp8OjbyDDqSB1bSBibG9jbyBkZSBjw7NkaWdvIHF1ZSBleGVjdXRhIHVtYSB0YXJlZmEgZXNwZWPDrWZpY2EgcXVhbmRvIMOpIGNoYW1hZGEuIEFxdWkgZXN0w6NvIGFsZ3VucyBwb250b3MtY2hhdmUgc29icmUgZnVuw6fDtWVzOgoKLSAqKkluZGVwZW5kw6puY2lhOioqIEFzIGZ1bsOnw7VlcyBzw6NvIGluZGVwZW5kZW50ZXMgZGUgcXVhbHF1ZXIgZGFkbyBlc3BlY8OtZmljby4gRWxhcyBwb2RlbSBzZXIgY2hhbWFkYXMgZW0gcXVhbHF1ZXIgbHVnYXIgZG8gY8OzZGlnbyBvbmRlIGZvcmVtIG5lY2Vzc8OhcmlhcywgZGVzZGUgcXVlIHNldXMgYXJndW1lbnRvcyBzZWphbSBmb3JuZWNpZG9zIGNvcnJldGFtZW50ZS4KLSAqKkVzY29wbzoqKiBFbGFzIHBlcnRlbmNlbSBhbyBlc2NvcG8gZ2xvYmFsIGRvIHByb2dyYW1hLCBvIHF1ZSBzaWduaWZpY2EgcXVlIG7Do28gZXN0w6NvIGFzc29jaWFkYXMgYSBuZW5odW0gb2JqZXRvIGVzcGVjw61maWNvLgotICoqVXNvOioqIFPDo28gaW52b2NhZGFzIHBlbG8gc2V1IG5vbWUgc2VndWlkbyBwZWxvcyBhcmd1bWVudG9zIG5lY2Vzc8OhcmlvcyBwYXJhIHJlYWxpemFyIGEgdGFyZWZhLgogIC0gRXhlbXBsbzogYHJlc3VsdGFkbyA9IGNhbGN1bGFyX3NvbWEodmFsb3JlcylgCgoqKk3DqXRvZG9zOioqCgpPcyBtw6l0b2RvcywgcG9yIG91dHJvIGxhZG8sIHPDo28gc2VtZWxoYW50ZXMgw6BzIGZ1bsOnw7VlcywgbWFzIGVzdMOjbyB2aW5jdWxhZG9zIGEgb2JqZXRvcyBlc3BlY8OtZmljb3MuIEFxdWkgZXN0w6NvIGFsZ3VtYXMgY2FyYWN0ZXLDrXN0aWNhcyBkb3MgbcOpdG9kb3M6CgotICoqQXNzb2NpYcOnw6NvOioqIENhZGEgbcOpdG9kbyBlc3TDoSBhc3NvY2lhZG8gYSB1bSBvYmpldG8gcGFydGljdWxhciBlIG9wZXJhIGRpcmV0YW1lbnRlIHNvYnJlIGVzc2Ugb2JqZXRvLgotICoqTW9kaWZpY2HDp8OjbyBkZSBFc3RhZG86KiogQWzDqW0gZGUgcmVhbGl6YXIgb3BlcmHDp8O1ZXMsIG9zIG3DqXRvZG9zIHRhbWLDqW0gcG9kZW0gbW9kaWZpY2FyIG8gZXN0YWRvIGludGVybm8gZG8gb2JqZXRvIGFvIHF1YWwgZXN0w6NvIHZpbmN1bGFkb3MuCi0gKipDaGFtYWRhOioqIEVsZXMgc8OjbyBjaGFtYWRvcyBwZWxvIG9iamV0byBhbyBxdWFsIHBlcnRlbmNlbSwgc2VndWlkbyBwZWxvIG5vbWUgZG8gbcOpdG9kbyBlIHF1YWlzcXVlciBhcmd1bWVudG9zIG5lY2Vzc8Ohcmlvcy4KICAtIEV4ZW1wbG86IGByZXN1bHRhZG8gPSBsaXN0YS5hZGljaW9uYXJfZWxlbWVudG8oZWxlbWVudG8pYAoKKipEaWZlcmVuY2lhw6fDo28gVmlzdWFsOioqCgotICoqRnVuw6fDo286Kiogw4kgaW52b2NhZGEgZGlyZXRhbWVudGUgcGVsbyBzZXUgbm9tZS4KLSAqKk3DqXRvZG86Kiogw4kgY2hhbWFkbyB1dGlsaXphbmRvIG8gb2JqZXRvIGFvIHF1YWwgcGVydGVuY2UsIHNlZ3VpZG8gcGVsbyBub21lIGRvIG3DqXRvZG8uCgoqKkltcG9ydMOibmNpYSBuYSBQcm9ncmFtYcOnw6NvOioqCgpFbnRlbmRlciBhIGRpZmVyZW7Dp2EgZW50cmUgZnVuw6fDtWVzIGUgbcOpdG9kb3Mgw6kgY3J1Y2lhbCwgZXNwZWNpYWxtZW50ZSBhbyB0cmFiYWxoYXIgY29tIHBhcmFkaWdtYXMgZGUgcHJvZ3JhbWHDp8OjbyBvcmllbnRhZGEgYSBvYmpldG9zLiBPcyBtw6l0b2RvcyBkZXNlbXBlbmhhbSB1bSBwYXBlbCB2aXRhbCBuYSBpbnRlcmHDp8OjbyBjb20gb2JqZXRvcyBlIG5hIG1vZGlmaWNhw6fDo28gZGUgc2V1IGVzdGFkbyBpbnRlcm5vLgoKKipBcGxpY2HDp8OjbyBQcsOhdGljYToqKgoKVW0gZXhlbXBsbyBjb211bSBkZSBhcGxpY2HDp8OjbyDDqSBhbyB0cmFiYWxoYXIgY29tIGxpc3RhcyBlbSBQeXRob24uIE3DqXRvZG9zIGNvbW8gYGFwcGVuZCgpYCwgYHJlbW92ZSgpYCwgZSBvdXRyb3Mgc8OjbyB1dGlsaXphZG9zIHBhcmEgbW9kaWZpY2FyIG8gY29udGXDumRvIGRhIGxpc3RhLCBlbnF1YW50byBmdW7Dp8O1ZXMgaW5kZXBlbmRlbnRlcyBwb2RlbSBzZXIgdXNhZGFzIHBhcmEgcmVhbGl6YXIgdGFyZWZhcyBxdWUgbsOjbyBlc3TDo28gZGlyZXRhbWVudGUgbGlnYWRhcyBhIHVtIG9iamV0byBlc3BlY8OtZmljby4KCkVtIHJlc3VtbywgZnVuw6fDtWVzIGUgbcOpdG9kb3MgdMOqbSBwcm9ww7NzaXRvcyBkaXN0aW50b3MgbmEgcHJvZ3JhbWHDp8OjbywgZSBlbnRlbmRlciBzdWFzIGRpZmVyZW7Dp2FzIMOpIGVzc2VuY2lhbCBwYXJhIGVzY3JldmVyIGPDs2RpZ28gY2xhcm8sIGVmaWNpZW50ZSBlIGbDoWNpbCBkZSBtYW50ZXIu";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-33').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-markdown" id="md-34"></div>
+            <script>
+                (function(){
+                    const b64 = "IyMjICoqRW50ZW5kZW5kbyBvIE3DqXRvZG8gYGFwcGVuZCgpYCoqCgpPIG3DqXRvZG8gYGFwcGVuZCgpYCDDqSB1bWEgZmVycmFtZW50YSBlc3NlbmNpYWwgYW8gdHJhYmFsaGFyIGNvbSBsaXN0YXMgZW0gUHl0aG9uLiBFbGUgcGVybWl0ZSBhZGljaW9uYXIgbm92b3MgZWxlbWVudG9zIGFvIGZpbmFsIGRlIHVtYSBsaXN0YSBleGlzdGVudGUuCgotICoqRnVuY2lvbmFsaWRhZGU6KiogTyBtw6l0b2RvIGBhcHBlbmQoKWAgw6kgdXNhZG8gcGFyYSBpbnNlcmlyIHVtIG5vdm8gZWxlbWVudG8gYW8gZmluYWwgZGUgdW1hIGxpc3RhIGV4aXN0ZW50ZS4KICAKLSAqKlNpbnRheGU6KioKICAtIFBhcmEgdXRpbGl6YXIgbyBtw6l0b2RvIGBhcHBlbmQoKWAsIHZvY8OqIHByZWNpc2EgY2hhbWFyIG8gbcOpdG9kbyBlbSB1bWEgbGlzdGEgZXhpc3RlbnRlLCBzZWd1aWRvIHBlbG8gdmFsb3IgcXVlIGRlc2VqYSBhZGljaW9uYXIgZW50cmUgcGFyw6pudGVzZXMuCiAgLSBTaW50YXhlOiBgbGlzdGEuYXBwZW5kKHZhbG9yKWAKCi0gKipQYXLDom1ldHJvOioqCiAgLSBgdmFsb3JgOiBFc3RlIMOpIG8gZWxlbWVudG8gcXVlIHZvY8OqIGRlc2VqYSBhZGljaW9uYXIgw6AgbGlzdGEuIFBvZGUgc2VyIGRlIHF1YWxxdWVyIHRpcG8gZGUgZGFkbyB2w6FsaWRvIGVtIFB5dGhvbi4KCi0gKipPcGVyYcOnw6NvOioqCiAgLSBRdWFuZG8gbyBtw6l0b2RvIGBhcHBlbmQoKWAgw6kgY2hhbWFkbywgZWxlIGluc2VyZSBvIHZhbG9yIGVzcGVjaWZpY2FkbyBjb21vIGFyZ3VtZW50byBubyBmaW5hbCBkYSBsaXN0YSDDoCBxdWFsIHBlcnRlbmNlLgogIC0gTsOjbyByZXRvcm5hIG5lbmh1bSB2YWxvciBleHBsaWNpdGFtZW50ZTsgZWxlIGFwZW5hcyBtb2RpZmljYSBhIGxpc3RhIG9yaWdpbmFsLCBhZGljaW9uYW5kbyBvIG5vdm8gZWxlbWVudG8gYW8gZmluYWwuCgotICoqRXhlbXBsbyBkZSBVc286KioKICBgYGBweXRob24KICBsaXN0YSA9IFsxLCAyLCAzXQogIGxpc3RhLmFwcGVuZCg0KQogIHByaW50KGxpc3RhKSAgIyBTYcOtZGE6IFsxLCAyLCAzLCA0XQogIGBgYAoKLSAqKk9ic2VydmHDp8O1ZXM6KioKICAtIE8gbcOpdG9kbyBgYXBwZW5kKClgIMOpIHVtYSBtYW5laXJhIGNvbnZlbmllbnRlIGRlIGFkaWNpb25hciBlbGVtZW50b3MgYSB1bWEgbGlzdGEgZXhpc3RlbnRlIHNlbSBwcmVjaXNhciByZWNyacOhLWxhLgogIC0gRWxlIMOpIMO6dGlsIHF1YW5kbyB2b2PDqiBkZXNlamEgZXhwYW5kaXIgZGluYW1pY2FtZW50ZSB1bWEgbGlzdGEgYW8gbG9uZ28gZG8gdGVtcG8sIGFkaWNpb25hbmRvIG5vdm9zIGVsZW1lbnRvcyBjb25mb3JtZSBuZWNlc3PDoXJpby4KCk8gbcOpdG9kbyBgYXBwZW5kKClgIMOpIHVtYSBmZXJyYW1lbnRhIHBvZGVyb3NhIGUgYW1wbGFtZW50ZSB1dGlsaXphZGEgZW0gUHl0aG9uIHBhcmEgbWFuaXB1bGHDp8OjbyBkZSBsaXN0YXMsIHRvcm5hbmRvLW8gZXNzZW5jaWFsIHBhcmEgcXVhbHF1ZXIgcHJvZ3JhbWFkb3IgcXVlIHRyYWJhbGhlIGNvbSBlc3NlIHRpcG8gZGUgZGFkby4=";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-34').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-markdown" id="md-35"></div>
+            <script>
+                (function(){
+                    const b64 = "IyMjICoqRW50ZW5kZW5kbyBvIE3DqXRvZG8gYGluc2VydCgpYCBlbSBQeXRob24qKgoKTyBtw6l0b2RvIGBpbnNlcnQoKWAgb2ZlcmVjZSB1bWEgbWFuZWlyYSBkZSBhZGljaW9uYXIgdW0gbm92byBlbGVtZW50byBlbSBxdWFscXVlciBwb3Npw6fDo28gZXNwZWPDrWZpY2EgZGVudHJvIGRlIHVtYSBsaXN0YSBlbSBQeXRob24uIFZhbW9zIGV4cGxvcmFyIG9zIGRldGFsaGVzIGRlc3NlIG3DqXRvZG86CgotICoqRnVuY2lvbmFsaWRhZGU6KioKICAtIE8gbcOpdG9kbyBgaW5zZXJ0KClgIHBlcm1pdGUgYWRpY2lvbmFyIHVtIG5vdm8gZWxlbWVudG8gZW0gcXVhbHF1ZXIgcG9zacOnw6NvIGRlc2VqYWRhIGRlbnRybyBkZSB1bWEgbGlzdGEsIG7Do28gYXBlbmFzIG5vIGZpbmFsIGNvbW8gbyBtw6l0b2RvIGBhcHBlbmQoKWAuCgotICoqU2ludGF4ZToqKgogIC0gQSBzaW50YXhlIHBhcmEgdXNhciBvIG3DqXRvZG8gYGluc2VydCgpYCDDqSBgbGlzdGEuaW5zZXJ0KHBvc2ljYW8sIHZhbG9yKWAsIG9uZGU6CiAgICAtIGBwb3NpY2FvYCDDqSBvIMOtbmRpY2Ugb25kZSBvIG5vdm8gZWxlbWVudG8gc2Vyw6EgaW5zZXJpZG8uCiAgICAtIGB2YWxvcmAgw6kgbyBlbGVtZW50byBhIHNlciBpbnNlcmlkbyBuYSBsaXN0YS4KCi0gKipBcmd1bWVudG9zOioqCiAgLSBTw6NvIG5lY2Vzc8OhcmlvcyBkb2lzIGFyZ3VtZW50b3MgcGFyYSBvIG3DqXRvZG8gYGluc2VydCgpYDoKICAgIC0gTyBwcmltZWlybyBhcmd1bWVudG8gZXNwZWNpZmljYSBhIHBvc2nDp8OjbyBvbmRlIG8gbm92byBlbGVtZW50byBzZXLDoSBpbnNlcmlkby4gVG9kb3Mgb3MgZWxlbWVudG9zIMOgIGRpcmVpdGEgZGVzc2EgcG9zacOnw6NvLCBpbmNsdWluZG8gbyBlbGVtZW50byBuZXNzYSBwb3Npw6fDo28sIHPDo28gZGVzbG9jYWRvcyBwYXJhIGEgZGlyZWl0YSBwYXJhIGFicmlyIGVzcGHDp28gcGFyYSBvIG5vdm8gZWxlbWVudG8uCiAgICAtIE8gc2VndW5kbyBhcmd1bWVudG8gw6kgbyB2YWxvciBkbyBub3ZvIGVsZW1lbnRvIGEgc2VyIGluc2VyaWRvIG5hIGxpc3RhLgoKLSAqKkV4ZW1wbG8gZGUgVXNvOioqCiAgYGBgcHl0aG9uCiAgbGlzdGEgPSBbMSwgMiwgM10KICBsaXN0YS5pbnNlcnQoMSwgNCkKICBwcmludChsaXN0YSkgICMgU2HDrWRhOiBbMSwgNCwgMiwgM10KICBgYGAKCi0gKipPYnNlcnZhw6fDtWVzOioqCiAgLSBBbyB1dGlsaXphciBvIG3DqXRvZG8gYGluc2VydCgpYCwgw6kgaW1wb3J0YW50ZSBjb25zaWRlcmFyIHF1ZSBhIGNvbnRhZ2VtIGRvcyDDrW5kaWNlcyBlbSBQeXRob24gY29tZcOnYSBlbSAwLiBQb3J0YW50bywgbyBwcmltZWlybyBlbGVtZW50byB0ZW0gw61uZGljZSAwLCBvIHNlZ3VuZG8gdGVtIMOtbmRpY2UgMSBlIGFzc2ltIHBvciBkaWFudGUuCiAgLSBBcMOzcyBhIGluc2Vyw6fDo28gZGUgdW0gbm92byBlbGVtZW50byB1c2FuZG8gYGluc2VydCgpYCwgb3MgZWxlbWVudG9zIGV4aXN0ZW50ZXMgc8OjbyBkZXNsb2NhZG9zIHBhcmEgYSBkaXJlaXRhIHBhcmEgYWJyaXIgZXNwYcOnbyBwYXJhIG8gbm92byBlbGVtZW50by4KICAtIENvbXBhcmFkbyBhbyBtw6l0b2RvIGBhcHBlbmQoKWAsIHF1ZSBhZGljaW9uYSBlbGVtZW50b3MgYXBlbmFzIG5vIGZpbmFsIGRhIGxpc3RhLCBvIG3DqXRvZG8gYGluc2VydCgpYCBvZmVyZWNlIG1haXMgZmxleGliaWxpZGFkZSBhbyBwZXJtaXRpciBhIGluc2Vyw6fDo28gZW0gcXVhbHF1ZXIgcG9zacOnw6NvIGRlc2VqYWRhLgoKTyBtw6l0b2RvIGBpbnNlcnQoKWAgw6kgdW1hIGZlcnJhbWVudGEgw7p0aWwgcGFyYSBtYW5pcHVsYXIgbGlzdGFzIGVtIFB5dGhvbiwgZXNwZWNpYWxtZW50ZSBxdWFuZG8gw6kgbmVjZXNzw6FyaW8gaW5zZXJpciBlbGVtZW50b3MgZW0gbG9jYWlzIGVzcGVjw61maWNvcyBkZW50cm8gZGEgbGlzdGEuIEFvIGVudGVuZGVyIGNvbW8gdXNhciBvIG3DqXRvZG8gYGluc2VydCgpYCwgdm9jw6ogcG9kZSB0ZXIgdW0gY29udHJvbGUgbWFpcyBwcmVjaXNvIHNvYnJlIGEgb3JnYW5pemHDp8OjbyBlIGVzdHJ1dHVyYcOnw6NvIGRvcyBkYWRvcyBlbSBzdWFzIGxpc3Rhcy4KClZlamEgYWxndW5zIGV4ZW1wbG9zOg==";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-35').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [51]</div>
+                <pre><code class="language-python"># A lista original
+lista_numeros = [111, 7, 2, 1]
+
+# Ela possui quatro elementos, numerados de 0 a 3
+print(len(lista_numeros)) # Resultado: 4
+
+# Os elementos são: 111, 7, 2, 1
+print(lista_numeros)</code></pre>
+            </div>
+            <div class="cell-output">4
+[111, 7, 2, 1]
+</div>
+            <div class="cell cell-code">
+                <div class="prompt">In [52]</div>
+                <pre><code class="language-python"># Adicionando um elemento ao final da lista
+lista_numeros.append(4)
+
+# Agora a lista possui cinco elementos, numerados de 0 a 4
+print(len(lista_numeros)) # Resultado: 5
+
+# Os elementos são: 111, 7, 2, 1, 4
+print(lista_numeros)</code></pre>
+            </div>
+            <div class="cell-output">5
+[111, 7, 2, 1, 4]
+</div>
+            <div class="cell cell-code">
+                <div class="prompt">In [53]</div>
+                <pre><code class="language-python"># Adicionando um elemento na posição 0 com o valor 222
+lista_numeros.insert (0, 222)
+
+# Agora a lista possui seis elementos, numerados de 0 a 5
+print(len(lista_numeros)) # Resultado: 6
+
+# Os elementos são: 222, 111, 7, 2, 1, 4
+print(lista_numeros)</code></pre>
+            </div>
+            <div class="cell-output">6
+[222, 111, 7, 2, 1, 4]
+</div>
+            <div class="cell cell-markdown" id="md-39"></div>
+            <script>
+                (function(){
+                    const b64 = "Vm9jw6ogcG9kZSBjb21lw6dhciBhIHZpZGEgZGUgdW1hIGxpc3RhIGRlaXhhbmRvLWEgdmF6aWEgKGlzc28gw6kgZmVpdG8gY29tIHVtIHBhciBkZSBjb2xjaGV0ZXMgdmF6aW9zKSBlLCBlbSBzZWd1aWRhLCBhZGljaW9uYW5kbyBub3ZvcyBlbGVtZW50b3MsIGNvbmZvcm1lIG5lY2Vzc8OhcmlvLg==";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-39').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [1]</div>
+                <pre><code class="language-python">minha_lista = [] # Criando uma lista vazia.
+
+# O loop for é executado cinco vezes.
+for i in range(5):
+    # Observe: usamos o método append() aqui.
+    minha_lista.append (i + 1) # Adicionando o valor de i + 1 à lista.
+    # O valor de i começa em 0, então adicionamos 1 para obter os números de 1 a 5.
+    
+# Imprimindo a lista.
+print (minha_lista)</code></pre>
+            </div>
+            <div class="cell-output">[1, 2, 3, 4, 5]
+</div>
+            <div class="cell cell-code">
+                <div class="prompt">In [56]</div>
+                <pre><code class="language-python"># Modificamos um pouco o snippet:
+
+minha_lista = []  # Criando uma lista vazia.
+
+# O loop for é executado cinco vezes.
+for i in range(5):
+    # Observe: usamos o método insert() aqui. A lista é preenchida de trás para frente pois cada valor será inserido na primeira posição.
+    minha_lista.insert(0, i + 1)
+    
+# Imprimindo a lista.
+print(minha_lista)</code></pre>
+            </div>
+            <div class="cell-output">[5, 4, 3, 2, 1]
+</div>
+            <div class="cell cell-markdown" id="md-42"></div>
+            <script>
+                (function(){
+                    const b64 = "IyMgYFV0aWxpemHDp8OjbyBkZSBsaXN0YXNgCgpPIGxvb3AgZm9yIHRlbSB1bWEgdmFyaWFudGUgZXNwZWNpYWwgcXVlIHBvZGUgcHJvY2Vzc2FyIGxpc3RhcyBkZSBmb3JtYSBtdWl0byBlZmljYXogLSB2YW1vcyBkYXIgdW1hIG9saGFkYSBuaXNzby4KClZhbW9zIHN1cG9yIHF1ZSB2b2PDqiBkZXNlamEgY2FsY3VsYXIgYSBzb21hIGRlIHRvZG9zIG9zIHZhbG9yZXMgYXJtYXplbmFkb3MgbmEgbGlzdGEgbGlzdGFfdmFsb3Jlcy4=";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-42').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [6]</div>
+                <pre><code class="language-python"># A uma lista é atribuída uma sequência de cinco valores inteiros.
+lista_valores = [10, 1, 8, 3, 5]
+
+# Você precisa de uma variável cuja soma seja armazenada. A ela é inicialmente atribuído um valor neutro de 0 - seu nome será total.
+total = 0
+
+# Em seguida, adicione todos os elementos da lista usando o loop for. 
+for i in range(len(minha_lista)):
+
+# cada um desses elementos é adicionado pelo operador += à variável total , fornecendo o resultado final no final do loop;
+    total += minha_lista[i]
+    
+# A variável i recebe os valores 0, 1, 2, 3 e 4, e depois indexa a lista, selecionando os elementos subsequentes: o primeiro, o segundo, o terceiro, o quarto e o quinto;
+print(total)
+
+# observe a maneira como a função len() foi empregada - ela torna o código independente de quaisquer alterações possíveis no conteúdo da lista.</code></pre>
+            </div>
+            <div class="cell-output">27
+</div>
+            <div class="cell cell-markdown" id="md-44"></div>
+            <script>
+                (function(){
+                    const b64 = "IyMjIGBPIHNlZ3VuZG8gYXNwZWN0byBkbyBsb29wIGZvcmAKCk1hcyBvIGxvb3AgZm9yIHBvZGUgZmF6ZXIgbXVpdG8gbWFpcy4gRWxlIHBvZGUgb2N1bHRhciB0b2RhcyBhcyBhw6fDtWVzIGNvbmVjdGFkYXMgw6AgaW5kZXhhw6fDo28gZGEgbGlzdGEgZSBkaXNwb25pYmlsaXphciB0b2RvcyBvcyBlbGVtZW50b3MgZGEgbGlzdGEgZGUgbWFuZWlyYSBwcsOhdGljYS4gRXN0ZSBmcmFnbWVudG8gbW9kaWZpY2FkbyBtb3N0cmEgY29tbyBmdW5jaW9uYTo=";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-44').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [7]</div>
+                <pre><code class="language-python">minha_lista = [10, 1, 8, 3, 5]
+total = 0
+
+# a instrução for especifica a variável usada para navegar pela lista (i aqui) seguida pela palavra-chave in e o nome da lista que está sendo processada (minha_lista aqui)
+for i in minha_lista:
+    total += i
+# a variável i recebe os valores de todos os elementos da lista subsequente, e o processo ocorre quantas vezes houver elementos na lista; isso significa que você usa a variável i como uma cópia dos valores dos elementos e não precisa usar índices; a função len() também não é necessária.
+
+print(total)
+
+# Observação: a função sum() pode ser usada para calcular a soma de todos os elementos de uma lista.</code></pre>
+            </div>
+            <div class="cell-output">27
+</div>
+            <div class="cell cell-markdown" id="md-46"></div>
+            <script>
+                (function(){
+                    const b64 = "IyMgYExpc3RhcyBlbSBhw6fDo29gCgpJbWFnaW5lIHF1ZSB2b2PDqiBwcmVjaXNhIHJlb3JnYW5pemFyIG9zIGVsZW1lbnRvcyBkZSB1bWEgbGlzdGEsIG91IHNlamEsIGludmVydGVyIGEgb3JkZW0gZG9zIGVsZW1lbnRvczogCi0gbyBwcmltZWlybyBlIG8gcXVpbnRvLCBiZW0gY29tbyBvIHNlZ3VuZG8gZSBvIHF1YXJ0byBlbGVtZW50b3Mgc2Vyw6NvIHRyb2NhZG9zCi0gbyB0ZXJjZWlybyBwZXJtYW5lY2Vyw6EgaW50b2NhZG8KClBlcmd1bnRhOiBjb21vIHZvY8OqIHBvZGUgdHJvY2FyIG9zIHZhbG9yZXMgZGUgZHVhcyB2YXJpw6F2ZWlzPw==";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-46').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [10]</div>
+                <pre><code class="language-python">a = 1
+b = 2
+
+# # Se você fizer algo assim, você perderia o valor armazenado anteriormente na b.
+b = a # Atribuindo o valor da a à b, ou seja, 1.
+a = b # Atribuindo o valor da b à a, ou seja, 1.
+
+print(f&#x27;a = {a}, b = {b}&#x27;) # Resultado: a = 1, b = 1
+# Alterar a ordem das tarefas não vai ajudar.</code></pre>
+            </div>
+            <div class="cell-output">a = 1, b = 1
+</div>
+            <div class="cell cell-code">
+                <div class="prompt">In [11]</div>
+                <pre><code class="language-python"># Você precisa de uma terceira variável que serve como armazenamento auxiliar.
+a = 1
+b = 2
+
+# Atribuindo o valor da variável a à variável auxiliar, ou seja, 1.
+auxiliar = a 
+
+# Atribuindo o valor da b à a, ou seja, 2.
+a = b
+
+# Atribuindo o valor da variável auxiliar à variável b, ou seja, 1.
+b = auxiliar
+
+print(f&#x27;a = {a}, b = {b}&#x27;) # Resultado: a = 2, b = 1</code></pre>
+            </div>
+            <div class="cell-output">a = 2, b = 1
+</div>
+            <div class="cell cell-markdown" id="md-49"></div>
+            <script>
+                (function(){
+                    const b64 = "TyBQeXRob24gZmF6IG8gdHJhYmFsaG8gcGFyYSB2b2PDqiAtIG7Do28gaMOhIG5lY2Vzc2lkYWRlIGRlIHVtYSB2YXJpw6F2ZWwgYXV4aWxpYXIuCgpBIHRyb2NhIMOpIGZlaXRhIGVtIHVtYSDDum5pY2EgbGluaGEgZSBkZXNzYSBmb3JtYSBvIHZhbG9yIG7Do28gw6kgcGVyZGlkby4KCkFnb3JhIHZvY8OqIHBvZGUgZmFjaWxtZW50ZSB0cm9jYXIgb3MgZWxlbWVudG9zIGRhIGxpc3RhIHBhcmEgcmV2ZXJ0ZXIgYSBvcmRlbTo=";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-49').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [63]</div>
+                <pre><code class="language-python">minha_lista = [10, 1, 8, 3, 5]
+
+minha_lista[0], minha_lista[4] = minha_lista[4], minha_lista[0]
+#          10               5  =             5               10
+minha_lista[1], minha_lista[3] = minha_lista[3], minha_lista[1]
+#           1               3  =             3               1
+print(minha_lista)</code></pre>
+            </div>
+            <div class="cell-output">[5, 3, 8, 1, 10]
+</div>
+            <div class="cell cell-markdown" id="md-51"></div>
+            <script>
+                (function(){
+                    const b64 = "UGFyZWNlIGJvbSBjb20gY2luY28gZWxlbWVudG9zLiBBaW5kYSBzZXLDoSBhY2VpdMOhdmVsIGNvbSB1bWEgbGlzdGEgY29udGVuZG8gMTAwIGVsZW1lbnRvcz8gCgotICpOw6NvLCBuw6NvIHZhaS4qCgpWb2PDqiBwb2RlIHVzYXIgbyBsb29wIGZvciBwYXJhIGZhemVyIGEgbWVzbWEgY29pc2EgYXV0b21hdGljYW1lbnRlLCBpbmRlcGVuZGVudGVtZW50ZSBkbyBjb21wcmltZW50byBkYSBsaXN0YT8KCi0gKlNpbSwgdm9jw6ogcG9kZSEq";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-51').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [1]</div>
+                <pre><code class="language-python">minha_lista = [10, 1, 8, 3, 5]
+# Atribuímos a variável comprimento com o comprimento da lista atual (isso torna nosso código um pouco mais claro e mais curto)
+comprimento = len(minha_lista)</code></pre>
+            </div>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [13]</div>
+                <pre><code class="language-python"># Lançamos o loop for para percorrer comprimento // 2 vezes (isso funciona bem para listas com comprimentos pares e ímpares, porque quando a lista contém um número ímpar de elementos, o meio permanece intocado)
+for i in range(comprimento // 2):  # o operador // é usado para a divisão inteira
+
+    minha_lista[i], minha_lista[comprimento - i - 1] = minha_lista[comprimento - i - 1], minha_lista[i]
+# trocamos o i-ésimo elemento (do início da lista) pelo elemento com um índice igual a (comprimento - i - 1) (do fim da lista); no nosso exemplo, para i igual a 0 o (comprimento - i - 1) dá 4; para i igual a 1, dá 3 - isso é exatamente o que precisávamos.
+
+# Por exemplo, quando i for 1 (o segundo elemento da lista), o (comprimento - i - 1) será 3 (o quarto elemento da lista). Quando i for 2 (o terceiro elemento da lista), o (comprimento - i - 1) será 2 (o terceiro elemento da lista, novamente). E assim por diante.
+
+print(minha_lista)</code></pre>
+            </div>
+            <div class="cell-output">[5, 3, 8, 1, 10]
+</div>
+            <div class="cell cell-markdown" id="md-54"></div>
+            <script>
+                (function(){
+                    const b64 = "TyBkZXNlbXBhY290YW1lbnRvIGRlIGxpc3RhcyDDqSB1bWEgbWFuZWlyYSBjb252ZW5pZW50ZSBkZSBhdHJpYnVpciB2YWxvcmVzIGEgdsOhcmlhcyB2YXJpw6F2ZWlzIGVtIHVtYSDDum5pY2EgbGluaGEuIE8gbsO6bWVybyBkZSB2YXJpw6F2ZWlzIMOgIGVzcXVlcmRhIGRldmUgY29ycmVzcG9uZGVyIGFvIG7Dum1lcm8gZGUgZWxlbWVudG9zIGRhIGxpc3RhLiBDYWRhIGVsZW1lbnRvIGRhIGxpc3RhIMOpIGF0cmlidcOtZG8gYSB1bWEgdmFyacOhdmVsIG5hIG9yZGVtIGVtIHF1ZSBhcGFyZWNlIG5hIGxpc3RhLg==";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-54').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            </div><script>hljs.highlightAll();</script>
+    </main>
+</body>
+</html>

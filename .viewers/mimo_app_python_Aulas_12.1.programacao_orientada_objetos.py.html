@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>12.1.programacao_orientada_objetos.py</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="https://pyscript.net/releases/2024.1.1/core.css">
+    <script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>
+    <style>
+        .sandbox-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
+        .sandbox-header h2 { font-size: 1.2rem; color: var(--primary); display: flex; align-items: center; gap: 0.5rem; }
+        .py-repl-container { border-radius: 8px; overflow: hidden; border: 1px solid var(--glass-border); background: #1e293b; }
+    </style>
+    
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --glass-bg: rgba(30, 41, 59, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --primary: #38bdf8;
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        header {
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            border-bottom: 1px solid var(--glass-border);
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .back-btn {
+            color: var(--text-main);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            background: rgba(255,255,255,0.05);
+            transition: 0.3s;
+        }
+        .back-btn:hover {
+            background: rgba(56, 189, 248, 0.2);
+            color: var(--primary);
+        }
+        .file-title {
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+        main {
+            flex: 1;
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        .container {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="../index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Voltar</a>
+        <div class="file-title">12.1.programacao_orientada_objetos.py</div>
+    </header>
+    <main>
+        
+    <div class="container">
+        <div class="sandbox-header">
+            <h2><i class="fa-brands fa-python"></i> Sandbox PyScript</h2>
+            <span>Edite e execute (Shift + Enter) ou no botão verde ▶</span>
+        </div>
+        <div class="py-repl-container">
+            <script type="py" id="main-script"></script>
+            <py-repl auto-generate="true">
+# MIMO - 12 - Programação Orientada a objetos
+# 12.1 - Encapsulamento - Encapsulando objetos
+
+# Vamos aprender sobre os diferentes estilos de codificação usados pelos desenvolvedores. Exploraremos a programação funcional e a programação orientada a objetos.
+
+# Diferentes estilos de codificação também são conhecidos como paradigmas. Um estilo comum é chamado de programação funcional, ou FP, para abreviar. Na programação funcional, usamos muitas funções e variáveis.
+
+def get_total(a, b):
+    # Define a função get_total que retorna a soma de dois valores
+    return a + b
+
+
+num1 = 2  # Declara a variável num1 e atribui o valor 2
+num2 = 3  # Declara a variável num2 e atribui o valor 3
+total = get_total(num1, num2)  # Chama a função get_total com os valores de num1 e num2 e atribui o resultado a total
+print(total)  # Imprime o valor de total
+
+# No estilo FP, mantemos os dados e as funcionalidades separados. Passamos dados para funções sempre que queremos alguma coisa.
+
+
+def get_distance(mph, h):
+    # Define a função getDistance que retorna a multiplicação de dois valores
+    # Na programação funcional, as funções retornam novos valores e depois usam esses valores em algum lugar do código.
+    return mph * h
+
+
+mph = 60  # Declara a variável mph e atribui o valor 60
+h = 2  # Declara a variável h e atribui o valor 2
+distance = get_distance(mph, h)  # Chama a função getDistance com os valores de mph e h e atribui o resultado a distance
+
+# Na programação orientada a objetos OOP, agrupamos dados e funcionalidades como propriedades e métodos dentro de objetos, como Virtual_Pet aqui.
+
+
+class Virtual_Pet:
+  # Define a classe Virtual_Pet com um construtor que inicializa as propriedades color e name
+    def __init__(self, color, name):
+        self.color = color  # Atribui o valor da variável color ao atributo color do objeto
+        self.name = name  # Atribui o valor da variável name ao atributo name do objeto
+
+
+rocky = Virtual_Pet(&quot;brown&quot;, &quot;Rocky&quot;)  # Cria uma instância da classe Virtual_Pet chamada rocky
+print(rocky.color)  # Imprime o valor do atributo color do objeto rocky
+print(rocky.name)  # Imprime o valor do atributo name do objeto rocky
+
+# OOP possibilita modelar objetos da realidade ou não. Objetos têm propriedades e métodos que tratamos como uma coisa só, como Car aqui.
+
+
+class Car:
+    mileage = 12000  # Atribui o valor 12000 ao atributo mileage da classe Car
+
+    def drive(self, miles):
+        # Define o método drive que atualiza o valor do atributo mileage com base no número de milhas percorridas
+        self.mileage = self.mileage + miles
+
+
+tesla = Car()  # Cria uma instância da classe Car chamada tesla
+tesla.drive(100)  # Chama o método drive da instância tesla com o valor 100
+print(tesla.mileage)  # Imprime o valor do atributo mileage da instância tesla
+
+# Em OOP, usamos métodos para atualizar os valores existentes de um objeto, como aqui, onde usamos eat() para atualizar o valor de hungry()
+
+class Dog:
+    hungry = True  # Atribui o valor True ao atributo hungry da classe Dog
+
+    def eat(self):
+        # Define o método eat que atualiza o valor do atributo hungry para False
+        self.hungry = False
+
+
+# Vamos criar um cofrinho virtual com OOP. Primeiro, criamos uma nova classe chamada Piggy com uma propriedade value definida como 0.
+class Piggy:
+    value = 0  # Atribui o valor 0 ao atributo value da classe Piggy
+    # A seguir, adicionamos um método chamado addMoney() que aceita um parâmetro chamado amount
+
+    def addMoney(self, amount):
+        # Define o método addMoney() que atualiza o valor com a soma do valor atual e amount de Piggy
+        self.value = self.value + amount
+
+
+# Vamos colocar R$ 100 em nosso cofrinho chamando o método addMoney() de Piggy com 100 como argumento.
+myPiggy = Piggy()  # Cria uma instância da classe Piggy chamada myPiggy
+myPiggy.addMoney(100)  # Chama o método addMoney() da instância myPiggy com o valor 100 como argumento
+
+# Finalmente vamos imprimir o valor de Piggy para ver se o dinheiro foi adicionado.
+print(myPiggy.value)  # Imprime o valor do atributo value da instância myPiggy
+
+
+# Na OOP, agrupamos dados e funções relacionadas no mesmo objeto. Chamamos isso de encapsulamento.
+# Com o encapsulamento, também temos métodos que utilizam as demais propriedades que pertencem ao objeto, como neste exemplo eat acessando a propriedade hungry.
+
+class Dog:
+    name = &#x27;Fido&#x27;  # Atribui o valor &#x27;Fido&#x27; ao atributo name da classe Dog
+    hungry = False  # Atribui o valor False ao atributo hungry da classe Dog
+
+    def eat(self):
+        # Define o método eat que atualiza o valor do atributo hungry para True
+        self.hungry = True
+
+
+# No FP, o código não é encapsulado. Os dados e a função não são agrupados em um objeto.
+def get_distance(mph, h):
+  # Define a função getDistance que retorna a multiplicação de dois valores
+  return mph * h
+
+mph = 60  # Declara a variável mph e atribui o valor 60
+h = 2  # Declara a variável h e atribui o valor 2
+
+
+# Podemos detectar código que não está bem encapsulado se métodos e propriedades relacionados estiverem em objetos diferentes.
+class Dog:
+    name = &#x27;Fido&#x27;  # Atribui o valor &#x27;Fido&#x27; ao atributo name da classe Dog
+    hungry = False  # Atribui o valor False ao atributo hungry da classe Dog
+
+
+def eat():
+  # Define a função eat que atualiza o valor da variável hungry para True
+  hungry = True
+
+# Na OOP identificamos quais métodos e propriedades pertencem reciprocamente e dever ser adicionados ao mesmo objeto.
+
+class Cat:
+  color = &#x27;Orange&#x27;  # Atribui o valor &#x27;Orange&#x27; ao atributo color da classe Cat
+
+  def meow(self):
+ # Define o método meow que imprime &#x27;Meow!&#x27;
+    print(&#x27;Meow!&#x27;)
+
+class Car:
+    color = &#x27;Red&#x27;  # Atribui o valor &#x27;Red&#x27; ao atributo color da classe Car
+
+    def drive(self):
+        # Define o método drive que imprime &#x27;Vroom!&#x27;
+        print(&#x27;Vroom!&#x27;)
+            </py-repl>
+        </div>
+    </div>
+    
+    </main>
+</body>
+</html>

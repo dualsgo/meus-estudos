@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>08_desafio.py</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="https://pyscript.net/releases/2024.1.1/core.css">
+    <script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>
+    <style>
+        .sandbox-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
+        .sandbox-header h2 { font-size: 1.2rem; color: var(--primary); display: flex; align-items: center; gap: 0.5rem; }
+        .py-repl-container { border-radius: 8px; overflow: hidden; border: 1px solid var(--glass-border); background: #1e293b; }
+    </style>
+    
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --glass-bg: rgba(30, 41, 59, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --primary: #38bdf8;
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        header {
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            border-bottom: 1px solid var(--glass-border);
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .back-btn {
+            color: var(--text-main);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            background: rgba(255,255,255,0.05);
+            transition: 0.3s;
+        }
+        .back-btn:hover {
+            background: rgba(56, 189, 248, 0.2);
+            color: var(--primary);
+        }
+        .file-title {
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+        main {
+            flex: 1;
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        .container {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="../index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Voltar</a>
+        <div class="file-title">08_desafio.py</div>
+    </header>
+    <main>
+        
+    <div class="container">
+        <div class="sandbox-header">
+            <h2><i class="fa-brands fa-python"></i> Sandbox PyScript</h2>
+            <span>Edite e execute (Shift + Enter) ou no botão verde ▶</span>
+        </div>
+        <div class="py-repl-container">
+            <script type="py" id="main-script"></script>
+            <py-repl auto-generate="true">
+# Exercício Python #008 - Conversor de Medidas - Aula 00 até 07 - Mundo 1
+# Escreva um programa que leia o valor em metros e o exiba convertido em centímetros e milímetros.
+
+def conversões(m):
+	print(
+		f&#x27;\033[1m{&#x27;Kilômetros:&#x27;:&lt;15}{m / 1000:&gt;12}{&#x27;km&#x27;:&lt;3}\n&#x27;
+		f&#x27;{&#x27;Hectometros:&#x27;:&lt;15}{m / 100:&gt;11}{&#x27;hm&#x27;:&lt;3}\n&#x27;
+		f&#x27;{&#x27;Decâmetros:&#x27;:&lt;15}{m / 10:&gt;10}{&#x27;dam&#x27;:&lt;3}\n&#x27;
+		f&#x27;{&#x27;Metros:&#x27;:&lt;15}{m:&gt;10}{&#x27;m&#x27;:&lt;3}\n&#x27;
+		f&#x27;{&#x27;Decímetros:&#x27;:&lt;15}{m * 10:&gt;10}{&#x27;dm&#x27;:&lt;3}\n&#x27;
+		f&#x27;{&#x27;Centímetros:&#x27;:&lt;15}{m * 100:&gt;10}{&#x27;cm&#x27;:&lt;3}\n&#x27;
+		f&#x27;{&#x27;Milímetros:&#x27;:&lt;15}{m * 1000:&gt;10}{&#x27;mm&#x27;:&lt;3}\033[m&#x27;)
+
+
+while True:
+	try:
+		metros = float(input(&#x27;Digite o valor da medida em metros: &#x27;))
+		conversões(metros)
+		break
+	except ValueError:
+		print(&#x27;O valor informado não é válido para essa operação!&#x27;)
+
+
+# Estou compartilhando minhas anotações sobre os exercícios. Quem quiser, pode copiar e colar em um documento .py pois está tudo formatado e comentado.
+
+# Nesse exercício, o programa solicita ao usuário um valor em metros e exibe na tela o equivalente em centímetros e milímetros. Para isso, são utilizadas as operações de multiplicação e divisão. Vamos exibir também a conversão para outras unidades de medida de comprimento.
+
+# Assim como antes, utilizamos a função input() para solicitar um valor ao usuário. O valor digitado é convertido para ponto flutuante e armazenado na variável metros. Usaremos float() para permitir que o usuário informe valores decimais como 1.5, por exemplo.
+metros = float(input(&#x27;Digite o valor da medida em metros: &#x27;))
+
+# A conversão de metros para centímetros e milímetros é feita multiplicando o valor em metros por 100 e 1000, respectivamente. A conversão para outras unidades de medida de comprimento segue a mesma lógica, multiplicando ou dividindo o valor em metros pela quantidade de metros correspondente a cada unidade. Podemos fazer a conversão diretamente na função print() ou armazenar os resultados em variáveis para exibição posterior.
+
+# Vamos exibir as conversões na tela.
+print(f&#x27;Kilômetros: {metros / 1000} km&#x27;)
+print(f&#x27;Hectômetros: {metros / 100} hm&#x27;)
+print(f&#x27;Decâmetros: {metros / 10} dam&#x27;)
+print(f&#x27;Metros: {metros} m&#x27;)
+print(f&#x27;Decímetros: {metros * 10} dm&#x27;)
+print(f&#x27;Centímetros: {metros * 100} cm&#x27;)
+print(f&#x27;Milímetros: {metros * 1000} mm&#x27;)
+
+# A explicação matemática é a seguinte:
+# Ao dividir um valor por multiplos de 10, estamos deslocando a vírgula para a esquerda. Por exemplo, ao dividir por 10, estamos transformando metros em decâmetros. Ao dividir por 100, estamos transformando metros em hectômetros. Ao dividir por 1000, estamos transformando metros em quilômetros.
+# A lógica inversa se aplica ao multiplicar por multiplos de 10. Ao multiplicar por 10, estamos deslocando a vírgula para a direita, transformando metros em decímetros. Ao multiplicar por 100, estamos transformando metros em centímetros. Ao multiplicar por 1000, estamos transformando metros em milímetros.
+
+
+            </py-repl>
+        </div>
+    </div>
+    
+    </main>
+</body>
+</html>

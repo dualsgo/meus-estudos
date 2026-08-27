@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>14.3_comunicando_com_uma_api.py</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="https://pyscript.net/releases/2024.1.1/core.css">
+    <script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>
+    <style>
+        .sandbox-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
+        .sandbox-header h2 { font-size: 1.2rem; color: var(--primary); display: flex; align-items: center; gap: 0.5rem; }
+        .py-repl-container { border-radius: 8px; overflow: hidden; border: 1px solid var(--glass-border); background: #1e293b; }
+    </style>
+    
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --glass-bg: rgba(30, 41, 59, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --primary: #38bdf8;
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        header {
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            border-bottom: 1px solid var(--glass-border);
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .back-btn {
+            color: var(--text-main);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            background: rgba(255,255,255,0.05);
+            transition: 0.3s;
+        }
+        .back-btn:hover {
+            background: rgba(56, 189, 248, 0.2);
+            color: var(--primary);
+        }
+        .file-title {
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+        main {
+            flex: 1;
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        .container {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="../index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Voltar</a>
+        <div class="file-title">14.3_comunicando_com_uma_api.py</div>
+    </header>
+    <main>
+        
+    <div class="container">
+        <div class="sandbox-header">
+            <h2><i class="fa-brands fa-python"></i> Sandbox PyScript</h2>
+            <span>Edite e execute (Shift + Enter) ou no botão verde ▶</span>
+        </div>
+        <div class="py-repl-container">
+            <script type="py" id="main-script"></script>
+            <py-repl auto-generate="true">
+# MIMO - 14 - Erros e exceções
+# 14.3 - Comunicando com uma API
+
+# O que é uma API?
+# Interfaces de programação de aplicativos, também conhecidas como API, facilitam a comunicação entre dois programas.
+# APIs enviam requisições de um programa remetente para um programa receptor. Em seguida, elas enviam respostas do receptor para o programa remetente.
+
+# Muitas coisas em nossa vida diária funcionam como uma API. Um exemplo é um garçom e a equipe da cozinha.
+
+# Um garçom, como um programa remetente, envia um pedido para a cozinha. Então a cozinha, como um programa receptor, envia de volta a comida como uma resposta.
+
+# Agora, de volta aos programas. O código abaixo envia uma solicitação GET para uma API. Você consegue adivinhar o que uma solicitação GET faz?
+
+# Se tudo funcionar, devemos receber os dados junto com um código de status 200, nos informando que tudo correu bem.
+
+# GET https://mimo.org.courses HTTP/1.1
+
+# Isso mesmo! O código era para solicitarmos alguns dados. https://mimo.org/courses é a API que nos ajudou a obtê-los!
+
+# Mas de onde a API obteve a informação? Lembre-se de que a API permite a comunicação entre 2 programas. Resposta: a API obteve a informação de um banco de dados.
+
+# Para interagir com bancos de dados, precisamos escrever código. Uma API nos permite fazer isso de uma maneira mais simples.
+
+# Mas você precisa usar o método correto para realizar ações. Para recuperar dados, usamos GET. O que você acha que usamos para inserir dados? Resposta: POST.
+
+# Isso mesmo! Podemos inserir dados em um banco de dados usando requisições POST.
+
+# Ao contrário das requisições GET, precisamos enviar um corpo com as informações para requisições POST. Complete a requisição abaixo.
+
+# Quando trabalhamos com Python, usamos a biblioteca requests para criar requisições.
+
+import requests 
+ 
+response = requests.get(&quot;https://mimo.org/courses&quot;) 
+data = response.json() 
+print(data)
+
+# Também podemos fazer requisições POST com a biblioteca requests.
+
+import requests 
+ 
+url = &quot;https://mimo.org/users&quot; 
+ 
+data = { 
+  &quot;username&quot;: &quot;test_user&quot;, 
+  &quot;name&quot;: &quot;tester&quot; 
+} 
+ 
+response = requests.post(url, json=data) 
+print(response.json())
+
+# Por que usar uma API?
+
+# Agora que você sabe o que é uma API, por que devemos usá-la? Uma razão é que APIs podem nos ajudar a construir um sistema mais rapidamente.
+
+# Desenvolvedores de back-end não precisam esperar que o desenvolvimento front-end seja concluído para testar seu programa.
+
+# Eles podem testar seu programa simplesmente enviando requisições para a API e verificando se as respostas estão corretas.
+
+# Já vimos as requisições GET e POST, mas ainda há as requisições DELETE, PUT e PATCH para aprender.
+
+# As requisições DELETEdevem ter um identificador para informar à API o que deve ser deletado. Como o identificador 6 aqui.
+
+# DELETE http://mimo.org/api/courses/6 HTTP/1.1
+
+# Usamos o método delete para chamar um endpoint de exclusão usando requests.
+
+import requests
+
+url = &quot;http://mimo.org/api/courses/1&quot;
+
+response = requests.delete(url)
+
+# As requisições PUT são semelhantes às requisições POST, mas são usadas para substituir um objeto previamente criado.
+
+# Como as requisições PUT são usadas para substituir objetos existentes, elas precisam de identificação para saber qual objeto substituir.
+
+# Se uma identificação inválida ou nenhuma identificação for fornecida em uma solicitação PUT, um novo objeto será criado.
+
+PUT https://mimo.org/users/1 HTTP/1.1
+
+{
+ &quot;username&quot;: &quot;test_User&quot;,
+ &quot;name&quot;: &quot;tester&quot;
+}
+
+# O código de status da resposta será 201 para objeto criado e 204 para objeto substituído. Codifique uma requisição PUT sem identificação.
+
+# PUT https://mimo.org/users HTTP/1.1 
+ 
+{ 
+ &quot;username&quot;: &quot;test_User&quot;, 
+ &quot;name&quot;: &quot;tester&quot; 
+}
+
+# Ao usar uma requisição PUT, ela remove todos os dados existentes e insere os dados com base no corpo da requisição.
+
+# Usamos o método put para chamar um endpoint put usando requests.
+
+#   As requisições PATCH são usadas para atualizar alguns campos de um objeto, portanto, é necessário identificar qual objeto atualizar.
+
+# Os valores de todos os campos não mencionados permanecerão inalterados. Use 1 como a identificação para a solicitação abaixo.
+            </py-repl>
+        </div>
+    </div>
+    
+    </main>
+</body>
+</html>

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>10_condicoes_pt1.py</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="https://pyscript.net/releases/2024.1.1/core.css">
+    <script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>
+    <style>
+        .sandbox-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
+        .sandbox-header h2 { font-size: 1.2rem; color: var(--primary); display: flex; align-items: center; gap: 0.5rem; }
+        .py-repl-container { border-radius: 8px; overflow: hidden; border: 1px solid var(--glass-border); background: #1e293b; }
+    </style>
+    
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --glass-bg: rgba(30, 41, 59, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --primary: #38bdf8;
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        header {
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            border-bottom: 1px solid var(--glass-border);
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .back-btn {
+            color: var(--text-main);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            background: rgba(255,255,255,0.05);
+            transition: 0.3s;
+        }
+        .back-btn:hover {
+            background: rgba(56, 189, 248, 0.2);
+            color: var(--primary);
+        }
+        .file-title {
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+        main {
+            flex: 1;
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        .container {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="../index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Voltar</a>
+        <div class="file-title">10_condicoes_pt1.py</div>
+    </header>
+    <main>
+        
+    <div class="container">
+        <div class="sandbox-header">
+            <h2><i class="fa-brands fa-python"></i> Sandbox PyScript</h2>
+            <span>Edite e execute (Shift + Enter) ou no botão verde ▶</span>
+        </div>
+        <div class="py-repl-container">
+            <script type="py" id="main-script"></script>
+            <py-repl auto-generate="true">
+# Curso Python #10 - Condições (Parte 1)
+# Nessa aula, vamos aprender como utilizar estruturas condicionais simples e compostas nos seus programas em Python.
+
+# As estruturas condicionais oferecem possibilidades distintas para situações distintas. Assim os nossos programas se tornam mais inteligentes e tomam decisões, dependendo das condições apresentadas.
+
+# if (se) é a condicional inicial. Ela espera que a condição seja atendida, retornando True.
+# else (senão) é a condicional final. Ela não necessita de uma condição própria, pois será a resposta padrão caso nenhuma condição seja atendida, retornando False.
+# As estruturas condicionais utilizam a indentação para destacar seus blocos de código
+
+# A sintaxe de uma estrutura condicional é a seguinte
+
+if True:
+    # Bloco True
+    print(&#x27;Bloco de código que será executado caso a condição seja atendida.&#x27;)
+else:
+    # Bloco False
+    print(&quot;Bloco de código que será executado caso a condição não seja atendida.&quot;)
+
+# Exemplo de programa
+tempo = int(input(&#x27;Quantos anos tem o carro: &#x27;))
+
+# Condicional - Utilizando uma comparação
+if tempo &lt;= 3: # O programa irá verificar se o valor da variável é menor ou igual a 3 e retornará True ou False
+    print(&#x27;Carro novo&#x27;)
+else:
+    print(&#x27;Carro velho&#x27;)
+
+# A mesma estrutura pode ser simplificada
+print(&#x27;Carro novo&#x27; if tempo &lt;= 3 else &#x27;Carro velho&#x27;)
+
+# Exemplo 1 - Condição simples
+
+nome = str(input(&#x27;Qual é o seu nome: &#x27;)).strip().title()
+
+# A estrutura utiliza o valor da variável para fazer uma comparação
+if nome == &#x27;Gustavo&#x27;:
+    # A instrução com indentação faz parte do bloco de código da estrutura condicional e só será executada s e a condição for atendida
+    print(&#x27;Que nome lindo!&#x27;)
+
+    # else oferece uma possibilidade extra
+else:
+    print(&#x27;Seu nome é normal&#x27;)
+
+# A instrução fora da indentação será exibida, independente da condição ser atendida ou não
+print(f&#x27;Bom dia, {nome}.&#x27;)
+
+# Exemplo 2 - Condição composta
+
+nota_1 = float(input(&#x27;Digite a primeira nota: &#x27;))
+nota_2 = float(input(&#x27;Digite a segunda nota: &#x27;))
+media = (nota_1 + nota_2) / 2
+print(f&#x27;Sua média foi {media}.&#x27;)
+
+if media &gt;= 6:
+    print(&#x27;Sua média foi boa. Parabéns!&#x27;)
+else:
+    print(&#x27;Sua média foi ruim. Estude mais!&#x27;)
+            </py-repl>
+        </div>
+    </div>
+    
+    </main>
+</body>
+</html>

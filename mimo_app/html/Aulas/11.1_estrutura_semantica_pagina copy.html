@@ -1,0 +1,62 @@
+<!-- MIMO 11 - Estrutura semântica da página -->
+
+<!-- 11.1 - Alternatiacs semânticas para divs -->
+
+ <!-- Elementos semânticos podem definir a estrutura pretendida de uma página web.
+
+ Header, navigation, main, article, section, aside e footer são elementos semânticos que ajudam a definir a estrutura de uma página web.
+ 
+ A página de marketing deste negócio não tem muita estrutura. Vamos adicionar alguns elementos significativos para tornar o código mais legível.
+-->
+
+ <!doctype html>
+ <html>
+  <body>
+   <h1>Education Solutions</h1>
+   <h2>Contact Us</h2>
+   <p>Email: educationsolutions@example.com</p>
+   <h2>Social Media</h2>
+   <a href="#">
+    <img
+     src="https://mimo.app/i/twitter.png">
+   </a>
+   <a href="#">
+    <img
+     src="https://mimo.app/i/linkedin.png"> 
+   </a>
+  </body>
+ </html>
+
+<!-- Vimos como criar um grupo de elementos cercando os elementos com as tags <div> e </div>.
+ 
+Vamos colocar um div de abertura por enquanto. Isso transmite informações relevantes? Não realmente. Em seguida, vamos aprender a usar elementos semânticos em vez disso.
+-->
+
+<!-- Usamos um elemento header para definir o conteúdo no topo da página, como o nome de uma empresa. Vamos usar um elemento header em vez de um div aqui. 
+ 
+Usamos o elemento footer para o conteúdo na parte inferior da página, como as informações de redes sociais.
+-->
+
+<!doctype html>
+<html>
+ <body>
+  <header>
+   <h1>Education Solutions</h1>
+  </header>
+  <div>
+   <h2>Contact Us</h2>
+   <p>Email: educationsolutions@example.com</p>
+  </div>
+  <footer>
+   <h2>Social Media</h2>
+   <div>
+    <a href="">
+     <img src="https://mimo.app/i/twitter.png">
+    </a>
+    <a href="">
+     <img src="https://mimo.app/i/linkedin.png">
+    </a>
+   </div>
+  </footer>
+ </body>
+</html>

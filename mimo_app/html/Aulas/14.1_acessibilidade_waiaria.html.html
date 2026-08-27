@@ -1,0 +1,48 @@
+<!-- MIMO 14 - Acessibilidade WAI-ARIA -->
+
+<!-- 14.1 - Funções -->
+
+<!-- Agora que você conhece o básico sobre Acessibilidade, vamos aprender sobre os padrões de acessibilidade. WAI-ARIA significa Web Accessibility Initiative-Accessible Rich Internet Applications e é uma especificação para padrões de acessibilidade. Atender a padrões específicos ajuda diversos usuários a acessar o conteúdo. Como vimos, a semântica é um padrão importante para acessibilidade. No entanto, às vezes pode ser que não consigamos usar as tags HTML que queríamos. Vamos aprender o que fazer nesses casos!-->
+
+<!-- Tags HTML significativos como button ou li ajudam leitores de tela a interpretar o conteúdo. Mas encontraremos código que usa elementos genéricos como div. Nesses casos, podemos melhorar a acessibilidade com os atributos role. Adicione o atributo role com um valor vazio.-->
+
+<!-- Atributos de função fornecem significado para as tecnologias assistivas, mas não alteram nada visualmente. Elas ajudam a atribuir significado aos elementos, como este papel de "banner" que informa ao leitor de tela que é o cabeçalho da página.-->
+
+<!doctype html>
+<html>
+ <body>
+  <div role="banner">
+   <img src="https://mimo.app/i/homeflix.png" alt="homeflix page">
+   <h1>Homeflix</h1>
+   <h2>Watch anywhere, anytime</h2>
+  </div>
+ </body>
+</html>
+
+<!-- role também ajuda as tecnologias assistivas a identificar blocos que precisam ser considerados como um único bloco. Se quisermos que leitores de tela identifiquem essas imagens como uma única imagem, podemos atribuir o papel "img" ao contêiner.-->
+
+<div role="img">
+    <img src="image1.png" alt="">
+    <img src="image2.png" alt="">
+</div>
+
+<!-- O papel de comment implica uma reação a algum conteúdo. Adicione esse papel ao elemento div para transformar a opinião de Chris em um comentário.-->
+
+<div role="comment">
+    <h3>Chris</h3>
+    <p>I think the last comment could bebetter written.</p>
+    <p>Posted 2 hours ago</p>
+</div>
+
+<!-- O papel "contentinfo" indica que há um rodapé no final da página. Ele contém informações de direitos autorais, contato ou privacidade.
+-->
+
+<div role="contentinfo">
+    <p>© All rights reserved.</p>
+</div>
+
+<!-- Além disso, os papéis podem fornecer mais informações. O papel "alert" avisa os usuários sobre eventos ou mudanças no conteúdo. Adicione-o ao elemento div. -->
+
+<div role="alert">
+    You session will expire in 60 seconds.
+</div>

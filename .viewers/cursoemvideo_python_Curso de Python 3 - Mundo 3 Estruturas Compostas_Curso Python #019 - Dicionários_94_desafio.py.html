@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>94_desafio.py</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="https://pyscript.net/releases/2024.1.1/core.css">
+    <script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>
+    <style>
+        .sandbox-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
+        .sandbox-header h2 { font-size: 1.2rem; color: var(--primary); display: flex; align-items: center; gap: 0.5rem; }
+        .py-repl-container { border-radius: 8px; overflow: hidden; border: 1px solid var(--glass-border); background: #1e293b; }
+    </style>
+    
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --glass-bg: rgba(30, 41, 59, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --primary: #38bdf8;
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        header {
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            border-bottom: 1px solid var(--glass-border);
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .back-btn {
+            color: var(--text-main);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            background: rgba(255,255,255,0.05);
+            transition: 0.3s;
+        }
+        .back-btn:hover {
+            background: rgba(56, 189, 248, 0.2);
+            color: var(--primary);
+        }
+        .file-title {
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+        main {
+            flex: 1;
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        .container {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="../index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Voltar</a>
+        <div class="file-title">94_desafio.py</div>
+    </header>
+    <main>
+        
+    <div class="container">
+        <div class="sandbox-header">
+            <h2><i class="fa-brands fa-python"></i> Sandbox PyScript</h2>
+            <span>Edite e execute (Shift + Enter) ou no botão verde ▶</span>
+        </div>
+        <div class="py-repl-container">
+            <script type="py" id="main-script"></script>
+            <py-repl auto-generate="true">
+# Exercício Python #094 - Unindo dicionários e listas - Aula 00 até 19 - Mundo 3
+# Crie um programa que leia nome, sexo e idade de várias pessoas, guardando os dados de cada pessoa em um dicionário e todos os dicionários em uma lista. No final, mostre:
+# A) Quantas pessoas foram cadastradas
+# B) A média de idade
+# C) Uma lista com as mulheres
+# D) Uma lista de pessoas com idade acima da média
+
+pessoas = []
+mulheres = []
+idade_maior_media = []
+total_idade = 0
+
+while True:
+    pessoa = dict()
+    pessoa[&quot;nome&quot;] = str(input(&#x27;Nome: &#x27;)).strip().upper()
+    pessoa[&quot;sexo&quot;] = str(input(&#x27;Sexo: F/M &#x27;)).strip().upper()
+    while pessoa[&quot;sexo&quot;] not in &#x27;FM&#x27;:
+        pessoa[&quot;sexo&quot;] = str(input(&#x27;ERRO! Sexo deve ser F ou M &#x27;)).strip().upper()
+    pessoa[&quot;idade&quot;] = int(input(&#x27;Idade: &#x27;))
+
+    total_idade += pessoa[&quot;idade&quot;]
+    pessoas.append(pessoa)
+
+    continuar = &#x27;&#x27;
+    while continuar not in &#x27;SN&#x27;:
+        continuar = str(input(&#x27;Continuar? S/N &#x27;)).strip().upper()
+    else:
+        if continuar == &#x27;S&#x27;:
+            print(&#x27;Prosseguindo...&#x27;)
+        else:
+            print(&#x27;Encerrando...&#x27;)
+            break
+
+pessoas_cadastradas = len(pessoas)
+media_idade = total_idade / pessoas_cadastradas
+print(f&#x27;A) Foram cadastradas {pessoas_cadastradas} pessoas.&#x27;)
+print(f&#x27;B) A média de idade do grupo é {media_idade:.2f}&#x27;)
+
+for i, v in enumerate(pessoas):
+    if v[&#x27;idade&#x27;] &gt; media_idade:
+        idade_maior_media.append(v.copy())
+    if v[&#x27;sexo&#x27;] == &#x27;F&#x27;:
+        mulheres.append(v.copy())
+
+if len(idade_maior_media) &gt; 0:
+    print(f&#x27;{&quot;-=&quot; * 20}&#x27;)
+    print(f&#x27;{&quot;C) ACIMA DA IDADE MÉDIA DO GRUPO&quot;:^40}&#x27;)
+    print(f&#x27;{&quot;-=&quot; * 20}&#x27;)
+
+    print(f&#x27;{&quot;Pessoa&quot;:^10}|{&quot;Nome&quot;:^10}|{&quot;Sexo&quot;:^10}|{&quot;Idade&quot;:^10}&#x27;)
+    for i, v in enumerate(idade_maior_media):
+        print(f&quot;{i+1:^10}|{v[&#x27;nome&#x27;]:^10}|{v[&#x27;sexo&#x27;]:^10}|{v[&#x27;idade&#x27;]:^10}&quot;)
+if len(mulheres) &gt; 0:
+    print(f&#x27;{&quot;-=&quot; * 20}&#x27;)
+    print(f&#x27;{&quot;D) MULHERES DO GRUPO&quot;:^40}&#x27;)
+    print(f&#x27;{&quot;-=&quot; * 20}&#x27;)
+
+    print(f&#x27;{&quot;Pessoa&quot;:^10}|{&quot;Nome&quot;:^10}|{&quot;Sexo&quot;:^10}|{&quot;Idade&quot;:^10}&#x27;)
+    for i, v in enumerate(mulheres, 1):
+        print(f&quot;{i:^10}|{v[&#x27;nome&#x27;]:^10}|{v[&#x27;sexo&#x27;]:^10}|{v[&#x27;idade&#x27;]:^10}&quot;)
+
+# v2
+
+def print_divider():
+    print(&#x27;-&#x27; * 30)
+
+
+def print_error(message):
+    print(f&#x27;\033[1;31m{message}\033[m&#x27;)
+
+
+def obtem_nome():
+    while True:
+       print_divider()
+       entrada_nome = input(&#x27;Digite o nome: &#x27;).strip().title()
+       if entrada_nome.replace(&#x27; &#x27;, &#x27;&#x27;).isalpha():
+          return entrada_nome
+       else:
+          print_error(&#x27;NOME INVÁLIDO! Apenas caracteres alfabéticos.&#x27;)
+
+
+def obtem_idade():
+    while True:
+       try:
+          idade = int(input(&#x27;Digite a idade: &#x27;))
+          if not (0 &lt; idade &lt; 100):
+             print_error(&#x27;Idade inválida!&#x27;)
+          else:
+             return idade
+       except ValueError:
+          print_error(&#x27;ERRO! Apenas dados numéricos.&#x27;)
+
+
+def obtem_sexo() -&gt; object:
+    while True:
+       print_divider()
+       entrada_sexo = input(&#x27;Digite o sexo:\n[M] Masculino\n[F] Feminino\n[O] Outro\nSua resposta: &#x27;).strip().upper()
+       if entrada_sexo in [&#x27;M&#x27;, &#x27;F&#x27;, &#x27;O&#x27;]:
+          return entrada_sexo
+       else:
+          print_error(&#x27;Opção inválida! Tente novamente.&#x27;)
+
+
+def continuar():
+    while True:
+       print_divider()
+       entrada = input(&#x27;Deseja continuar?\n[S] Sim\n[N] Não\nSua resposta: &#x27;).strip().upper()
+       if entrada in &quot;SN&quot;:
+          return entrada
+
+
+def print_pessoa(pessoa):
+    print(f&quot;Nome: {pessoa[&#x27;nome&#x27;]}, Sexo: {pessoa[&#x27;sexo&#x27;]}, Idade: {pessoa[&#x27;idade&#x27;]}&quot;)
+
+
+def main():
+    pessoas = []
+    lista_mulheres = []
+    soma_idades = 0
+
+    while True:
+        pessoa = {}
+        pessoa[&#x27;nome&#x27;] = obtem_nome()
+        pessoa[&#x27;sexo&#x27;] = obtem_sexo()
+        pessoa[&#x27;idade&#x27;] = obtem_idade()
+        soma_idades += pessoa[&#x27;idade&#x27;]
+        pessoas.append(pessoa.copy())
+
+        if pessoa[&#x27;sexo&#x27;] in [&#x27;F&#x27;, &#x27;O&#x27;]:
+            lista_mulheres.append(pessoa.copy())
+
+        if continuar() == &#x27;N&#x27;:
+            break
+        else:
+            print(&#x27;Pessoa adicionada com sucesso!&#x27;)
+
+    grupo = len(pessoas)
+    média_idade = soma_idades / grupo if grupo &gt; 0 else 0
+
+    print(f&#x27;Foram cadastradas {grupo} pessoas!&#x27; if grupo &gt; 1 else &#x27;Apenas uma pessoa foi cadastrada!&#x27;)
+    print(f&#x27;A média de idade do grupo é de {média_idade:.1f} anos&#x27;)
+
+    if lista_mulheres:
+        print(&#x27;As mulheres do grupo são:&#x27;)
+        for mulher in lista_mulheres:
+            print_pessoa(mulher)
+
+    print(&#x27;Pessoas com idade acima da média:&#x27;)
+    for pessoa in pessoas:
+        if pessoa[&#x27;idade&#x27;] &gt; média_idade:
+            print_pessoa(pessoa)
+
+
+if __name__ == &quot;__main__&quot;:
+    main()
+    
+    
+    
+# Estou compartilhando minhas anotações sobre os exercícios. Quem quiser, pode copiar e colar em um documento .py pois está tudo formatado e comentado.
+
+# Nesse exercício, o professor pede para criar um programa que leia nome, sexo e idade de várias pessoas, guardando os dados de cada pessoa em um dicionário e todos os dicionários em uma lista. No final, mostrar:
+
+# A) Quantas pessoas foram cadastradas
+# B) A média de idade
+# C) Uma lista com as mulheres
+# D) Uma lista de pessoas com idade acima da média
+
+# Para resolver esse exercício, vamos criar um dicionário chamado pessoa para armazenar o nome, o sexo e a idade de cada pessoa. Vamos criar uma lista chamada pessoas para armazenar todos os dicionários de pessoas. Vamos criar uma lista chamada mulheres para armazenar as mulheres. Vamos criar uma lista chamada idade_maior_media para armazenar as pessoas com idade acima da média.
+pessoa = dict()
+pessoas = []
+mulheres = []
+idade_maior_media = []
+total_idade = 0
+
+# Vamos criar um laço de repetição para adicionar várias pessoas à lista pessoas. Dentro do laço, vamos pedir o nome, o sexo e a idade de cada pessoa.
+while True:
+    pessoa = dict()
+    pessoa[&quot;nome&quot;] = str(input(&#x27;Nome: &#x27;)).strip().upper()
+    pessoa[&quot;sexo&quot;] = str(input(&#x27;Sexo: F/M &#x27;)).strip().upper()
+    
+    # Vamos verificar se o sexo é válido. Se não for, vamos pedir novamente.
+    while pessoa[&quot;sexo&quot;] not in &#x27;FM&#x27;:
+        pessoa[&quot;sexo&quot;] = str(input(&#x27;ERRO! Sexo deve ser F ou M &#x27;)).strip().upper()
+    pessoa[&quot;idade&quot;] = int(input(&#x27;Idade: &#x27;))
+
+    # Vamos adicionar a idade da pessoa à variável total_idade.
+    total_idade += pessoa[&quot;idade&quot;]
+    
+    # Vamos adicionar o dicionário pessoa à lista pessoas.
+    pessoas.append(pessoa)
+
+    # Vamos perguntar se o usuário deseja continuar adicionando pessoas.
+    continuar = &#x27;&#x27;
+    while continuar not in &#x27;SN&#x27;:
+        continuar = str(input(&#x27;Continuar? S/N &#x27;)).strip().upper()
+    else:
+        if continuar == &#x27;S&#x27;:
+            print(&#x27;Prosseguindo...&#x27;)
+        else:
+            print(&#x27;Encerrando...&#x27;)
+            break
+
+# Vamos calcular o total de pessoas cadastradas e a média de idade do grupo.
+pessoas_cadastradas = len(pessoas)
+media_idade = total_idade / pessoas_cadastradas
+print(f&#x27;A) Foram cadastradas {pessoas_cadastradas} pessoas.&#x27;)
+print(f&#x27;B) A média de idade do grupo é {media_idade:.2f}&#x27;)
+
+# Vamos percorrer a lista pessoas e adicionar as mulheres à lista mulheres e as pessoas com idade acima da média à lista idade_maior_media.
+for i, v in enumerate(pessoas):
+    if v[&#x27;idade&#x27;] &gt; media_idade:
+        idade_maior_media.append(v.copy())
+    if v[&#x27;sexo&#x27;] == &#x27;F&#x27;:
+        mulheres.append(v.copy())
+        
+# Vamos imprimir as pessoas com idade acima da média e as mulheres do grupo.
+if len(idade_maior_media) &gt; 0:
+    print(f&#x27;{&quot;-=&quot; * 20}&#x27;)
+    print(f&#x27;{&quot;C) ACIMA DA IDADE MÉDIA DO GRUPO&quot;:^40}&#x27;)
+    print(f&#x27;{&quot;-=&quot; * 20}&#x27;)
+
+    print(f&#x27;{&quot;Pessoa&quot;:^10}|{&quot;Nome&quot;:^10}|{&quot;Sexo&quot;:^10}|{&quot;Idade&quot;:^10}&#x27;)
+    for i, v in enumerate(idade_maior_media):
+        print(f&quot;{i+1:^10}|{v[&#x27;nome&#x27;]:^10}|{v[&#x27;sexo&#x27;]:^10}|{v[&#x27;idade&#x27;]:^10}&quot;)
+        
+if len(mulheres) &gt; 0:
+    print(f&#x27;{&quot;-=&quot; * 20}&#x27;)
+    print(f&#x27;{&quot;D) MULHERES DO GRUPO&quot;:^40}&#x27;)
+    print(f&#x27;{&quot;-=&quot; * 20}&#x27;)
+
+    print(f&#x27;{&quot;Pessoa&quot;:^10}|{&quot;Nome&quot;:^10}|{&quot;Sexo&quot;:^10}|{&quot;Idade&quot;:^10}&#x27;)
+    for i, v in enumerate(mulheres, 1):
+        print(f&quot;{i:^10}|{v[&#x27;nome&#x27;]:^10}|{v[&#x27;sexo&#x27;]:^10}|{v[&#x27;idade&#x27;]:^10}&quot;)
+        
+            </py-repl>
+        </div>
+    </div>
+    
+    </main>
+</body>
+</html>

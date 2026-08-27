@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>aula14_estrutura_de_repeticao_while.py</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="https://pyscript.net/releases/2024.1.1/core.css">
+    <script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>
+    <style>
+        .sandbox-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
+        .sandbox-header h2 { font-size: 1.2rem; color: var(--primary); display: flex; align-items: center; gap: 0.5rem; }
+        .py-repl-container { border-radius: 8px; overflow: hidden; border: 1px solid var(--glass-border); background: #1e293b; }
+    </style>
+    
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --glass-bg: rgba(30, 41, 59, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --primary: #38bdf8;
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        header {
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            border-bottom: 1px solid var(--glass-border);
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .back-btn {
+            color: var(--text-main);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            background: rgba(255,255,255,0.05);
+            transition: 0.3s;
+        }
+        .back-btn:hover {
+            background: rgba(56, 189, 248, 0.2);
+            color: var(--primary);
+        }
+        .file-title {
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+        main {
+            flex: 1;
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        .container {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="../index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Voltar</a>
+        <div class="file-title">aula14_estrutura_de_repeticao_while.py</div>
+    </header>
+    <main>
+        
+    <div class="container">
+        <div class="sandbox-header">
+            <h2><i class="fa-brands fa-python"></i> Sandbox PyScript</h2>
+            <span>Edite e execute (Shift + Enter) ou no botão verde ▶</span>
+        </div>
+        <div class="py-repl-container">
+            <script type="py" id="main-script"></script>
+            <py-repl auto-generate="true">
+# Curso Python #014 - Estrutura de repetição while
+# Nessa aula, vamos continuar a estudar os laços e vamos aprender a usar a estrutura de repetição while no Python. Por exemplo:
+
+# c=1
+# while c !=10:
+#      print(c)
+#      c+=1
+# print(&#x27;Acabou&#x27;)
+
+# Diferente da estrutura for que precisa de um limite definido, a estrutura while executa o código enquanto uma condição for verdadeira.
+
+# Laço com for - O contador é atualizado automaticamente dentro do intervalo selecionado.
+
+for c in range(1, 11):
+    print(c)
+
+# Mesmo laço com while - Precisamos de um contador e o atualizamos dentro do loop a cada repetição para usar seu valor como comparação
+
+c = 1  # Inicializamos o contador fora do loop
+while c &lt; 11:  # Usamos o valor para criar uma estrutura condicional
+    print(c)
+    c += 1  # Incrementamos o contador
+    
+# Na contagem com um loop while, o contador é inicializado fora do loop, a condição de parada é definida no while e o contador é atualizado dentro do loop. A posição do contador é importante, pois se for colocado antes do print() o contador será incrementado antes de ser exibido na tela.
+
+# No exemplo de cima o contador é exibido e depois atualziado. Assim a contagem começa em 1 e termina em 10.
+# Se colocarmos o contador antes do print() a contagem começa em 2 e termina em 11.
+    
+
+# O laço while é mais flexível que o for, mas é mais complexo e propenso a erros. O for é mais simples e mais seguro.
+
+# O laço while pode ser usado para criar um menu de opções, pois pode executar o código enquanto o usuário não digitar uma opção de saída entre as opções disponíveis. Isso é conhecido como loop infinito.
+            </py-repl>
+        </div>
+    </div>
+    
+    </main>
+</body>
+</html>

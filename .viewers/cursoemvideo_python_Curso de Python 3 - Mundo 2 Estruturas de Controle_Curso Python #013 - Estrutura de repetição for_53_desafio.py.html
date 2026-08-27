@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>53_desafio.py</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="https://pyscript.net/releases/2024.1.1/core.css">
+    <script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>
+    <style>
+        .sandbox-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
+        .sandbox-header h2 { font-size: 1.2rem; color: var(--primary); display: flex; align-items: center; gap: 0.5rem; }
+        .py-repl-container { border-radius: 8px; overflow: hidden; border: 1px solid var(--glass-border); background: #1e293b; }
+    </style>
+    
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --glass-bg: rgba(30, 41, 59, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --primary: #38bdf8;
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        header {
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            border-bottom: 1px solid var(--glass-border);
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .back-btn {
+            color: var(--text-main);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            background: rgba(255,255,255,0.05);
+            transition: 0.3s;
+        }
+        .back-btn:hover {
+            background: rgba(56, 189, 248, 0.2);
+            color: var(--primary);
+        }
+        .file-title {
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+        main {
+            flex: 1;
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        .container {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="../index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Voltar</a>
+        <div class="file-title">53_desafio.py</div>
+    </header>
+    <main>
+        
+    <div class="container">
+        <div class="sandbox-header">
+            <h2><i class="fa-brands fa-python"></i> Sandbox PyScript</h2>
+            <span>Edite e execute (Shift + Enter) ou no botão verde ▶</span>
+        </div>
+        <div class="py-repl-container">
+            <script type="py" id="main-script"></script>
+            <py-repl auto-generate="true">
+# Exercício Python #053 - Detector de Palíndromo - Aula 00 até 13
+# Crie um programa que leia uma frase qualquer e diga se ela é um palíndromo, desconsiderando os espaços.
+
+from matplotlib.pylab import f
+
+
+frase = str(input(&#x27;Digite sua frase ou palavra: &#x27;)).strip().upper()  # Solicita e converte a frase para maiúsculas e remove espaços extras
+# Remove espaços da frase original
+frase = frase.split() # Separa a frase em palavras
+nova_frase = []  # Inicializa a variável para armazenar a nova frase invertida
+
+# Inverte a frase
+for palavra in frase: # Percorre cada palavra da frase
+    nova_palavra = &#x27;&#x27; # Inicializa a variável para armazenar a nova palavra invertida
+    for letra in palavra[::-1]: # Percorre cada letra da palavra de trás para frente
+        nova_palavra += letra  # Adiciona cada letra invertida à nova frase
+    nova_frase.append(nova_palavra) # Adiciona cada palavra invertida à nova frase
+
+print(f&#x27;A frase digitada foi: {&#x27; &#x27;.join(frase)}&#x27;) # Imprime a frase original
+print(f&#x27;O inverso da frase é: {&#x27; &#x27;.join(nova_frase)}&#x27;) # Imprime a frase invertida
+
+# Verifica se é um palíndromo
+if nova_frase == frase:
+    print(&#x27;A frase é um palíndromo!&#x27;) # Imprime se for um palíndromo
+else: 
+    print(&#x27;A frase não é um palíndromo!&#x27;) # Imprime se não for um palíndromo
+    
+
+# Simplificação do código
+frase = input(&#x27;Digite uma frase: &#x27;).strip().upper().replace(&#x27; &#x27;, &#x27;&#x27;)
+print(&#x27;Palíndromo&#x27; if frase == frase[::-1] else &#x27;Não é palíndromo&#x27;)
+
+# Outra versão
+frase = input(&#x27;Frase: &#x27;).strip().upper().replace(&#x27; &#x27;, &#x27;&#x27;)
+frase_invertida = frase[::-1]
+
+if frase == frase_invertida:
+	print(f&#x27;\033[1;32m{frase}\n{frase_invertida}\033[m&#x27;)
+else:
+	print(f&#x27;\033[1;31m{frase}\n{frase_invertida}\033[m&#x27;)
+
+
+# Estou compartilhando minhas anotações sobre os exercícios. Quem quiser, pode copiar e colar em um documento .py pois está tudo formatado e comentado.
+
+# Nesse exercício, vamos ler uma frase e verificar se ela é um palíndromo. Um palíndromo é uma palavra, frase ou número que se lê da mesma forma de trás para frente. Exemplos de palíndromos são: &quot;ovo&quot;, &quot;arara&quot;, &quot;Ame o poema&quot;, &quot;A sogra má e amargosa&quot;, &quot;A mala nada na lama&quot;, &quot;A torre da derrota&quot;, &quot;A cara rajada da jararaca&quot;, &quot;Ame o poema&quot;, &quot;A base do teto desaba&quot;, &quot;A cara rajada da jararaca&quot;, &quot;A dama admirou o rim da amada&quot;, &quot;A grama é amarga&quot;, &quot;A mala nada na lama
+
+# Como aprendemos, o laço for pode ser usado para percorrer uma sequência de elementos. Uma string é uma sequência de caracteres, então podemos usar o laço for para percorrer cada letra da frase. Para inverter a frase, podemos usar o fatiamento de strings.
+
+# Primeiro solicitamos ao usuário que digite uma frase. Em seguida, removemos os espaços extras da frase e convertemos para letras maiúsculas. Depois, usamos o método split() para separar a frase em palavras. Em seguida, criamos uma lista vazia para armazenar a nova frase invertida.
+frase = str(input(&#x27;Digite sua frase ou palavra: &#x27;)).strip().upper().replace(&#x27; &#x27;, &#x27;&#x27;)  # Nesse comando, usamos três métodos
+# .strip() remove espaços extras no início e no final da string.
+# .upper() converte a string para letras maiúsculas.
+# .replace(&#x27; &#x27;, &#x27;&#x27;) remove todos os espaços da string.
+
+# Podemos inverter a frase com slicing. Para isso, usamos o fatiamento de strings. O fatiamento de strings é uma técnica que permite acessar partes de uma string. O fatiamento de strings é feito com colchetes e dois pontos. O primeiro número é o índice inicial e o segundo número é o índice final. Se o índice final for omitido, o fatiamento será feito até o final da string. Se o índice inicial for omitido, o fatiamento será feito a partir do início da string. Se ambos forem omitidos, o fatiamento será feito em toda a string. O terceiro número é o passo, que indica quantos caracteres serão pulados. Se o passo for negativo, a string será invertida.
+frase_invertida = frase[::-1]  # Inverte a frase
+
+# Exibimos a frase original e a frase invertida. Usamos o método .center() para centralizar a frase na tela ou a notação de f-string com o alinhamento central (^) para centralizar a frase invertida.
+print(f&#x27;Frase original: {frase.center(31)}&#x27;)
+print(f&#x27;Frase invertida: {frase_invertida:^30}&#x27;)
+
+# Obs.: A quantidade de caracteres foi diferente (31 e 30) pois &#x27;Frase original:&#x27; tem 14 caracteres e &#x27;Frase invertida:&#x27; tem 15 caracteres. Por isso, a quantidade de caracteres foi ajustada para centralizar as frases de forma simétrica. Se quiser pode aumentar a quantidade de caracteres para frases maiores.
+
+# Para verificar se a frase é um palíndromo, comparamos a frase original com a frase invertida. Se forem iguais, a frase é um palíndromo, senão, não é um palíndromo. Usamos uma estrutura condicional if/else para verificar se a frase é um palíndromo.
+if frase == frase_invertida:  # Se a frase original for igual à frase invertida
+    print(&#x27;A frase é um palíndromo!&#x27;)  # Mostramos que a frase é um palíndromo
+else:  # Senão
+    print(&#x27;A frase não é um palíndromo!&#x27;)  # Mostramos que a frase não é um palíndromo
+    
+# Como o objetivo do exercício é treinar laço for, vamos fazer outra versão.
+
+frase = str(input(&#x27;Digite sua frase ou palavra: &#x27;)).strip().upper()
+
+frase_sem_espaco = &#x27;&#x27;.join(frase.split()) # Remove os espaços da frase usando o método .split() que separa a frase em palavras e o método .join() que junta as palavras sem espaços
+frase_invertida = &#x27;&#x27; # Inicializa a variável para armazenar a frase invertida
+for palavra in frase_sem_espaco[::-1]: # Percorre cada letra da frase de trás para frente
+    # omitimos o inicio e o fim do fatiamento, indicando que queremos percorrer a frase inteira e com passo -1, indicando que queremos percorrer a frase de trás para frente
+    
+    for letra in palavra: 
+        frase_invertida += letra
+        
+print(f&#x27;A frase digitada foi: {frase_sem_espaco}&#x27;)
+print(f&#x27;O inverso da frase é: {frase_invertida}&#x27;)
+
+if frase_sem_espaco == frase_invertida:
+    print(&#x27;A frase é um palíndromo!&#x27;)
+else:
+    print(&#x27;A frase não é um palíndromo!&#x27;)
+
+
+
+
+
+&quot;&quot;&quot;# Tarefa 1: Ler a palavra ou frase
+frase = str(input(&#x27;Digite a palavra ou frase: &#x27;)).strip().upper()
+frase_palavras = frase.split()
+frase_sem_espaco = &#x27;&#x27;.join(frase_palavras)
+frase_invertida = frase_sem_espaco[::-1]
+print(f&#x27;A frase {frase_sem_espaco} ao contrário é {frase_invertida}&#x27;)
+palindromo = frase_sem_espaco == frase_invertida
+if palindromo:
+    print(&#x27;É um palíndromo.&#x27;)
+else:
+    print(&#x27;Não é um palíndromo.&#x27;)&quot;&quot;&quot;
+            </py-repl>
+        </div>
+    </div>
+    
+    </main>
+</body>
+</html>

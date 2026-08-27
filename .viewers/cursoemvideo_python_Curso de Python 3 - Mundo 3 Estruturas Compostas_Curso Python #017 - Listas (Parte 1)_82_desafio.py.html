@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>82_desafio.py</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="https://pyscript.net/releases/2024.1.1/core.css">
+    <script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>
+    <style>
+        .sandbox-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
+        .sandbox-header h2 { font-size: 1.2rem; color: var(--primary); display: flex; align-items: center; gap: 0.5rem; }
+        .py-repl-container { border-radius: 8px; overflow: hidden; border: 1px solid var(--glass-border); background: #1e293b; }
+    </style>
+    
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --glass-bg: rgba(30, 41, 59, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --primary: #38bdf8;
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        header {
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            border-bottom: 1px solid var(--glass-border);
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .back-btn {
+            color: var(--text-main);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            background: rgba(255,255,255,0.05);
+            transition: 0.3s;
+        }
+        .back-btn:hover {
+            background: rgba(56, 189, 248, 0.2);
+            color: var(--primary);
+        }
+        .file-title {
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+        main {
+            flex: 1;
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        .container {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="../index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Voltar</a>
+        <div class="file-title">82_desafio.py</div>
+    </header>
+    <main>
+        
+    <div class="container">
+        <div class="sandbox-header">
+            <h2><i class="fa-brands fa-python"></i> Sandbox PyScript</h2>
+            <span>Edite e execute (Shift + Enter) ou no botão verde ▶</span>
+        </div>
+        <div class="py-repl-container">
+            <script type="py" id="main-script"></script>
+            <py-repl auto-generate="true">
+# Exercício Python #082 - Dividindo valores em várias listas - Aula 00 até 17 - Mundo 3
+# Crie um programa que vai ler vários números e colocar em uma lista. Depois disso, crie duas listas extras que vão conter apenas os valores pares e os valores ímpares digitados, respectivamente. Ao final, mostre o conteúdo das três listas geradas.
+
+
+def obter_valores_válidos(mensagem):
+	while True:
+		try:
+			return int(input(mensagem))
+		except ValueError:
+			print(&#x27;Valor inválido!&#x27;)
+
+
+lista_de_valores = []
+while True:
+	lista_de_valores.append(obter_valores_válidos(&#x27;Digite um valor: &#x27;))
+	while True:
+		continuar = input(&#x27;Outro valor? S/N &#x27;).strip().upper()
+		if continuar in &#x27;SN&#x27;:
+			break
+
+	if continuar == &#x27;N&#x27;:
+		break
+
+
+pares = [valor for valor in lista_de_valores if valor % 2 == 0]
+ímpares = [valor for valor in lista_de_valores if valor not in pares]
+
+print(&#x27;Lista principal:&#x27;)
+for i, v in enumerate(lista_de_valores, 1):
+	print(v, end=&#x27;, &#x27; if i &lt; len(lista_de_valores) else &#x27;.&#x27;)
+print(&#x27;\nLista de números pares:&#x27;)
+for i, v in enumerate(pares, 1):
+	if pares:
+		print(v, end=&#x27;, &#x27; if i &lt; len(pares) else &#x27;.&#x27;)
+	else:
+		print(&#x27;Lista vazia!&#x27;)
+print(&#x27;\nLista de números ímpares:&#x27;)
+for i, v in enumerate(ímpares, 1):
+	if ímpares:
+		print(v, end=&#x27;, &#x27; if i &lt; len(ímpares) else &#x27;.&#x27;)
+	else:
+		print(&#x27;Lista vazia!&#x27;)
+
+
+# Estou compartilhando minhas anotações sobre os exercícios. Quem quiser, pode copiar e colar em um documento .py pois está tudo formatado e comentado.
+
+# Nesse exercício, vamos criar um programa que vai ler vários números e colocar em uma lista. Depois disso, o programa deve criar duas listas extras que vão conter apenas os valores pares e os valores ímpares digitados, respectivamente. Ao final, o programa deve mostrar o conteúdo das três listas geradas.
+
+# Para solucionar este exercício, podemos usar list comprehension. List comprehension é uma forma de criar listas de forma mais compacta. Vamos criar uma lista principal com os valores digitados pelo usuário. Em seguida, vamos criar duas listas extras, uma para armazenar os valores pares e outra para armazenar os valores ímpares.
+
+# Primeiro, vamos criar com list comprehension solicitar os valores ao usuário e adicionar na lista principal.
+lista_de_valores = [int(input(&#x27;Digite um valor: &#x27;)) for _ in range(5)]
+
+# Em seguida, vamos criar duas listas extras, uma para armazenar os valores pares e outra para armazenar os valores ímpares.
+pares = [valor for valor in lista_de_valores if valor % 2 == 0]
+ímpares = [valor for valor in lista_de_valores if valor not in pares]
+
+# A seguir, vamos exibir o conteúdo das três listas geradas.
+print(&#x27;Lista principal:&#x27;)
+for i, v in enumerate(lista_de_valores, 1):
+	print(v, end=&#x27;, &#x27; if i &lt; len(lista_de_valores) else &#x27;.&#x27;)
+
+print(&#x27;\nLista de números pares:&#x27;)
+for i, v in enumerate(pares, 1):
+	if pares:
+		print(v, end=&#x27;, &#x27; if i &lt; len(pares) else &#x27;.&#x27;)
+	else:
+		print(&#x27;Lista vazia!&#x27;)
+
+print(&#x27;\nLista de números ímpares:&#x27;)
+for i, v in enumerate(ímpares, 1):
+	if ímpares:
+		print(v, end=&#x27;, &#x27; if i &lt; len(ímpares) else &#x27;.&#x27;)
+	else:
+		print(&#x27;Lista vazia!&#x27;)
+
+            </py-repl>
+        </div>
+    </div>
+    
+    </main>
+</body>
+</html>

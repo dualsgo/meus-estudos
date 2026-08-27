@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>m4_aula_1.py</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="https://pyscript.net/releases/2024.1.1/core.css">
+    <script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>
+    <style>
+        .sandbox-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
+        .sandbox-header h2 { font-size: 1.2rem; color: var(--primary); display: flex; align-items: center; gap: 0.5rem; }
+        .py-repl-container { border-radius: 8px; overflow: hidden; border: 1px solid var(--glass-border); background: #1e293b; }
+    </style>
+    
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --glass-bg: rgba(30, 41, 59, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --primary: #38bdf8;
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        header {
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            border-bottom: 1px solid var(--glass-border);
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .back-btn {
+            color: var(--text-main);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            background: rgba(255,255,255,0.05);
+            transition: 0.3s;
+        }
+        .back-btn:hover {
+            background: rgba(56, 189, 248, 0.2);
+            color: var(--primary);
+        }
+        .file-title {
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+        main {
+            flex: 1;
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        .container {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="../index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Voltar</a>
+        <div class="file-title">m4_aula_1.py</div>
+    </header>
+    <main>
+        
+    <div class="container">
+        <div class="sandbox-header">
+            <h2><i class="fa-brands fa-python"></i> Sandbox PyScript</h2>
+            <span>Edite e execute (Shift + Enter) ou no botão verde ▶</span>
+        </div>
+        <div class="py-repl-container">
+            <script type="py" id="main-script"></script>
+            <py-repl auto-generate="true">
+# 4.1 Seção 1 - Funções
+
+# 4.1.1 Por que precisamos de funções?
+# Até agora, discutimos funções principalmente como ferramentas para simplificar tarefas. Agora, vamos abordar a criação e uso de suas próprias funções.
+
+# Às vezes, trechos de código são repetidos ou clonados no programa, o que pode ser problemático se houver erros ou modificações necessárias. A primeira condição para escrever funções é quando um fragmento de código aparece em mais de um lugar; nesse caso, isole-o em uma função chamada nos pontos onde o código original estava.
+
+# Se o código se tornar tão extenso que a leitura e a manutenção se tornarem desafiadoras, a segunda condição é aplicada: divida-o em partes menores e implemente cada uma como uma função separada. Esse processo, conhecido como decomposição, simplifica o trabalho, permitindo que cada parte seja codificada e testada independentemente.
+
+# Em resumo, escrever suas próprias funções é uma prática eficaz para evitar repetição de código, melhorar a legibilidade e facilitar a manutenção do programa.
+
+# 4.1.2 Decomposição
+# Quando um problema de programação é tão extenso que requer a colaboração de uma equipe, é essencial dividir o trabalho entre os desenvolvedores para garantir eficiência. Isso não apenas facilita a cooperação, mas também distribui a responsabilidade entre os membros da equipe.
+
+# Cada desenvolvedor é encarregado de escrever um conjunto específico de funções bem definidas. Essas funções, quando combinadas nos módulos (abordaremos isso mais tarde), formarão o produto final. Portanto, ao dividir o trabalho entre programadores, é crucial decompor o problema de maneira que o produto possa ser implementado como um conjunto de funções independentes, reunidas em diferentes módulos.
+
+# 4.1.3 De onde vêm as funções?
+# Em geral, as funções vêm de pelo menos três lugares:
+
+# do próprio Python - várias funções (como print()) são parte integrante do Python, e estão sempre disponíveis sem nenhum esforço adicional em nome do programador; chamamos essas funções de funções internas;
+
+# dos módulos pré-instalados do Python - muitas funções, muito úteis, mas usadas muito menos frequentemente do que as integradas, estão disponíveis em vários módulos instalados junto com o Python; o uso dessas funções requer algumas etapas adicionais do programador para torná-las totalmente acessíveis (falaremos sobre isso daqui a pouco);
+
+# diretamente do seu código - você pode escrever suas próprias funções, colocá-las dentro do código e usá-las livremente;
+
+# há uma outra possibilidade, mas ela está conectada às classes, então vamos omitir isso por enquanto.
+
+# 4.1.4 Sua primeira função
+# Vamos começar com uma função muito simples. Vamos escrever uma função que exibe uma mensagem na tela e nada mais. A mensagem será sempre a mesma, mas você poderá usá-la em qualquer lugar do seu código, quantas vezes quiser. É bem simples, mas queremos que seja apenas um exemplo de transformação de uma parte repetida de um código em uma função.
+
+# Se quisermos solicitar um valor do usuário, podemos usar a função input().
+print(&quot;Entre um valor: &quot;)
+a = int(input())
+
+print(&quot;Entre um valor: &quot;)
+b = int(input())
+
+print(&quot;Entre um valor: &quot;)
+c = int(input())
+
+# Note que as mensagens enviadas para o console pela função print() são sempre as mesmas. Claro, não há nada de ruim nesse código, mas tente imaginar o que você teria que fazer se seu chefe pedisse para você mudar a mensagem para torná-la mais educada, por exemplo, para começar com a frase &quot;Por favor&quot;.
+# Com pouco código, não seria um problema, mas e se houvesse centenas de mensagens como essa?
+# Parece que você precisaria gastar algum tempo alterando todas as ocorrências da mensagem (você usaria uma área de transferência, é claro, mas isso não tornaria sua vida muito mais fácil). É óbvio que você provavelmente cometeria alguns erros durante o processo de alteração, e você (e seu chefe) ficaria um pouco frustrado.
+
+# É possível separar uma parte que pode ser repetida, nomeá-la e torná-la reutilizável? (Isso significaria que uma alteração feita uma vez em um só lugar seria propagada para todos os lugares onde é usada. Obviamente, um código como esse só deve funcionar quando for iniciado explicitamente).
+
+# Sim, é possível. É para isso que servem as funções.
+
+# Você precisa defini-lo. A palavra &#x27;define&#x27; é significativa aqui.
+# É assim que a definição mais simples de função se parece:
+&#x27;&#x27;&#x27;
+def function_name():
+    function_body
+&#x27;&#x27;&#x27;
+
+# Começa sempre com a palavra-chave def (de define)
+# Depois de def passa o nome da função (as regras para nomear funções são as mesmas que para nomear variáveis)
+# depois do nome da função, há um lugar para um par de parênteses (eles não contêm nada aqui, mas isso vai mudar em breve)
+# a linha deve ser terminada com dois pontos;
+# a linha logo após def inicia o corpo da função - um par (pelo menos um) de instruções necessariamente aninhadas, que serão executadas sempre que a função for chamada; nota: a função termina onde o aninhamento termina, então você precisa ter cuidado.
+# as regras de aninhamento são as mesmas que para as instruções if, for, while, etc. - você pode usar espaços ou tabulações, mas não misture os dois.
+
+# Estamos prontos para definir nossa função de prompt. Vamos dar o nome de message - aqui está:
+
+def message():
+    print(&quot;Entre um valor: &quot;) # o corpo da função - observe a indentação
+# A função é extremamente simples, mas totalmente utilizável. Atribuímos o nome de message, mas você pode nomear de acordo com o seu gosto. Vamos usá-lo.
+# print(&quot;Entre um valor: &quot;) será o efeito colateral da função - não é o que a função retorna, mas o que ela faz. A função não retorna nada, mas faz algo. É por isso que a chamamos de efeito colateral.
+
+# Nosso código contém a definição de função agora:
+
+print(&quot;Começamos aqui.&quot;)
+print(&quot;terminamos aqui.&quot;)
+# Nota: não usamos a função - não há nenhuma chamada dentro da função.
+
+# Ao executá-lo, você vê a seguinte saída:
+&#x27;&#x27;&#x27;
+Começamos aqui.
+terminamos aqui.
+&#x27;&#x27;&#x27;
+
+# Isso significa que o Python lê as definições da função e as lembra, mas não inicia nenhuma sem a sua permissão. Ou seja, precisamos dizer ao Python para executar a função. Isso é chamado de invocação da função.
+# Nós modificamos o código agora - inserimos a chamada da função entre as mensagens de início e fim:
+
+print(&quot;Começamos aqui.&quot;)
+message() # chamada da função
+print(&quot;terminamos aqui.&quot;)
+# A saída está diferente agora:
+&quot;&quot;&quot;
+Começamos aqui.
+Entre um valor: # mensagem da função
+terminamos aqui.
+&quot;&quot;&quot;
+# O bloco de código definido como o corpo da função foi executado. O Python lembra o local onde a função foi chamada e retorna a esse local quando a função termina.
+# A função não retorna nada, mas faz algo. É por isso que a chamamos de efeito.
+
+# 4.1.5 Como funções funcionam
+# quando você invoca uma função, o Python se lembra do local onde aconteceu e salta para a função invocada;
+# o corpo da função é então executado;
+# alcançar o final da função força o Python a retornar ao local imediatamente após o ponto de chamada.
+
+# Há duas coisas muito importantes. Aqui está a primeira:
+# Você não deve invocar uma função que não é conhecida no momento da invocação. Lembre - se o Python lê seu código de cima para baixo. Ela não vai olhar para frente para encontrar uma função que você esqueceu de colocar no lugar certo (&quot;certo&quot; significa &quot;antes da invocação&quot;.)
+
+&quot;&quot;&quot;
+# Inserimos um erro neste código - Vê a diferença?
+Movemos a função para o final do código. O Python consegue encontrá-lo quando a execução atinge a invocação? Não, não é. A mensagem de erro será:
+
+NameError: name &#x27;message&#x27; is not defined
+
+# Não tente forçar o Python a procurar funções que não foram disponibilizadas no momento certo.
+
+
+
+print(&quot;Começamos aqui.&quot;)
+message()
+print(&quot;terminamos aqui.&quot;) 
+
+
+def message():
+    print(&quot;Entre um valor: &quot;)
+&quot;&quot;&quot;
+# Segundo: Você não deve ter uma função e uma variável com o mesmo nome.
+# Dependendo da ordem em que você os define o código até pode funcionar, mas não é uma boa prática de programação. Você pode se confundir e o Python também.
+# É boa prática usar um certo padrão para nomear funções com verbos que tornam sua função mais descritiva assim como deixar claro o que uma variável guarda.
+
+# Vamos retornar ao nosso exemplo principal e empregar a função para o trabalho certo, como aqui:
+
+def message():
+    print(&quot;Entre um valor: &quot;)
+
+message() # chamada da função
+a = int(input())
+message() # chamada da função
+b = int(input())
+message() # chamada da função
+c = int(input())
+
+# O código funciona como antes, mas agora é muito mais fácil de ler e entender. Você pode ver que a função é chamada três vezes, mas o código que ela executa é escrito apenas uma vez. Isso é muito bom. Poderíamos também adicionar argumentos à função para torná-la ainda mais flexível, definindo um texto diferente para cada chamada.
+# Claro que essa tarefa é simples demais para exigi-la de uma função, mas é apenas um exemplo. Você pode imaginar como isso pode ser útil em um programa maior.
+
+# # 4.1.6 RESUMO DA SEÇÃO
+# 1. Uma função é um bloco de código que executa uma tarefa específica quando a função é chamada (chamada). Você pode usar funções para tornar seu código reutilizável, melhor organizado e mais legível. As funções podem ter parâmetros e valores de retorno.
+
+# 2. Há pelo menos quatro tipos básicos de funções no Python:
+
+# - incorporadas que são parte integrante do Python (como a função de print()). Você pode ver uma lista completa das funções integradas do Python em https://docs.python.org/3/library/functions.html.
+# - os que vêm de módulos pré-instalados (você aprenderá sobre eles no curso Fundamentos do Python 2)
+# - funções definidas pelo usuário que são escritas pelos usuários para os usuários - você pode escrever suas próprias funções e usá-las livremente no código,
+# - as funções lambda (você aprenderá sobre elas no curso Fundamentos do Python 2.)
+
+# 3. Você pode definir sua própria função usando a palavra-chave def e a seguinte sintaxe:
+
+# def your_function(optional_parameters):
+    # o corpo da função
+
+# Você pode definir uma função que não aceita argumentos, por exemplo:
+
+def message():  # definindo uma função
+    print(&quot;Olá&quot;)  # o corpo da função
+
+message()  # chamando a função
+
+# Você pode definir uma função que aceita argumentos, assim como a função de um parâmetro abaixo:
+
+def hello(name):  # definindo uma função
+    print(&quot;Olá,&quot;, name)  # o corpo da função
+
+name = input(&quot;Entre um valor: &quot;)
+
+hello(name)  # chamando a função
+
+# Falaremos sobre funções parametrizadas na próxima seção. Não se preocupe.
+            </py-repl>
+        </div>
+    </div>
+    
+    </main>
+</body>
+</html>

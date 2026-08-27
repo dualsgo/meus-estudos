@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>56_desafio.py</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="https://pyscript.net/releases/2024.1.1/core.css">
+    <script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>
+    <style>
+        .sandbox-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
+        .sandbox-header h2 { font-size: 1.2rem; color: var(--primary); display: flex; align-items: center; gap: 0.5rem; }
+        .py-repl-container { border-radius: 8px; overflow: hidden; border: 1px solid var(--glass-border); background: #1e293b; }
+    </style>
+    
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --glass-bg: rgba(30, 41, 59, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --primary: #38bdf8;
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        header {
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            border-bottom: 1px solid var(--glass-border);
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .back-btn {
+            color: var(--text-main);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            background: rgba(255,255,255,0.05);
+            transition: 0.3s;
+        }
+        .back-btn:hover {
+            background: rgba(56, 189, 248, 0.2);
+            color: var(--primary);
+        }
+        .file-title {
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+        main {
+            flex: 1;
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        .container {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="../index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Voltar</a>
+        <div class="file-title">56_desafio.py</div>
+    </header>
+    <main>
+        
+    <div class="container">
+        <div class="sandbox-header">
+            <h2><i class="fa-brands fa-python"></i> Sandbox PyScript</h2>
+            <span>Edite e execute (Shift + Enter) ou no botão verde ▶</span>
+        </div>
+        <div class="py-repl-container">
+            <script type="py" id="main-script"></script>
+            <py-repl auto-generate="true">
+# Exercício Python #056 - Analisador completo - Aula 00 até 13 - Mundo 2
+# Desenvolva um programa que leia o nome, idade e sexo de 4 pessoas. No final do programa, mostre: a média de idade do grupo, qual é o nome do homem mais velho e quantas mulheres têm menos de 20 anos.
+
+# Tarefa 1: Inicializar os contadores e acumuladores
+membros_grupo = 0  # Inicializa o contador para o número total de membros no grupo
+idades_grupo = 0  # Inicializa o acumulador para somar as idades dos membros
+
+idade_homem_mais_velho = 0  # Inicializa a variável para armazenar a idade do homem mais velho
+nome_homem_mais_velho = &#x27;&#x27;  # Inicializa a variável para armazenar o nome do homem mais velho
+
+quantidade_mulheres = 0  # Inicializa o contador para o número de mulheres com menos de 20 anos
+
+# Tarefa 2: Ler nome, idade e sexo
+masculino = &#x27;M&#x27;  # Atribui &#x27;M&#x27; à variável masculino para facilitar comparações
+feminino = &#x27;F&#x27;  # Atribui &#x27;F&#x27; à variável feminino para facilitar comparações
+
+for pessoa in range(1, 5):  # Loop para iterar sobre 4 pessoas (de 1 a 4)
+    print(f&#x27;{pessoa}º Pessoa&#x27;)
+
+    # Entrada de dados do usuário
+    nome = str(input(&#x27;Digite o nome da pessoa: &#x27;)).strip().title()  # Solicita e formata o nome
+    idade = int(input(&#x27;Digite a idade da pessoa: &#x27;))  # Solicita a idade como um número inteiro
+    sexo = str(input(&#x27;Digite o sexo da pessoa: F/M&#x27;)).strip().upper()  # Solicita e formata o sexo
+    membros_grupo += 1  # Incrementa o contador de membros no grupo
+
+    # Verifica se é a primeira pessoa do sexo masculino ou se é mais velho que o homem mais velho atual
+    if pessoa == 1 and sexo == masculino:
+        nome_homem_mais_velho = nome
+        idade_homem_mais_velho = idade
+    else:
+        # Verifica se a pessoa é do sexo masculino e se a idade é maior que a do homem mais velho atual
+        if sexo == masculino and idade &gt;= idade_homem_mais_velho:
+            nome_homem_mais_velho = nome
+            idade_homem_mais_velho = idade
+
+    # Conta mulheres com menos de 20 anos
+    if sexo == feminino and idade &lt; 20:
+        quantidade_mulheres += 1
+
+    # Acumula as idades para calcular a média posteriormente
+    idades_grupo += idade
+
+    # Exibe os dados cadastrados para cada pessoa
+    print(f&#x27;Nome: {nome}\nIdade: {idade}\nSexo: {sexo}&#x27;)
+    print(&#x27;Cadastro realizado com sucesso!&#x27;)
+
+# Calcula a média de idade do grupo
+media_idade_grupo = idades_grupo / membros_grupo
+
+# Exibe os resultados finais
+print(f&#x27;A média de idade do grupo é {media_idade_grupo} anos.&#x27;)
+print(f&#x27;A homem mais velho do grupo é o {nome_homem_mais_velho} com {idade_homem_mais_velho} anos de idade.&#x27;)
+print(f&#x27;Entre os quatro membros do grupo, {quantidade_mulheres} são mulheres com menos de 20 anos.&#x27;)
+
+# COM VALIDAÇÃO
+
+def valores(n, s, i):
+    while True:
+        name = input(n).strip().title()
+        sex = input(s).upper()
+        while &#x27;M&#x27; != sex != &#x27;F&#x27;:
+            print(f&#x27;Opção inválida. Digite novamente...&#x27;)
+            sex = input(&#x27;Digite o sexo: M ou F &#x27;).upper()
+        while True:
+            try:
+                age = int(input(i))
+                break
+            except ValueError:
+                print(&#x27;Valor inválido!&#x27;)
+        return name, sex, age
+
+
+média_idade = 0
+idade_homem_velho = 0
+nome_homem_velho = &#x27;&#x27;
+mulheres_menos_vinte = 0
+
+for pessoa in range(1, 5):
+    print(f&#x27;{&quot;-&quot; * 20}&#x27;)
+    print(f&#x27;{f&quot;{pessoa}ª pessoa:&quot;:^20}&#x27;)
+    print(f&#x27;{&quot;-&quot;*20}&#x27;)
+
+    nome, sexo, idade = valores(&#x27;Digite o nome: &#x27;, &#x27;Digite o sexo: M ou F &#x27;, &#x27;Digite a idade: &#x27;)
+
+    média_idade += idade
+
+    if sexo == &#x27;M&#x27; and idade &gt; idade_homem_velho:
+        nome_homem_velho = nome
+        idade_homem_velho = idade
+
+    if sexo == &#x27;F&#x27; and idade &lt; 20:
+        mulheres_menos_vinte += 1
+
+
+print(f&#x27;A média de idade do grupo é {média_idade / 4} anos&#x27;)
+
+print(f&#x27;O homem mais velho se chama {nome_homem_velho} e tem {idade_homem_velho} anos&#x27; if nome_homem_velho else &#x27;Não há homens no grupo&#x27;)
+
+print(f&#x27;Há {mulheres_menos_vinte}&#x27; if mulheres_menos_vinte else &#x27;Não há&#x27;, f&#x27;{&#x27;mulher&#x27; if mulheres_menos_vinte == 1 else &#x27;mulheres&#x27;} com menos de 20 anos no grupo&#x27;)
+
+# EXTRA
+
+# Lista para armazenar as informações das pessoas
+lista_pessoas = []
+
+
+def validar_nome(n):
+    return n.isalpha()
+
+
+def validar_idade(ida):
+    return 0 &lt;= ida &lt;= 120
+
+
+def validar_sexo(s):
+    return s in [&#x27;MASCULINO&#x27;, &#x27;FEMININO&#x27;]
+
+
+while True:
+    try:
+        # Loop para coletar informações de três pessoas
+        for i in range(3):
+
+            print(f&quot;{&#x27;-&#x27; * 30}\n{f&#x27;{i + 1}ª pessoa:&#x27;:^30}\n{&#x27;-&#x27; * 30}&quot;)
+
+            while True:
+                nome = input(&#x27;Nome: &#x27;).strip().title()
+                if validar_nome(nome):
+                    break
+                else:
+                    print(&quot;Nome inválido! Por favor, insira apenas letras.&quot;)
+
+            while True:
+                try:
+                    idade = int(input(&#x27;Idade: &#x27;))
+                    if validar_idade(idade):
+                        break
+                    else:
+                        print(&quot;Idade inválida! Por favor, insira um valor entre 0 e 120.&quot;)
+                except ValueError:
+                    print(&quot;Valor inválido! Por favor, insira um número para a idade.&quot;)
+
+            while True:
+                sexo = input(&#x27;Sexo (Masculino/Feminino): &#x27;).strip().upper()
+                if validar_sexo(sexo):
+                    break
+                else:
+                    print(&quot;Sexo inválido! Por favor, insira &#x27;Masculino&#x27; ou &#x27;Feminino&#x27;.&quot;)
+
+            pessoa = {
+                &#x27;nome&#x27;: nome,
+                &#x27;idade&#x27;: idade,
+                &#x27;sexo&#x27;: sexo
+            }
+            # Adiciona o dicionário da pessoa à lista
+            lista_pessoas.append(pessoa)
+        break
+    except ValueError:
+        print(&#x27;Valor inválido!&#x27;)
+
+# Exibe a lista de pessoas
+print(&quot;Informações das pessoas:&quot;)
+print(f&#x27;{&#x27;-&#x27; * 30}&#x27;)
+for pessoa in lista_pessoas:
+
+    print(f&#x27;Nome: {pessoa[&#x27;nome&#x27;]:&gt;20}&#x27;
+          f&#x27;Idade: {pessoa[&#x27;idade&#x27;]:&gt;20}&#x27;
+          f&#x27;Sexo: {pessoa[&#x27;sexo&#x27;]:&gt;20}&#x27;)
+    print(f&#x27;{&#x27;-&#x27; * 30}&#x27;)
+    
+# Estou compartilhando minhas anotações sobre os exercícios. Quem quiser, pode copiar e colar em um documento .py pois está tudo formatado e comentado.
+
+# Nesse exercício, vamos desenvolver um programa que lê o nome, idade e sexo de 4 pessoas. No final, o programa deve mostrar a média de idade do grupo, o nome do homem mais velho e quantas mulheres têm menos de 20 anos.
+
+# Como são várias tarefas, vamos dividir o problema em partes menores:
+
+# 1. Inicializar os contadores e acumuladores
+# 2. Ler nome, idade e sexo
+# 3. Calcular a média de idade do grupo
+# 4. Encontrar o homem mais velho
+# 5. Contar mulheres com menos de 20 anos
+# 6. Exibir os resultados finais
+
+# Vamos começar com a primeira tarefa:
+membros_grupo = 0  # Inicializa o contador para o número total de membros no grupo
+idades_grupo = 0  # Inicializa o acumulador para somar as idades dos membros
+
+idade_homem_mais_velho = 0  # Inicializa a variável para armazenar a idade do homem mais velho
+nome_homem_mais_velho = &#x27;&#x27;  # Inicializa a variável para armazenar o nome do homem mais velho
+
+quantidade_mulheres = 0  # Inicializa o contador para o número de mulheres com menos de 20 anos
+
+# Agora vamos para a segunda tarefa:
+masculino = &#x27;M&#x27;  # Atribui &#x27;M&#x27; à variável masculino para facilitar comparações
+feminino = &#x27;F&#x27;  # Atribui &#x27;F&#x27; à variável feminino para facilitar comparações
+
+for pessoa in range(1, 5):  # Loop para iterar sobre 4 pessoas (de 1 a 4)
+    print(f&#x27;{pessoa}º Pessoa&#x27;)
+    
+    # Entrada de dados do usuário
+    nome = str(input(&#x27;Digite o nome da pessoa: &#x27;)).strip().title()  # Solicita e formata o nome
+    idade = int(input(&#x27;Digite a idade da pessoa: &#x27;))  # Solicita a idade como um número inteiro
+    sexo = str(input(&#x27;Digite o sexo da pessoa: F/M&#x27;)).strip().upper()  # Solicita e formata o sexo
+    membros_grupo += 1  # Incrementa o contador de membros no grupo
+    
+    # Verifica se é a primeira pessoa do sexo masculino ou se é mais velho que o homem mais velho atual
+    if pessoa == 1 and sexo == masculino: 
+        nome_homem_mais_velho = nome
+        idade_homem_mais_velho = idade
+    
+    else:
+        # Verifica se a pessoa é do sexo masculino e se a idade é maior que a do homem mais velho atual
+        if sexo == masculino and idade &gt;= idade_homem_mais_velho:
+            nome_homem_mais_velho = nome
+            idade_homem_mais_velho = idade
+    
+    # Conta mulheres com menos de 20 anos
+    if sexo == feminino and idade &lt; 20:
+        quantidade_mulheres += 1
+        
+    # Acumula as idades para calcular a média posteriormente
+    idades_grupo += idade
+    
+    # Exibe os dados cadastrados para cada pessoa
+    print(f&#x27;Nome: {nome}\nIdade: {idade}\nSexo: {sexo}&#x27;)
+    print(&#x27;Cadastro realizado com sucesso!&#x27;)
+    
+# Agora vamos para a terceira tarefa:
+media_idade_grupo = idades_grupo / membros_grupo  # Calcula a média de idade do grupo
+
+# Exibe os resultados finais
+print(f&#x27;A média de idade do grupo é {media_idade_grupo} anos.&#x27;)
+print(f&#x27;A homem mais velho do grupo é o {nome_homem_mais_velho} com {idade_homem_mais_velho} anos de idade.&#x27;)
+print(f&#x27;Entre os quatro membros do grupo, {quantidade_mulheres} são mulheres com menos de 20 anos.&#x27;)
+
+# Obs.: Não temos validações nesse exercícos, então muitas coisas podem dar errado. Por exemplo, se o usuário digitar um valor inválido para a idade, o programa vai gerar um erro. Para evitar isso, podemos usar estruturas de repetição e condicionais para validar as entradas do usuário. Se não forem digitadas pessoas do sexo feminino, não temos um tratamento para dizer que não há mulheres com menos de 20 anos no grupo. Podemos adicionar uma mensagem para informar isso ao usuário.
+            </py-repl>
+        </div>
+    </div>
+    
+    </main>
+</body>
+</html>

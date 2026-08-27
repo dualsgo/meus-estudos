@@ -1,0 +1,66 @@
+## MIMO 01 - Noções básicas de HTML
+
+### 01.1 - Descobrindo HTML e tags
+
+O **HTML (Hypertext Markup Language)** é a linguagem de marcação utilizada para estruturar páginas web. Ele define a organização e exibição do conteúdo na internet por meio de **tags**.
+
+#### O que são tags?
+Tags são elementos do HTML usados para marcar o conteúdo de uma página. A maioria das tags é composta por uma **tag de abertura** e uma **tag de fechamento**, definindo onde o conteúdo começa e termina.
+
+Exemplo de tag de cabeçalho:
+
+```html
+<h1>Este é um cabeçalho</h1>
+```
+
+No exemplo acima:
+- `<h1>` é a **tag de abertura**.
+- `</h1>` é a **tag de fechamento**.
+- O conteúdo "Este é um cabeçalho" será exibido em destaque pelo navegador.
+
+#### Cabeçalhos em HTML
+O HTML possui **seis níveis de cabeçalhos**, que variam em tamanho e importância:
+
+```html
+<h1>Maior cabeçalho</h1>
+<h2>Segundo nível</h2>
+<h3>Terceiro nível</h3>
+<h4>Quarto nível</h4>
+<h5>Quinto nível</h5>
+<h6>Menor cabeçalho</h6>
+```
+
+- `<h1>` é o cabeçalho **mais importante e maior**.
+- `<h6>` é o **menor e menos destacado**.
+
+Cabeçalhos ajudam a estruturar e organizar o conteúdo de uma página web, tornando-a mais acessível e legível para usuários e mecanismos de busca.
+
+### 01.2 - Textos e Títulos
+
+Outro elemento essencial para a estruturação do conteúdo são os **parágrafos**. Parágrafos ajudam a organizar o texto e torná-lo mais fácil de ler.
+
+#### Criando parágrafos
+
+A tag `<p>` é usada para definir um parágrafo em HTML. Assim como os cabeçalhos, ela possui uma **tag de abertura**, seguida pelo conteúdo e uma **tag de fechamento**.
+
+Exemplo:
+
+```html
+<h1>Esse é um título</h1>
+<p>Esse é um parágrafo</p>
+```
+
+Cada `<p>` criará um novo parágrafo na página web.
+
+#### Quebras de linha
+
+Às vezes, queremos que um texto seja exibido em linhas separadas dentro do mesmo parágrafo. Para isso, usamos a tag `<br>`, que cria uma **quebra de linha**.
+
+Exemplo:
+
+```html
+<h1>My favorite things</h1>
+<p>Raindrops on roses<br>Whiskers on kittens<br>Bright copper kettles<br>Warm woolen mittens</p>
+```
+
+A tag `<br>` é uma **tag vazia**, ou seja, não possui uma tag de fechamento. Essas tags também são chamadas de **tags auto-fechadas**.

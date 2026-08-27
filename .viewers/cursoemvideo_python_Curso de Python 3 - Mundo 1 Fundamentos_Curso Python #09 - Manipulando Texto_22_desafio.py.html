@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>22_desafio.py</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="https://pyscript.net/releases/2024.1.1/core.css">
+    <script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>
+    <style>
+        .sandbox-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
+        .sandbox-header h2 { font-size: 1.2rem; color: var(--primary); display: flex; align-items: center; gap: 0.5rem; }
+        .py-repl-container { border-radius: 8px; overflow: hidden; border: 1px solid var(--glass-border); background: #1e293b; }
+    </style>
+    
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --glass-bg: rgba(30, 41, 59, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --primary: #38bdf8;
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        header {
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            border-bottom: 1px solid var(--glass-border);
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .back-btn {
+            color: var(--text-main);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            background: rgba(255,255,255,0.05);
+            transition: 0.3s;
+        }
+        .back-btn:hover {
+            background: rgba(56, 189, 248, 0.2);
+            color: var(--primary);
+        }
+        .file-title {
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+        main {
+            flex: 1;
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        .container {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="../index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Voltar</a>
+        <div class="file-title">22_desafio.py</div>
+    </header>
+    <main>
+        
+    <div class="container">
+        <div class="sandbox-header">
+            <h2><i class="fa-brands fa-python"></i> Sandbox PyScript</h2>
+            <span>Edite e execute (Shift + Enter) ou no botão verde ▶</span>
+        </div>
+        <div class="py-repl-container">
+            <script type="py" id="main-script"></script>
+            <py-repl auto-generate="true">
+# Exercício Python #022 - Analisador de Textos - Aulas 00 até 09 - Mundo 1
+# Crie um programa que leia o nome completo de uma pessoa e mostre:
+# - O nome com todas as letras maiúsculas e minúsculas.
+# - Quantas letras ao todo (sem considerar espaços).
+# - Quantas letras tem o primeiro nome.
+
+nome_completo = input(&#x27;Digite o seu nome: &#x27;).strip().title()
+nome_separado = nome_completo.split()
+
+maiúsculas = nome_completo.upper()
+minúsculas = nome_completo.lower()
+tamanho_nome = len(&#x27;&#x27;.join(nome_separado))
+tamanho_primeiro_nome = len(nome_separado[0])
+
+print(f&#x27;{&#x27;Em MAIÚSUCULAS:&#x27;:&lt;20}{maiúsculas:&gt;30}&#x27;)
+print(f&#x27;{&#x27;Em minúsuculas:&#x27;:&lt;20}{minúsculas:&gt;30}&#x27;)
+print(f&#x27;{&#x27;Tamanho do nome completo:&#x27;:&lt;30}{tamanho_nome:&gt;20}&#x27;)
+print(f&#x27;{&#x27;Tamanho do primeiro nome:&#x27;:&lt;30}{tamanho_primeiro_nome:&gt;20}&#x27;)
+
+# Versão 2
+
+nome = input(&#x27;Digite o seu nome para analise: &#x27;).strip().title().split()
+
+print(f&#x27;{&#x27;Nome digitado:&#x27;:&lt;20}{&#x27; &#x27;.join(nome):&gt;30}&#x27;)
+print(f&#x27;{&#x27;Quantidade letras:&#x27;:&lt;20}{len(&#x27;&#x27;.join(nome)):&gt;30}&#x27;)
+print(f&#x27;{&#x27;Nome MAIÚSCULO:&#x27;:&lt;20}{&#x27; &#x27;.join(nome).upper():&gt;30}&#x27;)
+print(f&#x27;{&#x27;Nome MINÚSCULO:&#x27;:&lt;20}{&#x27; &#x27;.join(nome).lower():&gt;30}&#x27;)
+print(f&#x27;{&#x27;Primeiro nome:&#x27;:&lt;20}{nome[0]:&gt;30}&#x27;)
+print(f&#x27;{&#x27;Quantidade letras:&#x27;:&lt;20}{len(nome[0]):&gt;30}&#x27;)
+
+
+&quot;&quot;&quot;nome = input(&#x27;Digite o seu nome para analisarmos: &#x27;).strip()
+
+tamanho_nome = len(nome) - nome.count(&#x27; &#x27;)
+primeiro_nome = nome[:nome.find(&#x27; &#x27;)].title()
+
+print(f&#x27;{&#x27;O seu nome completo é:&#x27;:&lt;25}{nome.title():&gt;25}&#x27;)
+print(f&#x27;Seu nome tem {tamanho_nome} letras&#x27;)
+print(f&#x27;{&#x27;Em maiúsculas:&#x27;:&lt;25}{nome.upper():&gt;25}&#x27;)
+print(f&#x27;{&#x27;Em minúsculas:&#x27;:&lt;25}{nome.lower():&gt;25}&#x27;)
+print(f&#x27;{&#x27;Seu primeiro nome é:&#x27;:&lt;25}{primeiro_nome:&gt;25}&#x27;)
+print(f&#x27;Seu primeiro nome tem {len(primeiro_nome)} letras&#x27;)
+&quot;&quot;&quot;
+
+# Estou compartilhando minhas anotações sobre os exercícios. Quem quiser, pode copiar e colar em um documento .py pois está tudo formatado e comentado.
+
+# Nesse exercício, o programa solicita ao usuário que digite o nome completo e em seguida exibe algumas informações sobre o nome digitado.
+
+# Primeiro, solicitamos ao usuário que digite o nome completo utilizando a função input().
+# Vamos tratar o nome nessa mesma instrução, removendo espaços em branco no início e no final do nome com a função strip() e deixando a primeira letra de cada palavra em maiúscula com a função title().
+nome_completo = input(&#x27;Digite o seu nome: &#x27;).strip().title()
+
+# Em seguida, vamos separar o nome completo em uma lista de palavras com a função split().
+nome_separado = nome_completo.split()
+
+# Dessa forma, podemos tratar o nome de forma mais fácil e eficiente.
+# Vamos criar uma variável para armazenar o nome em maiúsculas e outra para armazenar o nome em minúsculas.
+# Para isso, utilizamos as funções upper() e lower().
+maiúsculas = nome_completo.upper()
+minúsculas = nome_completo.lower()
+
+# Para saber quantas letras o nome tem, vamos utilizar a função len() para contar o número de caracteres.
+# No entanto, queremos contar apenas as letras, sem considerar os espaços em branco.
+# Como o nome está separado em uma lista de palavras, podemos juntar todas as palavras em uma única string com a função join() e contar o número de caracteres.
+tamanho_nome = len(&#x27;&#x27;.join(nome_separado))
+
+# nome_separado é uma lista de palavras, então podemos acessar o primeiro nome digitado com nome_separado[0].
+primeiro_nome = nome_separado[0]
+# Para saber quantas letras o primeiro nome tem, utilizamos a função len().
+tamanho_primeiro_nome = len(nome_separado[0])
+
+# Obviamente, essa não é a única forma de resolver o exercício.
+# Podemos simplificar o código e obter o mesmo resultado.
+# Vamos solicitar ao usuário que digite o nome completo e em seguida separar o nome em uma lista de palavras. Tudo isso em uma única instrução.
+nome = input(&#x27;Digite o seu nome para analise: &#x27;).strip().title().split()
+
+# Para que fique claro, essa instrução resulta em uma lista de palavras, onde cada palavra é uma parte do nome digitado. Por exemplo, se o usuário digitar &quot;João da Silva&quot;, a lista será [&#x27;João&#x27;, &#x27;Da&#x27;, &#x27;Silva&#x27;].
+
+# Agora, vamos exibir as informações solicitadas usando f-strings e a função join() para juntar as palavras da lista em uma única string.
+# Primeiro, exibimos o nome digitado pelo usuário.
+print(f&#x27;Nome digitado: {&quot; &quot;.join(nome)}&#x27;)
+
+# Com essa instrução, estamos exibindo a lista, mas juntando as palavras com um espaço em branco.
+# As palavras serão exibidas assim: &quot;João Da Silva&quot; e não assim: [&#x27;João&#x27;, &#x27;Da&#x27;, &#x27;Silva&#x27;].
+
+# Depois, exibimos a quantidade de letras do nome completo. Como separamos as palavras, novamente podemos usar join() para juntar as palavras em uma única string e contar o número de caracteres.
+print(f&#x27;Quantidade letras: {len(&quot;&quot;.join(nome))}&#x27;)
+# Dessa vez não precisamos remover os espaços em branco, pois a função len() já conta apenas as letras, pois juntamos as palavras em uma única string sem espaços.
+
+# Para exibir o nome em maiúsculas e minúsculas, utilizamos as funções upper() e lower() e a função join() para juntar as palavras em uma única string.
+print(f&#x27;Nome MAIÚSCULO: {&quot; &quot;.join(nome).upper()}&#x27;)
+print(f&#x27;Nome MINÚSCULO: {&quot; &quot;.join(nome).lower()}&#x27;)
+
+# Para exibir o primeiro nome, acessamos o primeiro elemento da lista com nome[0].
+# Em seguida, exibimos a quantidade de letras do primeiro nome.
+print(f&#x27;Primeiro nome: {nome[0]}&#x27;)
+print(f&#x27;Quantidade letras: {len(nome[0])}&#x27;)
+            </py-repl>
+        </div>
+    </div>
+    
+    </main>
+</body>
+</html>

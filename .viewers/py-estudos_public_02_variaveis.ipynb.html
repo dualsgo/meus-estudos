@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>02_variaveis.ipynb</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/monokai-sublime.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/python.min.js"></script>
+    
+    <style>
+        .cell { margin-bottom: 1.5rem; }
+        .cell-markdown { font-size: 1.05rem; line-height: 1.6; color: #cbd5e1; }
+        .cell-markdown h1, .cell-markdown h2, .cell-markdown h3 { color: #f1f5f9; margin-top: 1rem; margin-bottom: 0.5rem; }
+        .cell-markdown code { background: rgba(0,0,0,0.3); padding: 0.2rem 0.4rem; border-radius: 4px; color: #eab308; }
+        .cell-markdown pre { background: rgba(0,0,0,0.3); padding: 1rem; border-radius: 8px; overflow-x: auto; border: 1px solid var(--glass-border); margin: 1rem 0; }
+        .cell-code { background: #23241f; border-radius: 8px; padding: 1rem; overflow-x: auto; position: relative; border: 1px solid #333; }
+        .cell-output { background: #000; color: #a3e635; padding: 1rem; border-radius: 8px; margin-top: 0.5rem; font-family: monospace; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;}
+        .prompt { position: absolute; top: 0.5rem; right: 0.5rem; color: #64748b; font-size: 0.8rem; user-select: none; }
+    </style>
+    
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --glass-bg: rgba(30, 41, 59, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --primary: #38bdf8;
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        header {
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            border-bottom: 1px solid var(--glass-border);
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .back-btn {
+            color: var(--text-main);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            background: rgba(255,255,255,0.05);
+            transition: 0.3s;
+        }
+        .back-btn:hover {
+            background: rgba(56, 189, 248, 0.2);
+            color: var(--primary);
+        }
+        .file-title {
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+        main {
+            flex: 1;
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        .container {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="../index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Voltar</a>
+        <div class="file-title">02_variaveis.ipynb</div>
+    </header>
+    <main>
+        <div class="container">
+            <div class="cell cell-markdown" id="md-0"></div>
+            <script>
+                (function(){
+                    const b64 = "IyBWYXJpw6F2ZWlzIGVtIFB5dGhvbgoKU2Ugdm9jw6ogZXN0w6EgY29tZcOnYW5kbyBjb20gcHJvZ3JhbWHDp8OjbywgcHJpbWVpcm8gdmFtb3MgZW50ZW5kZXIgbmEgcHLDoXRpY2EgcGFyYSBxdWUgc2VydmUgdW1hIHZhcmnDoXZlbC4=";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-0').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python"># Sem se aprofundar nos aspectos tecnicos das instruções a seguir, imagine que queremos exibir uma mensagem de boas-vindas para o usuário.
+print(&quot;Seja bem-vindo ao mundo da programação!&quot;)</code></pre>
+            </div>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python"># Agora pense que queremos incluir o nome do usuário na mensagem de boas-vindas.
+print(&quot;Seja bem-vindo, Maria!&quot;)  # Exemplo com o nome &quot;Maria&quot;</code></pre>
+            </div>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python"># Esse código funciona, mas e se o nome do usuário for diferente? Teríamos que reescrever a mensagem toda vez.
+print(&quot;Seja bem-vindo, João!&quot;)  # Exemplo com o nome &quot;João&quot;
+print(&quot;Seja bem-vindo, Ana!&quot;)   # Exemplo com o nome &quot;Ana&quot;
+
+# Imagine portanto, que se o nome do usuario for diferente, teriamos que substituir o nome na mensagem manualmente toda vez, em todas as ocorrencias. Isso seria muito trabalhoso e propenso a erros. Em nosso exemplo, como apenas uma ocorrencia, não é um grande problema, mas em programas maiores, isso pode se tornar inviável.</code></pre>
+            </div>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python"># E se pudéssemos armazenar o nome do usuário em um &quot;recipiente&quot; especial e usar esse recipiente na mensagem de boas-vindas? Assim, não importa qual seja o nome do usuário, a mensagem sempre estará correta. Nós podemos! Usamos uma variável para isso. O nome variavel é justamente isso: um recipiente que armazena um valor que pode mudar.
+
+# Vamos criar uma variável chamada &quot;nome_usuario&quot; e armazenar o nome do usuário nela.
+nome_usuario = &quot;Carlos&quot;  # Armazenando o nome &quot;Carlos&quot; na variável
+
+# Agora, podemos usar essa variável na mensagem de boas-vindas.
+print(&quot;Seja bem-vindo, &quot; + nome_usuario + &quot;!&quot;)  # Usando a variável na mensagem</code></pre>
+            </div>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python"># Se o nome do usuário mudar, basta atualizar o valor da variável.
+nome_usuario = &quot;Luiza&quot;  # Atualizando o nome para &quot;Luiza&quot;
+print(&quot;Seja bem-vindo, &quot; + nome_usuario + &quot;!&quot;)  # A mensagem agora reflete o novo nome</code></pre>
+            </div>
+            
+            <div class="cell cell-markdown" id="md-6"></div>
+            <script>
+                (function(){
+                    const b64 = "Vm9jw6ogcG9kZSBlc3RhciBzZSBwZXJndW50YW5kbzogIlBvciBxdWUgbsOjbyBhcGVuYXMgZXNjcmV2ZXIgbyBub21lIGRpcmV0YW1lbnRlIG5hIG1lbnNhZ2VtPyBWb2PDqiBjcmlvdSBkdWFzIGxpbmhhcyBhIG1haXMgZGUgY8OzZGlnbyEiIEEgcmVzcG9zdGEgw6kgcXVlLCBlbSBwcm9ncmFtYXMgbWFpb3JlcywgbyBub21lIGRvIHVzdcOhcmlvIHBvZGUgc2VyIHVzYWRvIGVtIG11aXRvcyBsdWdhcmVzIGRpZmVyZW50ZXMuIFNlIHByZWNpc2FybW9zIG11ZGFyIG8gbm9tZSwgdGVyw61hbW9zIHF1ZSBhbHRlcmFyIHRvZGFzIGFzIG9jb3Jyw6puY2lhcyBtYW51YWxtZW50ZSwgbyBxdWUgw6kgdHJhYmFsaG9zbyBlIHByb3BlbnNvIGEgZXJyb3MuIFVzYW5kbyB1bWEgdmFyacOhdmVsLCBwb2RlbW9zIHNpbXBsZXNtZW50ZSBhdHVhbGl6YXIgbyB2YWxvciBlbSB1bSDDum5pY28gbHVnYXIsIGUgdG9kYXMgYXMgcmVmZXLDqm5jaWFzIGEgZXNzYSB2YXJpw6F2ZWwgc2Vyw6NvIGF1dG9tYXRpY2FtZW50ZSBhdHVhbGl6YWRhcy4KClRlbnRlIG8gc2VndWludGU6IFZvbHRlIGFvIGPDs2RpZ28sIGNvbWVudGUgYSBsaW5oYSBvbmRlIGRlZmluaW1vcyBvIG5vbWUgIkx1aXphIiBlIGV4ZWN1dGUgbyBwcm9ncmFtYSBub3ZhbWVudGUuIFZlamEgcXVlIG9uZGUgZXJhIGV4aWJpZG8gIkx1aXphIiwgYWdvcmEgY29udGludWFyw6EgZXhpYmluZG8gIkNhcmxvcyIsIHBvaXMgYSB2YXJpw6F2ZWwgIm5vbWVfdXN1YXJpbyIgYWluZGEgY29udMOpbSBvIHZhbG9yIG9yaWdpbmFsLiBEZXNmYcOnYSBhIGFsdGVyYcOnw6NvIGUgZXhlY3V0ZSBub3ZhbWVudGUuIElzc28gZGVtb25zdHJhIGNvbW8gYXMgdmFyacOhdmVpcyBub3MgcGVybWl0ZW0gZ2VyZW5jaWFyIGUgYXR1YWxpemFyIHZhbG9yZXMgZGUgZm9ybWEgZWZpY2llbnRlIGVtIG5vc3NvcyBwcm9ncmFtYXMu";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-6').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-markdown" id="md-7"></div>
+            <script>
+                (function(){
+                    const b64 = "VmFyacOhdmVpcyBzw6NvIGNvbW8gImVuZGVyZcOnb3MiIG91ICJldGlxdWV0YXMiIHF1ZSB1c2Ftb3MgcGFyYSBhY2Vzc2FyIGxvY2FpcyBuYSBtZW3Ds3JpYSBkbyBjb21wdXRhZG9yIG9uZGUgdmFsb3JlcyBlc3TDo28gYXJtYXplbmFkb3MuIEFzc2ltIGNvbW8gdW1hIGV0aXF1ZXRhIGVtIHVtIGFycXVpdm8gbm9zIGRpeiBvbmRlIGVuY29udHJhciB1bSBkb2N1bWVudG8sIHVtYSB2YXJpw6F2ZWwgbm9zIGTDoSB1bWEgbWFuZWlyYSBkZSBhY2Vzc2FyIHVtIHZhbG9yIGVzcGVjw61maWNvIGFybWF6ZW5hZG8gZW0gZGV0ZXJtaW5hZG8gbG9jYWwgZGEgbWVtw7NyaWEuIEFsw6ltIGRpc3NvLCBvIHZhbG9yIGFzc29jaWFkbyDDoCB2YXJpw6F2ZWwgcG9kZSBtdWRhciBhbyBsb25nbyBkbyB0ZW1wbywgbyBxdWUgcmVmbGV0ZSBvIGNvbXBvcnRhbWVudG8gZGluw6JtaWNvIGRhcyB2YXJpw6F2ZWlzIG5vIGPDs2RpZ28uCgpBIGNyaWHDp8OjbyBkZSB1bWEgdmFyacOhdmVsIGVudm9sdmUgdHLDqnMgY29tcG9uZW50ZXMgcHJpbmNpcGFpczoKCi0gVW0gKipub21lKio6IEVzdGUgw6kgbyBpZGVudGlmaWNhZG9yIHF1ZSB2b2PDqiBlc2NvbGhlIHBhcmEgcmVwcmVzZW50YXIgYSB2YXJpw6F2ZWwuIENvbW8gdW1hIGV0aXF1ZXRhIHF1ZSBub21laWEgYWxnbyBlbSB1bSBhcnF1aXZvIG91IHNpc3RlbWEsIGVzc2Ugbm9tZSBub3MgcGVybWl0ZSBhY2Vzc2FyIG8gdmFsb3IgZ3VhcmRhZG8gbmEgbWVtw7NyaWEuCgotIFVtICoqb3BlcmFkb3IgZGUgYXRyaWJ1acOnw6NvIChgPWApKio6IEVtIFB5dGhvbiwgbyBvcGVyYWRvciBgPWAgw6kgdXNhZG8gcGFyYSBhdHJpYnVpciB1bSB2YWxvciDDoCB2YXJpw6F2ZWwsIGFzc29jaWFuZG8gbyBub21lIGRhIHZhcmnDoXZlbCBhIHVtIGxvY2FsIGVzcGVjw61maWNvIGRhIG1lbcOzcmlhIG9uZGUgbyB2YWxvciBzZXLDoSBhcm1hemVuYWRvLiBFc3NlIG9wZXJhZG9yIG7Do28gcmVwcmVzZW50YSBpZ3VhbGRhZGUgY29tbyBuYSBtYXRlbcOhdGljYSwgbWFzIHVtYSBmb3JtYSBkZSAibGlnYXIiIGEgdmFyacOhdmVsIGEgdW0gdmFsb3IuCgotIFVtICoqdmFsb3IqKjogRXN0ZSDDqSBvIGNvbnRlw7pkbyBhc3NvY2lhZG8gw6AgdmFyacOhdmVsLiBQb2RlIHNlciBxdWFscXVlciB0aXBvIGRlIGRhZG8gZW0gUHl0aG9uLCBjb21vIG7Dum1lcm9zLCB0ZXh0b3MsIGxpc3RhcyBvdSBvYmpldG9zIG1haXMgY29tcGxleG9zLiBBc3NpbSBjb21vIGRpZmVyZW50ZXMgYXJxdWl2b3MgcG9kZW0gY29udGVyIGRpZmVyZW50ZXMgdGlwb3MgZGUgaW5mb3JtYcOnw6NvLCB2YXJpw6F2ZWlzIHBvZGVtIGFybWF6ZW5hciB2YWxvcmVzIHZhcmlhZG9zLgoKQXNzaW0sIHVtYSB2YXJpw6F2ZWwgZW0gUHl0aG9uIMOpIHVtYSByZWZlcsOqbmNpYSBwYXJhIHVtIGxvY2FsIGRhIG1lbcOzcmlhIGRvIGNvbXB1dGFkb3IsIG9uZGUgbyBjb250ZcO6ZG8gcG9kZSBzZXIgYWx0ZXJhZG8gb3UgYWNlc3NhZG8gY29uZm9ybWUgbmVjZXNzw6FyaW8u";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-7').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python"># Em resumo, uma variável é um nome que se refere a um valor.
+# A sintaxe para criar uma variável é o nome da variável seguido por um operador de atribuição (representado pelo sinal de igual) e o valor que você deseja associar à variável.
+
+# O sinal de igual (=) é o operador de atribuição em Python. Ele não significa &quot;igualdade&quot; no sentido matemático, mas sim &quot;atribuição&quot;. Ou seja, ele diz ao Python para associar o valor à direita do sinal de igual ao nome da variável à esquerda do sinal de igual.
+
+# Exemplo:
+mensagem = &quot;Olá, Mundo!&quot; # Essa é uma instrução de atribuição que cria uma variável chamada mensagem e a associa com a string &quot;Olá, Mundo!&quot;. Um string é uma sequência de caracteres, como letras, números e símbolos entre aspas. Sendo um dos tipos de dados mais comuns em Python.</code></pre>
+            </div>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python"># Vamos analisar a instrução de atribuição acima em três partes:
+
+# 1. mensagem é o nome da variável
+# 2. = é o operador de atribuição que diz ao Python para atribuir o valor a direita do sinal de igual ao nome da variável a esquerda do sinal de igual.
+# 3. &quot;Olá, Mundo!&quot; é o valor que queremos associar à variável mensagem. Este é um valor do tipo string (str), que é uma sequência de caracteres. Isso exige que o valor seja colocado entre aspas (simples ou duplas) para indicar que é uma string.
+
+# É comum lermos a instrução de atribuição acima como &quot;mensagem é igual a &#x27;Olá, Mundo!&#x27;&quot; ou &quot;mensagem recebe &#x27;Olá, Mundo!&#x27;&quot;.
+
+# Uma vez que a variável foi criada, você pode usar o nome da variável para se referir ao valor associado a ela, já que a partir da criação da variável, o nome da variável passa a ser um alias para o valor associado a ela.
+print(mensagem)</code></pre>
+            </div>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python"># Sendo assim, toda vez que precisar utilizar a string &quot;Olá, Mundo!&quot;, você pode simplesmente usar a variável mensagem.
+# Isso é útil porque você pode alterar o valor associado à variável em um único lugar e todas as referências à variável serão atualizadas automaticamente. 
+
+# As variáveis são mutáveis, o que significa que você pode alterar o valor associado à variável a qualquer momento. Chamamos isso de reatribuição.
+mensagem = &quot;Olá, Python!&quot;
+
+# Observação: É importante entender o fluxo do código, pois mesmo atualizando o valor da variável em um ponto posterior do código, todas as referências anteriores à variável ainda apontam para o valor antigo. Isso ocorre porque o Python lê e executa o código linha por linha, de cima para baixo.
+
+print(mensagem)  # Isso exibirá &quot;Olá, Python!&quot; pois a variável mensagem foi atualizada antes desta linha. Mas repare que a referência anterior ainda aponta para o valor antigo.</code></pre>
+            </div>
+            
+            <div class="cell cell-markdown" id="md-11"></div>
+            <script>
+                (function(){
+                    const b64 = "IyMjIENvbnN0YW50ZXMKClB5dGhvbiBuw6NvIHRlbSB1bSBjb21hbmRvIHBhcmEgZGVjbGFyYXIgdW1hIHZhcmnDoXZlbCBjb20gdmFsb3IgY29uc3RhbnRlLiBFbSBvdXRyYXMgbGluZ3VhZ2VucyBkZSBwcm9ncmFtYcOnw6NvLCB2b2PDqiBwb2RlIGRlY2xhcmFyIHVtYSB2YXJpw6F2ZWwgY29tbyBjb25zdGFudGUsIG8gcXVlIHNpZ25pZmljYSBxdWUgbyB2YWxvciBhc3NvY2lhZG8gw6AgdmFyacOhdmVsIG7Do28gcG9kZSBzZXIgYWx0ZXJhZG8gZGVwb2lzIGRlIHNlciBkZWZpbmlkby4gRW0gUHl0aG9uLCB0b2RhcyBhcyB2YXJpw6F2ZWlzIHPDo28gbXV0w6F2ZWlzIHBvciBwYWRyw6NvIG1hcyBwb3IgY29udmVuw6fDo28sIHZhcmnDoXZlaXMgcXVlIG7Do28gZGV2ZW0gc2VyIGFsdGVyYWRhcyBzw6NvIGVzY3JpdGFzIGVtIGxldHJhcyBtYWnDunNjdWxhcy4=";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-11').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python"># Por exemplo, se você deseja criar uma variável que armazena o valor de PI, você pode escrever a variável em letras maiúsculas para indicar que o valor não deve ser alterado. Porém, isso é apenas uma convenção e não impede que o valor da variável seja alterado, seja de propósito ou por engano.
+
+PI = 3.14159
+print(PI)
+PI = 3.14
+print(PI)</code></pre>
+            </div>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python"># Python é case-sensitive, o que significa que diferencia letras maiúsculas de minúsculas.
+
+PI = 3.14159
+pi = 3.14
+Pi = 3.1416
+pI = 3.141592
+
+print(PI)  # Exibe 3.14159
+print(pi)  # Exibe 3.14
+print(Pi)  # Exibe 3.1416
+print(pI)  # Exibe 3.141592
+
+# Apesar de para um humano os nomes parecerem semelhantes, para o Python eles são variáveis completamente diferentes. Portanto, é importante ser consistente ao nomear suas variáveis e prestar atenção às letras maiúsculas e minúsculas.
+
+# Obs.: Note que a IDE provavelmente irá destacar a variável escrita toda em maiúsculas (PI) de forma diferente das outras (pi, Pi, pI), indicando que é uma convenção para constantes.</code></pre>
+            </div>
+            <div class="cell-output">3.14159
+3.14
+3.1416
+3.141592
+</div>
+            <div class="cell cell-markdown" id="md-14"></div>
+            <script>
+                (function(){
+                    const b64 = "VmFtb3MgZGFyIHVtYSBvbGhhZGEgZW0gY29tbyBhcyB2YXJpw6F2ZWlzIGZ1bmNpb25hbSBuYSBtZW3Ds3JpYSBkbyBjb21wdXRhZG9yLgoKQXMgdmFyacOhdmVpcyBzw6NvIGNhcGF6ZXMgZGUgYXJtYXplbmFyIGRpZmVyZW50ZXMgdGlwb3MgZGUgdmFsb3JlcywgY29tbyBpbnRlaXJvcywgcG9udG8gZmx1dHVhbnRlLCBzdHJpbmdzLCBsaXN0YXMsIGRpY2lvbsOhcmlvcywgZXRjLgoKVW1hIHZhcmnDoXZlbCBkbyB0aXBvIGludGVpcm8gKGludCkgb2N1cGEgbWVub3MgZXNwYcOnbyBuYSBtZW3Ds3JpYSBkbyBxdWUgdW1hIHZhcmnDoXZlbCBkbyB0aXBvIHN0cmluZyAoc3RyKS4gTyBQeXRob24gcG9zc3VpIHVtYSBmdW7Dp8OjbyBjaGFtYWRhIGdldHNpemVvZigpIHF1ZSByZXRvcm5hIG8gdGFtYW5obyBlbSBieXRlcyBkZSB1bSBvYmpldG8uIFZhbW9zIHZlciB1bSBleGVtcGxvOg==";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-14').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python">from sys import getsizeof as tamanho # Você não precisa se preocupar com o que essa declaração significa por enquanto. Apenas saiba que estamos importando a função getsizeof() do módulo sys e atribuindo um novo nome a ela, tamanho para facilitar a chamada da função.
+
+# Aqui estamos chamando a função tamanho() e passando a variável mensagem como argumento para obter o tamanho da string em bytes.
+print(tamanho(mensagem))  # 69 bytes
+
+# &quot;Olá, Python!&quot; é uma string com 11 caracteres, então por que o tamanho da string é 69 bytes?
+
+# O Python armazena strings como objetos Unicode, que são mais complexos do que strings ASCII simples. Cada caractere em uma string Unicode é armazenado em 2 bytes, então a string &quot;Olá, Python!&quot; é armazenada em 22 bytes (11 caracteres * 2 bytes por caractere).
+
+# Além disso, o Python armazena informações adicionais sobre a string, como o tamanho da string e o tipo de codificação, que aumentam o tamanho total da string.
+
+# Vamos comparar o tamanho de uma variável inteira e uma string:
+numero = 42
+print(tamanho(numero))  # 28 bytes
+# Como podemos ver, a variável inteira ocupa menos espaço na memória do que a variável string.
+# Isso é importante a se considerar ao trabalhar com grandes quantidades de dados, pois o uso de tipos de dados mais eficientes pode ajudar a economizar memória e melhorar o desempenho do programa.</code></pre>
+            </div>
+            
+            <div class="cell cell-markdown" id="md-16"></div>
+            <script>
+                (function(){
+                    const b64 = "IyMgTm9tZXMgZGUgdmFyacOhdmVpcwotLS0KCkFzIHZhcmnDoXZlaXMgbsOjbyBhcGFyZWNlbSBlbSB1bSBwcm9ncmFtYSBhdXRvbWF0aWNhbWVudGUuIENvbW8gZGVzZW52b2x2ZWRvciwgdm9jw6ogZGV2ZSBkZWNpZGlyIHF1YW50YXMgdmFyacOhdmVpcyBlIHF1YWlzIHVzYXIgZW0gc2V1cyBwcm9ncmFtYXMuCgpBbyBjcmlhciB1bWEgdmFyacOhdmVsLCB2b2PDqiBkZXZlIHNlZ3VpciBhbGd1bWFzIHJlZ3JhcyBlc3RyaXRhcyBwcmEgbm9tZcOhLWxhczoKCi0gTyBub21lIGRhIHZhcmnDoXZlbCBkZXZlIHNlciBjb21wb3N0byBkZSBgbGV0cmFzIG1hacO6c2N1bGFzIG91IG1pbsO6c2N1bGFzLCBkw61naXRvcyBlIG8gY2FyYWN0ZXJlIF8gKHN1YmxpbmhhZG8pYAoKLSBPIG5vbWUgZGEgdmFyacOhdmVsIGRldmUgYGNvbWXDp2FyIGNvbSB1bWEgbGV0cmFgCgotIE8gY2FyYWN0ZXJlIGRlIGBzdWJsaW5oYWRvIMOpIGNvbnNpZGVyYWRvIHVtYSBsZXRyYWAKCi0gQXMgbGV0cmFzIGBtYWnDunNjdWxhcyBlIG1pbsO6c2N1bGFzYCBzw6NvIHRyYXRhZGFzIGNvbW8gYGRpZmVyZW50ZXNgICh1bSBwb3VjbyBkaWZlcmVudGUgZG8gcXVlIG5vIG11bmRvIHJlYWwgLSBBbGljZSBlIEFMSUNFIHPDo28gb3MgbWVzbW9zIG5vbWVzLCBtYXMgZW0gUHl0aG9uIHPDo28gZG9pcyBub21lcyBkZSB2YXJpw6F2ZWlzIGRpZmVyZW50ZXMgZSwgY29uc2VxdWVudGVtZW50ZSwgZHVhcyB2YXJpw6F2ZWlzIGRpZmVyZW50ZXMpCgotIE8gbm9tZSBkYSB2YXJpw6F2ZWwgYG7Do28gZGV2ZSBzZXIgbmVuaHVtYSBkYXMgcGFsYXZyYXMgcmVzZXJ2YWRhc2AgZG8gUHl0aG9uIChhcyBwYWxhdnJhcy1jaGF2ZSkuCgotIE8gUHl0aG9uIG7Do28gaW1ww7VlIHJlc3RyacOnw7VlcyBhbyBjb21wcmltZW50byBkb3Mgbm9tZXMgZGUgdmFyacOhdmVpcywgbWFzIGlzc28gbsOjbyBzaWduaWZpY2EgcXVlIHVtIG5vbWUgZGUgdmFyacOhdmVsIGxvbmdvIHNlamEgbWVsaG9yIGRvIHF1ZSB1bSBub21lIGN1cnRvIGUgdmljZSB2ZXJzYS4KCi0gTyBQeXRob24gcGVybWl0ZSBxdWUgdm9jw6ogdXNlIG7Do28gYXBlbmFzIGxldHJhcyBsYXRpbmFzLCBtYXMgdGFtYsOpbSBjYXJhY3RlcmVzIGVzcGVjw61maWNvcyBkZSBpZGlvbWFzIHF1ZSB1c2FtIG91dHJvcyBhbGZhYmV0b3MuCgpEaXRvIGlzc28sIHZlamFtb3MgYWxndW5zIGV4ZW1wbG9zIHbDoWxpZG9zIGUgaW52w6FsaWRvcyBwYXJhIG5vbWVzIGRlIHZhcmnDoXZlaXM6";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-16').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python"># Exemplos de nomes de variáveis válidos:
+
+# Em Python, a convenção para nomes de variáveis é usar letras minúsculas e sublinhados para separar nomes compostos. Esse é um padrão conhecido como notação snake_case.
+nome = &quot;Alice&quot;
+ano_nascimento = 1990
+saldo_conta = 1000.0
+
+# A notação snake_case é a convenção mais comum para separar palavras em nomes compostos, como `saldo_conta`.
+
+# Este padrão de nome de variável é conhecido como notação CamelCase.
+nomeCompleto = &quot;Bob Marley&quot;
+
+# A notação CamelCase é usada em outras linguagens de programação, como Java e C#, para nomes de variáveis e funções. Ela consiste em capitalizar a primeira letra de cada palavra, exceto a primeira palavra, sem espaços ou sublinhados. Em Python, a convenção é usar a notação snake_case, mas a notação CamelCase também é aceita. O importante é manter a consistência no estilo de nomenclatura ao longo do código.
+
+# Ao nomear uma variável, recomenda-se que o nome seja descritivo e que represente o valor que a variável armazena. No entanto, o nome da variável não pode começar com um número, mas pode conter números em qualquer outro lugar do nome.
+numero123 = 42
+
+# Este é um nome válido, mas que não tem um significado claro para propósito geral. Talvez em um contexto específico, esse nome faça sentido.
+ 
+
+# Em Python, a convenção para variáveis escritas completamente em maiúsculas é frequentemente usada para representar valores que não devem ser modificados ao longo do programa, indicando que são constantes. Essa prática é uma convenção para facilitar a identificação de valores imutáveis, embora a linguagem em si não impeça a modificação dessas variáveis.
+PI = 3.14159
+
+#  O nome de uma variável pode começar com um sublinhado, porém não é recomendado pois tem um significado especial em Python. 
+
+_endereco = &quot;Rua Principal&quot;
+# Em Python, uma variável iniciada com um sublinhado (_) é uma convenção para indicar que a variável é considerada &quot;privada&quot; ao módulo em que está definida. Essa prática é uma sugestão aos programadores para não acessarem diretamente a variável fora do escopo do módulo, embora a linguagem não impeça esse acesso. É uma convenção de boas práticas, não uma regra estrita de acesso restrito. Note que alguns IDEs podem usar essa convenção para ocultar variáveis iniciadas com sublinhado na lista de autocompletar ou exibi-las de forma diferenciada, como uma indicação visual de que são variáveis privadas.</code></pre>
+            </div>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python"># Vamos aos exemplos de nomes de variáveis inválidos:
+# Observação: os exemplos a seguir são inválidos e causarão um erro de sintaxe se você tentar executá-los, por isso estarão comentados.
+
+# 123numero = 42  # Inválido: começa com um número
+# nome variavel = &quot;John&quot;  # Inválido: espaço não é permitido
+# idade! = 30  # Inválido: caractere especial ! não é permitido
+# class = &quot;Programação&quot;  # Inválido: palavra-chave reservada do Python
+# minha-variavel = 10  # Inválido: hífen não é permitido pois é um operador em Python e isso confundiria o interpretador, causando um erro de sintaxe
+
+# Observação:
+
+# Lista de palavras-chave do Python (evitar como nomes de variáveis):
+# and, as, assert, break, class, continue, def, del, elif, else, except, False, finally, for, from, global, if, import, in, is, lambda, None, nonlocal, not, or, pass, raise, return, True, try, while, with, yield
+
+# A lista não precisa ser decorada, mas é útil saber que essas palavras-chave são reservadas para uso específico na linguagem Python e não podem ser usadas como nomes de variáveis.</code></pre>
+            </div>
+            
+            <div class="cell cell-markdown" id="md-19"></div>
+            <script>
+                (function(){
+                    const b64 = "IyMgQ29tbyBjcmlhciB2YXJpw6F2ZWlzCi0tLQoKTyB2YWxvciBkZSB1bWEgdmFyacOhdmVsIMOpIG8gcXVlIHZvY8OqIGNvbG9jYSBuZWxhLiBQb2RlIHZhcmlhciBjb20gYSBmcmVxdcOqbmNpYSBkZXNlamFkYS4gUG9kZSBzZXIgdW0gYGludGVpcm9gIHVtIG1vbWVudG8gZSB1bSBtb21lbnRvIGRlcG9pcywgc2UgdG9ybmFyIHVtYSBgc3RyaW5nYC4KClVtYSB2YXJpw6F2ZWwgcGFzc2EgYSBleGlzdGlyIGNvbW8gcmVzdWx0YWRvIGRhIGF0cmlidWnDp8OjbyBkZSB1bSB2YWxvciBhIGVsYS4gQW8gY29udHLDoXJpbyBkZSBvdXRyb3MgaWRpb21hcywgdm9jw6ogbsOjbyBwcmVjaXNhIGRlY2xhcsOhLWxvIGRlIG5lbmh1bWEgbWFuZWlyYSBlc3BlY2lhbC4gU2Ugdm9jw6ogYXRyaWJ1aXIgcXVhbHF1ZXIgdmFsb3IgYSB1bWEgdmFyacOhdmVsIGluZXhpc3RlbnRlLCBhIHZhcmnDoXZlbCBzZXLDoSBjcmlhZGEgYXV0b21hdGljYW1lbnRlLiBWb2PDqiBuw6NvIHByZWNpc2EgZmF6ZXIgbWFpcyBuYWRhLCBuZW0gbWVzbW8gZGVmaW5pciBvIHRpcG8gZGUgZGFkby4gTyBQeXRob24gc2UgZW5jYXJyZWdhIGRpc3NvLgoKQSBjcmlhw6fDo28gKG91IHNlamEsIHN1YSBzaW50YXhlKSDDqSBleHRyZW1hbWVudGUgc2ltcGxlcy4gQ29uc2lzdGUgZW06IAoKLSBOb21lYXIgYSB2YXJpw6F2ZWwsIHNlZ3VpbmRvIGFzIHJlZ3JhcyBkZWZpbmlkYXMgYW50ZXJpb3JtZW50ZS4KLSBVdGlsaXphciBvIGBzaW5hbCBkZSBhdHJpYnVpw6fDo28gKD0pYCAoRmFsYXJlbW9zIG1haXMgc29icmUgb3BlcmFkb3JlcyBhZGlhbnRlKQotIFNlZ3VpZG8gZG8gdmFsb3IgcXVlIGRlc2VqYSBjb2xvY2FyIG5hIHZhcmnDoXZlbC4KClBhcmEgbm9zIGFqdWRhciBhIGVudGVuZGVyIG8gcXVlIGVzdMOhIG51bWEgdmFyacOhdmVsLCBlc2NvbGhlbW9zIG5vbWVzIGRlc2NyaXRpdm9zIGVtIHZleiBkZSBhYnJldmlhw6fDtWVzIGUgZXRjLg==";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-19').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python"># Armazenar um valor em uma variável é como associar um endereço ou referência a um conteúdo específico na memória do computador.
+variavel = &quot;Conteúdo&quot;
+
+# Em Python a tipagem é dinâmica - (Tipos de dados serão abordados em detalhes mais adiante):
+
+# Isso significa que você não precisa especificar o tipo de uma variável ao criá-la. O Python infere automaticamente o tipo da variável com base no valor atribuído a ela.
+
+variavel = 10    # Python infere que a variável está armazenando um valor do tipo inteiro
+variavel = 10.0  # Agora, Python infere que a variável está armazenando um valor do tipo float
+variavel = &quot;10&quot;  # Agora, Python infere que a variável está armazenando um valor do tipo string</code></pre>
+            </div>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python"># É possível indicar o tipo de uma variável, mas não é necessário.
+# Para fins didáticos, iremos mostrar como fazer isso.
+
+# Tipagem estática
+exemplo: int = 10.
+# A partir do Python 3.6, é possível indicar o tipo de uma variável usando a sintaxe de anotação de tipo. Isso é chamado de tipagem estática. No entanto, isso não impede que a variável seja atribuída a um valor de outro tipo e, nesse caso, o Python irá inferir o tipo da variável com base no valor atribuído.
+
+# Neste exemplo acima, declaramos a variável como inteira, mas atribuímos um valor float.
+print(type(exemplo))    
+
+# Note que há um ponto no final do número 10. Isso é o mesmo que 10.0 - O zero após o ponto decimal pode ser omitido se for o único dígito após o ponto, tornando-o um número de ponto flutuante (float) e não um número inteiro (int). Assim como iria inferir o tipo string se o número fosse &quot;10.&quot;.
+
+# Então tenha em mente que o Python irá inferir o tipo da variável com base no valor atribuído a ela.
+
+# A tipagem estática só é útil para fins de documentação e para ajudar a identificar erros de tipo em tempo de desenvolvimento, mas você deve ser capaz de identificar o tipo da variável com base no valor atribuído a ela!
+
+# A sua IDE provavelmente vai sublinhar o tipo da variável para indicar que há uma inconsistência entre o tipo declarado e o valor atribuído mas o programa ainda funcionará normalmente.</code></pre>
+            </div>
+            
+            <div class="cell cell-markdown" id="md-22"></div>
+            <script>
+                (function(){
+                    const b64 = "IyMjIFV0aWxpemFuZG8gYXMgdmFyacOhdmVpcwoKVm9jw6ogdGVtIHBlcm1pc3PDo28gcGFyYSB1c2FyIHF1YW50YXMgZGVjbGFyYcOnw7VlcyBkZSB2YXJpw6F2ZWlzIGZvcmVtIG5lY2Vzc8OhcmlhcyBwYXJhIGF0aW5naXIgc2V1IG9iamV0aXZvLgpObyBlbnRhbnRvLCB2b2PDqiBuw6NvIHBvZGUgdXNhciB1bWEgdmFyacOhdmVsIHF1ZSBuw6NvIGV4aXN0ZSAoZW0gb3V0cmFzIHBhbGF2cmFzLCB1bWEgdmFyacOhdmVsIHF1ZSBuw6NvIHJlY2ViZXUgdW0gdmFsb3IpLgoKU2UgdGVudGFyIHV0aWxpemFyIHVtYSB2YXJpw6F2ZWwgcXVlIGFpbmRhIG7Do28gZm9pIGRlZmluaWRhLCBvIFB5dGhvbiBleGliaXLDoSB1bSBlcnJvIGRlIG5vbWUgbsOjbyBkZWZpbmlkbyBjb20gbWVuc2FnZW06CgpgYGBweXRob24KTmFtZUVycm9yOiBuYW1lICdub21lX2RhX3ZhcmlhdmVsJyBpcyBub3QgZGVmaW5lZAoKIyBPIGVycm8gZGUgZGVmaW5pw6fDo28gdGFtYsOpbSBzZSBkw6EgcXVhbmRvIHRlbnRhbW9zIGFjZXNzYXIgdW1hIHZhcmnDoXZlbCBxdWUgZm9pIGRlZmluaWRhIGVtIHVtIGVzY29wbyBkaWZlcmVudGUgZG8gYXR1YWwuCmBgYA==";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-22').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python"># Mensagens de erro são uma forma de o Python comunicar que algo deu errado durante a execução do programa. O Python tenta sempre indicar a linha e o motivo do erro para ajudar a identificar e corrigir o problema, mas nem sempre as mensagens de erro são claras e fáceis de entender, especialmente para iniciantes.
+
+# Veja o exemplo a seguir:
+nome_completo = &quot;Alice Silva&quot;
+
+print(nome completo)
+# SyntaxError: invalid syntax. Perhaps you forgot a comma?
+# Tradução: Erro de sintaxe: sintaxe inválida. Talvez você tenha esquecido de uma vírgula?
+
+# Nesse caso, o erro ocorre porque o Python não consegue encontrar a variável nome, pois o nome da variável é nome_completo mas esquecemos de colocar o sublinhado entre as palavras.
+# O Python interpreta nome completo como duas variáveis separadas (nome e completo), o que resulta em um erro de sintaxe, pois o Python espera uma vírgula ou um operador entre as duas variáveis. Devido isso, o texto da mensagem de erro cita a vírgula como uma possível causa do erro.
+
+# Um usuário novato poderia interpretar a mensagem de erro como se o nome da variável não estivesse definido e ficaria confuso, procurando a variável nome em vez de corrigir o erro de sintaxe. Ou se existisse uma variável chamada nome, o usuário poderia pensar que o erro está relacionado a essa variável, quando na verdade o problema é a falta do sublinhado entre as palavras no nome da variável correta.</code></pre>
+            </div>
+            
+            <div class="cell cell-markdown" id="md-24"></div>
+            <script>
+                (function(){
+                    const b64 = "IyMjIEF0dWFsaXphbmRvIHZhcmnDoXZlaXMKCkFzIHZhcmnDoXZlaXMgc8OjbyBjaGFtYWRhcyBkZSB2YXJpw6F2ZWlzIHBvcnF1ZSBvcyB2YWxvcmVzIHF1ZSBlbGFzIGFybWF6ZW5hbSBwb2RlbSBzZXIgYWx0ZXJhZG9zLgpQb2RlbW9zIGF0dWFsaXphciBhcyB2YXJpw6F2ZWlzIHF1YW50YXMgdmV6ZXMgcXVpc2VybW9zIGRhbmRvLWxoZSB1bSBub3ZvIHZhbG9yLg==";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-24').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python"># É importante entender que um programa é executado linha por linha (chamamos de script) e, à medida que o programa é executado, o valor associado a uma variável pode mudar. A última atribuição de valor a uma variável é a que prevalece.
+
+# Vamos usar um exemplo matemático para ilustrar a ideia de variáveis em programação. Em uma função matemática, quando você fornece um valor, ela retorna outro valor com base no que foi passado.
+
+# Por exemplo, se atribuirmos 2 a x, ele (x) irá armazenar esse valor de forma que sempre que o usarmos, ele será substituído pelo valor que foi atribuído a ele.
+
+x = 2
+y = x + 1  # Agora, y armazena o valor 3, já que x é 2 e somamos 1 a ele</code></pre>
+            </div>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python"># Em programação, você pode alterar o valor de uma variável em qualquer ponto do código após a sua criação e o novo valor é armazenado, esquecendo o valor anterior. Você pode alterar o valor associado a uma variável atribuindo um novo valor a ela.
+
+# Se mudarmos o valor de x, o valor de y não será automaticamente atualizado.
+
+x = 3
+# Agora, x é 3, mas y continua sendo 3, pois sua atribuição já foi feita. Devido a ordem de execução do código, o valor de y não é atualizado automaticamente quando o valor de x é alterado pois o código segue a ordem de execução linha por linha, de cima para baixo. (Salvo exceções como funções e loops)
+
+print(x)   # Saída: 3
+print(y)   # Saída: 3</code></pre>
+            </div>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python"># Se repetirmos agora a atribuição de y, ele será atualizado com o novo valor de x.
+y = x + 1  # Agora, y será atualizado com o novo valor de x, pois x agora é 3
+print(y)   # Saída: 4</code></pre>
+            </div>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python"># Vamos ver um exemplo mais prático. Faremos uma sequência de atribuições a uma variável chamada caixa para ilustrar como o valor associado a uma variável pode mudar ao longo do tempo e no final, qual é o valor que permanece na variável.
+
+caixa = &#x27;Conteúdo atual&#x27;    # O conteúdo original
+caixa = &#x27;Novo conteúdo&#x27;     # O conteúdo da caixa foi alterado
+caixa = 10                  # O conteúdo da caixa foi alterado novamente
+caixa = 10.5                # O conteúdo da caixa foi alterado mais uma vez
+# Sempre que um novo valor é atribuído, a variável esquece o valor anterior
+caixa = True                # O conteúdo da caixa foi alterado mais uma vez.
+
+# Será exibido o último valor atribuído à variável caixa
+print(caixa)                # Saída: True</code></pre>
+            </div>
+            
+            <div class="cell cell-markdown" id="md-29"></div>
+            <script>
+                (function(){
+                    const b64 = "UG9kZW1vcyBhdHJpYnVpciBxdWFscXVlciB0aXBvIGRlIHZhbG9yIGEgdW1hIHZhcmnDoXZlbCAoRmFsYXJlbW9zIHNvYnJlIHRpcG9zIGRlIGRhZG9zIG1haXMgYSBmcmVudGUgbWFzIHZlamEgYWxndW5zIGEgc2VndWlyKS4K";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-29').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python"># Tipos de dados em Python
+
+# Como vimos antes, devido a tipagem dinâmica do Python, não é necessário declarar o tipo de variável. O interpretador Python infere o tipo de variável a partir do valor atribuído a ela.
+
+inteiro = 42            # Exemplo de inteiro
+ponto_flutuante = 3.14  # Exemplo de float - serparamos os decimais com ponto em vez de vírgula.
+texto = &quot;Olá, Python!&quot;  # Exemplo de string
+booleano = True         # Exemplo de booleano
+lista = [1, 2, 3]       # Exemplo de variável composta (lista)</code></pre>
+            </div>
+            
+            <div class="cell cell-markdown" id="md-31"></div>
+            <script>
+                (function(){
+                    const b64 = "UG9yIGV4ZW1wbG8sIHNlIG8gaW50ZWlybyA0MiBmb3IgYXRyaWJ1w61kbyBhIHVtYSB2YXJpw6F2ZWwsIG8gUHl0aG9uIGluZmVyZSBxdWUgYSB2YXJpw6F2ZWwgw6kgZG8gdGlwbyBpbnRlaXJvLiBNYXMgc2UgY29sb2Nhcm1vcyB1bSBwb250byBkZWNpbWFsIG5vIGZpbmFsIGRvIG7Dum1lcm8sIG8gUHl0aG9uIGluZmVyZSBxdWUgYSB2YXJpw6F2ZWwgw6kgZG8gdGlwbyBmbG9hdCBlIHNlIGNvbG9jYXJtb3MgZW50cmUgYXNwYXMgaW5mZXJlIHF1ZSBhIHZhcmnDoXZlbCDDqSB1bWEgc3RyaW5nLg==";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-31').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python">inteiro = 42  # Agora, Python infere que a variável é do tipo int
+ponto_flutuante = 42.  # Agora, Python infere que a variável é do tipo float
+ponto_flutuante = .42  # Agora, Python infere que a variável é do tipo float
+texto = &#x27;42&#x27;    # Agora, Python infere que a variável é do tipo string
+
+# Os valores podem parecer iguais para um humano, mas para o Python, eles são de tipos diferentes.</code></pre>
+            </div>
+            
+            <div class="cell cell-markdown" id="md-33"></div>
+            <script>
+                (function(){
+                    const b64 = "QSBpbnN0cnXDp8OjbyBgdHlwZSgpYCByZXRvcm5hIG8gdGlwbyBkZSB1bSBvYmpldG8uIEVsYSDDqSDDunRpbCBwYXJhIHZlcmlmaWNhciBvIHRpcG8gZGUgdW1hIHZhcmnDoXZlbCBxdWFuZG8gbsOjbyB0ZW1vcyBjZXJ0ZXphLg==";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-33').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python">print(type(inteiro))         # Saída: &lt;class &#x27;int&#x27;&gt;
+
+# O resultado &lt;class &#x27;int&#x27;&gt; indica que a variável inteiro é do tipo inteiro (int). A função type() retorna o tipo de um objeto como um objeto de classe.</code></pre>
+            </div>
+            
+            <div class="cell cell-markdown" id="md-35"></div>
+            <script>
+                (function(){
+                    const b64 = "VGFtYsOpbSBwb2RlbW9zIGF0cmlidWlyIHVtYSB2YXJpw6F2ZWwgYSBvdXRyYSB2YXJpw6F2ZWwuIE5lc3NlIGNhc28gdXRpbGl6YW1vcyBvIG5vbWUgZGEgdmFyacOhdmVsIG5vIHByb2Nlc3NvIGRlIGF0cmlidWnDp8OjbywgcXVlIHJlcHJlc2VudGFyw6EgbyBzZXUgdmFsb3IuCgpMZW1icmFkbyBxdWUgcXVhbmRvIGF0dWFsaXphbW9zIHVtYSB2YXJpw6F2ZWwsIGVsYSBlc3F1ZWNlIG8gc2V1IHZhbG9yIGFudGVyaW9yLiBDb21vIG8gUHl0aG9uIHBlcmNvcnJlIG8gY8OzZGlnbyBkZSBjaW1hIHBhcmEgYmFpeG8sIGxpbmhhIHBvciBsaW5oYSwgYSB2YXJpw6F2ZWwgYXNzdW1lIG8gdmFsb3IgbWFpcyByZWNlbnRlIGF0cmlidcOtZG8gYSBlbGEuCgpWZWphbW9zIGFsZ3VucyBleGVtcGxvczo=";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-35').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python"># Primeiro um exemplo prático de atribuição de uma variável como valor de outra:
+
+a = 1 # A variável a recebe o valor 1
+print(&#x27;a vale&#x27;, a)
+
+b = 2 # A variável b recebe o valor 2
+print(&#x27;b vale&#x27;, b)</code></pre>
+            </div>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python"># Agora vamos atualizar o valor de a dando a ela o valor de b
+a = b # A variável a recebe o valor de b que é 2
+
+print(&#x27;Mostrando os valores atualizados:&#x27;)
+print(&#x27;a vale&#x27;, a) # A variável a agora tem o valor 2
+print(&#x27;b vale&#x27;, b) # A variável b continua com o valor 2
+
+# Agora a e b possuem o mesmo valor. Não só isso, a e b apontam para o mesmo objeto na memória. Para verificar isso, podemos usar a função id() que retorna o identificador único de um objeto.</code></pre>
+            </div>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python"># Para saber o id da variável, podemos usar a função id()
+print(&#x27;O id de a é:&#x27;, id(a)) 
+print(&#x27;O id de b é:&#x27;, id(b))
+
+# O id de a e b são iguais, isso significa que a e b apontam para o mesmo objeto na memória. Python se encarrega de gerenciar a memória e otimizar o uso de memória para valores imutáveis, como inteiros pequenos e strings curtas. Isso significa que, para valores pequenos, o Python reutiliza o mesmo objeto na memória, em vez de criar um novo objeto para cada valor.</code></pre>
+            </div>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python"># Vamos verificar esse comportamento criando duas variáveis com o mesmo valor em vez de atribuir uma variável à outra.
+f = 1
+g = 1
+print(&#x27;O id de f é:&#x27;, id(f)) 
+print(&#x27;O id de g é:&#x27;, id(g))
+
+# As variáveis f e g têm o mesmo valor, então o Python otimiza o uso de memória e faz com que f e g apontem para o mesmo objeto na memória em vez de criar dois objetos separados.
+
+# Esse comportamento afeta a comparação de variáveis em Python. Quando comparamos duas variáveis que apontam para o mesmo objeto na memória, o resultado da comparação será True, mesmo que as variáveis sejam diferentes.</code></pre>
+            </div>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python"># Se compararmos f e g usando o operador de igualdade (==), o resultado será True, pois os valores de f e g são iguais. E se compararmos f e g usando o operador de identidade (is), o resultado também será True, pois f e g apontam para o mesmo objeto na memória.
+print(f&#x27;f == g: {f == g}&#x27;) # Saída: True
+print(f&#x27;f is g: {f is g}&#x27;) # Saída: True</code></pre>
+            </div>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python"># Para valores maiores que 256 o Python não otimiza o uso de memória, então o id de h e i será diferente.
+h = 257
+i = 257
+
+print(&#x27;O id de h é:&#x27;, id(h)) 
+print(&#x27;O id de i é:&#x27;, id(i))
+
+print(f&#x27;h == i: {h == i}&#x27;) # Saída: True
+print(f&#x27;h is i: {h is i}&#x27;) # Saída: False
+
+# Pontos importantes sobre id():
+# Esse número é único para cada objeto enquanto ele existe. Dois objetos diferentes terão identificadores diferentes (exceto em casos de otimização para objetos imutáveis como inteiros pequenos ou strings curtas, que podem compartilhar o mesmo espaço na memória).
+
+# O valor numérico em si não é algo que você precisa entender diretamente, como um endereço físico na memória RAM. É uma abstração que Python usa para garantir que cada objeto seja distinguido corretamente.
+
+# O valor retornado por id() pode variar em diferentes execuções do programa, pois o Python pode alocar os objetos em diferentes endereços de memória cada vez que o código é executado.
+
+# Na maioria dos casos, você não usará o valor retornado por id() em cálculos ou como referência, já que o objetivo é apenas garantir a identidade do objeto.</code></pre>
+            </div>
+            
+            <div class="cell cell-markdown" id="md-42"></div>
+            <script>
+                (function(){
+                    const b64 = "QWdvcmEgcXVlIHNhYmVtb3MgcXVlIHBvZGVtb3MgYXRyaWJ1aXIgdW1hIHZhcmnDoXZlbCBhIG91dHJhLCBpbWFnaW5lIHF1ZSBxdWVyZW1vcyB0cm9jYXIgbyB2YWxvciBlbnRyZSBkdWFzIHZhcmnDoXZlaXMsIG91IHNlamEsIGZhemVyIGEgdmFsZXIgMiBlIGIgdmFsZXIgMSwgcG9yIGV4ZW1wbG8uCgpDb21vIHZpbW9zIGFudGVyaW9ybWVudGUsIGFvIGF0dWFsaXphciBvIHZhbG9yIGRlIHVtYSB2YXJpw6F2ZWwgZWxhIGVzcXVlY2Ugc2V1IHZhbG9yIGFudGVyaW9yIGrDoSBxdWUgY2FkYSBpbnN0cnXDp8OjbyDDqSBleGVjdXRhZGEgaW5kaXZpZHVhbG1lbnRlLCBkZSBjaW1hIHBhcmEgYmFpeG8uIFBvciBjb250YSBkaXNzbyBuw6NvIHNlcmlhIHBvc3PDrXZlbCBzaW1wbGVzbWVudGUgYXRyaWJ1aXIgYSBjb21vIHZhbG9yIGRlIGIgZSB2aWNlIHZlcnNhIG5hIGZvcm1hIHRyYWRkaWNpb25hbC4KClVtYSBmb3JtYSBkZSByZXNvbHZlciBvIHByb2JsZW1hIHNlcmlhIGNyaWFyIHVtYSB2YXJpw6F2ZWwgdGVtcG9yw6FyaWEgcXVlIGFybWF6ZW5hcmlhIHVtIGRvcyB2YWxvcmVzLg==";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-42').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python"># Trocando os valores entre duas variáveis: 
+
+# Criamos duas variáveis a e b com valores diferentes e queremos trocar os valores entre elas. Ou seja, queremos que a tenha o valor de b e b tenha o valor de a.
+a = 1
+b = 2
+print(&#x27;Antes da troca: a =&#x27;, a, &#x27;, b =&#x27;, b)</code></pre>
+            </div>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python"># Devido as regras de atribuição, não podemos fazer a = b e b = a para trocar os valores entre as variáveis a e b. Vamos ver o que acontece se tentarmos fazer isso:
+a = b # A variável a recebe o valor de b que é 2
+b = a # A variável b recebe o valor de a que é 2, já que a recebeu o valor de b na instrução anterior
+
+# O resultado é que ambas as variáveis têm o mesmo valor, que é 2. Portanto, não conseguimos trocar os valores entre as variáveis a e b dessa maneira. Este é um bom exemplo de um erro semântico, onde o código não faz o que o programador pretendia mas não gera um erro de sintaxe.
+
+print(&quot;Depois da troca: a =&quot;, a,&#x27;, b =&#x27;, b)</code></pre>
+            </div>
+            
+            <div class="cell cell-markdown" id="md-45"></div>
+            <script>
+                (function(){
+                    const b64 = "VmFtb3MgYW5hbGlzYXIgYXMgcG9zc8OtdmVpcyBzb2x1w6fDtWVzIHBhcmEgdHJvY2FyIG9zIHZhbG9yZXMgZW50cmUgZHVhcyB2YXJpw6F2ZWlzLg==";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-45').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python"># Primeiro caso: Usando uma variável temporária.
+# Consiste em usar uma terceira variável temporária para armazenar um dos valores antes de trocá-los. 
+
+a = 1 # a recebe o valor 1
+print(&#x27;a vale&#x27;, a) # Exibe o valor de a que é 1
+
+b = 2 # b recebe o valor 2
+print(&#x27;b vale&#x27;, b) # Exibe o valor de b que é 2
+
+# Como vimos, se utilizar a = b e b = a, o valor de a e b será 2 e não 1 como esperado, pois a variável a recebe o valor de b e depois a variável b recebe o valor de a, que já foi alterado, portanto, não conseguimos trocar os valores entre as variáveis a e b dessa maneira.
+
+# Para trocar os valores entre a e b, precisamos de uma variável temporária que chamaremos de t (de temporária) para armazenar temporariamente o valor de a antes de ser alterado.
+
+t = a # t recebe temporariamente o valor de a que é 1
+print(&#x27;t vale&#x27;, t) # Exibe o valor de t que é 1 que é o valor original de a
+
+print(&#x27;Valores atualizados:&#x27;)
+
+a = b # a recebe o valor de b que é 2. Nesse momento, a perde seu valor original (1), mas a variável t ainda o mantém devido a ordem de execução do código.
+print(&#x27;a vale&#x27;, a)
+
+# Agora b e a tem o mesmo valor e t vale 1
+b = t # b recebe o valor de t que é 1. Portanto atualizamos o valor de b para 1
+print(&#x27;b vale&#x27;, b)
+
+print(&#x27;t vale&#x27;, t) # Ao imprimir t, o valor 1 é exibido</code></pre>
+            </div>
+            
+            <div class="cell cell-markdown" id="md-47"></div>
+            <script>
+                (function(){
+                    const b64 = "T2J2aWFtZW50ZSBlc3RlIGV4ZW1wbG8gw6kgbXVpdG8gc2ltcGxlcyBlIHBvZGVyw61hbW9zIHNpbXBsZXNtZW50ZSBhdHVhbGl6YXIgbWFudWFsbWVudGUgYXMgdmFyacOhdmVpcywgcmVwZXRpbmRvIGEgYXRyaWJ1acOnw6NvIGNvbW8gdmVyZW1vcyBhYmFpeG8=";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-47').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python"># Neste exemplo teríamos que substituir o valor de cada variável manualmente.
+
+a = 1 # a recebe o valor 1
+print(&#x27;a vale&#x27;, a)
+
+b = 2 # b recebe o valor 2
+print(&#x27;b vale&#x27;, b)
+
+print(&#x27;Valores trocados:&#x27;)
+a = 2 # a recebe o valor 2
+print(&#x27;a vale&#x27;, a)
+
+b = 1 # b recebe o valor 1
+print(&#x27;b vale&#x27;, b)
+
+# Obviamente este exemplo parece fácil com duas variáveis, mas imagine se tivéssemos que trocar os valores entre 10 ou mais variáveis. Seria muito mais trabalhoso, repetitivo e propenso a erros.</code></pre>
+            </div>
+            
+            <div class="cell cell-markdown" id="md-49"></div>
+            <script>
+                (function(){
+                    const b64 = "RW0gY2Fzb3MgbWFpcyBjb21wbGV4b3MsIGNvbSBhIHRlY25pY2EgZGUgZGVzZW1wYWNvdGFtZW50byBwb2RlcsOtYW1vcyBmYXplciBhbGdvIHNlbWVsaGFudGUgZGUgZm9ybWEgbWFpcyBjb25jaXNhIGUgZWxlZ2FudGUuIEVzc2EgdMOpY25pY2EgYXByb3ZlaXRhIGEgY2FwYWNpZGFkZSBkbyBQeXRob24gZGUgcmVhbGl6YXIgYXRyaWJ1acOnw7VlcyBzaW11bHTDom5lYXMuIE5lc3RlIGNhc28sIG9zIHZhbG9yZXMgw6AgZGlyZWl0YSBkbyBzaW5hbCBkZSBpZ3VhbGRhZGUgc8OjbyBlbXBhY290YWRvcyBlbSB1bWEgdHVwbGEgKGIsIGEpIGUsIGVtIHNlZ3VpZGEsIGRlc2VtcGFjb3RhZG9zIG5hcyB2YXJpw6F2ZWlzIMOgIGVzcXVlcmRhIChhLCBiKS4gSXNzbyByZXN1bHRhIG5hIHRyb2NhIGRvcyB2YWxvcmVzIGVudHJlIGFzIHZhcmnDoXZlaXMgYSBlIGIgc2VtIGEgbmVjZXNzaWRhZGUgZGUgdW1hIHZhcmnDoXZlbCB0ZW1wb3LDoXJpYS4gCgpPYnMuOiBUdXBsYXMgc2Vyw6NvIGFib3JkYWRhcyBlbSBkZXRhbGhlcyBtYWlzIGFkaWFudGUu";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-49').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python"># O desempacotamento consiste em atribuir os valores de uma variável composta a variáveis individuais de uma só vez aproveitando uma caracteristica da linguagem Python que permite a troca de valores entre variáveis de forma mais simples e eficiente em uma única linha, sem a necessidade de uma variável temporária. Fazemos isso atribuindo os valores de uma tupla a variáveis individuais na ordem em que aparecem na tupla.
+
+# Novamente temos a e b com valores diferentes e queremos trocar os valores entre eles. Vamos ver como fazer isso usando o desempacotamento de tupla. (Redeclaramos as variáveis para evitar confusão com o exemplo anterior)
+
+a = 1 # a recebe o valor 1 inicialmente
+b = 2 # b recebe o valor 2 inicialmente
+print(&#x27;a vale&#x27;, a,&#x27;b vale&#x27;, b)
+
+a, b = b, a # a recebe o valor de b que é 2 e b recebe o valor de a que é 1
+
+# Dessa forma os valores originais não são perdidos pois a troca ocorre simultaneamente. Note que a instrução é semelhante a a = b e b = a, mas a troca ocorre simultaneamente em uma única linha.
+print(&#x27;a vale&#x27;, a,&#x27;b vale&#x27;, b)</code></pre>
+            </div>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python"># Na prática, oque acontece é que a, b que equivalem a 1, 2 são transformados em uma tupla (1, 2) e atribuídas a b, a respectivamente devido ao posicionamento dos valores na tupla.
+
+# a, b - Posição das variáveis
+# 1, 2 - Posição dos valores
+# b, a - Posição ao desempacotar
+
+# Vejamos o desempacotamento de tupla de outra forma:
+tupla = (1, 2) # Exemplo de tupla - uma variável composta imutável caracterizada por valores separados por vírgula e delimitados por parênteses
+
+a, b = tupla   # Desempacotamento de tupla. a recebe o primeiro valor da tupla e b recebe o segundo valor da tupla
+# Visualmente seria algo como:
+# tupla = (1, 2)
+#          a, b
+
+print(&#x27;a vale&#x27;, a,&#x27;b vale&#x27;, b)
+
+# Poderíamos fazer o contrário, ou seja, atribuir valores a uma tupla a partir de variáveis individuais.
+a = 1
+b = 2
+
+tupla = a, b # A tupla recebe os valores de a e b
+
+print(tupla) # Saída: (1, 2)    </code></pre>
+            </div>
+            
+            <div class="cell cell-markdown" id="md-52"></div>
+            <script>
+                (function(){
+                    const b64 = "T3V0cmEgdMOpY25pY2Egw7p0aWwgcXVhbmRvIHZvY8OqIGRlc2VqYSBpbmljaWFsaXphciB2w6FyaWFzIHZhcmnDoXZlaXMgY29tIG8gbWVzbW8gdmFsb3IsIGVjb25vbWl6YW5kbyBsaW5oYXMgZGUgY8OzZGlnbyBlIHRvcm5hbmRvIG8gY8OzZGlnbyBtYWlzIGNvbmNpc28gw6kgY2hhbWFkYSBkZSAiYXRyaWJ1acOnw6NvIGVtIGNhZGVpYSIgZW0gUHl0aG9uLg==";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-52').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python"># Atribuição em cadeia - Atribuir o mesmo valor a várias variáveis de uma só vez. 
+
+# Quando desejamos atribuir o mesmo valor a várias variáveis, podemos fazer isso em uma única linha, economizando linhas de código e tornando o código mais conciso.
+
+# Em vez de realizar as atribuições individualmente
+a = 0
+b = 0
+c = 0
+d = 0
+
+# Ou usar uma tupla com valores iguais
+tupla = (0, 0, 0, 0)
+a, b, c, d = tupla
+
+# Economizamos linhas e tronamos o código menos repetitivo usando a atribuição em cadeia
+
+a = b = c = d = 0 # a, b, c e d recebem o valor 0
+# se a recebe b, e b recebe c, e c recebe d, e d recebe 0, então a, b, c e d são iguais a 0
+
+# Oque ocorre é que o valor 0 é atribuído a variável d, depois o valor de d é atribuído a c, depois o valor de c é atribuído a b e por fim o valor de b é atribuído a a. Se analizarmos o id de cada variável veremos que são iguais, pois todas apontam para o mesmo objeto na memória.</code></pre>
+            </div>
+            
+            <div class="cell cell-markdown" id="md-54"></div>
+            <script>
+                (function(){
+                    const b64 = "TmVzdGUgY2FzbyBlc3BlY8OtZmljbywgdm9jw6ogZXN0w6EgYXRyaWJ1aW5kbyBvIHZhbG9yIDAgcGFyYSB0b2RhcyBhcyB2YXJpw6F2ZWlzIGEsIGIsIGMgZSBkIGVtIHVtYSDDum5pY2EgbGluaGEuCgpFc3NhIGZvcm1hIGRlIGF0cmlidWnDp8OjbyDDqSBwb3Nzw612ZWwgcG9ycXVlIG8gdmFsb3Igw6AgZGlyZWl0YSBkbyBzaW5hbCBkZSBpZ3VhbGRhZGUgw6kgYXZhbGlhZG8gYXBlbmFzIHVtYSB2ZXogZSBhdHJpYnXDrWRvIGEgdG9kYXMgYXMgdmFyacOhdmVpcyBkYSBlc3F1ZXJkYSBwYXJhIGEgZGlyZWl0YS4gUG9ydGFudG8sIHRvZGFzIGVzc2FzIHZhcmnDoXZlaXMgYWNhYmFtIGNvbSBvIG1lc21vIHZhbG9yLCBxdWUgw6kgMC4=";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-54').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            </div><script>hljs.highlightAll();</script>
+    </main>
+</body>
+</html>

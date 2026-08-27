@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>95_desafio.py</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="https://pyscript.net/releases/2024.1.1/core.css">
+    <script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>
+    <style>
+        .sandbox-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
+        .sandbox-header h2 { font-size: 1.2rem; color: var(--primary); display: flex; align-items: center; gap: 0.5rem; }
+        .py-repl-container { border-radius: 8px; overflow: hidden; border: 1px solid var(--glass-border); background: #1e293b; }
+    </style>
+    
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --glass-bg: rgba(30, 41, 59, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --primary: #38bdf8;
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        header {
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            border-bottom: 1px solid var(--glass-border);
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .back-btn {
+            color: var(--text-main);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            background: rgba(255,255,255,0.05);
+            transition: 0.3s;
+        }
+        .back-btn:hover {
+            background: rgba(56, 189, 248, 0.2);
+            color: var(--primary);
+        }
+        .file-title {
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+        main {
+            flex: 1;
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        .container {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="../index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Voltar</a>
+        <div class="file-title">95_desafio.py</div>
+    </header>
+    <main>
+        
+    <div class="container">
+        <div class="sandbox-header">
+            <h2><i class="fa-brands fa-python"></i> Sandbox PyScript</h2>
+            <span>Edite e execute (Shift + Enter) ou no botão verde ▶</span>
+        </div>
+        <div class="py-repl-container">
+            <script type="py" id="main-script"></script>
+            <py-repl auto-generate="true">
+# Exercício Python #095 - Aprimorando os Dicionários - Aula 00 até 19 - Mundo 3
+# Aprimore o desafio 93 para que ele funcione com vários jogadores, incluindo um sistema de visualização de detalhes do aproveitamento de cada jogador.
+from random import randint
+jogadores = []
+while True:
+    jogador = {}
+    jogador[&#x27;nome&#x27;] = str(input(&#x27;Nome do jogador: &#x27;))
+    jogos = int(input(f&#x27;Quantos jogos {jogador[&quot;nome&quot;]} jogou? &#x27;))
+    jogador[&#x27;gols&#x27;] = []
+
+    for jogo in range(jogos):
+        print(f&#x27;Gols marcados na {jogo + 1}º partida: &#x27;)
+        jogador[&quot;gols&quot;].append(randint(0, 4))
+
+    jogador[&quot;total&quot;] = sum(jogador[&quot;gols&quot;])
+    jogadores.append(jogador.copy())
+
+    continuar = &#x27;&#x27;
+    while continuar not in &#x27;SN&#x27;:
+        continuar = str(input(&#x27;Continuar? S/N &#x27;)).strip().upper()
+    else:
+        if continuar == &#x27;S&#x27;:
+            print(&#x27;Prosseguindo...&#x27;)
+        else:
+            print(&#x27;Encerrando...&#x27;)
+            break
+
+media = jogador[&quot;total&quot;] / jogos
+
+print(f&#x27;{&quot;Nome&quot;:^10}|{&quot;Gols&quot;:^15}|{&quot;Total&quot;:^10}|{&quot;Média&quot;:^10}&#x27;)
+
+for i, v in enumerate(jogadores):
+    print(f&#x27;{v[&quot;nome&quot;]:^10}|{str(v[&quot;gols&quot;]):^15}|{v[&quot;total&quot;]:^10}|{media:^10}&#x27;)
+
+# Loop para visualizar estatisticas individualmente
+while True:
+    ident = int(input(&#x27;Digite o ID do jogador:&#x27;))
+
+    # Verifica se o ID é válido
+    if 0 &lt;= ident &lt; len(jogadores):
+            print(
+                f&#x27;{jogadores[ident][&quot;nome&quot;]}, jogou {len(jogadores[ident][&quot;gols&quot;])} partidas e marcou {jogadores[ident][&quot;total&quot;]} gols. Média de {media} gols por partida.&#x27;)
+            for ind, gol in enumerate(jogadores[ident][&#x27;gols&#x27;], 1):
+                print(f&#x27;Partida {ind} - {gol} gols&#x27;)
+    else:
+        # Caso o ID seja inválido, exibe uma mensagem de erro
+        print(&#x27;ID do aluno inválido. Tente novamente.&#x27;)
+
+    continuar = str(input(&#x27;Ver outro aluno? S/N&#x27;)).strip().upper()
+
+    # Loop para garantir que o usuário forneça uma entrada válida
+    while continuar not in &#x27;SN&#x27;:
+        continuar = str(input(&#x27;Ver outro aluno? S/N&#x27;)).strip().upper()
+
+    # Se o usuário escolher &#x27;N&#x27;, encerra o programa
+    if continuar == &#x27;N&#x27;:
+        print(&#x27;Encerrando...&#x27;)
+        break
+    
+# Estou compartilhando minhas anotações sobre os exercícios. Quem quiser, pode copiar e colar em um documento .py pois está tudo formatado e comentado.
+
+# Nesse exercício, o professor pede para criar um programa que gerencie o aproveitamento de vários jogadores de futebol. O programa deve ler o nome do jogador, a quantidade de partidas disputadas e a quantidade de gols marcados em cada partida. No final, o programa deve mostrar o total de gols marcados pelo jogador.
+
+# Para resolver esse exercício, vamos criar uma lista chamada jogadores para armazenar os dados de vários jogadores. Vamos criar um dicionário chamado jogador para armazenar o nome, a quantidade de partidas e a quantidade de gols por partida. Vamos criar uma lista chamada gols para armazenar a quantidade de gols em cada partida.
+jogador = dict()
+jogadores = []
+gols = []
+
+# Vamos criar um laço de repetição para adicionar vários jogadores à lista jogadores. Dentro do laço, vamos pedir o nome do jogador e a quantidade de partidas disputadas.
+while True:
+        
+        # Vamos adicionar o nome do jogador ao dicionário jogador.
+        jogador[&#x27;nome&#x27;] = str(input(&#x27;Nome do jogador: &#x27;))
+        jogos = int(input(f&#x27;Quantos jogos {jogador[&quot;nome&quot;]} jogou? &#x27;))
+        
+        # Vamos criar um laço de repetição para adicionar a quantidade de gols em cada partida à lista gols.
+        for jogo in range(jogos):
+            gols.append(int(input(f&#x27;Gols marcados na {jogo + 1}º partida: &#x27;)))
+        
+        # Vamos adicionar a lista gols ao dicionário jogador.
+        jogador[&#x27;gols&#x27;] = gols.copy()
+        
+        # Vamos adicionar o total de gols ao dicionário jogador.
+        jogador[&#x27;total&#x27;] = sum(gols)
+        
+        # Vamos adicionar o dicionário jogador à lista jogadores.
+        jogadores.append(jogador.copy())
+        
+        # Vamos perguntar se o usuário deseja continuar adicionando jogadores.
+        continuar = &#x27;&#x27;
+        while continuar not in &#x27;SN&#x27;:
+            continuar = str(input(&#x27;Continuar? S/N &#x27;)).strip().upper()
+        else:
+            if continuar == &#x27;S&#x27;:
+                print(&#x27;Prosseguindo...&#x27;)
+            else:
+                print(&#x27;Encerrando...&#x27;)
+                break
+
+# Vamos calcular a média de gols por partida.
+media = jogador[&#x27;total&#x27;] / jogos
+
+# Vamos mostrar os dados dos jogadores na tela.
+print(f&#x27;{&quot;Nome&quot;:^10}|{&quot;Gols&quot;:^15}|{&quot;Total&quot;:^10}|{&quot;Média&quot;:^10}&#x27;)
+
+for i, v in enumerate(jogadores):
+    print(f&#x27;{v[&quot;nome&quot;]:^10}|{str(v[&quot;gols&quot;]):^15}|{v[&quot;total&quot;]:^10}|{media:^10}&#x27;)
+
+# Vamos criar um laço de repetição para visualizar as estatísticas de cada jogador individualmente.
+while True:
+    ident = int(input(&#x27;Digite o ID do jogador:&#x27;))
+
+    # Verificamos se o ID é válido.
+    if 0 &lt;= ident &lt; len(jogadores):
+            print(
+                f&#x27;{jogadores[ident][&quot;nome&quot;]}, jogou {len(jogadores[ident][&quot;gols&quot;])} partidas e marcou {jogadores[ident][&quot;total&quot;]} gols. Média de {media} gols por partida.&#x27;)
+            for ind, gol in enumerate(jogadores[ident][&#x27;gols&#x27;], 1):
+                print(f&#x27;Partida {ind} - {gol} gols&#x27;)
+    else:
+        # Caso o ID seja inválido, exibimos uma mensagem de erro.
+        print(&#x27;ID do aluno inválido. Tente novamente.&#x27;)
+
+    continuar = str(input(&#x27;Ver outro jogador? S/N&#x27;)).strip().upper()
+
+    # Laço para garantir que o usuário forneça uma entrada válida.
+    while continuar not in &#x27;SN&#x27;:
+        continuar = str(input(&#x27;Ver outro jogador? S/N&#x27;)).strip().upper()
+
+    # Se o usuário escolher &#x27;N&#x27;, encerramos o programa.
+    if continuar == &#x27;N&#x27;:
+        print(&#x27;Encerrando...&#x27;)
+        break
+
+
+            </py-repl>
+        </div>
+    </div>
+    
+    </main>
+</body>
+</html>

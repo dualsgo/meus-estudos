@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>03.5_usando_decisoes_complexas.py</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="https://pyscript.net/releases/2024.1.1/core.css">
+    <script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>
+    <style>
+        .sandbox-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
+        .sandbox-header h2 { font-size: 1.2rem; color: var(--primary); display: flex; align-items: center; gap: 0.5rem; }
+        .py-repl-container { border-radius: 8px; overflow: hidden; border: 1px solid var(--glass-border); background: #1e293b; }
+    </style>
+    
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --glass-bg: rgba(30, 41, 59, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --primary: #38bdf8;
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        header {
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            border-bottom: 1px solid var(--glass-border);
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .back-btn {
+            color: var(--text-main);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            background: rgba(255,255,255,0.05);
+            transition: 0.3s;
+        }
+        .back-btn:hover {
+            background: rgba(56, 189, 248, 0.2);
+            color: var(--primary);
+        }
+        .file-title {
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+        main {
+            flex: 1;
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        .container {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="../index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Voltar</a>
+        <div class="file-title">03.5_usando_decisoes_complexas.py</div>
+    </header>
+    <main>
+        
+    <div class="container">
+        <div class="sandbox-header">
+            <h2><i class="fa-brands fa-python"></i> Sandbox PyScript</h2>
+            <span>Edite e execute (Shift + Enter) ou no botão verde ▶</span>
+        </div>
+        <div class="py-repl-container">
+            <script type="py" id="main-script"></script>
+            <py-repl auto-generate="true">
+# MIMO - 03 - Declarações Condicionais
+
+# 03.5 - Usando decisões complexas
+
+# Operador and (e)
+
+# Vejamos como os programas atuam em decisões complexas. Sabemos como executar ou pular código como base em uma condição. Mas e se quiséssemos verificar duas ou mais condições?
+
+# O operador and nos permite executar código somente se ambas as condições forem True. Ele ignora o bloco de código se uma ou mais condições forem False.
+# Nesse exemplo só poderá dirigir se tiver 18 ou mais e possuir habilitação
+idade = 30
+carteira_habilitacao = True
+
+# Nesse exemplo só poderá dirigir se tiver 18 ou mais e possuir habilitação
+if idade &gt;= 18 and carteira_habilitacao == True:
+    # Se a idade for maior ou igual a 18 e possuir habilitação, o bloco if será executado.
+    print(&#x27;Pode dirigir.&#x27;)
+else:
+    # Se a idade for menor que 18 ou não possuir habilitação, o bloco else será executado.
+    print(&#x27;Não pode dirigir!&#x27;)
+
+# Podemos adicionar quantas condições quisermos
+
+# Operador or (ou)
+
+# Para executar o código quando uma das condições for True, usamos o operador or (ou). Com ele, o código só será ignorado se todas as condições forem False.
+
+# Nesse exemplo o aluno só será liberado se o pai ou a mãe estiverem presentes
+pai = False
+mae = False
+
+if pai or mae:
+    # Se o pai ou a mãe estiverem presentes, o bloco if será executado.
+    print(&#x27;Aluno liberado&#x27;)
+else:
+    # Se o pai e a mãe não estiverem presentes, o bloco else será executado.
+    print(&#x27;Aluno não liberado!&#x27;)
+
+# OPERADOR AND (e) - Ambos precisam ser True
+# TRUE + TRUE = TRUE
+# TRUE + FALSE = FALSE
+# FALSE + TRUE = FALSE
+# FALSE + FALSE = FALSE
+
+# OPERADOR OR (ou) - Pelo menos um precisa ser True
+# TRUE + TRUE = TRUE
+# TRUE + FALSE = TRUE
+# FALSE + TRUE = TRUE
+# FALSE + FALSE = FALSE
+
+# Podemos usar instruções if, elif e else dentro de outras. A indentação precisa ser colocada corretamente para separar as instruções
+idade = 14
+
+# Primeira condição - Verifica se tem pelo menos 16 anos. Se sim, o bloco if será executado.
+pode_votar = idade &gt;= 16
+
+# Segunda condição - Verifica se a idade está entre 18 e 70, para saber se o voto é obrigatório.
+obrigatorio = 18 &lt;= idade &lt;= 70
+
+if pode_votar:
+    # Se a idade for maior ou igual a 16, o bloco if será executado.
+    print(&#x27;Pode votar!&#x27;)
+    if obrigatorio:
+        # Se a idade for maior ou igual a 18 e menor ou igual a 70, o bloco if será executado.
+        print(&#x27;Voto obrigatório!&#x27;)
+    else:
+        # Se a idade for menor que 18 ou maior que 70, o bloco else será executado.
+        print(&#x27;Voto facultativo!&#x27;)
+else:
+    # Se a idade for menor que 16, o bloco else será executado.
+    print(&#x27;Não pode votar!&#x27;)
+
+            </py-repl>
+        </div>
+    </div>
+    
+    </main>
+</body>
+</html>

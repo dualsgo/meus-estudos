@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>105_desafio.py</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="https://pyscript.net/releases/2024.1.1/core.css">
+    <script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>
+    <style>
+        .sandbox-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
+        .sandbox-header h2 { font-size: 1.2rem; color: var(--primary); display: flex; align-items: center; gap: 0.5rem; }
+        .py-repl-container { border-radius: 8px; overflow: hidden; border: 1px solid var(--glass-border); background: #1e293b; }
+    </style>
+    
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --glass-bg: rgba(30, 41, 59, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --primary: #38bdf8;
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        header {
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            border-bottom: 1px solid var(--glass-border);
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .back-btn {
+            color: var(--text-main);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            background: rgba(255,255,255,0.05);
+            transition: 0.3s;
+        }
+        .back-btn:hover {
+            background: rgba(56, 189, 248, 0.2);
+            color: var(--primary);
+        }
+        .file-title {
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+        main {
+            flex: 1;
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        .container {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="../index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Voltar</a>
+        <div class="file-title">105_desafio.py</div>
+    </header>
+    <main>
+        
+    <div class="container">
+        <div class="sandbox-header">
+            <h2><i class="fa-brands fa-python"></i> Sandbox PyScript</h2>
+            <span>Edite e execute (Shift + Enter) ou no botão verde ▶</span>
+        </div>
+        <div class="py-repl-container">
+            <script type="py" id="main-script"></script>
+            <py-repl auto-generate="true">
+# Exercício Python #105 - Analisando e gerando Dicionários - Aula 00 até 21 - Mundo 3
+# Faça um programa que tenha uma função notas() que pode receber várias notas de alunos e vai retornar um dicionário com as seguintes informações:
+
+# - Quantidade de notas
+# - A maior nota
+# - A menor nota
+# - A média da turma
+# - A situação (opcional)
+
+# Adicione também as docstrings dessa função para consulta pelo desenvolvedor.
+
+&quot;&quot;&quot;def notas(*valores):
+    boletim = dict()
+    quantidade_notas = soma_notas = maior_nota = menor_nota = 0
+
+    while True:
+        boletim[&#x27;notas&#x27;] = float(input(&#x27;Digite a nota do aluno: &#x27;))
+
+        quantidade_notas += 1
+
+        if quantidade_notas == 1:
+            maior_nota = menor_nota = boletim[&#x27;notas&#x27;]
+        elif quantidade_notas &gt; 1:
+            if boletim[&#x27;notas&#x27;] &gt; maior_nota:
+                maior_nota = boletim[&#x27;notas&#x27;]
+            if boletim[&#x27;notas&#x27;] &lt; menor_nota:
+                menor_nota = boletim[&#x27;notas&#x27;]
+
+        soma_notas += boletim[&#x27;notas&#x27;]
+
+        continuar = str(input(&#x27;Continuar S/N&#x27;)).strip().upper()
+        while continuar not in &#x27;SN&#x27;:
+            continuar = str(input(&#x27;Comando inválido. Tente novamente&#x27;)).strip().upper()
+        if continuar in &#x27;N&#x27;:
+            media_turma = soma_notas / quantidade_notas
+            print(f&#x27;Foram cadastradas {quantidade_notas} notas.&#x27;)
+            print(f&#x27;A maior nota foi {maior_nota} e a menor {menor_nota}&#x27;)
+            print(f&#x27;A média da turma é {media_turma:.2f}&#x27;)
+            break
+        else:
+            print(&#x27;Seguindo...&#x27;)
+
+
+notas()&quot;&quot;&quot;
+
+
+# V2
+def valor_valido():
+    while True:
+        entrada = input(&#x27;Digite uma nota ou S para sair: &#x27;).strip().upper()
+        if entrada == &#x27;S&#x27;:
+            print(&#x27;Saindo...&#x27;)
+            return None
+        try:
+            valor = float(entrada)
+            return valor
+        except ValueError:
+            print(&#x27;Valor inválido! Por favor, digite um número válido.&#x27;)
+
+
+def notas(*notas_alunos):
+    if not notas_alunos:
+        print(&#x27;Nenhuma nota foi inserida.&#x27;)
+        return
+
+    print(f&#x27;Maior nota: {max(notas_alunos)}&#x27;)
+    print(f&#x27;Menor nota: {min(notas_alunos)}&#x27;)
+    media = sum(notas_alunos) / len(notas_alunos)
+    print(f&#x27;Média: {media:.2f}&#x27;)
+    situacao = &#x27;REPROVADO&#x27; if media &lt; 5 else &#x27;RECUPERAÇÃO&#x27; if media &lt; 7 else &#x27;APROVADO&#x27;
+    print(f&#x27;Situação: {situacao}&#x27;)
+
+
+notas_alunos = []
+while True:
+    nota = valor_valido()
+    if nota is None:
+        break
+    notas_alunos.append(nota)
+
+
+notas(*notas_alunos)
+
+# Estou compartilhando minhas anotações sobre os exercícios. Quem quiser, pode copiar e colar em um documento .py pois está tudo formatado e comentado.
+
+# Nesse exercício, temos que criar uma função chamada notas() que pode receber várias notas de alunos e vai retornar um dicionário com as seguintes informações:
+
+# - Quantidade de notas
+# - A maior nota
+# - A menor nota
+# - A média da turma
+# - A situação (opcional)
+# Adicione também as docstrings dessa função para consulta pelo desenvolvedor.
+
+# Primeiro vamos criar uma função chamada valor_valido() que vai receber uma nota do usuário e vai retornar um valor válido. Se o usuário digitar S, o programa vai encerrar. Se o usuário digitar um valor inválido, o programa vai exibir uma mensagem de erro e pedir para digitar novamente.
+def valor_valido():
+    while True:
+        entrada = input(&#x27;Digite uma nota ou S para sair: &#x27;).strip().upper()
+        if entrada == &#x27;S&#x27;:
+            print(&#x27;Saindo...&#x27;)
+            return None # Se o usuário digitar S, o programa vai exibir a mensagem &#x27;Saindo...&#x27; e vai retornar None para encerrar a função.
+        
+        # Se o usuário digitar um valor, o programa vai tentar converter esse valor para float para verificar se é um número válido. Se o valor for inválido, o programa vai exibir a mensagem &#x27;Valor inválido! Por favor, digite um número válido.&#x27; e vai pedir para digitar novamente.
+        try:
+            valor = float(entrada)
+            return valor
+        except ValueError:
+            print(&#x27;Valor inválido! Por favor, digite um número válido.&#x27;)
+            
+# Agora vamos criar a função notas() que vai receber várias notas de alunos e vai retornar um dicionário com as informações solicitadas.
+def notas(*notas_alunos):
+    if not notas_alunos:
+        print(&#x27;Nenhuma nota foi inserida.&#x27;)
+        return # Se nenhuma nota foi inserida, o programa vai exibir a mensagem &#x27;Nenhuma nota foi inserida.&#x27; e vai encerrar a função.
+
+    # Se notas foram inseridas, o programa vai exibir a maior nota, a menor nota, a média da turma e a situação do aluno.
+    print(f&#x27;Maior nota: {max(notas_alunos)}&#x27;)
+    print(f&#x27;Menor nota: {min(notas_alunos)}&#x27;)
+    media = sum(notas_alunos) / len(notas_alunos)
+    print(f&#x27;Média: {media:.2f}&#x27;)
+    situacao = &#x27;REPROVADO&#x27; if media &lt; 5 else &#x27;RECUPERAÇÃO&#x27; if media &lt; 7 else &#x27;APROVADO&#x27;
+    print(f&#x27;Situação: {situacao}&#x27;)
+
+# Por fim, vamos criar uma lista chamada notas_alunos que vai armazenar as notas dos alunos. Vamos criar um loop infinito que vai pedir para o usuário digitar uma nota. Se o usuário digitar S, o programa vai encerrar. Se o usuário digitar um valor válido, o programa vai adicionar a nota na lista notas_alunos.
+# Quando o usuário digitar S, o programa vai chamar a função notas() passando a lista notas_alunos como argumento.
+notas_alunos = []
+
+# Vamos criar um loop infinito para pedir as notas dos alunos. Cada nota será adicionada na lista notas_alunos.
+while True:
+    nota = valor_valido()
+    
+    # Se o usuário digitar S, o programa vai encerrar o loop.
+    if nota is None: # Se a função valor_valido() retornar None, o programa vai encerrar o loop. Isso ocorrerá se o usuário digitar S para sair na primeira pergunta. None é um valor especial em Python que representa a ausência de valor
+        break
+    notas_alunos.append(nota)
+    
+notas(*notas_alunos) # Por fim, vamos chamar a função notas() passando a lista notas_alunos como argumento. Se nenhuma nota foi inserida, a função vai exibir a mensagem &#x27;Nenhuma nota foi inserida.&#x27; e vai encerrar. Se notas foram inseridas, a função vai exibir a maior nota, a menor nota, a média da turma e a situação do aluno.
+            </py-repl>
+        </div>
+    </div>
+    
+    </main>
+</body>
+</html>

@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>107_desafio.py</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="https://pyscript.net/releases/2024.1.1/core.css">
+    <script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>
+    <style>
+        .sandbox-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
+        .sandbox-header h2 { font-size: 1.2rem; color: var(--primary); display: flex; align-items: center; gap: 0.5rem; }
+        .py-repl-container { border-radius: 8px; overflow: hidden; border: 1px solid var(--glass-border); background: #1e293b; }
+    </style>
+    
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --glass-bg: rgba(30, 41, 59, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --primary: #38bdf8;
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        header {
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            border-bottom: 1px solid var(--glass-border);
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .back-btn {
+            color: var(--text-main);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            background: rgba(255,255,255,0.05);
+            transition: 0.3s;
+        }
+        .back-btn:hover {
+            background: rgba(56, 189, 248, 0.2);
+            color: var(--primary);
+        }
+        .file-title {
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+        main {
+            flex: 1;
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        .container {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="../index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Voltar</a>
+        <div class="file-title">107_desafio.py</div>
+    </header>
+    <main>
+        
+    <div class="container">
+        <div class="sandbox-header">
+            <h2><i class="fa-brands fa-python"></i> Sandbox PyScript</h2>
+            <span>Edite e execute (Shift + Enter) ou no botão verde ▶</span>
+        </div>
+        <div class="py-repl-container">
+            <script type="py" id="main-script"></script>
+            <py-repl auto-generate="true">
+# Exercício Python #107 - Exercitando módulos em Python - Aula 00 até 22 - Mundo 3
+# Crie um módulo chamado moeda.py que tenha as funções incorporadas aumentar(), diminuir(), dobro() e metade(). Faça também um programa que importe esse módulo e use algumas dessas funções.
+
+import moeda
+
+numero_valido = moeda.obter_valor_inteiro(&#x27;Digite um valor: &#x27;)
+taxa = moeda.obter_valor_inteiro(&#x27;Digite a taxa: &#x27;)
+
+aumentado = moeda.aumentar(numero_valido, taxa)
+diminuido = moeda.diminuir(numero_valido, taxa)
+
+dobro = moeda.dobrar(numero_valido)
+metade = moeda.metade(numero_valido)
+
+print(f&quot;{&#x27;Valor:&#x27;:&lt;15}{f&#x27;R$ {numero_valido:&gt;10.2f}&#x27;}&quot;)
+print(f&quot;{&#x27;Aumentado 10%:&#x27;:&lt;15}{f&#x27;R$ {aumentado:&gt;10.2f}&#x27;}&quot;)
+print(f&quot;{&#x27;Diminuído 10%:&#x27;:&lt;15}{f&#x27;R$ {diminuido:&gt;10.2f}&#x27;}&quot;)
+print(f&quot;{&#x27;Dobro:&#x27;:&lt;15}{f&#x27;R$ {dobro:&gt;10.2f}&#x27;}&quot;)
+print(f&quot;{&#x27;Metade:&#x27;:&lt;15}{f&#x27;R$ {metade:&gt;10.2f}&#x27;}&quot;)
+
+# Estou compartilhando minhas anotações sobre os exercícios. Quem quiser, pode copiar e colar em um documento .py pois está tudo formatado e comentado.
+
+# Nesse exercício, temos que criar um módulo chamado moeda.py que vai ter as funções incorporadas aumentar(), diminuir(), dobro() e metade(). Depois, vamos criar um programa que importe esse módulo e use algumas dessas funções.
+
+# Aqui irei compartilhar todas as funções. Posteriormente você pode copiar e colar no arquivo moeda.py.
+
+# Primeiro vamos criar a função que será responsável por obter um valor inteiro válido.
+
+def obter_valor_inteiro(mensagem):
+    # Vamos usar um loop infinito para garantir que o usuário digite um valor válido.
+    while True:
+        # Vamos tentar converter a entrada do usuário para um número.
+        try:
+            entrada = float(input(mensagem)) # Vamos usar a função float() para converter a entrada para um número.
+            return entrada  # Se a conversão for bem sucedida, retornamos o valor.
+        # Se a conversão falhar, vamos tratar o erro.
+        except ValueError:
+            # Se o erro for do tipo ValueError, vamos exibir uma mensagem de erro.
+            print(&#x27;Apenas valores numéricos!&#x27;)
+        # Para tratar erros em geral, vamos usar a cláusula except sem especificar o tipo de erro.
+        except:
+            # Se o erro for de qualquer outro tipo, vamos exibir uma mensagem de erro.
+            print(&#x27;Erro inesperado!&#x27;)
+
+
+# NOTA: A função acima é uma demostração de validação de entrada. Ela não é a melhor forma de fazer isso, mas é uma forma simples e didática.
+
+# Agora vamos criar as funções que vão aumentar e diminuir um valor em uma taxa percentual.
+def aumentar(valor, taxa):
+    return valor + (valor * taxa / 100)
+
+
+def diminuir(valor, taxa):
+    return valor - (valor * taxa / 100)
+
+
+# Agora vamos criar as funções que vão dobrar e dividir pela metade um valor.
+def dobrar(valor):
+    return valor * 2
+
+
+def metade(valor):
+    return valor / 2
+
+# Agora vamos criar o programa que vai importar o módulo moeda.py e usar algumas dessas funções. Lembrando que o módulo moeda.py deve estar na mesma pasta que esse arquivo. Crie o aqruivo e copie e cole as funções nele.
+
+# import moeda
+numero_valido = obter_valor_inteiro(&#x27;Digite um valor: &#x27;) # Quando importamos um módulo, precisamos usar o nome do módulo antes da função. No caso, moeda.obter_valor_inteiro(), mas aqui não farei isso pois estou usando a função no mesmo arquivo.
+
+valor_taxa = obter_valor_inteiro(&#x27;Digite a taxa: &#x27;)
+
+# Vamos usar as funções
+aumentado = aumentar(numero_valido, valor_taxa)
+diminuido = diminuir(numero_valido, valor_taxa)
+
+dobro = dobrar(numero_valido)
+meio = metade(numero_valido)
+
+# Vamos exibir os resultados
+print(f&quot;{&#x27;Valor:&#x27;:&lt;15}{f&#x27;R$ {numero_valido:&gt;10.2f}&#x27;}&quot;)
+print(f&quot;{&#x27;Aumentado 10%:&#x27;:&lt;15}{f&#x27;R$ {aumentado:&gt;10.2f}&#x27;}&quot;)
+print(f&quot;{&#x27;Diminuído 10%:&#x27;:&lt;15}{f&#x27;R$ {diminuido:&gt;10.2f}&#x27;}&quot;)
+print(f&quot;{&#x27;Dobro:&#x27;:&lt;15}{f&#x27;R$ {dobro:&gt;10.2f}&#x27;}&quot;)
+
+
+            </py-repl>
+        </div>
+    </div>
+    
+    </main>
+</body>
+</html>

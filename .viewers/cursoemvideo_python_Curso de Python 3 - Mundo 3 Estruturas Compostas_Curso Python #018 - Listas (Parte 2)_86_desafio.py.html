@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>86_desafio.py</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="https://pyscript.net/releases/2024.1.1/core.css">
+    <script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>
+    <style>
+        .sandbox-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
+        .sandbox-header h2 { font-size: 1.2rem; color: var(--primary); display: flex; align-items: center; gap: 0.5rem; }
+        .py-repl-container { border-radius: 8px; overflow: hidden; border: 1px solid var(--glass-border); background: #1e293b; }
+    </style>
+    
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --glass-bg: rgba(30, 41, 59, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --primary: #38bdf8;
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        header {
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            border-bottom: 1px solid var(--glass-border);
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .back-btn {
+            color: var(--text-main);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            background: rgba(255,255,255,0.05);
+            transition: 0.3s;
+        }
+        .back-btn:hover {
+            background: rgba(56, 189, 248, 0.2);
+            color: var(--primary);
+        }
+        .file-title {
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+        main {
+            flex: 1;
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        .container {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="../index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Voltar</a>
+        <div class="file-title">86_desafio.py</div>
+    </header>
+    <main>
+        
+    <div class="container">
+        <div class="sandbox-header">
+            <h2><i class="fa-brands fa-python"></i> Sandbox PyScript</h2>
+            <span>Edite e execute (Shift + Enter) ou no botão verde ▶</span>
+        </div>
+        <div class="py-repl-container">
+            <script type="py" id="main-script"></script>
+            <py-repl auto-generate="true">
+# Exercício Python #086 - Matriz em Python - Aula 00 até 18 - Mundo 3
+# Crie um programa que declare uma matriz de dimensão 3x3 e preencha com valores lidos pelo teclado. No final, mostre a matriz na tela, com a formatação correta.
+
+from random import randint
+matriz = [[], [], []]
+
+for linha in range(3):
+    for coluna in range(3):
+        numero = randint(0, 99)
+        print(f&#x27;Digite o valor da posição [{linha}][{coluna}] - {numero}&#x27;)
+        matriz[linha].append(numero)
+
+for linha in range(3):
+    for coluna in range(3):
+        print(f&#x27;[ {matriz[linha][coluna]:2} ] &#x27;, end=&#x27;&#x27;)
+    print()
+
+# Resumida
+
+matriz = [[randint(0, 9) for i in range(3)] for i in range(3)]
+for linha in matriz:
+    print(*[f&#x27;[{valor:^3}]&#x27; for valor in linha], sep=&#x27;&#x27;, end=&#x27;\n&#x27;)
+
+# Versão atual
+
+matriz = [[randint(0, 9) for valor in range(3)] for linha in range(3)]
+for linha in matriz:
+	for valor in linha:
+		print(f&#x27;[{valor:^3}]&#x27;, end=&#x27; &#x27;)
+	print(&#x27;&#x27;)
+
+# Estou compartilhando minhas anotações sobre os exercícios. Quem quiser, pode copiar e colar em um documento .py pois está tudo formatado e comentado.
+
+# Nesse exercício, vamos criar um programa que declare uma matriz de dimensão 3x3 e preencha com valores lidos pelo teclado. No final, vamos exibir a matriz na tela, com a formatação correta.
+
+# Mais uma vez vamos solucionar o problema de duas formas: uma mais resumida e outra mais detalhada.
+
+matriz = [[], [], []] # Criando uma matriz 3x3
+
+# Vamos percorrer cada linha e cada coluna da matriz. Para cada posição, vamos solicitar um valor ao usuário e adicionar na matriz.
+for linha in range(3):
+    for coluna in range(3):
+        numero = int(input(f&#x27;Digite o valor da posição [{linha}][{coluna}]: &#x27;)) # Solicitando um valor ao usuário
+        matriz[linha].append(numero) # Adicionando o valor na matriz
+        
+# Explicando o laço:
+# 1. Vamos percorrer cada linha da matriz com for linha in range(3).
+# 2. Para cada linha, vamos percorrer cada coluna da matriz com for coluna in range(3).
+# 3. Para cada posição, vamos solicitar um valor ao usuário com input(f&#x27;Digite o valor da posição [{linha}][{coluna}]: &#x27;).
+# 4. O valor digitado será convertido para inteiro e armazenado na variável numero.
+# 5. Por fim, vamos adicionar o valor na matriz com matriz[linha].append(numero).
+
+# Ao final das iterações, vamos exibir a matriz na tela com a formatação correta.
+for linha in range(3):
+    for coluna in range(3):
+        print(f&#x27;[ {matriz[linha][coluna]:^5} ]&#x27;, end=&#x27;&#x27;) # Exibindo a matriz na tela
+    print() # Quebrando a linha
+
+# Explicando o laço:
+# 1. Vamos percorrer cada linha da matriz com for linha in range(3).
+# 2. Para cada linha, vamos percorrer cada coluna da matriz com for coluna in range(3).
+# 3. Para cada posição, vamos exibir o valor da matriz com print(f&#x27;[ {matriz[linha][coluna]:^5} ]&#x27;, end=&#x27;&#x27;).
+# 4. Por fim, vamos quebrar a linha com print() e exibir a próxima linha.
+
+# Agora vamos fazer uma versão mais resumida, com list comprehension e valores aleatórios.
+from random import randint
+
+# Criando uma matriz 3x3 com valores aleatórios
+matriz = [[randint(0, 9) for i in range(3)] for i in range(3)]
+
+# Exibindo a matriz na tela
+for linha in matriz:
+    print(*[f&#x27;[ {valor:^5} ]&#x27; for valor in linha], sep=&#x27;&#x27;, end=&#x27;\n&#x27;)
+    
+# Vamos entender o list comprehension:
+# A sinataxe que usamos foi [[randint(0, 9) for i in range(3)] for i in range(3)].
+
+# [randint(0, 9) for i in range(3)] cria uma lista com três valores aleatórios entre 0 e 9.
+# for i in range(3) repete o processo três vezes, criando uma lista com três sublistas
+            </py-repl>
+        </div>
+    </div>
+    
+    </main>
+</body>
+</html>

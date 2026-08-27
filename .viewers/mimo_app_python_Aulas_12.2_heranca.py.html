@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>12.2_heranca.py</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="https://pyscript.net/releases/2024.1.1/core.css">
+    <script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>
+    <style>
+        .sandbox-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
+        .sandbox-header h2 { font-size: 1.2rem; color: var(--primary); display: flex; align-items: center; gap: 0.5rem; }
+        .py-repl-container { border-radius: 8px; overflow: hidden; border: 1px solid var(--glass-border); background: #1e293b; }
+    </style>
+    
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --glass-bg: rgba(30, 41, 59, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --primary: #38bdf8;
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        header {
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            border-bottom: 1px solid var(--glass-border);
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .back-btn {
+            color: var(--text-main);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            background: rgba(255,255,255,0.05);
+            transition: 0.3s;
+        }
+        .back-btn:hover {
+            background: rgba(56, 189, 248, 0.2);
+            color: var(--primary);
+        }
+        .file-title {
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+        main {
+            flex: 1;
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        .container {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="../index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Voltar</a>
+        <div class="file-title">12.2_heranca.py</div>
+    </header>
+    <main>
+        
+    <div class="container">
+        <div class="sandbox-header">
+            <h2><i class="fa-brands fa-python"></i> Sandbox PyScript</h2>
+            <span>Edite e execute (Shift + Enter) ou no botão verde ▶</span>
+        </div>
+        <div class="py-repl-container">
+            <script type="py" id="main-script"></script>
+            <py-repl auto-generate="true">
+# MIMO - 12 - Programação Orientada a objetos
+# 12.2 - Aplicando herança
+
+# Como aprendemos anteriormente, OOP significa encapsular dados e funções relacionadas dentro de objetos
+# Quando criamos objetos um por um, nos deparamos com o problema de ter código duplicado.
+
+from typing import Any
+
+class Person1:
+  # Define a classe Person1
+  name = &#x27;John&#x27;
+  def greet(self):
+    # Define o método greet que imprime uma saudação usando o atributo name
+    print(f&#x27;Hello, my name is {self.name}&#x27;)
+class Person2:
+  # Define a classe Person2
+  name = &#x27;Mike&#x27;
+  def greet(self):
+    # Define o método greet que imprime uma saudação usando o atributo name
+    print(f&#x27;Hello, my name is {self.name}&#x27;)
+class Person3:
+  # Define a classe Person3
+  name = &#x27;Jane&#x27;
+  def greet(self):
+    # Define o método greet que imprime uma saudação usando o atributo name
+    print(f&#x27;Hello, my name is {self.name}&#x27;)
+
+# Usamos herança para tornar nosso código eficiente. Através de herança, as classes recebem métodos de outras classes.
+class Parent:
+  # Define a classe Parent
+  def __init__(self):
+    # Define o construtor da classe Parent que inicializa o atributo eyes
+    self.eyes = &#x27;brown&#x27;
+
+# Aqui vemos que a classe Child está herdando a classe Parent porque está entre parênteses após a definição da classe.
+class Child(Parent):
+  # Define a classe Child que herda da classe Parent
+  def __init__(self):
+    # Chama o construtor da classe Parent usando super() e inicializa o atributo age
+    super().__init__()
+    self.age = 7
+
+child = Child()
+print(child.eyes)  # Imprime o valor do atributo eyes herdado da classe Parent
+print(child.age)  # Imprime o valor do atributo age da classe Child
+
+# Vejamos como uma classe pode herdar métodos de outra. Ao definir a classe, adicionamos parênteses à classe que herdamos.
+class Greetings():
+  # Define a classe Greetings
+  def greet(self):
+    # Define o método greet que imprime &#x27;Hello!&#x27;
+    print(&#x27;Hello!&#x27;)
+# A classe Person agora pode usar métodos da Saudação como os seus.
+class Person(Greetings):
+  # Define a classe Person que herda da classe Greetings
+  name = &#x27;George&#x27;
+
+p = Person()
+p.greet()  # Chama o método greet herdado da classe Greetings
+
+# Podemos atualizar o funcionamento das classes definindo métodos diretamente na classe.
+class Car:
+  # Define a classe Car
+  def start_car(self):
+    # Define o método start_car que imprime &#x27;Starting the car&#x27;
+    print(&#x27;Starting the car&#x27;)
+class Hybrid(Car):
+  # Define a classe Hybrid que herda da classe Car
+  def charge(self):
+    # Define o método charge que imprime &#x27;Charging the battery&#x27;
+    print(&#x27;Charging the battery&#x27;)
+class Electric(Car):
+  # Define a classe Electric que herda da classe Car
+  def fuel(self):
+    # Define o método fuel que imprime &#x27;No fuel needed&#x27;
+    print(&#x27;No fuel needed&#x27;)
+
+prius = Hybrid()
+electric = Electric()
+prius.start_car()  # Chama o método start_car da classe Car herdado pela classe Hybrid
+electric.start_car()  # Chama o método start_car da classe Car herdado pela classe Electric
+prius.charge()  # Chama o método charge da classe Hybrid
+electric.fuel()  # Chama o método fuel da classe Electric
+
+# As classes contêm um método chamado construtor que define as propriedades de novos objetos, conhecidos como instâncias.
+class Person:
+  # Define a classe Person
+  def __init__(self, name, age):
+    # Define o construtor da classe Person que inicializa os atributos name e age
+    self.name = name
+    self.age = age
+
+sam = Person(&#x27;Sam&#x27;, 7)
+print(sam.name, sam.age)  # Imprime os valores dos atributos name e age da instância sam
+
+# Podemos usar o conceito de herança para reutilizar partes de código em nossas classes, tornando nosso código mais eficiente.
+class Person:
+  # Define a classe Person
+  def __init__(self, name, age):
+    # Define o construtor da classe Person que inicializa os atributos name e age
+    self.name = name
+    self.age = age
+  def greet(self):
+    # Define o método greet que imprime &#x27;Hello!&#x27;
+    print(&#x27;Hello!&#x27;)
+
+class Nurse(Person):
+  # Define a classe Nurse que herda da classe Person
+  def __init__(self, name, age):
+    # Chama o construtor da classe Person usando super() e inicializa o atributo name
+    super().__init__(&#x27;Nurse &#x27;+ name, age)
+  def intro(self):
+    # Define o método intro que imprime uma introdução
+    print(&quot;Hi, I&#x27;m Nurse &quot; + self.name)
+
+Person1 = Person(&#x27;John&#x27;, 36)
+Person2 = Nurse(&#x27;Jane&#x27;, 32)
+Person1.greet()  # Chama o método greet da classe Person
+Person2.intro()  # Chama o método intro da classe Nurse
+
+# Ao trabalhar com classes, temos que pensar um pouco em como aplicar herança. Suponha que queríamos modelar uma classe student em nosso código.
+
+# Queremos que Student funcione como Person, exceto que tenha um major. Se criarmos uma nova classe Student, acabaremos com código duplicado.
+
+# Em vez disso faz, faz mais sentido, neste caso, criar uma subclasse que herde o método greet() da classe Person, codificando (Person) após Student.
+
+class Student(Person):
+  # Define a classe Student que herda da classe Person
+  def __init__(self, name, age, major):
+    # Chama o construtor da classe Person usando super() e inicializa o atributo major
+    super().__init__(name, age)
+    self.major = major
+  def intro(self):
+    # Define o método intro que imprime uma introdução personalizada para Student
+    print(f&#x27;Hi, I am {self.name} and I study {self.major}&#x27;)
+            </py-repl>
+        </div>
+    </div>
+    
+    </main>
+</body>
+</html>

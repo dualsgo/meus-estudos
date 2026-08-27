@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>15.1_trabalhando_com_apis_privadas.py</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="https://pyscript.net/releases/2024.1.1/core.css">
+    <script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>
+    <style>
+        .sandbox-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
+        .sandbox-header h2 { font-size: 1.2rem; color: var(--primary); display: flex; align-items: center; gap: 0.5rem; }
+        .py-repl-container { border-radius: 8px; overflow: hidden; border: 1px solid var(--glass-border); background: #1e293b; }
+    </style>
+    
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --glass-bg: rgba(30, 41, 59, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --primary: #38bdf8;
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        header {
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            border-bottom: 1px solid var(--glass-border);
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .back-btn {
+            color: var(--text-main);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            background: rgba(255,255,255,0.05);
+            transition: 0.3s;
+        }
+        .back-btn:hover {
+            background: rgba(56, 189, 248, 0.2);
+            color: var(--primary);
+        }
+        .file-title {
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+        main {
+            flex: 1;
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        .container {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="../index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Voltar</a>
+        <div class="file-title">15.1_trabalhando_com_apis_privadas.py</div>
+    </header>
+    <main>
+        
+    <div class="container">
+        <div class="sandbox-header">
+            <h2><i class="fa-brands fa-python"></i> Sandbox PyScript</h2>
+            <span>Edite e execute (Shift + Enter) ou no botão verde ▶</span>
+        </div>
+        <div class="py-repl-container">
+            <script type="py" id="main-script"></script>
+            <py-repl auto-generate="true">
+# MIMO - 15 - Trabalhando com APIS privadas
+
+# 15.1 - Variáveis de Ambiente
+
+# Variáveis de ambiente armazenam configurações importantes, como senhas ou chaves de acesso, fora do seu código, tornando-as mais fáceis e seguras de gerenciar.
+
+# Variáveis de ambiente em Python permitem que você defina pares de chave-valor de forma segura para o seu código. Isso é muito útil para armazenar informações sensíveis.
+
+import os
+
+api_key = os.getenv(&quot;MY_API_KEY&quot;)
+print(api_key)
+
+# As variáveis de ambiente devem sempre ser armazenadas de forma segura para proteger informações sensíveis. Você nunca deve codificar suas chaves de API ou senhas; o exemplo a seguir é para fins educacionais para demonstrar sua estrutura.
+
+environment_variables = {
+  &quot;API_KEY&quot;: &quot;12345-abcde-67890-fghij-12345&quot;,
+  &quot;SECRET_KEY&quot;: &quot;mysecretkey&quot;
+}
+
+print(environment_variables)
+print(&quot;Don&#x27;t do the above! It&#x27;s dangerous to expose sensitive information directly in your code!&quot;)
+
+# Em vez de codificar informações sensíveis, usamos variáveis de ambiente definidas no ambiente de execução do código, mas não codificadas. Você pode acessar um conjunto no ambiente através de os.getenv.
+
+api_key = os.getenv(&quot;MY_API_KEY&quot;)
+print(api_key)
+
+# Você precisará do módulo OS para recuperar variáveis de ambiente dentro do seu script Python.
+
+# Você pode acessar variáveis de ambiente usando getenv e especificando a chave para os dados que deseja recuperar como parâmetro.
+
+# os é um módulo poderoso. Com sua função getenv, podemos recuperar uma única variável de ambiente por vez se fornecermos a chave.
+
+# Tradicionalmente, os desenvolvedores usavam arquivos .env para armazenar variáveis de ambiente. No entanto, ambientes de desenvolvimento mais modernos, como o Mimo, oferecem uma maneira mais amigável de configurar variáveis de ambiente.
+
+# O arquivo .env é um arquivo de texto que contém pares de chave-valor em linhas separadas.
+
+#API_KEY=12345-abcde-67890-fghij-12345
+#SECRET_KEY=mysecretkey.
+
+# Se você salvar suas variáveis de ambiente em um arquivo .env, você pode usar a biblioteca dotenv para carregá-las no seu ambiente. Uma vez carregados, você pode acessá-los usando os.getenv no seu código.
+
+import dotenv # Para ler variáveis de um arquivo .env em Python, precisamos importar dotenv.
+import os
+
+
+# Após importar a biblioteca dotenv, podemos carregar o conteúdo do arquivo .env usando o método load_dotenv.
+
+dotenv.load_dotenv()
+
+# Depois de carregarmos o arquivo .env com o método load_dotenv, podemos acessar as variáveis nele com os.getenv.
+api_key = os.getenv(&quot;API_KEY&quot;)
+print(api_key)
+
+# Quando você cria um projeto no Mimo, um ambiente de desenvolvimento moderno, você não precisa carregar o arquivo .env.
+
+# Ao trabalhar com variáveis de ambiente em Python, existem várias maneiras de carregá-las e acessá-las, dependendo das suas necessidades. Já vimos o os.getenv, agora, vamos explorar o os.environ.
+
+# Para acessar todas as variáveis de ambiente, usamos o dicionário os.environ. Cada variável de ambiente é armazenada neste dicionário.
+
+import os
+
+print(os.environ)
+
+# Em sistemas modernos, como o Mimo, as variáveis de ambiente já estão configuradas. No entanto, se você usar seu próprio arquivo .env, terá que carregá-lo primeiro através do método load_dotenv.
+
+# Assim como com os.getenv, você pode acessar uma variável de ambiente específica usando o dicionário os.environ.
+
+api_key = os.environ[&quot;API_KEY&quot;]
+print(api_key)
+
+# Lembre-se de que os.environ é um dicionário. Você pode usá-lo como qualquer outro dicionário.
+
+api_key = os.environ[&quot;API_KEY&quot;]
+
+# Enquanto os.getenv é um método que retorna um valor.
+
+secret_key = os.getenv(&quot;SECRET_KEY&quot;)
+
+print(api_key)
+print(secret_key)
+
+# Vamos explorar erros comuns com variáveis de ambiente em Python e como lidar com eles de forma eficaz.
+
+# Se consultarmos uma variável de ambiente inexistente usando os.getenv, o resultado será None. Se consultarmos uma variável de ambiente inexistente usando os.environ, isso gerará um KeyError porque a variável não existe.
+
+api_key = os.environ[&quot;NON_EXISTENT_KEY&quot;]
+print(api_key)
+
+# Você pode definir um valor padrão para uma variável de ambiente no código, mas nunca use uma chave privada para isso, a fim de garantir a segurança.
+
+api_key = os.getenv(&quot;NON_EXISTENT_KEY&quot;, &quot;default_value&quot;)
+            </py-repl>
+        </div>
+    </div>
+    
+    </main>
+</body>
+</html>

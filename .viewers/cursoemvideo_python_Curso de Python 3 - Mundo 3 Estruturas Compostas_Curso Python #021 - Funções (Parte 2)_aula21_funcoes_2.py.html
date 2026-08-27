@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>aula21_funcoes_2.py</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="https://pyscript.net/releases/2024.1.1/core.css">
+    <script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>
+    <style>
+        .sandbox-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
+        .sandbox-header h2 { font-size: 1.2rem; color: var(--primary); display: flex; align-items: center; gap: 0.5rem; }
+        .py-repl-container { border-radius: 8px; overflow: hidden; border: 1px solid var(--glass-border); background: #1e293b; }
+    </style>
+    
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --glass-bg: rgba(30, 41, 59, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --primary: #38bdf8;
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        header {
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            border-bottom: 1px solid var(--glass-border);
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .back-btn {
+            color: var(--text-main);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            background: rgba(255,255,255,0.05);
+            transition: 0.3s;
+        }
+        .back-btn:hover {
+            background: rgba(56, 189, 248, 0.2);
+            color: var(--primary);
+        }
+        .file-title {
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+        main {
+            flex: 1;
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        .container {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="../index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Voltar</a>
+        <div class="file-title">aula21_funcoes_2.py</div>
+    </header>
+    <main>
+        
+    <div class="container">
+        <div class="sandbox-header">
+            <h2><i class="fa-brands fa-python"></i> Sandbox PyScript</h2>
+            <span>Edite e execute (Shift + Enter) ou no botão verde ▶</span>
+        </div>
+        <div class="py-repl-container">
+            <script type="py" id="main-script"></script>
+            <py-repl auto-generate="true">
+# Curso Python #21 - Funções (Parte 2)
+# Nessa aula, vamos continuar nossos estudos de funções em Python, aprendendo mais sobre Interactive Help em Python, o uso de docstrings para documentar nossas funções, argumentos opcionais para dar mais dinamismo em funções Python, escopo de variáveis e retorno de resultados.
+
+# Interactive Help - usamos a função help() para obter a documentação
+# help(input)
+# print(input.__doc__)
+
+# docstrings - São strings com a documentação da função criada
+
+def contador(i, f, p):
+    &quot;&quot;&quot;
+    Faz uma contagem e mostra na tela.
+    :param i: INÍCIO da contagem
+    :param f: FIM da contagem
+    :param p: PASSO daa contagem
+    :return: Sem retorno
+    &quot;&quot;&quot;
+    c = i
+    while c &lt;= f:
+        print(f&#x27;{c}&#x27;, end=&#x27;..&#x27;)
+        c += p
+    print(&#x27;FIM!&#x27;)
+
+
+# help(contador)
+
+# Parâmetros opcionais - Atribui um valor padrão a um ou mais parâmetros caso não seja passado um valor pelo usuário. É usado para um número pré-definido de parâmetros. Caso seja um número desconhecido utilizar o desempacotamento
+def somar(a=0, b=0, c=0):
+    s = a + b + c
+    print(f&#x27;A soma vale {s}.&#x27;)
+
+
+# somar(c=3)
+
+# Escopo de variáveis
+def teste(b):
+    # global a - este comando trataria a como escopo global. A declaração abaixo atualizaria o valor original de 5 para 8
+    a = 8  # &quot;a&quot; dentro possui escopo local
+    b += 4  # &quot;b&quot; possui escopo local, recebe o valor original de &quot;a&quot; e incrementa 4
+    c = 2  # &quot;c&quot; possui escopo local
+    print(f&#x27;a local vale {a}.&#x27;)
+    print(f&#x27;b local vale {b}.&#x27;)
+    print(f&#x27;c local vale {c}.&#x27;)
+
+
+# Programa principal
+a = 5
+teste(a)  # O parâmetro b recebe o valor de a
+print(f&#x27;a global vale {a}.&#x27;)  # &quot;a&quot; fora tem escopo global e vale seu valor original
+# print(f&#x27;B dentro vale {b}.&#x27;)  Apesentaria erro devido ao escopo local
+# print(f&#x27;C dentro vale {c}.&#x27;)  Apesentaria erro devido ao escopo local
+
+
+# Retorno de valores - Usamos a palavra chave return
+
+def soma_valores(pri=0, seg=0, ter=0):
+    sv = pri + seg + ter
+    # print(f&#x27;A soma vale {sv}.&#x27;)
+    return sv  # Com return, o resultado é retornado e pode ser manipulado separadamente
+
+&quot;&quot;&quot;soma_valores(2, 5, 7)
+soma_valores(7, 8)
+soma_valores(9)
+# Nessa versão cada resultado é exibido separadamente com print()&quot;&quot;&quot;
+
+print(f&#x27;A somas valem {soma_valores(2, 5, 7)}, {soma_valores(7, 8)} e {soma_valores(9)}.&#x27;)
+            </py-repl>
+        </div>
+    </div>
+    
+    </main>
+</body>
+</html>

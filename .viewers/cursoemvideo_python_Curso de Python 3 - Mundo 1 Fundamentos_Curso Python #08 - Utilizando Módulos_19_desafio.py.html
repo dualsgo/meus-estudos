@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>19_desafio.py</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="https://pyscript.net/releases/2024.1.1/core.css">
+    <script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>
+    <style>
+        .sandbox-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
+        .sandbox-header h2 { font-size: 1.2rem; color: var(--primary); display: flex; align-items: center; gap: 0.5rem; }
+        .py-repl-container { border-radius: 8px; overflow: hidden; border: 1px solid var(--glass-border); background: #1e293b; }
+    </style>
+    
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --glass-bg: rgba(30, 41, 59, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --primary: #38bdf8;
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        header {
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            border-bottom: 1px solid var(--glass-border);
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .back-btn {
+            color: var(--text-main);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            background: rgba(255,255,255,0.05);
+            transition: 0.3s;
+        }
+        .back-btn:hover {
+            background: rgba(56, 189, 248, 0.2);
+            color: var(--primary);
+        }
+        .file-title {
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+        main {
+            flex: 1;
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        .container {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="../index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Voltar</a>
+        <div class="file-title">19_desafio.py</div>
+    </header>
+    <main>
+        
+    <div class="container">
+        <div class="sandbox-header">
+            <h2><i class="fa-brands fa-python"></i> Sandbox PyScript</h2>
+            <span>Edite e execute (Shift + Enter) ou no botão verde ▶</span>
+        </div>
+        <div class="py-repl-container">
+            <script type="py" id="main-script"></script>
+            <py-repl auto-generate="true">
+# Exercício Python #019 - Sorteando um item na lista - Aula 00 até 08 - Mundo 1
+# Um professor quer sortear um dos seus quatro alunos para apagar o quadro. Faça um programa que ajude ele, lendo o nome dos alunos e escrevendo na tela o nome do escolhido.
+
+from random import choice
+from emoji import emojize
+from time import sleep
+
+# Tarefa 1: Ler o nome dos alunos
+alunos = [str(input(emojize(&#x27;:estudante: Digite o nome do primeiro aluno: &#x27;, language=&#x27;pt&#x27;))), str(input(emojize(&#x27;:estudante: Digite o nome do segundo aluno: &#x27;, language=&#x27;pt&#x27;))), str(input(emojize(&#x27;:estudante: Digite o nome do terceiro aluno: &#x27;, language=&#x27;pt&#x27;))), str(input(emojize(&#x27;:estudante: Digite o nome do quarto aluno: &#x27;, language=&#x27;pt&#x27;)))]
+
+# Tarefa 2: Exibir o nome do aluno escolhido.
+escolhido = choice(alunos)
+print(&#x27;O aluno escolhido foi: &#x27;, end=&#x27;&#x27;)
+sleep(1)
+print(emojize(f&#x27;{escolhido} :professora:&#x27;, language=&#x27;pt&#x27;))
+
+# Versão 2
+
+while True:
+	try:
+		nomes = [input(f&#x27;Digite o nome do {i}º aluno: &#x27;).strip().title() for i in range(1, 5)]
+		escolhido = choice(nomes)
+		print(f&#x27;Uni, duni, tê...&#x27;)
+		print(f&#x27;O aluno escolhido foi você: {escolhido}&#x27;)
+		break
+	except Exception as e:
+		print(f&#x27;Ocorreu o erro: {e}&#x27;)
+
+# Versão 3 - Resumida
+
+print(f&#x27;O aluno escolhido foi: \033[1;32m{choice([input(f&#x27;{i}º aluno: &#x27;).strip().title() for i in range(1, 5)])}\033[m&#x27;)
+
+
+# Estou compartilhando minhas anotações sobre os exercícios. Quem quiser, pode copiar e colar em um documento .py pois está tudo formatado e comentado.
+
+# Nesse exercício, o programa solicita ao usuário o nome de quatro alunos e sorteia um deles para apagar o quadro.
+
+# Vamos aprender mais uma função do módulo random, a função choice(). A função choice() é utilizada para escolher um elemento aleatório de uma sequência, como uma lista. A função recebe como argumento uma sequência e retorna um elemento aleatório dessa sequência.
+
+# Primeiro, como sempre importamos a função que iremos utilizar do módulo random.
+from random import choice
+
+# Em seguida, utilizamos a função input() para solicitar o nome dos quatro alunos. Os nomes são armazenados em uma lista chamada alunos.
+# Como ainda não falamos sobre listas, vamos armazenar os nomes em variáveis separadas e só usaremos lista no final, quando chamarmos a função choice().
+aluno1 = str(input(&#x27;Digite o nome do primeiro aluno: &#x27;)).strip().title()
+aluno2 = str(input(&#x27;Digite o nome do segundo aluno: &#x27;)).strip().title()
+aluno3 = str(input(&#x27;Digite o nome do terceiro aluno: &#x27;)).strip().title()
+aluno4 = str(input(&#x27;Digite o nome do quarto aluno: &#x27;)).strip().title()
+
+# NOTA: A função input() retorna um valor do tipo string, então não é necessário utilizar a função str() para converter o valor digitado em string. Estamos utilizando para deixar claro que o valor digitado é uma string.
+
+# strip() e title() são métodos de strings que podem ser encadeados, ou seja, chamados em sequência. O método strip() remove espaços em branco no início e no final da string, enquanto o método title() deixa a primeira letra de cada palavra em maiúscula.
+
+# Com os nomes dos alunos armazenados, utilizamos a função choice() para escolher um aluno aleatório da lista alunos. O nome do aluno escolhido é armazenado na variável escolhido.
+escolhido = choice([aluno1, aluno2, aluno3, aluno4])
+
+# A função choice() recebe uma lista de alunos como argumento e retorna um dos nomes aleatoriamente. O nome do aluno escolhido é armazenado na variável escolhido. Dessa forma, fica fácil exibir o nome do aluno escolhido na tela.
+
+# Por fim, exibimos na tela o nome do aluno escolhido.
+print(f&#x27;O aluno escolhido foi: {escolhido}&#x27;)
+
+# NOTA: listas são um tipo de dado que armazena uma coleção de elementos. Cada elemento da lista é separado por vírgula e a lista é delimitada por colchetes. No exemplo acima, a lista alunos contém os nomes dos quatro alunos digitados pelo usuário. Falaremos mais sobre listas em aulas futuras. 
+            </py-repl>
+        </div>
+    </div>
+    
+    </main>
+</body>
+</html>

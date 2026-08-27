@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>aula19_dicionarios.py</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="https://pyscript.net/releases/2024.1.1/core.css">
+    <script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>
+    <style>
+        .sandbox-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
+        .sandbox-header h2 { font-size: 1.2rem; color: var(--primary); display: flex; align-items: center; gap: 0.5rem; }
+        .py-repl-container { border-radius: 8px; overflow: hidden; border: 1px solid var(--glass-border); background: #1e293b; }
+    </style>
+    
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --glass-bg: rgba(30, 41, 59, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --primary: #38bdf8;
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        header {
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            border-bottom: 1px solid var(--glass-border);
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .back-btn {
+            color: var(--text-main);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            background: rgba(255,255,255,0.05);
+            transition: 0.3s;
+        }
+        .back-btn:hover {
+            background: rgba(56, 189, 248, 0.2);
+            color: var(--primary);
+        }
+        .file-title {
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+        main {
+            flex: 1;
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        .container {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="../index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Voltar</a>
+        <div class="file-title">aula19_dicionarios.py</div>
+    </header>
+    <main>
+        
+    <div class="container">
+        <div class="sandbox-header">
+            <h2><i class="fa-brands fa-python"></i> Sandbox PyScript</h2>
+            <span>Edite e execute (Shift + Enter) ou no botão verde ▶</span>
+        </div>
+        <div class="py-repl-container">
+            <script type="py" id="main-script"></script>
+            <py-repl auto-generate="true">
+# Curso Python #19 - Dicionários
+# Nessa aula, vamos aprender o que são DICIONÁRIOS e como utilizar dicionários em Python. Os dicionários são variáveis compostas que permitem armazenar vários valores em uma mesma estrutura, acessíveis por chaves literais.
+
+# Listas compostas comportam um ou mais valores. Cada valor receberá um índice numérico, iniciando em zero para identificar sua posição. Os valores são elementos.
+# Com isso, podemos acessar os valores indicando sua posição
+
+# Com dicionários, podemos acessar os dados através das chaves. Isso facilita a identificação dos dados
+
+# Dicionários são identificados pelas chaves que envolvem os elementos.
+# Inicializando um dicionário com dados = dict() ou podemos declarar como dados = {}
+
+# Dentro das chaves, em vez de índices numéricos usamos chaves personalizadas
+dados = {&#x27;nome&#x27;: &#x27;Pedro&#x27;, &#x27;idade&#x27;: 25}
+
+# Para visualizar um determinado elemento declaramos da seguinte forma:
+print(dados[&#x27;nome&#x27;])  # Usamos a chave em vez do índice numérico
+
+# Para adicionar dados, é necessário somente declarar a lista, a nova chave entre colchetes e atribuir o valor
+dados[&#x27;sexo&#x27;] = &#x27;M&#x27;
+print(dados)
+
+# Podemos modificar da mesma forma:
+dados[&#x27;sexo&#x27;] = &#x27;F&#x27;
+
+# Para remover elementos utilizamos o comando del
+del dados[&#x27;idade&#x27;]
+print(dados)
+
+# Considerando a seguinte estrutura
+filme = {&#x27;titulo&#x27;: &#x27;Star Wars&#x27;,
+         &#x27;ano&#x27;: 1997,
+         &#x27;diretor&#x27;: &#x27;George Lucas&#x27;}
+
+# Podemos acessar itens, chaves ou valores
+
+print(filme.values())  # Retorna os valores:
+# dict_values([&#x27;Star Wars&#x27;, 1997, &#x27;George Lucas&#x27;])
+
+print(filme.keys())  # Retorna as chaves:
+# dict_keys([&#x27;titulo&#x27;, &#x27;ano&#x27;, &#x27;diretor&#x27;])
+
+print(filme.items())  # Retorna chaves e valores:
+# dict_items([(&#x27;titulo&#x27;, &#x27;Star Wars&#x27;), (&#x27;ano&#x27;, 1997), (&#x27;diretor&#x27;, &#x27;George Lucas&#x27;)])
+
+# Utilizando em laços
+
+for chave, valor in filme.items():
+    # O titulo é Star Wars
+    # O ano é 1997
+    # O diretor é George Lucas
+    print(f&#x27;O {chave} é {valor}&#x27;)
+
+# Podemos utiliza listas, tuplas e dicionários em conjunto
+locadora = [
+        {&#x27;titulo&#x27;: &#x27;Star Wars&#x27;,
+         &#x27;ano&#x27;: 1997,
+         &#x27;diretor&#x27;: &#x27;George Lucas&#x27;},
+        {&#x27;titulo&#x27;: &#x27;Avengers&#x27;,
+         &#x27;ano&#x27;: 2012,
+         &#x27;diretor&#x27;: &#x27;Joss Whedon&#x27;},
+        {&#x27;titulo&#x27;: &#x27;Matrix&#x27;,
+         &#x27;ano&#x27;: 1999,
+         &#x27;diretor&#x27;: &#x27;Wachowski&#x27;}]
+
+# Cada dicionário é um elemento e recebe seu índice dentro da lista, assim como cada par de chave e valor do dicionário é um elemento.
+
+# Acessamos primeiro o elemento da lista e depois a chave desejada ou até mesmo o dicionário completo
+print(locadora[0][&#x27;ano&#x27;])  # 1997
+print(locadora[2][&#x27;titulo&#x27;])  # Matrix
+print(locadora[1])  #  {&#x27;titulo&#x27;: &#x27;Avengers&#x27;, &#x27;ano&#x27;: 2012, &#x27;diretor&#x27;: &#x27;Joss Whedon&#x27;}
+
+pessoas = {&#x27;nome&#x27;: &#x27;Gustavo&#x27;, &#x27;sexo&#x27;: &#x27;M&#x27;, &#x27;idade&#x27;: 22}
+print(pessoas)
+print(pessoas[&#x27;nome&#x27;])
+print(pessoas[&#x27;idade&#x27;])
+# Ao utilizar em uma string formatada, deve-se ter atenção ao uso de aspas simples e duplas
+print(f&#x27;O {pessoas[&quot;nome&quot;]} tem {pessoas[&quot;idade&quot;]} anos.&#x27;)
+print(pessoas.keys())  # dict_keys([&#x27;nome&#x27;, &#x27;sexo&#x27;, &#x27;idade&#x27;])
+print(pessoas.values())  # dict_values([&#x27;Gustavo&#x27;, &#x27;M&#x27;, 22])
+print(pessoas.items())  # dict_items([(&#x27;nome&#x27;, &#x27;Gustavo&#x27;), (&#x27;sexo&#x27;, &#x27;M&#x27;), (&#x27;idade&#x27;, 22)])
+
+# Dicionários não suportam fatiamento como as lista. Utilizamos o método interno .copy() para contornar essa limitação
+brasil = []
+estados = {}
+for loop in range(3):
+    estados[&#x27;uf&#x27;] = str(input(&#x27;Unidade Federativa: &#x27;))
+    estados[&#x27;sigla&#x27;] = str(input(&#x27;Sigla: &#x27;))
+    brasil.append(estados.copy())
+
+# Laço para a lista
+for e in brasil:
+    # laço para o dicionario
+    for v in e.values():
+        print(v, end=&#x27; - &#x27;)
+    print()
+            </py-repl>
+        </div>
+    </div>
+    
+    </main>
+</body>
+</html>

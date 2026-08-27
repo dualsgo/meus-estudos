@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>11.4_construtores.py</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="https://pyscript.net/releases/2024.1.1/core.css">
+    <script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>
+    <style>
+        .sandbox-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
+        .sandbox-header h2 { font-size: 1.2rem; color: var(--primary); display: flex; align-items: center; gap: 0.5rem; }
+        .py-repl-container { border-radius: 8px; overflow: hidden; border: 1px solid var(--glass-border); background: #1e293b; }
+    </style>
+    
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --glass-bg: rgba(30, 41, 59, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --primary: #38bdf8;
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        header {
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            border-bottom: 1px solid var(--glass-border);
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .back-btn {
+            color: var(--text-main);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            background: rgba(255,255,255,0.05);
+            transition: 0.3s;
+        }
+        .back-btn:hover {
+            background: rgba(56, 189, 248, 0.2);
+            color: var(--primary);
+        }
+        .file-title {
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+        main {
+            flex: 1;
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        .container {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="../index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Voltar</a>
+        <div class="file-title">11.4_construtores.py</div>
+    </header>
+    <main>
+        
+    <div class="container">
+        <div class="sandbox-header">
+            <h2><i class="fa-brands fa-python"></i> Sandbox PyScript</h2>
+            <span>Edite e execute (Shift + Enter) ou no botão verde ▶</span>
+        </div>
+        <div class="py-repl-container">
+            <script type="py" id="main-script"></script>
+            <py-repl auto-generate="true">
+# MIMO - 11 - Classes
+# 11.4 - Construtores
+
+# Existe um método que podemos usar que é mais flexível ao criar diferentes instâncias de uma classe. É chamado de método construtor.
+
+class VirtualPet:
+    # O método construtor se parece com __init__() e nos permite definir valores exclusivos para as variáveis de classe quando criamos uma instância. Para adicionar essa flexibilidade às nossas classes, começamos adicionando a função de construção, que se parece com __init__().
+
+    def __init__(self, color):
+        # Assim como acontece com os métodos de classe regulares, precisamos adicionar self como o primeiro parâmetro método construtor. A seguir, adicionamos os parâmetros para os valores personalizados que queremos definir ao criar uma instância, como acontece com color aqui.
+
+        self.color = color
+        # Em seguida definimos o valor codificando self, um ponto e o nome do parâmetro e, em seguida, igualando-o ao valor do parâmetro novamente. Isso faz com que o valor do parâmetro seja atribuído à variável de classe color. O valor será diferente para cada instância que criarmos, sendo definido quando criamos a instância e passamos o valor do parâmetro.
+
+    def display_color(self):
+        # Podemos acessar os parâmetros de outros locais na definição da classe usando self. Aqui, usamos self.color para acessar o valor do parâmetro color.
+        print(self.color)
+
+    # Em vez de uma definição de classe que terá sempre a mesma cor, como:
+    # color = &quot;brown&quot;
+    # um método construtor nos permite especificar o que queremos ao criá-la
+
+# Quando criamos uma instância a partir da definição de classe, podemos passar valores únicos entre parênteses, como acontece com rocky e benny aqui.
+
+
+rocky = VirtualPet(&quot;brown&quot;)
+benny = VirtualPet(&quot;black&quot;)
+
+print(rocky.color)
+print(benny.color)
+rocky.display_color()
+            </py-repl>
+        </div>
+    </div>
+    
+    </main>
+</body>
+</html>

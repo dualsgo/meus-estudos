@@ -4,5 +4,8 @@
   },
   "python.formatting.provider": "none",
   "python.analysis.autoImportCompletions": true,
-  "python.analysis.typeCheckingMode": "basic"
+  "python.analysis.typeCheckingMode": "basic",
+  "python.analysis.extraPaths": [
+    "./cursoemvideo_python/Curso de Python 3 - Mundo 3 Estruturas Compostas/Curso Python #022 - Módulos e Pacotes/pacoteexercicios"
+  ]
 }

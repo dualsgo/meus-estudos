@@ -1,0 +1,30 @@
+<!-- MIMO 13 - Noções básicas de acessibilidade em HTML -->
+
+<!-- 13.2 - Atributos acessiveis do HTML -->
+
+<!-- Vimos como manter nosso código organizado e contextualizado é uma ótima maneira de contribuir para a acessibilidade. Mas podemos fazer mais! Podemos também incluir tags e atributos HTML relevantes para ajudar a melhorar a acessibilidade.-->
+
+<!-- Devemos usar as tags corretas para o seu propósito. Por exemplo, <button> quando há uma ação e <a> quando há um redirecionamento. É importante usar chamadas de ação descritivas para botões e links, para que os usuários saibam o que acontecerá se interagirem com eles.-->
+
+
+<p>Here is some information on the product, but you can find more info pressing the nextbutton.</p>
+
+<button>Click for more info</button> <!-- Esse botão não tem uma descrição clara do que acontecerá se o usuário clicar nele. Poderiamos melhorar isso adicionando um atributo title. -->
+<button title="Click to see more information">Click for more info</button> <!-- Agora o usuário sabe o que acontecerá se clicar no botão. -->
+
+<br>
+<br>
+<p>You can also visit our website for more products:</p>
+<a href="">Visit the supplier website</a> <!-- Esses links não têm um destino claro. Poderiamos melhorar isso adicionando um atributo title. -->
+<a href="https://www.supplierwebsite.com" title="Visit the supplier website">Visit the supplier website</a> <!-- Agora o usuário sabe para onde será redirecionado se clicar no link. -->
+
+
+<!-- Textos alternativos dão contexto para leitores de tela e fornecem descrições úteis quando as imagens não carregam. As descrições de imagens devem ser concisas e detalhadas. Quando as imagens são apenas decorações, incluímos textos alternativos vazios alt="".-->
+
+
+<h2>New treatment for anxiety</h2>
+<p>A new study has found that the combination of psychological therapies has better outcomes than a single treatment separately</p>
+<img src="https://mimo.app/i/beach.png" alt="" />
+
+
+<!-- Outro atributo útil é lang. Quando o definimos corretamente na tag html, ele ajuda os leitores de tela a saberem qual idioma usar. -->

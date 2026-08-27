@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>10_mais_funcoes.ipynb</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/monokai-sublime.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/python.min.js"></script>
+    
+    <style>
+        .cell { margin-bottom: 1.5rem; }
+        .cell-markdown { font-size: 1.05rem; line-height: 1.6; color: #cbd5e1; }
+        .cell-markdown h1, .cell-markdown h2, .cell-markdown h3 { color: #f1f5f9; margin-top: 1rem; margin-bottom: 0.5rem; }
+        .cell-markdown code { background: rgba(0,0,0,0.3); padding: 0.2rem 0.4rem; border-radius: 4px; color: #eab308; }
+        .cell-markdown pre { background: rgba(0,0,0,0.3); padding: 1rem; border-radius: 8px; overflow-x: auto; border: 1px solid var(--glass-border); margin: 1rem 0; }
+        .cell-code { background: #23241f; border-radius: 8px; padding: 1rem; overflow-x: auto; position: relative; border: 1px solid #333; }
+        .cell-output { background: #000; color: #a3e635; padding: 1rem; border-radius: 8px; margin-top: 0.5rem; font-family: monospace; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;}
+        .prompt { position: absolute; top: 0.5rem; right: 0.5rem; color: #64748b; font-size: 0.8rem; user-select: none; }
+    </style>
+    
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --glass-bg: rgba(30, 41, 59, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --primary: #38bdf8;
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        header {
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            border-bottom: 1px solid var(--glass-border);
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .back-btn {
+            color: var(--text-main);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            background: rgba(255,255,255,0.05);
+            transition: 0.3s;
+        }
+        .back-btn:hover {
+            background: rgba(56, 189, 248, 0.2);
+            color: var(--primary);
+        }
+        .file-title {
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+        main {
+            flex: 1;
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        .container {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="../index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Voltar</a>
+        <div class="file-title">10_mais_funcoes.ipynb</div>
+    </header>
+    <main>
+        <div class="container">
+            <div class="cell cell-markdown" id="md-0"></div>
+            <script>
+                (function(){
+                    const b64 = "IyBJbnRlcmFjdGl2ZSBIZWxwCgpFbSBQeXRob24sIGEgZnVuw6fDo28gYGhlbHAoKWAgw6kgdW1hIGZlcnJhbWVudGEgw7p0aWwgcGFyYSBvYnRlciBpbmZvcm1hw6fDtWVzIHNvYnJlIG3Ds2R1bG9zLCBmdW7Dp8O1ZXMsIGNsYXNzZXMgZSBtw6l0b2Rvcy4gRWxhIGZvcm5lY2UgdW1hIGRlc2NyacOnw6NvIGludGVyYXRpdmEgZGEgZG9jdW1lbnRhw6fDo28gYXNzb2NpYWRhIGEgdW0gb2JqZXRvIGVzcGVjw61maWNvLiBRdWFuZG8gdm9jw6ogY2hhbWEgYSBmdW7Dp8OjbyBgaGVscCgpYCBlIHBhc3NhIHVtIG9iamV0byBjb21vIGFyZ3VtZW50bywgbyBQeXRob24gZXhpYmlyw6EgaW5mb3JtYcOnw7VlcyBkZXRhbGhhZGFzIHNvYnJlIGVzc2Ugb2JqZXRvLgoKUG9yIGV4ZW1wbG86CmBgYHB5dGhvbgpoZWxwKHByaW50KQpgYGAKCkEgZnVuw6fDo28gYGhlbHAoKWAgdGFtYsOpbSBwb2RlIHNlciB1c2FkYSBkaXJldGFtZW50ZSBubyBwcm9tcHQgZGUgY29tYW5kbyBQeXRob24gcGFyYSBvYnRlciBpbmZvcm1hw6fDtWVzIHNvYnJlIG3Ds2R1bG9zIGUgdMOzcGljb3MgZW0gZ2VyYWwuCgpBbMOpbSBkYSBmdW7Dp8OjbyBgaGVscCgpYCwgbXVpdG9zIG9iamV0b3MgZW0gUHl0aG9uIHTDqm0gdW0gYXRyaWJ1dG8gY2hhbWFkbyBgX19kb2NfX2AsIHF1ZSBjb250w6ltIGEgc3RyaW5nIGRlIGRvY3VtZW50YcOnw6NvIGFzc29jaWFkYSBhbyBvYmpldG8uIEVzc2UgYXRyaWJ1dG8gw6kgZnJlcXVlbnRlbWVudGUgdXRpbGl6YWRvIHBhcmEgZm9ybmVjZXIgaW5mb3JtYcOnw7VlcyBzb2JyZSBvIHByb3DDs3NpdG8gZSBvIGZ1bmNpb25hbWVudG8gZG8gb2JqZXRvIGVtIHF1ZXN0w6NvLiBWb2PDqiBwb2RlIGFjZXNzYXIgbyBgX19kb2NfX2AgZGlyZXRhbWVudGUgcGFyYSBvYnRlciB1bWEgdmlzw6NvIHLDoXBpZGEgZGEgZG9jdW1lbnRhw6fDo28uCgpQb3IgZXhlbXBsbzoKYGBgcHl0aG9uCnByaW50KHByaW50Ll9fZG9jX18pCmBgYAoKRXhwZXJpbWVudGUgdXNhciBhIGZ1bsOnw6NvIGBoZWxwKClgIHBhcmEgZXhwbG9yYXIgZSBlbnRlbmRlciBtZWxob3Igb3MgZGl2ZXJzb3MgcmVjdXJzb3MgZSBmdW5jaW9uYWxpZGFkZXMgZGlzcG9uw612ZWlzIGVtIFB5dGhvbi4=";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-0').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [1]</div>
+                <pre><code class="language-python">help(input) # retorna a documentação da função
+print(input.__doc__) # retorna a documentação da função de forma mais direta</code></pre>
+            </div>
+            <div class="cell-output">Help on method raw_input in module ipykernel.kernelbase:
+
+raw_input(prompt=&#x27;&#x27;) method of ipykernel.ipkernel.IPythonKernel instance
+    Forward raw_input to frontends
+
+    Raises
+    ------
+    StdinNotImplementedError if active frontend doesn&#x27;t support stdin.
+
+Forward raw_input to frontends
+
+        Raises
+        ------
+        StdinNotImplementedError if active frontend doesn&#x27;t support stdin.
+        
+Help on method raw_input in module ipykernel.kernelbase:
+
+raw_input(prompt=&#x27;&#x27;) method of ipykernel.ipkernel.IPythonKernel instance
+    Forward raw_input to frontends
+
+    Raises
+    ------
+    StdinNotImplementedError if active frontend doesn&#x27;t support stdin.
+
+Forward raw_input to frontends
+
+        Raises
+        ------
+        StdinNotImplementedError if active frontend doesn&#x27;t support stdin.
+        
+</div>
+            <div class="cell cell-markdown" id="md-2"></div>
+            <script>
+                (function(){
+                    const b64 = "IyBEb2NzdHJpbmdzCgpBIHN0cmluZyBkZSBkb2N1bWVudGHDp8OjbyBhc3NvY2lhZGEgYSB1bSBvYmpldG8gw6kgZnJlcXVlbnRlbWVudGUgY2hhbWFkYSBkZSAiZG9jc3RyaW5nIi4gVW1hIGRvY3N0cmluZyDDqSB1bWEgY29udmVuw6fDo28gZW0gUHl0aG9uIGUgw6kgdXNhZGEgcGFyYSBkb2N1bWVudGFyIG8gcHJvcMOzc2l0bywgcGFyw6JtZXRyb3MgZSBjb21wb3J0YW1lbnRvIGRlIGZ1bsOnw7VlcywgY2xhc3NlcyBlIG3Ds2R1bG9zLiBBIGRvY3N0cmluZyBnZXJhbG1lbnRlIMOpIGNvbG9jYWRhIG5vIGluw61jaW8gZG8gYmxvY28gZGUgY8OzZGlnbyBjb3JyZXNwb25kZW50ZSBlIHBvZGUgc2VyIGRlIHbDoXJpYXMgbGluaGFzLgoKQW8gZXNjcmV2ZXIgc3VhcyBwcsOzcHJpYXMgZnVuw6fDtWVzLCBjbGFzc2VzIGUgbcOzZHVsb3MsIMOpIHVtYSBwcsOhdGljYSByZWNvbWVuZGFkYSBpbmNsdWlyIGRvY3N0cmluZ3MgY2xhcmFzIGUgaW5mb3JtYXRpdmFzIHBhcmEgZmFjaWxpdGFyIGEgY29tcHJlZW5zw6NvIGRvIGPDs2RpZ28gcG9yIG91dHJvcyBkZXNlbnZvbHZlZG9yZXMgZSBwYXJhIHZvY8OqIG1lc21vIG5vIGZ1dHVyby4=";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-2').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python">def contador(i, f, p):
+    &quot;&quot;&quot;
+    Faz uma contagem e mostra na tela.
+    :param i: INÍCIO da contagem
+    :param f: FIM da contagem
+    :param p: PASSO daa contagem
+    :return: Sem retorno
+    &quot;&quot;&quot;
+    c = i
+    while c &lt;= f:
+        print(f&#x27;{c}&#x27;, end=&#x27;..&#x27;)
+        c += p
+    print(&#x27;FIM!&#x27;)
+
+
+contador(2, 10, 2)</code></pre>
+            </div>
+            
+            <div class="cell cell-markdown" id="md-4"></div>
+            <script>
+                (function(){
+                    const b64 = "IyAqKmBGdW7Dp8O1ZXMgQnVpbHQtaW4gZSBNw7NkdWxvc2AqKgotLS0KRnVuw6fDtWVzIGJ1aWx0LWluIHPDo28gZnVuw6fDtWVzIGrDoSBleGlzdGVudGVzIG5vIFB5dGhvbiwgaW5jbHVpbmRvOgoKLSBgcHJpbnQoKWAKLSBgbGVuKClgCi0gYGlucHV0KClgCi0gYHN1bSgpYAotIGBtYXgoKWAKLSBgbWluKClgCi0gYGNvdW50KClgCmUgbXVpdGFzIG91dHJhcy4KCkFsw6ltIGRhcyBmdW7Dp8O1ZXMgcHLDqS1kZWZpbmlkYXMsIHBvZGVtb3MgY3JpYXIgbm9zc2FzIHByw7NwcmlhcyBmdW7Dp8O1ZXMuIE5vIGVudGFudG8sIHRhbWLDqW0gcG9kZW1vcyB1dGlsaXphciBmdW7Dp8O1ZXMgY3JpYWRhcyBwb3Igb3V0cm9zIHByb2dyYW1hZG9yZXMgb3UgZGlzcG9uaWJpbGl6YWRhcyBwZWxhIGNvbXVuaWRhZGUgUHl0aG9uLgoKIyMgKipgTcOzZHVsb3MgKFBhY290ZXMsIEJpYmxpb3RlY2FzKWAqKgotLS0KTcOzZHVsb3Mgc8OjbyBwYWNvdGVzIGRlIGNvbWFuZG9zIGUgcmVjdXJzb3MgcXVlIG9mZXJlY2VtIGZ1bmNpb25hbGlkYWRlcyBleHRyYXMgYWzDqW0gZGFzIGRpc3BvbsOtdmVpcyBwb3IgcGFkcsOjbyBubyBQeXRob24uCgpQYXJhIHVzYXIgdW0gbcOzZHVsbywgdXNhbW9zIGEgcGFsYXZyYSByZXNlcnZhZGEgYGltcG9ydGAgc2VndWlkYSBkbyBub21lIGRvIG3Ds2R1bG8uCgpTZSBkZXNlamFybW9zIGltcG9ydGFyIGFwZW5hcyBhbGd1bWFzIGZ1bmNpb25hbGlkYWRlcyBlc3BlY8OtZmljYXMgZGUgdW0gbcOzZHVsbywgcG9kZW1vcyB1dGlsaXphciBvIGNvbWFuZG8gYGZyb20gYmlibGlvdGVjYSBpbXBvcnQgZnVuY2lvbmFsaWRhZGVgLgoKRGVwb2lzIGRlIGltcG9ydGFyIHVtIG3Ds2R1bG8sIHBvZGVtb3MgYWNlc3NhciBzZXVzIGRhZG9zIGUgZnVuY2lvbmFsaWRhZGVzIHVzYW5kbyBhIG5vdGHDp8OjbyBkZSBwb250bywgY29tbyBgbWF0aC5waWAgZSBgbWF0aC5zcXJ0KClgLg==";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-4').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [2]</div>
+                <pre><code class="language-python">import math
+print(math.pi)  # 3.141592653589793
+# O módulo math também fornece funções matemáticas como sqrt() para calcular a raiz quadrada de um número.
+print(math.sqrt(25))  # 5.0</code></pre>
+            </div>
+            <div class="cell-output">3.141592653589793
+5.0
+</div>
+            <div class="cell cell-markdown" id="md-6"></div>
+            <script>
+                (function(){
+                    const b64 = "TyBtw7NkdWxvIG1hdGggcG9zc3VpIHbDoXJpYXMgZnVuw6fDtWVzIG1hdGVtw6F0aWNhcy4KClBvZGVtb3MgZGVzY29icmlyIGFzIGZ1bmNpb25hbGlkYWRlcyBxdWUgdW0gbcOzZHVsbyBmb3JuZWNlIHVzYW5kbyBhIGZ1bsOnw6NvIGRpcigpIG91IGhlbHAoKS4K";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-6').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [3]</div>
+                <pre><code class="language-python"># dir() retorna uma lista de todas as funcionalidades disponíveis em um módulo.
+print(dir(math))</code></pre>
+            </div>
+            <div class="cell-output">[&#x27;__doc__&#x27;, &#x27;__loader__&#x27;, &#x27;__name__&#x27;, &#x27;__package__&#x27;, &#x27;__spec__&#x27;, &#x27;acos&#x27;, &#x27;acosh&#x27;, &#x27;asin&#x27;, &#x27;asinh&#x27;, &#x27;atan&#x27;, &#x27;atan2&#x27;, &#x27;atanh&#x27;, &#x27;cbrt&#x27;, &#x27;ceil&#x27;, &#x27;comb&#x27;, &#x27;copysign&#x27;, &#x27;cos&#x27;, &#x27;cosh&#x27;, &#x27;degrees&#x27;, &#x27;dist&#x27;, &#x27;e&#x27;, &#x27;erf&#x27;, &#x27;erfc&#x27;, &#x27;exp&#x27;, &#x27;exp2&#x27;, &#x27;expm1&#x27;, &#x27;fabs&#x27;, &#x27;factorial&#x27;, &#x27;floor&#x27;, &#x27;fmod&#x27;, &#x27;frexp&#x27;, &#x27;fsum&#x27;, &#x27;gamma&#x27;, &#x27;gcd&#x27;, &#x27;hypot&#x27;, &#x27;inf&#x27;, &#x27;isclose&#x27;, &#x27;isfinite&#x27;, &#x27;isinf&#x27;, &#x27;isnan&#x27;, &#x27;isqrt&#x27;, &#x27;lcm&#x27;, &#x27;ldexp&#x27;, &#x27;lgamma&#x27;, &#x27;log&#x27;, &#x27;log10&#x27;, &#x27;log1p&#x27;, &#x27;log2&#x27;, &#x27;modf&#x27;, &#x27;nan&#x27;, &#x27;nextafter&#x27;, &#x27;perm&#x27;, &#x27;pi&#x27;, &#x27;pow&#x27;, &#x27;prod&#x27;, &#x27;radians&#x27;, &#x27;remainder&#x27;, &#x27;sin&#x27;, &#x27;sinh&#x27;, &#x27;sqrt&#x27;, &#x27;sumprod&#x27;, &#x27;tan&#x27;, &#x27;tanh&#x27;, &#x27;tau&#x27;, &#x27;trunc&#x27;, &#x27;ulp&#x27;]
+</div>
+            <div class="cell cell-code">
+                <div class="prompt">In [4]</div>
+                <pre><code class="language-python"># help() retorna uma lista de todas as funcionalidades disponíveis em um módulo, além de informações sobre como usar cada funcionalidade.
+print(help(math))</code></pre>
+            </div>
+            <div class="cell-output">Help on built-in module math:
+
+NAME
+    math
+
+DESCRIPTION
+    This module provides access to the mathematical functions
+    defined by the C standard.
+
+FUNCTIONS
+    acos(x, /)
+        Return the arc cosine (measured in radians) of x.
+
+        The result is between 0 and pi.
+
+    acosh(x, /)
+        Return the inverse hyperbolic cosine of x.
+
+    asin(x, /)
+        Return the arc sine (measured in radians) of x.
+
+        The result is between -pi/2 and pi/2.
+
+    asinh(x, /)
+        Return the inverse hyperbolic sine of x.
+
+    atan(x, /)
+        Return the arc tangent (measured in radians) of x.
+
+        The result is between -pi/2 and pi/2.
+
+    atan2(y, x, /)
+        Return the arc tangent (measured in radians) of y/x.
+
+        Unlike atan(y/x), the signs of both x and y are considered.
+
+    atanh(x, /)
+        Return the inverse hyperbolic tangent of x.
+
+    cbrt(x, /)
+        Return the cube root of x.
+
+    ceil(x, /)
+        Return the ceiling of x as an Integral.
+
+        This is the smallest integer &gt;= x.
+
+    comb(n, k, /)
+        Number of ways to choose k items from n items without repetition and without order.
+
+        Evaluates to n! / (k! * (n - k)!) when k &lt;= n and evaluates
+        to zero when k &gt; n.
+
+        Also called the binomial coefficient because it is equivalent
+        to the coefficient of k-th term in polynomial expansion of the
+        expression (1 + x)**n.
+
+        Raises TypeError if either of the arguments are not integers.
+        Raises ValueError if either of the arguments are negative.
+
+    copysign(x, y, /)
+        Return a float with the magnitude (absolute value) of x but the sign of y.
+
+        On platforms that support signed zeros, copysign(1.0, -0.0)
+        returns -1.0.
+
+    cos(x, /)
+        Return the cosine of x (measured in radians).
+
+    cosh(x, /)
+        Return the hyperbolic cosine of x.
+
+    degrees(x, /)
+        Convert angle x from radians to degrees.
+
+    dist(p, q, /)
+        Return the Euclidean distance between two points p and q.
+
+        The points should be specified as sequences (or iterables) of
+        coordinates.  Both inputs must have the same dimension.
+
+        Roughly equivalent to:
+            sqrt(sum((px - qx) ** 2.0 for px, qx in zip(p, q)))
+
+    erf(x, /)
+        Error function at x.
+
+    erfc(x, /)
+        Complementary error function at x.
+
+    exp(x, /)
+        Return e raised to the power of x.
+
+    exp2(x, /)
+        Return 2 raised to the power of x.
+
+    expm1(x, /)
+        Return exp(x)-1.
+
+        This function avoids the loss of precision involved in the direct evaluation of exp(x)-1 for small x.
+
+    fabs(x, /)
+        Return the absolute value of the float x.
+
+    factorial(n, /)
+        Find n!.
+
+        Raise a ValueError if x is negative or non-integral.
+
+    floor(x, /)
+        Return the floor of x as an Integral.
+
+        This is the largest integer &lt;= x.
+
+    fmod(x, y, /)
+        Return fmod(x, y), according to platform C.
+
+        x % y may differ.
+
+    frexp(x, /)
+        Return the mantissa and exponent of x, as pair (m, e).
+
+        m is a float and e is an int, such that x = m * 2.**e.
+        If x is 0, m and e are both 0.  Else 0.5 &lt;= abs(m) &lt; 1.0.
+
+    fsum(seq, /)
+        Return an accurate floating point sum of values in the iterable seq.
+
+        Assumes IEEE-754 floating point arithmetic.
+
+    gamma(x, /)
+        Gamma function at x.
+
+    gcd(*integers)
+        Greatest Common Divisor.
+
+    hypot(...)
+        hypot(*coordinates) -&gt; value
+
+        Multidimensional Euclidean distance from the origin to a point.
+
+        Roughly equivalent to:
+            sqrt(sum(x**2 for x in coordinates))
+
+        For a two dimensional point (x, y), gives the hypotenuse
+        using the Pythagorean theorem:  sqrt(x*x + y*y).
+
+        For example, the hypotenuse of a 3/4/5 right triangle is:
+
+            &gt;&gt;&gt; hypot(3.0, 4.0)
+            5.0
+
+    isclose(a, b, *, rel_tol=1e-09, abs_tol=0.0)
+        Determine whether two floating point numbers are close in value.
+
+          rel_tol
+            maximum difference for being considered &quot;close&quot;, relative to the
+            magnitude of the input values
+          abs_tol
+            maximum difference for being considered &quot;close&quot;, regardless of the
+            magnitude of the input values
+
+        Return True if a is close in value to b, and False otherwise.
+
+        For the values to be considered close, the difference between them
+        must be smaller than at least one of the tolerances.
+
+        -inf, inf and NaN behave similarly to the IEEE 754 Standard.  That
+        is, NaN is not close to anything, even itself.  inf and -inf are
+        only close to themselves.
+
+    isfinite(x, /)
+        Return True if x is neither an infinity nor a NaN, and False otherwise.
+
+    isinf(x, /)
+        Return True if x is a positive or negative infinity, and False otherwise.
+
+    isnan(x, /)
+        Return True if x is a NaN (not a number), and False otherwise.
+
+    isqrt(n, /)
+        Return the integer part of the square root of the input.
+
+    lcm(*integers)
+        Least Common Multiple.
+
+    ldexp(x, i, /)
+        Return x * (2**i).
+
+        This is essentially the inverse of frexp().
+
+    lgamma(x, /)
+        Natural logarithm of absolute value of Gamma function at x.
+
+    log(...)
+        log(x, [base=math.e])
+        Return the logarithm of x to the given base.
+
+        If the base is not specified, returns the natural logarithm (base e) of x.
+
+    log10(x, /)
+        Return the base 10 logarithm of x.
+
+    log1p(x, /)
+        Return the natural logarithm of 1+x (base e).
+
+        The result is computed in a way which is accurate for x near zero.
+
+    log2(x, /)
+        Return the base 2 logarithm of x.
+
+    modf(x, /)
+        Return the fractional and integer parts of x.
+
+        Both results carry the sign of x and are floats.
+
+    nextafter(x, y, /, *, steps=None)
+        Return the floating-point value the given number of steps after x towards y.
+
+        If steps is not specified or is None, it defaults to 1.
+
+        Raises a TypeError, if x or y is not a double, or if steps is not an integer.
+        Raises ValueError if steps is negative.
+
+    perm(n, k=None, /)
+        Number of ways to choose k items from n items without repetition and with order.
+
+        Evaluates to n! / (n - k)! when k &lt;= n and evaluates
+        to zero when k &gt; n.
+
+        If k is not specified or is None, then k defaults to n
+        and the function returns n!.
+
+        Raises TypeError if either of the arguments are not integers.
+        Raises ValueError if either of the arguments are negative.
+
+    pow(x, y, /)
+        Return x**y (x to the power of y).
+
+    prod(iterable, /, *, start=1)
+        Calculate the product of all the elements in the input iterable.
+
+        The default start value for the product is 1.
+
+        When the iterable is empty, return the start value.  This function is
+        intended specifically for use with numeric values and may reject
+        non-numeric types.
+
+    radians(x, /)
+        Convert angle x from degrees to radians.
+
+    remainder(x, y, /)
+        Difference between x and the closest integer multiple of y.
+
+        Return x - n*y where n*y is the closest integer multiple of y.
+        In the case where x is exactly halfway between two multiples of
+        y, the nearest even value of n is used. The result is always exact.
+
+    sin(x, /)
+        Return the sine of x (measured in radians).
+
+    sinh(x, /)
+        Return the hyperbolic sine of x.
+
+    sqrt(x, /)
+        Return the square root of x.
+
+    sumprod(p, q, /)
+        Return the sum of products of values from two iterables p and q.
+
+        Roughly equivalent to:
+
+            sum(itertools.starmap(operator.mul, zip(p, q, strict=True)))
+
+        For float and mixed int/float inputs, the intermediate products
+        and sums are computed with extended precision.
+
+    tan(x, /)
+        Return the tangent of x (measured in radians).
+
+    tanh(x, /)
+        Return the hyperbolic tangent of x.
+
+    trunc(x, /)
+        Truncates the Real x to the nearest Integral toward 0.
+
+        Uses the __trunc__ magic method.
+
+    ulp(x, /)
+        Return the value of the least significant bit of the float x.
+
+DATA
+    e = 2.718281828459045
+    inf = inf
+    nan = nan
+    pi = 3.141592653589793
+    tau = 6.283185307179586
+
+FILE
+    (built-in)
+
+
+None
+</div>
+            <div class="cell cell-markdown" id="md-9"></div>
+            <script>
+                (function(){
+                    const b64 = "c3RhdGlzdGljcyDDqSBvdXRybyBtw7NkdWxvIGludGVncmFkbyBxdWUgZm9ybmVjZSBmdW5jaW9uYWxpZGFkZXMgcGFyYSBjYWxjdWxhciBlc3RhdMOtc3RpY2FzLiBQb3IgZXhlbXBsbywgcG9kZW1vcyB1c2FyIGEgZnVuw6fDo28gbWVhbigpIHBhcmEgY2FsY3VsYXIgYSBtw6lkaWEgZGUgdW1hIGxpc3RhIGRlIG7Dum1lcm9zLg==";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-9').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python">import statistics
+
+scores = [85, 93, 45, 87, 93]
+mean = statistics.mean(scores)
+print(f&#x27;Média: {mean}&#x27;)  # Média: 80.6</code></pre>
+            </div>
+            
+            <div class="cell cell-markdown" id="md-11"></div>
+            <script>
+                (function(){
+                    const b64 = "UG9kZW1vcyB1c2FyIHbDoXJpb3MgbcOzZHVsb3MgZGlmZXJlbnRlcyBubyBtZXNtbyBhcnF1aXZvIGFkaWNpb25hbmRvIHVtYSB2w61yZ3VsYSBlbnRyZSBvcyBub21lcyBkb3MgbcOzZHVsb3MuCgpgYGBweXRob24KaW1wb3J0IG1hdGgsIHN0YXRpc3RpY3MKYGBgCgpTZSBxdWlzZXJtb3MgaW1wb3J0YXIgdG9kYXMgYXMgZnVuY2lvbmFsaWRhZGVzIGRlIHVtIG3Ds2R1bG8sIHBvZGVtb3MgdXNhciBvIGNvbWFuZG8gYGZyb20gYmlibGlvdGVjYSBpbXBvcnQgKmAgb3Ugc2ltcGxlc21lbnRlIGBpbXBvcnQgYmlibGlvdGVjYWAuCgrDgHMgdmV6ZXMsIHF1ZXJlbW9zIHVzYXIgYXBlbmFzIHBhcnRlcyBkZSB1bSBtw7NkdWxvLiBQb2RlbW9zIGZhemVyIGlzc28gdXNhbmRvIGEgcGFsYXZyYSByZXNlcnZhZGEgYGZyb21gLgoKYGBgcHl0aG9uCmZyb20gbWF0aCBpbXBvcnQgcGkKYGBgCgpRdWFuZG8gdXNhbW9zIGBmcm9tYCwgbsOjbyBwcmVjaXNhbW9zIHVzYXIgYSBub3Rhw6fDo28gZGUgcG9udG8gcGFyYSBhY2Vzc2FyIGFzIGZ1bmNpb25hbGlkYWRlcyBkbyBtw7NkdWxvLiBQb2RlbW9zIHVzYXIgYSBmdW5jaW9uYWxpZGFkZSBkaXJldGFtZW50ZS4=";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-11').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-markdown" id="md-12"></div>
+            <script>
+                (function(){
+                    const b64 = "IyMgKipgQWxpYXNpbmcgLSBBdHJpYnVpbmRvIHVtIEFwZWxpZG8gcGFyYSB1bSBNw7NkdWxvYCoqCi0tLQpQb2RlbW9zIG1vZGlmaWNhciBvIG5vbWUgZG8gbcOzZHVsbyBxdWUgZXN0YW1vcyBpbXBvcnRhbmRvIHVzYW5kbyBhIHBhbGF2cmEgcmVzZXJ2YWRhIGBhc2AuCgpgYGBweXRob24KaW1wb3J0IHN0YXRpc3RpY3MgYXMgc3RhdHMKYGBgCgpJc3NvIMOpIMO6dGlsIHF1YW5kbyBvIG5vbWUgZG8gbcOzZHVsbyDDqSBtdWl0byBsb25nbyBvdSBxdWFuZG8gbyBub21lIGRvIG3Ds2R1bG8gZW50cmEgZW0gY29uZmxpdG8gY29tIG8gbm9tZSBkZSB1bWEgdmFyacOhdmVsIHF1ZSBqw6EgZXhpc3RlLiBJc3NvIMOpIGNoYW1hZG8gZGUgYWxpYXNpbmcuCgpgYGBweXRob24KaW1wb3J0IG1hdGggYXMgbQpgYGA=";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-12').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-markdown" id="md-13"></div>
+            <script>
+                (function(){
+                    const b64 = "IyMgKipgQmlibGlvdGVjYXNgKioKLS0tCkJpYmxpb3RlY2FzIHPDo28gY29sZcOnw7VlcyBkZSBtw7NkdWxvcyBxdWUgbm9zIGFqdWRhbSBhIGVjb25vbWl6YXIgdGVtcG8gbmEgY29kaWZpY2HDp8Ojby4gUGVuc2UgbmVsYXMgY29tbyB1bWEgYmlibGlvdGVjYSBkZSBsaXZyb3MsIG9uZGUgdm9jw6ogcG9kZSBwZWdhciB1bSBsaXZybyBlbSB2ZXogZGUgZXNjcmV2ZXIgbyBsaXZybyBpbnRlaXJvLiBBcyBiaWJsaW90ZWNhcyBzw6NvIG11aXRvIMO6dGVpcyBxdWFuZG8gdm9jw6ogZXN0w6EgZXNjcmV2ZW5kbyB1bSBwcm9ncmFtYSwgcG9pcyBwZXJtaXRlbSB1c2FyIGZ1bmNpb25hbGlkYWRlcyBwcm9udGFzIGVtIHZleiBkZSBlc2NyZXbDqi1sYXMgZG8gemVyby4KCk11aXRvcyBtw7NkdWxvcyBjb25zdGl0dWVtIHVtYSBiaWJsaW90ZWNhLiBQb3IgZXhlbXBsbywgdXNhbW9zIGBtYXRoYCBlIGBzdGF0aXN0aWNzYCwgcXVlIGZhemVtIHBhcnRlIGRhIG1lc21hIGJpYmxpb3RlY2EuCgpFc3NlcyBtw7NkdWxvcyBmYXplbSBwYXJ0ZSBkYSBUaGUgUHl0aG9uIFN0YW5kYXJkIExpYnJhcnksIHF1ZSDDqSB1bWEgY29sZcOnw6NvIGRlIG3Ds2R1bG9zIGludGVncmFkb3MgcXVlIHbDqm0gY29tIG8gUHl0aG9uLiBBIGJpYmxpb3RlY2EgcGFkcsOjbyDDqSBpbnN0YWxhZGEganVudG8gY29tIG8gUHl0aG9uLCBwb3J0YW50bywgbsOjbyBwcmVjaXNhbW9zIGluc3RhbMOhLWxhIHNlcGFyYWRhbWVudGUuCgpTZSBxdWlzZXJtb3Mgc2FiZXIgbWFpcyBzb2JyZSBiaWJsaW90ZWNhcywgZGV2ZW1vcyBhY2Vzc2FyIGEgZG9jdW1lbnRhw6fDo28gb2ZpY2lhbCBkbyBQeXRob24uCgpBbMOpbSBkYSBiaWJsaW90ZWNhIHBhZHLDo28sIGV4aXN0ZW0gYmlibGlvdGVjYXMgZXh0ZXJuYXMgcXVlIG9mZXJlY2VtIGZ1bmNpb25hbGlkYWRlcyBhZGljaW9uYWlzLiBQb3IgZXhlbXBsbzoKCi0gU2UgcXVpc2VybW9zIGxpZGFyIGNvbSBleHByZXNzw7VlcyByZWd1bGFyZXMsIHBvZGVtb3MgdXNhciBhIGJpYmxpb3RlY2EgZGUgcHJvY2Vzc2FtZW50byBkZSB0ZXh0byBgcmVgLgotIFNlIHF1aXNlcm1vcyBsaWRhciBjb20gZGF0YXMgZSBob3JhcywgcG9kZW1vcyB1c2FyIGEgYmlibGlvdGVjYSBkZSBkYXRhIGUgaG9yYSBgZGF0ZXRpbWVgLgoKUGFyYSBpbnN0YWxhciB1bWEgbm92YSBiaWJsaW90ZWNhIGV4dGVybmEsIGRldmVtb3MgdXNhciBvIGNvbWFuZG8gYHBpcCBpbnN0YWxsYCBzZWd1aWRvIGRvIG5vbWUgZGEgYmlibGlvdGVjYS4gYHBpcGAgc2lnbmlmaWNhIFB5dGhvbiBJbnN0YWxsIFBhY2thZ2UgZSDDqSB1bSBnZXJlbmNpYWRvciBkZSBwYWNvdGVzIHBhcmEgUHl0aG9uLiBVbSBnZXJlbmNpYWRvciBkZSBwYWNvdGVzIMOpIHVtIHByb2dyYW1hIHF1ZSBpbnN0YWxhIGUgZ2VyZW5jaWEgYmlibGlvdGVjYXMgZSBtw7NkdWxvcy4KClBvciBleGVtcGxvLCBwb2RlbW9zIGluc3RhbGFyIGEgYmlibGlvdGVjYSBgbWF0cGxvdGxpYmAsIHF1ZSBmb3JuZWNlIGZ1bmNpb25hbGlkYWRlcyBwYXJhIGNyaWFyIGdyw6FmaWNvcy4gQXDDs3MgYSBpbnN0YWxhw6fDo28sIHBvZGVtb3MgaW1wb3J0YXIgYSBiaWJsaW90ZWNhIGUgdXNhciBzdWFzIGZ1bmNpb25hbGlkYWRlcy4=";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-13').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [4]</div>
+                <pre><code class="language-python">from matplotlib import pyplot</code></pre>
+            </div>
+            
+            <div class="cell cell-markdown" id="md-15"></div>
+            <script>
+                (function(){
+                    const b64 = "UG9kZW1vcyB1c2FyIGEgZnVuw6fDo28gcGxvdCgpIHBhcmEgY3JpYXIgdW0gZ3LDoWZpY28gZGUgbGluaGEgZSBhIGZ1bsOnw6NvIHNob3coKSBwYXJhIGV4aWJpciBvIGdyw6FmaWNvLgoKcGxvdCgpIGFjZWl0YSAyIHBhcsOibWV0cm9zOgoKdW1hIGxpc3RhIGRlIHZhbG9yZXMgcGFyYSBvIGVpeG8geCBlIHVtYSBsaXN0YSBkZSB2YWxvcmVzIHBhcmEgbyBlaXhvIHkuCgpzaG93KCkgbsOjbyBhY2VpdGEgcGFyw6JtZXRyb3Mu";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-15').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [6]</div>
+                <pre><code class="language-python">x = [5, 14]
+y = [45, 185]
+pyplot.plot(x, y)
+pyplot.show()</code></pre>
+            </div>
+            
+            <div class="cell cell-markdown" id="md-17"></div>
+            <script>
+                (function(){
+                    const b64 = "IyMgKipgSW50cm9kdcOnw6NvIGFvIE51bVB5YCoqCgpQcm9qZXRvcyBkYSB2aWRhIHJlYWwgdGVuZGVtIGEgbGlkYXIgY29tIGdyYW5kZXMgdm9sdW1lcyBkZSBkYWRvcywgbyBxdWUgcG9kZSB0b3JuYXIgYXMgb3BlcmHDp8O1ZXMgbXVpdG8gbGVudGFzLiBQb3IgZXhlbXBsbywgcGVuc2UgZW0gdW1hIHJlZGUgc29jaWFsOiBpbmljaWFsbWVudGUsIG8gbsO6bWVybyBkZSB1c3XDoXJpb3MgcG9kZSBzZXIgcGVxdWVubywgbWFzIMOgIG1lZGlkYSBxdWUgYSByZWRlIGNyZXNjZSwgYSBsaXN0YSBkZSB1c3XDoXJpb3Mgc2UgdG9ybmEgbXVpdG8gbG9uZ2EuCgpPIE51bVB5LCBhYnJldmlhw6fDo28gZGUgTnVtZXJpY2FsIFB5dGhvbiwgw6kgdW1hIGJpYmxpb3RlY2EgcXVlIGZvcm5lY2UgZnVuY2lvbmFsaWRhZGVzIHBhcmEgdHJhYmFsaGFyIGNvbSBncmFuZGVzIHF1YW50aWRhZGVzIGRlIGRhZG9zLiBPIE51bVB5IMOpIHVtYSBkYXMgYmlibGlvdGVjYXMgbWFpcyBwb3B1bGFyZXMgcGFyYSB0cmFiYWxoYXIgY29tIGRhZG9zIG51bcOpcmljb3MgZW0gUHl0aG9uLiBFbGUgb2ZlcmVjZSB1bWEgZXN0cnV0dXJhIGRlIGRhZG9zIGNoYW1hZGEgYXJyYXksIHF1ZSDDqSBzZW1lbGhhbnRlIGEgdW1hIGxpc3RhLCBtYXMgbXVpdG8gbWFpcyBlZmljaWVudGUgZW0gdGVybW9zIGRlIGRlc2VtcGVuaG8uIEFsw6ltIGRpc3NvLCBvIE51bVB5IGZvcm5lY2UgZnVuw6fDtWVzIHBhcmEgb3BlcmHDp8O1ZXMgbWF0ZW3DoXRpY2FzIGVtIGFycmF5cy4KCsOJIGNvbXVtIGFicmV2aWFyIE51bVB5IGNvbW8gYG5wYC4=";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-17').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python">import numpy as np</code></pre>
+            </div>
+            
+            <div class="cell cell-markdown" id="md-19"></div>
+            <script>
+                (function(){
+                    const b64 = "TnVtcHkgbm9zIHBlcm1pdGUgYXJtYXplbmFyIGRhZG9zIGVtIGFycmF5cy4gUG9kZW1vcyBjcmlhciB1bSBhcnJheSBhIHBhcnRpciBkZSB1bWEgbGlzdGEgdXNhbmRvIGEgZnVuw6fDo28gYXJyYXkoKS4KCmFycmF5KCkgYWNlaXRhIHVtYSBsaXN0YSBjb21vIHBhcsOibWV0cm8gZSByZXRvcm5hIHVtIGFycmF5Lg==";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-19').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python">np_array = np.array([1, 2, 3, 4, 5])</code></pre>
+            </div>
+            
+            <div class="cell cell-markdown" id="md-21"></div>
+            <script>
+                (function(){
+                    const b64 = "VmVqYW1vcywgcG9yIGV4ZW1wbG8sIHNlIHF1aXNlcm1vcyBhZGljaW9uYXIgMSBhIGNhZGEgZWxlbWVudG8gZGUgdW1hIGxpc3RhLg==";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-21').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python">print(np_array)  # [1 2 3 4 5]</code></pre>
+            </div>
+            
+            <div class="cell cell-markdown" id="md-23"></div>
+            <script>
+                (function(){
+                    const b64 = "Q29tIE51bVB5IHBvZGVtb3MgZmF6ZXIgaXNzbyBlbSB1bWEgw7puaWNhIGxpbmhhLg==";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-23').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python">print(np_array + 1)  # [2 3 4 5 6]</code></pre>
+            </div>
+            
+            <div class="cell cell-markdown" id="md-25"></div>
+            <script>
+                (function(){
+                    const b64 = "U2VtIGVsZSB0ZXLDrWFtb3MgcXVlIHVzYXIgdW0gbG9vcCBmb3IuIEl0ZXJhbW9zIHNvYnJlIG9zIMOtbmRpY2VzIGRhIGxpc3RhIGUgYWRpY2lvbmFtb3MgMSBhIGNhZGEgZWxlbWVudG8uCgpmb3IgaSBpbiByYW5nZShsZW4obnBfYXJyYXkpKToKICBucF9hcnJheVtpXSArPSAxCgpDb20gbnBfYXJyYXkgPSBucC5hcnJheShbMSwgMiwgMywgNCwgNV0pIGVzdGFtb3MgdHJhbnNmb3JtYW5kbyB1bWEgbGlzdGEgZW0gdW0gYXJyYXkuIFBvZGVtb3MgY3JpYXIgdW0gYXJyYXkgdmF6aW8gdXNhbmRvIGEgZnVuw6fDo28gZW1wdHkoKS4KClBvZGVtb3MgY29udmVydGVyIGxpc3RhcyBjb20gdG9kb3Mgb3MgdGlwb3MgZGUgZGFkb3MsIGRlc2RlIHF1ZSB0b2RvcyBvcyBlbGVtZW50b3Mgc2VqYW0gZG8gbWVzbW8gdGlwby4KClRlbnRhciBjcmlhciB1bSBhcnJheSBjb20gdGlwb3MgZGUgZGFkb3MgZGlmZXJlbnRlcyByZXN1bHRhcsOhIGVtIHVtIGFycmF5IGNvbSB1bSDDum5pY28gdGlwbyBkZSBkYWRvcy4=";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-25').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python">stock = np.array([10, 12, &quot;25&quot;])
+print(stock)  # [&#x27;10&#x27; &#x27;12&#x27; &#x27;25&#x27;]</code></pre>
+            </div>
+            
+            <div class="cell cell-markdown" id="md-27"></div>
+            <script>
+                (function(){
+                    const b64 = "VXNhbW9zIGEgaW5kZXhhw6fDo28gcGFyYSBhY2Vzc2FyIGVsZW1lbnRvcyBkZSB1bSBhcnJheS4gQSBpbmRleGHDp8OjbyBmdW5jaW9uYSBkYSBtZXNtYSBmb3JtYSBxdWUgYXMgbGlzdGFzLiBQb2RlbW9zIHVzYXIgdW0gw61uZGljZSBuZWdhdGl2byBwYXJhIGFjZXNzYXIgZWxlbWVudG9zIGEgcGFydGlyIGRvIGZpbmFsIGRvIGFycmF5Lg==";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-27').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python">print(stock[0])  # 10</code></pre>
+            </div>
+            
+            <div class="cell cell-markdown" id="md-29"></div>
+            <script>
+                (function(){
+                    const b64 = "UGFyYSBzYWJlciBhIGNvbXBvc2nDp8OjbyBkZSB1bSBhcnJheSB1c2Ftb3MgYSBmdW7Dp8OjbyBzaXplKCku";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-29').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python">print(stock.size)  # 3
+print(np.size(stock))  # 3</code></pre>
+            </div>
+            
+            <div class="cell cell-markdown" id="md-31"></div>
+            <script>
+                (function(){
+                    const b64 = "TnVtUHkgZm9ybmVjZSBmdW7Dp8O1ZXMgcGFyYSBjcmlhciBhcnJheXMgY29tIHZhbG9yZXMgcGFkcsOjby4gUG9yIGV4ZW1wbG8sIHBvZGVtb3MgY3JpYXIgdW0gYXJyYXkgY29tIHRvZG9zIG9zIHZhbG9yZXMgaWd1YWlzIGEgMCB1c2FuZG8gYSBmdW7Dp8OjbyB6ZXJvcygpLiBQcmVjaXNhbW9zIHNvbWVudGUgaW5mb3JtYXIgbyB0YW1hbmhvIGRvIGFycmF5IGNvbW8gcGFyw6JtZXRyby4=";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-31').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python">print(np.zeros(5))  # [0. 0. 0. 0. 0.]</code></pre>
+            </div>
+            
+            <div class="cell cell-markdown" id="md-33"></div>
+            <script>
+                (function(){
+                    const b64 = "emVyb3MgY3JpYSB1bSBhcnJheSBjb20gdmFsb3JlcyBkZSBwb250byBmbHV0dWFudGUuIFBvZGVtb3MgY3JpYXIgdW0gYXJyYXkgY29tIHZhbG9yZXMgaW50ZWlyb3MgdXNhbmRvIGEgZnVuw6fDo28gemVyb3MoKSBlIGVzcGVjaWZpY2FuZG8gbyB0aXBvIGRlIGRhZG9zIGNvbW8gaW50LgoKRGEgbWVzbWEgZm9ybWEsIHBvZGVtb3MgY3JpYXIgdW0gYXJyYXkgY29tIHRvZG9zIG9zIHZhbG9yZXMgaWd1YWlzIGEgMSB1c2FuZG8gYSBmdW7Dp8OjbyBvbmVzKCkuCgpTZSBxdWlzZXJtb3MgY3JpYXIgdW0gYXJyYXkgY29tIHZhbG9yZXMgZGlmZXJlbnRlcywgbyBtw6l0b2RvIGFyYW5nZSgpIGNyaWEgdW0gYXJyYXkgY29tIHZhbG9yZXMgc2VxdWVuY2lhaXMuIE8gYXJyYXkgY29tZcOnYSBlbSB6ZXJvLiBQcmVjaXNhbW9zIGluZm9ybWFyIG8gdmFsb3IgaW5pY2lhbCwgbyB2YWxvciBmaW5hbCBlIG8gaW50ZXJ2YWxvIGNvbW8gcGFyw6JtZXRyb3MuIE8gdmFsb3IgZmluYWwgbsOjbyDDqSBpbmNsdcOtZG8gbm8gYXJyYXku";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-33').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python">print(np.arange(1, 10, 2))  # [1 3 5 7 9]</code></pre>
+            </div>
+            
+            <div class="cell cell-markdown" id="md-35"></div>
+            <script>
+                (function(){
+                    const b64 = "U2UgcXVpc2VybW9zIGNyaWFyIHVtIGFycmF5IGNvbSB2YWxvcmVzIGFsZWF0w7NyaW9zLCBwb2RlbW9zIHVzYXIgYSBmdW7Dp8OjbyByYW5kb20oKS4gUHJlY2lzYW1vcyBpbmZvcm1hciBvIHRhbWFuaG8gZG8gYXJyYXkgY29tbyBwYXLDom1ldHJvLg==";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-35').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python">print(np.random.random(5))  # O intervalo padrão é entre 0 e 1</code></pre>
+            </div>
+            
+            <div class="cell cell-markdown" id="md-37"></div>
+            <script>
+                (function(){
+                    const b64 = "UG9kZW1vcyBjcmlhciB1bSBhcnJheSBkZSBuw7ptZXJvcyBhbGVhdMOzcmlvcyBpbnRlaXJvcyBlbnRyZSAwIGUgMTAgdXNhbmRvIHJhbmRpbnQoKS4=";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-37').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python">print(np.random.randint(1, 10, 5))</code></pre>
+            </div>
+            </div><script>hljs.highlightAll();</script>
+    </main>
+</body>
+</html>

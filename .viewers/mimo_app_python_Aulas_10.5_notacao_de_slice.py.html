@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>10.5_notacao_de_slice.py</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="https://pyscript.net/releases/2024.1.1/core.css">
+    <script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>
+    <style>
+        .sandbox-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
+        .sandbox-header h2 { font-size: 1.2rem; color: var(--primary); display: flex; align-items: center; gap: 0.5rem; }
+        .py-repl-container { border-radius: 8px; overflow: hidden; border: 1px solid var(--glass-border); background: #1e293b; }
+    </style>
+    
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --glass-bg: rgba(30, 41, 59, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --primary: #38bdf8;
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        header {
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            border-bottom: 1px solid var(--glass-border);
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .back-btn {
+            color: var(--text-main);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            background: rgba(255,255,255,0.05);
+            transition: 0.3s;
+        }
+        .back-btn:hover {
+            background: rgba(56, 189, 248, 0.2);
+            color: var(--primary);
+        }
+        .file-title {
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+        main {
+            flex: 1;
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        .container {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="../index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Voltar</a>
+        <div class="file-title">10.5_notacao_de_slice.py</div>
+    </header>
+    <main>
+        
+    <div class="container">
+        <div class="sandbox-header">
+            <h2><i class="fa-brands fa-python"></i> Sandbox PyScript</h2>
+            <span>Edite e execute (Shift + Enter) ou no botão verde ▶</span>
+        </div>
+        <div class="py-repl-container">
+            <script type="py" id="main-script"></script>
+            <py-repl auto-generate="true">
+# MIMO - 10 - Compreeensões de listas
+# 10.5 - Notação de slice
+
+# Às vezes queremos recuperar vários valores de uma lista. Podemos fazer isso usando slicing. Vejamos a sintaxe de slice: [start:stop:step]
+
+ingredientes = [&#x27;eggs&#x27;, &#x27;flour&#x27;, &#x27;sugar&#x27;, &#x27;salt&#x27;]
+print(ingredientes[0:2]) # [&#x27;eggs&#x27;, &#x27;flour&#x27;]
+
+# O valor à esquerda dos dois pontos é a posição inicial do slice. Como abordamos anteriormente, a indexação do Python começa em zero
+
+print(ingredientes[3:]) # [&#x27;salt&#x27;]
+# Ao codificar ingredinetes[3:], recuperamos todos os elementos da lista a partir da posição 3 até o final da lista.
+# O valor inicial pode ser positivo, negativo ou omitido. Se omitido, o slice começa no início da lista. Valores negativos significam que o slice começa a partir do final da lista.
+
+# Especificar um intervalo fora do comprimento da lista não causa um erro. Em vez disso, o slice retorna uma lista vazia.
+
+# O valor à direita dos dois pontos é a posição final do slice. O slice inclui todos os elementos da posição inicial até a posição final, mas não inclui o elemento da posição final.
+# Se usarmos um valor inicial de zero ou omitirmos o valor inicial, podemos omitir o primeiro dois pontos. Um valor de para da positivo será igual ao número de elementos retornados. 
+
+# Um índice star maior que o índice stop resulta em uma lista vazia
+
+# Também podemos usar um formato com dois dois pontos para especificar um valor de step. O valor de step é o número de elementos que o slice pula a cada iteração. O valor padrão de step é 1.
+
+# Podemos usar um valor step sem valor start ou stop. Nesse caso, o slice começa no início da lista e vai até o final da lista, pulando o número de elementos especificado por step.
+print(ingredientes[::2]) # [&#x27;eggs&#x27;, &#x27;sugar&#x27;]
+
+# step pode ser negativo, o que nos permite usar um valor start maior que o valor stop. Nesse caso, o slice começa no final da lista e vai até o início da lista, pulando o número de elementos especificado por step.
+print(ingredientes[::-1]) # [&#x27;salt&#x27;, &#x27;sugar&#x27;, &#x27;flour&#x27;, &#x27;eggs&#x27;]
+
+scores = [100, 200, 300, 400, 500]
+print(scores[0:2:-1]) # [] pois o step é negativo e o start é menor que o stop
+print(scores[4:1:-1]) # [500, 400, 300] pois o step é negativo e o start é maior que o stop
+            </py-repl>
+        </div>
+    </div>
+    
+    </main>
+</body>
+</html>

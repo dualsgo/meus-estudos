@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>README.md</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <style>
+        .markdown-body { font-size: 1.1rem; line-height: 1.7; color: #cbd5e1; }
+        .markdown-body h1, .markdown-body h2 { border-bottom: 1px solid var(--glass-border); padding-bottom: 0.5rem; margin-bottom: 1rem; color: var(--text-main); }
+        .markdown-body a { color: var(--primary); text-decoration: none; }
+        .markdown-body a:hover { text-decoration: underline; }
+        .markdown-body pre { background: rgba(0,0,0,0.3); padding: 1rem; border-radius: 8px; overflow-x: auto; border: 1px solid var(--glass-border); margin: 1rem 0; }
+        .markdown-body code { font-family: monospace; color: #eab308; background: rgba(0,0,0,0.3); padding: 0.2rem 0.4rem; border-radius: 4px; }
+        .markdown-body pre code { padding: 0; background: transparent; color: inherit; }
+        .markdown-body img { max-width: 100%; border-radius: 8px; }
+        table { border-collapse: collapse; width: 100%; margin: 1rem 0; }
+        th, td { border: 1px solid var(--glass-border); padding: 0.5rem; text-align: left; }
+        th { background: rgba(255,255,255,0.05); }
+    </style>
+    
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --glass-bg: rgba(30, 41, 59, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --primary: #38bdf8;
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        header {
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            border-bottom: 1px solid var(--glass-border);
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .back-btn {
+            color: var(--text-main);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            background: rgba(255,255,255,0.05);
+            transition: 0.3s;
+        }
+        .back-btn:hover {
+            background: rgba(56, 189, 248, 0.2);
+            color: var(--primary);
+        }
+        .file-title {
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+        main {
+            flex: 1;
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        .container {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="../index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Voltar</a>
+        <div class="file-title">README.md</div>
+    </header>
+    <main>
+        
+    <div class="container markdown-body" id="md-content"></div>
+    <script>
+        const b64 = "IyDwn46TIE1ldXMgRXN0dWRvcyDwn5qACj4gVW0gcmVwb3NpdMOzcmlvIGNlbnRyYWxpemFkbyBlIHByZW1pdW0gcGFyYSBvcmdhbml6YcOnw6NvIGRlIHRvZG9zIG9zIHNldXMgY3Vyc29zLCBkZXNhZmlvcyBlIGFub3Rhw6fDtWVzLgoKIVtEYXNoYm9hcmQgUHJldmlld10oaHR0cHM6Ly9pbWcuc2hpZWxkcy5pby9iYWRnZS9EYXNoYm9hcmQtSW50ZXJhdGl2by02NDZDRkY/c3R5bGU9Zm9yLXRoZS1iYWRnZSZsb2dvPXJlYWN0KQohW1B5dGhvbl0oaHR0cHM6Ly9pbWcuc2hpZWxkcy5pby9iYWRnZS9QeXRob24tMzc3NkFCP3N0eWxlPWZvci10aGUtYmFkZ2UmbG9nbz1weXRob24mbG9nb0NvbG9yPXdoaXRlKQohW1dlYl0oaHR0cHM6Ly9pbWcuc2hpZWxkcy5pby9iYWRnZS9XZWItSFRNTCUyRkNTUyUyRkpTLUUzNEYyNj9zdHlsZT1mb3ItdGhlLWJhZGdlJmxvZ289aHRtbDUpCgpCZW0tdmluZG8gYW8gKipNZXVzIEVzdHVkb3MqKi4gRXN0ZSByZXBvc2l0w7NyaW8gZm9pIGNyaWFkbyBwYXJhIG9yZ2FuaXphciBzZXUgYXByZW5kaXphZG8gZGUgZm9ybWEgbMOzZ2ljYSwgbW9kZXJuYSBlIGVzY2Fsw6F2ZWwsIHVuaW5kbyBkaXZlcnNhcyBwbGF0YWZvcm1hcyBlIHRyaWxoYXMgZGUgY29uaGVjaW1lbnRvIGVtIHVtIMO6bmljbyBsdWdhci4KCiMjIPCfk4IgRXN0cnV0dXJhIGRvIFJlcG9zaXTDs3JpbwoKQXF1aSBlc3TDo28gYXMgcHJpbmNpcGFpcyB0cmlsaGFzIGRlIGNvbmhlY2ltZW50byBjb250aWRhcyBuZXN0ZSByZXBvc2l0w7NyaW86CgotIPCfkI0gKipgUHl0aG9uYCoqIC0gTm90YXMgZGUgYXVsYXMgZXhwb3J0YWRhcywgYXByZXNlbnRhw6fDtWVzIGVzdHJ1dHVyYWRhcyBlIG1hdGVyaWFsIGVzc2VuY2lhbCBkZSBQeXRob24uCi0g8J+TkyAqKmBSZXN1bW9zYCoqIC0gQ2FkZXJub3MgaW50ZXJhdGl2b3MgZW0gSnVweXRlciBOb3RlYm9vayAoYC5pcHluYmApIGNvbSByZXN1bW9zIGFwcm9mdW5kYWRvcyBkb3MgY29uY2VpdG9zLgotIPCfjJAgKipgY2lzY29fZnVuZGFtZW50b3NfcHl0aG9uYCoqIC0gRXhlcmPDrWNpb3MgZSBjb250ZcO6ZG9zIGRvIGN1cnNvIFB5dGhvbiBFc3NlbnRpYWxzICgxIGUgMikgZGEgQ2lzY28uCi0g8J+OkyAqKmBjdXJzb2VtdmlkZW9fcHl0aG9uYCoqIC0gRGVzYWZpb3MgZSBhbm90YcOnw7VlcyBvcmdhbml6YWRvcyBwb3IgIk11bmRvcyIgZG8gQ3Vyc28gZW0gVsOtZGVvLgotIPCfk7EgKipgbWltb19hcHBgKiogLSBBcHJlbmRpemFkbyBkZSBIVE1MIGUgUHl0aG9uIGF0cmF2w6lzIGRhcyByb3RhcyBlIGRlc2FmaW9zIGRvIGFwbGljYXRpdm8gTWltby4KLSDimqEgKipgcHktZXN0dWRvc2AqKiAtIFVtIGVjb3NzaXN0ZW1hIFJlYWN0L1ZpdGUgZGUgdW0gRGFzaGJvYXJkIG1vZGVybm8gcGFyYSBsZWl0dXJhIGRpbsOibWljYSBlIHRlc3Rlcy4KCi0tLQoKIyMg8J+Wpe+4jyBDb21vIEFjZXNzYXIgbyBEYXNoYm9hcmQgSW50ZXJhdGl2bwoKUGFyYSBmYWNpbGl0YXIgYSBuYXZlZ2HDp8OjbyBwb3IgdG9kbyBlc3NlIGNvbnRlw7pkbywgZGVzZW52b2x2ZW1vcyB1bSAqKkRhc2hib2FyZCBJbnRlcmF0aXZvIFByZW1pdW0qKi4KQ29tIGVsZSwgdm9jw6ogcG9kZSBidXNjYXIsIGV4cGxvcmFyIHBhc3RhcyBlIGFicmlyIGFycXVpdm9zIGVtIHVtYSBpbnRlcmZhY2UgKkdsYXNzbW9ycGhpc20qIHN1cGVyIG1vZGVybmEuCgoqKlBhcmEgYWJyaXIgbyBEYXNoYm9hcmQ6KioKMS4gTmF2ZWd1ZSBhdMOpIGEgcmFpeiBkZXN0ZSByZXBvc2l0w7NyaW8uCjIuIENsaXF1ZSBvdSBhYnJhIG8gYXJxdWl2byBgaW5kZXguaHRtbGAgbm8gc2V1IG5hdmVnYWRvciBkZSBwcmVmZXLDqm5jaWEuCgo+IPCfm6AgKipTZSB2b2PDqiBhZGljaW9uYXIgbm92b3MgYXJxdWl2b3Mgb3UgY3Vyc29zKiosIHZvY8OqIHBvZGUgYXR1YWxpemFyIG8gRGFzaGJvYXJkIGV4ZWN1dGFuZG8gbyBzY3JpcHQgZGUgYXV0b21hw6fDo28gKGBweXRob24gYnVpbGRfZGFzaGJvYXJkLnB5YCksIHF1ZSBkZXRlY3RhcsOhIHRvZGFzIGFzIG5vdmFzIHBhc3RhcyBlIGF0dWFsaXphcsOhIG8gcG9ydGFsIQoKIyMg8J+agCBDb21vIEF0dWFsaXphciBvIERhc2hib2FyZAoKQ2FzbyBhZGljaW9uZSBub3ZhcyBwYXN0YXMsIHZvY8OqIG7Do28gcHJlY2lzYSBmYXplciBvIGPDs2RpZ28gZG8gemVyby4gU2ltcGxlc21lbnRlIHJvZGU6CgpgYGBwb3dlcnNoZWxsCnB5dGhvbiBidWlsZF9kYXNoYm9hcmQucHkKYGBgCkVzc2Ugc2NyaXB0IFB5dGhvbiBpcsOhIGVzY2FuZWFyIG8gcmVwb3NpdMOzcmlvIGludGVpcm8gZSByZWNvbnN0cnVpciBhIHN1YSBpbnRlcmZhY2UgYGluZGV4Lmh0bWxgIGluc3RhbnRhbmVhbWVudGUgY29tIG9zIG5vdm9zIGRhZG9zLgoKLS0tCipDb25zdHJ1w61kbyBjb20gZGVkaWNhw6fDo28gZSBmb2NhZG8gbmEgbWVsaG9yIGV4cGVyacOqbmNpYSBkZSBhcHJlbmRpemFnZW0gZSBwcm9kdXRpdmlkYWRlLiog4pyoCg==";
+        const decoded = decodeURIComponent(escape(window.atob(b64)));
+        document.getElementById('md-content').innerHTML = marked.parse(decoded);
+    </script>
+    
+    </main>
+</body>
+</html>

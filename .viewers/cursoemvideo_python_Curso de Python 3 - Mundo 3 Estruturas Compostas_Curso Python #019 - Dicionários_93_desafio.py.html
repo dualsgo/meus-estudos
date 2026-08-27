@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>93_desafio.py</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="https://pyscript.net/releases/2024.1.1/core.css">
+    <script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>
+    <style>
+        .sandbox-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
+        .sandbox-header h2 { font-size: 1.2rem; color: var(--primary); display: flex; align-items: center; gap: 0.5rem; }
+        .py-repl-container { border-radius: 8px; overflow: hidden; border: 1px solid var(--glass-border); background: #1e293b; }
+    </style>
+    
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --glass-bg: rgba(30, 41, 59, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --primary: #38bdf8;
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        header {
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            border-bottom: 1px solid var(--glass-border);
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .back-btn {
+            color: var(--text-main);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            background: rgba(255,255,255,0.05);
+            transition: 0.3s;
+        }
+        .back-btn:hover {
+            background: rgba(56, 189, 248, 0.2);
+            color: var(--primary);
+        }
+        .file-title {
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+        main {
+            flex: 1;
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        .container {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="../index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Voltar</a>
+        <div class="file-title">93_desafio.py</div>
+    </header>
+    <main>
+        
+    <div class="container">
+        <div class="sandbox-header">
+            <h2><i class="fa-brands fa-python"></i> Sandbox PyScript</h2>
+            <span>Edite e execute (Shift + Enter) ou no botão verde ▶</span>
+        </div>
+        <div class="py-repl-container">
+            <script type="py" id="main-script"></script>
+            <py-repl auto-generate="true">
+# Exercício Python #093 - Cadastro de Jogador de Futebol - Aula 00 até 19 - Mundo 3
+# Crie um programa que gerencie o aproveitamento de um jogador de futebol. O programa vai ler o nome do jogador e quantas partidas ele jogou. Depois vai ler a quantidade de gols feitos em cada partida. No final, tudo isso será guardado em um dicionário, incluindo o total de gols feitos durante o campeonato.
+
+from time import sleep
+
+jogadores = []
+
+while True:
+    jogador = {}
+    jogador[&#x27;nome&#x27;] = str(input(&#x27;Nome do jogador: &#x27;))
+    jogos = int(input(f&#x27;Quantos jogos {jogador[&quot;nome&quot;]} jogou? &#x27;))
+    jogador[&#x27;gols&#x27;] = []
+
+    for jogo in range(jogos):
+        jogador[&quot;gols&quot;].append(int(input(f&#x27;Quantos gols na partida {jogo + 1}? &#x27;)))
+    jogador[&quot;total&quot;] = sum(jogador[&quot;gols&quot;])
+
+    jogadores.append(jogador.copy())
+
+    continuar = str(input(&#x27;Continuar? S/N &#x27;)).strip().upper()
+
+    if continuar not in &#x27;SN&#x27;:
+        continuar = str(input(&#x27;Continuar? S/N &#x27;)).strip().upper()
+    else:
+        if continuar == &#x27;S&#x27;:
+            print(&#x27;Prosseguindo...&#x27;)
+        else:
+            print(&#x27;Encerrando...&#x27;)
+            break
+
+sleep(1)
+
+# Calcula a média corretamente
+for i, v in enumerate(jogadores):
+    media = v[&quot;total&quot;] / len(v[&quot;gols&quot;])
+    print(f&#x27;{v[&quot;nome&quot;]}, jogou {len(v[&quot;gols&quot;])} partidas e marcou {v[&quot;total&quot;]} gols. Média de {media:.2f} gols por partida.&#x27;)
+    sleep(1)
+    for ind, gol in enumerate(v[&#x27;gols&#x27;]):
+        print(f&#x27;Partida {ind + 1} - {gol} gols&#x27;)
+        sleep(1)
+
+
+# V2
+
+informações = dict()
+partidas = list()
+
+informações[&#x27;nome&#x27;] = input(&#x27;Nome do jogador: &#x27;)
+informações[&#x27;partidas&#x27;] = int(input(&#x27;Quantidade de partidas: &#x27;))
+
+for i in range(1, informações[&#x27;partidas&#x27;]+1):
+	partidas.append(int(input(f&#x27;Quantos gols marcados na partida {i}? &#x27;)))
+
+informações[&#x27;gols&#x27;] = partidas
+informações[&#x27;total&#x27;] = sum(partidas)
+
+for c, v in informações.items():
+	print(f&#x27;{c}: {v}&#x27;)
+
+for i, v in enumerate(informações[&#x27;gols&#x27;], 1):
+	print(f&#x27;Partida {i}: {v} gols&#x27;)
+
+# V3
+
+def print_error(message):
+	print(f&#x27;\033[1;31m{message}\033[m&#x27;)
+
+
+def obtem_nome():
+	while True:
+		entrada_nome = input(&#x27;Digite o nome: &#x27;).strip().title()
+		if entrada_nome.replace(&#x27; &#x27;, &#x27;&#x27;).isalpha():
+			return entrada_nome
+		else:
+			print_error(&#x27;NOME INVÁLIDO! Apenas caracteres alfabéticos.&#x27;)
+
+
+def obtem_inteiro(mensagem):
+	while True:
+		try:
+			return int(input(mensagem))
+		except ValueError:
+			print_error(&#x27;Valor inválido para essa operação!&#x27;)
+
+
+dados = list()
+jogador = dict()
+jogos = list()
+
+jogador[&#x27;nome&#x27;] = obtem_nome()
+jogador[&#x27;partidas&#x27;] = obtem_inteiro(&#x27;Digite a quantidade de partidas disputadas: &#x27;)
+quantidade_partidas = jogador[&#x27;partidas&#x27;]
+
+if quantidade_partidas &gt; 1:
+	for partida in range(quantidade_partidas):
+		jogos.append(obtem_inteiro(f&#x27;Gols marcados na {partida + 1}ª partida: &#x27;))
+else:
+	jogador[&#x27;gols_por_partida&#x27;] = obtem_inteiro(&#x27;Gols marcados na partida: &#x27;)
+
+jogador[&#x27;gols_por_partida&#x27;] = jogos
+jogador[&#x27;total_gols&#x27;] = sum(jogos)
+dados.append(jogador)
+print(dados)
+
+titulos = {
+	&#x27;nome&#x27;: &#x27;Nome&#x27;,
+	&#x27;partidas&#x27;: &#x27;Partidas disputadas&#x27;,
+	&#x27;gols_por_partida&#x27;: &#x27;Gols por jogo&#x27;,
+
+	&#x27;total_gols&#x27;: &#x27;Gols marcados&#x27;
+}
+
+for i in dados:
+	for chave, valor in jogador.items():
+		titulo = titulos.get(chave, chave)
+		if valor == jogador[&#x27;gols_por_partida&#x27;]:
+			for c, v in enumerate(jogador[&#x27;gols_por_partida&#x27;], 1):
+				print(f&#x27;{f&#x27;Partida {c}&#x27;:&lt;30}{f&#x27;{v} gols&#x27;:&gt;15}&#x27;)
+		else:
+			print(f&#x27;{titulo:&lt;30}{valor:&gt;15}&#x27;)
+
+
+# Estou compartilhando minhas anotações sobre os exercícios. Quem quiser, pode copiar e colar em um documento .py pois está tudo formatado e comentado.
+
+# Nesse exercício, o professor pede para criar um programa que gerencie o aproveitamento de um jogador de futebol. O programa deve ler o nome do jogador, a quantidade de partidas disputadas e a quantidade de gols marcados em cada partida. No final, o programa deve mostrar o total de gols marcados pelo jogador.
+
+# Para resolver esse exercício, vamos criar um dicionário chamado jogador para armazenar o nome, a quantidade de partidas e a quantidade de gols por partida. Vamos criar uma lista chamada jogos para armazenar a quantidade de gols em cada partida.
+jogador = dict()
+jogos = []
+
+# Vamos criar uma função chamada obtem_nome para obter o nome do jogador. Essa função deve verificar se o nome contém apenas caracteres alfabéticos.
+def obtem_nome():
+    while True:
+        entrada_nome = input(&#x27;Digite o nome: &#x27;).strip().title()
+        if entrada_nome.replace(&#x27; &#x27;, &#x27;&#x27;).isalpha():
+            return entrada_nome
+        else:
+            print(&#x27;\033[1;31mNOME INVÁLIDO! Apenas caracteres alfabéticos.\033[m&#x27;)
+            
+# Vamos criar uma função chamada obtem_inteiro para obter um valor inteiro. Essa função deve tratar exceções caso o usuário digite um valor inválido.
+def obtem_inteiro(mensagem):
+    while True:
+        try:
+            return int(input(mensagem))
+        except ValueError:
+            print(&#x27;\033[1;31mValor inválido para essa operação!\033[m&#x27;)
+            
+# Vamos criar uma lista chamada dados para armazenar os dados do jogador.
+dados = []
+
+# Vamos obter o nome do jogador e a quantidade de partidas disputadas.
+jogador[&#x27;nome&#x27;] = obtem_nome()
+jogador[&#x27;partidas&#x27;] = obtem_inteiro(&#x27;Digite a quantidade de partidas disputadas: &#x27;)
+quantidade_partidas = jogador[&#x27;partidas&#x27;]
+
+# Se o jogador disputou mais de uma partida, vamos obter a quantidade de gols em cada partida.
+if quantidade_partidas &gt; 1:
+    for partida in range(quantidade_partidas):
+        jogos.append(obtem_inteiro(f&#x27;Gols marcados na {partida + 1}ª partida: &#x27;))
+else:
+	jogador[&#x27;gols_por_partida&#x27;] = obtem_inteiro(&#x27;Gols marcados na partida: &#x27;)
+
+# Vamos adicionar a quantidade de gols por partida e o total de gols ao dicionário jogador.
+jogador[&#x27;gols_por_partida&#x27;] = jogos
+jogador[&#x27;total_gols&#x27;] = sum(jogos)
+
+# Vamos adicionar o dicionário jogador à lista dados.
+dados.append(jogador)
+
+# Vamos criar um dicionário chamado titulos para armazenar os títulos das colunas E seus respectivos títulos em português para melhorar a visualização dos dados.
+
+titulos = {
+    &#x27;nome&#x27;: &#x27;Nome&#x27;,
+    &#x27;partidas&#x27;: &#x27;Partidas&#x27;,
+    &#x27;gols_por_partida&#x27;: &#x27;Gols por partida&#x27;,
+    &#x27;total_gols&#x27;: &#x27;Gols marcados&#x27;
+}
+
+# Vamos criar um laço de repetição para percorrer a lista dados e mostrar os dados do jogador na tela. Vamos usar a função get() para obter o valor do dicionário titulos ou a chave caso não exista. 
+
+print(&#x27;-&#x27; * 50)
+print(f&#x27;{&quot;Aproveitamento do jogador&quot;:^50}&#x27;)
+print(&#x27;-&#x27; * 50)
+
+for jogador in dados:
+    for chave, valor in jogador.items():
+        titulo = titulos.get(chave, chave)
+        if chave == &#x27;gols_por_partida&#x27;:
+            print(&#x27;-&#x27; * 50)
+            for c, v in enumerate(jogador[&#x27;gols_por_partida&#x27;], 1):
+                print(f&#x27;{f&quot;Partida {c}&quot;:&lt;30}{f&quot;{v} gols&quot;:&gt;15}&#x27;)
+            print(&#x27;-&#x27; * 50)
+        else:
+            print(f&#x27;{titulo:&lt;30}{valor:&gt;15}&#x27;)
+            </py-repl>
+        </div>
+    </div>
+    
+    </main>
+</body>
+</html>

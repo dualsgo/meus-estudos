@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>m2_a4_lab2.py</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="https://pyscript.net/releases/2024.1.1/core.css">
+    <script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>
+    <style>
+        .sandbox-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
+        .sandbox-header h2 { font-size: 1.2rem; color: var(--primary); display: flex; align-items: center; gap: 0.5rem; }
+        .py-repl-container { border-radius: 8px; overflow: hidden; border: 1px solid var(--glass-border); background: #1e293b; }
+    </style>
+    
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --glass-bg: rgba(30, 41, 59, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --primary: #38bdf8;
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        header {
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            border-bottom: 1px solid var(--glass-border);
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .back-btn {
+            color: var(--text-main);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            background: rgba(255,255,255,0.05);
+            transition: 0.3s;
+        }
+        .back-btn:hover {
+            background: rgba(56, 189, 248, 0.2);
+            color: var(--primary);
+        }
+        .file-title {
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+        main {
+            flex: 1;
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        .container {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="../index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Voltar</a>
+        <div class="file-title">m2_a4_lab2.py</div>
+    </header>
+    <main>
+        
+    <div class="container">
+        <div class="sandbox-header">
+            <h2><i class="fa-brands fa-python"></i> Sandbox PyScript</h2>
+            <span>Edite e execute (Shift + Enter) ou no botão verde ▶</span>
+        </div>
+        <div class="py-repl-container">
+            <script type="py" id="main-script"></script>
+            <py-repl auto-generate="true">
+# 2.4.9 LAB Variáveis ‒ um simples conversor
+# Cenário
+# Milhas e quilômetros são unidades de comprimento ou distância.
+
+# Lembrando que 1 milha (1,61 km) é igual a aproximadamente 1,61 quilômetros, complete o programa no editor para converter:
+
+# Milhas em quilômetros;
+# quilômetros em milhas.
+# Não altere nada no código atual. Escreva seu código nos locais indicados por ###. Teste seu programa com os dados que fornecemos no código-fonte.
+
+# Preste atenção especial ao que está acontecendo na função de print(). Analise como fornecemos multiples argumentos para a função e como produzimos os dados esperados.
+
+# Observe que alguns dos argumentos dentro da função print() são strings (por exemplo, &quot;milhas é&quot;, enquanto outros são variáveis (por exemplo, miles).
+
+# Dica
+# Há mais uma coisa interessante acontecendo lá. Você pode ver outra função dentro da função print()? É a função round(). Seu trabalho é arredondar o resultado de saída para o número de casas decimais especificadas entre parênteses e retornar um float (dentro da função round() você pode encontrar o nome da variável, uma vírgula e o número de casas decimais que pretendemos por). Falaremos sobre funções muito em breve, então não se preocupe que tudo pode não estar totalmente claro ainda. Só queremos despertar a sua curiosidade.
+
+# Após concluir o laboratório, abra o Sandbox e experimente um pouco mais. Tente escrever conversores diferentes, por exemplo, um conversor de USD para EUR, um conversor de temperatura, etc. - deixe sua imaginação voar! Tente gerar os resultados combinando strings e variáveis. Tente usar e experimentar a função round() para arredondar seus resultados para uma, duas ou três casas decimais. Confira o que acontece se você não fornecer nenhum número de dígitos. Lembre-se de testar seus programas.
+
+# Experimente, tire conclusões e aprenda. Seja curioso.
+
+# Saída esperada
+# 7,38 milhas (ca. 12 km) é 11,88 quilômetros
+# 12,25 quilômetros é 7,61 milhas (ca. 12 km)
+
+milhas = 1.61
+print(f&#x27;1 quilômetro equivale a {milhas} milhas&#x27;)
+kilometres = 1 / milhas
+print(f&#x27;1 milha equivale a {round(kilometres, 2)} quilômetros&#x27;)
+milhas_convertidas = 7.38 * milhas
+kilometres_convertidos = 12.25 / milhas
+print(f&#x27;7.38 milhas é {round(milhas_convertidas, 2)} quilômetros.&#x27;)
+print(f&#x27;12.25 quilômetros é {round(kilometres_convertidos, 2)} milhas.&#x27;)
+            </py-repl>
+        </div>
+    </div>
+    
+    </main>
+</body>
+</html>

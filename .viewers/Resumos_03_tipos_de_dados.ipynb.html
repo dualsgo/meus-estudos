@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>03_tipos_de_dados.ipynb</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/monokai-sublime.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/python.min.js"></script>
+    
+    <style>
+        .cell { margin-bottom: 1.5rem; }
+        .cell-markdown { font-size: 1.05rem; line-height: 1.6; color: #cbd5e1; }
+        .cell-markdown h1, .cell-markdown h2, .cell-markdown h3 { color: #f1f5f9; margin-top: 1rem; margin-bottom: 0.5rem; }
+        .cell-markdown code { background: rgba(0,0,0,0.3); padding: 0.2rem 0.4rem; border-radius: 4px; color: #eab308; }
+        .cell-markdown pre { background: rgba(0,0,0,0.3); padding: 1rem; border-radius: 8px; overflow-x: auto; border: 1px solid var(--glass-border); margin: 1rem 0; }
+        .cell-code { background: #23241f; border-radius: 8px; padding: 1rem; overflow-x: auto; position: relative; border: 1px solid #333; }
+        .cell-output { background: #000; color: #a3e635; padding: 1rem; border-radius: 8px; margin-top: 0.5rem; font-family: monospace; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;}
+        .prompt { position: absolute; top: 0.5rem; right: 0.5rem; color: #64748b; font-size: 0.8rem; user-select: none; }
+    </style>
+    
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --glass-bg: rgba(30, 41, 59, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --primary: #38bdf8;
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        header {
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            border-bottom: 1px solid var(--glass-border);
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .back-btn {
+            color: var(--text-main);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            background: rgba(255,255,255,0.05);
+            transition: 0.3s;
+        }
+        .back-btn:hover {
+            background: rgba(56, 189, 248, 0.2);
+            color: var(--primary);
+        }
+        .file-title {
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+        main {
+            flex: 1;
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        .container {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="../index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Voltar</a>
+        <div class="file-title">03_tipos_de_dados.ipynb</div>
+    </header>
+    <main>
+        <div class="container">
+            <div class="cell cell-markdown" id="md-0"></div>
+            <script>
+                (function(){
+                    const b64 = "IyBUaXBvcyBkZSBkYWRvcwotLS0KCkFvIGZhbGFyIHNvYnJlIHRpcG9zIGRlIGRhZG9zIGVtIHByb2dyYW1hw6fDo28sIGVzdGFtb3Mgbm9zIHJlZmVyaW5kbyDDoHMgZGlmZXJlbnRlcyBjYXRlZ29yaWFzIGRlIHZhbG9yZXMgcXVlIHBvZGVtIHNlciBtYW5pcHVsYWRvcyBlbSB1bSBwcm9ncmFtYS4gQ2FkYSB0aXBvIGRlIGRhZG8gZGVmaW5lIHVtIGNvbmp1bnRvIGVzcGVjw61maWNvIGRlIHZhbG9yZXMgZSBhcyBvcGVyYcOnw7VlcyBxdWUgcG9kZW0gc2VyIHJlYWxpemFkYXMgc29icmUgZXNzZXMgdmFsb3Jlcy4KCk9zIHZhbG9yZXMgKipsaXRlcmFpcyoqIHPDo28gcmVwcmVzZW50YcOnw7VlcyBmaXhhcy4gRGV2ZW1vcyBlbnRlbmRlciBhIGRpZmVyZW7Dp2EgZW50cmUgdGlwbyBkZSBkYWRvIGUgdmFsb3IgbGl0ZXJhbC4KCk8gdGlwbyBkZSBkYWRvIGRlZmluZSBvIGNvbmp1bnRvIGRlIHZhbG9yZXMgZSBvcGVyYcOnw7VlcyBwb3Nzw612ZWlzLCBlbnF1YW50byBvIHZhbG9yIGxpdGVyYWwgw6kgYSByZXByZXNlbnRhw6fDo28gZXNwZWPDrWZpY2EgZGUgdW0gdmFsb3IgZGVudHJvIGRlc3NlIHRpcG8gRW1ib3JhIGFsZ3VucyBsaXRlcmFpcyBwb3NzYW0gdGVyIGEgbWVzbWEgcmVwcmVzZW50YcOnw6NvIHZpc3VhbCwgw6kgY3J1Y2lhbCBlbnRlbmRlciBxdWUgbyB0aXBvIGRlIGRhZG8gZSBvIHZhbG9yIGxpdGVyYWwgc8OjbyBjb25jZWl0b3MgZGlzdGludG9zLgoKUG9yIGV4ZW1wbG8sIG8gbsO6bWVybyAxIHBvZGUgc2VyIGVzY3JpdG8gY29tbyBvIGxpdGVyYWwgMSBvdSAnMScuIEFtYm9zIHJlcHJlc2VudGFtIG8gbWVzbW8gdmFsb3IgbnVtw6lyaWNvICgxKSwgbWFzIHBvc3N1ZW0gdGlwb3MgZGUgZGFkb3MgZGlmZXJlbnRlczogaW50ZWlybyAoaW50KSBwYXJhIDEgZSBzdHJpbmcgKHN0cikuCgoqKkV4ZW1wbG9zIGRlIGxpdGVyYWlzKioKCmBgYHB5dGhvbgpudW1lcm8gPSAxCnRleHRvID0gJzEnCgpwcmludChudW1lcm8pICAjIFNhw61kYTogMQpwcmludCh0ZXh0bykgICAjIFNhw61kYTogMQpgYGAKCkEgZnVuw6fDo28gYHByaW50KClgIGFwcmVzZW50YSBudW1lcm8gZSB0ZXh0byBleGF0YW1lbnRlIGRhIG1lc21hIG1hbmVpcmEsIHBvaXMgc3VhIHJlcHJlc2VudGHDp8OjbyBsZWfDrXZlbCBwb3IgaHVtYW5vcyB0YW1iw6ltIMOpIGEgbWVzbWEuIEFxdWkgZXN0YW1vcyBub3MgcmVmZXJpbmRvIGVzcGVjaWZpY2FtZW50ZSBwYXJhIG8gbsO6bWVybyBlIG8gdGV4dG8uCgpJbnRlcm5hbWVudGUsIG5hIG1lbcOzcmlhIGRvIGNvbXB1dGFkb3IsIGVzc2VzIGRvaXMgdmFsb3JlcyBzw6NvIGFybWF6ZW5hZG9zIGRlIGZvcm1hcyBjb21wbGV0YW1lbnRlIGRpZmVyZW50ZXMuIEEgc3RyaW5nIGV4aXN0ZSBhcGVuYXMgY29tbyB1bWEgc2VxdcOqbmNpYSBkZSBsZXRyYXMsIGVucXVhbnRvIG8gbsO6bWVybyDDqSBhcm1hemVuYWRvIGVtIHVtYSByZXByZXNlbnRhw6fDo28gZGUgbcOhcXVpbmEgKHVtIGNvbmp1bnRvIGRlIGJpdHMpLiBBcGVzYXIgZGlzc28sIGEgZnVuw6fDo28gYHByaW50KClgIMOpIGNhcGF6IGRlIGV4aWJpciBhbWJvcyBlbSB1bSBmb3JtYXRvIGxlZ8OtdmVsIHBhcmEgaHVtYW5vcy4=";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-0').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python"># O algarismo 1 é armazenado na memória do computador como 00000001, que é o seu equivalente em binário.
+
+print(bin(1)) # 0b1 ou 00000001</code></pre>
+            </div>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python"># O texto &#x27;1&#x27; é armazenado na memória do computador como 00110001, que é o seu equivalente em binário a 49, que é o código ASCII para o caractere &#x27;1&#x27;.
+
+print(bin(49)) # 0b110001 ou 00110001
+print(ord(&#x27;1&#x27;)) # 49
+
+#   0  0  1  1 0 0 0 1
+# 128 64 32 16 8 4 2 1
+#   0+ 0+32+16+0+0+0+1 = 49</code></pre>
+            </div>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python"># Os valores de tipos diferentes ocupam diferentes quantidades de espaço na memória do computador.
+
+import sys
+
+print(sys.getsizeof(1)) # 28
+# O valor do tipo int ocupa 28 bytes na memória do computador.
+
+print(sys.getsizeof(&#x27;1&#x27;)) # 50
+# O valor do tipo str ocupa 50 bytes na memória do computador.
+
+# Em programas mais avançados, é importante considerar o uso de memória ao escolher tipos de dados apropriados para armazenar informações.</code></pre>
+            </div>
+            
+            <div class="cell cell-markdown" id="md-4"></div>
+            <script>
+                (function(){
+                    const b64 = "IyMgYFN0cmluZ3Ng";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-4').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-markdown" id="md-5"></div>
+            <script>
+                (function(){
+                    const b64 = "KipTdHJpbmdzKiogc8OjbyBkYWRvcyBkZSB0ZXh0byBkZWxpbWl0YWRvcyBwb3IgYXNwYXMgc2ltcGxlcyAoJyAnKSBvdSBkdXBsYXMgKCIgIikuIEVsYXMgc8OjbyB1c2FkYXMgcGFyYSByZXByZXNlbnRhciBzZXF1w6puY2lhcyBkZSBjYXJhY3RlcmVzLCBxdWUgcG9kZW0gaW5jbHVpciBsZXRyYXMsIG7Dum1lcm9zLCBzw61tYm9sb3Mgb3UgZXNwYcOnb3MuCgpBIGVzY29saGEgZW50cmUgYXNwYXMgc2ltcGxlcyBlIGR1cGxhcyBkZXBlbmRlIGRvIGNvbnRlw7pkbyBkYSBzdHJpbmcuIFNlIGEgc3RyaW5nIGNvbnRpdmVyIGFzcGFzIHNpbXBsZXMgZGVudHJvIGRlbGEsIHZvY8OqIGRldmUgdXNhciBhc3BhcyBkdXBsYXMgcGFyYSBkZWxpbWl0w6EtbGEgZSB2aWNlLXZlcnNhLiBJc3NvIGV2aXRhIGVycm9zIGRlIHNpbnRheGUgZSBwZXJtaXRlIHF1ZSBvIFB5dGhvbiBzYWliYSBvbmRlIGEgc3RyaW5nIHRlcm1pbmEuIEVzc2EgcHLDoXRpY2Egw6kgZnVuZGFtZW50YWwgcGFyYSBnYXJhbnRpciBxdWUgc3VhcyBzdHJpbmdzIHNlamFtIGludGVycHJldGFkYXMgY29ycmV0YW1lbnRlIHBlbG8gUHl0aG9uLgoKVW1hIHN0cmluZyB2YXppYSwgcmVwcmVzZW50YWRhIHBvciBhc3BhcyBzaW1wbGVzIHNlbSBuZW5odW0gY2FyYWN0ZXJlIGRlbnRybyBvdSBhc3BhcyBkdXBsYXMgc2VtIG5lbmh1bSBjYXJhY3RlcmUgZGVudHJvICgnJywgIiIpLCDDqSBjb25zaWRlcmFkYSB1bWEgc3RyaW5nIHbDoWxpZGEsIGrDoSBxdWUgKioqdW1hIHN0cmluZyDDqSB1bWEgc2VxdcOqbmNpYSBkZSBjYXJhY3RlcmVzLCBlIHVtYSBzdHJpbmcgdmF6aWEgcmVwcmVzZW50YSBzaW1wbGVzbWVudGUgdW1hIHNlcXXDqm5jaWEgZGUgemVybyBjYXJhY3RlcmVzKioqLiBFbWJvcmEgbsOjbyBoYWphIGNhcmFjdGVyZXMgdmlzw612ZWlzIGRlbnRybyBkZSB1bWEgc3RyaW5nIHZhemlhLCBlbGEgYWluZGEgw6kgdW1hIGluc3TDom5jaWEgdsOhbGlkYSBkbyB0aXBvIGRlIGRhZG8gc3RyaW5nLiBJc3NvIG9jb3JyZSBwb3JxdWUgUHl0aG9uIHBlcm1pdGUgYSBjcmlhw6fDo28gZGUgc3RyaW5ncyB2YXppYXMgcGFyYSBmaW5zIGRlIGNvbnZlbmnDqm5jaWEgZSBjb25zaXN0w6puY2lhIG5hIG1hbmlwdWxhw6fDo28gZGUgZGFkb3MuCgpFbWJvcmEgc3RyaW5ncyBzZWphbSBjb211bWVudGUgY29uc2lkZXJhZGFzIGNvbW8gdW1hIHNlcXXDqm5jaWEgZGUgY2FyYWN0ZXJlcywgZWxhcyB0YW1iw6ltIHBvZGVtIHNlciB2aXN0YXMgY29tbyB1bSB0aXBvIGRlIHZhbG9yIGNvbXBvc3RvLCBhc3NpbSBjb21vIGxpc3Rhcy4gRW0gUHl0aG9uLCBzdHJpbmdzIHPDo28gaXRlcsOhdmVpcyBlIHBvZGVtIHNlciBhY2Vzc2FkYXMgcG9yIMOtbmRpY2VzLCBkYSBtZXNtYSBmb3JtYSBxdWUgYXMgbGlzdGFzLg==";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-5').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python"># Exemplos de strings
+nome = &quot;Python&quot; # String com aspas duplas
+mensagem = &#x27;Olá, mundo!&#x27; # String com aspas simples
+caminho_arquivo = &quot;&quot;&quot;/caminho/para/arquivo.txt&quot;&quot;&quot; # String com aspas triplas
+
+print(nome)             # Saída: Python
+print(mensagem)         # Saída: Olá, mundo!
+print(caminho_arquivo)  # Saída: /caminho/para/arquivo.txt</code></pre>
+            </div>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python"># As aspas triplas também podem ser usadas para criar strings multilinha.
+texto_multilinha = &quot;&quot;&quot;Esta é uma string
+que abrange várias linhas.&quot;&quot;&quot;
+print(texto_multilinha)
+
+# Elas preservam quebras de linha e espaços exatamente como são digitados, evitando a necessidade de caracteres de escape ou concatenação de strings.</code></pre>
+            </div>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python"># Vejamos um exemplo de uso correto de aspas combinadas para evitar erros de sintaxe
+
+mensagem = &quot;João disse: &#x27;Olá!&#x27;&quot; # A citação &#x27;Olá!&#x27; é feita com aspas simples e as aspas duplas são usadas para delimitar a string
+
+citação = &#x27;Ela respondeu: &quot;Como vai?&quot;&#x27; # A citação &quot;Como vai?&quot; é feita com aspas duplas e as aspas simples são usadas para delimitar a string
+
+# Execute o código e veja a saída. Repare que as aspas simples e duplas são exibidas corretamente na saída, sem afetar a sintaxe do código e causar erros.
+
+print(mensagem)  # Saída: João disse: &#x27;Olá!&#x27;
+print(citação)   # Saída: Ela respondeu: &quot;Como vai?&quot;
+
+# Note que uma faz parte do texto que queremos exibir e a outra faz parte da sintaxe da linguagem e não é exibida na saída</code></pre>
+            </div>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python"># Se eventualmente, por algum motivo seja necessário utilizar o mesmo tipo de aspas dentro de uma string, você pode usar o caractere de escape (\) para evitar erros de sintaxe.
+
+mensagem = &quot;João disse: \&quot;Olá!\&quot;&quot; # As aspas duplas dentro da string são precedidas por uma barra invertida. Isso faz com que o Python interprete a aspas duplas como parte da string e não como o fim da string
+
+# Sem o caractere de escape, o Python não conseguiria interpretar a string corretamente e um erro de sintaxe seria gerado
+# print(&quot;João disse: &quot;Olá!&quot;&quot;) # Erro de sintaxe (SyntaxError)
+
+# No exemplo acima o erro se dá ao fato de que o Python interpreta a string como sendo &quot;João disse: &quot; e &quot;&quot; (uma string vazia). O restante (Olá!) é considerado código inválido pois é um texto solto e não está dentro de uma string e se fosse outro tipo de dado, seria considerado uma operação inválida pois não está sendo feita dentro de uma expressão válida (concatenação, atribuição, etc.)
+
+print(&quot;João disse: &quot;&quot;&quot;) # Porém em Python, strings literais adjacentes (sem nada entre elas) são automaticamente concatenadas. A expressão acima é equivalente a &quot;João disse: &quot; e &quot;&quot; (uma string vazia) e não gera erro de sintaxe (SyntaxError)</code></pre>
+            </div>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python"># Exemplo de string vazia
+string_vazia = &#x27;&#x27;
+outra_string_vazia = &quot;&quot;
+
+print(len(string_vazia))         # Saída: 0
+print(len(outra_string_vazia))   # Saída: 0
+# Obs.: len() é uma função que retorna o comprimento de um objeto, como uma string, lista, tupla, etc.
+
+# Exemplo de string como uma lista de caracteres
+mensagem = &quot;Olá, mundo&quot;&quot;!&quot;
+
+print(len(mensagem))   # Saída: 11 (contando com o espaço e a vírgula a string possui 10 caracteres), mais o ponto de exclamação (!) que é concatenado à string</code></pre>
+            </div>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python"># Acessando caracteres individuais com a notação de colchetes; O número entre colchetes é o índice do caractere desejado (começando em 0 para o primeiro caractere e assim por diante)
+
+print(mensagem[0])     # Saída: O (primeiro caractere)
+print(mensagem[3])     # Saída: , (quarto caractere)
+print(mensagem[-1])    # Saída: ! (último caractere)
+
+# Caso tente acessar um índice que não existe, um erro de índice fora de alcance (IndexError) será gerado. Por exemplo, tentar acessar mensagem[12] gerará um erro, pois a string possui apenas 11 caracteres.
+
+# Para evitar erros de índice fora de alcance, você pode usar a função len() para obter o comprimento da string e garantir que o índice esteja dentro dos limites da string.</code></pre>
+            </div>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python"># Também é possível acessar um intervalo de caracteres de uma string, especificando um intervalo de índices separados por dois pontos (:) entre os colchetes. Isso é conhecido como slicing.
+
+print(mensagem[0:5])   # Saída: Olá, (caracteres do índice 0 ao 4)
+
+# O primeiro índice do intervalo é inclusivo e o segundo índice é exclusivo, ou seja, o intervalo inclui o primeiro índice, mas não inclui o segundo índice. Se o primeiro índice for omitido, o intervalo começará do início da string. Se o segundo índice for omitido, o intervalo irá até o final da string.
+
+# Além disso, é possível especificar um terceiro número inteiro que representa o passo do intervalo. Por exemplo, se o passo for 2, o intervalo incluirá cada segundo caractere.
+print(mensagem[0:11:2])  # Saída: Oámno (caracteres do índice 0 ao 10, pulando de 2 em 2)
+
+# Índices negativos também podem ser usados para acessar um intervalo de caracteres de uma string. Nesse caso, a contagem começa a partir do final da string, com -1 representando o último caractere. Deve-se respeitar a ordem dos índices, ou seja, o primeiro índice deve ser menor que o segundo índice.
+
+# Com a combinação de índices negativos e o passo negativo, é possível inverter uma string.
+print(mensagem[::-1]) # Saída: !odnum ,álO (string invertida)</code></pre>
+            </div>
+            
+            <div class="cell cell-markdown" id="md-13"></div>
+            <script>
+                (function(){
+                    const b64 = "IyMgYE7Dum1lcm9zYAotLS0KT3MgKipuw7ptZXJvcyoqIG1hbmlwdWxhZG9zIHBlbG9zIGNvbXB1dGFkb3JlcyBwb2RlbSBzZXIgZGUgZG9pcyB0aXBvczoKCi0gKipgaW50ZWlyb3NgKiosIG91IHNlamEsIGFxdWVsZXMgZGVzcHJvdmlkb3MgZGEgcGFydGUgZnJhY2lvbsOhcmlhIChgaW50YCkKLSBuw7ptZXJvcyBkZSAqKmBwb250byBmbHV0dWFudGVgKiogKG91IHNpbXBsZXNtZW50ZSBgZmxvYXRgKSwgcXVlIGNvbnTDqm0gKG91IGNvbnNlZ3VlbSBjb250ZXIpIGEgcGFydGUgZnJhY2lvbsOhcmlhLg==";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-13').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python"># Dizemos &quot;que contém ou podem conter parte fracionária&quot; pois podemos omitir a parte fracionária se ela for composta apenas por zeros e a parte inteira se ela for zero. Por exemplo, 5.0 é um número real, mas podemos escrevê-lo como 5.
+
+# Se quisermos estritamente um número inteiro, devemos usar a notação sem ponto flutuante (por exemplo, 5).
+
+# Note que o valor literal é o mesmo, mas a representação interna do número é diferente. O número 5 é armazenado de forma diferente do número 5.0.
+
+import sys
+
+# O int é armazenado como um objeto dinâmico, que cresce conforme necessário para acomodar números maiores.
+print(sys.getsizeof(5))     # Saída: 28
+
+# O float segue o padrão IEEE 754, que é um padrão de representação de ponto flutuante em computadores. Isso significa que o float é armazenado de forma mais compacta que o int mesmo que ambos tenham o mesmo valor.
+print(sys.getsizeof(5.0))   # Saída: 24</code></pre>
+            </div>
+            
+            <div class="cell cell-markdown" id="md-15"></div>
+            <script>
+                (function(){
+                    const b64 = "IyMjICoqYEludGVpcm9zIChpbnQpYCoqCi0tLQpPcyBuw7ptZXJvcyBpbnRlaXJvcyBzw6NvIGFxdWVsZXMgcXVlIG7Do28gcG9zc3VlbSBwYXJ0ZSBmcmFjaW9uw6FyaWEuIEVtIFB5dGhvbiwgZWxlcyBzw6NvIHJlcHJlc2VudGFkb3MgcGVsbyB0aXBvIGRlIGRhZG9zICoqYGludGAqKi4gRWxlcyBwb2RlbSBzZXIgcG9zaXRpdm9zLCBuZWdhdGl2b3Mgb3UgemVyby4KCioqRmFsYXJlbW9zIHNvYnJlIGEgbm90YcOnw6NvOioqCgpUb21lbW9zLCBwb3IgZXhlbXBsbywgbyBuw7ptZXJvIGBgb256ZSBtaWxow7VlcyBjZW50byBlIG9uemUgbWlsIGNlbnRvIGUgb256ZWBgLiBTZSB2b2PDqiBwZWdhc3NlIHVtIGzDoXBpcyBuYSBtw6NvIGFnb3JhLCBlc2NyZXZlcmlhIG8gbsO6bWVybyBhc3NpbToKCioqMTEuMTExLjExMSoqLCBvdSBhdMOpIG1lc21vIGFzc2ltOiAqKjExIDExMSAxMTEqKi4KCsOJIGNsYXJvIHF1ZSBlc3NhIGRpc3Bvc2nDp8OjbyBmYWNpbGl0YSBhIGxlaXR1cmEsIGVzcGVjaWFsbWVudGUgcXVhbmRvIG8gbsO6bWVybyBjb25zaXN0ZSBlbSBtdWl0b3MgZMOtZ2l0b3MuIE5vIGVudGFudG8sIG8gUHl0aG9uIG7Do28gYWNlaXRhIGNvaXNhcyBjb21vIGVzc2FzLiBJc3NvIG8gY29uZnVuZGUsIHBvcnRhbnRvIMOpIHByb2liaWRvLg==";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-15').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [34]</div>
+                <pre><code class="language-python"># numero_grande = 11 11 111 - Não é um número válido devido aos espaços
+# numero_grande = 11,111,111 - Não é um número válido devido às vírgulas usadas incorretamente no contexto de um número em Python
+# numero_grande = 11.111.111 - Não é um número válido devido aos pontos usados incorretamente no contexto de um número em Python
+
+# O que o Python 3.6+ permite, porém, é o uso de sublinhados em literais numéricos.
+
+# Portanto, você pode escrever este número da seguinte forma: 
+numero_grande = 11111111
+# ou desta forma:
+numero_grande = 11_111_111
+# Mas a saída será a mesma em ambos os casos.
+
+# Para números negativos basta colocar o sinal de menos na frente do literal: -11111111 ou -11_111_111.
+# Números positivos não carecem de um sinal, mas você pode colocá-lo se quiser: +11111111 ou +11_111_111.
+
+print(numero_grande)  # Saída: 11111111</code></pre>
+            </div>
+            <div class="cell-output">11111111
+</div>
+            <div class="cell cell-code">
+                <div class="prompt">In [36]</div>
+                <pre><code class="language-python"># Sobre os pontos...
+# numero_grande = 11.111.111 - Não é um número válido devido aos pontos usados incorretamente porém
+
+# numero_grande = 11111.111 - É um número válido pois o ponto está no lugar correto. Os números à esquerda do ponto são o que chamamos de parte inteira e os números à direita do ponto são o que chamamos de parte fracionária.
+
+# numero_grande = 11.111111 - É um número válido pois o ponto está no lugar correto. O número inteiro é 11 e o número fracionário é 111111.
+
+# numero_grande = 111111111. - É um número válido pois o ponto está no lugar correto. Podemos omitir os zeros à direita.
+
+# numero_grande = .111111111 - É um número válido pois o ponto está no lugar correto. Podemos omitir os zeros à esquerda.
+
+# Nota: Essas regras são válidas para números inteiros e de ponto flutuante. Para strings numéricas você pode usar a notação de pontos que quiser, dependendo da finalidade da string. Se deseja que a string seja convertida em um número, a notação deve ser válida para a conversão.
+
+# O exemplo a seguir mostra como converter uma string numérica com pontos em um número inteiro gera um erro de conversão.
+
+numero_grande = &quot;11.111.111&quot; # É uma string válida
+# numero_grande = int(numero_grande) # Tenta converter a string em um número inteiro
+print(numero_grande)
+# Erro de conversão (ValueError - ValueError: invalid literal for int() with base 10: &#x27;11.111.111&#x27;)
+# Tradução: Valor inválido para int() com base 10: &#x27;11.111.111&#x27;
+
+# numero_grande = &quot;11 11 111&quot; - É uma string válida
+# numero_grande = &quot;11,111,111&quot; - É uma string válida
+# numero_grande = &quot;11.111.111&quot; - É uma string válida
+
+# Importante! As strings não podem ser usadas em expressões matemáticas, a menos que sejam convertidas em números. Para isso precisa-se usar as funções de conversão de tipo int() e float(), mas os valores devem ser válidos para a conversão ou caso contrário será gerado um erro.</code></pre>
+            </div>
+            <div class="cell-output">11.111.111
+</div>
+            <div class="cell cell-markdown" id="md-18"></div>
+            <script>
+                (function(){
+                    const b64 = "IyMjICoqYFBvbnRvIEZsdXR1YW50ZSAoZmxvYXQpYCoqCi0tLQpWYWxvcmVzICoqYGZsb2F0YCoqIHPDo28gbsO6bWVyb3MgcXVlIGNvbnTDqm0gKG91IHPDo28gY2FwYXplcyBkZSBjb250ZXIpIHVtIGNvbXBvbmVudGUgZnJhY2lvbsOhcmlvLiBFbGVzIHPDo28gZXNjcml0b3MgY29tIHVtIHBvbnRvIGRlY2ltYWwgY29tbyBzZXBhcmFkb3IgZW50cmUgYSBwYXJ0ZSBpbnRlaXJhIGUgYSBwYXJ0ZSBmcmFjaW9uw6FyaWEuCgoqKlBvciBleGVtcGxvKio6IGAyLjVgIG91IGAwLjRgCgpDb21vIHZpbW9zIGFudGVzLCBlbWJvcmEgc2UgbyBzZXUgaWRpb21hIG5hdGl2byBwcmVmZXJpciB1c2FyIHbDrXJndWxhIGVtIHZleiBkZSB1bSBwb250byBubyBuw7ptZXJvLCB2b2PDqiBkZXZlIGdhcmFudGlyIHF1ZSBzZXUgbsO6bWVybyBuw6NvIGNvbnRlbmhhIG5lbmh1bWEgdsOtcmd1bGEuIE8gUHl0aG9uIG7Do28gYWNlaXRhcsOhIGlzc28sIG91IChlbSBjYXNvcyBtdWl0byByYXJvcywgbWFzIHBvc3PDrXZlaXMpIHBvZGUgaW50ZXJwcmV0YXIgbWFsIHN1YXMgaW50ZW7Dp8O1ZXMsIHBvaXMgYSB2w61yZ3VsYSB0ZW0gc2V1IHByw7NwcmlvIHNpZ25pZmljYWRvIHJlc2VydmFkbyBlbSBQeXRob24uCgpTZSB2b2PDqiBxdWlzZXIgdXNhciBhcGVuYXMgdW0gdmFsb3IgZGUgZG9pcyBlIG1laW8sIGVzY3JldmEtbyBjb21vIG1vc3RyYWRvIGFjaW1hLiAKCk9ic2VydmUgbWFpcyB1bWEgdmV6OiBow6EgdW0gcG9udG8gZW50cmUgMiBlIDUsIG7Do28gdW1hIHbDrXJndWxhLg==";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-18').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [32]</div>
+                <pre><code class="language-python"># Como vimos antes, podemos criar programas que sejam executados sem erros, mas que não produzam o resultado esperado. Isso acontece quando o programa tem um erro de lógica. Python não pode detectar esse tipo de erro, pois o programa está sintaticamente correto.
+
+print(2,5) # A vírgula é usada para separar os argumentos em uma chamada de função. Por isso print(2,5) é uma sentença válida. O Python executará o programa sem erros pois a sintaxe está correta mas o resultado não é o esperado. Em vez de imprimir 2,5 ele imprime 2 5 (Separados por espaço pois é o padrão do separador na função print). 
+
+print(2.5) # Agora comando com a intenção de imprimir um número decimal foi dado da maneira correta ao Python. Será impresso 2.5
+
+# É importante dar instruções claras ao Python para que ele possa executar o programa corretamente. Se você não fizer isso, o Python não poderá ajudá-lo. Ele executará o programa sem erros, mas o resultado pode não ser o esperado.</code></pre>
+            </div>
+            <div class="cell-output">2 5
+2.5
+</div>
+            <div class="cell cell-markdown" id="md-20"></div>
+            <script>
+                (function(){
+                    const b64 = "Q29tbyB2b2PDqiBwcm92YXZlbG1lbnRlIHBvZGUgaW1hZ2luYXIsIG8gdmFsb3IgZGUgemVybyBwb250byBxdWF0cm8gcG9kZXJpYSBzZXIgZXNjcml0byBlbSBQeXRob24gY29tbyAqKmAwLjRgKiosIG1hcyBuw6NvIHNlIGVzcXVlw6dhIGRlc3RhIHJlZ3JhIHNpbXBsZXMgLSAqKnZvY8OqIHBvZGUgb21pdGlyIHplcm8gcXVhbmRvIGZvciBvIMO6bmljbyBkw61naXRvIGFudGVzIG91IGRlcG9pcyBkYSB2w61yZ3VsYSoqLgoKRW0gZXNzw6puY2lhLCB2b2PDqiBwb2RlIGVzY3JldmVyIG8gdmFsb3IgKipgMC40YCoqIGNvbW8gKipgLjRgKiogZSBvIHZhbG9yIGRlICoqYDQuMGAqKiBwb2RlIHNlciBlc2NyaXRvIGNvbW8gKipgNC5gKioKCioqYDRgKiogw6kgdW0gbsO6bWVybyBpbnRlaXJvLCBlbnF1YW50byAqKmA0LjBgKiogb3UgKipgNC5gKiogw6kgdW0gbsO6bWVybyBkZSBwb250byBmbHV0dWFudGUsIGRlc2RlIHF1ZSBoYWphIHVtIHBvbnRvIGRlY2ltYWwgbm8gbGl0ZXJhbC4KClBvciBvdXRybyBsYWRvLCBuw6NvIHPDo28gYXBlbmFzIG9zIHBvbnRvcyBxdWUgZmF6ZW0gdW0gZmxvYXQuIFZvY8OqIHRhbWLDqW0gcG9kZSB1c2FyIGEgbGV0cmEgKipgZWAqKi4KCkEgbGV0cmEgKiplIChvdSBFKSoqIMOpIHVzYWRhIHBhcmEgaW5kaWNhciBhICoqcG90w6puY2lhIGRlIGRleioqLiBQb3IgZXhlbXBsbywgcGFyYSBldml0YXIgZXNjcmV2ZXIgdGFudG9zIHplcm9zLCBvcyBsaXZyb3MgZGUgZsOtc2ljYSB1c2FtIHVtYSBmb3JtYSBhYnJldmlhZGEsIHF1ZSB2b2PDqiBwcm92YXZlbG1lbnRlIGrDoSB2aXU6IAoKKipgMyB4IDEwICoqIDggPSAzMDAwMDAwMDBgKioKCk8gUHl0aG9uIHBlcm1pdGUgcXVlIHZvY8OqIGVzY3JldmEgbyBtZXNtbyB2YWxvciBjb21vICoqYGAzZThgYCoqLgoKQSBsZXRyYSBFICh2b2PDqiB0YW1iw6ltIHBvZGUgdXNhciBhIGxldHJhIG1pbsO6c2N1bGEgZSAtIHZlbSBkYSBwYWxhdnJhIGV4cG9lbnRlKSDDqSB1bSByZWdpc3RybyBjb25jaXNvIGRhIGZyYXNlICoqYGB2ZXplcyBkZXogw6AgcG90w6puY2lhIGRlYGAqKi4KCi0gbyBleHBvZW50ZSAobyB2YWxvciBhcMOzcyBvIEUpIHRlbSBxdWUgc2VyIHVtIG7Dum1lcm8gaW50ZWlybzsKLSBhIGJhc2UgKG8gdmFsb3IgbmEgZnJlbnRlIGRvIEUpIHBvZGUgc2VyIHVtIG7Dum1lcm8gaW50ZWlybyBvdSB1bSB2YWxvciBmbHV0dWFudGUuCgpWYW1vcyB2ZXIgY29tbyBlc3NhIGNvbnZlbsOnw6NvIMOpIHVzYWRhIHBhcmEgcmVnaXN0cmFyIG7Dum1lcm9zIG11aXRvIHBlcXVlbm9zIChubyBzZW50aWRvIGRlIHNldSB2YWxvciBhYnNvbHV0bywgcXVlIMOpIHByw7N4aW1vIGRlIHplcm8pLgoKTyBQeXRob24gc2VtcHJlIGVzY29saGUgYSBmb3JtYSBtYWlzIGVjb27DtG1pY2EgZGUgYXByZXNlbnRhw6fDo28gZG8gbsO6bWVybywgZSB2b2PDqiBkZXZlIGxldmFyIGlzc28gZW0gY29uc2lkZXJhw6fDo28gYW8gY3JpYXIgbGl0ZXJhaXMu";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-20').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [27]</div>
+                <pre><code class="language-python"># Uma constante física chamada constante de Planck (e indicada como h), conforme os livros didáticos, tem o valor de: 6,62607 x 10-34 
+# 6,626070000000000000000000000000000000000
+# São 34 zeros, oque torna o número cansativo de ser digitado ou lido.
+# O Python permite que você escreva o mesmo valor como 6.62607e-34.
+
+h = 6.62607 * (10**-34) # 10**-34 é a notação científica para 10 elevado a -34
+print(h)  # Saída: 6.62607e-34
+
+# O Python decide como exibir um número de ponto flutuante com base em sua magnitude. Se o número for muito grande ou muito pequeno, o Python escolherá a notação científica para exibi-lo.
+
+print(3e8) # Saída: 300000000.0 - Nesse caso Python escolheu exibir o número em notação decimal, pois é mais fácil de ler.
+
+print(0.0000000000000000000001)  # Saída: 1e-22 - Nesse caso Python escolheu exibir o número em notação científica, pois é mais fácil de ler. 
+
+print(type(3e8)) # Saída: &lt;class &#x27;float&#x27;&gt; - O número 3e8 é um número de ponto flutuante apesar de ser escrito em notação científica utilizando a letra e.</code></pre>
+            </div>
+            <div class="cell-output">6.62607e-34
+300000000.0
+1e-22
+&lt;class &#x27;float&#x27;&gt;
+</div>
+            <div class="cell cell-markdown" id="md-22"></div>
+            <script>
+                (function(){
+                    const b64 = "IyMjIE7Dum1lcm9zIENvbXBsZXhvcwoKRW0gUHl0aG9uLCB0YW1iw6ltIHRlbW9zIG9zIG7Dum1lcm9zIGNvbXBsZXhvcywgcXVlIHPDo28gbsO6bWVyb3MgZGEgZm9ybWEgYSArIGJpLCBvbmRlIGEgZSBiIHPDo28gbsO6bWVyb3MgcmVhaXMgZSBpIMOpIGEgdW5pZGFkZSBpbWFnaW7DoXJpYS4gRW0gUHl0aG9uLCBhIHVuaWRhZGUgaW1hZ2luw6FyaWEgw6kgcmVwcmVzZW50YWRhIHBvciBqLg==";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-22').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [ ]</div>
+                <pre><code class="language-python"># Exemplos de números complexos
+numero_complexo = 2 + 3j
+outro_numero_complexo = 1 - 5j
+
+print(numero_complexo)      # Saída: (2+3j)
+
+# A exibição do número complexo é feita de forma que a parte real e a parte imaginária sejam separadas por um sinal de adição (+) e a parte imaginária seja seguida pela unidade imaginária (j). O valor do número complexo é exibido entre parênteses, que é um apoio visual para indicar que o número é complexo.
+
+print(type(numero_complexo))    # Saída: &lt;class &#x27;complex&#x27;&gt;</code></pre>
+            </div>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [38]</div>
+                <pre><code class="language-python"># Exemplos de valores booleanos
+verdadeiro = True
+falso = False
+
+print(type(verdadeiro)) # Saída: &lt;class &#x27;bool&#x27;&gt;
+print(type(falso))      # Saída: &lt;class &#x27;bool&#x27;&gt;
+
+# Exemplos de operações aritméticas com booleanos
+print(verdadeiro + verdadeiro)  # Saída: 2 (equivalente a 1 + 1)
+print(verdadeiro + falso)       # Saída: 1 (equivalente a 1 + 0)
+print(falso + falso)           # Saída: 0 (equivalente a 0 + 0)
+print(1 + True) 
+
+# Sendo assim, no contexto de operações aritméticas, o valor True é equivalente a 1 e o valor False é equivalente a 0. Se realizarmos uma comparação entre um valor booleano e um número, o Python irá converter o valor booleano para um número inteiro antes de realizar a operação.
+
+print(True == 1)  # Saída: True
+print(False == 0) # Saída: True</code></pre>
+            </div>
+            <div class="cell-output">&lt;class &#x27;bool&#x27;&gt;
+&lt;class &#x27;bool&#x27;&gt;
+2
+1
+0
+2
+True
+True
+</div>
+            <div class="cell cell-markdown" id="md-25"></div>
+            <script>
+                (function(){
+                    const b64 = "IyMgYEJvb2xlYW5zYAotLS0KRXNzYXMgbGl0ZXJhaXMgbsOjbyBzw6NvIHTDo28gw7NidmlhcyBxdWFudG8gYXMgYW50ZXJpb3JlcywgcG9pcyBzw6NvIHVzYWRhcyBwYXJhIHJlcHJlc2VudGFyIHVtIHZhbG9yIG11aXRvIGFic3RyYXRvIC0gYSB2ZXJhY2lkYWRlLiBPIG5vbWUgdmVtIGRvIG1hdGVtw6F0aWNvIEdlb3JnZSBCb29sZSwgbyBwcmltZWlybyBhIGRlZmluaXIgdW0gc2lzdGVtYSBkZSDDoWxnZWJyYSBib29sZWFuYSwgYSBiYXNlIGRhIGzDs2dpY2EgbW9kZXJuYSBlIGRhIGNvbXB1dGHDp8OjbyBxdWUgdXNhIGFwZW5hcyBkb2lzIHZhbG9yZXM6IHZlcmRhZGVpcm8gZSBmYWxzbyBkZW5vdGFkb3MgY29tbyAxIGUgMCwgcmVzcGVjdGl2YW1lbnRlLgoKQ2FkYSB2ZXogcXVlIHZvY8OqIHBlcmd1bnRhIGFvIFB5dGhvbiBzZSB1bSBuw7ptZXJvIMOpIG1haW9yIHF1ZSBvdXRybywgYSBwZXJndW50YSByZXN1bHRhIG5hIGNyaWHDp8OjbyBkZSBhbGd1bnMgZGFkb3MgZXNwZWPDrWZpY29zIC0gdW0gdmFsb3IgYm9vbGVhbm8uIFZvY8OqIG51bmNhIHJlY2ViZXLDoSB1bWEgcmVzcG9zdGEgY29tbzogKioqIm7Do28gc2VpIioqKiBvdSAqKioiUHJvdmF2ZWxtZW50ZSwgc2ltLCBtYXMgbsOjbyB0ZW5obyBjZXJ0ZXphIioqKi4KCk8gUHl0aG9uIHNlbXByZSByZXNwb25kZXLDoSBjb20gdW0gZG9zIGRvaXMgdmFsb3JlczogVHJ1ZSBvdSBGYWxzZS4gVm9jw6ogbsOjbyBwb2RlIG11ZGFyIG5hZGEuIMOJIG5lY2Vzc8OhcmlvIGFjZWl0YXIgZXNzZXMgc8OtbWJvbG9zIGNvbW8gZWxlcyBzw6NvIGUgw6kgaW1wb3J0YW50ZSBub3RhciBxdWUgYSBkaXN0aW7Dp8OjbyBlbnRyZSBtYWnDunNjdWxhcyBlIG1pbsO6c2N1bGFzIMOpIHNpZ25pZmljYXRpdmEgZW0gUHl0aG9uLCBvdSBzZWphLCBUcnVlIGUgRmFsc2Ugc8OjbyBkaWZlcmVudGVzIGRlIHRydWUgZSBmYWxzZS4=";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-25').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-markdown" id="md-26"></div>
+            <script>
+                (function(){
+                    const b64 = "IyMjIEJvb2xlYW5vcyBjb21vIHN1YnRpcG9zIGRlIGludGVpcm9zCk9zIHZhbG9yZXMgYm9vbGVhbm9zIHPDo28gdXNhZG9zIHBhcmEgcmVwcmVzZW50YXIgYSB2ZXJkYWRlIChUcnVlKSBlIGEgZmFsc2lkYWRlIChGYWxzZSkgZGUgdW1hIGV4cHJlc3PDo28uIEVsZXMgc8OjbyBmcmVxdWVudGVtZW50ZSB1c2Fkb3MgZW0gZXN0cnV0dXJhcyBkZSBjb250cm9sZSBkZSBmbHV4bywgY29tbyBjb25kaWNpb25haXMgZSBsb29wcywgcGFyYSBkZWNpZGlyIHF1YWlzIGJsb2NvcyBkZSBjw7NkaWdvIGRldmVtIHNlciBleGVjdXRhZG9zLiBNYXMgdGFtYsOpbSBwb2RlbSBzZXIgdXNhZG9zIGVtIG9wZXJhw6fDtWVzIGzDs2dpY2FzIGUgYXJpdG3DqXRpY2FzLCBwb2lzIHPDo28gc3VidGlwb3MgZGUgaW50ZWlyb3Mu";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-26').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [37]</div>
+                <pre><code class="language-python"># Exemplos de valores booleanos
+verdadeiro = True
+falso = False
+
+print(type(verdadeiro)) # Saída: &lt;class &#x27;bool&#x27;&gt;
+print(type(falso))      # Saída: &lt;class &#x27;bool&#x27;&gt;
+
+# Exemplos de operações aritméticas com booleanos
+print(verdadeiro + verdadeiro)  # Saída: 2 (equivalente a 1 + 1)
+print(verdadeiro + falso)       # Saída: 1 (equivalente a 1 + 0)
+print(falso + falso)           # Saída: 0 (equivalente a 0 + 0)
+print(1 + True) 
+
+# Sendo assim, no contexto de operações aritméticas, o valor True é equivalente a 1 e o valor False é equivalente a 0. Se realizarmos uma comparação entre um valor booleano e um número, o Python irá converter o valor booleano para um número inteiro antes de realizar a operação.
+
+print(True == 1)  # Saída: True
+print(False == 0) # Saída: True</code></pre>
+            </div>
+            <div class="cell-output">(2+3j)
+&lt;class &#x27;complex&#x27;&gt;
+</div>
+            <div class="cell cell-markdown" id="md-28"></div>
+            <script>
+                (function(){
+                    const b64 = "IyMjIE8gVmFsb3IgQm9vbGVhbm8gYFRydWVgCi0tLQpFbSBQeXRob24sIGBUcnVlYCDDqSB1bSB2YWxvciBib29sZWFubyBxdWUgcmVwcmVzZW50YSBhIHZlcmRhZGUgb3UgYSBjb25maXJtYcOnw6NvIGRlIHVtYSBjb25kacOnw6NvLiBFc3RlIHZhbG9yIMOpIHV0aWxpemFkbyBwYXJhIGluZGljYXIgcXVlIHVtYSBleHByZXNzw6NvIG91IGNvbmRpw6fDo28gw6kgYXZhbGlhZGEgY29tbyB2ZXJkYWRlaXJhIChObyBzZW50aWRvIGRlIHNlciBhdGVuZGlkYSkuCgoxLiAqKlV0aWxpemHDp8OjbyBlbSBFeHByZXNzw7VlcyBMw7NnaWNhcyoqOgogICAtIGBUcnVlYCDDqSBmcmVxdWVudGVtZW50ZSB1c2FkbyBlbSBleHByZXNzw7VlcyBsw7NnaWNhcyBwYXJhIHJlcHJlc2VudGFyIHF1ZSB1bWEgY29uZGnDp8OjbyDDqSB2ZXJkYWRlaXJhLiBQb3IgZXhlbXBsbywgZW0gdW1hIGluc3RydcOnw6NvIGBpZmAsIGBUcnVlYCBpbmRpY2EgcXVlIG8gYmxvY28gZGUgY8OzZGlnbyBhc3NvY2lhZG8gc2Vyw6EgZXhlY3V0YWRvIHNlIGEgY29uZGnDp8OjbyBmb3IgdmVyZGFkZWlyYS4KCiAgIEV4ZW1wbG86CiAgIGBgYHB5dGhvbgogICBpZiBUcnVlOgogICAgICAgcHJpbnQoIkVzdGEgY29uZGnDp8OjbyDDqSB2ZXJkYWRlaXJhISIpCiAgIGBgYAoKMi4gKipSZXRvcm5vIGRlIEZ1bsOnw7VlcyBlIE3DqXRvZG9zKio6CiAgIC0gQWxndW1hcyBmdW7Dp8O1ZXMgb3UgbcOpdG9kb3MgZW0gUHl0aG9uIHBvZGVtIHJldG9ybmFyIG8gdmFsb3IgYFRydWVgIHBhcmEgaW5kaWNhciBxdWUgdW1hIG9wZXJhw6fDo28gZm9pIGJlbS1zdWNlZGlkYSBvdSBxdWUgdW1hIGNvbmRpw6fDo28gZm9pIGF0ZW5kaWRhLgoKICAgRXhlbXBsbzogQSBmdW7Dp8OjbyByZWNlYmUgdW0gdmFsb3IuIEEgaW5zdHXDp8OjbyBpZiBlc3BlcmEgcXVlIG8gdmFsb3Igc2VqYSBtYWlvciBxdWUgemVybyBwYXJhIHNlciBhdGVuZGlkYSBlIHJldG9ybmFyIFRydWUKICAgCiAgIGBgYHB5dGhvbgogICBkZWYgdmVyaWZpY2FyX2NvbmRpY2FvKG51bWVybyk6CiAgICAgICBpZiBudW1lcm8gPiAwOgogICAgICAgICAgIHJldHVybiBUcnVlCiAgICAgICBlbHNlOgogICAgICAgICAgIHJldHVybiBGYWxzZQoKICAgcmVzdWx0YWRvID0gdmVyaWZpY2FyX2NvbmRpY2FvKDEwKQogICBwcmludChyZXN1bHRhZG8pICAjIFNhw61kYTogVHJ1ZQogICBgYGAKCjMuICoqQ29tcGFyYcOnw6NvIGUgQXZhbGlhw6fDo28qKjoKICAgLSBgVHJ1ZWAgw6kgdXNhZG8gcGFyYSBjb21wYXJhciBvdSBhdmFsaWFyIHZhbG9yZXMgZW0gZXhwcmVzc8O1ZXMgY29uZGljaW9uYWlzLCBsb29wcyBlIG91dHJhcyBlc3RydXR1cmFzIGRlIGNvbnRyb2xlIGRlIGZsdXhvLgoKICAgRXhlbXBsbzoKICAgYGBgcHl0aG9uCiAgIGNvbmRpY2FvID0gKDUgPiAyKQogICBwcmludChjb25kaWNhbykgICMgU2HDrWRhOiBUcnVlCiAgIGBgYAoKNC4gKipDb25zdGFudGUgQm9vbGVhbmEqKjoKICAgLSBFbSBQeXRob24sIGBUcnVlYCDDqSB1bWEgY29uc3RhbnRlIGJvb2xlYW5hIGVtYnV0aWRhIGUgbsOjbyBwb2RlIHNlciByZWF0cmlidcOtZGEgYSBvdXRybyB2YWxvci4KCiAgIEV4ZW1wbG86CiAgIGBgYHB5dGhvbgogICBUcnVlID0gRmFsc2UgICMgSXNzbyByZXN1bHRhcsOhIGVtIHVtIGVycm8gZGUgc2ludGF4ZSwgcG9pcyBUcnVlIMOpIHVtYSBwYWxhdnJhIHJlc2VydmFkYQogICBgYGA=";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-28').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-markdown" id="md-29"></div>
+            <script>
+                (function(){
+                    const b64 = "IyMjIE8gVmFsb3IgQm9vbGVhbm8gYEZhbHNlYAotLS0KRW0gUHl0aG9uLCBgRmFsc2VgIMOpIHVtIHZhbG9yIGJvb2xlYW5vIHF1ZSByZXByZXNlbnRhIGEgZmFsc2lkYWRlIG91IGEgbmVnYcOnw6NvIGRlIHVtYSBjb25kacOnw6NvLiBFbnF1YW50byBgVHJ1ZWAgaW5kaWNhIHF1ZSB1bWEgY29uZGnDp8OjbyDDqSB2ZXJkYWRlaXJhLCBgRmFsc2VgIGluZGljYSBxdWUgdW1hIGNvbmRpw6fDo28gw6kgZmFsc2Egb3UgbsOjbyDDqSB2ZXJkYWRlaXJhLgoKMS4gKipVdGlsaXphw6fDo28gZW0gRXhwcmVzc8O1ZXMgTMOzZ2ljYXMqKjoKICAgLSBgRmFsc2VgIMOpIGZyZXF1ZW50ZW1lbnRlIHVzYWRvIGVtIGV4cHJlc3PDtWVzIGzDs2dpY2FzIHBhcmEgcmVwcmVzZW50YXIgcXVlIHVtYSBjb25kacOnw6NvIG7Do28gw6kgdmVyZGFkZWlyYS4gRWxlIMOpIMO6dGlsIGVtIHNpdHVhw6fDtWVzIG9uZGUgc2UgZGVzZWphIGNvbnRyb2xhciBvIGZsdXhvIGRvIHByb2dyYW1hIGNvbSBiYXNlIGVtIGNvbmRpw6fDtWVzIHF1ZSBuw6NvIHPDo28gYXRlbmRpZGFzLgoKICAgRXhlbXBsbzoKICAgYGBgcHl0aG9uCiAgIGlmIGNvbmRpY2FvID09IEZhbHNlOgogICAgICAgcHJpbnQoIkEgY29uZGnDp8OjbyBuw6NvIGZvaSBhdGVuZGlkYS4iKQogICBgYGAKCjIuICoqVmFsb3IgUGFkcsOjbyBlbSBBbGd1bnMgQ29udGV4dG9zKio6CiAgIC0gRW0gY2VydG9zIGNvbnRleHRvcywgYEZhbHNlYCDDqSB1dGlsaXphZG8gY29tbyB1bSB2YWxvciBwYWRyw6NvIG91IGRlIGluaWNpYWxpemHDp8Ojby4gUG9yIGV4ZW1wbG8sIGVtIGFsZ3VtYXMgZXN0cnV0dXJhcyBkZSBkYWRvcywgY29tbyBkaWNpb27DoXJpb3Mgb3UgbGlzdGFzLCB1bSB2YWxvciBgRmFsc2VgIHBvZGUgc2VyIHVzYWRvIGNvbW8gcGFkcsOjbyBwYXJhIGluZGljYXIgcXVlIHVtYSBkZXRlcm1pbmFkYSBjb25kacOnw6NvIG7Do28gZm9pIHZlcmlmaWNhZGEgb3UgdW1hIGHDp8OjbyBuw6NvIGZvaSByZWFsaXphZGEuCgogICBFeGVtcGxvOgogICBgYGBweXRob24KICAgcmVzdWx0YWRvcyA9IHsKICAgICAgICdzdWNlc3NvJzogRmFsc2UsCiAgICAgICAnbWVuc2FnZW0nOiAnQSBvcGVyYcOnw6NvIGZhbGhvdS4nCiAgIH0KICAgYGBgCgozLiAqKkNvbXBhcmHDp8OjbyBlIEF2YWxpYcOnw6NvKio6CiAgIC0gYEZhbHNlYCDDqSB1c2FkbyBwYXJhIGNvbXBhcmFyIG91IGF2YWxpYXIgdmFsb3JlcyBlbSBleHByZXNzw7VlcyBjb25kaWNpb25haXMsIGxvb3BzIGUgb3V0cmFzIGVzdHJ1dHVyYXMgZGUgY29udHJvbGUgZGUgZmx1eG8uIEVsZSBwb2RlIHNlciBjb21iaW5hZG8gY29tIG9wZXJhZG9yZXMgbMOzZ2ljb3MsIGNvbW8gYGFuZGAsIGBvcmAgZSBgbm90YCwgcGFyYSBjcmlhciBleHByZXNzw7VlcyBtYWlzIGNvbXBsZXhhcy4KCiAgIEV4ZW1wbG86CiAgIGBgYHB5dGhvbgogICBpZiBub3QgY29uZGljYW86CiAgICAgICBwcmludCgiQSBjb25kacOnw6NvIG7Do28gZm9pIGF0ZW5kaWRhLiIpCiAgIGBgYAoKNC4gKipDb25zdGFudGUgQm9vbGVhbmEqKjoKICAgLSBgRmFsc2VgIMOpIHVtYSBjb25zdGFudGUgYm9vbGVhbmEgZW1idXRpZGEgZW0gUHl0aG9uIGUgbsOjbyBwb2RlIHNlciByZWF0cmlidcOtZGEgYSBvdXRybyB2YWxvci4gRWxlIMOpIHVtYSBwYXJ0ZSBmdW5kYW1lbnRhbCBkYSBsaW5ndWFnZW0gUHl0aG9uIGUgw6kgYW1wbGFtZW50ZSB1dGlsaXphZG8gZW0gZGl2ZXJzYXMgc2l0dWHDp8O1ZXMuCgogICBFeGVtcGxvOgogICBgYGBweXRob24KICAgRmFsc2UgPSBUcnVlICAjIElzc28gcmVzdWx0YXLDoSBlbSB1bSBlcnJvIGRlIHNpbnRheGUsIHBvaXMgRmFsc2Ugw6kgdW1hIHBhbGF2cmEgcmVzZXJ2YWRhCiAgIGBgYA==";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-29').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-markdown" id="md-30"></div>
+            <script>
+                (function(){
+                    const b64 = "IyMjIE8gVmFsb3IgYE5vbmVgCi0tLQpFbSBQeXRob24sIGBOb25lYCDDqSB1bSB2YWxvciBlc3BlY2lhbCBxdWUgcmVwcmVzZW50YSBhIGF1c8OqbmNpYSBkZSB1bSB2YWxvciBzaWduaWZpY2F0aXZvLiDDiSBmcmVxdWVudGVtZW50ZSB1c2FkbyBwYXJhIGluZGljYXIgcXVlIHVtYSB2YXJpw6F2ZWwgbsOjbyBwb3NzdWkgdW0gdmFsb3IgYXRyaWJ1w61kbyBvdSBxdWUgdW1hIGZ1bsOnw6NvIG7Do28gcmV0b3Jub3UgbmVuaHVtIHJlc3VsdGFkby4KCjEuICoqQXVzw6puY2lhIGRlIFZhbG9yIEF0cmlidcOtZG8qKjoKICAgLSBPIHZhbG9yIGBOb25lYCDDqSBmcmVxdWVudGVtZW50ZSB1dGlsaXphZG8gcGFyYSBpbmljaWFsaXphciB2YXJpw6F2ZWlzIHF1ZSBwb2RlbSBzZXIgYXRyaWJ1w61kYXMgcG9zdGVyaW9ybWVudGUuIFF1YW5kbyB1bWEgdmFyacOhdmVsIMOpIGRlZmluaWRhIGNvbW8gYE5vbmVgLCBpc3NvIGluZGljYSBxdWUgZWxhIGFpbmRhIG7Do28gdGVtIHVtIHZhbG9yIGF0cmlidcOtZG8uCgogICBFeGVtcGxvOgogICBgYGBweXRob24KICAgcmVzdWx0YWRvID0gTm9uZQogICBgYGAKCjIuICoqUmV0b3JubyBkZSBGdW7Dp8O1ZXMgZSBNw6l0b2RvcyoqOgogICAtIGBOb25lYCDDqSBjb211bWVudGUgcmV0b3JuYWRvIHBvciBmdW7Dp8O1ZXMgZSBtw6l0b2RvcyBxdWFuZG8gbsOjbyBow6EgdW0gdmFsb3Igc2lnbmlmaWNhdGl2byBwYXJhIHJldG9ybmFyLiBJc3NvIMOpIMO6dGlsIHF1YW5kbyB1bWEgZnVuw6fDo28gcHJlY2lzYSBpbmRpY2FyIHF1ZSBuw6NvIGhvdXZlIHN1Y2Vzc28gb3UgcXVlIHVtYSBjb25kacOnw6NvIG7Do28gZm9pIGF0ZW5kaWRhLgoKICAgRXhlbXBsbzoKICAgYGBgcHl0aG9uCiAgIGRlZiBidXNjYXJfZWxlbWVudG8obGlzdGEsIGVsZW1lbnRvKToKICAgICAgIGlmIGVsZW1lbnRvIGluIGxpc3RhOgogICAgICAgICAgIHJldHVybiBlbGVtZW50bwogICAgICAgZWxzZToKICAgICAgICAgICByZXR1cm4gTm9uZQoKICAgcmVzdWx0YWRvID0gYnVzY2FyX2VsZW1lbnRvKGxpc3RhLCBlbGVtZW50bykKICAgaWYgcmVzdWx0YWRvIGlzIE5vbmU6CiAgICAgICBwcmludCgiTyBlbGVtZW50byBuw6NvIGZvaSBlbmNvbnRyYWRvLiIpCiAgIGBgYAoKTm8gY2FzbyBkbyBjw7NkaWdvIGZvcm5lY2lkbywgbyBgZWxzZWAgcG9kZXJpYSBzZXIgb21pdGlkbyBzZW0gYWZldGFyIG8gY29tcG9ydGFtZW50byBkYSBmdW7Dp8Ojby4gU2UgbyBlbGVtZW50byBuw6NvIGVzdGl2ZXIgbmEgbGlzdGEsIGEgZnVuw6fDo28gc2ltcGxlc21lbnRlIG7Do28gZW5jb250cmFyw6EgbyBlbGVtZW50byBlLCBpbXBsaWNpdGFtZW50ZSwgcmV0b3JuYXLDoSBgTm9uZWAuIAoKQXF1aSBlc3TDoSB1bWEgdmVyc8OjbyBzaW1wbGlmaWNhZGEgZG8gY8OzZGlnbyBzZW0gbyBibG9jbyBgZWxzZWA6CgpgYGBweXRob24KZGVmIGJ1c2Nhcl9lbGVtZW50byhsaXN0YSwgZWxlbWVudG8pOgogICAgaWYgZWxlbWVudG8gaW4gbGlzdGE6CiAgICAgICAgcmV0dXJuIGVsZW1lbnRvCiAgICAjIFNlIG8gZWxlbWVudG8gbsOjbyBmb3IgZW5jb250cmFkbywgTm9uZSBzZXLDoSByZXRvcm5hZG8gaW1wbGljaXRhbWVudGUKYGBgCgpFc3RhIGFib3JkYWdlbSDDqSBwZXJmZWl0YW1lbnRlIHbDoWxpZGEgZW0gUHl0aG9uIGUgw6kgY29tdW1lbnRlIHV0aWxpemFkYSBwYXJhIHNpbXBsaWZpY2FyIG8gY8OzZGlnbyBlbSBzaXR1YcOnw7VlcyBvbmRlIGEgbMOzZ2ljYSBkbyBwcm9ncmFtYSDDqSBkaXJldGEgZSBvIHJldG9ybm8gZGUgYE5vbmVgIMOpIGVzcGVyYWRvIHF1YW5kbyB1bWEgY29uZGnDp8OjbyBuw6NvIMOpIGF0ZW5kaWRhLgoKMy4gKipWZXJpZmljYcOnw6NvIGRlIFZhbG9yIE51bG8qKjoKICAgLSBPIHZhbG9yIGBOb25lYCBwb2RlIHNlciB1c2FkbyBwYXJhIHZlcmlmaWNhciBzZSB1bWEgdmFyacOhdmVsIG91IHJlc3VsdGFkbyBkZSB1bWEgZnVuw6fDo28gcG9zc3VpIHVtIHZhbG9yIGF0cmlidcOtZG8uIElzc28gw6kgw7p0aWwgcGFyYSBldml0YXIgZXJyb3MgYW8gbGlkYXIgY29tIHZhbG9yZXMgbnVsb3MuCgogICBFeGVtcGxvOgogICBgYGBweXRob24KICAgaWYgdmFyaWF2ZWwgaXMgTm9uZToKICAgICAgIHByaW50KCJBIHZhcmnDoXZlbCBuw6NvIHBvc3N1aSB1bSB2YWxvciBhdHJpYnXDrWRvLiIpCiAgIGBgYAoKNC4gKipQYXLDom1ldHJvIFBhZHLDo28gZW0gRnVuw6fDtWVzKio6CiAgIC0gRW0gZGVmaW5pw6fDtWVzIGRlIGZ1bsOnw7Vlcywgdm9jw6ogcG9kZSB1c2FyIGBOb25lYCBjb21vIHVtIHZhbG9yIHBhZHLDo28gcGFyYSBwYXLDom1ldHJvcywgaW5kaWNhbmRvIHF1ZSBvIGFyZ3VtZW50byDDqSBvcGNpb25hbCBlIHBvZGUgc2VyIG9taXRpZG8uIElzc28gcGVybWl0ZSBmbGV4aWJpbGlkYWRlIGFvIGNoYW1hciBhIGZ1bsOnw6NvLgoKICAgRXhlbXBsbzoKICAgYGBgcHl0aG9uCiAgIGRlZiBzYXVkYWNhbyhub21lPU5vbmUpOgogICAgICAgaWYgbm9tZSBpcyBOb25lOgogICAgICAgICAgIHJldHVybiAiT2zDoSwgbXVuZG8hIgogICAgICAgZWxzZToKICAgICAgICAgICByZXR1cm4gZiJPbMOhLCB7bm9tZX0hIgoKICAgcHJpbnQoc2F1ZGFjYW8oKSkgICAgICAjIFNhw61kYTogT2zDoSwgbXVuZG8hCiAgIHByaW50KHNhdWRhY2FvKCJKb8OjbyIpKSMgU2HDrWRhOiBPbMOhLCBKb8OjbyEKICAgYGBg";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-30').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-markdown" id="md-31"></div>
+            <script>
+                (function(){
+                    const b64 = "IyMjIE91dHJvcyB0aXBvcyBkZSBkYWRvcwotLS0KQWJvcmRhcmVtb3MgZXNzZXMgdmFsb3JlcyBjb21wbGV4b3MgaW5kaXZpZHVhbG1lbnRlIHBvc3Rlcmlvcm1lbnRlLCBtYXMgdmVqYSB1bWEgYnJldmUgaW50cm9kdcOnw6NvIHNvYnJlIGNhZGEgdW06CgoxLiAqKkxpc3RhcyAoYGxpc3RgKSoqOiBVbWEgbGlzdGEgw6kgdW1hIGNvbGXDp8OjbyBvcmRlbmFkYSBkZSBpdGVucyBxdWUgcG9kZW0gc2VyIGRlIGRpZmVyZW50ZXMgdGlwb3MgZGUgZGFkb3MuIE9zIGVsZW1lbnRvcyBkZSB1bWEgbGlzdGEgc8OjbyBzZXBhcmFkb3MgcG9yIHbDrXJndWxhcyBlIHPDo28gY29sb2NhZG9zIGVudHJlIGNvbGNoZXRlcyBgW11gLgoKRXhlbXBsbzoKYGBgcHl0aG9uCm1pbmhhX2xpc3RhID0gWzEsIDIsIDMsICdxdWF0cm8nLCA1LjVdCmBgYAoKMi4gKipUdXBsYXMgKGB0dXBsZWApKio6IFNlbWVsaGFudGVzIMOgcyBsaXN0YXMsIGFzIHR1cGxhcyB0YW1iw6ltIHPDo28gY29sZcOnw7VlcyBvcmRlbmFkYXMgZGUgaXRlbnMsIG1hcyBzw6NvIGltdXTDoXZlaXMsIG91IHNlamEsIHVtYSB2ZXogY3JpYWRhcywgbsOjbyBwb2RlbSBzZXIgbW9kaWZpY2FkYXMuIE9zIGVsZW1lbnRvcyBkZSB1bWEgdHVwbGEgc8OjbyBzZXBhcmFkb3MgcG9yIHbDrXJndWxhcyBlIHBvZGVtIHNlciBjb2xvY2Fkb3MgZW50cmUgcGFyw6pudGVzZXMgYCgpYC4KCkV4ZW1wbG86CmBgYHB5dGhvbgptaW5oYV90dXBsYSA9ICgxLCAyLCAndHLDqnMnLCA0LjQpCmBgYAoKMy4gKipEaWNpb27DoXJpb3MgKGBkaWN0YCkqKjogVW0gZGljaW9uw6FyaW8gw6kgdW1hIGNvbGXDp8OjbyBuw6NvIG9yZGVuYWRhIGRlIHBhcmVzIGNoYXZlLXZhbG9yLiBDYWRhIGNoYXZlIGVtIHVtIGRpY2lvbsOhcmlvIMOpIMO6bmljYSBlIGFzc29jaWFkYSBhIHVtIHZhbG9yLiBPcyBwYXJlcyBjaGF2ZS12YWxvciBzw6NvIHNlcGFyYWRvcyBwb3IgdsOtcmd1bGFzIGUgb3MgcGFyZXMgc8OjbyBjb2xvY2Fkb3MgZW50cmUgY2hhdmVzIGB7fWAuCgpFeGVtcGxvOgpgYGBweXRob24KbWV1X2RpY2lvbmFyaW8gPSB7J25vbWUnOiAnSm/Do28nLCAnaWRhZGUnOiAzMCwnY2lkYWRlJzogJ1PDo28gUGF1bG8nfQpgYGAKCjQuICoqQ29uanVudG9zIChgc2V0YCkqKjogVW0gY29uanVudG8gw6kgdW1hIGNvbGXDp8OjbyBuw6NvIG9yZGVuYWRhIGUgc2VtIGVsZW1lbnRvcyBkdXBsaWNhZG9zLiBPcyBlbGVtZW50b3MgZGUgdW0gY29uanVudG8gc8OjbyBjb2xvY2Fkb3MgZW50cmUgY2hhdmVzIGB7fWAgZSBzZXBhcmFkb3MgcG9yIHbDrXJndWxhcy4KCkV4ZW1wbG86CmBgYHB5dGhvbgptZXVfY29uanVudG8gPSB7MSwgMiwgMywgNCwgNX0KYGBgCkltcG9ydGFudGUgZGVzdGFjYXIgYSBkaWZlcmVuw6dhIHNpbnTDoXRpY2EgZW50cmUgZGljaW9uw6FyaW9zIGUgY29uanVudG9zIHBvaXMgYW1ib3MgdXRpbGl6YW0gY2hhdmVzIHBhcmEgZW52b2x2ZXIgb3MgdmFsZXMsIHBvcsOpbSBkaWNpb27DoXJpb3MgZXhpZ2VtIHVtIHBhciBkZSBjaGF2ZTp2YWxvcg==";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-31').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            </div><script>hljs.highlightAll();</script>
+    </main>
+</body>
+</html>

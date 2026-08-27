@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>68_desafio.py</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="https://pyscript.net/releases/2024.1.1/core.css">
+    <script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>
+    <style>
+        .sandbox-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
+        .sandbox-header h2 { font-size: 1.2rem; color: var(--primary); display: flex; align-items: center; gap: 0.5rem; }
+        .py-repl-container { border-radius: 8px; overflow: hidden; border: 1px solid var(--glass-border); background: #1e293b; }
+    </style>
+    
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --glass-bg: rgba(30, 41, 59, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --primary: #38bdf8;
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        header {
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            border-bottom: 1px solid var(--glass-border);
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .back-btn {
+            color: var(--text-main);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            background: rgba(255,255,255,0.05);
+            transition: 0.3s;
+        }
+        .back-btn:hover {
+            background: rgba(56, 189, 248, 0.2);
+            color: var(--primary);
+        }
+        .file-title {
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+        main {
+            flex: 1;
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        .container {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="../index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Voltar</a>
+        <div class="file-title">68_desafio.py</div>
+    </header>
+    <main>
+        
+    <div class="container">
+        <div class="sandbox-header">
+            <h2><i class="fa-brands fa-python"></i> Sandbox PyScript</h2>
+            <span>Edite e execute (Shift + Enter) ou no botão verde ▶</span>
+        </div>
+        <div class="py-repl-container">
+            <script type="py" id="main-script"></script>
+            <py-repl auto-generate="true">
+# Exercício Python #068 - Jogo do Par ou Ímpar - Aula 00 até 15 - Mundo 2
+# Faça um programa que jogue par ou ímpar com o computador. O jogo só será interrompido quando o jogador perder, mostrando o total de vitórias consecutivas que ele conquistou no final do jogo.
+
+from time import sleep
+from random import randint
+from emoji import emojize
+
+vitorias = 0
+
+def obter_inteiro(mensagem: str) -&gt; int:
+    while True:
+        try:
+            return int(input(mensagem))
+        except ValueError:
+            print(&#x27;Valor inválido. Digite apenas números inteiros.&#x27;)
+
+# Loop principal do jogo
+while True:
+    jogador = obter_inteiro(emojize(&#x27;:teclado: Digite o valor: &#x27;, language=&#x27;pt&#x27;))
+
+    # Solicitação para o jogador escolher ímpar (1) ou par (2)
+    par_ou_impar = obter_inteiro(emojize(&#x27;:tecla_1: Ímpar\n:tecla_2: Par\n&#x27;, language=&#x27;pt&#x27;))
+
+    # Loop para garantir que o jogador escolha apenas entre 1 ou 2
+    while True:
+        if 1 != par_ou_impar != 2:
+            print(&#x27;Somente 2 para PAR ou 1 para ÍMPAR&#x27;)
+            par_ou_impar = int(input(&#x27;&#x27;))
+        else:
+            break
+
+    # Exibe a escolha do jogador
+    print(emojize(f&#x27;:moai: Jogador: É {&quot;par&quot; if par_ou_impar == 2 else &quot;ímpar&quot;} e jogou {jogador}...&#x27;, language=&#x27;pt&#x27;))
+    sleep(1)
+
+    # O computador escolhe aleatoriamente entre 1 e 2
+    computador = randint(1, 2)
+    print(emojize(f&#x27;:rosto_de_robô: Computador: É {&#x27;par&#x27; if jogador == 1 else &#x27;ímpar&#x27;} e jogou {computador}...&#x27;, language=&#x27;pt&#x27;))
+    sleep(1)
+
+    # Calcula a soma dos valores jogados
+    soma = jogador + computador
+    print(f&#x27;Total é: {soma}. &#x27;, end=&#x27;&#x27;)
+    sleep(1)
+
+    # Verifica se a soma é par ou ímpar
+    par = soma % 2 == 0
+    impar = not par
+    print(&#x27;Deu par!&#x27; if par else &#x27;Deu ímpar!&#x27;)
+    sleep(1)
+
+    # Determina o vencedor com base na escolha do jogador e no resultado
+    if par and par_ou_impar == 2 or impar and par_ou_impar == 1:
+        print(emojize(&#x27;:marca_de_seleção: Vitória!&#x27;, language=&#x27;pt&#x27;))
+        vitorias += 1
+    else:
+        print(emojize(&#x27;:xis: Derrota!&#x27;, language=&#x27;pt&#x27;))
+        break  # Encerra o jogo se o jogador perder
+
+# Exibe o número de vitórias consecutivas
+sleep(1)
+print(emojize(f&#x27;:troféu: Vitórias consecutivas: {vitorias}&#x27;, language=&#x27;pt&#x27;))
+
+# Estou compartilhando minhas anotações sobre os exercícios. Quem quiser, pode copiar e colar em um documento .py pois está tudo formatado e comentado.
+
+# Nesse exercício, vamos criar um jogo de par ou ímpar com o computador. O jogo só será interrompido quando o jogador perder, mostrando o total de vitórias consecutivas que ele conquistou no final do jogo.
+
+# Primeiro vamos importar as bibliotecas necessárias para o jogo.
+from time import sleep
+from random import randint
+
+# Vamos criar uma variável vitorias para armazenar o número de vitórias consecutivas do jogador.
+vitorias = 0
+
+# Vamos criar um laço while True para que o jogo fique em loop até que o jogador perca. A variável perdeu será usada para controlar o laço.
+jogar = True
+
+
+while jogar:
+    # Dentro do laço while, vamos pedir para o jogador digitar um valor.
+    jogador = int(input(&#x27;Digite o valor: &#x27;))
+
+    # Vamos pedir para o jogador escolher entre par (2) ou ímpar (1).
+    par_ou_impar = int(input(&#x27;1 para ÍMPAR\n2 para PAR\n&#x27;))
+
+    # Vamos criar um laço while para garantir que o jogador escolha apenas entre 1 ou 2.
+    while True:
+        if 1 != par_ou_impar != 2:
+            print(&#x27;Somente 2 para PAR ou 1 para ÍMPAR&#x27;)
+            par_ou_impar = int(input(&#x27;&#x27;))
+        else:
+            break
+
+    # Vamos exibir a escolha do jogador.
+    print(f&#x27;Jogador: É {&quot;par&quot; if par_ou_impar == 2 else &quot;ímpar&quot;} e jogou {jogador}...&#x27;)
+    sleep(1)
+
+    # O computador escolhe aleatoriamente entre 1 e 2.
+    computador = randint(1, 2)
+    print(f&#x27;Computador: É {&quot;par&quot; if jogador == 1 else &quot;ímpar&quot;} e jogou {computador}...&#x27;)
+    sleep(1)
+
+    # Vamos calcular a soma dos valores jogados.
+    soma = jogador + computador
+    print(f&#x27;Total é: {soma}. &#x27;, end=&#x27;&#x27;)
+    sleep(1)
+
+    # Vamos verificar se a soma é par ou ímpar.
+    par = soma % 2 == 0
+    impar = not par
+    print(&#x27;Deu par!&#x27; if par else &#x27;Deu ímpar!&#x27;)
+    sleep(1)
+
+    # Vamos determinar o vencedor com base na escolha do jogador e no resultado.
+    if par and par_ou_impar == 2 or impar and par_ou_impar == 1:
+        print(&#x27;Vitória!&#x27;)
+        vitorias += 1
+    else:
+        print(&#x27;Derrota!&#x27;)
+        jogar = False  # Encerra o jogo se o jogador perder 
+
+# Vamos exibir o número de vitórias consecutivas.
+sleep(1)
+print(f&#x27;Vitórias consecutivas: {vitorias}&#x27;)
+
+            </py-repl>
+        </div>
+    </div>
+    
+    </main>
+</body>
+</html>

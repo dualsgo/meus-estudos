@@ -1,0 +1,54 @@
+<!-- MIMO 09 - Alternatias semânticas -->
+
+<!-- 09.1 - Elementos semânticos HTML -->
+
+<!-- Olhando para o código abaixo, você consegue dizer facilmente o que cada pedaço de texto deve representar? Não, não realmente. 
+
+
+<!DOCTYPE html>
+<html>
+<body>
+  You're Invited!
+  The Smiths will be celebrating their 40th anniversary on July 7.
+The party starts at 5pm and you'll be able to enjoy a band for at least 2h 30m.
+  The venue is located at
+    100 Main St.
+    Austin, TX 78741
+</body>
+</html>
+
+
+Vamos aprender como usar elementos semânticos de HTML para dar mais significado ao texto em uma página da web.
+ -->
+
+ <!-- Até agora, aprendemos como usar o elemento p para separar diferentes parágrafos de texto.
+
+ O elemento p é genérico e não tem nenhum significado específico.
+
+ Vamos aprender alguns elementos semânticos que têm um significado mais particular.
+ -->
+
+ <!-- Para parágrafos que realmente servem como cabeçalhos, uma alternativa semântica é um elemento de cabeçalho, como o h1. 
+  
+
+ Podemos usar time para indicar que um texto em nosso arquivo HTML é uma data ou hora. Observe que time não altera a forma como o texto é exibido. Ele apenas fornece um significado semântico ao texto.
+ -->
+
+ <p>
+  The Smiths will be celebrating their 40th anniversary on
+  <time datetime="2021-07-07">July 7</time>. The party starts at 5pm and you'll be able to enjoy a band for at least 2h 30m.
+</p>
+
+<!-- Podemos usar o elemento address para destacar o endereço do local da festa ao ler o código. address fará o texto em itálico.
+ -->
+
+<address>
+  100 Main St.
+  Austin, TX 78741
+</address>
+
+ <!--  Podemos usar o elemento abbr para mostrar que um trecho de texto é uma abreviação, como RSVP. Quando o usuário passa o mouse sobre a abreviação, uma dica de ferramenta aparece com o texto completo. Para fazer isso, podemos usar o atributo title com o elemento abbr para fornecer a forma completa de uma abreviação ao passar o mouse sobre ela ou tocá-la. -->
+
+<p>
+The <abbr title="United Nations">UN</abbr> works on international cooperation.
+</p>

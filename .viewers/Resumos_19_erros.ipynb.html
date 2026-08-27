@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>19_erros.ipynb</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/monokai-sublime.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/python.min.js"></script>
+    
+    <style>
+        .cell { margin-bottom: 1.5rem; }
+        .cell-markdown { font-size: 1.05rem; line-height: 1.6; color: #cbd5e1; }
+        .cell-markdown h1, .cell-markdown h2, .cell-markdown h3 { color: #f1f5f9; margin-top: 1rem; margin-bottom: 0.5rem; }
+        .cell-markdown code { background: rgba(0,0,0,0.3); padding: 0.2rem 0.4rem; border-radius: 4px; color: #eab308; }
+        .cell-markdown pre { background: rgba(0,0,0,0.3); padding: 1rem; border-radius: 8px; overflow-x: auto; border: 1px solid var(--glass-border); margin: 1rem 0; }
+        .cell-code { background: #23241f; border-radius: 8px; padding: 1rem; overflow-x: auto; position: relative; border: 1px solid #333; }
+        .cell-output { background: #000; color: #a3e635; padding: 1rem; border-radius: 8px; margin-top: 0.5rem; font-family: monospace; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;}
+        .prompt { position: absolute; top: 0.5rem; right: 0.5rem; color: #64748b; font-size: 0.8rem; user-select: none; }
+    </style>
+    
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --glass-bg: rgba(30, 41, 59, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --primary: #38bdf8;
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        header {
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            border-bottom: 1px solid var(--glass-border);
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .back-btn {
+            color: var(--text-main);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            background: rgba(255,255,255,0.05);
+            transition: 0.3s;
+        }
+        .back-btn:hover {
+            background: rgba(56, 189, 248, 0.2);
+            color: var(--primary);
+        }
+        .file-title {
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+        main {
+            flex: 1;
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        .container {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="../index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Voltar</a>
+        <div class="file-title">19_erros.ipynb</div>
+    </header>
+    <main>
+        <div class="container">
+            <div class="cell cell-markdown" id="md-0"></div>
+            <script>
+                (function(){
+                    const b64 = "IyBUcmF0YW1lbnRvIGRlIEVycm9zIGUgRXhjZcOnw7VlcwoKRXJyb3Mgc8OjbyBwYXJ0ZSBuYXR1cmFsIGRvIHByb2Nlc3NvIGRlIGFwcmVuZGl6YWRvIGUgZGVzZW52b2x2aW1lbnRvIG5hIHByb2dyYW1hw6fDo28sIGVzcGVjaWFsbWVudGUgcGFyYSBxdWVtIGVzdMOhIGNvbWXDp2FuZG8uIEVtIFB5dGhvbiwgYXNzaW0gY29tbyBlbSBvdXRyYXMgbGluZ3VhZ2VucywgY29tZXRlciBlcnJvcyDDqSBjb211bSBlIHBvZGUgYXTDqSBzZXIgw7p0aWwgcGFyYSBtZWxob3JhciBzdWFzIGhhYmlsaWRhZGVzLgoKIyMjIE8gUXVlIFPDo28gRXJyb3M/CgpFcnJvcyBzw6NvIHByb2JsZW1hcyBubyBjw7NkaWdvIHF1ZSBpbXBlZGVtIG8gcHJvZ3JhbWEgZGUgZnVuY2lvbmFyIGNvcnJldGFtZW50ZS4gRWxlcyBwb2RlbSBhY29udGVjZXIgcG9yIHbDoXJpYXMgcmF6w7VlcywgY29tbyBkaWdpdGHDp8OjbyBpbmNvcnJldGEsIGzDs2dpY2EgZXJyYWRhIG91IHVzbyBpbmFkZXF1YWRvIGRlIGNlcnRvcyByZWN1cnNvcy4gRW0gUHl0aG9uLCBvcyBlcnJvcyBtYWlzIGNvbXVucyBwYXJhIGluaWNpYW50ZXMgaW5jbHVlbToKCi0gKipFcnJvcyBkZSBTaW50YXhlIChTeW50YXhFcnJvcik6KiogT2NvcnJlbSBxdWFuZG8gbyBjw7NkaWdvIMOpIGVzY3JpdG8gZGUgbWFuZWlyYSBxdWUgbyBQeXRob24gbsOjbyBlbnRlbmRlLiBQb3IgZXhlbXBsbywgZXNxdWVjZXIgZG9pcyBwb250b3MgYDpgIGFww7NzIHVtIGNvbWFuZG8gYGlmYCwgb3UgZXNxdWVjZXIgZGUgZmVjaGFyIHBhcsOqbnRlc2VzLgogIAogIEV4ZW1wbG86CiAgYGBgcHl0aG9uCiAgaWYgMTAgPiA1CiAgICAgIHByaW50KCJJc3NvIHZhaSBnZXJhciB1bSBlcnJvIGRlIHNpbnRheGUiKQogIGBgYAogIE5lc3NlIGV4ZW1wbG8sIGZhbHRhIG8gYDpgIGFww7NzIG8gYGlmYC4KCi0gKipFcnJvcyBkZSBOb21lIChOYW1lRXJyb3IpOioqIEFjb250ZWNlbSBxdWFuZG8gbyBwcm9ncmFtYSB0ZW50YSB1c2FyIHVtYSB2YXJpw6F2ZWwgcXVlIG7Do28gZm9pIGRlZmluaWRhIG91IGZvaSBlc2NyaXRhIGluY29ycmV0YW1lbnRlLgoKICBFeGVtcGxvOgogIGBgYHB5dGhvbgogIHByaW50KG5vbWUpCiAgYGBgCiAgU2UgYSB2YXJpw6F2ZWwgYG5vbWVgIG7Do28gZm9pIGRlY2xhcmFkYSBhbnRlcywgUHl0aG9uIG7Do28gc2FiZXLDoSBvIHF1ZSBlbGEgc2lnbmlmaWNhIGUgZ2VyYXLDoSB1bSBgTmFtZUVycm9yYC4KCi0gKipFcnJvcyBkZSBUaXBvIChUeXBlRXJyb3IpOioqIE9jb3JyZW0gcXVhbmRvIHRlbnRhbW9zIHJlYWxpemFyIG9wZXJhw6fDtWVzIGNvbSB0aXBvcyBkZSBkYWRvcyBxdWUgbsOjbyBzw6NvIGNvbXBhdMOtdmVpcywgY29tbyBzb21hciB1bSBuw7ptZXJvIGUgdW1hIHN0cmluZy4KCiAgRXhlbXBsbzoKICBgYGBweXRob24KICBwcmludCgxMCArICI1IikKICBgYGAKICBBcXVpLCBQeXRob24gbsOjbyBzYWJlIGNvbW8gc29tYXIgdW0gbsO6bWVybyBlIHVtYSBzdHJpbmcsIHJlc3VsdGFuZG8gZW0gdW0gYFR5cGVFcnJvcmAuCgotICoqRXJyb3MgZGUgw41uZGljZSAoSW5kZXhFcnJvcik6KiogQWNvbnRlY2VtIHF1YW5kbyB0ZW50YW1vcyBhY2Vzc2FyIHVtIMOtbmRpY2UgcXVlIG7Do28gZXhpc3RlIGVtIHVtYSBsaXN0YSBvdSBzdHJpbmcuCgogIEV4ZW1wbG86CiAgYGBgcHl0aG9uCiAgbGlzdGEgPSBbMSwgMiwgM10KICBwcmludChsaXN0YVs1XSkKICBgYGAKICBDb21vIGEgbGlzdGEgdGVtIGFwZW5hcyB0csOqcyBlbGVtZW50b3MsIHRlbnRhciBhY2Vzc2FyIG8gw61uZGljZSA1IHJlc3VsdGEgZW0gdW0gYEluZGV4RXJyb3JgLgoKIyMjIENvbW8gbyBQeXRob24gTGlkYSBjb20gRXJyb3M/CgpRdWFuZG8gbyBQeXRob24gZW5jb250cmEgdW0gZXJybyBkdXJhbnRlIGEgZXhlY3XDp8OjbyBkZSB1bSBwcm9ncmFtYSwgZWxlIHBhcmEgaW1lZGlhdGFtZW50ZSBlIG1vc3RyYSB1bWEgbWVuc2FnZW0gZGUgZXJyby4gRXNzYSBtZW5zYWdlbSBnZXJhbG1lbnRlIMOpIG11aXRvIMO6dGlsIHBvcnF1ZSBpbmRpY2EgbyB0aXBvIGRvIGVycm8gZSBhdMOpIGFwb250YSBhIGxpbmhhIGVzcGVjw61maWNhIG9uZGUgbyBwcm9ibGVtYSBvY29ycmV1LiBQYXJhIHF1ZW0gZXN0w6EgY29tZcOnYW5kbywgZXNzYXMgbWVuc2FnZW5zIHPDo28gdW1hIMOzdGltYSBtYW5laXJhIGRlIGFwcmVuZGVyIGUgZW50ZW5kZXIgbyBxdWUgZGV1IGVycmFkby4KClBvciBleGVtcGxvLCBzZSB2b2PDqiB0ZW50YXIgZGl2aWRpciB1bSBuw7ptZXJvIHBvciB6ZXJvLCBQeXRob24gZ2VyYXLDoSB1bSBlcnJvIGNoYW1hZG8gYFplcm9EaXZpc2lvbkVycm9yYCwgbW9zdHJhbmRvIHF1ZSBlc3NhIG9wZXJhw6fDo28gw6kgaW1wb3Nzw612ZWw6CgpgYGBweXRob24KcmVzdWx0YWRvID0gMTAgLyAwCmBgYAoKQSBtZW5zYWdlbSBkZSBlcnJvIGluZm9ybWFyw6EgcXVlIGEgZGl2aXPDo28gcG9yIHplcm8gbsOjbyDDqSBwZXJtaXRpZGEsIGFqdWRhbmRvIHZvY8OqIGEgaWRlbnRpZmljYXIgbyBwcm9ibGVtYSBlIGNvcnJpZ2ktbG8uCgojIyMgQ29tbyBQcm9ncmFtYWRvcmVzIFRyYXRhbSBlIFByZXZpbmVtIEVycm9zPwoKUGFyYSBldml0YXIgcXVlIHNldSBwcm9ncmFtYSB0cmF2ZSBwb3IgY2F1c2EgZGUgdW0gZXJybywgdm9jw6ogcG9kZSBwcmV2ZXIgZSB0cmF0YXIgc2l0dWHDp8O1ZXMgcHJvYmxlbcOhdGljYXMgdXNhbmRvIG8gYmxvY28gYHRyeWAgZSBgZXhjZXB0YC4gQ29tIGVzc2EgZXN0cnV0dXJhLCB2b2PDqiDigJx0ZW50YeKAnSBleGVjdXRhciB1bSBjw7NkaWdvIGUsIHNlIHVtIGVycm8gb2NvcnJlciwgbyBQeXRob24gZXhlY3V0YSB1bSBjw7NkaWdvIGFsdGVybmF0aXZvIHF1ZSB2b2PDqiBkZWZpbml1LgoKRXhlbXBsbyBkZSB0cmF0YW1lbnRvIGRlIGVycm86CgpgYGBweXRob24KdHJ5OgogICAgbnVtZXJvID0gaW50KGlucHV0KCJEaWdpdGUgdW0gbsO6bWVybzogIikpCiAgICByZXN1bHRhZG8gPSAxMCAvIG51bWVybwogICAgcHJpbnQoZiJSZXN1bHRhZG86IHtyZXN1bHRhZG99IikKZXhjZXB0IFZhbHVlRXJyb3I6CiAgICBwcmludCgiUG9yIGZhdm9yLCBkaWdpdGUgdW0gbsO6bWVybyB2w6FsaWRvLiIpCmV4Y2VwdCBaZXJvRGl2aXNpb25FcnJvcjoKICAgIHByaW50KCJOw6NvIMOpIHBvc3PDrXZlbCBkaXZpZGlyIHBvciB6ZXJvLiIpCmBgYAoKTmVzdGUgZXhlbXBsbywgc2UgbyB1c3XDoXJpbyBkaWdpdGFyIGFsZ28gcXVlIG7Do28gc2VqYSB1bSBuw7ptZXJvLCBvIHByb2dyYW1hIG1vc3RyYXLDoSB1bWEgbWVuc2FnZW0gZGUgZXJybyBhbWlnw6F2ZWwgZW0gdmV6IGRlIHRyYXZhci4gRGEgbWVzbWEgZm9ybWEsIHNlIG8gdXN1w6FyaW8gZGlnaXRhciB6ZXJvLCBvIGPDs2RpZ28gdmFpIGxpZGFyIGNvbSBvIGVycm8gZSBleGliaXIgdW1hIG1lbnNhZ2VtIGV4cGxpY2F0aXZhLgoKQWzDqW0gZGUgYGV4Y2VwdGAsIHZvY8OqIHBvZGUgdXNhciBvcyBibG9jb3MgYGVsc2VgIGUgYGZpbmFsbHlgOgoKLSAqKmBlbHNlYDoqKiBFeGVjdXRhIHVtIGPDs2RpZ28gc2UgKipuZW5odW0gZXJybyoqIGFjb250ZWNlciBubyBibG9jbyBgdHJ5YC4KLSAqKmBmaW5hbGx5YDoqKiBFeGVjdXRhIHVtIGPDs2RpZ28gc2VtcHJlLCBpbmRlcGVuZGVudGVtZW50ZSBkZSB0ZXIgb2NvcnJpZG8gdW0gZXJybyBvdSBuw6NvLiBJc3NvIMOpIMO6dGlsIHBhcmEgbGliZXJhciByZWN1cnNvcyBjb21vIGZlY2hhciBhcnF1aXZvcyBvdSBjb25leMO1ZXMuCgojIyMgUHJldmVuw6fDo28gZGUgRXJyb3MKCkFsw6ltIGRlIHRyYXRhciBlcnJvcywgYm9ucyBwcm9ncmFtYWRvcmVzIGJ1c2NhbSBldml0w6EtbG9zIGFudGVzIG1lc21vIHF1ZSBhY29udGXDp2FtLiBBbGd1bWFzIHByw6F0aWNhcyBpbmNsdWVtOgoKLSAqKlZhbGlkYcOnw6NvIGRlIEVudHJhZGE6KiogQW50ZXMgZGUgdXNhciBvcyBkYWRvcyBmb3JuZWNpZG9zIHBlbG8gdXN1w6FyaW8sIHZhbGlkZSBzZSBlbGVzIGVzdMOjbyBubyBmb3JtYXRvIGNvcnJldG8uCi0gKipUZXN0ZXM6KiogVGVzdGFyIHNldSBjw7NkaWdvIGNvbSBkaWZlcmVudGVzIGVudHJhZGFzIGUgY29uZGnDp8O1ZXMgYWp1ZGEgYSBpZGVudGlmaWNhciBlcnJvcyBhbnRlcyBxdWUgbyBjw7NkaWdvIHNlamEgdXNhZG8gZW0gc2l0dWHDp8O1ZXMgcmVhaXMuCi0gKipDb21lbnTDoXJpb3MgZSBEb2N1bWVudGHDp8OjbzoqKiBNYW50ZXIgbyBjw7NkaWdvIG9yZ2FuaXphZG8gZSBiZW0gZG9jdW1lbnRhZG8gZmFjaWxpdGEgaWRlbnRpZmljYXIgZXJyb3MgZSBlbnRlbmRlciBvIHF1ZSBjYWRhIHBhcnRlIGRvIGPDs2RpZ28gZmF6Lg==";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-0').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-markdown" id="md-1"></div>
+            <script>
+                (function(){
+                    const b64 = "IyMgVHJhdGFtZW50byBkZSBFcnJvcyBlIEV4Y2XDp8O1ZXMKCkFvIGFuYWxpc2FyIHVtIHRyYWNlYmFjaywgw6kgbWFpcyBlZmljaWVudGUgbMOqLWxvIGRlIGJhaXhvIHBhcmEgY2ltYS4gTyB0cmFjZWJhY2sgYXByZXNlbnRhIG8gY2FtaW5obyBxdWUgbyBwcm9ncmFtYSBwZXJjb3JyZXUgYXTDqSBjaGVnYXIgYW8gcG9udG8gb25kZSBvIGVycm8gb2NvcnJldS4gQSDDumx0aW1hIGxpbmhhIGRvIHRyYWNlYmFjayBnZXJhbG1lbnRlIGNvbnTDqW0gbyBlcnJvIHByaW5jaXBhbC4KCi0gUXVhbmRvIG8gUHl0aG9uIG7Do28gY29uc2VndWUgaW1wb3J0YXIgdW0gbcOzZHVsbywgZWxlIGdlcmEgdW0gKipNb2R1bGVOb3RGb3VuZEVycm9yKiouCi0gU2UgdW0gw61uZGljZSBlc3RpdmVyIGZvcmEgZG8gaW50ZXJ2YWxvIHBlcm1pdGlkbywgbyBQeXRob24gbGFuw6dhIHVtICoqSW5kZXhFcnJvcioqLgoKIyMjIFRpcG9zIGRlIEVycm9zOgoKLSAqKkVycm9zIGRlIFNpbnRheGU6KiogU8OjbyBkZXRlY3RhZG9zIGFudGVzIGRvIHByb2dyYW1hIHNlciBleGVjdXRhZG8sIGltcGVkaW5kbyBhIGV4ZWN1w6fDo28uCi0gKipFcnJvcyBkZSBFeGVjdcOnw6NvIChFeGNlw6fDtWVzKToqKiBPY29ycmVtIGR1cmFudGUgYSBleGVjdcOnw6NvIGRvIHByb2dyYW1hIGUgaW50ZXJyb21wZW0gc3VhIGNvbnRpbnVpZGFkZS4KLSAqKkVycm9zIEzDs2dpY29zOioqIE9jb3JyZW0gcXVhbmRvIG8gcHJvZ3JhbWEgbsOjbyBwcm9kdXogbyByZXN1bHRhZG8gZXNwZXJhZG8uIEFwZXNhciBkZSBvIGPDs2RpZ28gc2VyIGV4ZWN1dGFkbyBzZW0gZXJyb3MgYXBhcmVudGVzLCBvIGNvbXBvcnRhbWVudG8gb3UgbyBvdXRwdXQgbsOjbyBjb3JyZXNwb25kZSBhbyBvYmpldGl2byBkZXNlamFkby4K";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-1').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-markdown" id="md-2"></div>
+            <script>
+                (function(){
+                    const b64 = "IyMgTGV2YW50YW5kbyBleGNlw6fDtWVzCgrDgHMgdmV6ZXMsIHF1ZXJlbW9zIGdlcmFyIHVtYSBleGNlw6fDo28gcXVhbmRvIHVtYSBjb25kacOnw6NvIHF1ZSBkZWZpbmltb3MgbsOjbyDDqSBhdGVuZGlkYS4KCkEgcGFsYXZyYS1jaGF2ZSBgcmFpc2VgIMOpIHVzYWRhIHBhcmEgbGV2YW50YXIgdW1hIGV4Y2XDp8Ojby4gUXVhbmRvIGEgZXhjZcOnw6NvIMOpIGxldmFudGFkYSwgbyBwcm9ncmFtYSBwYXJhIGRlIHNlciBleGVjdXRhZG8gZSBvIHRyYWNlYmFjayDDqSBtb3N0cmFkby4KClBvZGVtb3MgdXNhciBleGNlw6fDtWVzIHBhcmEgZGVzdGFjYXIgcXVhbmRvIGFsZ28gbsOjbyBwb2RlIGVzdGFyIGZ1bmNpb25hbmRvIGNvbW8gZGV2ZXJpYS4KClBvZGVtb3MgdXNhciBjb25kacOnw7VlcyBwYXJhIHZhbGlkYXIgZW50cmFkYXMgZSBnZXJhciBleGNlw6fDtWVzIHF1YW5kbyBhcyBjb25kacOnw7VlcyBuw6NvIHPDo28gYXRlbmRpZGFzLg==";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-2').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [1]</div>
+                <pre><code class="language-python">fatias = 18
+pessoas = 0
+if pessoas &lt; 1:
+  # após a palavra-chave raise, podemos usar a palavra-chave Exception para criar uma exceção personalizada colocando o texto que queremos que apareça quando a exceção for levantada entre parênteses.
+  raise Exception(&quot;Deve haver pelo menos uma pessoa.&quot;)
+else:
+  fatias_por_pessoa = fatias / pessoas
+  print(f&quot;Cada pessoa recebe {fatias_por_pessoa} fatias de pizza.&quot;)</code></pre>
+            </div>
+            
+            <div class="cell cell-markdown" id="md-4"></div>
+            <script>
+                (function(){
+                    const b64 = "TXVpdGFzIHZlemVzIG7Do28gcXVlcmVtb3MgcXVlIHVtIHByb2dyYW1hIHRlcm1pbmUgcXVhbmRvIHVtYSBleGNlw6fDo28gw6kgZW5jb250cmFkYS4gVW0gYmxvY28gYHRyeSBleGNlcHRgIHBvZGUgc2VyIHVzYWRvIHBhcmEgdHJhdGFtZW50byBkZSBleGNlw6fDtWVzIQoKT3MgYmxvY29zIGB0cnlgIGUgYGV4Y2VwdGAgdGVuZGVtIGEgc2VyIHVzYWRvcyBvbmRlIHNhYmVtb3MgcXVlIGjDoSB1bWEgY2hhbmNlIGRlIGEgb3BlcmHDp8OjbyBuw6NvIHNlciBwb3Nzw612ZWwuIFBvciBleGVtcGxvLCBxdWFuZG8gdGVudGFtb3MgYWJyaXIgdW0gYXJxdWl2bywgZWxlIHBvZGUgbsOjbyBleGlzdGlyLiBOZXNzZSBjYXNvLCBwb2RlbW9zIHVzYXIgdW0gYmxvY28gYHRyeSBleGNlcHRgIHBhcmEgbGlkYXIgY29tIGEgZXhjZcOnw6NvLgoKVXNhbW9zIHJlY3VvcyBwYXJhIGluZGljYXIgcXVlIG8gY8OzZGlnbyBlc3TDoSBkZW50cm8gZG8gYmxvY28gYHRyeWAuIFNlIG8gY8OzZGlnbyBkZW50cm8gZG8gYmxvY28gYHRyeWAgbGV2YW50YXIgdW1hIGV4Y2XDp8OjbywgbyBjw7NkaWdvIGRlbnRybyBkbyBibG9jbyBgZXhjZXB0YCBzZXLDoSBleGVjdXRhZG8uCgpQb2RlbW9zIHVzYXIgYHBhc3NgIHBhcmEgaW5kaWNhciBxdWUgbsOjbyBxdWVyZW1vcyBmYXplciBuYWRhIG5vIGJsb2NvIGBleGNlcHRgLgo=";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-4').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [8]</div>
+                <pre><code class="language-python">try:
+    print(&#x27;Olá&#x27; + &#x27;usuário&#x27;)
+except:
+    pass</code></pre>
+            </div>
+            <div class="cell-output">Oláusuário
+</div>
+            <div class="cell cell-markdown" id="md-6"></div>
+            <script>
+                (function(){
+                    const b64 = "QSBwYWxhdnJhLWNoYXZlIGByYWlzZWAgw6kgdXNhZGEganVudG8gY29tIHVtIHRpcG8gdsOhbGlkbyBkZSBlcnJvIGUgdW1hIG1lbnNhZ2VtIG9wY2lvbmFsLiBHZXJhbG1lbnRlIMOpIHVzYWRvIGRlbnRybyBkbyBibG9jbyBkZSBjw7NkaWdvIGBleGNlcHRgIHBhcmEgbGV2YW50YXIgdW1hIGV4Y2XDp8OjbyBxdWFuZG8gdW1hIGNvbmRpw6fDo28gw6kgYXRlbmRpZGEuCgpgdHJ5YCBlIGBleGNlcHRgIHPDo28gZXN0cnV0dXJhcyBmdW5kYW1lbnRhaXMgZW0gUHl0aG9uIHBhcmEgdHJhdGFtZW50byBkZSBleGNlw6fDtWVzLCBwZXJtaXRpbmRvIHF1ZSB2b2PDqiBsaWRlIGNvbSBlcnJvcyBkZSBmb3JtYSBjb250cm9sYWRhIGR1cmFudGUgYSBleGVjdcOnw6NvIGRvIHByb2dyYW1hLgoKQSBlc3RydXR1cmEgYsOhc2ljYSDDqSBhIHNlZ3VpbnRlOg==";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-6').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [9]</div>
+                <pre><code class="language-python"># No bloco try, você coloca o código que pode gerar exceções.
+try:  # Código que pode gerar exceções
+    
+    # Nosso exemplo pode gerar um erro se o usuário digitar um valor que não pode ser convertido em um número inteiro ou se o usuário tentar dividir por zero.
+    num1 = int(input(&quot;Digite um número: &quot;))
+    num2 = int(input(&quot;Digite outro número: &quot;))
+    resultado = num1 / num2
+
+    # Se ocorrer uma exceção, o código dentro do bloco except correspondente será executado. Pode haver vários blocos except para lidar com diferentes tipos de exceções.
+    
+except ValueError:  # Trata a ValueError
+    print(&quot;Digite apenas números inteiros.&quot;)
+    
+except ZeroDivisionError: # Trata a ZeroDivisionError
+    print(&quot;Não é possível dividir por zero.&quot;)
+
+    # O bloco else é executado se nenhum erro ocorrer no bloco try.
+else:  # Executado se nenhum erro ocorrer no bloco try
+    print(f&quot;O resultado da divisão é: {resultado}&quot;)
+
+    # O bloco finally é sempre executado, independentemente de ocorrerem exceções ou não. É útil para ações que precisam ser realizadas, como limpeza de recursos, independentemente do resultado do bloco try.
+finally: # Sempre é executado, independentemente de ocorrer exceções ou não
+    print(&quot;Encerrando o programa.&quot;)</code></pre>
+            </div>
+            <div class="cell-output">Não é possível dividir por zero.
+Encerrando o programa.
+</div>
+            <div class="cell cell-code">
+                <div class="prompt">In [14]</div>
+                <pre><code class="language-python"># Também podemos usar Exception para capturar qualquer exceção que ocorra.
+
+# No bloco try, você coloca o código que pode gerar exceções.
+try:  # Código que pode gerar exceções
+    
+    # Nosso exemplo pode gerar um erro se o usuário digitar um valor que não pode ser convertido em um número inteiro ou se o usuário tentar dividir por zero.
+    num1 = int(input(&quot;Digite um número: &quot;))
+    num2 = int(input(&quot;Digite outro número: &quot;))
+    resultado = num1 / num2
+
+    # Se ocorrer uma exceção, o código dentro do bloco except correspondente será executado. Pode haver vários blocos except para lidar com diferentes tipos de exceções.
+    
+except Exception as e:  # Trata qualquer exceção
+    print(f&quot;Ocorreu um erro: {e}&quot;)
+
+    # O bloco else é executado se nenhum erro ocorrer no bloco try.
+else:  # Executado se nenhum erro ocorrer no bloco try
+    print(f&quot;O resultado da divisão é: {resultado}&quot;)
+
+    # O bloco finally é sempre executado, independentemente de ocorrerem exceções ou não. É útil para ações que precisam ser realizadas, como limpeza de recursos, independentemente do resultado do bloco try.
+finally: # Sempre é executado, independentemente de ocorrer exceções ou não
+    print(&quot;Encerrando o programa.&quot;)</code></pre>
+            </div>
+            <div class="cell-output">Ocorreu um erro: division by zero
+Encerrando o programa.
+</div>
+            <div class="cell cell-markdown" id="md-9"></div>
+            <script>
+                (function(){
+                    const b64 = "UG9kZW1vcyB1c2FyIGEgaW5zdHJ1w6fDo28gYGVsc2VgIG5vIGZpbmFsIHNlIHF1aXNlcm1vcyBleGVjdXRhciBhbGd1bSBjw7NkaWdvIHNvbWVudGUgcXVhbmRvIG5lbmh1bSBlcnJvIGZvciBsZXZhbnRhZG8u";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-9').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [4]</div>
+                <pre><code class="language-python">detalhes = {&quot;nome&quot;: &quot;Ricky&quot;, &quot;idade&quot;: 24, &quot;trabalho&quot;: &quot;Programador&quot;}
+
+try:
+    idade = detalhes[&quot;idade&quot;]
+except:
+    raise NameError(&quot;Idade não está definida&quot;)
+else:
+    print(&quot;Nenhum erro foi encontrado&quot;)
+  
+# Podemos usar uma instrução finally para executar um código, independentemente de uma exceção ser levantada ou não.
+finally:
+    print(&quot;O bloco try except foi concluído&quot;)</code></pre>
+            </div>
+            <div class="cell-output">Nenhum erro foi encontrado
+O bloco try except foi concluído
+</div>
+            <div class="cell cell-code">
+                <div class="prompt">In [2]</div>
+                <pre><code class="language-python">detalhes = {&quot;nome&quot;: &quot;Ricky&quot;, &quot;idade&quot;: 24, &quot;trabalho&quot;: &quot;Programador&quot;}
+
+try:
+    idade = detalhes[&quot;idade&quot;]
+    print(&quot;Nenhum erro foi encontrado&quot;) # Em vez de um bloco else, podemos colocar código após o bloco except para ser executado se nenhuma exceção for levantada. O efeito é o mesmo.
+except:
+    raise NameError(&quot;Idade não está definida&quot;)
+# Podemos usar uma instrução finally para executar um código, independentemente de uma exceção ser levantada ou não.
+finally:
+    print(&quot;O bloco try except foi concluído&quot;)</code></pre>
+            </div>
+            <div class="cell-output">Nenhum erro foi encontrado
+O bloco try except foi concluído
+</div>
+            <div class="cell cell-code">
+                <div class="prompt">In [12]</div>
+                <pre><code class="language-python"># Exception é a classe base para todas as exceções em Python. Podemos usar isso para capturar todas as exceções.
+
+try:
+    print(1/0)
+except Exception as e:
+    print(e)</code></pre>
+            </div>
+            <div class="cell-output">division by zero
+</div>
+            <div class="cell cell-code">
+                <div class="prompt">In [2]</div>
+                <pre><code class="language-python"># Para começar, vamos definir a função.
+# A função dobrará cada item em uma lista. Para isso precisamos de um parâmetro que será a lista que queremos dobrar. 
+# O nome do parametro será lst.
+# Um parametro é um valor que a função espera receber quando é chamada.
+
+def dobra(lst):
+    pos = 0
+    while pos &lt; len(lst):
+        lst[pos] *= 2
+        pos += 1
+
+# pos é uma variável que usamos para percorrer a lista. Ela começa em 0 e aumenta em 1 a cada iteração do loop while. Ela representará a posição atual na lista, ou seja, o índice do item que estamos dobrando.
+
+# O while loop é usado para percorrer a lista. Ele continuará até que pos seja maior ou igual ao comprimento da lista. Nesse caso, o comprimento da lista é o número de itens na lista.
+# len(lst) retorna o número de itens na lista lst. Dessa forma, o loop continuará até que pos seja igual ao número de itens na lista, independentemente do tamanho da lista.
+
+# Dentro do loop temos lst[pos] *= 2. Isso dobra o valor do item na posição pos na lista lst.
+# lst[pos] é o item na posição pos na lista lst. *= 2 multiplica o valor do item por 2. Isso dobra o valor do item.
+# lst[pos] *= 2 é o mesmo que lst[pos] = lst[pos] * 2.
+
+# Ao final, temos pos += 1. Isso aumenta o valor de pos em 1. Isso é necessário para que o loop continue até que todos os itens na lista sejam dobrados.
+
+# Agora basta criarmos uma lista e chamar a função com essa lista como argumento.
+valores = [6, 3, 9, 1, 0, 2]
+
+# Se usarmos um print, veremos a lista original.
+print(valores)
+# Chamamos a função dobrar com a lista valores como argumento.
+dobra(valores)
+# Se usarmos um print, veremos a lista com os valores dobrados.
+print(valores)
+</code></pre>
+            </div>
+            <div class="cell-output">[6, 3, 9, 1, 0, 2]
+[12, 6, 18, 2, 0, 4]
+</div></div><script>hljs.highlightAll();</script>
+    </main>
+</body>
+</html>

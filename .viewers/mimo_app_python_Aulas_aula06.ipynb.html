@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>aula06.ipynb</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/monokai-sublime.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/python.min.js"></script>
+    
+    <style>
+        .cell { margin-bottom: 1.5rem; }
+        .cell-markdown { font-size: 1.05rem; line-height: 1.6; color: #cbd5e1; }
+        .cell-markdown h1, .cell-markdown h2, .cell-markdown h3 { color: #f1f5f9; margin-top: 1rem; margin-bottom: 0.5rem; }
+        .cell-markdown code { background: rgba(0,0,0,0.3); padding: 0.2rem 0.4rem; border-radius: 4px; color: #eab308; }
+        .cell-markdown pre { background: rgba(0,0,0,0.3); padding: 1rem; border-radius: 8px; overflow-x: auto; border: 1px solid var(--glass-border); margin: 1rem 0; }
+        .cell-code { background: #23241f; border-radius: 8px; padding: 1rem; overflow-x: auto; position: relative; border: 1px solid #333; }
+        .cell-output { background: #000; color: #a3e635; padding: 1rem; border-radius: 8px; margin-top: 0.5rem; font-family: monospace; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;}
+        .prompt { position: absolute; top: 0.5rem; right: 0.5rem; color: #64748b; font-size: 0.8rem; user-select: none; }
+    </style>
+    
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --glass-bg: rgba(30, 41, 59, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --primary: #38bdf8;
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        header {
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            border-bottom: 1px solid var(--glass-border);
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .back-btn {
+            color: var(--text-main);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            background: rgba(255,255,255,0.05);
+            transition: 0.3s;
+        }
+        .back-btn:hover {
+            background: rgba(56, 189, 248, 0.2);
+            color: var(--primary);
+        }
+        .file-title {
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+        main {
+            flex: 1;
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        .container {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="../index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Voltar</a>
+        <div class="file-title">aula06.ipynb</div>
+    </header>
+    <main>
+        <div class="container">
+            <div class="cell cell-markdown" id="md-0"></div>
+            <script>
+                (function(){
+                    const b64 = "IyBNSU1PIC0gMDYgLSBPcGVyYcOnw7VlcyBjb20gbGlzdGFzCgpQYXJhIGV4cGxvcmFyIG9zIGRhZG9zIHF1ZSBhcm1hemVuYW1vcyBlbSBsaXN0YXMsIG11aXRhcyB2ZXplcyDDqSDDunRpbCBlbmNvbnRyYXIgb3MgdmFsb3JlcyBleHRyZW1vczogTyBtw61uaW1vIGUgbyBtw6F4aW1vLg==";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-0').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-markdown" id="md-1"></div>
+            <script>
+                (function(){
+                    const b64 = "IyMjIDA2LjEgLSBFbmNvbnRyYW5kbyBkYWRvcyBleHRyZW1vcwoKUGFyYSBlbmNvbnRyYXIgbyBtYWlvciBuw7ptZXJvIGVtIHVtYSBsaXN0YSBkZSBkYWRvcywgY29kaWZpY2Ftb3MgbWF4KCksIGNvbSBvIG5vbWUgZGEgbGlzdGEgZW50cmUgb3MgcGFyw6pudGVzZXMuCgpQYXJhIGVuY29udHJhciBvIG1lbm9yLCBjb2RpZmljYW1vcyBtaW4oKS4KClBvZGVtb3Mgc2FsdmFyIGVzc2VzIHJlc3VsdGFkb3MgZW0gdmFyacOhdmVpcyBzZSBuZWNlc3PDoXJpby4=";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-1').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [1]</div>
+                <pre><code class="language-python">pontos = [3, 5, 4, 6, 7, 2, 1]
+print(pontos)
+print(max(pontos))
+print(min(pontos))
+</code></pre>
+            </div>
+            <div class="cell-output">[3, 5, 4, 6, 7, 2, 1]
+7
+1
+</div>
+            <div class="cell cell-markdown" id="md-3"></div>
+            <script>
+                (function(){
+                    const b64 = "IyMjIDA2LjIgLSBDbGFzc2lmaWNhbmRvIGRhZG9zCgpBcyBsaXN0YXMgY2xhc3NpZmljYWRhcyBzw6NvIMO6dGVpcyBxdWFuZG8gcXVlcmVtb3MgZW50ZW5kZXIgYSBwb3Npw6fDo28gZG9zIHBvbnRvcyBkZSBkYWRvcyBpbmRpdmlkdWFpcywgY29tbyBwb250dWHDp8O1ZXMsIGVtIHJlbGHDp8OjbyBhb3Mgb3V0cm9zLgoKUGFyYSBjbGFzc2lmaWNhciB1bWEgbGlzdGEgY29tbyBwb250b3MsIGNvZGlmaWNhbW9zIG8gbm9tZSBkYSBsaXN0YSwgdW0gcG9udG8gZSBlbSBzZWd1aWRhIHNvcnQoKQ==";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-3').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [2]</div>
+                <pre><code class="language-python">pontos = [10, 11, 4, 15, 11, 7]
+print(pontos)
+
+pontos.sort()
+print(pontos)</code></pre>
+            </div>
+            <div class="cell-output">[10, 11, 4, 15, 11, 7]
+[4, 7, 10, 11, 11, 15]
+</div>
+            <div class="cell cell-markdown" id="md-5"></div>
+            <script>
+                (function(){
+                    const b64 = "QW8gdXNhciBzb3J0KCkgbnVtYSBsaXN0YSBkZSBuw7ptZXJvcywgb3MgbsO6bWVyb3Mgc8OjbyBjbGFzc2lmaWNhZG9zIGVtIG9yZGVtIGNyZXNjZW50ZSwgc2VqYW0gZWxlcyBpbnRlaXJvcyBvdSBkZSBwb250byBmbHV0dWFudGUsIG5lZ2F0aXZvcyBvdSBwb3NpdGl2b3MuCgpBbyB1c2FyIHNvcnQoKSBlbSB1bWEgbGlzdGEgZGUgY29tIHN0cmluZ3MsIG9zIHZhbG9yZXMgc8OjbyBvcmRlbmFkb3MgZW0gb3JkZW0gYWxmYWLDqXRpY2EuCgpTZSBxdWlzZXJtb3MgdW1hIGxpc3RhIGNsYXNzaWZpY2FkYSBlbSBvcmRlbSBkZWNyZXNjZW50ZSwgcG9kZW1vcyB1c2FyIG8gYXJndW1lbnRvIHJldmVyc2U9VHJ1ZQ==";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-5').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [4]</div>
+                <pre><code class="language-python">pontos.sort(reverse=True)
+print(pontos)
+</code></pre>
+            </div>
+            <div class="cell-output">[15, 11, 11, 10, 7, 4]
+</div>
+            <div class="cell cell-markdown" id="md-7"></div>
+            <script>
+                (function(){
+                    const b64 = "IyAwNi4zIC0gU29tYW5kbyBkYWRvcwoKU2FiZXIgYSBzb21hIGRvcyBuw7ptZXJvcyBuYXMgbGlzdGFzIMOpIMO6dGlsIGFvIGNvbXBhcmFyIGRpZmVyZW50ZXMgY29uanVudG9zIGRlIGRhZG9zLCBjb21vIGEgZGlmZXJlbsOnYSBuYXMgaW5zY3Jpw6fDtWVzIHNlbWFuYWlzIGVtIGRvaXMgbWVzZXMuCgpQYXJhIGNhbGN1bGFyIG8gdG90YWwgZGUgdW1hIGxpc3RhLCB1c2Ftb3Mgc3VtKCkgY29tIG8gbm9tZSBkYSBsaXN0YSBlbnRyZSBvcyBwYXLDqm50ZXNlcy4KClBhcmEgcmV1dGlsaXphciBhIHNvbWEgZGEgbGlzdGEsIHBvZGVtb3Mgc2FsdmFyIG8gcmVzdWx0YWRvIGVtIHVtYSB2YXJpw6F2ZWwu";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-7').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [5]</div>
+                <pre><code class="language-python">junho = [30, 6, 20, 12]
+julho = [20, 5, 100, 40]
+
+print(sum(junho))
+print(sum(julho))</code></pre>
+            </div>
+            <div class="cell-output">68
+165
+</div>
+            <div class="cell cell-markdown" id="md-9"></div>
+            <script>
+                (function(){
+                    const b64 = "IyAwNi40IC0gVW5pbmRvIGxpc3RhcyBkZSBkYWRvcwoKRnJlcXVlbnRlbWVudGUgZW5jb250cmFyZW1vcyBkaWZlcmVudGVzIGNvbmp1bnRvcyBkZSBkYWRvcyBxdWUgZGV2ZW1vcyBjb21iaW5hciBlbSB1bSBzw7MsIGNvbW8gbyB2YWxvciBkYXMgdmVuZGFzIG5vIGZpbSBkZSBzZW1hbmEuCgpQYXJhIGNvbWJpbmFyIGRvaXMgY29uanVudG9zIGRlIGRhZG9zLCBjcmlhbW9zIHVtYSBleHByZXNzw6NvIHVzYW5kbyBvIG9wZXJhZG9yICsuIEEgc2VndW5kYSBsaXN0YSDDqSBhbmV4YWRhIG5vIGZpbmFsIGRhIHByaW1laXJhLiBQb3J0YW50bywgYSBvcmRlbSBkYXMgbGlzdGFzIMOpIGltcG9ydGFudGUuCgpQb2RlbW9zIHNhbHZhciBhbGlzdGEgY29tYmluYWRhIGVtIHVtYSB2YXJpw6F2ZWwgcGFyYSByZXV0aWxpesOhLWxhLg==";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-9').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [6]</div>
+                <pre><code class="language-python">sabado = [50, 3, 20, 22, 5]
+print(sabado)
+domingo = [60, 10, 9, 11, 40]
+print(domingo)
+
+vendas_fds = sabado + domingo
+print(vendas_fds)</code></pre>
+            </div>
+            <div class="cell-output">[50, 3, 20, 22, 5]
+[60, 10, 9, 11, 40]
+[50, 3, 20, 22, 5, 60, 10, 9, 11, 40]
+</div>
+            <div class="cell cell-markdown" id="md-11"></div>
+            <script>
+                (function(){
+                    const b64 = "QSB1bmnDo28gdGFtYsOpbSBmdW5jaW9uYSBjb20gZGlmZXJlbnRlcyB0aXBvcyBkZSB2YWxvcmVzLgoKQSBvcmRlbSBkb3MgZWxlbWVudG9zIG5hIGxpc3RhIGNvbWJpbmFkYSDDqSBpbXBvcnRhbnRlLiBTZSBxdWlzZXJtb3MgcXVlIG9zIGVsZW1lbnRvcyBzZWphbSBjbGFzc2lmaWNhZG9zLCBwb2RlbW9zIHVzYXIgbyBtw6l0b2RvIHNvcnQoKS4=";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-11').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-markdown" id="md-12"></div>
+            <script>
+                (function(){
+                    const b64 = "IyAwNi41IC0gQ29udGFuZG8gZWxlbWVudG9zCgpBbyBleHBsb3JhciBjb25qdW50b3MgZGUgZGFkb3MsIMOpIGJvbSBzYWJlciBxdWFudGFzIHZlemVzIHVtIGRhZG8gZXN0w6EgcHJlc2VudGUsIGNvbW8gYSByZXNwb3N0YSBtYWlzIGZyZXF1ZW50ZSBhIHVtYSBwZXNxdWlzYS4KClBhcmEgY29udGFyIGEgZnJlcXXDqm5jaWEgcXVlIHVtIHZhbG9yIGFwYXJlY2UgZW0gdW1hIGxpc3RhIGNvbW8sIGNvbWXDp2Ftb3MgY29tIG8gbm9tZSBkYSBsaXN0YSwgdW0gcG9udG8gZSBlbSBzZWd1aWRhIG8gbcOpdG9kbyBjb3VudCgpLCBjb20gbyB2YWxvciBkZXNlamFkbyBlbnRyZSBvcyBwYXLDqm50ZXNlcy4KClBvZGVtb3Mgc2FsdmFyIG8gcmVzdWx0YWRvIGRhIGNvbnN1bHRhIGVtIHVtYSB2YXJpw6F2ZWwgcGFyYSByZXV0aWxpesOhLWxhIGRlcG9pcy4=";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-12').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [7]</div>
+                <pre><code class="language-python">respostas = [&#x27;sim&#x27;, &#x27;não&#x27;, &#x27;as vezes&#x27;, &#x27;sim&#x27;, &#x27;sim&#x27;, &#x27;não&#x27;, &#x27;não&#x27;, &#x27;não&#x27;, &#x27;sim&#x27;, &#x27;as vezes&#x27;, &#x27;não&#x27;, &#x27;sim&#x27;]
+frequencia = respostas.count(&#x27;sim&#x27;)
+print(frequencia)
+</code></pre>
+            </div>
+            <div class="cell-output">5
+</div>
+            <div class="cell cell-markdown" id="md-14"></div>
+            <script>
+                (function(){
+                    const b64 = "U2UgcXVpc2Vzc2Vtb3MgZXhpYmlyIGNhZGEgcmVzcG9zdGEgZSBzdWEgZnJlcXXDqm5jaWEsIHBvZGVyw61hbW9zIHVzYXIgdW0gbG9vcCBmb3I=";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-14').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [8]</div>
+                <pre><code class="language-python">questionario = []
+
+for resposta in respostas:
+  # Se a resposta já estiver no questionário, não precisamos contá-la novamente.
+  if resposta not in questionario:
+    # Se a resposta não estiver no questionário, contamos quantas vezes ela aparece na lista de respostas.
+    frequencia = respostas.count(resposta)
+    # Exibimos a resposta e sua frequência.
+    print(f&#x27;{resposta}: {frequencia}&#x27;)
+    # Adicionamos a resposta ao questionário.
+    questionario.append(resposta)
+    
+# Podemos usar qualquer tipo de valor.</code></pre>
+            </div>
+            <div class="cell-output">sim: 5
+não: 5
+as vezes: 2
+</div>
+            <div class="cell cell-markdown" id="md-16"></div>
+            <script>
+                (function(){
+                    const b64 = "U2UgbsOjbyBxdWlzZXJtb3Mgc2FiZXIgbyBuw7ptZXJvIGV4YXRvLCBtYXMgYXBlbmFzIHNlIGV4aXN0ZSB1bSBlbGVtZW50byBlc3BlY8OtZmljbywgdXNhbW9zIGEgcGFsYXZyYS1jaGF2ZSBpbgpPIHJlc3VsdGFkbyBzZXLDoSB1bSBib29sZWFuLCBUcnVlIHNlIGhvdXZlciBvIGl0ZW0gbmEgbGlzdGEsIGNhc28gY29udHLDoXJpbywgRmFsc2U=";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-16').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            
+            <div class="cell cell-code">
+                <div class="prompt">In [9]</div>
+                <pre><code class="language-python">print(&#x27;não&#x27; in respostas)</code></pre>
+            </div>
+            <div class="cell-output">True
+</div>
+            <div class="cell cell-markdown" id="md-18"></div>
+            <script>
+                (function(){
+                    const b64 = "";
+                    const decoded = decodeURIComponent(escape(window.atob(b64)));
+                    document.getElementById('md-18').innerHTML = marked.parse(decoded);
+                })();
+            </script>
+            </div><script>hljs.highlightAll();</script>
+    </main>
+</body>
+</html>
