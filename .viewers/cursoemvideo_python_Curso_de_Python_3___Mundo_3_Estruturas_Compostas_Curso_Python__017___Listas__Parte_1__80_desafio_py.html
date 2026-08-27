@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>80_desafio.py - Meus Estudos</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/atom-one-dark.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/python.min.js"></script>
+        <style>
+          pre { border-radius: 8px; overflow-x: auto; font-size: 0.95rem; }
+          .code-toolbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem; }
+          .btn-copy { background: rgba(56, 189, 248, 0.2); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.4); padding: 0.4rem 0.8rem; border-radius: 6px; cursor: pointer; font-size: 0.85rem; }
+          .btn-copy:hover { background: rgba(56, 189, 248, 0.4); }
+        </style>
+      
+  <style>
+    :root {
+      --bg-color: #0b1120;
+      --glass-bg: rgba(30, 41, 59, 0.7);
+      --glass-border: rgba(255, 255, 255, 0.08);
+      --primary: #38bdf8;
+      --text-main: #f1f5f9;
+      --text-muted: #94a3b8;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
+    body { background-color: var(--bg-color); color: var(--text-main); min-height: 100vh; display: flex; flex-direction: column; }
+    header { padding: 0.8rem 2rem; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--glass-border); background: var(--glass-bg); backdrop-filter: blur(12px); position: sticky; top: 0; z-index: 100; }
+    .header-left { display: flex; align-items: center; gap: 1rem; }
+    .back-btn { color: var(--text-main); text-decoration: none; display: flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem; border-radius: 8px; background: rgba(255,255,255,0.05); font-size: 0.9rem; transition: 0.2s; }
+    .back-btn:hover { background: rgba(56, 189, 248, 0.2); color: var(--primary); }
+    .file-title { font-size: 1.1rem; font-weight: 600; color: #f8fafc; }
+    main { flex: 1; padding: 2rem; max-width: 1200px; margin: 0 auto; width: 100%; }
+    .container { background: rgba(15, 23, 42, 0.7); border: 1px solid var(--glass-border); border-radius: 16px; padding: 2rem; box-shadow: 0 10px 30px rgba(0,0,0,0.3); overflow-x: auto; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-left">
+      <a href="../index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Voltar ao Dashboard</a>
+      <div class="file-title">80_desafio.py</div>
+    </div>
+    <div>
+      <a href="../cursoemvideo_python/Curso de Python 3 - Mundo 3 Estruturas Compostas/Curso Python #017 - Listas (Parte 1)/80_desafio.py" download class="back-btn"><i class="fa-solid fa-download"></i> Baixar Arquivo</a>
+    </div>
+  </header>
+  <main>
+    
+        <div class="container">
+          <div class="code-toolbar">
+            <span style="color: #38bdf8; font-weight: 600;"><i class="fa-brands fa-python"></i> 80_desafio.py</span>
+            <button class="btn-copy" onclick="navigator.clipboard.writeText(document.getElementById('py-code').innerText); this.innerText='Copiado!'; setTimeout(()=>this.innerText='Copiar Código', 2000)"><i class="fa-regular fa-copy"></i> Copiar Código</button>
+          </div>
+          <pre><code class="language-python" id="py-code"># Exercício Python #080 - Lista ordenada sem repetições - Aula 00 até 17 - Mundo 3
+# Crie um programa onde o usuário possa digitar cinco valores numéricos e cadastre-os em uma lista, já na posição correta de inserção (sem usar o sort()). No final, mostre a lista ordenada na tela.
+
+# Versão -
+def obter_valor_válido(mensagem):
+	while True:
+		try:
+			return int(input(mensagem))
+		except ValueError:
+			print(&#039;Valor inválido!&#039;)
+
+
+lista = []
+
+for i in range(5):
+	valor = obter_valor_válido(&#039;Digite um valor: &#039;)
+	if i == 0 or valor &gt;= lista[-1]:
+		lista.append(valor)
+	else:
+		pos = 0
+		while pos &lt; len(lista):
+			if valor &lt;= lista[pos]:
+				lista.insert(pos, valor)
+				break
+			pos += 1
+
+	posição = lista.index(valor)
+	print(f&#039;Valor {valor} adicionado na posição {posição}&#039;)
+	print(lista)
+	print(lista)
+
+
+# Minha solução - Melhor
+lista = []
+
+for r in range(5):
+	valor = int(input(&#039;Valor: &#039;))
+	if r == 0:
+		lista.append(valor)
+		print(&#039;Primeiro valor adicionado!&#039;)
+	else:
+		if valor &gt; lista[-1]:
+			lista.append(valor)
+			print(f&#039;Valor adicionado no fim da lista.&#039;)
+		elif valor &lt; lista[0]:
+			lista.insert(0, valor)
+			print(&#039;Valor adicionado no início da lista.&#039;)
+		else:
+			for i in range(len(lista) - 1):
+				if lista[i] &lt; valor &lt;= lista[i + 1]:
+					lista.insert(i + 1, valor)
+					print(f&#039;Valor adicionado na posição {i + 1}&#039;)
+					break
+print(lista)
+
+# Solução GPT
+from random import randint
+
+numeros_ordenados = []
+
+for _ in range(0, 5):
+	novo_numero = randint(0, 99)
+
+	if not numeros_ordenados or novo_numero &gt; numeros_ordenados[-1]:
+		numeros_ordenados.append(novo_numero)
+		print(f&#039;Número {novo_numero} adicionado ao final da lista.&#039;)
+	else:
+		posicao = 0
+
+		while posicao &lt; len(numeros_ordenados):
+			if novo_numero &lt;= numeros_ordenados[posicao]:
+				numeros_ordenados.insert(posicao, novo_numero)
+				print(f&#039;Número {novo_numero} adicionado na posição {posicao} da lista.&#039;)
+				break
+			posicao += 1
+
+print(f&#039;Os números gerados em ordem foram: {numeros_ordenados}&#039;)
+
+# Estou compartilhando minhas anotações sobre os exercícios. Quem quiser, pode copiar e colar em um documento .py pois está tudo formatado e comentado.
+
+# Nesse exercício, vamos criar um programa onde o usuário possa digitar cinco valores numéricos e cadastre-os em uma lista, já na posição correta de inserção (sem usar o sort()). No final, o programa deve mostrar a lista ordenada na tela.
+
+# append() é um método que adiciona um item ao final da lista. Se quisermos adicionar um item em uma posição específica da lista, podemos usar o método insert(). A sintaxe é: lista.insert(posição, valor). Onde posição é a posição que queremos adicionar o valor e valor é o valor que queremos adicionar.
+
+# Para resolver esse exercício, teremos que avaliar a posição correta para adicionar o valor na lista. Se o valor for o primeiro da lista ou maior que o último valor da lista, adicionamos o valor no final da lista. Se não for o primeiro valor ou maior que o último valor da lista, avaliamos a posição correta para adicionar o valor.
+
+for i in range(5):
+	valor = int(input(&#039;Digite um valor: &#039;))
+
+	if i == 0 or valor &gt;= lista[-1]: # Se for o primeiro valor ou maior que o último valor da lista, adicionar o valor no final da lista.
+		lista.append(valor)
+		print(f&#039;Valor {valor} adicionado no final da lista.&#039;)
+
+	else: # Se não for o primeiro valor ou maior que o último valor da lista, avaliar a posição correta para adicionar o valor.
+		pos = 0 # Inicializando a variável pos com 0.
+
+		while pos &lt; len(lista): # Enquanto pos for menor que o tamanho da lista, fazer:
+
+			if valor &lt;= lista[pos]: # Se o valor for menor ou igual ao valor na posição pos da lista, adicionar o valor na posição pos da lista.
+				lista.insert(pos, valor) # Adicionando o valor na posição pos da lista.
+				break
+			pos += 1 # Incrementando a variável pos.
+
+# Se você resolveu o exercício usando outra lógica, parabéns! Se a sua resposta ficou maior ou mais complexa, não tem problema. O importante é entender a lógica por trás da solução. Futuramente, você poderá refatorar o código e deixá-lo mais simples e enxuto.</code></pre>
+        </div>
+        <script>hljs.highlightAll();</script>
+      
+  </main>
+</body>
+</html>

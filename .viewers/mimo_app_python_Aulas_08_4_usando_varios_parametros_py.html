@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>08.4_usando_varios_parametros.py - Meus Estudos</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/atom-one-dark.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/python.min.js"></script>
+        <style>
+          pre { border-radius: 8px; overflow-x: auto; font-size: 0.95rem; }
+          .code-toolbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem; }
+          .btn-copy { background: rgba(56, 189, 248, 0.2); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.4); padding: 0.4rem 0.8rem; border-radius: 6px; cursor: pointer; font-size: 0.85rem; }
+          .btn-copy:hover { background: rgba(56, 189, 248, 0.4); }
+        </style>
+      
+  <style>
+    :root {
+      --bg-color: #0b1120;
+      --glass-bg: rgba(30, 41, 59, 0.7);
+      --glass-border: rgba(255, 255, 255, 0.08);
+      --primary: #38bdf8;
+      --text-main: #f1f5f9;
+      --text-muted: #94a3b8;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
+    body { background-color: var(--bg-color); color: var(--text-main); min-height: 100vh; display: flex; flex-direction: column; }
+    header { padding: 0.8rem 2rem; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--glass-border); background: var(--glass-bg); backdrop-filter: blur(12px); position: sticky; top: 0; z-index: 100; }
+    .header-left { display: flex; align-items: center; gap: 1rem; }
+    .back-btn { color: var(--text-main); text-decoration: none; display: flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem; border-radius: 8px; background: rgba(255,255,255,0.05); font-size: 0.9rem; transition: 0.2s; }
+    .back-btn:hover { background: rgba(56, 189, 248, 0.2); color: var(--primary); }
+    .file-title { font-size: 1.1rem; font-weight: 600; color: #f8fafc; }
+    main { flex: 1; padding: 2rem; max-width: 1200px; margin: 0 auto; width: 100%; }
+    .container { background: rgba(15, 23, 42, 0.7); border: 1px solid var(--glass-border); border-radius: 16px; padding: 2rem; box-shadow: 0 10px 30px rgba(0,0,0,0.3); overflow-x: auto; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-left">
+      <a href="../index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Voltar ao Dashboard</a>
+      <div class="file-title">08.4_usando_varios_parametros.py</div>
+    </div>
+    <div>
+      <a href="../mimo_app/python/Aulas/08.4_usando_varios_parametros.py" download class="back-btn"><i class="fa-solid fa-download"></i> Baixar Arquivo</a>
+    </div>
+  </header>
+  <main>
+    
+        <div class="container">
+          <div class="code-toolbar">
+            <span style="color: #38bdf8; font-weight: 600;"><i class="fa-brands fa-python"></i> 08.4_usando_varios_parametros.py</span>
+            <button class="btn-copy" onclick="navigator.clipboard.writeText(document.getElementById('py-code').innerText); this.innerText='Copiado!'; setTimeout(()=>this.innerText='Copiar Código', 2000)"><i class="fa-regular fa-copy"></i> Copiar Código</button>
+          </div>
+          <pre><code class="language-python" id="py-code"># MIMO - 08 - Funções
+# 08.4 - Usando vários parâmetros
+
+# As funções precisam de vários parâmetros para executar tarefas em mais dados. Podemos criar funções com um único parâmetro ou adicionar mais, os separando com vírgula.
+def infos(nome, idade, sexo):
+    texto = f&#039;Olá, {nome}. Sua idade é {idade} e o seu sexo é {sexo}.&#039;
+    return texto
+
+# Para passar os valores para a função também os separamos com vírgula. Passamos os valores para uma função na ordem dos parâmetros. Podemos adicionar quantos valores quisermos, desde que os separemos por vírgula.
+dados = infos(&#039;Maycon&#039;, 30, &#039;masculino&#039;)
+
+print(dados)
+
+# Se não passarmos os valores na ordem dos parâmetros, eles serão atribuídos aos parâmetros na ordem em que os passamos. Para contornar isso, podemos passar os valores com o nome dos parâmetros.
+dados = infos(idade=30, nome=&#039;Maycon&#039;, sexo=&#039;masculino&#039;)
+
+# Outra precaução que podemos tomar é definir um valor padrão para um parâmetro. Isso significa que, se não passarmos um valor para o parâmetro, ele usará o valor padrão.
+def infos(nome, idade, sexo=&#039;não informado&#039;):
+    texto = f&#039;Olá, {nome}. Sua idade é {idade} e o seu sexo é {sexo}.&#039;
+    return texto
+
+# Agora podemos chamar a função sem passar um valor para o parâmetro sexo.
+dados = infos(&#039;Maycon&#039;, 30)
+
+print(dados)
+</code></pre>
+        </div>
+        <script>hljs.highlightAll();</script>
+      
+  </main>
+</body>
+</html>

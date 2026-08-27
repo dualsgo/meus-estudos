@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>10_condicoes_pt1.py - Meus Estudos</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/atom-one-dark.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/python.min.js"></script>
+        <style>
+          pre { border-radius: 8px; overflow-x: auto; font-size: 0.95rem; }
+          .code-toolbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem; }
+          .btn-copy { background: rgba(56, 189, 248, 0.2); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.4); padding: 0.4rem 0.8rem; border-radius: 6px; cursor: pointer; font-size: 0.85rem; }
+          .btn-copy:hover { background: rgba(56, 189, 248, 0.4); }
+        </style>
+      
+  <style>
+    :root {
+      --bg-color: #0b1120;
+      --glass-bg: rgba(30, 41, 59, 0.7);
+      --glass-border: rgba(255, 255, 255, 0.08);
+      --primary: #38bdf8;
+      --text-main: #f1f5f9;
+      --text-muted: #94a3b8;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
+    body { background-color: var(--bg-color); color: var(--text-main); min-height: 100vh; display: flex; flex-direction: column; }
+    header { padding: 0.8rem 2rem; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--glass-border); background: var(--glass-bg); backdrop-filter: blur(12px); position: sticky; top: 0; z-index: 100; }
+    .header-left { display: flex; align-items: center; gap: 1rem; }
+    .back-btn { color: var(--text-main); text-decoration: none; display: flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem; border-radius: 8px; background: rgba(255,255,255,0.05); font-size: 0.9rem; transition: 0.2s; }
+    .back-btn:hover { background: rgba(56, 189, 248, 0.2); color: var(--primary); }
+    .file-title { font-size: 1.1rem; font-weight: 600; color: #f8fafc; }
+    main { flex: 1; padding: 2rem; max-width: 1200px; margin: 0 auto; width: 100%; }
+    .container { background: rgba(15, 23, 42, 0.7); border: 1px solid var(--glass-border); border-radius: 16px; padding: 2rem; box-shadow: 0 10px 30px rgba(0,0,0,0.3); overflow-x: auto; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-left">
+      <a href="../index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Voltar ao Dashboard</a>
+      <div class="file-title">10_condicoes_pt1.py</div>
+    </div>
+    <div>
+      <a href="../cursoemvideo_python/Curso de Python 3 - Mundo 1 Fundamentos/Curso Python #010 - Condições (Parte 1)/10_condicoes_pt1.py" download class="back-btn"><i class="fa-solid fa-download"></i> Baixar Arquivo</a>
+    </div>
+  </header>
+  <main>
+    
+        <div class="container">
+          <div class="code-toolbar">
+            <span style="color: #38bdf8; font-weight: 600;"><i class="fa-brands fa-python"></i> 10_condicoes_pt1.py</span>
+            <button class="btn-copy" onclick="navigator.clipboard.writeText(document.getElementById('py-code').innerText); this.innerText='Copiado!'; setTimeout(()=>this.innerText='Copiar Código', 2000)"><i class="fa-regular fa-copy"></i> Copiar Código</button>
+          </div>
+          <pre><code class="language-python" id="py-code"># Curso Python #10 - Condições (Parte 1)
+# Nessa aula, vamos aprender como utilizar estruturas condicionais simples e compostas nos seus programas em Python.
+
+# As estruturas condicionais oferecem possibilidades distintas para situações distintas. Assim os nossos programas se tornam mais inteligentes e tomam decisões, dependendo das condições apresentadas.
+
+# if (se) é a condicional inicial. Ela espera que a condição seja atendida, retornando True.
+# else (senão) é a condicional final. Ela não necessita de uma condição própria, pois será a resposta padrão caso nenhuma condição seja atendida, retornando False.
+# As estruturas condicionais utilizam a indentação para destacar seus blocos de código
+
+# A sintaxe de uma estrutura condicional é a seguinte
+
+if True:
+    # Bloco True
+    print(&#039;Bloco de código que será executado caso a condição seja atendida.&#039;)
+else:
+    # Bloco False
+    print(&quot;Bloco de código que será executado caso a condição não seja atendida.&quot;)
+
+# Exemplo de programa
+tempo = int(input(&#039;Quantos anos tem o carro: &#039;))
+
+# Condicional - Utilizando uma comparação
+if tempo &lt;= 3: # O programa irá verificar se o valor da variável é menor ou igual a 3 e retornará True ou False
+    print(&#039;Carro novo&#039;)
+else:
+    print(&#039;Carro velho&#039;)
+
+# A mesma estrutura pode ser simplificada
+print(&#039;Carro novo&#039; if tempo &lt;= 3 else &#039;Carro velho&#039;)
+
+# Exemplo 1 - Condição simples
+
+nome = str(input(&#039;Qual é o seu nome: &#039;)).strip().title()
+
+# A estrutura utiliza o valor da variável para fazer uma comparação
+if nome == &#039;Gustavo&#039;:
+    # A instrução com indentação faz parte do bloco de código da estrutura condicional e só será executada s e a condição for atendida
+    print(&#039;Que nome lindo!&#039;)
+
+    # else oferece uma possibilidade extra
+else:
+    print(&#039;Seu nome é normal&#039;)
+
+# A instrução fora da indentação será exibida, independente da condição ser atendida ou não
+print(f&#039;Bom dia, {nome}.&#039;)
+
+# Exemplo 2 - Condição composta
+
+nota_1 = float(input(&#039;Digite a primeira nota: &#039;))
+nota_2 = float(input(&#039;Digite a segunda nota: &#039;))
+media = (nota_1 + nota_2) / 2
+print(f&#039;Sua média foi {media}.&#039;)
+
+if media &gt;= 6:
+    print(&#039;Sua média foi boa. Parabéns!&#039;)
+else:
+    print(&#039;Sua média foi ruim. Estude mais!&#039;)</code></pre>
+        </div>
+        <script>hljs.highlightAll();</script>
+      
+  </main>
+</body>
+</html>

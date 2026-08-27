@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>14.4_introducao_ao_requests.py - Meus Estudos</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/atom-one-dark.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/python.min.js"></script>
+        <style>
+          pre { border-radius: 8px; overflow-x: auto; font-size: 0.95rem; }
+          .code-toolbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem; }
+          .btn-copy { background: rgba(56, 189, 248, 0.2); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.4); padding: 0.4rem 0.8rem; border-radius: 6px; cursor: pointer; font-size: 0.85rem; }
+          .btn-copy:hover { background: rgba(56, 189, 248, 0.4); }
+        </style>
+      
+  <style>
+    :root {
+      --bg-color: #0b1120;
+      --glass-bg: rgba(30, 41, 59, 0.7);
+      --glass-border: rgba(255, 255, 255, 0.08);
+      --primary: #38bdf8;
+      --text-main: #f1f5f9;
+      --text-muted: #94a3b8;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
+    body { background-color: var(--bg-color); color: var(--text-main); min-height: 100vh; display: flex; flex-direction: column; }
+    header { padding: 0.8rem 2rem; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--glass-border); background: var(--glass-bg); backdrop-filter: blur(12px); position: sticky; top: 0; z-index: 100; }
+    .header-left { display: flex; align-items: center; gap: 1rem; }
+    .back-btn { color: var(--text-main); text-decoration: none; display: flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem; border-radius: 8px; background: rgba(255,255,255,0.05); font-size: 0.9rem; transition: 0.2s; }
+    .back-btn:hover { background: rgba(56, 189, 248, 0.2); color: var(--primary); }
+    .file-title { font-size: 1.1rem; font-weight: 600; color: #f8fafc; }
+    main { flex: 1; padding: 2rem; max-width: 1200px; margin: 0 auto; width: 100%; }
+    .container { background: rgba(15, 23, 42, 0.7); border: 1px solid var(--glass-border); border-radius: 16px; padding: 2rem; box-shadow: 0 10px 30px rgba(0,0,0,0.3); overflow-x: auto; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-left">
+      <a href="../index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Voltar ao Dashboard</a>
+      <div class="file-title">14.4_introducao_ao_requests.py</div>
+    </div>
+    <div>
+      <a href="../mimo_app/python/Aulas/14.4_introducao_ao_requests.py" download class="back-btn"><i class="fa-solid fa-download"></i> Baixar Arquivo</a>
+    </div>
+  </header>
+  <main>
+    
+        <div class="container">
+          <div class="code-toolbar">
+            <span style="color: #38bdf8; font-weight: 600;"><i class="fa-brands fa-python"></i> 14.4_introducao_ao_requests.py</span>
+            <button class="btn-copy" onclick="navigator.clipboard.writeText(document.getElementById('py-code').innerText); this.innerText='Copiado!'; setTimeout(()=>this.innerText='Copiar Código', 2000)"><i class="fa-regular fa-copy"></i> Copiar Código</button>
+          </div>
+          <pre><code class="language-python" id="py-code"># MIMO - 14 - Erros e exceções
+# 14.4 - Introdução ao requests
+
+# No desenvolvimento de software, interagir com serviços web é uma tarefa comum, frequentemente envolvendo o envio de requisições para servidores.
+
+# A biblioteca Python requests simplifica o processo de fazer requisições.
+
+# A biblioteca requests em Python é usada para fazer requisições HTTP para uma URL especificada.
+
+# A biblioteca requests tornará simples, seja você tentando acessar os dados de um site ou interagir com um serviço web.
+
+import requests
+
+url = &quot;https://rickandmorty.mimo.dev/api/character/1&quot;
+response = requests.get(url)
+character_data = response.json()
+
+print(f&quot;Name: {character_data[&#039;name&#039;]}&quot;)
+print(f&quot;Status: {character_data[&#039;status&#039;]}&quot;)
+
+# Para usar requests, temos que importá-lo usando a palavra-chave import, seguida pelo nome do pacote requests.
+
+# Podemos então chamar requests.get() e passar uma URL para fazer uma solicitação HTTP GET.
+
+# As requisições HTTP GET são o tipo mais comum de requisição usada na web, projetadas principalmente para recuperar dados de um determinado recurso.
+ 
+url = &quot;https://rickandmorty.mimo.dev/api/character/1&quot; 
+response = requests.get(url)
+
+# A função get() retorna uma resposta que podemos salvar em uma variável. O objeto de resposta tem um código de status e dados ou um erro anexado.
+
+# Para acessar os dados, precisamos analisar o objeto de resposta. Fazemos isso com .json(). Os dados analisados são um dicionário de chaves e valores.
+ 
+url = &quot;https://rickandmorty.mimo.dev/api/character/1&quot; 
+response = requests.get(url) 
+data = response.json() 
+ 
+print(data)
+
+# Podemos acessar os valores como em qualquer outro dicionário com o qual trabalhamos.
+ 
+url = &quot;https://rickandmorty.mimo.dev/api/character/1&quot; 
+response = requests.get(url) 
+data = response.json() 
+ 
+print(data[&quot;name&quot;]) 
+print(data[&quot;status&quot;])
+
+# Trabalhar com web APIs envolve enviar e receber dados pela internet. Ao trabalhar com a resposta, precisamos garantir a integridade dos dados. É para isso que o status code é usado.
+
+# O objeto de resposta tem um status_code associado a ele. Devemos verificar se é igual a 200 para garantir que os dados foram recuperados com sucesso.
+ 
+url = &quot;https://pokedex.mimo.dev/api/pokemon/pikachu&quot; 
+response = requests.get(url) 
+ 
+if response.status_code == 200: 
+  print(&quot;Data successfully retrieved&quot;) 
+else: 
+  print(&quot;Failed to retrieve data&quot;)
+  
+# Depois de garantir que os dados foram recuperados com sucesso, podemos descompactá-los.
+
+url = &quot;https://pokedex.mimo.dev/api/pokemon/pikachu&quot;
+response = requests.get(url)
+
+if response.status_code == 200:
+  print(&quot;Data successfully retrieved&quot;)
+
+  pokemon_data = response.json()
+  print(f&quot;Name: {pokemon_data[&#039;name&#039;]}&quot;)
+  print(f&quot;ID: {pokemon_data[&#039;id&#039;]}&quot;)
+else:
+    print(&quot;Failed to retrieve data&quot;)
+    
+# Em alguns casos, não obteremos o que esperamos. Por exemplo, não existe um Pokémon com o nome Mimo. Devemos sempre verificar o status_code, e caso encontremos um erro, não mexemos nos dados.
+
+# Em vez de comparar o código de status diretamente, podemos também colocar a chamada de request em um bloco try. Em seguida, adicionamos um bloco except para capturar erros potenciais. Aqui, pegamos o erro do objeto de erro e o usamos como error.
+
+ 
+url = &quot;https://pokedex.mimo.dev/api/pokemon/pikachu&quot; 
+try: 
+  response = requests.get(url) 
+  response.raise_for_status() 
+  print(&quot;Data successfully retrieved&quot;) 
+  pokemon_data = response.json() 
+  print(f&quot;Name: {pokemon_data[&#039;name&#039;]}&quot;) 
+  print(f&quot;ID: {pokemon_data[&#039;id&#039;]}&quot;)
+  
+except requests.HTTPError as error: 
+  print(error)
+  
+
+# Devemos chamar raise_for_status no objeto de resposta para identificar erros que podemos então capturar através do bloco except.</code></pre>
+        </div>
+        <script>hljs.highlightAll();</script>
+      
+  </main>
+</body>
+</html>

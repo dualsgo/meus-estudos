@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>m2_a1_lab1.py - Meus Estudos</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/atom-one-dark.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/python.min.js"></script>
+        <style>
+          pre { border-radius: 8px; overflow-x: auto; font-size: 0.95rem; }
+          .code-toolbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem; }
+          .btn-copy { background: rgba(56, 189, 248, 0.2); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.4); padding: 0.4rem 0.8rem; border-radius: 6px; cursor: pointer; font-size: 0.85rem; }
+          .btn-copy:hover { background: rgba(56, 189, 248, 0.4); }
+        </style>
+      
+  <style>
+    :root {
+      --bg-color: #0b1120;
+      --glass-bg: rgba(30, 41, 59, 0.7);
+      --glass-border: rgba(255, 255, 255, 0.08);
+      --primary: #38bdf8;
+      --text-main: #f1f5f9;
+      --text-muted: #94a3b8;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
+    body { background-color: var(--bg-color); color: var(--text-main); min-height: 100vh; display: flex; flex-direction: column; }
+    header { padding: 0.8rem 2rem; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--glass-border); background: var(--glass-bg); backdrop-filter: blur(12px); position: sticky; top: 0; z-index: 100; }
+    .header-left { display: flex; align-items: center; gap: 1rem; }
+    .back-btn { color: var(--text-main); text-decoration: none; display: flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem; border-radius: 8px; background: rgba(255,255,255,0.05); font-size: 0.9rem; transition: 0.2s; }
+    .back-btn:hover { background: rgba(56, 189, 248, 0.2); color: var(--primary); }
+    .file-title { font-size: 1.1rem; font-weight: 600; color: #f8fafc; }
+    main { flex: 1; padding: 2rem; max-width: 1200px; margin: 0 auto; width: 100%; }
+    .container { background: rgba(15, 23, 42, 0.7); border: 1px solid var(--glass-border); border-radius: 16px; padding: 2rem; box-shadow: 0 10px 30px rgba(0,0,0,0.3); overflow-x: auto; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-left">
+      <a href="../index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Voltar ao Dashboard</a>
+      <div class="file-title">m2_a1_lab1.py</div>
+    </div>
+    <div>
+      <a href="../cisco_fundamentos_python/python_essentials_1/modulo_2/m2_a1_lab1.py" download class="back-btn"><i class="fa-solid fa-download"></i> Baixar Arquivo</a>
+    </div>
+  </header>
+  <main>
+    
+        <div class="container">
+          <div class="code-toolbar">
+            <span style="color: #38bdf8; font-weight: 600;"><i class="fa-brands fa-python"></i> m2_a1_lab1.py</span>
+            <button class="btn-copy" onclick="navigator.clipboard.writeText(document.getElementById('py-code').innerText); this.innerText='Copiado!'; setTimeout(()=>this.innerText='Copiar Código', 2000)"><i class="fa-regular fa-copy"></i> Copiar Código</button>
+          </div>
+          <pre><code class="language-python" id="py-code"># 2.1.5 LAB Trabalhando com a função print()
+# Cenário
+# O comando print(), que é uma das diretrizes mais fáceis em Python,
+# simplesmente imprime uma linha na tela.
+
+# Use a função de print() para imprimir a linha &quot;Olá, Python!&quot; na tela. Use aspas duplas ao redor da string.
+print(&quot;Olá, Python!&quot;)
+
+# Após fazer isso, use a função print() novamente, mas desta vez imprima seu primeiro nome.
+print(&quot;Maycon&quot;)
+
+# Remova as aspas duplas e execute o código. Assista à reação do Python. Que tipo de erro é gerado?
+&quot;&quot;&quot;NameError: name &#039;Maycon&#039; is not defined&quot;&quot;&quot;
+# Ao fazer isso, você está dizendo ao Python que Maycon é uma variável. Como não existe uma variável com esse nome, o Python gera um erro.
+
+# Em seguida, remova os parênteses, coloque aspas duplas e execute o código novamente. Que tipo de erro é gerado desta vez?
+&quot;&quot;&quot;SyntaxError: Missing parentheses in call to &#039;print&#039;. Did you mean print(...)?&quot;&quot;&quot;
+# Ao fazer isso, estamos ferindo a sintaxe da função print(). O Python espera que a função print() tenha parênteses, portanto, quando não os encontramos, o Python gera um erro.
+
+# Experimente o máximo que puder. Altere aspas duplas para aspas simples, use várias funções print() na mesma linha e, em seguida, em linhas diferentes. Veja o que acontece.
+&quot;&quot;&quot;Cada instrução print() é executada em uma linha diferente. Se você quiser imprimir várias linhas na tela, precisará usar várias instruções print(). É possível colocar várias instruções na mesma linha, separando umas das outras com vírgula, porém mesmo assim cada execução será exibida em sua própria linha.&quot;&quot;&quot;
+# O comportamento da função print() se deve ao fato dela possuir um argumento especial chamado end. As instruções no código são executadas na mesma ordem em que foram colocadas no arquivo-fonte; nenhuma instrução subsequente é executada até que a anterior seja concluída.
+# Por padrão, o valor do argumento end é \n, que é um caractere de nova linha. Isso significa que, após a execução da função print(), o cursor será movido para a próxima linha. Você pode alterar esse comportamento, passando um novo valor para o argumento end. Por exemplo, se você quiser que o cursor permaneça na mesma linha após a execução da função print(), você pode passar um espaço em branco para o argumento end.
+# Outro argumento da função print() é o sep. Sep controla o caractere usado
+# para separar os argumentos da função print(). Como sabemos, a função print() aceita vários argumentos. Por padrão, esses argumentos são separados por um espaço em branco. Você pode alterar esse comportamento, passando um novo valor para o argumento sep. Por exemplo, se você quiser que os argumentos sejam separados por um caractere de nova linha, você pode passar \n para o argumento sep.</code></pre>
+        </div>
+        <script>hljs.highlightAll();</script>
+      
+  </main>
+</body>
+</html>

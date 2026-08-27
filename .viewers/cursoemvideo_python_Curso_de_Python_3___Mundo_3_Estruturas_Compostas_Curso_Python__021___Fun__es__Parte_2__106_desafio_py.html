@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>106_desafio.py - Meus Estudos</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/atom-one-dark.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/python.min.js"></script>
+        <style>
+          pre { border-radius: 8px; overflow-x: auto; font-size: 0.95rem; }
+          .code-toolbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem; }
+          .btn-copy { background: rgba(56, 189, 248, 0.2); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.4); padding: 0.4rem 0.8rem; border-radius: 6px; cursor: pointer; font-size: 0.85rem; }
+          .btn-copy:hover { background: rgba(56, 189, 248, 0.4); }
+        </style>
+      
+  <style>
+    :root {
+      --bg-color: #0b1120;
+      --glass-bg: rgba(30, 41, 59, 0.7);
+      --glass-border: rgba(255, 255, 255, 0.08);
+      --primary: #38bdf8;
+      --text-main: #f1f5f9;
+      --text-muted: #94a3b8;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
+    body { background-color: var(--bg-color); color: var(--text-main); min-height: 100vh; display: flex; flex-direction: column; }
+    header { padding: 0.8rem 2rem; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--glass-border); background: var(--glass-bg); backdrop-filter: blur(12px); position: sticky; top: 0; z-index: 100; }
+    .header-left { display: flex; align-items: center; gap: 1rem; }
+    .back-btn { color: var(--text-main); text-decoration: none; display: flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem; border-radius: 8px; background: rgba(255,255,255,0.05); font-size: 0.9rem; transition: 0.2s; }
+    .back-btn:hover { background: rgba(56, 189, 248, 0.2); color: var(--primary); }
+    .file-title { font-size: 1.1rem; font-weight: 600; color: #f8fafc; }
+    main { flex: 1; padding: 2rem; max-width: 1200px; margin: 0 auto; width: 100%; }
+    .container { background: rgba(15, 23, 42, 0.7); border: 1px solid var(--glass-border); border-radius: 16px; padding: 2rem; box-shadow: 0 10px 30px rgba(0,0,0,0.3); overflow-x: auto; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-left">
+      <a href="../index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Voltar ao Dashboard</a>
+      <div class="file-title">106_desafio.py</div>
+    </div>
+    <div>
+      <a href="../cursoemvideo_python/Curso de Python 3 - Mundo 3 Estruturas Compostas/Curso Python #021 - Funções (Parte 2)/106_desafio.py" download class="back-btn"><i class="fa-solid fa-download"></i> Baixar Arquivo</a>
+    </div>
+  </header>
+  <main>
+    
+        <div class="container">
+          <div class="code-toolbar">
+            <span style="color: #38bdf8; font-weight: 600;"><i class="fa-brands fa-python"></i> 106_desafio.py</span>
+            <button class="btn-copy" onclick="navigator.clipboard.writeText(document.getElementById('py-code').innerText); this.innerText='Copiado!'; setTimeout(()=>this.innerText='Copiar Código', 2000)"><i class="fa-regular fa-copy"></i> Copiar Código</button>
+          </div>
+          <pre><code class="language-python" id="py-code"># Exercício Python #106 - Sistema interativo de ajuda em Python - Aula 00 até 21 - Mundo 3
+# Faça um mini-sistema que utilize o Interactive Help do Python. O usuário vai digitar o comando e o manual vai aparecer. Quando o usuário digitar a palavra &#039;FIM&#039;, o programa se encerrará. Importante: use cores.
+
+def ajuda():
+	while True:
+		entrada = input(&#039;\033[1;34mDigite o comando que deseja visualizar ou FIM para sair: \033[m&#039;).strip().lower()
+		if entrada == &#039;fim&#039;:
+			print(&#039;\033[1;31mFINALIZANDO O PROGRAMA\033[m&#039;)
+			break
+
+		print(&#039;\033[7;37;40m&#039;, end=&#039;&#039;)
+		help(entrada)
+		print(&#039;\033[m&#039;)
+
+
+ajuda()
+
+
+&quot;&quot;&quot;
+def ajuda():
+    while True:
+        entrada = input(&#039;\033[1;34mDigite o comando que deseja visualizar ou FIM para sair: \033[m&#039;).strip().lower()
+        if entrada == &#039;fim&#039;:
+            print(&#039;\033[1;31mFINALIZANDO O PROGRAMA\033[m&#039;)
+            break
+        
+        # Tenta capturar a saída do help() e verificar o conteúdo
+        import io
+        import sys
+        
+        # Redireciona a saída padrão para capturar o texto gerado pelo help()
+        old_stdout = sys.stdout
+        new_stdout = io.StringIO()
+        sys.stdout = new_stdout
+        
+        try:
+            help(entrada)
+            output = new_stdout.getvalue()
+        finally:
+            sys.stdout = old_stdout  # Restaura a saída padrão
+        
+        # Verifica se &quot;No Python documentation found for&quot; está na saída
+        if &quot;No Python documentation found for&quot; in output:
+            print(&#039;\033[1;30;43m&#039;, end=&#039;&#039;)  # Texto preto com fundo amarelo
+        else:
+            print(&#039;\033[7;37;40m&#039;, end=&#039;&#039;)  # Fundo inverso
+        
+        print(output)
+        print(&#039;\033[m&#039;, end=&#039;&#039;)  # Reseta as cores
+
+ajuda()
+
+&quot;&quot;&quot;
+
+# Estou compartilhando minhas anotações sobre os exercícios. Quem quiser, pode copiar e colar em um documento .py pois está tudo formatado e comentado.
+
+# Nesse exercício, temos que criar um mini-sistema que utilize o Interactive Help do Python. O usuário vai digitar o comando e o manual vai aparecer. Quando o usuário digitar a palavra &#039;FIM&#039;, o programa se encerrará. Importante: use cores.
+
+def ajuda():
+    # O programa vai continuar em loop até o usuário digitar a palavra &#039;FIM&#039;
+	while True:
+		entrada = input(&#039;\033[1;34mDigite o comando que deseja visualizar ou FIM para sair: \033[m&#039;).strip().lower()
+        # Se o usuário digitar &#039;FIM&#039;, o programa vai exibir a mensagem &#039;FINALIZANDO O PROGRAMA&#039; e vai encerrar o loop
+		if entrada == &#039;fim&#039;:
+			print(&#039;\033[1;31mFINALIZANDO O PROGRAMA\033[m&#039;)
+			break
+        # Se o usuário digitar um comando válido, o programa vai exibir o manual do comando
+		print(&#039;\033[7;37;40m&#039;, end=&#039;&#039;)
+		help(entrada)
+		print(&#039;\033[m&#039;)
+
+
+ajuda()</code></pre>
+        </div>
+        <script>hljs.highlightAll();</script>
+      
+  </main>
+</body>
+</html>

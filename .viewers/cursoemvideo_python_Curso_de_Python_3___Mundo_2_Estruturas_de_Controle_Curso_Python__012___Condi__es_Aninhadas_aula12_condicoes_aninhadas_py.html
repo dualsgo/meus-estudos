@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>aula12_condicoes_aninhadas.py - Meus Estudos</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/atom-one-dark.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/python.min.js"></script>
+        <style>
+          pre { border-radius: 8px; overflow-x: auto; font-size: 0.95rem; }
+          .code-toolbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem; }
+          .btn-copy { background: rgba(56, 189, 248, 0.2); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.4); padding: 0.4rem 0.8rem; border-radius: 6px; cursor: pointer; font-size: 0.85rem; }
+          .btn-copy:hover { background: rgba(56, 189, 248, 0.4); }
+        </style>
+      
+  <style>
+    :root {
+      --bg-color: #0b1120;
+      --glass-bg: rgba(30, 41, 59, 0.7);
+      --glass-border: rgba(255, 255, 255, 0.08);
+      --primary: #38bdf8;
+      --text-main: #f1f5f9;
+      --text-muted: #94a3b8;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
+    body { background-color: var(--bg-color); color: var(--text-main); min-height: 100vh; display: flex; flex-direction: column; }
+    header { padding: 0.8rem 2rem; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--glass-border); background: var(--glass-bg); backdrop-filter: blur(12px); position: sticky; top: 0; z-index: 100; }
+    .header-left { display: flex; align-items: center; gap: 1rem; }
+    .back-btn { color: var(--text-main); text-decoration: none; display: flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem; border-radius: 8px; background: rgba(255,255,255,0.05); font-size: 0.9rem; transition: 0.2s; }
+    .back-btn:hover { background: rgba(56, 189, 248, 0.2); color: var(--primary); }
+    .file-title { font-size: 1.1rem; font-weight: 600; color: #f8fafc; }
+    main { flex: 1; padding: 2rem; max-width: 1200px; margin: 0 auto; width: 100%; }
+    .container { background: rgba(15, 23, 42, 0.7); border: 1px solid var(--glass-border); border-radius: 16px; padding: 2rem; box-shadow: 0 10px 30px rgba(0,0,0,0.3); overflow-x: auto; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-left">
+      <a href="../index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Voltar ao Dashboard</a>
+      <div class="file-title">aula12_condicoes_aninhadas.py</div>
+    </div>
+    <div>
+      <a href="../cursoemvideo_python/Curso de Python 3 - Mundo 2 Estruturas de Controle/Curso Python #012 - Condições Aninhadas/aula12_condicoes_aninhadas.py" download class="back-btn"><i class="fa-solid fa-download"></i> Baixar Arquivo</a>
+    </div>
+  </header>
+  <main>
+    
+        <div class="container">
+          <div class="code-toolbar">
+            <span style="color: #38bdf8; font-weight: 600;"><i class="fa-brands fa-python"></i> aula12_condicoes_aninhadas.py</span>
+            <button class="btn-copy" onclick="navigator.clipboard.writeText(document.getElementById('py-code').innerText); this.innerText='Copiado!'; setTimeout(()=>this.innerText='Copiar Código', 2000)"><i class="fa-regular fa-copy"></i> Copiar Código</button>
+          </div>
+          <pre><code class="language-python" id="py-code"># Curso Python #012 - Condições Aninhadas
+# Nessa aula, vamos aprender como criar estruturas condicionais aninhadas, usando os comandos if, elif e else em programas Python.
+
+# Programas podem oferecer possibilidades extras caso haja mais de um caminho a ser seguido. Se uma determinada condição não é atendida, o programa deve conseguir oferecer essas outras opções
+
+numero = 2
+
+if numero == 1:
+    print(&#039;Executa a primeira possibilidade&#039;)
+elif numero == 2:
+    print(&#039;Executa a segunda possibilidade&#039;)
+elif numero == 3:
+    print(&#039;Executa a terceira possibilidade&#039;)
+else:
+    print(&#039;Numero inválido!&#039;)
+
+# OBSERVAÇÃO:
+# elif pode ser usado quantas vezes for necessário, mas deve sempre ser usado após um if.
+# else só pode ser usado como última opção mas também pode ser omitido.
+
+# TESTANDO POSSIBILIDADES:
+nome = str(input(&#039;Qual é o seu nome: &#039;))
+
+if nome == &#039;Gustavo&#039;:
+    print(&#039;Que nome bonito!&#039;)
+# Se colocarmos duas instruções if, ambas serão verificadas.
+if nome[0] == &#039;G&#039;:
+    print(&#039;Seu nome começa com G!&#039;)
+    
+# As instruções elif só serão verificadas se a condição if não for atendida. Se a condição elif for atendida, as demais condições serão ignoradas.
+elif nome == &#039;Pedro&#039; or nome == &#039;Maria&#039; or nome == &#039;Paulo&#039;:
+    print(&#039;Seu nome é popular no Brasil.&#039;)
+elif nome in &#039;Juliana&#039;:
+    print(&#039;Belo nome feminino.&#039;)
+else:
+    print(&#039;Seu nome é normal.&#039;)
+
+# A instrução fora da indentação será exibida, independente da condição ser atendida ou não
+print(f&#039;Tenha um bom dia, {nome}!&#039;)
+
+
+
+
+    </code></pre>
+        </div>
+        <script>hljs.highlightAll();</script>
+      
+  </main>
+</body>
+</html>

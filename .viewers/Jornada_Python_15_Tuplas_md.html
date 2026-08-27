@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>15_Tuplas.md - Meus Estudos</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+        <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/atom-one-dark.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <style>
+          .markdown-body { font-size: 1.05rem; line-height: 1.7; color: #cbd5e1; }
+          .markdown-body h1, .markdown-body h2 { border-bottom: 1px solid var(--glass-border); padding-bottom: 0.5rem; margin-bottom: 1rem; color: #38bdf8; }
+          .markdown-body a { color: #38bdf8; text-decoration: none; }
+          .markdown-body a:hover { text-decoration: underline; }
+          .markdown-body pre { background: #1e293b; padding: 1rem; border-radius: 8px; overflow-x: auto; border: 1px solid var(--glass-border); margin: 1rem 0; }
+          .markdown-body code { font-family: monospace; color: #eab308; background: rgba(0,0,0,0.3); padding: 0.2rem 0.4rem; border-radius: 4px; }
+          .markdown-body pre code { padding: 0; background: transparent; color: inherit; }
+          .markdown-body img { max-width: 100%; border-radius: 8px; }
+          table { border-collapse: collapse; width: 100%; margin: 1rem 0; }
+          th, td { border: 1px solid var(--glass-border); padding: 0.6rem; text-align: left; }
+          th { background: rgba(255,255,255,0.05); color: #38bdf8; }
+        </style>
+      
+  <style>
+    :root {
+      --bg-color: #0b1120;
+      --glass-bg: rgba(30, 41, 59, 0.7);
+      --glass-border: rgba(255, 255, 255, 0.08);
+      --primary: #38bdf8;
+      --text-main: #f1f5f9;
+      --text-muted: #94a3b8;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
+    body { background-color: var(--bg-color); color: var(--text-main); min-height: 100vh; display: flex; flex-direction: column; }
+    header { padding: 0.8rem 2rem; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--glass-border); background: var(--glass-bg); backdrop-filter: blur(12px); position: sticky; top: 0; z-index: 100; }
+    .header-left { display: flex; align-items: center; gap: 1rem; }
+    .back-btn { color: var(--text-main); text-decoration: none; display: flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem; border-radius: 8px; background: rgba(255,255,255,0.05); font-size: 0.9rem; transition: 0.2s; }
+    .back-btn:hover { background: rgba(56, 189, 248, 0.2); color: var(--primary); }
+    .file-title { font-size: 1.1rem; font-weight: 600; color: #f8fafc; }
+    main { flex: 1; padding: 2rem; max-width: 1200px; margin: 0 auto; width: 100%; }
+    .container { background: rgba(15, 23, 42, 0.7); border: 1px solid var(--glass-border); border-radius: 16px; padding: 2rem; box-shadow: 0 10px 30px rgba(0,0,0,0.3); overflow-x: auto; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-left">
+      <a href="../index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Voltar ao Dashboard</a>
+      <div class="file-title">15_Tuplas.md</div>
+    </div>
+    <div>
+      <a href="../Jornada Python/15_Tuplas.md" download class="back-btn"><i class="fa-solid fa-download"></i> Baixar Arquivo</a>
+    </div>
+  </header>
+  <main>
+    
+        <div class="container markdown-body" id="md-content"></div>
+        <script>
+          document.getElementById('md-content').innerHTML = marked.parse(decodeURIComponent(escape(window.atob('IyBUdXBsYXMgZW0gUHl0aG9uDQoNCiMjIEVYUExJQ0HDh8ODTw0KDQpUdXBsYXMgc8OjbyBjb2xlw6fDtWVzIGRlIGVsZW1lbnRvcyBpbXV0w6F2ZWlzLiBVbWEgdmV6IGNyaWFkYSwgdm9jw6ogbsOjbyBwb2RlIGFsdGVyYXIsIGFkaWNpb25hciBvdSByZW1vdmVyIHNldXMgaXRlbnMuIFPDo28gY29tdW1lbnRlIHVzYWRhcyBwYXJhIGRhZG9zIHF1ZSBuw6NvIGRldmVtIG11ZGFyIChjb21vIGNvb3JkZW5hZGFzIG91IGNvbmZpZ3VyYcOnw7VlcykuDQoNCjEuICoqU2ludGF4ZSoqOiBEZWZpbmlkYXMgcG9yIHBhcsOqbnRlc2VzIGAoKWAgZSB2w61yZ3VsYXMuDQogICAqIEV4OiBgcG9udG8gPSAoMTAsIDIwKWANCjIuICoqSW11dGFiaWxpZGFkZSoqOiBEaWZlcmVudGUgZGFzIGxpc3RhcywgdHVwbGFzIG7Do28gcG9zc3VlbSBtw6l0b2RvcyBjb21vIGAuYXBwZW5kKClgIG91IGAucG9wKClgLiBTZSB0ZW50YXIgYWx0ZXJhciB1bSDDrW5kaWNlIChgdFswXSA9IDFgKSwgbyBQeXRob24gcmV0b3JuYXLDoSB1bSBgVHlwZUVycm9yYC4NCjMuICoqVHVwbGEgdW5pdMOhcmlhKio6IFBhcmEgY3JpYXIgdW1hIHR1cGxhIGNvbSBhcGVuYXMgdW0gZWxlbWVudG8sIMOpIG9icmlnYXTDs3JpbyBjb2xvY2FyIHVtYSB2w61yZ3VsYSBubyBmaW5hbC4NCiAgICogRXg6IGB1bmljYSA9ICg1LClgDQo0LiAqKkRlc2VtcGFjb3RhbWVudG8gKCpVbnBhY2tpbmcqKSoqOiBQZXJtaXRlIGF0cmlidWlyIG9zIHZhbG9yZXMgZGEgdHVwbGEgZGlyZXRhbWVudGUgYSB2YXJpw6F2ZWlzLg0KICAgKiBFeDogYHgsIHkgPSBwb250b2ANCjUuICoqVmFudGFnZW5zKio6IFPDo28gbWFpcyBsZXZlcyBuYSBtZW3Ds3JpYSBlIG1haXMgcsOhcGlkYXMgcXVlIGFzIGxpc3Rhcy4NCg0KIyMgRVhFTVBMTyBQUsOBVElDTw0KDQpgYGBweXRob24NCiMgQ3JpYcOnw6NvIGUgQWNlc3NvDQpsYW5jaGUgPSAoJ0hhbWLDunJndWVyJywgJ1N1Y28nLCAnUGl6emEnLCAnUHVkaW0nKQ0KcHJpbnQobGFuY2hlWzFdKSAgIyBTdWNvDQoNCiMgRGVzZW1wYWNvdGFtZW50byBjb20gYXN0ZXJpc2NvIChQZWdhIG8gcHJpbWVpcm8gZSBvIHJlc3RvIHZpcmEgbGlzdGEpDQpwcmltZWlybywgKnJlc3RvID0gbGFuY2hlDQpwcmludChmIlByaW1laXJvOiB7cHJpbWVpcm99IikNCnByaW50KGYiUmVzdG86IHtyZXN0b30iKQ0KDQojIE3DqXRvZG9zIGRpc3BvbsOtdmVpcyAoQXBlbmFzIGxlaXR1cmEvYnVzY2EpDQpwcmludChmIlF1YW50YXMgcGl6emFzPyB7bGFuY2hlLmNvdW50KCdQaXp6YScpfSIpDQpwcmludChmIk9uZGUgZXN0w6EgbyBTdWNvPyDDjW5kaWNlIHtsYW5jaGUuaW5kZXgoJ1N1Y28nKX0iKQ0KDQojIFR1cGxhcyBlbSBGdW7Dp8O1ZXMgKFJldG9ybm8gbcO6bHRpcGxvKQ0KZGVmIGRpbWVuc8O1ZXMoKToNCiAgICByZXR1cm4gMTkyMCwgMTA4MA0KDQpsYXJndXJhLCBhbHR1cmEgPSBkaW1lbnPDtWVzKCkNCnByaW50KGYiUmVzb2x1w6fDo286IHtsYXJndXJhfXh7YWx0dXJhfSIpDQpgYGANCg=='))));
+          hljs.highlightAll();
+        </script>
+      
+  </main>
+</body>
+</html>

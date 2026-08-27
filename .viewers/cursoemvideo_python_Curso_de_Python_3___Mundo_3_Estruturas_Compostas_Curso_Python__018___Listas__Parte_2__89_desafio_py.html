@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>89_desafio.py - Meus Estudos</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/atom-one-dark.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/python.min.js"></script>
+        <style>
+          pre { border-radius: 8px; overflow-x: auto; font-size: 0.95rem; }
+          .code-toolbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem; }
+          .btn-copy { background: rgba(56, 189, 248, 0.2); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.4); padding: 0.4rem 0.8rem; border-radius: 6px; cursor: pointer; font-size: 0.85rem; }
+          .btn-copy:hover { background: rgba(56, 189, 248, 0.4); }
+        </style>
+      
+  <style>
+    :root {
+      --bg-color: #0b1120;
+      --glass-bg: rgba(30, 41, 59, 0.7);
+      --glass-border: rgba(255, 255, 255, 0.08);
+      --primary: #38bdf8;
+      --text-main: #f1f5f9;
+      --text-muted: #94a3b8;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
+    body { background-color: var(--bg-color); color: var(--text-main); min-height: 100vh; display: flex; flex-direction: column; }
+    header { padding: 0.8rem 2rem; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--glass-border); background: var(--glass-bg); backdrop-filter: blur(12px); position: sticky; top: 0; z-index: 100; }
+    .header-left { display: flex; align-items: center; gap: 1rem; }
+    .back-btn { color: var(--text-main); text-decoration: none; display: flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem; border-radius: 8px; background: rgba(255,255,255,0.05); font-size: 0.9rem; transition: 0.2s; }
+    .back-btn:hover { background: rgba(56, 189, 248, 0.2); color: var(--primary); }
+    .file-title { font-size: 1.1rem; font-weight: 600; color: #f8fafc; }
+    main { flex: 1; padding: 2rem; max-width: 1200px; margin: 0 auto; width: 100%; }
+    .container { background: rgba(15, 23, 42, 0.7); border: 1px solid var(--glass-border); border-radius: 16px; padding: 2rem; box-shadow: 0 10px 30px rgba(0,0,0,0.3); overflow-x: auto; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-left">
+      <a href="../index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Voltar ao Dashboard</a>
+      <div class="file-title">89_desafio.py</div>
+    </div>
+    <div>
+      <a href="../cursoemvideo_python/Curso de Python 3 - Mundo 3 Estruturas Compostas/Curso Python #018 - Listas (Parte 2)/89_desafio.py" download class="back-btn"><i class="fa-solid fa-download"></i> Baixar Arquivo</a>
+    </div>
+  </header>
+  <main>
+    
+        <div class="container">
+          <div class="code-toolbar">
+            <span style="color: #38bdf8; font-weight: 600;"><i class="fa-brands fa-python"></i> 89_desafio.py</span>
+            <button class="btn-copy" onclick="navigator.clipboard.writeText(document.getElementById('py-code').innerText); this.innerText='Copiado!'; setTimeout(()=>this.innerText='Copiar Código', 2000)"><i class="fa-regular fa-copy"></i> Copiar Código</button>
+          </div>
+          <pre><code class="language-python" id="py-code"># Exercício Python #089 - Boletim com listas compostas - Aula 00 até 18 - Mundo 3
+# Crie um programa que leia nome e duas notas de vários alunos e guarde tudo em uma lista composta.
+# No final, mostre um boletim contendo a média de cada um e permita que o usuário possa mostrar as notas de cada aluno individualmente.
+
+from emoji import emojize
+
+boletim = []
+
+# Loop para entrada de dados
+while True:
+    nome = str(input(emojize(&#039;:aluno: Aluno: &#039;, language=&#039;pt&#039;))).strip().title()
+    nota1 = float(input(emojize(&#039;:memorando: NOTA 1: &#039;, language=&#039;pt&#039;)))
+    nota2 = float(input(emojize(&#039;:memorando: NOTA 2: &#039;, language=&#039;pt&#039;)))
+    media = (nota1 + nota2) / 2
+
+    # Adiciona os dados do aluno à lista composta
+    boletim.append([nome, [nota1, nota2, media]])
+
+    continuar = str(input(&#039;Continuar? S/N &#039;)).strip().upper()
+
+    # Loop para garantir que o usuário forneça uma entrada válida
+    while continuar not in &#039;SN&#039;:
+        continuar = str(input(&#039;Continuar? S/N &#039;)).strip().upper()
+
+    # Se o usuário escolher &#039;N&#039;, exibe o boletim e encerra o programa
+    if continuar == &#039;N&#039;:
+        print(&#039;Encerrando...&#039;)
+        print(f&#039;{&quot;BOLETIM DA TURMA&quot;:^20}&#039;)
+        print(f&#039;{&quot;Número&quot;:&lt;8}{&quot;Nome&quot;:&lt;10}{&quot;Média&quot;:&gt;8}&#039;)
+        for i, aluno in enumerate(boletim):
+            nome = aluno[0]
+            nota1, nota2, media = aluno[1]
+            # Formatação melhorada usando f-strings
+            print(f&#039;{i:&lt;8}{nome:&lt;10}{media:&gt;8.1f}&#039;)
+        break
+
+# Loop para visualizar as notas de cada aluno individualmente
+while True:
+    ident = int(input(&#039;Digite o ID do aluno:&#039;))
+
+    # Verifica se o ID do aluno é válido
+    if 0 &lt;= ident &lt; len(boletim):
+        # Desempacotamento dos valores para nome e notas
+        nome, notas = boletim[ident]
+
+        # Atribuição de valores individuais para nota1, nota2 e media
+        nota1, nota2, media = notas
+
+        # Formatação melhorada usando f-strings para imprimir as informações do aluno
+        print(f&#039;O aluno {nome} teve as notas {nota1} e {nota2}. Sua média foi {media}&#039;)
+    else:
+        # Caso o ID seja inválido, exibe uma mensagem de erro
+        print(&#039;ID do aluno inválido. Tente novamente.&#039;)
+
+    continuar = str(input(&#039;Ver outro aluno? S/N&#039;)).strip().upper()
+
+    # Loop para garantir que o usuário forneça uma entrada válida
+    while continuar not in &#039;SN&#039;:
+        continuar = str(input(&#039;Ver outro aluno? S/N&#039;)).strip().upper()
+
+    # Se o usuário escolher &#039;N&#039;, encerra o programa
+    if continuar == &#039;N&#039;:
+        print(&#039;Encerrando...&#039;)
+        break
+
+
+&quot;&quot;&quot;**Desempacotamento:**
+
+No Python, o desempacotamento é um recurso que permite atribuir os elementos de uma sequência (como uma lista ou tupla) a variáveis individuais. No trecho de código mencionado:
+
+```python
+# Desempacotamento dos valores para nome e notas
+nome, notas = boletim[ident]
+```
+
+- `boletim[ident]` retorna uma lista que representa as informações de um aluno específico no boletim.
+- `nome, notas` realiza o desempacotamento, atribuindo o primeiro elemento da lista (nome) à variável `nome` e o segundo elemento (que é uma lista de notas) à variável `notas`.
+
+**Atribuição de valores individuais:**
+
+Após o desempacotamento, a linha seguinte realiza a atribuição de valores individuais às variáveis `nota1`, `nota2`, e `media`:
+
+```python
+# Atribuição de valores individuais para nota1, nota2 e media
+nota1, nota2, media = notas
+```
+
+- `notas` é a lista que contém as notas do aluno, onde `notas[0]` é a primeira nota, `notas[1]` é a segunda nota, e `notas[2]` é a média.
+- `nota1, nota2, media` realiza a atribuição desses valores individuais às variáveis correspondentes.
+
+Então, após essa linha de código, você tem acesso direto às notas individuais do aluno através das variáveis `nota1` e `nota2`, bem como à média através da variável `media`. Isso facilita o uso desses valores posteriormente no código, como na linha seguinte onde eles são usados na impressão formatada.
+
+Em resumo, o desempacotamento e a atribuição de valores individuais ajudam a tornar o código mais legível e a facilitar o acesso a elementos específicos dentro de listas ou tuplas.&quot;&quot;&quot;
+
+
+# V2
+
+boletim = []
+
+while True:
+    try:
+        aluno = []  # Cria uma nova lista para cada aluno
+        nome = input(&#039;Digite o nome do aluno: &#039;).strip().title()
+        aluno.append(nome)
+        nota_1 = float(input(&#039;1º Bimestre: &#039;))
+        nota_2 = float(input(&#039;2º Bimestre: &#039;))
+    except ValueError:
+        print(f&#039;Ops... Valores inválidos. Tente novamente.&#039;)
+        continue
+
+    aluno.append(nota_1)
+    aluno.append(nota_2)
+    media = (nota_1 + nota_2) / 2
+    aluno.append(media)
+    boletim.append(aluno)
+
+    continuar = &#039;&#039;
+    while continuar not in (&#039;S&#039;, &#039;N&#039;):
+        continuar = input(&#039;Outro aluno? S/N&#039;).strip().upper()
+
+    if continuar == &#039;S&#039;:
+        continue
+    if continuar == &#039;N&#039;:
+        break
+
+print(&#039;-&#039; * 46)
+print(f&#039;|{&quot;No&quot;:^8}|{&quot;Nome&quot;:^8}|{&quot;Nota 1&quot;:^8}|{&quot;Nota 2&quot;:^8}|{&quot;Média&quot;:^8}|&#039;)
+print(&#039;-&#039; * 46)
+
+for i, aluno in enumerate(boletim):
+    print(f&#039;|{i:^8}|{aluno[0]:^8}|{aluno[1]:^8}|{aluno[2]:^8}|{aluno[3]:^8}|&#039;)
+
+print(&#039;-&#039; * 46)
+
+while True:
+    try:
+        escolha = int(input(&#039;Verificar informações de qual aluno? &#039;))
+    except ValueError:
+        print(f&#039;Valor inválido.&#039;)
+        continue
+
+    if escolha &gt;= len(boletim):
+        print(f&#039;Aluno não localizado.&#039;)
+        continue
+
+    else:
+        print(&#039;-&#039; * 46)
+        print(f&#039;|{&quot;No&quot;:^8}|{&quot;Nome&quot;:^8}|{&quot;Nota 1&quot;:^8}|{&quot;Nota 2&quot;:^8}|{&quot;Média&quot;:^8}|&#039;)
+        print(&#039;-&#039; * 46)
+        print(f&#039;|{escolha:^8}|{boletim[escolha][0]:^8}|{boletim[escolha][1]:^8}|{boletim[escolha][2]:^8}|{boletim[escolha][3]:^8}|&#039;)
+        print(&#039;-&#039; * 46)
+
+    continuar = &#039;&#039;
+    while continuar not in (&#039;S&#039;, &#039;N&#039;):
+        continuar = input(&#039;Outro aluno? S/N&#039;).strip().upper()
+
+    if continuar == &#039;S&#039;:
+        continue
+    if continuar == &#039;N&#039;:
+        print(&#039;Encerrando...&#039;)
+        break
+
+# V3 INCOMPLETO
+
+def obtem_nota(mensagem):
+	while True:
+		try:
+			valor = float(input(mensagem))
+			if 0 &lt;= valor &lt;= 10:
+				return valor
+			else:
+				print(&#039;Valor deve estar entre 0 e 10&#039;)
+		except ValueError:
+			print(&#039;Valor inválido!&#039;)
+
+def obtem_nome(mensagem):
+	while True:
+		digitado = input(mensagem).strip().title()
+		nome_sem_espaços = digitado.replace(&#039; &#039;, &#039;&#039;)
+		if nome_sem_espaços.isalpha():
+			return digitado
+		else:
+			print(&#039;Nome inválido!&#039;)
+
+def obtem_valor(mensagem):
+	while True:
+		try:
+			return int(input(mensagem))
+		except ValueError:
+			print(&#039;Valor inválido!&#039;)
+
+boletim = []
+
+while True:
+	nome = obtem_nome(&#039;Nome do aluno: &#039;)
+
+	# Obtém as 4 notas do aluno
+	notas = [obtem_nota(&#039;Primeira nota do aluno: &#039;),
+			 obtem_nota(&#039;Segunda nota do aluno: &#039;),
+			 obtem_nota(&#039;Terceira nota do aluno: &#039;),
+			 obtem_nota(&#039;Quarta nota do aluno: &#039;)]
+	aluno = [nome, notas]
+	boletim.append(aluno)
+
+	while True:
+		continuar = input(&#039;Continuar? S/N &#039;).strip().upper()
+		if continuar in &#039;SN&#039;:
+			break
+
+	if continuar == &#039;N&#039;:
+		break
+
+print(&#039;-&#039; * 40)
+for indice, aluno in enumerate(boletim):
+	print(f&#039;Aluno: {aluno[0]:^20}&#039;)
+	print(&#039;-&#039; * 40)
+	print(&#039;Notas dos 4 bimestres:&#039;.center(40))
+	print(&#039;-&#039; * 40)
+	for bim, nota in enumerate(aluno[1], 1):  # Corrigido para aluno[1]
+		print(f&#039;{bim}º bimestre: {nota:&gt;20.1f}&#039;)
+	print(&#039;-&#039; * 40)
+	print(f&#039;Média: {sum(aluno[1])/4:&gt;20.1f}&#039;)  # Corrigido para aluno[1]
+	print(&#039;-&#039; * 40)
+
+# Nesse exercício, vamos criar um programa que ajude um professor a ler o nome e as duas notas de vários alunos e guarde tudo em uma lista composta. No final, vamos mostrar um boletim contendo a média de cada um e permitir que o usuário possa mostrar as notas de cada aluno individualmente.
+
+# Irei utilizar o módulo emoji para adicionar emojis às mensagens de entrada de dados.
+from emoji import emojize
+
+# Primeiro, vamos criar uma lista  para armazenar os dados dos alunos que será o boletim.
+boletim = []
+
+# Em seguida, vamos criar um loop para entrada de dados dos alunos.
+
+while True:
+    
+    # Solicita o nome do aluno e suas duas notas.
+    nome = str(input(emojize(&#039;:aluno: Aluno: &#039;, language=&#039;pt&#039;))).strip().title()
+    nota1 = float(input(emojize(&#039;:memorando: NOTA 1: &#039;, language=&#039;pt&#039;)))
+    nota2 = float(input(emojize(&#039;:memorando: NOTA 2: &#039;, language=&#039;pt&#039;)))
+    
+    # Calcula a média das notas
+    media = (nota1 + nota2) / 2
+
+    # Após receber os valores, adiciona o nome e as notas à lista boletim.
+    boletim.append([nome, [nota1, nota2, media]])
+    # Observer que estamos adicionando uma lista com o nome e uma lista com as notas e a média.
+    # Então cada elemento da lista boletim é uma lista com duas posições: o nome do aluno e uma lista com as notas e a média.
+    
+    # Pergunta ao usuário se deseja continuar adicionando alunos.
+    continuar = str(input(&#039;Continuar? S/N &#039;)).strip().upper()
+
+    # Loop para garantir que o usuário forneça uma entrada válida
+    while continuar not in &#039;SN&#039;:
+        continuar = str(input(&#039;Continuar? S/N &#039;)).strip().upper()
+
+    # Se o usuário escolher &#039;N&#039;, exibe o boletim e encerra o programa
+    if continuar == &#039;N&#039;:
+        print(&#039;Encerrando...&#039;)
+        print(f&#039;{&quot;BOLETIM DA TURMA&quot;:^20}&#039;)
+        print(f&#039;{&quot;Número&quot;:&lt;8}{&quot;Nome&quot;:&lt;10}{&quot;Média&quot;:&gt;8}&#039;)
+        for i, aluno in enumerate(boletim):
+            nome = aluno[0]
+            nota1, nota2, media = aluno[1]
+            # Formatação melhorada usando f-strings
+            print(f&#039;{i:&lt;8}{nome:&lt;10}{media:&gt;8.1f}&#039;)
+        break
+
+# Loop para visualizar as notas de cada aluno individualmente. Vamos solicitar o ID do aluno e exibir suas notas. O ID será o índice do aluno na lista boletim.
+while True:
+    ident = int(input(&#039;Digite o ID do aluno:&#039;))
+
+    # Verifica se o ID do aluno é válido, analisando se está dentro do intervalo de índices da lista boletim
+    if 0 &lt;= ident &lt; len(boletim):
+        
+        # Desempacotamento dos valores para nome e notas para facilitar o acesso. Vou falar sobre o desempacotamento no final.
+        nome, notas = boletim[ident]
+
+        # Atribuição de valores individuais para nota1, nota2 e media. Nessa técnica, cada valor da lista notas é atribuído a uma variável individual na ordem em que aparecem na lista.
+        nota1, nota2, media = notas
+
+        # Formatação melhorada usando f-strings para imprimir as informações do aluno
+        print(f&#039;O aluno {nome} teve as notas {nota1} e {nota2}. Sua média foi {media}&#039;)
+    else:
+        # Caso o ID seja inválido, exibe uma mensagem de erro
+        print(&#039;ID do aluno inválido. Tente novamente.&#039;)
+
+    # Pergunta ao usuário se deseja ver as notas de outro aluno individualmente
+    continuar = str(input(&#039;Ver outro aluno? S/N&#039;)).strip().upper()
+
+    # Loop para garantir que o usuário forneça uma entrada válida
+    while continuar not in &#039;SN&#039;:
+        continuar = str(input(&#039;Ver outro aluno? S/N&#039;)).strip().upper()
+
+    # Se o usuário escolher &#039;N&#039;, encerra o programa
+    if continuar == &#039;N&#039;:
+        print(&#039;Encerrando...&#039;)
+        break
+
+# Sobre o desempacotamento:
+
+# No Python, o desempacotamento é um recurso que permite atribuir os elementos de uma sequência (como uma lista ou tupla) a variáveis individuais. No trecho de código mencionado:
+
+
+# Por exemplo, no desempacotamento dos valores para nome e notas
+# nome, notas = boletim[ident]
+
+# boletim[ident] retorna uma lista que representa as informações de um aluno específico no boletim.
+# nome, notas realiza o desempacotamento, atribuindo o primeiro elemento da lista (nome) à variável nome e o segundo elemento (que é uma lista de notas) à variável notas.
+
+# Após o desempacotamento, a linha seguinte realiza a atribuição de valores individuais às variáveis nota1, nota2, e media:
+
+# nota1, nota2, media = notas
+
+# notas é a lista que contém as notas do aluno, onde notas[0] é a primeira nota, notas[1] é a segunda nota, e notas[2] é a média.
+# nota1, nota2, media realiza a atribuição desses valores individuais às variáveis correspondentes.
+
+# Depois dessa linha de código, você tem acesso direto às notas individuais do aluno através das variáveis nota1 e nota2, bem como à média através da variável media. Isso facilita o uso desses valores posteriormente no código, como na linha seguinte onde eles são usados na impressão formatada.</code></pre>
+        </div>
+        <script>hljs.highlightAll();</script>
+      
+  </main>
+</body>
+</html>

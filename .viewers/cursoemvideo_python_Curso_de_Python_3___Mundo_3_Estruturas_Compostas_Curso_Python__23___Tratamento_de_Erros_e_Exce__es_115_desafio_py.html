@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>115_desafio.py - Meus Estudos</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/atom-one-dark.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/python.min.js"></script>
+        <style>
+          pre { border-radius: 8px; overflow-x: auto; font-size: 0.95rem; }
+          .code-toolbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem; }
+          .btn-copy { background: rgba(56, 189, 248, 0.2); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.4); padding: 0.4rem 0.8rem; border-radius: 6px; cursor: pointer; font-size: 0.85rem; }
+          .btn-copy:hover { background: rgba(56, 189, 248, 0.4); }
+        </style>
+      
+  <style>
+    :root {
+      --bg-color: #0b1120;
+      --glass-bg: rgba(30, 41, 59, 0.7);
+      --glass-border: rgba(255, 255, 255, 0.08);
+      --primary: #38bdf8;
+      --text-main: #f1f5f9;
+      --text-muted: #94a3b8;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
+    body { background-color: var(--bg-color); color: var(--text-main); min-height: 100vh; display: flex; flex-direction: column; }
+    header { padding: 0.8rem 2rem; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--glass-border); background: var(--glass-bg); backdrop-filter: blur(12px); position: sticky; top: 0; z-index: 100; }
+    .header-left { display: flex; align-items: center; gap: 1rem; }
+    .back-btn { color: var(--text-main); text-decoration: none; display: flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem; border-radius: 8px; background: rgba(255,255,255,0.05); font-size: 0.9rem; transition: 0.2s; }
+    .back-btn:hover { background: rgba(56, 189, 248, 0.2); color: var(--primary); }
+    .file-title { font-size: 1.1rem; font-weight: 600; color: #f8fafc; }
+    main { flex: 1; padding: 2rem; max-width: 1200px; margin: 0 auto; width: 100%; }
+    .container { background: rgba(15, 23, 42, 0.7); border: 1px solid var(--glass-border); border-radius: 16px; padding: 2rem; box-shadow: 0 10px 30px rgba(0,0,0,0.3); overflow-x: auto; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-left">
+      <a href="../index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Voltar ao Dashboard</a>
+      <div class="file-title">115_desafio.py</div>
+    </div>
+    <div>
+      <a href="../cursoemvideo_python/Curso de Python 3 - Mundo 3 Estruturas Compostas/Curso Python #23 - Tratamento de Erros e Exceções/115_desafio.py" download class="back-btn"><i class="fa-solid fa-download"></i> Baixar Arquivo</a>
+    </div>
+  </header>
+  <main>
+    
+        <div class="container">
+          <div class="code-toolbar">
+            <span style="color: #38bdf8; font-weight: 600;"><i class="fa-brands fa-python"></i> 115_desafio.py</span>
+            <button class="btn-copy" onclick="navigator.clipboard.writeText(document.getElementById('py-code').innerText); this.innerText='Copiado!'; setTimeout(()=>this.innerText='Copiar Código', 2000)"><i class="fa-regular fa-copy"></i> Copiar Código</button>
+          </div>
+          <pre><code class="language-python" id="py-code"># Exercício Python #115a - Criando um menu em Python
+# ___________________________________
+#         MENU PRINCIPAL
+# ___________________________________
+# 1 - Ver pessoas cadastradas
+# 2 - Cadastrar pessoas
+# 3 - Sair do sistema
+# ___________________________________
+# Escolha a opção desejada:
+
+# Se for um tipo diferente mostra uma mensagem de erro e pergunta novamente
+# Se for um número fora do intervalo mostra o menu e pergunta novamente
+
+# Se escolher uma opção correta mostra
+
+# ___________________________________
+#         OPÇÃO ESCOLHIDA
+# ___________________________________
+import json
+
+
+def ver_pessoas_cadastradas():
+    try:  # Tenta abrir o arquivo
+        with open(&quot;pessoas.txt&quot;, &quot;r&quot;) as arquivo:  # Abre o arquivo
+            pessoas = arquivo.readlines()  # Lê o arquivo
+
+        if not pessoas:  # Se não tiver nenhuma pessoa cadastrada
+            print(&quot;Nenhuma pessoa cadastrada ainda.&quot;)  # Mostra essa mensagem
+        else:  # Se tiver pessoas cadastradas
+            print(&#039;--------------------------------------&#039;)
+            print(&quot;Pessoas cadastradas:&quot;)  # Mostra essa mensagem
+            for pessoa_json in pessoas:  # Para cada pessoa no arquivo
+                pessoa = json.loads(pessoa_json)  # Carrega a pessoa
+                print(f&quot;{&#039;Nome:&#039;:&lt;6}{pessoa[&#039;nome&#039;]:^15}{&#039;Idade:&#039;:&lt;10}{pessoa[&#039;idade&#039;]:^10}&quot;)  # Mostra o nome e a idade da pessoa
+            print(&#039;--------------------------------------&#039;)
+    except FileNotFoundError:  # Se o arquivo não existir
+        print(&quot;Nenhuma pessoa cadastrada ainda.&quot;)  # Mostra essa mensagem
+
+
+def menu():  # Função para mostrar o menu
+    try:  # Tenta converter o input para inteiro
+        escolha_user = int(input(&#039;Digite o número da opção desejada: &#039;))  # Pergunta a opção desejada
+        return escolha_user  # Retorna a opção desejada
+    except ValueError:  # Se não for possível converter para inteiro
+        print(&#039;\033[1;31mErro! Digite um número inteiro válido!\033[m&#039;)  # Mostra essa mensagem
+    return None  # Retorna None para mostrar o menu novamente
+
+
+def cadastrar_pessoa():   # Função para cadastrar uma pessoa
+    print(&#039;--------------------------------------&#039;)
+    nome = input(&quot;Digite o nome da pessoa: &quot;).strip().title()  # Pergunta o nome da pessoa
+    idade = int(input(&quot;Digite a idade da pessoa: &quot;))     # Pergunta a idade da pessoa
+    pessoa = {&quot;nome&quot;: nome, &quot;idade&quot;: idade}   # Cria um dicionário com o nome e a idade da pessoa
+    salvar_pessoa(pessoa)   # Chama a função para salvar a pessoa
+    print(&#039;--------------------------------------&#039;)
+
+
+def salvar_pessoa(pessoa):   # Função para salvar a pessoa
+    with open(&quot;pessoas.txt&quot;, &quot;a&quot;) as arquivo:   # Abre o arquivo
+        arquivo.write(json.dumps(pessoa) + &quot;\n&quot;)     # Escreve a pessoa no arquivo
+    print(&quot;&quot;&quot;--------------------------------------
+\033[1;32mPessoa cadastrada com sucesso!\033[m
+--------------------------------------&quot;&quot;&quot;)  # Mostra essa mensagem
+
+
+def escolha():   # Função para mostrar o menu e perguntar a opção desejada
+    while True:  # Enquanto for verdade
+        titulo(&#039;SISTEMA DE GESTÃO DE PESSOAS&#039;)   # Mostra o título
+        print(&quot;&quot;&quot;--------------------------------------
+# 1 - Ver pessoas cadastradas  
+# 2 - Cadastrar pessoas
+# 3 - Sair do sistema
+--------------------------------------&quot;&quot;&quot;)
+
+        num_escolhido = menu()  # Chama a função para mostrar o menu e perguntar a opção desejada
+
+        if num_escolhido is not None:  # Se a opção for válida
+            if num_escolhido == 1:  # Se a opção for 1
+                ver_pessoas_cadastradas()  # Chama a função para ver as pessoas cadastradas
+            elif num_escolhido == 2:  # Se a opção for 2
+                cadastrar_pessoa()   # Chama a função para cadastrar uma pessoa
+            elif num_escolhido == 3:     # Se a opção for 3
+                titulo(&#039;SAIR DO SISTEMA&#039;)    # Mostra o título
+                print(&#039;Saindo do sistema... Obrigado por utilizar!&#039;)     # Mostra essa mensagem
+                break    # Para o loop
+            else:    # Se a opção não for 1, 2 ou 3
+                print(f&#039;Selecione uma das opções do menu acima. {num_escolhido} não é válido!&#039;)  # Mostra essa mensagem
+
+
+def titulo(frase):   # Função para mostrar o título
+    print(f&#039;-&#039; * (len(frase) + 10))  # Mostra o traço
+    print(f&#039;\033[1;32m{frase:^35}\033[m&#039;)    # Mostra o título
+    print(f&#039;-&#039; * (len(frase) + 10))  # Mostra o traço
+
+
+escolha()  # Chama a função para mostrar o menu e perguntar a opção desejada</code></pre>
+        </div>
+        <script>hljs.highlightAll();</script>
+      
+  </main>
+</body>
+</html>

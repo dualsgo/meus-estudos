@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>aula4_primeiros_comandos.py - Meus Estudos</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/atom-one-dark.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/python.min.js"></script>
+        <style>
+          pre { border-radius: 8px; overflow-x: auto; font-size: 0.95rem; }
+          .code-toolbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem; }
+          .btn-copy { background: rgba(56, 189, 248, 0.2); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.4); padding: 0.4rem 0.8rem; border-radius: 6px; cursor: pointer; font-size: 0.85rem; }
+          .btn-copy:hover { background: rgba(56, 189, 248, 0.4); }
+        </style>
+      
+  <style>
+    :root {
+      --bg-color: #0b1120;
+      --glass-bg: rgba(30, 41, 59, 0.7);
+      --glass-border: rgba(255, 255, 255, 0.08);
+      --primary: #38bdf8;
+      --text-main: #f1f5f9;
+      --text-muted: #94a3b8;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
+    body { background-color: var(--bg-color); color: var(--text-main); min-height: 100vh; display: flex; flex-direction: column; }
+    header { padding: 0.8rem 2rem; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--glass-border); background: var(--glass-bg); backdrop-filter: blur(12px); position: sticky; top: 0; z-index: 100; }
+    .header-left { display: flex; align-items: center; gap: 1rem; }
+    .back-btn { color: var(--text-main); text-decoration: none; display: flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem; border-radius: 8px; background: rgba(255,255,255,0.05); font-size: 0.9rem; transition: 0.2s; }
+    .back-btn:hover { background: rgba(56, 189, 248, 0.2); color: var(--primary); }
+    .file-title { font-size: 1.1rem; font-weight: 600; color: #f8fafc; }
+    main { flex: 1; padding: 2rem; max-width: 1200px; margin: 0 auto; width: 100%; }
+    .container { background: rgba(15, 23, 42, 0.7); border: 1px solid var(--glass-border); border-radius: 16px; padding: 2rem; box-shadow: 0 10px 30px rgba(0,0,0,0.3); overflow-x: auto; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-left">
+      <a href="../index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Voltar ao Dashboard</a>
+      <div class="file-title">aula4_primeiros_comandos.py</div>
+    </div>
+    <div>
+      <a href="../cursoemvideo_python/Curso de Python 3 - Mundo 1 Fundamentos/Curso Python #04 - Primeiros comandos em Python3/aula4_primeiros_comandos.py" download class="back-btn"><i class="fa-solid fa-download"></i> Baixar Arquivo</a>
+    </div>
+  </header>
+  <main>
+    
+        <div class="container">
+          <div class="code-toolbar">
+            <span style="color: #38bdf8; font-weight: 600;"><i class="fa-brands fa-python"></i> aula4_primeiros_comandos.py</span>
+            <button class="btn-copy" onclick="navigator.clipboard.writeText(document.getElementById('py-code').innerText); this.innerText='Copiado!'; setTimeout(()=>this.innerText='Copiar Código', 2000)"><i class="fa-regular fa-copy"></i> Copiar Código</button>
+          </div>
+          <pre><code class="language-python" id="py-code"># Curso Python #04 - Primeiros comandos em Python3
+# Agora chegou a hora de aprender os comandos básicos do Python e fazer os primeiros programas em Linguagem Python.
+
+# Os dados de texto são delimitados por aspas simples ou duplas. Podem conter letras, números e caracteres especiais.
+# Todos os comandos são funções e devem ter parênteses após seu nome.
+
+# FUNÇÃO print():
+# A função print() exibe no console o texto desejado.
+# A sintaxe é o nome da função, um par de abertura e fechamento de parênteses envolvendo o valor que deseja exibir.
+# print(&#039;Seu texto&#039;)
+
+print(&#039;Olá, mundo!&#039;)  # Ao executar o programa o texto será exibido no console.
+
+# A função exibe seu resultado em uma linha diferente, mas é possível controlar esse comportamento utilizando caracteres de escape ou atributos.
+
+# Por exemplo, a função print() possui um atributo chamado end. O atributo end permite que você especifique o que deve ser exibido após o último caractere da função print().
+
+# End, na verdade, é um parâmetro da função print(). Um parâmetro é um valor que a função espera receber quando é chamada. Nesse caso, end é um parâmetro opcional, pois possui um valor padrão.
+
+# O valor padrão de end é uma quebra de linha(\n), isso faz com que a próxima instrução seja exibida em uma nova linha. Se mudarmos o valor para qualquer outro, a próxima instrução será exibida ao lado, separada pelo valor escolhido.
+print(&#039;Olá, mundo!&#039;, end=&#039; % &#039;)
+print(&#039;Olá, mundo!&#039;, end=&#039;\n&#039;)
+
+# ERROS:
+# Se uma das aspas for omitida, o programa irá apresentar um erro de sintaxe.
+# Caso as duas aspas sejam omitidas o programa irá exibir um erro diferente, pois irá interpretar cada palavra como uma variável e não irá encontrá-las(além do erro de sintaxe).
+
+# Também podemos exibir números.
+# Números entre aspas são considerados textos!
+# Os números são usados para cálculos matemáticos, por exemplo:
+print(&#039;Dois dados numéricos são somados ao utilizar o operador de adição (+): 7 + 4 =&#039;, 7 + 4)  # Irá exibir a soma que é 11
+
+# Se colocarmos os números entre as aspas e utilizarmos o operador de adição (+), o programa não irá apresentar um erro, mas não irá exibir a soma entre os números e sim unir os dois textos.
+# Essa ação é chamada de concatenação - O operador + une strings e soma valores numéricos.
+print(&#039;Duas strings são unidas ao utilizar o operador +: &quot;7&quot; + &quot;4&quot; =&#039;, &#039;7&#039; + &#039;4&#039;)  # Exibe &#039;74&#039;
+
+# Também é possível utilizar a vírgula para concatenar os valores. A diferença é que o operador de soma + só funciona com valores do mesmo tipo, por exemplo, string + string ou número + número.
+# A vírgula permite utilizar valores de tipos diferentes:
+print(&#039;Usando vírgula para concatenar um dado string (&quot;7&quot;) e um dado numérico (4):&#039;, &#039;7&#039;, 4)  # Irá exibir &#039;7&#039; 4 - haverá um espaço, pois é o separador padrão ao utilizar vírgula na concatenação.
+
+# O separador também é um atributo de print(). O atributo sep permite que você especifique o que deve ser exibido entre os valores passados para a função print. A sintaxe é sep=&#039;separador&#039;.
+
+# VARIÁVEIS:
+# Variáveis são úteis para armazenar os valores. Recomenda-se utilizar letras minúsculas para nomeá-las.
+# Toda variável é um objeto em Python. Isso significa que ela possui atributos e métodos.
+# O símbolo de = é chamado de operador de atribuição. A sintaxe da atribuição é nome da variável - operador de atribuição - valor.
+# Podemos ler o operador de atribuição como &#039;recebe&#039;.
+nome = &#039;Guanabara&#039;  # nome recebe Guanabara
+idade = 25  # idade recebe 25
+peso = 75.8  # peso recebe 75.8
+
+# Se utilizarmos as variáveis nas funções print() o seu valor será exibido. Concatenamos os valores com a vírgula, pois seus valores são de tipos diferentes.
+print(nome, idade, peso)
+
+# FUNÇÃO input():
+# Se quisermos criar uma interatividade com o usuário utilizamos a função input(). Essa função recebe os dados pelo teclado, digitados pelo usuário.
+# A sintaxe é input(&#039;Texto que será exibido&#039;)
+# Vamos sobrescrever os valores das variáveis declaradas anteriormente usando input(). Isso é possível pois o computador lê o script de cima para baixo, portanto é possível atualizar o valor de uma variável criada anteriormente.
+
+nome = input(&#039;Digite o nome: &#039;)
+idade = input(&#039;Digite a idade: &#039;)
+peso = input(&#039;Digite o peso: &#039;)
+
+# Exibindo os novos valores
+print(nome, idade, peso)
+
+# Podemos mudar o separador padrão da vírgula que é um espaço para outro caractere de preferência usando o atributo sep.
+print(nome, idade, peso, sep=&#039; - &#039;)
+
+# Os dados recebidos pelo input() são sempre do tipo string. Para converter o tipo de dado utilizamos as funções int(), float() e str().</code></pre>
+        </div>
+        <script>hljs.highlightAll();</script>
+      
+  </main>
+</body>
+</html>

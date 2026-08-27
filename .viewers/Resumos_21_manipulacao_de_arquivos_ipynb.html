@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>21_manipulacao_de_arquivos.ipynb - Meus Estudos</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+        <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/atom-one-dark.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/python.min.js"></script>
+        <style>
+          .cell { margin-bottom: 1.5rem; }
+          .cell-markdown { font-size: 1.05rem; line-height: 1.6; color: #cbd5e1; }
+          .cell-markdown h1, .cell-markdown h2, .cell-markdown h3 { color: #f1f5f9; margin-top: 1rem; margin-bottom: 0.5rem; }
+          .cell-markdown code { background: rgba(0,0,0,0.3); padding: 0.2rem 0.4rem; border-radius: 4px; color: #eab308; }
+          .cell-markdown pre { background: rgba(0,0,0,0.3); padding: 1rem; border-radius: 8px; overflow-x: auto; border: 1px solid var(--glass-border); margin: 1rem 0; }
+          .cell-code { background: #1e293b; border-radius: 8px; padding: 1rem; overflow-x: auto; position: relative; border: 1px solid var(--glass-border); }
+          .cell-output { background: #0f172a; color: #a3e635; padding: 1rem; border-radius: 8px; margin-top: 0.5rem; font-family: monospace; overflow-x: auto; white-space: pre-wrap; font-size: 0.9rem; }
+          .prompt { position: absolute; top: 0.5rem; right: 0.5rem; color: #64748b; font-size: 0.75rem; }
+        </style>
+      
+  <style>
+    :root {
+      --bg-color: #0b1120;
+      --glass-bg: rgba(30, 41, 59, 0.7);
+      --glass-border: rgba(255, 255, 255, 0.08);
+      --primary: #38bdf8;
+      --text-main: #f1f5f9;
+      --text-muted: #94a3b8;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
+    body { background-color: var(--bg-color); color: var(--text-main); min-height: 100vh; display: flex; flex-direction: column; }
+    header { padding: 0.8rem 2rem; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--glass-border); background: var(--glass-bg); backdrop-filter: blur(12px); position: sticky; top: 0; z-index: 100; }
+    .header-left { display: flex; align-items: center; gap: 1rem; }
+    .back-btn { color: var(--text-main); text-decoration: none; display: flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem; border-radius: 8px; background: rgba(255,255,255,0.05); font-size: 0.9rem; transition: 0.2s; }
+    .back-btn:hover { background: rgba(56, 189, 248, 0.2); color: var(--primary); }
+    .file-title { font-size: 1.1rem; font-weight: 600; color: #f8fafc; }
+    main { flex: 1; padding: 2rem; max-width: 1200px; margin: 0 auto; width: 100%; }
+    .container { background: rgba(15, 23, 42, 0.7); border: 1px solid var(--glass-border); border-radius: 16px; padding: 2rem; box-shadow: 0 10px 30px rgba(0,0,0,0.3); overflow-x: auto; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-left">
+      <a href="../index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Voltar ao Dashboard</a>
+      <div class="file-title">21_manipulacao_de_arquivos.ipynb</div>
+    </div>
+    <div>
+      <a href="../Resumos/21_manipulacao_de_arquivos.ipynb" download class="back-btn"><i class="fa-solid fa-download"></i> Baixar Arquivo</a>
+    </div>
+  </header>
+  <main>
+    <div class="container">
+            <div class="cell cell-markdown" id="md-0"></div>
+            <script>
+              document.getElementById('md-0').innerHTML = marked.parse(decodeURIComponent(escape(window.atob('IyDwn5OCIE1hbmlwdWxhw6fDo28gZGUgQXJxdWl2b3MgZGUgVGV4dG8KClVtIGRvcyByZWN1cnNvcyBtYWlzIGltcG9ydGFudGVzIG5hIHByb2dyYW1hw6fDo28gw6kgYSBjYXBhY2lkYWRlIGRlICoqbGVyIGUgc2FsdmFyIGRhZG9zKiogZW0gYXJxdWl2b3Mgbm8gc2V1IGNvbXB1dGFkb3IuIEltYWdpbmUgcXVlIHZvY8OqIGNvbmVjdG91IGVtIHVtYSBBUEksIHB1eG91IGRhZG9zIGltcG9ydGFudGVzLCBtYXMgcXVhbmRvIG8gcHJvZ3JhbWEgZmVjaGEsIHR1ZG8gc29tZSEKClBhcmEgcmVzb2x2ZXIgaXNzbywgdXNhbW9zIGJsb2NvcyBkZSBtYW5pcHVsYcOnw6NvIGRlIGFycXVpdm9zIG5vIFB5dGhvbiwgcHJpbmNpcGFsbWVudGUgYSBmdW7Dp8OjbyBgb3BlbigpYCBlIG8gZ2VyZW5jaWFkb3IgZGUgY29udGV4dG8gYHdpdGhgLgo='))));
+            </script>
+          
+            <div class="cell cell-markdown" id="md-1"></div>
+            <script>
+              document.getElementById('md-1').innerHTML = marked.parse(decodeURIComponent(escape(window.atob('IyMjIDEuIENyaWFuZG8gZSBFc2NyZXZlbmRvIGVtIHVtIEFycXVpdm8gKGB3YCAtIFdyaXRlKQoKVXNhbW9zIG8gbW9kbyBkZSBhYmVydHVyYSBgJ3cnYCAoV3JpdGUpIHBhcmEgY3JpYXIgdW0gYXJxdWl2byBvdSBzb2JyZXNjcmV2ZXIgbyBxdWUgasOhIGV4aXN0ZS4K'))));
+            </script>
+          
+            <div class="cell cell-code">
+              <div class="prompt">In [ ]</div>
+              <pre><code class="language-python">with open(&#039;meu_diario.txt&#039;, &#039;w&#039;, encoding=&#039;utf-8&#039;) as arquivo:
+    arquivo.write(&#039;Primeira linha do meu arquivo!\n&#039;)
+    arquivo.write(&#039;Programar em Python é muito legal.\n&#039;)
+
+print(&#039;Arquivo criado com sucesso!&#039;)
+</code></pre>
+            </div>
+          
+            <div class="cell cell-markdown" id="md-3"></div>
+            <script>
+              document.getElementById('md-3').innerHTML = marked.parse(decodeURIComponent(escape(window.atob('IyMjIDIuIExlbmRvIHVtIEFycXVpdm8gKGByYCAtIFJlYWQpCgpQYXJhIGxlciwgdXNhbW9zIG8gbW9kbyBgJ3InYCAoUmVhZCksIHF1ZSBpbmNsdXNpdmUgw6kgbyBwYWRyw6NvIHNlIHZvY8OqIG7Do28gZGlnaXRhciBuYWRhLgo='))));
+            </script>
+          
+            <div class="cell cell-code">
+              <div class="prompt">In [ ]</div>
+              <pre><code class="language-python">with open(&#039;meu_diario.txt&#039;, &#039;r&#039;, encoding=&#039;utf-8&#039;) as arquivo:
+    conteudo = arquivo.read()
+
+print(&#039;--- Lendo o arquivo todo ---&#039;)
+print(conteudo)
+</code></pre>
+            </div>
+          
+            <div class="cell cell-markdown" id="md-5"></div>
+            <script>
+              document.getElementById('md-5').innerHTML = marked.parse(decodeURIComponent(escape(window.atob('U2UgbyBhcnF1aXZvIGZvciBtdWl0byBncmFuZGUgKG1pbGhhcmVzIGRlIGxpbmhhcyksIGxlciB0dWRvIGRlIHVtYSB2ZXogcG9kZSB0cmF2YXIgYSBtZW3Ds3JpYS4gTmVzc2VzIGNhc29zLCBpdGVyYW1vcyBsaW5oYSBwb3IgbGluaGEgbm8gbG9vcCBgZm9yYDoK'))));
+            </script>
+          
+            <div class="cell cell-code">
+              <div class="prompt">In [ ]</div>
+              <pre><code class="language-python">with open(&#039;meu_diario.txt&#039;, &#039;r&#039;, encoding=&#039;utf-8&#039;) as arquivo:
+    for linha in arquivo:
+        # end=&#039;&#039; evita pular linha duas vezes, pois a linha já vem com a quebra no final
+        print(&#039;---&gt;&#039;, linha, end=&#039;&#039;)
+</code></pre>
+            </div>
+          
+            <div class="cell cell-markdown" id="md-7"></div>
+            <script>
+              document.getElementById('md-7').innerHTML = marked.parse(decodeURIComponent(escape(window.atob('IyMjIDMuIEFkaWNpb25hbmRvIHRleHRvIG5vIGZpbmFsIChgYWAgLSBBcHBlbmQpCgpTZSBhYnJpcm1vcyBkZSBub3ZvIGNvbSBgJ3cnYCwgbyBQeXRob24gKiphcGFnYSoqIG8gYXJxdWl2byBhbnRpZ28gZSBjcmlhIGRvIHplcm8uIFBhcmEgKiphZGljaW9uYXIqKiBpbmZvcm1hw6fDtWVzIG5vIGZpbmFsIGRvIGFycXVpdm8gc2VtIGFwYWdhciBvIHBhc3NhZG8sIHVzYW1vcyBgJ2EnYCAoQXBwZW5kKS4K'))));
+            </script>
+          
+            <div class="cell cell-code">
+              <div class="prompt">In [ ]</div>
+              <pre><code class="language-python">with open(&#039;meu_diario.txt&#039;, &#039;a&#039;, encoding=&#039;utf-8&#039;) as arquivo:
+    arquivo.write(&#039;Esta é uma linha adicionada depois!\n&#039;)
+
+print(&#039;Nova linha adicionada!&#039;)
+</code></pre>
+            </div>
+          
+            <div class="cell cell-code">
+              <div class="prompt">In [ ]</div>
+              <pre><code class="language-python">with open(&#039;meu_diario.txt&#039;, &#039;r&#039;, encoding=&#039;utf-8&#039;) as arquivo:
+    print(arquivo.read())
+</code></pre>
+            </div>
+          
+            <div class="cell cell-markdown" id="md-10"></div>
+            <script>
+              document.getElementById('md-10').innerHTML = marked.parse(decodeURIComponent(escape(window.atob('IyMjIDQuIExlbmRvIGUgRXNjcmV2ZW5kbyBMaXN0YXMgKGB3cml0ZWxpbmVzYCBlIGByZWFkbGluZXNgKQoKQ29uc3RhbnRlbWVudGUgdm9jw6ogdmFpIHRlciB1bWEgbGlzdGEgZGUgaW5mb3JtYcOnw7VlcyAoZXg6IHByb2R1dG9zLCBub21lcykgZSBwcmVjaXNhIGpvZ8OhLWxvcyB0b2RvcyBkZSB1bWEgdmV6IG5vIGFycXVpdm8uCg=='))));
+            </script>
+          
+            <div class="cell cell-code">
+              <div class="prompt">In [ ]</div>
+              <pre><code class="language-python">compras = [&#039;Maçã\n&#039;, &#039;Banana\n&#039;, &#039;Cenoura\n&#039;, &#039;Pão\n&#039;]
+
+with open(&#039;lista_de_compras.txt&#039;, &#039;w&#039;, encoding=&#039;utf-8&#039;) as arquivo:
+    arquivo.writelines(compras)
+</code></pre>
+            </div>
+          
+            <div class="cell cell-code">
+              <div class="prompt">In [ ]</div>
+              <pre><code class="language-python">with open(&#039;lista_de_compras.txt&#039;, &#039;r&#039;, encoding=&#039;utf-8&#039;) as arquivo:
+    linhas_lidas = arquivo.readlines()
+    
+print(linhas_lidas)
+</code></pre>
+            </div>
+          
+            <div class="cell cell-markdown" id="md-13"></div>
+            <script>
+              document.getElementById('md-13').innerHTML = marked.parse(decodeURIComponent(escape(window.atob('UmVwYXJlIHF1ZSBubyByZXRvcm5vIGFjaW1hIG9zIGl0ZW5zIHZpZXJhbSBjb20gbyB0ZXJtbyBgXG5gIChxdWVicmEgZGUgbGluaGEpIG5vIGZpbmFsIGRlIGNhZGEgcGFsYXZyYS4gU2UgcXVpc2VyIGxpbXBhciBpc3NvIGRlIHVtYSBsaXN0YSwgdXNlIGEgc3RyaW5nIGAuc3RyaXAoKWA6Cg=='))));
+            </script>
+          
+            <div class="cell cell-code">
+              <div class="prompt">In [ ]</div>
+              <pre><code class="language-python">produtos_limpos = []
+for produto in linhas_lidas:
+    produtos_limpos.append(produto.strip())
+    
+print(produtos_limpos)
+</code></pre>
+            </div>
+          
+            <div class="cell cell-markdown" id="md-15"></div>
+            <script>
+              document.getElementById('md-15').innerHTML = marked.parse(decodeURIComponent(escape(window.atob('IyMjIDUuIEJvYXMgUHLDoXRpY2FzOiBPIHBvZGVyIGRvIGB3aXRoYAoKU2VtcHJlIHVzZSBvIGB3aXRoIG9wZW4oLi4uKSBhcyAuLi5gLiBFc3NlIGJsb2NvIMOpIGNoYW1hZG8gZGUgKipHZXJlbmNpYWRvciBkZSBDb250ZXh0byoqIChDb250ZXh0IE1hbmFnZXIpLgoKQW50aWdhbWVudGUsIHZvY8OqIHByZWNpc2FyaWEgYWJyaXIgbyBhcnF1aXZvIGFzc2ltIGBmID0gb3Blbignb2sudHh0JylgIGUsIGFvIGZpbmFsIGRlIHR1ZG8sICoqbGVtYnJhcioqIGRlIHVzYXIgYGYuY2xvc2UoKWAuIFNlIGRlc3NlIHVtIGVycm8gbm8gcHJvZ3JhbWEgbm8gbWVpbyBkbyBjYW1pbmhvIGUgdm9jw6ogZXNxdWVjZXNzZSBvIGAuY2xvc2UoKWAsIG8gYXJxdWl2byBwb2RlcmlhIGZpY2FyIHByZXNvIG5hIG1lbcOzcmlhIGUgY29ycm9tcGVyLgoKTyBgd2l0aGAgZmVjaGEgbyBhcnF1aXZvICoqYXV0b21hdGljYW1lbnRlIGUgZW0gc2VndXJhbsOnYSoqIGFzc2ltIHF1ZSBhIGluZGVudGHDp8OjbyBhY2FiYSwgbWVzbW8gcXVlIG8gY8OzZGlnbyBhcHJlc2VudGUgYWxndW0gZXJybyBsw6EgZGVudHJvIQo='))));
+            </script>
+          
+            <div class="cell cell-markdown" id="md-16"></div>
+            <script>
+              document.getElementById('md-16').innerHTML = marked.parse(decodeURIComponent(escape(window.atob('IyMjIFJlZmVyw6puY2lhIE7DrXZlbCBJbnRlcm1lZGnDoXJpby9BdmFuw6dhZG86IFRyYXZhbmRvIENvZGlmaWNhw6fDtWVzIGUgTyBEZXNwZWpvIE1hdHJpemlhbCBNYXNzaXZvIEJpbsOhcmlvCgpOb3MgZXNjcml0w7NyaW9zIGRhcyBnaWdhbnRlcywgbsOzcyBlc3RvdXJhbW9zIG5hcyBwb250ZXMgbGlkYW5kbyBtYXNzaXZhbWVudGUgZW0gYXJxdWl2b3MgaW1lbnNvcy4gTyBwcmluY2lwYWwgcGVzYWRlbG8gZGV2IGrDum5pb3IgcXVhbmRvIGVsZSBlc2JhcnJhIGUgZXhwb3J0YSBwbGFuaWxoYXMgb3UgbG9ncyDDqSBhIGNvZGlmaWNhw6fDo28gZmFudGFzbWEuCkFzIGJhdGlkYXMgZGEgbcOhcXVpbmEgZSBhcyBlbmdyZW5hZ2VucyBjcnVhcyBxdWVicmFtIHNldXMgdGV4dG9zIHF1ZWJyYW5kbyBvcyBgw4EgZSDDjWAgbm9zIGVuZ2FycmFmYW1lbnRvcyBjb20gc8OtbWJvbG9zIGZlaW9zIGFsaWVuw61nZW5hcyBlZ8ONcHNpb3Mgc2Ugdm9jw6ogZXNxdWVjZXIgYXMgYmxpbmRhZ2VucyBlIGNpbnRvcyBtZXN0cmUgcHJvdGV0w7NyaW9zIGRhcyBhYmVydHVyYXMgZGEgY2Fub2FnZW0gZG9zIHTDumJ1bG9zIGRlIGxpZGHDp8OjbyBkbyBgZW5jb2Rpbmc9InV0Zi04ImAgY2ltZW50YWRhcyBwcmEgcHJvdGVnZXIgYWNlbnRvcyBkYSBsw61ndWEgcHJvdHVndWVzYSEKQW8gaW52w6lzIGRlIHByb2Nlc3NhciBvcyBsaXN0w6NvIGdpZ2FudGVzIGVtIHZhcnJpZGFzIG1vcm9zYXMgc29saXTDoXJpYXMgZXNwcmVtaWRhcyB2YXJyZW5kYSBmb3IgZm9yw6dhZG9yIGVtcGlsaGHDp8O1ZXMgdW5pbGluZcOhcmlhcyBkZSBjYWRhIGdyw6NvIGxpc3RhZG8gdGV4dGFpcyBkYSBwb2VpcmE6IFByb2Zpc3Npb25haXMgam9nYW0gb3Mgc2Fjb3MgY2hlaW9zIGRhIG1hcXVpbmEgZW0gYHdyaXRlbGluZXMoKWAgYXRpcmFuZG8gbWFzc2l2YW1lbnRlIGFzIGJhbGFzIGRlIGNhbmjDtWVzIHJlc2dhdGFkYXMgZSBzYWx2YW5kbyBlbSBkZXNwZWpvcyBtaWxlbmFyZXMgw7puaWNvcyBhYnNvbHV0b3MgZGEgY2FjZXRhZGEgbnVtIGJhdGlkbyBkZSBncmF2YcOnw6NvIHJlbGFtcGFnbyBkZSBkaXNjb3MgSERzIGlzb2xhZG9zIHVuaWNvcyBkYXMgbWF0cml6ZXMuCg=='))));
+            </script>
+          
+            <div class="cell cell-code">
+              <div class="prompt">In [ ]</div>
+              <pre><code class="language-python"># 1. Protegendo a Lingua contra a deturpação nativa alienigena binária das engrenagens com cinto mágico salvator e limpo: Encoding = utf-8
+with open(&quot;magia_dos_acentos_salvos_logistica.txt&quot;, &quot;w&quot;, encoding=&quot;utf-8&quot;) as porta_dos_cofres_da_linguagem:
+    porta_dos_cofres_da_linguagem.write(&quot;São Paulo, Corações, Ações Mágicas de Aviação Íntimas Trançadas! TUDO SALVO E SEM O FAMOSO QUADRADINHO COM SÍMBOLO EXÓTICO DE BUG DE TEXTO NO BLOCO DO WINDOWS NATUTA!&quot;)
+
+# 2. Despejo Relampago Milenar em Lotes Gigantes da Forca Listória do Python no Escritão Múltiplos (Economziando For das lentidões nas aberturas unilineárias forçosas mortas lentilinas nativativas)
+milhares_de_linhas_pesadas_na_cesta = [&quot;\nRelatorio 1\n&quot;, &quot;Relatorio de Faturamento 2\n&quot;, &quot;Lucros dos Caixas Finais 3\n&quot;]
+with open(&quot;montanha_russa_de_textos_pesados_exportado.txt&quot;, &quot;w&quot;, encoding=&quot;utf-8&quot;) as exportador_de_relatorio_giga:
+    # Ele espira TUDO com altíssiama velocidade da aglutinadora C C-CORE batendo os discos no gravação unissímas pontiaguda
+    exportador_de_relatorio_giga.writelines(milhares_de_linhas_pesadas_na_cesta)
+</code></pre>
+            </div>
+          
+            <div class="cell cell-markdown" id="md-18"></div>
+            <script>
+              document.getElementById('md-18').innerHTML = marked.parse(decodeURIComponent(escape(window.atob('IyMjIPCfp6AgRXhlcmPDrWNpb3MgUHLDoXRpY29zCg=='))));
+            </script>
+          
+            <div class="cell cell-markdown" id="md-19"></div>
+            <script>
+              document.getElementById('md-19').innerHTML = marked.parse(decodeURIComponent(escape(window.atob('KipFeGVyY8OtY2lvIDE6KiogSW5zdGFuY2llIGUgSW5pY2llIGFzIHBvbnRlcyBkbyBsYWJpcmludG8gbmF0aXZvIGpvZ2FuZG8gYmF0aWRhIG1hZ2lzdGVyZXMgZXNjcml2w6NlcyBzb2x0b3MgYmF0aWRvcyBlbmZpYW5kbyB0ZXh0b3MgY3J1IGVtIGNvcmHDp8O1ZXMgbGltcG9zIHRlc3RhZG9zIG5hIGJhbGlzdGljYSBkbyBhYnJpZG9yIG1hdHJpeiBkYSBsZXRyYSAiYHdgIiBjcmlhZG9yYSBkYXMgbGlkYXMgbW9ydMOtZmVyYXMgZXNjdXJhcyB2YXppYXMgZG8gcGFwZWwgc29sdG8gdGV4dG91YWwgcmVjw6ltLW5hc2NpZG8gZSByZWNoZWFkb3JhIHZhcnJpZMOjbyBkZSB0ZXh0byBuYSBjaGF2ZXMgc2FsdmF0w6FyaWFzIGZpbGUu'))));
+            </script>
+          
+            <div class="cell cell-code">
+              <div class="prompt">In [ ]</div>
+              <pre><code class="language-python"></code></pre>
+            </div>
+          
+            <div class="cell cell-markdown" id="md-21"></div>
+            <script>
+              document.getElementById('md-21').innerHTML = marked.parse(decodeURIComponent(escape(window.atob('KipFeGVyY8OtY2lvIDI6KiogSW52ZXJ0YSByb2xkYW5hcyBubyBlc3ByZW1lZG9yIGxpbXBvIHJlc2dhdGFkbyBzdWdhbmRvIGFzIHZpZGFzIGRlIGxpZGEgbGlkYSBpc29sYWRhIHRleHRvdWFsIGJhdGVuZG8gdW0gc3VnZSBkbyBhcnF1aXRvIG5hcyB2ZWlhcyB2YXJyZWFkb3JhcyBlc3BpYWRvcmFzIG5hcyByb2xkYW5hcyBkYXMgYWJlcnR1cmFzIGRhIGNoYXZlcyBsZWl0b3JpbmhhcyBzaW5ndWxhcmVzIGRhIG1hdHJpeiByZXNzdWNpdGF0w7NyaWEgZGUgdmFycmlsaGFkYXMgbGVuZGFzIGxldHLDrXN0cmljYXMgcmVsYXRvcmlhcyBiYXRpZGFzIGUgbGltcGFzIGRhIGxldHJhcyBkYSBsdXogKGByYCku'))));
+            </script>
+          
+            <div class="cell cell-code">
+              <div class="prompt">In [ ]</div>
+              <pre><code class="language-python"></code></pre>
+            </div>
+          
+            <div class="cell cell-markdown" id="md-23"></div>
+            <script>
+              document.getElementById('md-23').innerHTML = marked.parse(decodeURIComponent(escape(window.atob('KipFeGVyY8OtY2lvIDM6KiogQW5leGUgdmFnw7VlcyBuYSBtb250YW5oYSBlbmdvbGZhZG9yYSBhY29wbGF0ZWlyYSEgQmF0YSBmYXR1cmFtZW50b3MgZW0gbGlkYXMgZW5nbG9iYXRvcmlhcyBjb250dXJiYW50ZXMgZW1wdXJyYW5kbyBsaXN0aW5oYSByZWNoZWFkYXMgZXNwcmVtZWRvcmFzIGRlIGFuw6lpcyBhZGljaW9uYXRpdm9zIGFkaXRpdm9zIG7Do28gZGVzdHJ1YWRvcmVzIHNvbHRhbmRvIGUgYXRpcmFuZG8gbm8gcG9lbnRlIGRhcyB2YXJyZWR1cmFzIGFkaXRpdmFzIGPDqW5pY2FzIGRlIGFjb3BsYW1lbnRvIGNlZ28gbm9zIHJhc3Rlam9zIHNvbHRvcyBlbmNhYnVsYWRvcmVzIGNvbmp1bnR1cml2b3MgZSBlbmNhZGVpcmFkb3JhcyBhZGl0aXZhcyBkYXMgcG9udGFsZWlyYXMgYGFgIChhcHBlbmQgbGlzdGljbyB0ZXh0dWFsIHZhcnJlZG9yIGxpbXBvIG5hdGl2YXMgaXNvbGFuZG8gdmlkYXMgZGFzIGFwYWfDtWVzIHZhcnJpZMOhcmlvcyByZWNyaWFkb3JlcyBub3ZvcyBtb3J0YWlzIGRvIHplcm8p'))));
+            </script>
+          
+            <div class="cell cell-code">
+              <div class="prompt">In [ ]</div>
+              <pre><code class="language-python"></code></pre>
+            </div>
+          
+            <div class="cell cell-markdown" id="md-25"></div>
+            <script>
+              document.getElementById('md-25').innerHTML = marked.parse(decodeURIComponent(escape(window.atob('KipFeGVyY8OtY2lvIDQ6KiogRXhwbG9yZSBhdHVsaGFtZW50b3MgZSBsaXN0YW5kbyB2YXJyacOnw7VlcyBpc29sYXRpdmFzIGNvbnRhZG9yYXMgZGVzbWVtYnJhbnRlcyBxdWVicmFuZG8gdGV4dG9zIGVub3JtZXMgZG8gbGVpdG9yIHJhc2dhbmRvIGZhdGlhbWVudGUgYXMgYmF0aWRhcyBkZSBjb250YWdlbnMgcm9kb3NhcyBkb3MgbGVpdG9yYWRvcmVzIGVtcGlsaGFkb3JhcyBzb2x0b3MgbGlkb3MgbmEgcHJhdGVsZWlyw7VlcyBzb2x0ZWlyYXMgbm8gZW1idXRpbWVudG8gZGEgY29udGFnZW0gbWFzc2l2YWRhIGRvIGV4dGF0b3IgZW5jYWJlw6dhZMO1ZXMgY8Oqbmljb3MgaXNvbGFkb3MgdGV4dGFpcyByZXNnYXRhdmllaXMgbGltcG9zIHNvbGl0b3MgZW5nYXJyYWbDoXZlaXMgbmEgcmVhZGxpbmVzIG3DoWdpY29zIGVzdHJhanVkb3MgZGEgcmFtIHJlc2dhdGF2ZWwgc29sdXRvcyBlIGltcHJpbWFkb3MgZSBiYXRpZG9zIGRvIGNvbnRhZ2VtIGBsZW4oKWAgZXN0w6F0aWNhIGRhIGxpbmhhIG51bWVyYSBiYXRlbmRvIG5vIGVjcsOjIHRvdGFsLg=='))));
+            </script>
+          
+            <div class="cell cell-code">
+              <div class="prompt">In [ ]</div>
+              <pre><code class="language-python"></code></pre>
+            </div>
+          
+            <div class="cell cell-markdown" id="md-27"></div>
+            <script>
+              document.getElementById('md-27').innerHTML = marked.parse(decodeURIComponent(escape(window.atob('KipFeGVyY8OtY2lvIDU6KiogQXBsaXF1ZSBlIFRyZWluZSBtYXNzaXZhbWVtdGUgYXMgZGVmZXNhcyBpbnRvY8OhdmVpcyBkYSBjYW5ldGEgZXNmZXJvZ3JhZmljYSBibGluZGFkb3JhcyBkYXMgcG9ydGFzIGRvcyBnZXJlbmNpYWRvcmVzIG3DoWdpY29zIGlucXVlYnLDoXZlaXMgcmVzZ3VhcmRhdMOzcmlvcyBkYXMgcG9ydGFzIGxpbXBvcyBlIGZlY2hhZG9yZXMgZW5jYWJlw6dhZG9yZXMgcmVzZ2F0w6FyaW9zIE1FU1RSRSBkYXMgY29ycmVudGVzIGluc2VwYXLDoXZlaXMgcXVlIG51bmNhIGFicmVtIGFzIGphbmVsYXMgZXhwb3N0aWFzIGRhcyBjb3Jyb21wdGlvbnMgbGlzdMOtY2lhcyBzb2x0YSEgQ3JpZSBpc29sYW1lbnRvcyBzYWx2YWRvcmVzIGF0aXJhbmRvIG5hIHBvcnRhIGJhdGVudGVzIGZlY2hhZG9yZXMgYHdpdGggb3BlbiguLi4pIGFzIG1ldV9hcnF1aXZvX2xpbmRvX2xpbXBvX3ZhemFkb3I6YCBlIHByb3ZlIHByYSBzaSBwcsOzcHJpbyBzYWx2YW1lbnRvcyBlIHNlZ3VyYW7Dp2FzIGJsaW5kYWRvcmFzIG5vIHZhcnJpZG8gbWVzdHJlLg=='))));
+            </script>
+          
+            <div class="cell cell-code">
+              <div class="prompt">In [ ]</div>
+              <pre><code class="language-python"></code></pre>
+            </div>
+          </div><script>hljs.highlightAll();</script>
+  </main>
+</body>
+</html>

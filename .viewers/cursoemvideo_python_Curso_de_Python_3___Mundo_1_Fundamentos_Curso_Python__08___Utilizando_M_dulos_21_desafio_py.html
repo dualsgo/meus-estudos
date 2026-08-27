@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>21_desafio.py - Meus Estudos</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/atom-one-dark.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/python.min.js"></script>
+        <style>
+          pre { border-radius: 8px; overflow-x: auto; font-size: 0.95rem; }
+          .code-toolbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem; }
+          .btn-copy { background: rgba(56, 189, 248, 0.2); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.4); padding: 0.4rem 0.8rem; border-radius: 6px; cursor: pointer; font-size: 0.85rem; }
+          .btn-copy:hover { background: rgba(56, 189, 248, 0.4); }
+        </style>
+      
+  <style>
+    :root {
+      --bg-color: #0b1120;
+      --glass-bg: rgba(30, 41, 59, 0.7);
+      --glass-border: rgba(255, 255, 255, 0.08);
+      --primary: #38bdf8;
+      --text-main: #f1f5f9;
+      --text-muted: #94a3b8;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
+    body { background-color: var(--bg-color); color: var(--text-main); min-height: 100vh; display: flex; flex-direction: column; }
+    header { padding: 0.8rem 2rem; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--glass-border); background: var(--glass-bg); backdrop-filter: blur(12px); position: sticky; top: 0; z-index: 100; }
+    .header-left { display: flex; align-items: center; gap: 1rem; }
+    .back-btn { color: var(--text-main); text-decoration: none; display: flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem; border-radius: 8px; background: rgba(255,255,255,0.05); font-size: 0.9rem; transition: 0.2s; }
+    .back-btn:hover { background: rgba(56, 189, 248, 0.2); color: var(--primary); }
+    .file-title { font-size: 1.1rem; font-weight: 600; color: #f8fafc; }
+    main { flex: 1; padding: 2rem; max-width: 1200px; margin: 0 auto; width: 100%; }
+    .container { background: rgba(15, 23, 42, 0.7); border: 1px solid var(--glass-border); border-radius: 16px; padding: 2rem; box-shadow: 0 10px 30px rgba(0,0,0,0.3); overflow-x: auto; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-left">
+      <a href="../index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Voltar ao Dashboard</a>
+      <div class="file-title">21_desafio.py</div>
+    </div>
+    <div>
+      <a href="../cursoemvideo_python/Curso de Python 3 - Mundo 1 Fundamentos/Curso Python #08 - Utilizando Módulos/21_desafio.py" download class="back-btn"><i class="fa-solid fa-download"></i> Baixar Arquivo</a>
+    </div>
+  </header>
+  <main>
+    
+        <div class="container">
+          <div class="code-toolbar">
+            <span style="color: #38bdf8; font-weight: 600;"><i class="fa-brands fa-python"></i> 21_desafio.py</span>
+            <button class="btn-copy" onclick="navigator.clipboard.writeText(document.getElementById('py-code').innerText); this.innerText='Copiado!'; setTimeout(()=>this.innerText='Copiar Código', 2000)"><i class="fa-regular fa-copy"></i> Copiar Código</button>
+          </div>
+          <pre><code class="language-python" id="py-code"># Exercício Python #021 - Tocando um MP3 - Aulas 00 até 08 - Mundo 1
+# Faça um programa em Python que abra e reproduza o áudio de um arquivo MP3.
+
+import pygame
+from emoji import emojize
+arquivo = r&#039;C:\Users\mdbsi\OneDrive\Área de Trabalho\meus-estudos\cursoemvideo_python\Curso de Python 3 - Mundo 1 Fundamentos\Curso Python #08 - Utilizando Módulos\audio.mp3&#039;
+
+pygame.init()
+pygame.mixer.music.load(arquivo)
+pygame.mixer.music.play()
+pygame.event.wait()
+
+print(emojize(&#039;:notas_musicais::notas_musicais::notas_musicais::notas_musicais::notas_musicais::notas_musicais::notas_musicais::notas_musicais::notas_musicais::notas_musicais::notas_musicais::notas_musicais::notas_musicais:&#039;, language=&#039;pt&#039;))
+input(&quot;Pressione Enter para sair...&quot;)  # Mantém o programa em execução até que Enter seja pressionado
+
+
+# Estou compartilhando minhas anotações sobre os exercícios. Quem quiser, pode copiar e colar em um documento .py pois está tudo formatado e comentado.
+
+# Nesse exercício, o programa utiliza a biblioteca pygame para abrir e reproduzir um arquivo de áudio MP3. A biblioteca pygame é uma biblioteca de jogos que também pode ser utilizada para reproduzir arquivos de áudio.
+
+# Primeiro, importamos a biblioteca pygame.
+import pygame
+
+# Se em seu PyCharm não funcionar o pygame, instale o pacote pygame no terminal do PyCharm com o comando pip install pygame.
+# Outra opção é clicar no ícone de configurações do PyCharm, ir em Project: nome_do_projeto &gt; Python Interpreter e clicar no botão + para adicionar o pacote pygame.
+# Ou clicar no ícone de lâmpada que aparece ao lado do import pygame e clicar em Install package &#039;pygame&#039;.
+
+# Em seguida, carregamos o arquivo de áudio MP3 utilizando a função pygame.mixer.music.load(). O caminho do arquivo é passado como argumento para a função.
+
+# NOTA: O caminho do arquivo de áudio deve ser passado como uma string. Caso o arquivo esteja em um diretório diferente do arquivo Python, é necessário informar o caminho completo do arquivo.
+# Para saber o caminho do arquivo, clique com o botão direito sobre o arquivo e selecione Propriedades. Na janela que abrir, copie o caminho que aparece em Localização.
+
+# Para facilitar, vamos salvar o caminho do arquivo em uma variável chamada arquivo.
+arquivo = &#039;Cole o caminho do arquivo de áudio MP3 aqui&#039;
+
+# NOTA: Geralmente, o caminho de um arquivo no Windows começa com C:\, seguido do nome do usuário, como C:\Users\NomeDoUsuario\. Note que a barra invertida (\) é utilizada para separar pastas no Windows. No Python, a barra invertida é um caractere de escape, então é necessário utilizar duas barras invertidas (\\) para representar uma barra invertida caso contrário, o Python interpretará a barra invertida como um caractere de escape e isso pode gerar um erro.
+
+# Outra opção é substituir a barra invertida por uma barra normal (/) ou utilizar uma string de caminho cru (raw string) adicionando um r antes da string. Por exemplo, r&#039;C:\Users\NomeDoUsuario\Arquivo.mp3&#039;.  # O r antes da string indica que é uma string de caminho cru.
+
+# Feito isso vamos seguir com o código.
+
+# Inicializamos o módulo pygame com a função pygame.init(). Essa função é necessária para inicializar todos os módulos do pygame.
+pygame.init()
+
+# Carregamos o arquivo de áudio MP3 utilizando a função pygame.mixer.music.load(). O caminho do arquivo é passado como argumento para a função.
+pygame.mixer.music.load(arquivo)
+
+# Reproduzimos o arquivo de áudio MP3 utilizando a função pygame.mixer.music.play(). Essa função inicia a reprodução do arquivo de áudio.
+pygame.mixer.music.play()
+
+# A função pygame.event.wait() é utilizada para manter o programa em execução até que a reprodução do arquivo de áudio seja concluída. Essa função aguarda a finalização da reprodução do arquivo de áudio antes de continuar a execução do programa.
+pygame.event.wait()
+
+# Por fim, exibimos uma mensagem na tela para informar ao usuário que o arquivo de áudio está sendo reproduzido. A função input() é utilizada para manter o programa em execução até que o usuário pressione Enter. Dessa forma, o programa não será encerrado imediatamente após a reprodução do arquivo de áudio.
+print(&#039;Reproduzindo o arquivo de áudio...&#039;)
+input(&#039;Pressione Enter para sair...&#039;)
+# O programa será encerrado após o usuário pressionar Enter.</code></pre>
+        </div>
+        <script>hljs.highlightAll();</script>
+      
+  </main>
+</body>
+</html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>06_desafio.py - Meus Estudos</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/atom-one-dark.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/python.min.js"></script>
+        <style>
+          pre { border-radius: 8px; overflow-x: auto; font-size: 0.95rem; }
+          .code-toolbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem; }
+          .btn-copy { background: rgba(56, 189, 248, 0.2); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.4); padding: 0.4rem 0.8rem; border-radius: 6px; cursor: pointer; font-size: 0.85rem; }
+          .btn-copy:hover { background: rgba(56, 189, 248, 0.4); }
+        </style>
+      
+  <style>
+    :root {
+      --bg-color: #0b1120;
+      --glass-bg: rgba(30, 41, 59, 0.7);
+      --glass-border: rgba(255, 255, 255, 0.08);
+      --primary: #38bdf8;
+      --text-main: #f1f5f9;
+      --text-muted: #94a3b8;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
+    body { background-color: var(--bg-color); color: var(--text-main); min-height: 100vh; display: flex; flex-direction: column; }
+    header { padding: 0.8rem 2rem; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--glass-border); background: var(--glass-bg); backdrop-filter: blur(12px); position: sticky; top: 0; z-index: 100; }
+    .header-left { display: flex; align-items: center; gap: 1rem; }
+    .back-btn { color: var(--text-main); text-decoration: none; display: flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem; border-radius: 8px; background: rgba(255,255,255,0.05); font-size: 0.9rem; transition: 0.2s; }
+    .back-btn:hover { background: rgba(56, 189, 248, 0.2); color: var(--primary); }
+    .file-title { font-size: 1.1rem; font-weight: 600; color: #f8fafc; }
+    main { flex: 1; padding: 2rem; max-width: 1200px; margin: 0 auto; width: 100%; }
+    .container { background: rgba(15, 23, 42, 0.7); border: 1px solid var(--glass-border); border-radius: 16px; padding: 2rem; box-shadow: 0 10px 30px rgba(0,0,0,0.3); overflow-x: auto; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-left">
+      <a href="../index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Voltar ao Dashboard</a>
+      <div class="file-title">06_desafio.py</div>
+    </div>
+    <div>
+      <a href="../cursoemvideo_python/Curso de Python 3 - Mundo 1 Fundamentos/Curso Python #07 - Operadores Aritméticos/06_desafio.py" download class="back-btn"><i class="fa-solid fa-download"></i> Baixar Arquivo</a>
+    </div>
+  </header>
+  <main>
+    
+        <div class="container">
+          <div class="code-toolbar">
+            <span style="color: #38bdf8; font-weight: 600;"><i class="fa-brands fa-python"></i> 06_desafio.py</span>
+            <button class="btn-copy" onclick="navigator.clipboard.writeText(document.getElementById('py-code').innerText); this.innerText='Copiado!'; setTimeout(()=>this.innerText='Copiar Código', 2000)"><i class="fa-regular fa-copy"></i> Copiar Código</button>
+          </div>
+          <pre><code class="language-python" id="py-code"># Exercício Python #006 - Dobro, Triplo, Raiz Quadrada - Aula 00 até 07 - Mundo 1
+# Crie um algorítimo que leia um número e mostre o seu dobro, triplo e raiz quadrada.
+
+from emoji import emojize
+
+def opção():
+	while True:
+		global escolha
+		escolha = int(input(emojize(&#039;:memorando: Sua escolha: &#039;, language=&#039;pt&#039;)))
+		if escolha == 1:
+			dobro = número * 2
+			return dobro
+		elif escolha == 2:
+			triplo = número * 3
+			return triplo
+		elif escolha == 3:
+			raiz = número ** .5
+			return raiz
+		else:
+			print(emojize(&#039;:xis: Opção inválida! :xis:&#039;, language=&#039;pt&#039;))
+			continue
+
+while True:
+	try:
+		número = int(input(emojize(&#039;:memorando: Digite um valor: &#039;, language=&#039;pt&#039;)))
+		print(emojize(f&#039;Escolha uma opção:\n[1] Dobro\n[2] Triplo\n[3] Raiz Quadrada&#039;, language=&#039;pt&#039;))
+		resultado = opção()
+		break
+	except ValueError:
+		print(emojize(&#039;:xis: Valor inválido! :xis:&#039;, language=&#039;pt&#039;))
+print(f&#039;Você escolheu: {&#039;Dobro&#039; if escolha == 1 else &#039;Triplo&#039; if escolha == 2 else &#039;Raiz quadrada&#039;}&#039;)
+print(f&#039;{&#039;Número:&#039;:&lt;12}{número:&gt;5}\n{&#039;Resultado:&#039;:&lt;12}{resultado:&gt;5}&#039;)
+
+
+# Estou compartilhando minhas anotações sobre os exercícios. Quem quiser, pode copiar e colar em um documento .py pois está tudo formatado e comentado.
+
+# Nessse exercício, o programa solicita ao usuário um número inteiro e exibe na tela o dobro, triplo e raiz quadrada desse número. Para isso, são utilizados os operadores de multiplicação e exponenciação.
+
+# Assim como antes, utilizamos a função input() para solicitar um valor ao usuário. O valor digitado é convertido para inteiro e armazenado na variável número. Em seguida, exibimos na tela as opções disponíveis: dobro, triplo e raiz quadrada.
+
+numero = int(input(&#039;Digite um número: &#039;))
+
+# Agora, numero é um inteiro e podemos realizar operações matemáticas com ele.
+dobro = numero * 2
+triplo = numero * 3
+raiz = numero ** (1/2)
+
+# Como dito no vídeo, 1/2 é igual a meio, que também pode ser escrito como .5 (ou 0.5 - omitimos o zero à esquerda).
+# Ao usar 1/2 na expressão, precisamos colocar o resultado entre parênteses para garantir a precedência da operação. Já que a exponenciação tem prioridade sobre a divisão, o Python primeiro calcula 1/2 e depois eleva o número a esse resultado.
+# Sem os parênteses, a expressão seria interpretada como numero ** 1 dividido por 2, o que não é o que queremos.
+
+# Explicando a matemática:
+
+# Por definição, a raiz quadrada de um número é o valor que, multiplicado por si mesmo, resulta no número original. Ou seja, se x é a raiz quadrada de y, então x * x = y.
+# A raiz quadrada na mateḿatica é a operação inversa da exponenciação. Ou seja, se 2 ** 2 = 4, então a raiz quadrada de 4 é 2.
+# O recíproco de 2 é 1/2. (2 pode ser escrito como 2/1, então o recíproco é 1/2).
+# Portanto, é por isso que a raiz quadrada de um número é o mesmo que elevar o número a 1/2.
+
+# Porém o Python oferece uma função embutida para calcular a raiz quadrada de um número, a função sqrt() do módulo math. Para utilizá-la, precisamos importar o módulo math e chamar a função sqrt() passando o número como argumento.
+# A exponenciação também pode ser feita com a função pow(), que recebe dois argumentos: a base e o expoente. Por exemplo, pow(2, 3) é equivalente a 2 ** 3.
+
+# Essas funções são úteis quando precisamos calcular raízes ou potências de números, especialmente quando o expoente não é um número inteiro.
+
+# Para exibir os resultados na tela, utilizamos a função print() com uma string formatada. Os valores do número, dobro, triplo e raiz quadrada são exibidos alinhados e formatados para facilitar a leitura.
+
+print(f&#039;O dobro de {numero} é {dobro}.&#039;)
+print(f&#039;O triplo de {numero} é {triplo}.&#039;)
+print(f&#039;A raiz quadrada de {numero} é {raiz:.2f}.&#039;)
+
+# A formatação :.2f no f-string garante que o número seja exibido com duas casas decimais. Isso é útil para números reais, como a raiz quadrada, que podem ter muitas casas decimais.
+# Outra opção seria usar a função round() para arredondar o número para duas casas decimais. Por exemplo, round(raiz, 2) arredondaria a raiz para duas casas decimais.</code></pre>
+        </div>
+        <script>hljs.highlightAll();</script>
+      
+  </main>
+</body>
+</html>

@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>29_desafio.py - Meus Estudos</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/atom-one-dark.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/python.min.js"></script>
+        <style>
+          pre { border-radius: 8px; overflow-x: auto; font-size: 0.95rem; }
+          .code-toolbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem; }
+          .btn-copy { background: rgba(56, 189, 248, 0.2); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.4); padding: 0.4rem 0.8rem; border-radius: 6px; cursor: pointer; font-size: 0.85rem; }
+          .btn-copy:hover { background: rgba(56, 189, 248, 0.4); }
+        </style>
+      
+  <style>
+    :root {
+      --bg-color: #0b1120;
+      --glass-bg: rgba(30, 41, 59, 0.7);
+      --glass-border: rgba(255, 255, 255, 0.08);
+      --primary: #38bdf8;
+      --text-main: #f1f5f9;
+      --text-muted: #94a3b8;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
+    body { background-color: var(--bg-color); color: var(--text-main); min-height: 100vh; display: flex; flex-direction: column; }
+    header { padding: 0.8rem 2rem; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--glass-border); background: var(--glass-bg); backdrop-filter: blur(12px); position: sticky; top: 0; z-index: 100; }
+    .header-left { display: flex; align-items: center; gap: 1rem; }
+    .back-btn { color: var(--text-main); text-decoration: none; display: flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem; border-radius: 8px; background: rgba(255,255,255,0.05); font-size: 0.9rem; transition: 0.2s; }
+    .back-btn:hover { background: rgba(56, 189, 248, 0.2); color: var(--primary); }
+    .file-title { font-size: 1.1rem; font-weight: 600; color: #f8fafc; }
+    main { flex: 1; padding: 2rem; max-width: 1200px; margin: 0 auto; width: 100%; }
+    .container { background: rgba(15, 23, 42, 0.7); border: 1px solid var(--glass-border); border-radius: 16px; padding: 2rem; box-shadow: 0 10px 30px rgba(0,0,0,0.3); overflow-x: auto; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-left">
+      <a href="../index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Voltar ao Dashboard</a>
+      <div class="file-title">29_desafio.py</div>
+    </div>
+    <div>
+      <a href="../cursoemvideo_python/Curso de Python 3 - Mundo 1 Fundamentos/Curso Python #010 - Condições (Parte 1)/29_desafio.py" download class="back-btn"><i class="fa-solid fa-download"></i> Baixar Arquivo</a>
+    </div>
+  </header>
+  <main>
+    
+        <div class="container">
+          <div class="code-toolbar">
+            <span style="color: #38bdf8; font-weight: 600;"><i class="fa-brands fa-python"></i> 29_desafio.py</span>
+            <button class="btn-copy" onclick="navigator.clipboard.writeText(document.getElementById('py-code').innerText); this.innerText='Copiado!'; setTimeout(()=>this.innerText='Copiar Código', 2000)"><i class="fa-regular fa-copy"></i> Copiar Código</button>
+          </div>
+          <pre><code class="language-python" id="py-code"># Exercício Python #029 - Radar eletrônico - Aula 00 até 09 - Mundo 1
+# Escreva um programa que leia a velocidade de um carro. Se ele ultrapassar 80Km/h, mostre uma mensagem dizendo que ele foi multado. A multa vai custar R$7,00 por cada Km acima do limite.
+
+from math import e
+from random import randint
+from time import sleep
+from emoji import emojize
+# Tarefa 1: Ler a velocidade do carro.
+velocidade = randint(40, 110)
+print(f&#039;RADAR: Sua velocidade é de {velocidade}Km/h&#039;)
+
+velocidade_maxima = 80
+
+# Tarefa 2: Definir o valor da multa
+if velocidade &gt; velocidade_maxima:
+    print(&#039;Você foi multado!&#039;)
+
+    acima_do_limte = velocidade - velocidade_maxima
+    multa = acima_do_limte * 7
+
+# Tarefa 3: Mostrar a mensagem dizendo se foi multado ou não
+    print(f&#039;O limite de velocidade é de 80Km/h. Você foi flagrado a {velocidade}Km/h.&#039;)
+    print(f&#039;O valor da multa é de R$ 7,00 por Km/h ultrapassado. Sua multa será de R$ {multa:.2f} por trafegar a {acima_do_limte}Km/h além do permitido.&#039;)
+else:
+    print(&#039;Você está dentro do limite permitido!&#039;)
+
+# EXTRA
+
+print(emojize(&#039;:estrada: RADAR ELETÔNICO&#039;, language=&#039;pt&#039;))
+while True:
+	try:
+		simulações = int(input(&#039;Quantas simulações deseja realizar? &#039;))
+		break
+	except ValueError:
+		print(&#039;Valor inválido!&#039;)
+
+for carro in range(1, simulações+1):
+	velocidade = randint(70, 90)
+
+	multado = velocidade - 80 &lt;= 0
+
+	valor = 7 * (velocidade - 80)
+	moeda = str(f&#039;{valor:.2f}&#039;).replace(&#039;.&#039;,&#039;,&#039;)
+
+	print(emojize(f&#039;{f&#039;:carro: Veículo {carro} - Velocidade registrada:&#039;:&lt;30}{f&#039;{velocidade}Km/h&#039;:&gt;20}&#039;, language=&#039;pt&#039;))
+
+	print(emojize(f&#039;\033[1;32mTenha um bom dia. Dirija com segurança.\033[m&#039; if multado else f&#039;\033[1;31m:sirene: Você foi multado em R$ {moeda} por ultrapassar em {valor/7}Km a velocidade permitida.\033[m&#039;, language=&#039;pt&#039;))
+
+	sleep(1)
+print(&#039;Simulações encerradas!&#039;)
+
+# Criar sistema de radar eletrônico que verifique a velocidade e aplique multas R$ 7,00 a cada Km excedido e pontos na carteira - Verificar niveis de gravidade da multa
+
+# Infração leve - 3 Pontos - Multa - R$ 5,00 por KM excedido - 10km acima
+# Infração moderada - 4 Pontos - Multa - R$ 10,00 por KM excedido - 20km acima
+# Infração grave - 6 Pontos - Multa - R$ 15,00 por KM excedido - 30km acima
+# Infração gravíssima - 7 Pontos - Multa - R$ 20,00 por KM excedido - 30km+ acima
+
+from random import randint
+
+def verifica(v):
+	excedido = v - 80  # Calcula as multas
+	acima_limite = (v - 80) &gt; 0  # Verifica se está acima do limite
+	multa = (
+		excedido * 5 if excedido &lt;= 10 else
+		10 if excedido &lt;= 20 else
+		15 if excedido &lt;= 30 else 20)  # Define o multiplicador dependendo do grau
+	grau = (
+		&#039;\033[32mLeve\033[m&#039; if excedido &lt;= 10 else
+		&#039;\033[34mModerada\033[m&#039; if excedido &lt;= 20 else
+		&#039;\033[33mGrave\033[m&#039; if excedido &lt;= 30 else &#039;\033[31mGravíssima\033[m&#039;)
+	pontos = (
+		3 if excedido &lt;= 10 else
+		4 if excedido &lt;= 20 else
+		6 if excedido &lt;= 30 else 7)  # Define o multiplicador dependendo do grau
+
+	if acima_limite:
+
+		print(
+			f&#039;{&#039;-&#039; * 26}\n&#039;
+			f&#039;{&#039;Velocidade:&#039;:&lt;11}{v:&gt;13}{&#039;km&#039;:&lt;2}\n&#039;
+			f&#039;{&#039;Infração:&#039;:&lt;11}{grau:&gt;23}\n&#039;
+			f&#039;{&#039;Excedido:&#039;:&lt;11}{excedido:&gt;13}{&#039;km&#039;:&gt;2}\n&#039;
+			f&#039;{&#039;Pontos:&#039;:&lt;11}{pontos:&gt;15}\n&#039;
+			f&#039;{&#039;Multa:&#039;:&lt;11}{&#039;R$&#039;:&gt;5}{multa:&gt;10.2f}\n&#039;
+			f&#039;{&#039;-&#039; * 26}&#039;)
+
+
+for veículos in range(6):
+	velocidade = randint(60, 200)  # Define as velocidades
+	verifica(velocidade)
+
+# Estou compartilhando minhas anotações sobre os exercícios. Quem quiser, pode copiar e colar em um documento .py pois está tudo formatado e comentado.
+
+# Nesse exercício, o programa deve ler a velocidade de um carro e se ele ultrapassar 80Km/h, deve mostrar uma mensagem dizendo que ele foi multado. A multa vai custar R$7,00 por cada Km acima do limite.
+
+# A primeira coisa a ser feita é capturar a velocidade do carro. Para isso, vamos utilizar a função input() para ler a velocidade digitada pelo usuário. Precisamos converter o valor para inteiro com a função int().
+velocidade = int(input(&#039;Qual é a velocidade atual do carro? &#039;))
+
+# Em seguida, vamos definir o limite de velocidade, que é de 80Km/h.
+velocidade_maxima = 80
+
+# Agora, vamos verificar se a velocidade do carro ultrapassou o limite permitido. Vamos salvar a diferença entre a velocidade do carro e o limite em uma variável chamada acima_do_limite pois precisaremos dela para calcular o valor da multa.
+acima_do_limte = velocidade - velocidade_maxima
+
+# Se a velocidade do carro for maior que o limite permitido, o carro foi multado. Nesse caso, vamos exibir uma mensagem informando que o carro foi multado e calcular o valor da multa. Para que a multa seja aplicada, acima_do_limite deve ser maior que zero.
+
+# Para calcular o valor da multa, vamos multiplicar a diferença entre a velocidade do carro e o limite pelo valor da multa por Km excedido, que é de R$7,00.
+if acima_do_limte &gt; 0:
+	print(&#039;MULTADO! Você excedeu o limite permitido que é de 80Km/h&#039;)
+	multa = acima_do_limte * 7
+	print(f&#039;Você deve pagar uma multa de R${multa:.2f}!&#039;)
+# Na exibição do valor da multa, utilizamos o f-string para formatar o valor com duas casas decimais.
+else:
+	print(&#039;Tenha um bom dia! Dirija com segurança!&#039;)
+
+# Nesse método salvamos as informações em variáveis para facilitar a leitura e a compreensão do código. No entanto, é possível fazer a verificação diretamente na estrutura condicional, sem a necessidade de salvar a diferença entre a velocidade do carro e o limite em uma variável.
+
+velocidade = int(input(&#039;Qual é a velocidade atual do carro? &#039;))
+if velocidade &gt; 80:
+	multa = (velocidade - 80) * 7
+	print(f&#039;MULTADO! Você excedeu o limite permitido que é de 80Km/h\nVocê deve pagar uma multa de R${multa:.2f}!&#039;)
+else:
+	print(&#039;Tenha um bom dia! Dirija com segurança!&#039;)
+</code></pre>
+        </div>
+        <script>hljs.highlightAll();</script>
+      
+  </main>
+</body>
+</html>

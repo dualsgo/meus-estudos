@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>13_desafio.py - Meus Estudos</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/atom-one-dark.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/python.min.js"></script>
+        <style>
+          pre { border-radius: 8px; overflow-x: auto; font-size: 0.95rem; }
+          .code-toolbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem; }
+          .btn-copy { background: rgba(56, 189, 248, 0.2); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.4); padding: 0.4rem 0.8rem; border-radius: 6px; cursor: pointer; font-size: 0.85rem; }
+          .btn-copy:hover { background: rgba(56, 189, 248, 0.4); }
+        </style>
+      
+  <style>
+    :root {
+      --bg-color: #0b1120;
+      --glass-bg: rgba(30, 41, 59, 0.7);
+      --glass-border: rgba(255, 255, 255, 0.08);
+      --primary: #38bdf8;
+      --text-main: #f1f5f9;
+      --text-muted: #94a3b8;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
+    body { background-color: var(--bg-color); color: var(--text-main); min-height: 100vh; display: flex; flex-direction: column; }
+    header { padding: 0.8rem 2rem; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--glass-border); background: var(--glass-bg); backdrop-filter: blur(12px); position: sticky; top: 0; z-index: 100; }
+    .header-left { display: flex; align-items: center; gap: 1rem; }
+    .back-btn { color: var(--text-main); text-decoration: none; display: flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem; border-radius: 8px; background: rgba(255,255,255,0.05); font-size: 0.9rem; transition: 0.2s; }
+    .back-btn:hover { background: rgba(56, 189, 248, 0.2); color: var(--primary); }
+    .file-title { font-size: 1.1rem; font-weight: 600; color: #f8fafc; }
+    main { flex: 1; padding: 2rem; max-width: 1200px; margin: 0 auto; width: 100%; }
+    .container { background: rgba(15, 23, 42, 0.7); border: 1px solid var(--glass-border); border-radius: 16px; padding: 2rem; box-shadow: 0 10px 30px rgba(0,0,0,0.3); overflow-x: auto; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-left">
+      <a href="../index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Voltar ao Dashboard</a>
+      <div class="file-title">13_desafio.py</div>
+    </div>
+    <div>
+      <a href="../cursoemvideo_python/Curso de Python 3 - Mundo 1 Fundamentos/Curso Python #07 - Operadores Aritméticos/13_desafio.py" download class="back-btn"><i class="fa-solid fa-download"></i> Baixar Arquivo</a>
+    </div>
+  </header>
+  <main>
+    
+        <div class="container">
+          <div class="code-toolbar">
+            <span style="color: #38bdf8; font-weight: 600;"><i class="fa-brands fa-python"></i> 13_desafio.py</span>
+            <button class="btn-copy" onclick="navigator.clipboard.writeText(document.getElementById('py-code').innerText); this.innerText='Copiado!'; setTimeout(()=>this.innerText='Copiar Código', 2000)"><i class="fa-regular fa-copy"></i> Copiar Código</button>
+          </div>
+          <pre><code class="language-python" id="py-code"># Exercício Python #013 - Reajuste Salarial - Aula 00 até 07 - Mundo 1
+# Faça um algorítimo que leia o salário de um funcionário e mostre seu novo salário, com 15% de aumento.
+
+from emoji import emojize
+
+while True:
+	try:
+		salário = float(input(emojize(&#039;:cifrão: Digite o salário: R$ &#039;, language=&#039;pt&#039;)))
+		aumento = salário * .15
+		salário_com_aumento = salário + aumento
+		print(emojize(f&#039;:nota_de_dólar:{&#039;Salário atual:&#039;:&lt;18}\033[1;32mR${salário:&gt;10.2f}\033[m\n:nota_de_dólar:{&#039;Aumento 15%&#039;:&lt;18}\033[1;32mR${aumento:&gt;10.2f}\033[m\n{&#039;-&#039; * 30}\n:dinheiro_voando:{&#039;Novo salário:&#039;:&lt;18}\033[1;32mR${salário_com_aumento:&gt;10.2f}\033[m&#039;, language=&#039;pt&#039;))
+		break
+	except ValueError:
+		print(&#039;Valor inválido! Tente novamente.&#039;)
+
+# Versão 2
+
+
+while True:
+	try:
+		salario = float(input(&#039;Digite o valor do salário: R$    &#039;))
+	except ValueError:
+		print(&#039;Valor digitado não é válido!&#039;)
+	else:
+
+		print(f&#039;{&#039;Salário atual&#039;:&lt;24}{&#039;R$&#039;:&gt;5}{salario:&gt;10.2f}&#039;)
+		print(f&#039;{&#039;Percentual de aumento&#039;:&lt;24}{&#039;R$&#039;:&gt;5}{salario * .15:&gt;10.2f}&#039;)
+		print(f&#039;{&#039;Salário com aumento&#039;:&lt;24}{&#039;R$&#039;:&gt;5}{salario * 1.15:&gt;10.2f}&#039;)
+		break
+
+# EXTRA: Leia o preço de um produto e mostre o valor dele a vista com 10% de desconto e parcelado com 8% de aumento.
+
+total_a_pagar = 0
+
+while True:
+	try:
+		preço = float(input(emojize(&#039;:cifrão: Digite o valor do produto: R$ &#039;, language=&#039;pt&#039;)))
+		break
+	except ValueError:
+		print(&#039;Valor inválido!&#039;)
+
+
+while True:
+	try:
+		forma_de_pagamento = int(input(&#039;[1] A vista (Desconto de 10%)\n&#039;
+									   &#039;[2] Parcelado (Acréscimo de 8%)&#039;))
+		if forma_de_pagamento == 1:
+			print(f&#039;Será descontado 10%&#039;)
+			total_a_pagar = preço * .9
+		elif forma_de_pagamento == 2:
+			print(f&#039;Será cobrado 8% de juros&#039;)
+			total_a_pagar = preço * 1.08
+		else:
+			print(f&#039;Opção inválida&#039;)
+			continue
+		break
+
+	except ValueError:
+		print(f&#039;Valor inválido!&#039;)
+
+print(emojize(f&#039;:nota_de_dólar:{&#039;Preço:&#039;:&lt;18}\033[1;32mR${preço:&gt;10.2f}\033[m\n{&#039;-&#039; * 30}\n:dinheiro_voando:{&#039;Novo preço:&#039;:&lt;18}\033[1;32mR${total_a_pagar:&gt;10.2f}\033[m&#039;, language=&#039;pt&#039;))
+
+# Versão 2 
+
+produto = str(input(&quot;Nome do produto: &quot;)).strip().title()
+
+while True:
+	try:
+		preco = float(input(&quot;Valor do produto: R$ &quot;))
+		qtde_parcelas = int(input(&quot;Quantidade de parcelas:\n1 À vista ou 2 até 12x com juros &quot;))
+
+		while qtde_parcelas not in range(1, 12):
+			qtde_parcelas = int(input(&#039;Digite novamente: &#039;))
+
+		if qtde_parcelas == 1:
+			print(
+				f&quot;\n{&#039;Descrição do produto:&#039;:&lt;25}{produto:&gt;10}\n&quot;
+				f&quot;{&#039;-&#039; * 35}\n&quot;
+				f&quot;{&#039;Valor:&#039;:&lt;20}{&#039;R$&#039;:&gt;5}{preco:&gt;10.2f}\n&quot;
+				f&quot;{&#039;Desconto à vista:&#039;:&lt;20}{&#039;(%)&#039;:&gt;5}{&#039;10&#039;:&gt;10}\n&quot;
+				f&quot;{&#039;Valor do desconto:&#039;:&lt;25}{preco * .1:&gt;10.2f}\n&quot;
+				f&quot;{&#039;-&#039; * 35}\n&quot;
+				f&quot;{&#039;Valor final:&#039;:&lt;20}{&#039;R$&#039;:&gt;5}{preco * .9:&gt;10.2f}\n&quot;)
+
+		elif 1 &lt; qtde_parcelas &lt;= 12:
+			valor_parcela = preco / qtde_parcelas
+
+			# Taxa de juros
+			taxa = 4 + qtde_parcelas
+			juros_ao_mes = taxa / qtde_parcelas
+
+			preco_juros = preco + (preco * taxa / 100)
+
+			# Parcela com juros
+			parcelas_juros = valor_parcela * juros_ao_mes
+			#
+			total = preco_juros + parcelas_juros
+
+			print(
+				f&quot;\n{&#039;Produto:&#039;:&lt;10}{produto:&gt;25}\n&quot;
+				f&quot;{&#039;-&#039; * 35}\n&quot;
+				f&quot;{&#039;Valor:&#039;:&lt;20}{&#039;R$&#039;:&gt;5}{preco:&gt;10.2f}\n&quot;
+				f&quot;{&#039;Taxa de juros:&#039;:&lt;20}{&#039;(%)&#039;:&gt;5}{taxa:&gt;10.2f}\n&quot;
+				f&quot;{&#039;-&#039; * 35}\n&quot;
+				f&quot;{&#039;Valor final:&#039;:&lt;20}{&#039;R$&#039;:&gt;5}{preco_juros:&gt;10.2f}\n&quot;
+				f&quot;{&#039;-&#039; * 35}\n&quot;
+				f&quot;{&#039;Nº de parcelas:&#039;:&lt;20}{&#039;R$&#039;:&gt;5}{qtde_parcelas:&gt;10.0f}\n&quot;
+				f&quot;{&#039;Juros ao mês:&#039;:&lt;20}{&#039;(%)&#039;:&gt;5}{juros_ao_mes:&gt;10.2f}\n&quot;
+				f&quot;{&#039;Valor por parcela:&#039;:&lt;20}{&#039;R$&#039;:&gt;5}{parcelas_juros:&gt;10.2f}\n&quot;
+				f&quot;{&#039;-&#039; * 35}\n&quot;)
+
+		break
+
+	except ValueError:
+		print(&#039;O valor fornecido não é válido. Digite novamente... &#039;)
+  
+# Estou compartilhando minhas anotações sobre os exercícios. Quem quiser, pode copiar e colar em um documento .py pois está tudo formatado e comentado.
+
+# Nesse exercício, o programa solicita ao usuário o salário de um funcionário e exibe na tela o salário com 15% de aumento. Para isso, utilizamos a operação de multiplicação.
+
+# Assim como antes, utilizamos a função input() para solicitar um valor ao usuário. O valor digitado é convertido para ponto flutuante e armazenado na variável salário.
+
+# O aumento de 15% pode ser calculado multiplicando o salário do funcionário por 1.15.
+salário = float(input(&#039;Digite o salário do funcionário: R$ &#039;))
+salário_com_aumento = salário * 1.15 # 115% do salário
+
+# 1.15 é o mesmo que 100% + 15% = 115%. Portanto, o salário com aumento é 115% do salário original.
+
+# Outra forma de calcular o aumento é somar 15% do salário ao salário original. O resultado é o mesmo.
+aumento = salário * .15 # 15% do salário
+salário_com_aumento = salário + aumento # salário + 15%
+
+# Como antes, utilize a fórmula que achar mais fácil de entender e de lembrar. O importante é que o resultado seja o mesmo.
+
+# Por fim, exibimos o salário original, o aumento e o novo salário na tela.
+print(f&#039;Salário atual: R${salário:.2f}&#039;)
+print(f&#039;Aumento: R${aumento:.2f}&#039;)
+print(f&#039;Novo salário: R${salário_com_aumento:.2f}&#039;)
+</code></pre>
+        </div>
+        <script>hljs.highlightAll();</script>
+      
+  </main>
+</body>
+</html>

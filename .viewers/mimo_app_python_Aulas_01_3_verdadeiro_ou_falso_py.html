@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>01.3_verdadeiro_ou_falso.py - Meus Estudos</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/atom-one-dark.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/python.min.js"></script>
+        <style>
+          pre { border-radius: 8px; overflow-x: auto; font-size: 0.95rem; }
+          .code-toolbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem; }
+          .btn-copy { background: rgba(56, 189, 248, 0.2); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.4); padding: 0.4rem 0.8rem; border-radius: 6px; cursor: pointer; font-size: 0.85rem; }
+          .btn-copy:hover { background: rgba(56, 189, 248, 0.4); }
+        </style>
+      
+  <style>
+    :root {
+      --bg-color: #0b1120;
+      --glass-bg: rgba(30, 41, 59, 0.7);
+      --glass-border: rgba(255, 255, 255, 0.08);
+      --primary: #38bdf8;
+      --text-main: #f1f5f9;
+      --text-muted: #94a3b8;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
+    body { background-color: var(--bg-color); color: var(--text-main); min-height: 100vh; display: flex; flex-direction: column; }
+    header { padding: 0.8rem 2rem; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--glass-border); background: var(--glass-bg); backdrop-filter: blur(12px); position: sticky; top: 0; z-index: 100; }
+    .header-left { display: flex; align-items: center; gap: 1rem; }
+    .back-btn { color: var(--text-main); text-decoration: none; display: flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem; border-radius: 8px; background: rgba(255,255,255,0.05); font-size: 0.9rem; transition: 0.2s; }
+    .back-btn:hover { background: rgba(56, 189, 248, 0.2); color: var(--primary); }
+    .file-title { font-size: 1.1rem; font-weight: 600; color: #f8fafc; }
+    main { flex: 1; padding: 2rem; max-width: 1200px; margin: 0 auto; width: 100%; }
+    .container { background: rgba(15, 23, 42, 0.7); border: 1px solid var(--glass-border); border-radius: 16px; padding: 2rem; box-shadow: 0 10px 30px rgba(0,0,0,0.3); overflow-x: auto; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-left">
+      <a href="../index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Voltar ao Dashboard</a>
+      <div class="file-title">01.3_verdadeiro_ou_falso.py</div>
+    </div>
+    <div>
+      <a href="../mimo_app/python/Aulas/01.3_verdadeiro_ou_falso.py" download class="back-btn"><i class="fa-solid fa-download"></i> Baixar Arquivo</a>
+    </div>
+  </header>
+  <main>
+    
+        <div class="container">
+          <div class="code-toolbar">
+            <span style="color: #38bdf8; font-weight: 600;"><i class="fa-brands fa-python"></i> 01.3_verdadeiro_ou_falso.py</span>
+            <button class="btn-copy" onclick="navigator.clipboard.writeText(document.getElementById('py-code').innerText); this.innerText='Copiado!'; setTimeout(()=>this.innerText='Copiar Código', 2000)"><i class="fa-regular fa-copy"></i> Copiar Código</button>
+          </div>
+          <pre><code class="language-python" id="py-code"># MIMO - 01 - Noções básicas de Python
+
+# 01.3 - Verdadeiro ou falso
+
+# Há um valor especial que não é numa cadeia de caracteres nem um número: (True).
+# Não há aspas em torno dele, e não é um valor numérico.
+
+# True é ótimo para situações como verificar se um recurso está ativado ou se os dados estão disponíveis.
+
+# Podemos armazenar em uma variável como uma cadeia de caracteres ou um número. Exibi-lo também funciona da mesma forma.
+ligado = True  # Indica que algo está ligado
+print(f&#039;Está ligado? {ligado}&#039;)
+
+# False é outro valor especial e o oposto de True.
+# Podemos salvar False em uma variável.
+ligado = False
+print(f&#039;Está ligado? {ligado}&#039;)
+
+# &quot;True&quot; e &quot;False&quot; ou true e false não são o mesmo que True e False!
+
+# Negando valores - Operador de negação not
+
+# O código not na frente de True faz com que a expressão resulte em False. Se algo não é verdade, tem que ser falso. O not é o operador de negação que transforma os valores em seu oposto.
+
+# Quando mudamos um valor para o seu oposto com not, nós o negamos. O operador not antes de False altera seu valor para True. Se um valor não é False, tem que ser True.
+verdade = True
+nao_mentira = not False  # Também será True
+# Uma não mentira é igual à verdade
+
+mentira = False
+nao_verdade = not True  # Também será False
+
+# Podemos usar o operador com variáveis para negar seus valores.
+
+# Nessa lógica poderíamos atribuir a variável mentira o valor not verdade. O oposto não seria possível, pois a variável mentira não poderia ser referenciada antes de ser criada.
+print(f&#039;not nao_verdade: {not nao_verdade}&#039;) # O resultado será True
+
+ligado = True
+desligado = not ligado
+print(desligado)  # Não ligado, é desligado</code></pre>
+        </div>
+        <script>hljs.highlightAll();</script>
+      
+  </main>
+</body>
+</html>

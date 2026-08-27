@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>85_desafio.py - Meus Estudos</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/atom-one-dark.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/python.min.js"></script>
+        <style>
+          pre { border-radius: 8px; overflow-x: auto; font-size: 0.95rem; }
+          .code-toolbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem; }
+          .btn-copy { background: rgba(56, 189, 248, 0.2); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.4); padding: 0.4rem 0.8rem; border-radius: 6px; cursor: pointer; font-size: 0.85rem; }
+          .btn-copy:hover { background: rgba(56, 189, 248, 0.4); }
+        </style>
+      
+  <style>
+    :root {
+      --bg-color: #0b1120;
+      --glass-bg: rgba(30, 41, 59, 0.7);
+      --glass-border: rgba(255, 255, 255, 0.08);
+      --primary: #38bdf8;
+      --text-main: #f1f5f9;
+      --text-muted: #94a3b8;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
+    body { background-color: var(--bg-color); color: var(--text-main); min-height: 100vh; display: flex; flex-direction: column; }
+    header { padding: 0.8rem 2rem; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--glass-border); background: var(--glass-bg); backdrop-filter: blur(12px); position: sticky; top: 0; z-index: 100; }
+    .header-left { display: flex; align-items: center; gap: 1rem; }
+    .back-btn { color: var(--text-main); text-decoration: none; display: flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem; border-radius: 8px; background: rgba(255,255,255,0.05); font-size: 0.9rem; transition: 0.2s; }
+    .back-btn:hover { background: rgba(56, 189, 248, 0.2); color: var(--primary); }
+    .file-title { font-size: 1.1rem; font-weight: 600; color: #f8fafc; }
+    main { flex: 1; padding: 2rem; max-width: 1200px; margin: 0 auto; width: 100%; }
+    .container { background: rgba(15, 23, 42, 0.7); border: 1px solid var(--glass-border); border-radius: 16px; padding: 2rem; box-shadow: 0 10px 30px rgba(0,0,0,0.3); overflow-x: auto; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-left">
+      <a href="../index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Voltar ao Dashboard</a>
+      <div class="file-title">85_desafio.py</div>
+    </div>
+    <div>
+      <a href="../cursoemvideo_python/Curso de Python 3 - Mundo 3 Estruturas Compostas/Curso Python #018 - Listas (Parte 2)/85_desafio.py" download class="back-btn"><i class="fa-solid fa-download"></i> Baixar Arquivo</a>
+    </div>
+  </header>
+  <main>
+    
+        <div class="container">
+          <div class="code-toolbar">
+            <span style="color: #38bdf8; font-weight: 600;"><i class="fa-brands fa-python"></i> 85_desafio.py</span>
+            <button class="btn-copy" onclick="navigator.clipboard.writeText(document.getElementById('py-code').innerText); this.innerText='Copiado!'; setTimeout(()=>this.innerText='Copiar Código', 2000)"><i class="fa-regular fa-copy"></i> Copiar Código</button>
+          </div>
+          <pre><code class="language-python" id="py-code"># Exercício Python #085 - Listas com pares e ímpares - Aula 00 até 18 - Mundo 3
+# Crie um programa onde o usuário possa digitar sete valores numéricos e cadastre-os em uma lista única que mantenha separados os valores pares e ímpares. No final, mostre os valores pares e ímpares em ordem crescente.
+
+# Versão 1
+from random import randint
+
+lista_principal = []
+pares = []
+impares = []
+
+for i in range(7):
+    lista_principal.append(randint(0, 99))
+
+for numero in lista_principal:
+    pares.append(numero) if numero % 2 == 0 else impares.append(numero)
+
+print(f&#039;Todos os valores:&#039;)
+for valor in lista_principal:
+    print(valor, end=&#039;, &#039;)
+    if valor == lista_principal[-1]:
+        print(f&#039;{valor}.&#039;)
+
+pares.sort()
+lista_principal.append(pares[:])
+
+impares.sort()
+lista_principal.append(impares[:])
+
+print(&#039;PARES&#039;)
+for par in pares:
+    print(par, end=&#039;, &#039;)
+    if par == pares[-1]:
+        print(f&#039;{par}.&#039;)
+
+print(&#039;ÍMPARES&#039;)
+for impar in impares:
+    print(impar, end=&#039;, &#039;)
+    if impar == impares[-1]:
+        print(f&#039;{impar}.&#039;)
+
+# Versão 2 resumida
+
+lista = [[], []]
+for _ in range(7):
+    try:
+        valor = int(input(&#039;Digite um valor: &#039;))
+        lista[0 if valor % 2 == 0 else 1].append(valor)
+    except ValueError:
+        print(&#039;Valor inválido!&#039;)
+lista[0].sort()
+lista[1].sort()
+print(lista)
+
+# Versão atual
+
+from random import randint
+valores = []
+pares = []
+ímpares = []
+for v in range(7):
+	valor = randint(1, 10)
+	lista = ímpares if valor % 2 else pares
+	lista.append(valor)
+pares.sort()
+ímpares.sort()
+valores.append(pares)
+valores.append(ímpares)
+print(valores)
+
+# Estou compartilhando minhas anotações sobre os exercícios. Quem quiser, pode copiar e colar em um documento .py pois está tudo formatado e comentado.
+
+# Nesse exercício, vamos criar um programa onde o usuário possa digitar sete valores numéricos e cadastre-os em uma lista única que mantenha separados os valores pares e ímpares. No final, vamos exibir os valores pares e ímpares em ordem crescente.
+
+# Vamos fazer uma versão mais resumida. Primeiro vamos criar uma lista com duas sublistas. A primeira lista, de índice 0, vai armazenar os valores pares. A segunda lista, de índice 1, vai armazenar os valores ímpares.
+lista_principal = [[], []]
+
+# Em seguida, vamos solicitar ao usuário sete valores numéricos. Se o valor for par, vamos adicionar na lista de índice 0. Se o valor for ímpar, vamos adicionar na lista de índice 1.
+for _ in range(7):
+    valor = int(input(&#039;Digite um valor: &#039;)) # Solicitando um valor numérico ao usuário
+    
+    # Adicionando o valor na lista de índice 0 se for par, ou na lista de índice 1 se for ímpar.
+    lista_principal[0 if valor % 2 == 0 else 1].append(valor)
+
+# Ao final das iterações, vamos ordenar as sublistas.
+lista_principal[0].sort()
+lista_principal[1].sort()
+
+# Por fim, vamos exibir as sublistas.
+print(f&#039;Lista principal: {lista_principal}&#039;)
+print(f&#039;Pares: {lista_principal[0]}&#039;)
+print(f&#039;Ímpares: {lista_principal[1]}&#039;)
+</code></pre>
+        </div>
+        <script>hljs.highlightAll();</script>
+      
+  </main>
+</body>
+</html>

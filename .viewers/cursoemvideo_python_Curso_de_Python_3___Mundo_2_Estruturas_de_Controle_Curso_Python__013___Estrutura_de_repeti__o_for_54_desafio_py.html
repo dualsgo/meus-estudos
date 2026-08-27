@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>54_desafio.py - Meus Estudos</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/atom-one-dark.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/python.min.js"></script>
+        <style>
+          pre { border-radius: 8px; overflow-x: auto; font-size: 0.95rem; }
+          .code-toolbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem; }
+          .btn-copy { background: rgba(56, 189, 248, 0.2); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.4); padding: 0.4rem 0.8rem; border-radius: 6px; cursor: pointer; font-size: 0.85rem; }
+          .btn-copy:hover { background: rgba(56, 189, 248, 0.4); }
+        </style>
+      
+  <style>
+    :root {
+      --bg-color: #0b1120;
+      --glass-bg: rgba(30, 41, 59, 0.7);
+      --glass-border: rgba(255, 255, 255, 0.08);
+      --primary: #38bdf8;
+      --text-main: #f1f5f9;
+      --text-muted: #94a3b8;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
+    body { background-color: var(--bg-color); color: var(--text-main); min-height: 100vh; display: flex; flex-direction: column; }
+    header { padding: 0.8rem 2rem; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--glass-border); background: var(--glass-bg); backdrop-filter: blur(12px); position: sticky; top: 0; z-index: 100; }
+    .header-left { display: flex; align-items: center; gap: 1rem; }
+    .back-btn { color: var(--text-main); text-decoration: none; display: flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem; border-radius: 8px; background: rgba(255,255,255,0.05); font-size: 0.9rem; transition: 0.2s; }
+    .back-btn:hover { background: rgba(56, 189, 248, 0.2); color: var(--primary); }
+    .file-title { font-size: 1.1rem; font-weight: 600; color: #f8fafc; }
+    main { flex: 1; padding: 2rem; max-width: 1200px; margin: 0 auto; width: 100%; }
+    .container { background: rgba(15, 23, 42, 0.7); border: 1px solid var(--glass-border); border-radius: 16px; padding: 2rem; box-shadow: 0 10px 30px rgba(0,0,0,0.3); overflow-x: auto; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-left">
+      <a href="../index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Voltar ao Dashboard</a>
+      <div class="file-title">54_desafio.py</div>
+    </div>
+    <div>
+      <a href="../cursoemvideo_python/Curso de Python 3 - Mundo 2 Estruturas de Controle/Curso Python #013 - Estrutura de repetição for/54_desafio.py" download class="back-btn"><i class="fa-solid fa-download"></i> Baixar Arquivo</a>
+    </div>
+  </header>
+  <main>
+    
+        <div class="container">
+          <div class="code-toolbar">
+            <span style="color: #38bdf8; font-weight: 600;"><i class="fa-brands fa-python"></i> 54_desafio.py</span>
+            <button class="btn-copy" onclick="navigator.clipboard.writeText(document.getElementById('py-code').innerText); this.innerText='Copiado!'; setTimeout(()=>this.innerText='Copiar Código', 2000)"><i class="fa-regular fa-copy"></i> Copiar Código</button>
+          </div>
+          <pre><code class="language-python" id="py-code"># Exercício Python #054 - Grupo da Maioridade - Aula 00 até 13 - Mundo 2
+# Crie um programa que leia o ano de nascimento de sete pessoas. No final, mostre quantas pessoas ainda não atingiram a maioridade e quantas já são maiores.
+
+from time import sleep  # Importa a função sleep para pausas temporizadas
+from random import randint  # Importa a função randint para gerar anos de nascimento aleatórios
+from datetime import date  # Importa a classe date para obter o ano atual
+
+ano_atual = date.today().year  # Obtém o ano atual
+
+maiores = menores = 0  # Inicializa os contadores de maiores e menores de idade
+
+for i in range(1, 8):  # Loop para iterar sobre 7 pessoas
+    print(f&#039;Pessoa {i}, seu ano de nascimento é: &#039;, end=&#039;&#039;)
+    sleep(1)  # Pausa por 1 segundo
+    ano_nascimento = randint(1950, 2023)  # Gera um ano de nascimento aleatório entre 1950 e 2023
+    print(ano_nascimento)
+    idade = ano_atual - ano_nascimento  # Calcula a idade
+    print(f&#039;{idade} anos de idade&#039;)
+    sleep(1)  # Pausa por 1 segundo
+    if idade &gt;= 21:
+        print(&#039;\033[1;32mMaior de idade\033[m&#039;)  # Exibe em verde se for maior de idade
+        maiores += 1
+    else:
+        print(&#039;\033[1;31mMenor de idade\033[m&#039;)  # Exibe em vermelho se for menor de idade
+        menores += 1
+    sleep(1)  # Pausa por 1 segundo
+
+print(f&#039;Ao todo temos {menores} menores e {maiores} maiores de idade.&#039;)
+
+
+# Versões extras
+
+from random import randint
+from datetime import date
+from time import sleep
+
+ano_atual = date.today().year
+maiores = menores = 0
+while True:
+	try:
+		ano_inicial = int(input(&#039;Digite o início do intervalo: &#039;))
+		print(f&#039;{&#039;-&#039;*40}&#039;)
+		print(f&#039;{&#039;PESSOA&#039;:^10}{&#039;ANO NASC&#039;:^10}{&#039;IDADE&#039;:^10}{&#039;MAIOR?&#039;:^10}&#039;)
+		print(f&#039;{&#039;-&#039;*40}&#039;)
+		for pessoa in range(1,8):
+			sleep(1)
+			ano_nascimento = randint(ano_inicial, ano_atual)
+			idade = ano_atual - ano_nascimento
+			maioridade = &#039;SIM&#039; if idade &gt;= 18 else &#039;NÃO&#039;
+
+			if idade &gt;= 18:
+				print(f&#039;\033[1;32m{pessoa:^10}{ano_nascimento:^10}{idade:^10}{maioridade:^10}\033[1;32m&#039;)
+				maiores += 1
+			else:
+				print(f&#039;\033[1;31m{pessoa:^10}{ano_nascimento:^10}{idade:^10}{maioridade:^10}\033[m&#039;)
+				menores += 1
+		print(f&#039;{&#039;-&#039;*40}&#039;)
+		print(f&#039;Total de maiores de idade: {maiores}&#039;)
+		print(f&#039;Total de menores de idade: {menores}&#039;)
+		print(f&#039;{&#039;-&#039;*40}&#039;)
+
+		break
+	except ValueError:
+		print(&#039;ERRO&#039;)
+
+	&quot;&quot;&quot;from datetime import date
+ano_atual = date.today().year
+ano_nascimento = [int(input(f&#039;Ano de nascimento da {i}ª pessoa: &#039;)) for i, v in enumerate(range(7), 1)]
+maiores = [i for i in ano_nascimento if ano_atual - i &gt; 17]
+print(f&#039;Ao todos temos {len(maiores)} maiores de idade e {len(ano_nascimento) - len(maiores)} menores de idade!&#039;)&quot;&quot;&quot;
+
+
+# Estou compartilhando minhas anotações sobre os exercícios. Quem quiser, pode copiar e colar em um documento .py pois está tudo formatado e comentado.
+
+# Nesse exercício, vamos ler o ano de nascimento de sete pessoas e mostrar quantas são maiores de idade e quantas são menores de idade.
+# Para definir a idade precisamos saber o ano atual. Vamos usar a função date() da classe date para obter o ano atual.
+from datetime import date # Importa a classe date para obter o ano atual
+from time import sleep as pausa # Importa a função sleep para pausas temporizadas e renomeia para pausa
+
+ano_atual = date.today().year  # Obtém o ano atual
+
+# Inicializamos os contadores de maiores e menores de idade com zero.
+maiores = menores = 0
+
+# Vamos usar um laço de repetição for para iterar sobre as sete pessoas.
+for i in range(1, 8):  # Loop para iterar sobre 7 pessoas
+    print(f&#039;Pessoa {i}, seu ano de nascimento é: &#039;, end=&#039;&#039;)  # Mostra o nome da pessoa e solicita o ano de nascimento
+    pausa(1)  # Pausa por 1 segundo
+    
+    ano_nascimento = int(input())  # Lê o ano de nascimento da pessoa
+    idade = ano_atual - ano_nascimento  # Calcula a idade
+    
+    print(f&#039;Você tem: {idade} anos de idade&#039;)  # Mostra a idade da pessoa
+    pausa(1)  # Pausa por 1 segundo
+    
+    # Verifica se a pessoa é maior ou menor de idade e incrementa o contador correspondente.
+    if idade &gt;= 18:
+        print(&#039;\033[1;32mMaior de idade\033[m&#039;)
+        maiores += 1 
+    else:
+        print(&#039;\033[1;31mMenor de idade\033[m&#039;)
+        menores += 1
+        
+pausa(1)  # Pausa por 1 segundo
+print(f&#039;Ao todo temos {menores} menores e {maiores} maiores de idade.&#039;)  # Mostra o</code></pre>
+        </div>
+        <script>hljs.highlightAll();</script>
+      
+  </main>
+</body>
+</html>

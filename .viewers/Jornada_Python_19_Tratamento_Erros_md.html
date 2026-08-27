@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>19_Tratamento_Erros.md - Meus Estudos</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+        <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/atom-one-dark.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <style>
+          .markdown-body { font-size: 1.05rem; line-height: 1.7; color: #cbd5e1; }
+          .markdown-body h1, .markdown-body h2 { border-bottom: 1px solid var(--glass-border); padding-bottom: 0.5rem; margin-bottom: 1rem; color: #38bdf8; }
+          .markdown-body a { color: #38bdf8; text-decoration: none; }
+          .markdown-body a:hover { text-decoration: underline; }
+          .markdown-body pre { background: #1e293b; padding: 1rem; border-radius: 8px; overflow-x: auto; border: 1px solid var(--glass-border); margin: 1rem 0; }
+          .markdown-body code { font-family: monospace; color: #eab308; background: rgba(0,0,0,0.3); padding: 0.2rem 0.4rem; border-radius: 4px; }
+          .markdown-body pre code { padding: 0; background: transparent; color: inherit; }
+          .markdown-body img { max-width: 100%; border-radius: 8px; }
+          table { border-collapse: collapse; width: 100%; margin: 1rem 0; }
+          th, td { border: 1px solid var(--glass-border); padding: 0.6rem; text-align: left; }
+          th { background: rgba(255,255,255,0.05); color: #38bdf8; }
+        </style>
+      
+  <style>
+    :root {
+      --bg-color: #0b1120;
+      --glass-bg: rgba(30, 41, 59, 0.7);
+      --glass-border: rgba(255, 255, 255, 0.08);
+      --primary: #38bdf8;
+      --text-main: #f1f5f9;
+      --text-muted: #94a3b8;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
+    body { background-color: var(--bg-color); color: var(--text-main); min-height: 100vh; display: flex; flex-direction: column; }
+    header { padding: 0.8rem 2rem; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--glass-border); background: var(--glass-bg); backdrop-filter: blur(12px); position: sticky; top: 0; z-index: 100; }
+    .header-left { display: flex; align-items: center; gap: 1rem; }
+    .back-btn { color: var(--text-main); text-decoration: none; display: flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem; border-radius: 8px; background: rgba(255,255,255,0.05); font-size: 0.9rem; transition: 0.2s; }
+    .back-btn:hover { background: rgba(56, 189, 248, 0.2); color: var(--primary); }
+    .file-title { font-size: 1.1rem; font-weight: 600; color: #f8fafc; }
+    main { flex: 1; padding: 2rem; max-width: 1200px; margin: 0 auto; width: 100%; }
+    .container { background: rgba(15, 23, 42, 0.7); border: 1px solid var(--glass-border); border-radius: 16px; padding: 2rem; box-shadow: 0 10px 30px rgba(0,0,0,0.3); overflow-x: auto; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-left">
+      <a href="../index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Voltar ao Dashboard</a>
+      <div class="file-title">19_Tratamento_Erros.md</div>
+    </div>
+    <div>
+      <a href="../Jornada Python/19_Tratamento_Erros.md" download class="back-btn"><i class="fa-solid fa-download"></i> Baixar Arquivo</a>
+    </div>
+  </header>
+  <main>
+    
+        <div class="container markdown-body" id="md-content"></div>
+        <script>
+          document.getElementById('md-content').innerHTML = marked.parse(decodeURIComponent(escape(window.atob('IyBUcmF0YW1lbnRvIGRlIEVycm9zIGUgRXhjZcOnw7Vlcw0KDQojIyBFWFBMSUNBw4fDg08NCg0KTWVzbW8gbyBtZWxob3IgY8OzZGlnbyBwb2RlIGZhbGhhciAoZmFsdGEgZGUgaW50ZXJuZXQsIGFycXVpdm8gaW5leGlzdGVudGUsIGVudHJhZGEgaW52w6FsaWRhIGRvIHVzdcOhcmlvKS4gTyB0cmF0YW1lbnRvIGRlIGVycm9zIGV2aXRhIHF1ZSBvIHByb2dyYW1hICJxdWVicmUiIGJydXNjYW1lbnRlLg0KDQoxLiAqKmB0cnlgKio6IEJsb2NvIG9uZGUgY29sb2NhbW9zIG8gY8OzZGlnbyAicGVyaWdvc28iIHF1ZSBwb2RlIGZhbGhhci4NCjIuICoqYGV4Y2VwdGAqKjogQmxvY28gZXhlY3V0YWRvIHNlIG9jb3JyZXIgdW0gZXJyby4gUG9kZW1vcyBjYXB0dXJhciBlcnJvcyBlc3BlY8OtZmljb3MgKGV4OiBgWmVyb0RpdmlzaW9uRXJyb3JgKS4NCjMuICoqYGVsc2VgKio6IEV4ZWN1dGFkbyBhcGVuYXMgc2UgKipuw6NvKiogaG91dmVyIGVycm8gbm8gYHRyeWAuDQo0LiAqKmBmaW5hbGx5YCoqOiBFeGVjdXRhZG8gKipzZW1wcmUqKiwgY29tIG91IHNlbSBlcnJvICh1c2FkbyBwYXJhIGZlY2hhciBhcnF1aXZvcy9jb25leMO1ZXMpLg0KNS4gKipgcmFpc2VgKio6IFVzYWRvIHBhcmEgZm9yw6dhciBhIG9jb3Jyw6puY2lhIGRlIHVtIGVycm8gcGVyc29uYWxpemFkby4NCg0KIyMgRVhFTVBMTyBQUsOBVElDTw0KDQpgYGBweXRob24NCmRlZiBkaXZpZGlyKGEsIGIpOg0KICAgIHRyeToNCiAgICAgICAgcmVzdWx0YWRvID0gYSAvIGINCiAgICBleGNlcHQgWmVyb0RpdmlzaW9uRXJyb3I6DQogICAgICAgIHJldHVybiAiRXJybzogTsOjbyDDqSBwb3Nzw612ZWwgZGl2aWRpciBwb3IgemVybyEiDQogICAgZXhjZXB0IFR5cGVFcnJvcjoNCiAgICAgICAgcmV0dXJuICJFcnJvOiBEaWdpdGUgYXBlbmFzIG7Dum1lcm9zISINCiAgICBlbHNlOg0KICAgICAgICByZXR1cm4gZiJTdWNlc3NvISBSZXN1bHRhZG86IHtyZXN1bHRhZG99Ig0KICAgIGZpbmFsbHk6DQogICAgICAgIHByaW50KCJPcGVyYcOnw6NvIGZpbmFsaXphZGEuIikNCg0KIyBUZXN0ZXMNCnByaW50KGRpdmlkaXIoMTAsIDIpKQ0KcHJpbnQoZGl2aWRpcigxMCwgMCkpDQpwcmludChkaXZpZGlyKDEwLCAiNSIpKQ0KDQojIFJhaXNlIFBlcnNvbmFsaXphZG8NCmlkYWRlID0gLTUNCmlmIGlkYWRlIDwgMDoNCiAgICAjIHJhaXNlIFZhbHVlRXJyb3IoIkEgaWRhZGUgbsOjbyBwb2RlIHNlciBuZWdhdGl2YSEiKQ0KICAgIHByaW50KCJTaW11bGHDp8OjbyBkZSBSYWlzZTogRXJybyBkaXNwYXJhZG8hIikNCmBgYA0K'))));
+          hljs.highlightAll();
+        </script>
+      
+  </main>
+</body>
+</html>

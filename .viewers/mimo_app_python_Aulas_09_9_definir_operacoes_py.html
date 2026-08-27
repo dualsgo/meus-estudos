@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>09.9_definir_operacoes.py - Meus Estudos</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/atom-one-dark.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/python.min.js"></script>
+        <style>
+          pre { border-radius: 8px; overflow-x: auto; font-size: 0.95rem; }
+          .code-toolbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem; }
+          .btn-copy { background: rgba(56, 189, 248, 0.2); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.4); padding: 0.4rem 0.8rem; border-radius: 6px; cursor: pointer; font-size: 0.85rem; }
+          .btn-copy:hover { background: rgba(56, 189, 248, 0.4); }
+        </style>
+      
+  <style>
+    :root {
+      --bg-color: #0b1120;
+      --glass-bg: rgba(30, 41, 59, 0.7);
+      --glass-border: rgba(255, 255, 255, 0.08);
+      --primary: #38bdf8;
+      --text-main: #f1f5f9;
+      --text-muted: #94a3b8;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
+    body { background-color: var(--bg-color); color: var(--text-main); min-height: 100vh; display: flex; flex-direction: column; }
+    header { padding: 0.8rem 2rem; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--glass-border); background: var(--glass-bg); backdrop-filter: blur(12px); position: sticky; top: 0; z-index: 100; }
+    .header-left { display: flex; align-items: center; gap: 1rem; }
+    .back-btn { color: var(--text-main); text-decoration: none; display: flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem; border-radius: 8px; background: rgba(255,255,255,0.05); font-size: 0.9rem; transition: 0.2s; }
+    .back-btn:hover { background: rgba(56, 189, 248, 0.2); color: var(--primary); }
+    .file-title { font-size: 1.1rem; font-weight: 600; color: #f8fafc; }
+    main { flex: 1; padding: 2rem; max-width: 1200px; margin: 0 auto; width: 100%; }
+    .container { background: rgba(15, 23, 42, 0.7); border: 1px solid var(--glass-border); border-radius: 16px; padding: 2rem; box-shadow: 0 10px 30px rgba(0,0,0,0.3); overflow-x: auto; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-left">
+      <a href="../index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Voltar ao Dashboard</a>
+      <div class="file-title">09.9_definir_operacoes.py</div>
+    </div>
+    <div>
+      <a href="../mimo_app/python/Aulas/09.9_definir_operacoes.py" download class="back-btn"><i class="fa-solid fa-download"></i> Baixar Arquivo</a>
+    </div>
+  </header>
+  <main>
+    
+        <div class="container">
+          <div class="code-toolbar">
+            <span style="color: #38bdf8; font-weight: 600;"><i class="fa-brands fa-python"></i> 09.9_definir_operacoes.py</span>
+            <button class="btn-copy" onclick="navigator.clipboard.writeText(document.getElementById('py-code').innerText); this.innerText='Copiado!'; setTimeout(()=>this.innerText='Copiar Código', 2000)"><i class="fa-regular fa-copy"></i> Copiar Código</button>
+          </div>
+          <pre><code class="language-python" id="py-code"># MIMO - 09 - Tuplas, dicionários e conjuntos
+# 09.1 - Definir operações
+
+# Assim como listas, podemos obter o tamanho de um conjunto com a instrução len()
+# Quando todos os elementos de um conjunto estão presentes em outro, dizemos que este é um subconjunto do outro.
+numeros = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9} # Todos os números
+pares = {0, 2, 4, 6, 8} # Apenas os pares
+
+# Para verificar isso, usamos a instrução .issubset() com o conjunto que queremos verificar entre os parênteses
+
+# .issubset() retorna True se o conjunto da esquerda for um subconjunto do da direita e False caso contráro
+
+# Todos os elementos do conjunto nums estão no conjunto pares?
+print(numeros.issubset(pares)) # False - 1, 3, 5, 7, 9 não estão em pares
+# Todos os elementos do conjunto pares estão no conjunto &#039;nums&#039;?
+print(pares.issubset(numeros)) # True - são eles: 0, 2, 4, 6, 8
+
+# Podemos salvar o boolean fornecido em uma variável.
+
+# Podemos usar a instrução .issuperset() para verificar se um conjunto contém todos os elementos de outro conjunto.
+# .issuperset() retorna True se o conjunto da esquerda contiver todos os elementos do conjunto da direita e False caso contrário.
+
+# Todos os elementos do conjunto nums estão no conjunto pares?
+print(numeros.issuperset(pares)) # True - são eles: 0, 2, 4, 6, 8
+# Todos os elementos do conjunto pares estão no conjunto &#039;nums&#039;?
+print(pares.issuperset(numeros)) # False - 1, 3, 5, 7, 9 não estão em pares
+
+# Podemos juntar dois conjuntos usando a instrução .union()
+
+pares = {0, 2, 4, 6, 8}
+impares = {1, 3, 5, 7, 9}
+# .union() nos dá um novo conjunto com todos os elementos dos conjuntos originais
+nums = impares.union(pares)
+print(f&#039;União: {nums}&#039;) # {0, 1, 2, 3, 4, 5, 6, 7, 8, 9}
+# .union() nos da um novo conjunto, sem duplicatas, mesmo que alguns elementos estejam em ambos os conjuntos originais.
+nums = pares.union(impares)
+print(f&#039;União: {nums}&#039;) # {0, 1, 2, 3, 4, 5, 6, 7, 8, 9}
+
+# Da mesma forma, podemos criar um conjunto com os elementos que estão em ambos os conjuntos (interseção) com .intersection()
+
+conjunto_a = {&#039;a&#039;, &#039;e&#039;, &#039;i&#039;, &#039;o&#039;, &#039;u&#039;}
+conjunto_b = {&#039;a&#039;, &#039;b&#039;, &#039;c&#039;, &#039;d&#039;, &#039;e&#039;, &#039;f&#039;, &#039;g&#039;, &#039;h&#039;}
+# .intersection() nos dá um novo conjunto com os elementos que estão em ambos os conjuntos originais
+vogais = conjunto_a.intersection(conjunto_b)
+print(f&#039;Vogais: {vogais}&#039;) # {&#039;a&#039;, &#039;e&#039;}
+
+# .intersection() nos da um novo conjunto, sem duplicatas, mesmo que alguns elementos estejam em ambos os conjuntos originais.
+vogais = conjunto_b.intersection(conjunto_a)
+print(f&#039;Vogais: {vogais}&#039;) # {&#039;a&#039;, &#039;e&#039;}
+
+# Enquanto .union() nos fornece todos os elementos, .intersection() nos fornece apenas os elementos em comum.
+
+# Podemos salvar os conjuntos dados por union() e intersection() em variáveis
+
+
+# Para obter um conjunto de elementos que estão presentes em um conjunto, mas não em outro, utilizamos a instrução .difference()
+# A instrução nos dá os elementos que o conjunto da esquerda tem, mas que o conjunto da direita não tem
+conjunto_a = {&#039;a&#039;, &#039;e&#039;, &#039;i&#039;, &#039;o&#039;, &#039;u&#039;}
+conjunto_b = {&#039;a&#039;, &#039;b&#039;, &#039;c&#039;, &#039;d&#039;, &#039;e&#039;, &#039;f&#039;, &#039;g&#039;, &#039;h&#039;}
+# .difference() nos dá um novo conjunto com os elementos que estão no conjunto da esquerda, mas não no da direita
+print(f&#039;Tem no a mas não no b: {conjunto_a.difference(conjunto_b)}&#039;) # {&#039;i&#039;, &#039;o&#039;, &#039;u&#039;}
+# .difference() nos da um novo conjunto, sem duplicatas, mesmo que alguns elementos estejam em ambos os conjuntos originais.
+print(f&#039;Tem no b mas não no a: {conjunto_b.difference(conjunto_a)}&#039;) # {&#039;c&#039;, &#039;d&#039;, &#039;f&#039;, &#039;g&#039;, &#039;h&#039;, &#039;b&#039;}
+
+# Como antes, podemos salvar esse resultado em uma variável se necessário
+</code></pre>
+        </div>
+        <script>hljs.highlightAll();</script>
+      
+  </main>
+</body>
+</html>

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>72_desafio.py - Meus Estudos</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/atom-one-dark.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/python.min.js"></script>
+        <style>
+          pre { border-radius: 8px; overflow-x: auto; font-size: 0.95rem; }
+          .code-toolbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem; }
+          .btn-copy { background: rgba(56, 189, 248, 0.2); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.4); padding: 0.4rem 0.8rem; border-radius: 6px; cursor: pointer; font-size: 0.85rem; }
+          .btn-copy:hover { background: rgba(56, 189, 248, 0.4); }
+        </style>
+      
+  <style>
+    :root {
+      --bg-color: #0b1120;
+      --glass-bg: rgba(30, 41, 59, 0.7);
+      --glass-border: rgba(255, 255, 255, 0.08);
+      --primary: #38bdf8;
+      --text-main: #f1f5f9;
+      --text-muted: #94a3b8;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
+    body { background-color: var(--bg-color); color: var(--text-main); min-height: 100vh; display: flex; flex-direction: column; }
+    header { padding: 0.8rem 2rem; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--glass-border); background: var(--glass-bg); backdrop-filter: blur(12px); position: sticky; top: 0; z-index: 100; }
+    .header-left { display: flex; align-items: center; gap: 1rem; }
+    .back-btn { color: var(--text-main); text-decoration: none; display: flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem; border-radius: 8px; background: rgba(255,255,255,0.05); font-size: 0.9rem; transition: 0.2s; }
+    .back-btn:hover { background: rgba(56, 189, 248, 0.2); color: var(--primary); }
+    .file-title { font-size: 1.1rem; font-weight: 600; color: #f8fafc; }
+    main { flex: 1; padding: 2rem; max-width: 1200px; margin: 0 auto; width: 100%; }
+    .container { background: rgba(15, 23, 42, 0.7); border: 1px solid var(--glass-border); border-radius: 16px; padding: 2rem; box-shadow: 0 10px 30px rgba(0,0,0,0.3); overflow-x: auto; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-left">
+      <a href="../index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Voltar ao Dashboard</a>
+      <div class="file-title">72_desafio.py</div>
+    </div>
+    <div>
+      <a href="../cursoemvideo_python/Curso de Python 3 - Mundo 3 Estruturas Compostas/Curso Python #016 - Tuplas/72_desafio.py" download class="back-btn"><i class="fa-solid fa-download"></i> Baixar Arquivo</a>
+    </div>
+  </header>
+  <main>
+    
+        <div class="container">
+          <div class="code-toolbar">
+            <span style="color: #38bdf8; font-weight: 600;"><i class="fa-brands fa-python"></i> 72_desafio.py</span>
+            <button class="btn-copy" onclick="navigator.clipboard.writeText(document.getElementById('py-code').innerText); this.innerText='Copiado!'; setTimeout(()=>this.innerText='Copiar Código', 2000)"><i class="fa-regular fa-copy"></i> Copiar Código</button>
+          </div>
+          <pre><code class="language-python" id="py-code"># Exercício Python #072 - Número por Extenso - Aula 00 até 16 - Mundo 3
+# Crie um programa que tenha uma dupla totalmente preenchida com uma contagem por extenso, de zero até vinte. Seu programa deverá ler um número pelo teclado (entre 0 e 20) e mostrá-lo por extenso.
+
+from calendar import c
+
+
+extenso = (&#039;Zero&#039;, &#039;Um&#039;, &#039;Dois&#039;, &#039;Três&#039;, &#039;Quatro&#039;, &#039;Cinco&#039;, &#039;Seis&#039;, &#039;Sete&#039;, &#039;Oito&#039;, &#039;Nove&#039;, &#039;Dez&#039;, &#039;Onze&#039;, &#039;Doze&#039;, &#039;Treze&#039;, &#039;Quatorze&#039;, &#039;Quinze&#039;, &#039;Dezesseis&#039;, &#039;Dezessete&#039;, &#039;Dezoito&#039;, &#039;Dezenove&#039;, &#039;Vinte&#039;)
+
+while True:
+	try:
+		print(f&quot;Você digitou o número {extenso[int(input(&#039;Digite um valor entre 0 e 20: &#039;))]}&quot;)
+		continuar = str(input(&#039;Continuar? S/N &#039;)).strip().upper()
+		if continuar not in &#039;Ss&#039;:
+			break
+	except IndexError:
+		print(&#039;Somente valores entre 0 e 20&#039;)
+	except ValueError:
+		print(&#039;Apenas valores numéricos.&#039;)
+
+# Versão 2
+
+numeros_por_extenso = (
+	&#039;zero&#039;, &#039;um&#039;, &#039;dois&#039;, &#039;três&#039;, &#039;quatro&#039;, &#039;cinco&#039;,
+	&#039;seis&#039;, &#039;sete&#039;, &#039;oito&#039;, &#039;nove&#039;, &#039;dez&#039;, &#039;onze&#039;,
+	&#039;doze&#039;, &#039;treze&#039;, &#039;quatorze&#039;, &#039;quinze&#039;, &#039;dezesseis&#039;,
+	&#039;dezessete&#039;, &#039;dezoito&#039;, &#039;dezenove&#039;, &#039;vinte&#039;
+)
+
+while True:
+	try:
+		numero = int(input(&#039;Digite um valor entre 0 e 20: &#039;))
+		if 0 &lt;= numero &lt;= 20:
+			break
+		else:
+			print(&quot;Inválido&quot;)
+	except ValueError:
+		print(&#039;Este valor é de um tipo de dado inválido para essa operação!&#039;)
+
+resultado = f&#039;O número {numero} por extenso é: {numeros_por_extenso[numero]}&#039;
+tamanho = len(resultado)
+print(resultado)
+print(f&#039;{&quot;-&quot; * tamanho}&#039;)
+
+# Estou compartilhando minhas anotações sobre os exercícios. Quem quiser, pode copiar e colar em um documento .py pois está tudo formatado e comentado.
+
+# Nessse exercício, vamos criar um programa que tenha uma tupla totalmente preenchida com uma contagem por extenso, de zero até vinte. O programa deve ler um número pelo teclado (entre 0 e 20) e mostrar o número por extenso.
+
+# Primeiro vamos criar uma tupla com os números por extenso. Uma tupla é uma coleção de objetos imutável, ou seja, não podemos alterar os valores de uma tupla.
+
+números_por_extenso = (&#039;Zero&#039;, &#039;Um&#039;, &#039;Dois&#039;, &#039;Três&#039;, &#039;Quatro&#039;, &#039;Cinco&#039;, &#039;Seis&#039;, &#039;Sete&#039;, &#039;Oito&#039;, &#039;Nove&#039;, &#039;Dez&#039;, &#039;Onze&#039;, &#039;Doze&#039;, &#039;Treze&#039;, &#039;Quatorze&#039;, &#039;Quinze&#039;, &#039;Dezesseis&#039;, &#039;Dezessete&#039;, &#039;Dezoito&#039;, &#039;Dezenove&#039;, &#039;Vinte&#039;)
+
+# Vamos criar um laço de repetição para que o programa continue rodando até que o usuário decida parar.
+
+while True:
+	número = int(input(&#039;Digite um valor entre 0 e 20: &#039;))
+
+	# Vamos verificar se o número digitado está dentro do intervalo de 0 a 20.
+	if 0 &lt;= número &lt;= 20:
+		# Se estiver, vamos mostrar o número por extenso.
+		print(f&#039;Você digitou o número {números_por_extenso[número]}&#039;)
+	else:
+		# Se não estiver, vamos mostrar uma mensagem de erro.
+		print(&#039;Tente novamente. &#039;, end=&#039;&#039;)
+
+		continue # Se o número não estiver entre os valores aceitos o fluxo do programa irár retornar para o início do laço, ignorando o código abaixo.
+
+	# Vamos perguntar ao usuário se ele deseja continuar.
+	continuar = str(input(&#039;Continuar? S/N &#039;)).strip().upper()
+
+	# Se a resposta for diferente de &#039;S&#039;, o programa vai parar.
+	if continuar not in &#039;Ss&#039;:
+		break
+</code></pre>
+        </div>
+        <script>hljs.highlightAll();</script>
+      
+  </main>
+</body>
+</html>

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>15_desafio.py - Meus Estudos</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/atom-one-dark.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/python.min.js"></script>
+        <style>
+          pre { border-radius: 8px; overflow-x: auto; font-size: 0.95rem; }
+          .code-toolbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem; }
+          .btn-copy { background: rgba(56, 189, 248, 0.2); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.4); padding: 0.4rem 0.8rem; border-radius: 6px; cursor: pointer; font-size: 0.85rem; }
+          .btn-copy:hover { background: rgba(56, 189, 248, 0.4); }
+        </style>
+      
+  <style>
+    :root {
+      --bg-color: #0b1120;
+      --glass-bg: rgba(30, 41, 59, 0.7);
+      --glass-border: rgba(255, 255, 255, 0.08);
+      --primary: #38bdf8;
+      --text-main: #f1f5f9;
+      --text-muted: #94a3b8;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
+    body { background-color: var(--bg-color); color: var(--text-main); min-height: 100vh; display: flex; flex-direction: column; }
+    header { padding: 0.8rem 2rem; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--glass-border); background: var(--glass-bg); backdrop-filter: blur(12px); position: sticky; top: 0; z-index: 100; }
+    .header-left { display: flex; align-items: center; gap: 1rem; }
+    .back-btn { color: var(--text-main); text-decoration: none; display: flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem; border-radius: 8px; background: rgba(255,255,255,0.05); font-size: 0.9rem; transition: 0.2s; }
+    .back-btn:hover { background: rgba(56, 189, 248, 0.2); color: var(--primary); }
+    .file-title { font-size: 1.1rem; font-weight: 600; color: #f8fafc; }
+    main { flex: 1; padding: 2rem; max-width: 1200px; margin: 0 auto; width: 100%; }
+    .container { background: rgba(15, 23, 42, 0.7); border: 1px solid var(--glass-border); border-radius: 16px; padding: 2rem; box-shadow: 0 10px 30px rgba(0,0,0,0.3); overflow-x: auto; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-left">
+      <a href="../index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Voltar ao Dashboard</a>
+      <div class="file-title">15_desafio.py</div>
+    </div>
+    <div>
+      <a href="../cursoemvideo_python/Curso de Python 3 - Mundo 1 Fundamentos/Curso Python #07 - Operadores Aritméticos/15_desafio.py" download class="back-btn"><i class="fa-solid fa-download"></i> Baixar Arquivo</a>
+    </div>
+  </header>
+  <main>
+    
+        <div class="container">
+          <div class="code-toolbar">
+            <span style="color: #38bdf8; font-weight: 600;"><i class="fa-brands fa-python"></i> 15_desafio.py</span>
+            <button class="btn-copy" onclick="navigator.clipboard.writeText(document.getElementById('py-code').innerText); this.innerText='Copiado!'; setTimeout(()=>this.innerText='Copiar Código', 2000)"><i class="fa-regular fa-copy"></i> Copiar Código</button>
+          </div>
+          <pre><code class="language-python" id="py-code"># Exercício Python #015 - Aluguel de Carros - Aula 00 até 07 - Mundo 1
+# Escreva um programa que pergunte a quantidade de Km percorridos por um carro alugado e a quantidade de dias pelos quais ele foi alugado. Calcule o preço a pagar, sabendo que o carro custa R$ 60,00 por dia e R$ 0,15 por Km rodado.
+
+from emoji import emojize
+
+
+def obter_valores(mensagem):
+	while True:
+		try:
+			return float(input(mensagem))
+		except ValueError:
+			print(emojize(&#039;:xis: Tente novamente. :xis:&#039;, language=&#039;pt&#039;))
+
+
+def total_a_pagar(km, dias):
+	valor_por_km = .15
+	valor_diária = 60
+
+	total_km = km * valor_por_km
+	total_diária = dias * valor_diária
+
+	total = total_km + total_diária
+
+	print(
+		f&#039;{&quot;Km percorrido:&quot;:&lt;20}{km:&gt;10.1f}\n&#039;
+		f&#039;{&quot;Valor (Km):&quot;:&lt;20}\033[1;32mR${total_km:&gt;8.2f}\033[m\n{&quot;-&quot; * 30}\n&#039;
+		f&#039;{&quot;Dias alugado:&quot;:&lt;20}{int(dias):&gt;10}\n&#039;
+		f&#039;{&quot;Valor (Dias)&quot;:&lt;20}\033[1;32mR${total_diária:&gt;8.2f}\033[m\n{&quot;-&quot; * 30}\n&#039;
+		f&#039;{&quot;Total a pagar&quot;:&lt;20}\033[1;31mR${total:&gt;8.2f}\033[m&#039;)
+
+
+km_percorrido = obter_valores(emojize(&#039;:carro: Quantidade de KM percorridos: &#039;, language=&#039;pt&#039;))
+dias_alugado = obter_valores(emojize(&#039;:calendário: Quantidade de DIAS alugados: &#039;, language=&#039;pt&#039;))
+total_a_pagar(km_percorrido, dias_alugado)
+
+
+# Estou compartilhando minhas anotações sobre os exercícios. Quem quiser, pode copiar e colar em um documento .py pois está tudo formatado e comentado.
+
+# Nesse exercício, o programa solicita ao usuário a quantidade de quilômetros percorridos por um carro alugado e a quantidade de dias pelos quais ele foi alugado. O programa calcula o preço a pagar, considerando que o carro custa R$ 60,00 por dia e R$ 0,15 por quilômetro rodado.
+
+# Como o exercício envolve várias operações, é recomendado fazer por partes. Primeiro, solicite a quantidade de quilômetros percorridos e a quantidade de dias alugados ao usuário. Utilize a função input() para solicitar os valores e a função float() para converter os valores em números de ponto flutuante e int() para converter em números inteiros.
+
+quilometros_percorridos = float(input(&#039;Quantos quilômetros foram percorridos? &#039;)) # Para quilometros usamos float pois pode ser um número decimal
+dias_alugado = int(input(&#039;Por quantos dias o carro foi alugado? &#039;)) # Para dias usamos int pois não faz sentido alugar um carro por um número decimal de dias
+
+# Depois, calcule o valor a pagar por quilômetro rodado e o valor a pagar por dia alugado. O valor a pagar por quilômetro rodado é a quantidade de quilômetros percorridos multiplicada por R$ 0,15. O valor a pagar por dia alugado é a quantidade de dias alugados multiplicada por R$ 60,00.
+
+# NOTA: Podemos salvar esses valores em variáveis para facilitar a leitura do código e eventualmente reutilizá-los em outras partes do programa, ou atualizá-los facilmente se necessário.
+
+valor_por_km = 0.15
+valor_diária = 60
+
+# Calculando o valor total por quilômetro rodado e por dia alugado
+total_km = quilometros_percorridos * valor_por_km
+total_diária = dias_alugado * valor_diária
+
+# Por fim, some os valores obtidos para calcular o total a pagar. O total a pagar é a soma do valor total por quilômetro rodado e do valor total por dia alugado.
+
+total = total_km + total_diária
+
+# Exiba o total a pagar na tela. Você pode formatar a saída para exibir os valores de forma mais clara e legível.
+
+print(f&#039;{&quot;Km percorrido:&quot;:&lt;20}{quilometros_percorridos:&gt;10.1f}\n&#039;
+	f&#039;{&quot;Valor (Km):&quot;:&lt;20}R${total_km:&gt;8.2f}\n{&quot;-&quot; * 30}\n&#039;
+	f&#039;{&quot;Dias alugado:&quot;:&lt;20}{dias_alugado:&gt;10}\n&#039;
+	f&#039;{&quot;Valor (Dias)&quot;:&lt;20}R${total_diária:&gt;8.2f}\n{&quot;-&quot; * 30}\n&#039;
+	f&#039;{&quot;Total a pagar&quot;:&lt;20}R${total:&gt;8.2f}&#039;)
+
+# Utilizamos uma exibição diferente do print() para mostrar os valores. Isso é opcional e pode ser feito de acordo com a preferência do programador. Nessa versão utilizamos o operador de escape \n para pular linhas. O resultado é o mesmo, mas a formatação é diferente.
+
+# Podemos codificar cada frase em uma instrução print() separada se acharmos mais fácil de entender. A formatação do texto é uma questão de estilo e preferência pessoal.
+
+# Sobre o operador de escape \n: ele é utilizado para pular uma linha na exibição do texto. Isso é útil para organizar a saída do programa e torná-la mais legível. O \n é um caractere especial que indica ao interpretador Python que ele deve pular para a próxima linha ao exibir o texto. A função print() possui um argumento opcional chamado end que permite alterar o caractere de final de linha padrão. Por padrão, o caractere de final de linha é \n, é e por isso que cada chamada de print() imprime em uma nova linha. Se quisermos alterar o caractere de final de linha, podemos fazer o seguinte:
+
+# print(&#039;Olá&#039;, end=&#039; &#039;)
+# print(&#039;mundo!&#039;)
+
+# Nesse caso, a saída será Olá mundo! sem pular para a próxima linha. O end=&#039; &#039; substitui o caractere de final de linha padrão \n por um espaço em branco. Isso é útil para concatenar strings em uma única linha ou para controlar a formatação da saída.</code></pre>
+        </div>
+        <script>hljs.highlightAll();</script>
+      
+  </main>
+</body>
+</html>

@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>70_desafio.py - Meus Estudos</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/atom-one-dark.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/python.min.js"></script>
+        <style>
+          pre { border-radius: 8px; overflow-x: auto; font-size: 0.95rem; }
+          .code-toolbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem; }
+          .btn-copy { background: rgba(56, 189, 248, 0.2); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.4); padding: 0.4rem 0.8rem; border-radius: 6px; cursor: pointer; font-size: 0.85rem; }
+          .btn-copy:hover { background: rgba(56, 189, 248, 0.4); }
+        </style>
+      
+  <style>
+    :root {
+      --bg-color: #0b1120;
+      --glass-bg: rgba(30, 41, 59, 0.7);
+      --glass-border: rgba(255, 255, 255, 0.08);
+      --primary: #38bdf8;
+      --text-main: #f1f5f9;
+      --text-muted: #94a3b8;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
+    body { background-color: var(--bg-color); color: var(--text-main); min-height: 100vh; display: flex; flex-direction: column; }
+    header { padding: 0.8rem 2rem; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--glass-border); background: var(--glass-bg); backdrop-filter: blur(12px); position: sticky; top: 0; z-index: 100; }
+    .header-left { display: flex; align-items: center; gap: 1rem; }
+    .back-btn { color: var(--text-main); text-decoration: none; display: flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem; border-radius: 8px; background: rgba(255,255,255,0.05); font-size: 0.9rem; transition: 0.2s; }
+    .back-btn:hover { background: rgba(56, 189, 248, 0.2); color: var(--primary); }
+    .file-title { font-size: 1.1rem; font-weight: 600; color: #f8fafc; }
+    main { flex: 1; padding: 2rem; max-width: 1200px; margin: 0 auto; width: 100%; }
+    .container { background: rgba(15, 23, 42, 0.7); border: 1px solid var(--glass-border); border-radius: 16px; padding: 2rem; box-shadow: 0 10px 30px rgba(0,0,0,0.3); overflow-x: auto; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-left">
+      <a href="../index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Voltar ao Dashboard</a>
+      <div class="file-title">70_desafio.py</div>
+    </div>
+    <div>
+      <a href="../cursoemvideo_python/Curso de Python 3 - Mundo 2 Estruturas de Controle/Curso Python #015 - Interrompendo repetições while/70_desafio.py" download class="back-btn"><i class="fa-solid fa-download"></i> Baixar Arquivo</a>
+    </div>
+  </header>
+  <main>
+    
+        <div class="container">
+          <div class="code-toolbar">
+            <span style="color: #38bdf8; font-weight: 600;"><i class="fa-brands fa-python"></i> 70_desafio.py</span>
+            <button class="btn-copy" onclick="navigator.clipboard.writeText(document.getElementById('py-code').innerText); this.innerText='Copiado!'; setTimeout(()=>this.innerText='Copiar Código', 2000)"><i class="fa-regular fa-copy"></i> Copiar Código</button>
+          </div>
+          <pre><code class="language-python" id="py-code"># Exercício Python #070 - Estatísticas em produtos - Aula 00 até 15 - Mundo 2
+#  Crie um programa que leia o nome e o preço de vários produtos. O programa deverá perguntar se o usuário vai continuar ou não. No final, mostre:
+# A) qual é o total gasto na compra.
+# B) quantos produtos custam mais de R$1000.
+# C) qual é o nome do produto mais barato.
+
+cadastros = quantidade_produtos_mais_mil = valor_total = valor_produto_mais_mil = 0
+descrição_mais_barato = descrição_produto_mais_mil = &#039;&#039;
+valor_produto_mais_barato = float(&#039;+inf&#039;)
+def obter_preço(mensagem):
+	try:
+		return float(input(mensagem))
+	except ValueError:
+		print(&#039;Dados inválidos&#039;)
+
+
+print(f&#039;{&#039;-&#039;*30}&#039;)
+print(f&#039;{&#039;CADASTRO DE PRODUTOS&#039;:^30}&#039;)
+print(f&#039;{&#039;-&#039;*30}&#039;)
+
+while True:
+	descrição = input(&#039;Descrição do produto: &#039;).strip().upper()
+	valor = obter_preço(&#039;Valor do produto: R$ &#039;)
+
+	if valor &lt; valor_produto_mais_barato: # type: ignore
+		valor_produto_mais_barato = valor
+		descrição_mais_barato = descrição
+
+	if valor &gt; 1000: # type: ignore
+		quantidade_produtos_mais_mil += 1
+		descrição_produto_mais_mil = descrição
+		valor_produto_mais_mil = valor
+	print(&#039;Cadastro realizado com sucesso!&#039;)
+	print(f&#039;{&#039;Descrição:&#039;:&lt;20}{descrição:&gt;25}\n{&#039;Valor:&#039;:&lt;20}{f&#039;{&#039;R$&#039;:&gt;15}{valor:&gt;10.2f}&#039;}&#039;)
+	print(f&#039;{&#039;-&#039; * 45}&#039;)
+	valor_total += valor # type: ignore
+	continuar = input(&#039;Digite S para continuar ou N para encerrar: S / N&#039;).strip().upper()
+	while continuar not in [&#039;S&#039;, &#039;N&#039;]:
+		print(&#039;Você escolheu uma opção inválida@!&#039;)
+		continuar = input(&#039;Digite S para continuar ou N para encerrar: S / N&#039;).strip().upper()
+	print(f&#039;{&#039;-&#039; * 45}&#039;)
+	if continuar == &#039;S&#039;:
+		print(&#039;Próximo cadastro: &#039;)
+
+	else:
+		print(&#039;Encerrando o programa...&#039;)
+		break
+
+print(f&#039;{&#039;-&#039; * 45}&#039;)
+print(f&#039;{&#039;VALOR TOTAL&#039;:^45}&#039;)
+print(f&#039;{&#039;-&#039; * 45}&#039;)
+print(f&#039;{&#039;Valor total:&#039;:&lt;30}{f&#039;{&#039;R$&#039;:&gt;5}{valor_total:&gt;10.2f}&#039;}&#039;)
+print(f&#039;{&#039;-&#039; * 45}&#039;)
+print(f&#039;{&#039;Produtos que custam mais de MIL REAIS:&#039;:&lt;40} {quantidade_produtos_mais_mil:&gt;5}&#039;)
+print(f&#039;{&#039;-&#039; * 45}&#039;)
+print(f&#039;{&#039;PRODUTO MAIS BARATO&#039;:^45}&#039;)
+print(f&#039;{&#039;Descrição:&#039;:&lt;20}{descrição_mais_barato:&gt;25}\n{&#039;Valor:&#039;:&lt;20}{f&#039;{&#039;R$&#039;:&gt;15}{valor_produto_mais_barato:&gt;10.2f}&#039;}&#039;)
+
+# Estou compartilhando minhas anotações sobre os exercícios. Quem quiser, pode copiar e colar em um documento .py pois está tudo formatado e comentado.
+
+# Nesse exercício, vamos criar um programa que leia o nome e o preço de vários produtos. O programa deverá perguntar se o usuário vai continuar ou não. No final, o programa deve mostrar:
+
+# A) qual é o total gasto na compra.
+# B) quantos produtos custam mais de R$1000.
+# C) qual é o nome do produto mais barato.
+
+# Primeiro vamos criar as variáveis que serão utilizadas no programa.
+
+# cadastros: contador de produtos cadastrados.
+cadastros = 0	
+# quantidade_produtos_mais_mil: contador de produtos que custam mais de R$1000.
+quantidade_produtos_mais_mil = 0
+# valor_total: acumulador do valor total gasto na compra.
+valor_total = 0
+# valor_produto_mais_mil: valor do produto mais caro.
+valor_produto_mais_mil = 0
+# descrição_mais_barato: nome do produto mais barato. Será inicializado com uma string vazia.
+descrição_mais_barato = &#039;&#039;
+# descrição_produto_mais_mil: nome do produto mais caro. Será inicializado com uma string vazia.
+descrição_produto_mais_mil = &#039;&#039;
+# valor_produto_mais_barato: valor do produto mais barato. Será inicializado com infinito, assim qualquer valor digitado será menor que ele.
+valor_produto_mais_barato = float(&#039;+inf&#039;)
+
+# NOTA: Para as variáveis que iniciaram com zero, poderemos também atribuir em uma linha só
+# cadastros, quantidade_produtos_mais_mil, valor_total, valor_produto_mais_mil = 0, 0, 0, 0
+# ou cadastros = quantidade_produtos_mais_mil = valor_total = valor_produto_mais_mil = 0
+
+# Seguindo com o código, vamos inciar o programa com um cabeçalho.
+print(&#039;-&#039; * 30)
+print(&#039;CADASTRO DE PRODUTOS&#039;.center(30))
+print(&#039;-&#039; * 30)
+
+# Vamos criar um laço while True para que o programa fique em loop até que o usuário decida encerrá-lo.
+while True:
+	# Dentro do laço while, vamos pedir para o usuário digitar a descrição do produto. Tratamos a descrição com o método strip() para remover espaços em branco no início e no final da string, e com o método upper() para transformar a descrição em letras maiúsculas.
+	descrição = input(&#039;Descrição do produto: &#039;).strip().upper()
+	# Vamos pedir para o usuário digitar o valor do produto.
+	valor = float(input(&#039;Valor do produto: R$ &#039;))
+
+	# Vamos verificar se o valor do produto é menor que o valor do produto mais barato.
+	# Obs.: A primeira vez que o usuário digitar um valor, ele será menor que infinito, então a condição será verdadeira e isso atualizará o valor do produto mais barato.
+	if valor &lt; valor_produto_mais_barato:
+		# Se for, a variável valor_produto_mais_barato vai receber o valor do produto e a variável descrição_mais_barato vai receber a descrição do produto.
+		valor_produto_mais_barato = valor
+		descrição_mais_barato = descrição
+
+	# Vamos verificar se o valor do produto é maior que R$1000.
+	if valor &gt; 1000:
+		# Se for, a variável quantidade_produtos_mais_mil vai receber mais 1 e as variáveis descrição_produto_mais_mil e valor_produto_mais_mil vão receber a descrição e o valor do produto.
+		quantidade_produtos_mais_mil += 1
+		descrição_produto_mais_mil = descrição
+		valor_produto_mais_mil = valor
+
+	# Vamos exibir uma mensagem de sucesso.
+	print(&#039;Cadastro realizado com sucesso!&#039;)
+	print(f&#039;Descrição: {descrição:&gt;25}\nValor: {&quot;R$&quot;:&gt;15}{valor:&gt;10.2f}&#039;)
+	print(&#039;-&#039; * 45)
+
+	# A variável valor_total vai acumular o valor do produto.
+	valor_total += valor
+
+	# Vamos perguntar ao usuário se ele deseja continuar.
+	continuar = input(&#039;Digite S para continuar ou N para encerrar: &#039;).strip().upper()
+
+	# Vamos criar um laço while para garantir que o usuário digite apenas S ou N.
+	while continuar not in [&#039;S&#039;, &#039;N&#039;]:
+		# Se a resposta for diferente de S ou N, o programa vai exibir uma mensagem de erro e pedir para o usuário digitar novamente.
+		print(&#039;Você escolheu uma opção inválida!&#039;)
+		continuar = input(&#039;Digite S para continuar ou N para encerrar: &#039;).strip().upper()
+
+	print(&#039;-&#039; * 45)
+
+	# Se o usuário escolher continuar, o programa vai pedir para ele fazer um novo cadastro.
+	if continuar == &#039;S&#039;:
+		print(&#039;Próximo cadastro: &#039;)
+
+	# Se o usuário escolher encerrar, o programa vai exibir uma mensagem de encerramento e sair do laço while.
+	else:
+		print(&#039;Encerrando o programa...&#039;)
+		break
+
+# Vamos exibir o valor total gasto na compra.
+print(&#039;-&#039; * 45)
+print(&#039;VALOR TOTAL&#039;.center(45))
+print(&#039;-&#039; * 45)
+print(f&#039;Valor total: {&quot;R$&quot;:&gt;5}{valor_total:&gt;10.2f}&#039;)
+print(&#039;-&#039; * 45)
+
+# Vamos exibir a quantidade de produtos que custam mais de R$1000.
+print(f&#039;Produtos que custam mais de MIL REAIS: {quantidade_produtos_mais_mil:&gt;5}&#039;)
+print(&#039;-&#039; * 45)
+
+# Vamos exibir o produto mais barato.
+print(&#039;PRODUTO MAIS BARATO&#039;.center(45))
+print(f&#039;Descrição: {descrição_mais_barato:&gt;25}\nValor: {&quot;R$&quot;:&gt;15}{valor_produto_mais_barato:&gt;10.2f}&#039;)
+</code></pre>
+        </div>
+        <script>hljs.highlightAll();</script>
+      
+  </main>
+</body>
+</html>

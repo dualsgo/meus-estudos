@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>09.5_usando_dicionarios.py - Meus Estudos</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/atom-one-dark.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/python.min.js"></script>
+        <style>
+          pre { border-radius: 8px; overflow-x: auto; font-size: 0.95rem; }
+          .code-toolbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem; }
+          .btn-copy { background: rgba(56, 189, 248, 0.2); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.4); padding: 0.4rem 0.8rem; border-radius: 6px; cursor: pointer; font-size: 0.85rem; }
+          .btn-copy:hover { background: rgba(56, 189, 248, 0.4); }
+        </style>
+      
+  <style>
+    :root {
+      --bg-color: #0b1120;
+      --glass-bg: rgba(30, 41, 59, 0.7);
+      --glass-border: rgba(255, 255, 255, 0.08);
+      --primary: #38bdf8;
+      --text-main: #f1f5f9;
+      --text-muted: #94a3b8;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
+    body { background-color: var(--bg-color); color: var(--text-main); min-height: 100vh; display: flex; flex-direction: column; }
+    header { padding: 0.8rem 2rem; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--glass-border); background: var(--glass-bg); backdrop-filter: blur(12px); position: sticky; top: 0; z-index: 100; }
+    .header-left { display: flex; align-items: center; gap: 1rem; }
+    .back-btn { color: var(--text-main); text-decoration: none; display: flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem; border-radius: 8px; background: rgba(255,255,255,0.05); font-size: 0.9rem; transition: 0.2s; }
+    .back-btn:hover { background: rgba(56, 189, 248, 0.2); color: var(--primary); }
+    .file-title { font-size: 1.1rem; font-weight: 600; color: #f8fafc; }
+    main { flex: 1; padding: 2rem; max-width: 1200px; margin: 0 auto; width: 100%; }
+    .container { background: rgba(15, 23, 42, 0.7); border: 1px solid var(--glass-border); border-radius: 16px; padding: 2rem; box-shadow: 0 10px 30px rgba(0,0,0,0.3); overflow-x: auto; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-left">
+      <a href="../index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Voltar ao Dashboard</a>
+      <div class="file-title">09.5_usando_dicionarios.py</div>
+    </div>
+    <div>
+      <a href="../mimo_app/python/Aulas/09.5_usando_dicionarios.py" download class="back-btn"><i class="fa-solid fa-download"></i> Baixar Arquivo</a>
+    </div>
+  </header>
+  <main>
+    
+        <div class="container">
+          <div class="code-toolbar">
+            <span style="color: #38bdf8; font-weight: 600;"><i class="fa-brands fa-python"></i> 09.5_usando_dicionarios.py</span>
+            <button class="btn-copy" onclick="navigator.clipboard.writeText(document.getElementById('py-code').innerText); this.innerText='Copiado!'; setTimeout(()=>this.innerText='Copiar Código', 2000)"><i class="fa-regular fa-copy"></i> Copiar Código</button>
+          </div>
+          <pre><code class="language-python" id="py-code"># MIMO - 09 - Tuplas, dicionários e conjuntos
+# 09.5 - Usando dicionários
+
+# Acessando e atualizando valores
+
+# Acessamos os valores do dicionário por sua chave
+actor_bio = {
+    &#039;name&#039;: &#039;Bill Murray&#039;,
+    &#039;idade&#039;: &#039;70&#039;
+}
+# Codifique o nome do dicionário e depois a chave entre colchetes
+print(actor_bio[&#039;name&#039;])
+
+# Após acessar um valor, podemos armazená-lo em uma variável
+nome_ator = actor_bio[&#039;name&#039;]
+
+# Podemos iterar através das chaves do dicionário com um loop for
+player_scores = {
+    &#039;ann&#039;: 13,
+    &#039;michael&#039;: 20,
+    &#039;ava&#039;: 34
+}
+
+for player in player_scores:
+    print(player_scores[player])
+
+# A variável player representa as chaves, então podemos acessar o valor de cada chave usando player como o nome da chave
+
+# Podemos iterar pelas chaves, valores ou ambos
+
+# Para iterar pelas chaves, usamos o método .keys()
+print(&#039;Iterando pelas chaves&#039;)
+for player in player_scores.keys():
+    print(player)
+
+# Para iterar pelos valores, usamos o método .values()
+print(&#039;Iterando pelos valores&#039;)
+for score in player_scores.values():
+    print(score)
+
+# Para iterar pelos pares de valores-chave, usamos o método .items()
+print(&#039;Iterando pelos pares de valores-chave&#039;)
+for player, score in player_scores.items():
+    print(f&#039;{player} - {score}&#039;)
+    
+# Para atualizar um valor associado a uma chave nós acessamos o valor e atualizamos como faríamos com qualquer variável, codificando o operador de atribuição seguido do novo valor
+print(player_scores)
+player_scores[&#039;ann&#039;] = 60
+print(player_scores)
+
+# Adicionando um par de valores-chave
+
+# Para adicionar uma chave, codificamos o nome do dicionário e depois o nome da nova chave entre colchetes, seguido do operador de atribuição e o valor. O procedimento é semelhante a uma atualização, exceto pelo fato de que a chave não estava presente antes no dicionário.
+
+player_scores[&#039;Maycon&#039;] = 50
+print(player_scores)
+
+# Verificando se um dicionário contém uma chave
+
+# Para verificar uma determinada chave, utilizamos o operador in
+print(&#039;Douglas&#039; in player_scores)
+
+# Tal como acontece com as listas, o operador in nos dará True quando a chave estiver presente e False quando não. Podemos armazenar essa informação em uma variável.
+
+# Removendo um par de chave-valor
+
+# Removemos de forma semelhante a de um elemento de uma lista, codificando o nome do dicionário, seguido da instrução .pop()
+
+# Precisamos especificar qual a chave queremos remover entre os parênteses
+player_scores.pop(&#039;Maycon&#039;)
+print(player_scores)
+
+# Podemos armazenar o valor removido em uma variável
+
+# Tentar remover um valor que não existe gera um erro. Para evitar isso, é boa prática ao remover chaves, verificar antes com o operador in se ela está presente no dicionário.
+
+if &#039;Maycon&#039; in player_scores:
+    player_scores.pop(&#039;Maycon&#039;)
+    print(player_scores)
+else:
+    player_scores.pop(&#039;Maycon&#039;, None)
+
+# Dicionários aninhados
+# Podemos armazenar dicionários dentro de dicionários. Isso é chamado de aninhamento.
+dicionario_aninhado = {
+    &#039;brasil&#039;: {&#039;cidade&#039;: &#039;São Paulo&#039;},
+    &#039;usa&#039;: {&#039;cidade&#039;: &#039;New York&#039;}}
+
+# Para acessar um valor aninhado, codificamos o nome do dicionário, seguido da chave do dicionário aninhado, seguido da chave do valor que queremos acessar
+print(dicionario_aninhado[&#039;brasil&#039;][&#039;cidade&#039;])
+
+
+# Se o dicionário possuir chaves repetidas, o Python irá sobrescrever o valor da chave repetida com o último valor encontrado. 
+
+# Se quiser colocar 3 cidades em cada pais
+dicionario_aninhado = {
+    &#039;brasil&#039;: {&#039;cidade&#039;: [&#039;São Paulo&#039;, &#039;Rio de Janeiro&#039;, &#039;Belo Horizonte&#039;]},
+    &#039;usa&#039;: {&#039;cidade&#039;: [&#039;New York&#039;, &#039;Los Angeles&#039;, &#039;Chicago&#039;]}}
+
+# Se quisermos iterar por um dicionário aninhado, podemos usar dois loops for
+for pais in dicionario_aninhado:
+    print(f&#039;\n{pais.upper()}:&#039;)
+    for cidade in dicionario_aninhado[pais][&#039;cidade&#039;]:
+        print(cidade, end=&#039;, &#039;)        </code></pre>
+        </div>
+        <script>hljs.highlightAll();</script>
+      
+  </main>
+</body>
+</html>

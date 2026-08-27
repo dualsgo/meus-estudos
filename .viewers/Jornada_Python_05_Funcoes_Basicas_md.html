@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>05_Funcoes_Basicas.md - Meus Estudos</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+        <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/atom-one-dark.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <style>
+          .markdown-body { font-size: 1.05rem; line-height: 1.7; color: #cbd5e1; }
+          .markdown-body h1, .markdown-body h2 { border-bottom: 1px solid var(--glass-border); padding-bottom: 0.5rem; margin-bottom: 1rem; color: #38bdf8; }
+          .markdown-body a { color: #38bdf8; text-decoration: none; }
+          .markdown-body a:hover { text-decoration: underline; }
+          .markdown-body pre { background: #1e293b; padding: 1rem; border-radius: 8px; overflow-x: auto; border: 1px solid var(--glass-border); margin: 1rem 0; }
+          .markdown-body code { font-family: monospace; color: #eab308; background: rgba(0,0,0,0.3); padding: 0.2rem 0.4rem; border-radius: 4px; }
+          .markdown-body pre code { padding: 0; background: transparent; color: inherit; }
+          .markdown-body img { max-width: 100%; border-radius: 8px; }
+          table { border-collapse: collapse; width: 100%; margin: 1rem 0; }
+          th, td { border: 1px solid var(--glass-border); padding: 0.6rem; text-align: left; }
+          th { background: rgba(255,255,255,0.05); color: #38bdf8; }
+        </style>
+      
+  <style>
+    :root {
+      --bg-color: #0b1120;
+      --glass-bg: rgba(30, 41, 59, 0.7);
+      --glass-border: rgba(255, 255, 255, 0.08);
+      --primary: #38bdf8;
+      --text-main: #f1f5f9;
+      --text-muted: #94a3b8;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
+    body { background-color: var(--bg-color); color: var(--text-main); min-height: 100vh; display: flex; flex-direction: column; }
+    header { padding: 0.8rem 2rem; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--glass-border); background: var(--glass-bg); backdrop-filter: blur(12px); position: sticky; top: 0; z-index: 100; }
+    .header-left { display: flex; align-items: center; gap: 1rem; }
+    .back-btn { color: var(--text-main); text-decoration: none; display: flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem; border-radius: 8px; background: rgba(255,255,255,0.05); font-size: 0.9rem; transition: 0.2s; }
+    .back-btn:hover { background: rgba(56, 189, 248, 0.2); color: var(--primary); }
+    .file-title { font-size: 1.1rem; font-weight: 600; color: #f8fafc; }
+    main { flex: 1; padding: 2rem; max-width: 1200px; margin: 0 auto; width: 100%; }
+    .container { background: rgba(15, 23, 42, 0.7); border: 1px solid var(--glass-border); border-radius: 16px; padding: 2rem; box-shadow: 0 10px 30px rgba(0,0,0,0.3); overflow-x: auto; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-left">
+      <a href="../index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Voltar ao Dashboard</a>
+      <div class="file-title">05_Funcoes_Basicas.md</div>
+    </div>
+    <div>
+      <a href="../Jornada Python/05_Funcoes_Basicas.md" download class="back-btn"><i class="fa-solid fa-download"></i> Baixar Arquivo</a>
+    </div>
+  </header>
+  <main>
+    
+        <div class="container markdown-body" id="md-content"></div>
+        <script>
+          document.getElementById('md-content').innerHTML = marked.parse(decodeURIComponent(escape(window.atob('IyBGdW7Dp8O1ZXMgQsOhc2ljYXMgZSBJbnRlcmHDp8Ojbw0KDQojIyBFWFBMSUNBw4fDg08NCg0KUHl0aG9uIG9mZXJlY2UgZnVuw6fDtWVzIGVtYnV0aWRhcyAoKmJ1aWx0LWluKikgcXVlIGZhY2lsaXRhbSBhIGludGVyYcOnw6NvIGUgZm9ybWF0YcOnw6NvIGRlIGRhZG9zIHNlbSBhIG5lY2Vzc2lkYWRlIGRlIGltcG9ydGFyIG3Ds2R1bG9zIGV4dGVybm9zLg0KDQoxLiAqKmBwcmludCgpYCoqOiBFeGliZSBpbmZvcm1hw6fDtWVzIG5hIHNhw61kYSBwYWRyw6NvLg0KICAgICogKipBcmd1bWVudG9zIFBvc2ljaW9uYWlzOioqIFZhbG9yZXMgc2VwYXJhZG9zIHBvciB2w61yZ3VsYS4NCiAgICAqICoqYHNlcD0nICdgKio6IERlZmluZSBvIHNlcGFyYWRvciBlbnRyZSBvcyBhcmd1bWVudG9zIChwYWRyw6NvIMOpIGVzcGHDp28pLg0KICAgICogKipgZW5kPSdcbidgKio6IERlZmluZSBvIHF1ZSBpbXByaW1pciBhbyBmaW5hbCAocGFkcsOjbyDDqSBxdWVicmEgZGUgbGluaGEpLg0KMi4gKipgaW5wdXQoKWAqKjogU29saWNpdGEgdW1hIGVudHJhZGEgZG8gdXN1w6FyaW8uICoqSW1wb3J0YW50ZToqKiBTZW1wcmUgcmV0b3JuYSB1bWEgU3RyaW5nIChgc3RyYCkuIFNlIHByZWNpc2FyIGRlIG7Dum1lcm9zLCBkZXZlLXNlIHVzYXIgbyAqY2FzdGluZyogKGV4OiBgaW50KGlucHV0KCkpYCkuDQozLiAqKkludGVycG9sYcOnw6NvIGRlIFN0cmluZ3MgKGYtc3RyaW5ncyk6KiogQSBmb3JtYSBtYWlzIG1vZGVybmEgZSBlZmljaWVudGUgZGUgaW5zZXJpciB2YXJpw6F2ZWlzIGVtIHRleHRvcyB1c2FuZG8gYHt2YXJpYXZlbH1gIGRlbnRybyBkZSB1bWEgc3RyaW5nIHByZWZpeGFkYSBjb20gYGZgLg0KNC4gKipBTlNJIENvbG9yczoqKiBQZXJtaXRlIGNvbG9yaXIgYSBzYcOtZGEgZG8gdGVybWluYWwgdXNhbmRvIGPDs2RpZ29zIGNvbW8gYFwwMzNbU1RZTEU7Q09MT1JtYC4NCg0KIyMgRVhFTVBMTyBQUsOBVElDTw0KDQpgYGBweXRob24NCiMgVXNvIGF2YW7Dp2FkbyBkbyBwcmludA0KcHJpbnQoIlB5dGhvbiIsICLDqSIsICJkZW1haXMiLCBzZXA9Ii0iLCBlbmQ9IiEhIVxuIikNCg0KIyBFbnRyYWRhIGRlIGRhZG9zIGNvbSBjYXN0aW5nDQppZGFkZSA9IGludChpbnB1dCgiRGlnaXRlIHN1YSBpZGFkZTogIikpDQpwcmludChmIlZvY8OqIHRlbSB7aWRhZGV9IGFub3MuIikNCg0KIyBUZXh0byBjb20gY29yZXMgKE5lZ3JpdG8gZSBWZXJkZSkNCnByaW50KCJcMDMzWzE7MzJtQWNlc3NvIEdhcmFudGlkbyFcMDMzWzBtIikNCg0KIyBSZXBsaWNhw6fDo28gZGUgc3RyaW5ncw0KcHJpbnQoIi0iICogMjApDQpgYGANCg=='))));
+          hljs.highlightAll();
+        </script>
+      
+  </main>
+</body>
+</html>

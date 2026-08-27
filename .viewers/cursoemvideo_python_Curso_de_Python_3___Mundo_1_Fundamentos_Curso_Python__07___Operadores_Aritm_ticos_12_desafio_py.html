@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>12_desafio.py - Meus Estudos</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/atom-one-dark.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/python.min.js"></script>
+        <style>
+          pre { border-radius: 8px; overflow-x: auto; font-size: 0.95rem; }
+          .code-toolbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem; }
+          .btn-copy { background: rgba(56, 189, 248, 0.2); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.4); padding: 0.4rem 0.8rem; border-radius: 6px; cursor: pointer; font-size: 0.85rem; }
+          .btn-copy:hover { background: rgba(56, 189, 248, 0.4); }
+        </style>
+      
+  <style>
+    :root {
+      --bg-color: #0b1120;
+      --glass-bg: rgba(30, 41, 59, 0.7);
+      --glass-border: rgba(255, 255, 255, 0.08);
+      --primary: #38bdf8;
+      --text-main: #f1f5f9;
+      --text-muted: #94a3b8;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
+    body { background-color: var(--bg-color); color: var(--text-main); min-height: 100vh; display: flex; flex-direction: column; }
+    header { padding: 0.8rem 2rem; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--glass-border); background: var(--glass-bg); backdrop-filter: blur(12px); position: sticky; top: 0; z-index: 100; }
+    .header-left { display: flex; align-items: center; gap: 1rem; }
+    .back-btn { color: var(--text-main); text-decoration: none; display: flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem; border-radius: 8px; background: rgba(255,255,255,0.05); font-size: 0.9rem; transition: 0.2s; }
+    .back-btn:hover { background: rgba(56, 189, 248, 0.2); color: var(--primary); }
+    .file-title { font-size: 1.1rem; font-weight: 600; color: #f8fafc; }
+    main { flex: 1; padding: 2rem; max-width: 1200px; margin: 0 auto; width: 100%; }
+    .container { background: rgba(15, 23, 42, 0.7); border: 1px solid var(--glass-border); border-radius: 16px; padding: 2rem; box-shadow: 0 10px 30px rgba(0,0,0,0.3); overflow-x: auto; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-left">
+      <a href="../index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Voltar ao Dashboard</a>
+      <div class="file-title">12_desafio.py</div>
+    </div>
+    <div>
+      <a href="../cursoemvideo_python/Curso de Python 3 - Mundo 1 Fundamentos/Curso Python #07 - Operadores Aritméticos/12_desafio.py" download class="back-btn"><i class="fa-solid fa-download"></i> Baixar Arquivo</a>
+    </div>
+  </header>
+  <main>
+    
+        <div class="container">
+          <div class="code-toolbar">
+            <span style="color: #38bdf8; font-weight: 600;"><i class="fa-brands fa-python"></i> 12_desafio.py</span>
+            <button class="btn-copy" onclick="navigator.clipboard.writeText(document.getElementById('py-code').innerText); this.innerText='Copiado!'; setTimeout(()=>this.innerText='Copiar Código', 2000)"><i class="fa-regular fa-copy"></i> Copiar Código</button>
+          </div>
+          <pre><code class="language-python" id="py-code"># Exercício Python #012 - Calculando Descontos - Aula 00 até 07 - Mundo 1
+# Faça um algorítimo que leia o preço de um produto e mostre seu novo preço com 5% de desconto.
+
+from emoji import emojize
+while True:
+	try:
+		preço = float(input(emojize(&#039;Digite o valor do produto: :cifrão: &#039;, language=&#039;pt&#039;)))
+		com_desconto = preço * .95
+		print(f&#039;{&#039;Valor do produto:&#039;:&lt;20} R${preço:&gt;10.2f}\n{&#039;Com desconto (5%):&#039;:&lt;20} R${com_desconto:&gt;10.2f}&#039;)
+		break
+	except ValueError:
+		print(&#039;Inválido! Tente novamente.&#039;)
+  
+# Versão 2
+
+while True:
+	try:
+		preco = float(input(&#039;Digite o valor do produto: R$ &#039;))
+		descontar = float(input(&#039;Porcentagem de desconto: % &#039;))
+		print(f&#039;{&#039;-&#039;*31}&#039;)
+		print(f&#039;{&#039;Valor original&#039;:&lt;15}{&#039;R$&#039;:&gt;6}{preco:&gt;10.2f}&#039;)
+		print(f&#039;{&#039;Desconto&#039;:&lt;10}{descontar/100:^8.1%}{&#039;R$&#039;:&gt;3}{preco * (descontar/100):&gt;10.2f}&#039;)
+		print(f&#039;{&#039;-&#039;*31}&#039;)
+		print(f&#039;{&#039;Valor final&#039;:&lt;15}{&#039;R$&#039;:&gt;6}{preco * ((100 - descontar)/100):&gt;10.2f}&#039;)
+		print(f&#039;{&#039;-&#039;*31}&#039;)
+
+		break
+
+	except ValueError:
+		print(&#039;O valor informado não é válido!&#039;)
+	except ZeroDivisionError:
+		print(f&#039;Divisão por zero não é possível!&#039;)
+
+
+
+# Estou compartilhando minhas anotações sobre os exercícios. Quem quiser, pode copiar e colar em um documento .py pois está tudo formatado e comentado.
+
+# Nesse exercício, o programa solicita ao usuário o preço de um produto e exibe na tela o preço com 5% de desconto. Para isso, utilizamos a operação de multiplicação.
+
+# Assim como antes, utilizamos a função input() para solicitar um valor ao usuário. O valor digitado é convertido para ponto flutuante e armazenado na variável preço.
+preço = float(input(&#039;Digite o valor do produto: R$ &#039;))
+
+# O desconto de 5% pode ser calculado multiplicando o preço do produto por 0.95 ou subtraindo 5% do preço original. O resultado é armazenado na variável com_desconto.
+
+# Nessa representação, consideramos que o preço representa 100% do valor original. Se queremos saber qual será o preço com 5% de desconto precisamos subtrair 5% do preço original, ou seja, 100 - 5 = 95%. Portanto, o preço com desconto é 95% do preço original.
+
+# 95/100 = 0.95
+com_desconto = preço * .95 # 95% do preço
+
+# Se quiser saber qual é o valor equivalente a 5% do preço original, seguindo a mesma lógica, basta multiplicar o preço por 0.05. O desconto é o valor do produto menos o valor do desconto.
+cinco_porcento = preço * .05 # 5% do preço
+
+# Nesse método, colocamos entre parênteses a expressão que representa a porcentagem de desconto. Isso garante que a divisão seja feita antes da multiplicação. Se não colocarmos os parênteses, a expressão será interpretada como preço * 5 / 100, o que não é o que queremos.
+com_desconto = preço * (95 / 100) # 95% do preço
+cinco_porcento = preço * (5 / 100) # 5% do preço
+
+# Utilize a fórmula que achar mais fácil de entender e de lembrar. O importante é que o resultado seja o mesmo.
+
+# Para exibir o preço original e o preço com desconto na tela, utilizamos a função print(). O valor do produto é exibido com duas casas decimais após a vírgula.
+
+# Vamos exibir os valores na tela.
+print(f&#039;Valor do produto: R${preço:.2f}&#039;)
+print(f&#039;Com desconto (5%): R${com_desconto:.2f}&#039;)
+print(f&#039;Valor do desconto: R${cinco_porcento:.2f}&#039;)</code></pre>
+        </div>
+        <script>hljs.highlightAll();</script>
+      
+  </main>
+</body>
+</html>

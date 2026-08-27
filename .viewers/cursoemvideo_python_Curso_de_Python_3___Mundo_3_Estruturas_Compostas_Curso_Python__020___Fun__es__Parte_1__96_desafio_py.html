@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>96_desafio.py - Meus Estudos</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/atom-one-dark.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/python.min.js"></script>
+        <style>
+          pre { border-radius: 8px; overflow-x: auto; font-size: 0.95rem; }
+          .code-toolbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem; }
+          .btn-copy { background: rgba(56, 189, 248, 0.2); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.4); padding: 0.4rem 0.8rem; border-radius: 6px; cursor: pointer; font-size: 0.85rem; }
+          .btn-copy:hover { background: rgba(56, 189, 248, 0.4); }
+        </style>
+      
+  <style>
+    :root {
+      --bg-color: #0b1120;
+      --glass-bg: rgba(30, 41, 59, 0.7);
+      --glass-border: rgba(255, 255, 255, 0.08);
+      --primary: #38bdf8;
+      --text-main: #f1f5f9;
+      --text-muted: #94a3b8;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
+    body { background-color: var(--bg-color); color: var(--text-main); min-height: 100vh; display: flex; flex-direction: column; }
+    header { padding: 0.8rem 2rem; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--glass-border); background: var(--glass-bg); backdrop-filter: blur(12px); position: sticky; top: 0; z-index: 100; }
+    .header-left { display: flex; align-items: center; gap: 1rem; }
+    .back-btn { color: var(--text-main); text-decoration: none; display: flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem; border-radius: 8px; background: rgba(255,255,255,0.05); font-size: 0.9rem; transition: 0.2s; }
+    .back-btn:hover { background: rgba(56, 189, 248, 0.2); color: var(--primary); }
+    .file-title { font-size: 1.1rem; font-weight: 600; color: #f8fafc; }
+    main { flex: 1; padding: 2rem; max-width: 1200px; margin: 0 auto; width: 100%; }
+    .container { background: rgba(15, 23, 42, 0.7); border: 1px solid var(--glass-border); border-radius: 16px; padding: 2rem; box-shadow: 0 10px 30px rgba(0,0,0,0.3); overflow-x: auto; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-left">
+      <a href="../index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Voltar ao Dashboard</a>
+      <div class="file-title">96_desafio.py</div>
+    </div>
+    <div>
+      <a href="../cursoemvideo_python/Curso de Python 3 - Mundo 3 Estruturas Compostas/Curso Python #020 - Funções (Parte 1)/96_desafio.py" download class="back-btn"><i class="fa-solid fa-download"></i> Baixar Arquivo</a>
+    </div>
+  </header>
+  <main>
+    
+        <div class="container">
+          <div class="code-toolbar">
+            <span style="color: #38bdf8; font-weight: 600;"><i class="fa-brands fa-python"></i> 96_desafio.py</span>
+            <button class="btn-copy" onclick="navigator.clipboard.writeText(document.getElementById('py-code').innerText); this.innerText='Copiado!'; setTimeout(()=>this.innerText='Copiar Código', 2000)"><i class="fa-regular fa-copy"></i> Copiar Código</button>
+          </div>
+          <pre><code class="language-python" id="py-code"># Exercício Python #096 - Função que calcula área - Aula 00 até 20 - Mundo 3
+# Faça um programa que tenha uma função chamada área(), que receba as dimensões de um terreno retangular (largura e comprimento) e mostre a área do terreno.
+
+
+def valor(mensagem):
+	while True:
+		try:
+			return float(input(mensagem))
+		except ValueError:
+			print(&#039;Valor inválido para essa operação!&#039;)
+
+
+largura = valor(&#039;Digite a largura do terreno: &#039;)
+comprimento = valor(&#039;Digite o comprimento do terreno: &#039;)
+área_do_terreno = largura * comprimento
+
+print(f&#039;{f&#039;LARGURA (m)&#039;:^15}{f&#039;COMPRIMENTO (m)&#039;:^15}{f&#039;ÁREA (m²)&#039;:^15}&#039;)
+print(f&#039;{largura:^15}{comprimento:^15}{área_do_terreno:^15}&#039;)
+
+# Estou compartilhando minhas anotações sobre os exercícios. Quem quiser, pode copiar e colar em um documento .py pois está tudo formatado e comentado.
+
+# Nesse exercício, o precisamos criar uma função chamada área() que recebe dois parâmetros: largura e comprimento. A função deve retornar a área do terreno, que é calculada multiplicando a largura pelo comprimento.
+
+# Uma função é um bloco de código que executa uma tarefa específica. Para criar uma função em Python, usamos a palavra-chave def seguida do nome da função e dos parênteses. Os parâmetros são passados entre os parênteses. O corpo da função é definido por um bloco de código indentado.
+def área(largura, comprimento):
+	return largura * comprimento
+
+# def é a palavra-chave usada para definir uma função.
+# área é o nome da função.
+# largura e comprimento são os parâmetros da função. São os valroes que a função recebe para realizar a tarefa.
+# O corpo da função é a expressão largura * comprimento. A função retorna o valor da expressão.
+
+# Para chamar uma função, basta digitar o nome da função seguido dos parâmetros entre parênteses. O valor retornado pela função pode ser armazenado em uma variável.
+área_do_terreno = área(5, 10)
+
+# Obs: A função área() é chamada com os argumentos 5 e 10. Esses valores são passados para os parâmetros largura e comprimento da função. Se forncecermos menos ou mais argumentos do que o número de parâmetros, o Python exibirá um erro.
+
+# O valor retornado pela função é armazenado na variável área_do_terreno.
+# O valor retornado pela função é calculado multiplicando 5 por 10, que é igual a 50.
+
+print(f&#039;A área do terreno é {área_do_terreno} m²&#039;)
+
+# Essa versão é mais simples apenas para introduzir o conceito de funções. No entanto, podemos melhorar, como aqui que temos uma função que pede um valor ao usuário e verifica se o valor é válido. E outra função que calcula a área do terreno. Desse modo, o código fica mais organizado e fácil de entender além de prevenir erros.
+
+def valor(mensagem):
+	while True:
+		try:
+			return float(input(mensagem))
+		except ValueError:
+			print(&#039;Valor inválido para essa operação!&#039;)
+
+
+def área():
+	largura = valor(&#039;Digite a largura do terreno: &#039;)
+	comprimento = valor(&#039;Digite o comprimento do terreno: &#039;)
+	return largura * comprimento
+
+print(f&#039;LARGURA (m){&quot;COMPRIMENTO (m)&quot;:&gt;15}{&quot;ÁREA (m²)&quot;:&gt;15}&#039;)
+print(f&#039;{largura:&gt;15}{comprimento:&gt;15}{área():&gt;15}&#039;)</code></pre>
+        </div>
+        <script>hljs.highlightAll();</script>
+      
+  </main>
+</body>
+</html>

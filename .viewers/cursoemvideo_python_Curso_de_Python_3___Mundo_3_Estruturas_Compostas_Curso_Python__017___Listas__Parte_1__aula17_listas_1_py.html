@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>aula17_listas_1.py - Meus Estudos</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/atom-one-dark.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/python.min.js"></script>
+        <style>
+          pre { border-radius: 8px; overflow-x: auto; font-size: 0.95rem; }
+          .code-toolbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem; }
+          .btn-copy { background: rgba(56, 189, 248, 0.2); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.4); padding: 0.4rem 0.8rem; border-radius: 6px; cursor: pointer; font-size: 0.85rem; }
+          .btn-copy:hover { background: rgba(56, 189, 248, 0.4); }
+        </style>
+      
+  <style>
+    :root {
+      --bg-color: #0b1120;
+      --glass-bg: rgba(30, 41, 59, 0.7);
+      --glass-border: rgba(255, 255, 255, 0.08);
+      --primary: #38bdf8;
+      --text-main: #f1f5f9;
+      --text-muted: #94a3b8;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
+    body { background-color: var(--bg-color); color: var(--text-main); min-height: 100vh; display: flex; flex-direction: column; }
+    header { padding: 0.8rem 2rem; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--glass-border); background: var(--glass-bg); backdrop-filter: blur(12px); position: sticky; top: 0; z-index: 100; }
+    .header-left { display: flex; align-items: center; gap: 1rem; }
+    .back-btn { color: var(--text-main); text-decoration: none; display: flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem; border-radius: 8px; background: rgba(255,255,255,0.05); font-size: 0.9rem; transition: 0.2s; }
+    .back-btn:hover { background: rgba(56, 189, 248, 0.2); color: var(--primary); }
+    .file-title { font-size: 1.1rem; font-weight: 600; color: #f8fafc; }
+    main { flex: 1; padding: 2rem; max-width: 1200px; margin: 0 auto; width: 100%; }
+    .container { background: rgba(15, 23, 42, 0.7); border: 1px solid var(--glass-border); border-radius: 16px; padding: 2rem; box-shadow: 0 10px 30px rgba(0,0,0,0.3); overflow-x: auto; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-left">
+      <a href="../index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Voltar ao Dashboard</a>
+      <div class="file-title">aula17_listas_1.py</div>
+    </div>
+    <div>
+      <a href="../cursoemvideo_python/Curso de Python 3 - Mundo 3 Estruturas Compostas/Curso Python #017 - Listas (Parte 1)/aula17_listas_1.py" download class="back-btn"><i class="fa-solid fa-download"></i> Baixar Arquivo</a>
+    </div>
+  </header>
+  <main>
+    
+        <div class="container">
+          <div class="code-toolbar">
+            <span style="color: #38bdf8; font-weight: 600;"><i class="fa-brands fa-python"></i> aula17_listas_1.py</span>
+            <button class="btn-copy" onclick="navigator.clipboard.writeText(document.getElementById('py-code').innerText); this.innerText='Copiado!'; setTimeout(()=>this.innerText='Copiar Código', 2000)"><i class="fa-regular fa-copy"></i> Copiar Código</button>
+          </div>
+          <pre><code class="language-python" id="py-code"># Curso Python #17 - Listas (Parte 1)
+# Nessa aula, vamos aprender o que são LISTAS e como utilizar listas em Python. As listas são variáveis compostas que permitem armazenar vários valores em uma mesma estrutura, acessíveis por chaves individuais.
+
+# Assim como as Tuplas, as listas armazenam elementos em índices chamados de chaves que iniciam em zero.
+
+# As listas são mutáveis! Podemos atualizar determinados valores acessando pela chave
+
+lanches = [&#039;hambúrguer&#039;, &#039;suco&#039;, &#039;pizza&#039;, &#039;pudim&#039;]
+print(lanches)
+
+# Atualizando o valor no índice 3 &#039;pudim&#039;
+lanches[3] = &#039;picolé&#039;
+print(lanches)
+
+# Adicionando um valor - Usamos o método .append() para adicionar um novo elemento a lista. Ele será adicionado no final por padrão
+lanches.append(&#039;cookie&#039;)
+print(lanches)
+
+# Para adicionar em uma posição específica usamos o método .insert(indice, valor)
+lanches.insert(0, &#039;cachorro quente&#039;)
+print(lanches)
+
+# Deletando valores - Podemos usar o método del para eliminar pelo índice
+del lanches[0]
+print(lanches)
+
+# O método .pop() deleta o último elemento se passado sem parâmetro. O parâmetro é o índice que deseja remover
+metodo_pop = lanches.pop()
+print(f&#039;Valor removido pelo método pop sem parâmetro: {metodo_pop}&#039;)
+print(lanches)
+
+metodo_pop = lanches.pop(3)
+print(f&#039;Valor removido pelo método pop com parâmetro: {metodo_pop}&#039;)
+print(lanches)
+
+# O método .remove(valor) remove um elemento indicando o valor
+lanches.remove(&#039;hambúrguer&#039;)
+# Se utilizarmos o índice a primeira ocorrência será removida
+
+# Se o valor não pertencer à lista, um erro será exibido. Para contornar isso, usamos uma estrutura condicional para verificar se o valor está presente ou não
+print(lanches)
+
+# Usamos in para verificar
+if &#039;hambúrguer&#039; in lanches:
+    lanches.remove(&#039;hambúrguer&#039;)
+    print(&#039;Valor removido&#039;)
+else:
+    print(&#039;Valor não encontrado&#039;)
+
+# Criando lista com range()
+valores = list(range(0, 10))
+print(valores)
+
+# Colocar os valores em ordem
+valores = [8, 2, 5, 4, 9, 3, 0]
+print(valores)
+
+valores.sort()
+print(f&#039;Lista ordenada: {valores}&#039;)
+# Os valores permanecem organizados
+print(valores)
+
+valores.sort(reverse=True)
+print(f&#039;Lista ordenada invertida: {valores}&#039;)
+print(valores)
+
+# Quantidade de elementos
+print(len(valores))
+
+# Iterando listas - Podemos percorrer os elementos de uma lista
+for elemento in valores:
+    print(elemento, end=&#039;, &#039;)
+print(&#039;Fim.&#039;)
+
+# Mostrando índice e valor com enumerate
+for indice, elemento in enumerate(valores):
+    print(f&#039;No índice {indice} temos o elemento &quot;{elemento}&quot;&#039;)
+
+# Recebendo elementos com loop
+lista = []
+while True:
+    lista.append(int(input(&#039;Digite um valor: &#039;)))
+    continuar = str(input(&#039;Continuar? S/N &#039;))
+
+    if continuar in &#039;Nn&#039;:
+        break
+    elif continuar in &#039;Ss&#039;:
+        print(&#039;Continuando...&#039;)
+print(lista)
+
+# Lista são ligadas se forem uma cópia da outra
+lista_a = [2, 3, 4, 7]
+lista_b = lista_a
+print(f&#039;Lista A: {lista_a}&#039;)
+print(f&#039;Lista B: {lista_b}&#039;)
+
+# Ambas são alteradas
+lista_b[2] = 8
+print(f&#039;Lista A: {lista_a}&#039;)
+print(f&#039;Lista B: {lista_b}&#039;)
+
+# Para contornar isso atribuímos os elementos de uma lista a outra, não a própria lista
+
+lista_a = [2, 3, 4, 7]
+lista_b = lista_a[:]
+print(f&#039;Lista A: {lista_a}&#039;)
+print(f&#039;Lista B: {lista_b}&#039;)
+# Cópias
+lista_b[2] = 8
+print(f&#039;Lista A: {lista_a}&#039;)
+print(f&#039;Lista B: {lista_b}&#039;)</code></pre>
+        </div>
+        <script>hljs.highlightAll();</script>
+      
+  </main>
+</body>
+</html>

@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>36_desafio.py - Meus Estudos</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/atom-one-dark.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/python.min.js"></script>
+        <style>
+          pre { border-radius: 8px; overflow-x: auto; font-size: 0.95rem; }
+          .code-toolbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem; }
+          .btn-copy { background: rgba(56, 189, 248, 0.2); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.4); padding: 0.4rem 0.8rem; border-radius: 6px; cursor: pointer; font-size: 0.85rem; }
+          .btn-copy:hover { background: rgba(56, 189, 248, 0.4); }
+        </style>
+      
+  <style>
+    :root {
+      --bg-color: #0b1120;
+      --glass-bg: rgba(30, 41, 59, 0.7);
+      --glass-border: rgba(255, 255, 255, 0.08);
+      --primary: #38bdf8;
+      --text-main: #f1f5f9;
+      --text-muted: #94a3b8;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
+    body { background-color: var(--bg-color); color: var(--text-main); min-height: 100vh; display: flex; flex-direction: column; }
+    header { padding: 0.8rem 2rem; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--glass-border); background: var(--glass-bg); backdrop-filter: blur(12px); position: sticky; top: 0; z-index: 100; }
+    .header-left { display: flex; align-items: center; gap: 1rem; }
+    .back-btn { color: var(--text-main); text-decoration: none; display: flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem; border-radius: 8px; background: rgba(255,255,255,0.05); font-size: 0.9rem; transition: 0.2s; }
+    .back-btn:hover { background: rgba(56, 189, 248, 0.2); color: var(--primary); }
+    .file-title { font-size: 1.1rem; font-weight: 600; color: #f8fafc; }
+    main { flex: 1; padding: 2rem; max-width: 1200px; margin: 0 auto; width: 100%; }
+    .container { background: rgba(15, 23, 42, 0.7); border: 1px solid var(--glass-border); border-radius: 16px; padding: 2rem; box-shadow: 0 10px 30px rgba(0,0,0,0.3); overflow-x: auto; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-left">
+      <a href="../index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Voltar ao Dashboard</a>
+      <div class="file-title">36_desafio.py</div>
+    </div>
+    <div>
+      <a href="../cursoemvideo_python/Curso de Python 3 - Mundo 2 Estruturas de Controle/Curso Python #012 - Condições Aninhadas/36_desafio.py" download class="back-btn"><i class="fa-solid fa-download"></i> Baixar Arquivo</a>
+    </div>
+  </header>
+  <main>
+    
+        <div class="container">
+          <div class="code-toolbar">
+            <span style="color: #38bdf8; font-weight: 600;"><i class="fa-brands fa-python"></i> 36_desafio.py</span>
+            <button class="btn-copy" onclick="navigator.clipboard.writeText(document.getElementById('py-code').innerText); this.innerText='Copiado!'; setTimeout(()=>this.innerText='Copiar Código', 2000)"><i class="fa-regular fa-copy"></i> Copiar Código</button>
+          </div>
+          <pre><code class="language-python" id="py-code"># Exercício Python #036 - Aprovando Empréstimo - Aula 00 até 12 - Mundo 2
+# Escreva um programa para aprovar o empréstimo bancário para a compra de uma casa. Pergunte o valor da casa, o salário do comprador e em quantos anos ele vai pagar. A prestação mensal não pode exceder 30% do salário ou então o empréstimo será negado
+
+# Tarefa 1: Perguntar o valor da casa, o salário do comprador e em quantos anos vai pagar
+valor_imovel = int(input(&#039;Digite o valor do imóvel: R$ &#039;))
+salario = float(input(&#039;Digite o seu salário: R$ &#039;))
+anos_pagando = int(input(&#039;Digite a quantidade de anos que deseja pagar: &#039;))
+
+# Tarefa 2: Verificar se a prestação mensal é maior que 30% do salário
+limite = salario * .3
+prestacoes = anos_pagando * 12
+valor_prestacoes = valor_imovel / prestacoes
+
+if valor_prestacoes &gt;= limite:
+    print(&#039;\033[1;31mNão será possível aprovar o seu empréstimo. O valor das prestações é superior ao limite de 30% do seu salário.\033[m&#039;)
+    print(f&#039;Valor das prestações: \033[1;31mR$ {valor_prestacoes:.2f}\033[m&#039;)
+else:
+    print(&#039;\033[1;32mParabéns! Seu empréstimo foi aprovado. Confira as condições:\033[m&#039;)
+# Tarefa 3: Após a verificação, mostrar se o empréstimo foi aprovado ou negado.
+    print(f&#039;O imóvel avaliado em \033[1;32mR$ {valor_imovel:.2f}\033[m será quitado em \033[1;32m{anos_pagando}\033[m anos.&#039;)
+    print(f&#039;Cada uma das \033[1;32m{prestacoes}\033[m parcelas custará \033[1;32mR$ {valor_prestacoes:.2f}\033[m&#039;)
+    
+# Versão 2 - Sem validação
+try:
+	valor_imovel = float(input(&#039;Digite o valor do imóvel: R$&#039;))
+	renda = float(input(&#039;Digite o valor do salário: R$&#039;))
+	prazo_anos = int(input(&#039;Prazo em anos: &#039;))
+	anos_meses = prazo_anos * 12
+	parcelas = valor_imovel / anos_meses
+	limite = renda * .3
+	verifica = limite &gt;= parcelas
+
+	if verifica:
+		print(f&#039;Aprovado&#039;)
+		print(f&#039;{&#039;Valor imóvel:&#039;:&lt;15}{&#039;R$&#039;:&gt;5}{valor_imovel:&gt;10.2f}&#039;)
+		print(f&#039;{&#039;Prazo (meses):&#039;:&lt;15}{anos_meses:&gt;9}{&#039; meses&#039;:&gt;6}&#039;)
+		print(f&#039;{&#039;Valor parcelas:&#039;:&lt;15}{&#039;R$&#039;:&gt;5}{parcelas:&gt;10.2f}&#039;)
+	else:
+		print(f&#039;Recusado&#039;)
+
+except ValueError:
+	print(&#039;Valores inválidos para essa operação.&#039;)
+
+# versão 3 - Mais completa
+def obter_valor(mensagem):
+    while True:
+        try:
+            return float(input(mensagem))
+        except ValueError:
+            print(&#039;Valor inválido para essa operação. Digite novamente.&#039;)
+
+
+def verificação(v, s, p):
+    parcela = v / p
+    parcela_máxima = s * .3
+    consulta = True if parcela &lt;= parcela_máxima else False
+
+    print(
+        f&#039;{&#039;Valor do imóvel:&#039;:&lt;20}{f&#039;R$ {v:.2f}&#039;:&gt;15}\n&#039;
+        f&#039;{&#039;Salário:&#039;:&lt;20}{f&#039;R$ {s:.2f}&#039;:&gt;15}\n&#039;
+        f&#039;{&#039;Prazo em anos:&#039;:&lt;20}{f&#039;{p/12:.1g} anos&#039;:&gt;15}\n&#039;
+        f&#039;{&#039;-&#039; * 35}\n&#039;
+        f&#039;{&#039;Parcelas:&#039;:&lt;20}{prazo:&gt;15}\n&#039;
+        f&#039;{&#039;Parcela máxima:&#039;:&lt;20}{f&#039;R$ {parcela_máxima:.2f}&#039;:&gt;15}\n&#039;
+        f&#039;{&#039;Parcela simulada:&#039;:&lt;20}{f&#039;R$ {parcela:.2f}&#039;:&gt;15}\n&#039;
+        f&#039;{&#039;-&#039; * 35}\n&#039;
+        f&#039;{&#039;Resultado:&#039;:&lt;20}{&#039;APROVADO&#039; if consulta else &#039;NEGADO&#039;:&gt;15}\n&#039;)
+
+
+valor_casa = obter_valor(&#039;Digite o valor da casa: R$ &#039;)
+salário = obter_valor(&#039;Digite o valor do salário: R$ &#039;)
+prazo = int(obter_valor(&#039;Prazo em anos: &#039;)) * 12
+verificação(valor_casa, salário, prazo)
+
+# EXTRA - Cálculo de parcelas
+
+s = 100000.  # Saldo devedor inicial
+entrada = 0  # Valor da entrada inicial (se houver)
+n = 100  # Número total de parcelas
+m = 0  # Número de parcelas já pagas
+taxa_juros_anual = 0.08  # Taxa de juros anual (8% ao ano)
+
+# Convertendo a taxa de juros anual para mensal
+taxa_juros_mensal = taxa_juros_anual / 12
+
+# Se houver uma entrada, subtraí-la do saldo devedor inicial
+s -= entrada
+juros = taxa_juros_mensal
+
+for i in range(1, n+1):
+    p = (taxa_juros_mensal * s) / (1 - (1 + taxa_juros_mensal)**(-n))
+    m += 1
+    amortizacao = p - juros
+    juros = s * taxa_juros_mensal
+    print(f&#039;Parcela {i}: R$ {p:.2f} (Amortização: R$ {amortizacao:.2f}, Juros: R$ {juros:.2f}, Saldo Devedor: R$ {s:.2f})&#039;)
+    s -= p
+    
+# Estou compartilhando minhas anotações sobre os exercícios. Quem quiser, pode copiar e colar em um documento .py pois está tudo formatado e comentado.
+
+# Nesse exercício, o programa deve aprovar ou negar um empréstimo bancário para a compra de uma casa. Para isso, o programa deve perguntar o valor da casa, o salário do comprador e em quantos anos ele vai pagar. A prestação mensal não pode exceder 30% do salário ou então o empréstimo será negado.
+
+# A primeira coisa a ser feita é perguntar o valor da casa, o salário do comprador e em quantos anos ele vai pagar. Para isso, vamos utilizar a função input() para ler os valores e a função float() para converter o valor da casa para ponto flutuante e a função int() para converter a quantidade de anos para inteiro.
+valor_imovel = float(input(&#039;Digite o valor do imóvel: R$ &#039;))
+salario = float(input(&#039;Digite o seu salário: R$ &#039;))
+anos_pagando = int(input(&#039;Digite a quantidade de anos que deseja pagar: &#039;))
+
+# Em seguida, vamos verificar se a prestação mensal é maior que 30% do salário. Para isso, vamos calcular o valor da prestação mensal dividindo o valor do imóvel pela quantidade de meses que o comprador vai pagar. Em seguida, vamos calcular o limite de 30% do salário e verificar se o valor da prestação é maior ou igual ao limite.
+
+# Antes, vamos converter a quantidade de anos para meses multiplicando por 12.
+prestacoes = anos_pagando * 12
+
+# Agora, vamos calcular o valor da prestação mensal e o limite de 30% do salário.
+valor_prestacoes = valor_imovel / prestacoes
+limite = salario * .3
+
+# Por fim, vamos verificar se o valor da prestação é maior ou igual ao limite de 30% do salário e exibir uma mensagem informando se o empréstimo foi aprovado ou negado.
+
+if valor_prestacoes &gt;= limite:
+    print(f&#039;Com um salário de R$ {salario:.2f}, não será possível aprovar o seu empréstimo. O valor das prestações é superior ao limite de 30% do seu salário.&#039;)
+    print(f&#039;Limites: R$ {limite:.2f}&#039;)
+    print(f&#039;Valor das prestações: R$ {valor_prestacoes:.2f}&#039;)
+else:
+    print(&#039;Parabéns! Seu empréstimo foi aprovado. Confira as condições:&#039;)
+    print(f&#039;O imóvel avaliado em R$ {valor_imovel:.2f} será quitado em {anos_pagando} anos.&#039;)
+    print(f&#039;Cada uma das {prestacoes} parcelas custará R$ {valor_prestacoes:.2f}&#039;)</code></pre>
+        </div>
+        <script>hljs.highlightAll();</script>
+      
+  </main>
+</body>
+</html>

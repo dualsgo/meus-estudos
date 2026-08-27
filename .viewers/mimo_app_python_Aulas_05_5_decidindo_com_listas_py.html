@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>05.5_decidindo_com_listas.py - Meus Estudos</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/atom-one-dark.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/python.min.js"></script>
+        <style>
+          pre { border-radius: 8px; overflow-x: auto; font-size: 0.95rem; }
+          .code-toolbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem; }
+          .btn-copy { background: rgba(56, 189, 248, 0.2); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.4); padding: 0.4rem 0.8rem; border-radius: 6px; cursor: pointer; font-size: 0.85rem; }
+          .btn-copy:hover { background: rgba(56, 189, 248, 0.4); }
+        </style>
+      
+  <style>
+    :root {
+      --bg-color: #0b1120;
+      --glass-bg: rgba(30, 41, 59, 0.7);
+      --glass-border: rgba(255, 255, 255, 0.08);
+      --primary: #38bdf8;
+      --text-main: #f1f5f9;
+      --text-muted: #94a3b8;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
+    body { background-color: var(--bg-color); color: var(--text-main); min-height: 100vh; display: flex; flex-direction: column; }
+    header { padding: 0.8rem 2rem; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--glass-border); background: var(--glass-bg); backdrop-filter: blur(12px); position: sticky; top: 0; z-index: 100; }
+    .header-left { display: flex; align-items: center; gap: 1rem; }
+    .back-btn { color: var(--text-main); text-decoration: none; display: flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem; border-radius: 8px; background: rgba(255,255,255,0.05); font-size: 0.9rem; transition: 0.2s; }
+    .back-btn:hover { background: rgba(56, 189, 248, 0.2); color: var(--primary); }
+    .file-title { font-size: 1.1rem; font-weight: 600; color: #f8fafc; }
+    main { flex: 1; padding: 2rem; max-width: 1200px; margin: 0 auto; width: 100%; }
+    .container { background: rgba(15, 23, 42, 0.7); border: 1px solid var(--glass-border); border-radius: 16px; padding: 2rem; box-shadow: 0 10px 30px rgba(0,0,0,0.3); overflow-x: auto; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-left">
+      <a href="../index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Voltar ao Dashboard</a>
+      <div class="file-title">05.5_decidindo_com_listas.py</div>
+    </div>
+    <div>
+      <a href="../mimo_app/python/Aulas/05.5_decidindo_com_listas.py" download class="back-btn"><i class="fa-solid fa-download"></i> Baixar Arquivo</a>
+    </div>
+  </header>
+  <main>
+    
+        <div class="container">
+          <div class="code-toolbar">
+            <span style="color: #38bdf8; font-weight: 600;"><i class="fa-brands fa-python"></i> 05.5_decidindo_com_listas.py</span>
+            <button class="btn-copy" onclick="navigator.clipboard.writeText(document.getElementById('py-code').innerText); this.innerText='Copiado!'; setTimeout(()=>this.innerText='Copiar Código', 2000)"><i class="fa-regular fa-copy"></i> Copiar Código</button>
+          </div>
+          <pre><code class="language-python" id="py-code"># MIMO - 05 - Listas
+# 05.5 - Decidindo com listas
+
+# Vamos descobrir como podemos contar os elementos nas listas e usá-los com instruções if
+
+# Usamos a instrução len() com o nome da lista entre parênteses para obter o número de elementos em uma lista.
+# Podemos usar print() para exibir o comprimento de uma lista no console
+# Podemos armazenar o comprimento de uma lista em uma variável
+users = [&#039;Sarah&#039;, &#039;Mike&#039;, &#039;Ella&#039;]
+#       [      0,      1,      2]
+
+print(users)
+number_of_users = len(users) # Retorna 3
+print(number_of_users)
+
+# Podemos usar o comprimento da lista par criar instruções condicionais com base no número de elementos.
+
+if number_of_users &lt; 4:
+    # Se o número de usuários for menor que 4, exibimos uma mensagem de erro
+    print(&#039;Precisamos de mais membros!&#039;)
+else:
+    # Se o número de usuários for maior ou igual a 4, exibimos uma mensagem de sucesso
+    print(&#039;Temos gente o suficiente!&#039;)
+
+# Podemos usar o operador in para verificar se um elemento existe em uma lista e tomar uma decisão com base nisso.
+# O operador in retorna True se o elemento existir na lista e False se não existir.
+
+if &#039;Sarah&#039; in users:
+    print(&#039;Sarah está na lista&#039;)
+else:
+    print(&#039;Sarah não está na lista&#039;)
+    
+
+# Podemos combinar isso com uma iteração:
+sequencia_fibonacci = [1, 1, 2, 3, 5, 8, 13, 21, 34, 55]
+
+# Se quisermos verificar por exemplo os números pares, podemos usar o operador % (módulo)
+# O operador % retorna o resto da divisão entre dois números. Se o resto for 0, o número é par, se for 1, o número é ímpar.
+
+# Durante a iteração, podemos criar novas listas e adicionar elementos a elas.
+pares = []
+impares = []
+
+# Esse loop itera sobre todos os elementos da lista e verifica se o número é par ou ímpar
+for numero in sequencia_fibonacci:
+    # Se o resto da divisão por 2 for 0, o número é par
+    if numero % 2 == 0:
+        print(f&#039;O número {numero} é par&#039;)
+        pares.append(numero)
+    else:
+        print(f&#039;O número {numero} é ímpar&#039;)
+        impares.append(numero)
+        
+print(pares)
+
+# Outras listas podem ser adicionadas a uma lista com o método extend(). A sintaxe é: list.extend(list2)
+
+# Podemos usar o método extend() para adicionar os números pares e ímpares a uma lista de números. extend() adiciona os elementos de uma lista a outra lista. Ele só funciona se os elementos forem do mesmo tipo e se as listas já existirem.
+numeros = []
+numeros.extend(pares) 
+numeros.extend(impares)
+print(numeros)
+
+# A função sorted() retorna uma nova lista ordenada com base em uma lista existente. A sintaxe é: sorted(list)
+lista_desordenada = [3, 1, 2, 5, 4]
+sorted(lista_desordenada) # Retorna [1, 2, 3, 4, 5]
+print(f&#039;Lista desordenada após sorted: {lista_desordenada}&#039;) # Retorna [3, 1, 2, 5, 4] somente nessa instância
+print(lista_desordenada) # Retorna [3, 1, 2, 5, 4]
+
+# A função sorted() não altera a lista existente. Ela retorna uma nova lista ordenada. Podemos atribuir essa nova lista a uma variável.
+lista_ordenada = sorted(lista_desordenada)
+print(f&#039;Nova lista ordenada após sorted: {lista_ordenada}&#039;) # Retorna [1, 2, 3, 4, 5]
+
+# A função sort() ordena a lista existente. A sintaxe é: list.sort()
+lista_desordenada = [3, 1, 2, 5, 4]
+lista_desordenada.sort() # Retorna [1, 2, 3, 4, 5]
+print(f&#039;Lista desordenada após sort: {lista_desordenada}&#039;) # Retorna [1, 2, 3, 4, 5]
+# A função sort() altera a lista existente. Ela não retorna uma nova lista.
+
+# É importante entender a diferença entre sorted() e sort(). sorted() retorna uma nova lista ordenada e não altera a lista existente. sort() altera a lista existente e não retorna uma nova lista. As listas devem conter apenas elementos do mesmo tipo para serem ordenadas.</code></pre>
+        </div>
+        <script>hljs.highlightAll();</script>
+      
+  </main>
+</body>
+</html>

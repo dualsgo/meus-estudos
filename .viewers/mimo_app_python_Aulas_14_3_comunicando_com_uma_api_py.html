@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>14.3_comunicando_com_uma_api.py - Meus Estudos</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/atom-one-dark.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/python.min.js"></script>
+        <style>
+          pre { border-radius: 8px; overflow-x: auto; font-size: 0.95rem; }
+          .code-toolbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem; }
+          .btn-copy { background: rgba(56, 189, 248, 0.2); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.4); padding: 0.4rem 0.8rem; border-radius: 6px; cursor: pointer; font-size: 0.85rem; }
+          .btn-copy:hover { background: rgba(56, 189, 248, 0.4); }
+        </style>
+      
+  <style>
+    :root {
+      --bg-color: #0b1120;
+      --glass-bg: rgba(30, 41, 59, 0.7);
+      --glass-border: rgba(255, 255, 255, 0.08);
+      --primary: #38bdf8;
+      --text-main: #f1f5f9;
+      --text-muted: #94a3b8;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
+    body { background-color: var(--bg-color); color: var(--text-main); min-height: 100vh; display: flex; flex-direction: column; }
+    header { padding: 0.8rem 2rem; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--glass-border); background: var(--glass-bg); backdrop-filter: blur(12px); position: sticky; top: 0; z-index: 100; }
+    .header-left { display: flex; align-items: center; gap: 1rem; }
+    .back-btn { color: var(--text-main); text-decoration: none; display: flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem; border-radius: 8px; background: rgba(255,255,255,0.05); font-size: 0.9rem; transition: 0.2s; }
+    .back-btn:hover { background: rgba(56, 189, 248, 0.2); color: var(--primary); }
+    .file-title { font-size: 1.1rem; font-weight: 600; color: #f8fafc; }
+    main { flex: 1; padding: 2rem; max-width: 1200px; margin: 0 auto; width: 100%; }
+    .container { background: rgba(15, 23, 42, 0.7); border: 1px solid var(--glass-border); border-radius: 16px; padding: 2rem; box-shadow: 0 10px 30px rgba(0,0,0,0.3); overflow-x: auto; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-left">
+      <a href="../index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Voltar ao Dashboard</a>
+      <div class="file-title">14.3_comunicando_com_uma_api.py</div>
+    </div>
+    <div>
+      <a href="../mimo_app/python/Aulas/14.3_comunicando_com_uma_api.py" download class="back-btn"><i class="fa-solid fa-download"></i> Baixar Arquivo</a>
+    </div>
+  </header>
+  <main>
+    
+        <div class="container">
+          <div class="code-toolbar">
+            <span style="color: #38bdf8; font-weight: 600;"><i class="fa-brands fa-python"></i> 14.3_comunicando_com_uma_api.py</span>
+            <button class="btn-copy" onclick="navigator.clipboard.writeText(document.getElementById('py-code').innerText); this.innerText='Copiado!'; setTimeout(()=>this.innerText='Copiar Código', 2000)"><i class="fa-regular fa-copy"></i> Copiar Código</button>
+          </div>
+          <pre><code class="language-python" id="py-code"># MIMO - 14 - Erros e exceções
+# 14.3 - Comunicando com uma API
+
+# O que é uma API?
+# Interfaces de programação de aplicativos, também conhecidas como API, facilitam a comunicação entre dois programas.
+# APIs enviam requisições de um programa remetente para um programa receptor. Em seguida, elas enviam respostas do receptor para o programa remetente.
+
+# Muitas coisas em nossa vida diária funcionam como uma API. Um exemplo é um garçom e a equipe da cozinha.
+
+# Um garçom, como um programa remetente, envia um pedido para a cozinha. Então a cozinha, como um programa receptor, envia de volta a comida como uma resposta.
+
+# Agora, de volta aos programas. O código abaixo envia uma solicitação GET para uma API. Você consegue adivinhar o que uma solicitação GET faz?
+
+# Se tudo funcionar, devemos receber os dados junto com um código de status 200, nos informando que tudo correu bem.
+
+# GET https://mimo.org.courses HTTP/1.1
+
+# Isso mesmo! O código era para solicitarmos alguns dados. https://mimo.org/courses é a API que nos ajudou a obtê-los!
+
+# Mas de onde a API obteve a informação? Lembre-se de que a API permite a comunicação entre 2 programas. Resposta: a API obteve a informação de um banco de dados.
+
+# Para interagir com bancos de dados, precisamos escrever código. Uma API nos permite fazer isso de uma maneira mais simples.
+
+# Mas você precisa usar o método correto para realizar ações. Para recuperar dados, usamos GET. O que você acha que usamos para inserir dados? Resposta: POST.
+
+# Isso mesmo! Podemos inserir dados em um banco de dados usando requisições POST.
+
+# Ao contrário das requisições GET, precisamos enviar um corpo com as informações para requisições POST. Complete a requisição abaixo.
+
+# Quando trabalhamos com Python, usamos a biblioteca requests para criar requisições.
+
+import requests 
+ 
+response = requests.get(&quot;https://mimo.org/courses&quot;) 
+data = response.json() 
+print(data)
+
+# Também podemos fazer requisições POST com a biblioteca requests.
+
+import requests 
+ 
+url = &quot;https://mimo.org/users&quot; 
+ 
+data = { 
+  &quot;username&quot;: &quot;test_user&quot;, 
+  &quot;name&quot;: &quot;tester&quot; 
+} 
+ 
+response = requests.post(url, json=data) 
+print(response.json())
+
+# Por que usar uma API?
+
+# Agora que você sabe o que é uma API, por que devemos usá-la? Uma razão é que APIs podem nos ajudar a construir um sistema mais rapidamente.
+
+# Desenvolvedores de back-end não precisam esperar que o desenvolvimento front-end seja concluído para testar seu programa.
+
+# Eles podem testar seu programa simplesmente enviando requisições para a API e verificando se as respostas estão corretas.
+
+# Já vimos as requisições GET e POST, mas ainda há as requisições DELETE, PUT e PATCH para aprender.
+
+# As requisições DELETEdevem ter um identificador para informar à API o que deve ser deletado. Como o identificador 6 aqui.
+
+# DELETE http://mimo.org/api/courses/6 HTTP/1.1
+
+# Usamos o método delete para chamar um endpoint de exclusão usando requests.
+
+import requests
+
+url = &quot;http://mimo.org/api/courses/1&quot;
+
+response = requests.delete(url)
+
+# As requisições PUT são semelhantes às requisições POST, mas são usadas para substituir um objeto previamente criado.
+
+# Como as requisições PUT são usadas para substituir objetos existentes, elas precisam de identificação para saber qual objeto substituir.
+
+# Se uma identificação inválida ou nenhuma identificação for fornecida em uma solicitação PUT, um novo objeto será criado.
+
+PUT https://mimo.org/users/1 HTTP/1.1
+
+{
+ &quot;username&quot;: &quot;test_User&quot;,
+ &quot;name&quot;: &quot;tester&quot;
+}
+
+# O código de status da resposta será 201 para objeto criado e 204 para objeto substituído. Codifique uma requisição PUT sem identificação.
+
+# PUT https://mimo.org/users HTTP/1.1 
+ 
+{ 
+ &quot;username&quot;: &quot;test_User&quot;, 
+ &quot;name&quot;: &quot;tester&quot; 
+}
+
+# Ao usar uma requisição PUT, ela remove todos os dados existentes e insere os dados com base no corpo da requisição.
+
+# Usamos o método put para chamar um endpoint put usando requests.
+
+#   As requisições PATCH são usadas para atualizar alguns campos de um objeto, portanto, é necessário identificar qual objeto atualizar.
+
+# Os valores de todos os campos não mencionados permanecerão inalterados. Use 1 como a identificação para a solicitação abaixo.</code></pre>
+        </div>
+        <script>hljs.highlightAll();</script>
+      
+  </main>
+</body>
+</html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>34_desafio.py - Meus Estudos</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/atom-one-dark.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/python.min.js"></script>
+        <style>
+          pre { border-radius: 8px; overflow-x: auto; font-size: 0.95rem; }
+          .code-toolbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem; }
+          .btn-copy { background: rgba(56, 189, 248, 0.2); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.4); padding: 0.4rem 0.8rem; border-radius: 6px; cursor: pointer; font-size: 0.85rem; }
+          .btn-copy:hover { background: rgba(56, 189, 248, 0.4); }
+        </style>
+      
+  <style>
+    :root {
+      --bg-color: #0b1120;
+      --glass-bg: rgba(30, 41, 59, 0.7);
+      --glass-border: rgba(255, 255, 255, 0.08);
+      --primary: #38bdf8;
+      --text-main: #f1f5f9;
+      --text-muted: #94a3b8;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
+    body { background-color: var(--bg-color); color: var(--text-main); min-height: 100vh; display: flex; flex-direction: column; }
+    header { padding: 0.8rem 2rem; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--glass-border); background: var(--glass-bg); backdrop-filter: blur(12px); position: sticky; top: 0; z-index: 100; }
+    .header-left { display: flex; align-items: center; gap: 1rem; }
+    .back-btn { color: var(--text-main); text-decoration: none; display: flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem; border-radius: 8px; background: rgba(255,255,255,0.05); font-size: 0.9rem; transition: 0.2s; }
+    .back-btn:hover { background: rgba(56, 189, 248, 0.2); color: var(--primary); }
+    .file-title { font-size: 1.1rem; font-weight: 600; color: #f8fafc; }
+    main { flex: 1; padding: 2rem; max-width: 1200px; margin: 0 auto; width: 100%; }
+    .container { background: rgba(15, 23, 42, 0.7); border: 1px solid var(--glass-border); border-radius: 16px; padding: 2rem; box-shadow: 0 10px 30px rgba(0,0,0,0.3); overflow-x: auto; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-left">
+      <a href="../index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Voltar ao Dashboard</a>
+      <div class="file-title">34_desafio.py</div>
+    </div>
+    <div>
+      <a href="../cursoemvideo_python/Curso de Python 3 - Mundo 1 Fundamentos/Curso Python #010 - Condições (Parte 1)/34_desafio.py" download class="back-btn"><i class="fa-solid fa-download"></i> Baixar Arquivo</a>
+    </div>
+  </header>
+  <main>
+    
+        <div class="container">
+          <div class="code-toolbar">
+            <span style="color: #38bdf8; font-weight: 600;"><i class="fa-brands fa-python"></i> 34_desafio.py</span>
+            <button class="btn-copy" onclick="navigator.clipboard.writeText(document.getElementById('py-code').innerText); this.innerText='Copiado!'; setTimeout(()=>this.innerText='Copiar Código', 2000)"><i class="fa-regular fa-copy"></i> Copiar Código</button>
+          </div>
+          <pre><code class="language-python" id="py-code"># Exercício Python #034 - Aumentos múltiplos - Aulas 00 até 09 - Mundo 1
+# Escreva um programa que pergunte o salário de um funcionário e calcule o valor do seu aumento. Para salários superiores a R$1250,00, calcule um aumento de 10%. Para os inferiores ou iguais, o aumento é de 15%.
+
+print(&#039;Simulador de aumento&#039;)
+# Tarefa 1: Perguntar o salário de um funcionário
+salario_atual = float(input(&#039;Digite o seu salário atual: R$ &#039;))
+
+# Tarefa 2: Calcular o valor do aumento
+quinze_porcento = salario_atual &lt;= 1250
+dez_porcento = salario_atual &gt; 1250
+
+# Se for menor ou igual a 1250, aumenta 15%
+if quinze_porcento:
+    aumento = 0.15
+    print(&#039;Seu aumento será de 15%&#039;)
+# Se for maior que 1250, aumenta 10%
+else:
+    aumento = 0.10
+    print(&#039;Seu aumento será de 10%&#039;)
+
+novo_salario = salario_atual + (salario_atual * aumento)
+print(f&#039;O seu salário de R$ {salario_atual:.2f} com aumento será R$ {novo_salario:.2f}&#039;)
+
+# Versão 2 - Com validação
+
+salário = 0
+while salário &lt;= 0:
+	try:
+		salário = float(input(&#039;Digite o valor do salário: R$ &#039;))
+		aumento = .15 if salário &lt;= 1250 else .10
+		print(
+			f&#039;{&#039;Salário atual:&#039;:&lt;20}R${salário:&gt;8.2f}\n&#039;
+			f&#039;{&#039;Aumento:&#039;:&lt;20}{aumento:&gt;10.2%}\n&#039;
+			f&#039;{&#039;Valor do aumento&#039;:&lt;20}R${salário*aumento:&gt;8.2f}\n&#039;
+			f&#039;{&#039;-&#039; * 30}\n&#039;
+			f&#039;{&#039;Salário atualizado:&#039;:&lt;20}R${salário * (1+aumento):&gt;8.2f}&#039;)
+	except ValueError:
+		print(f&#039;Apenas valores numéricos.&#039;)
+
+# Estou compartilhando minhas anotações sobre os exercícios. Quem quiser, pode copiar e colar em um documento .py pois está tudo formatado e comentado.
+
+# Nesse exercício, o programa deve perguntar o salário de um funcionário e calcular o valor do seu aumento. Para salários superiores a R$1250,00, o aumento é de 10%. Para salários inferiores ou iguais a R$1250,00, o aumento é de 15%.
+
+# A primeira coisa a ser feita é perguntar o salário do funcionário. Para isso, vamos utilizar a função input() para ler o salário e a função float() para converter o valor para ponto flutuante.
+salário = float(input(&#039;Digite o salário do funcionário: R$ &#039;))
+
+# Em seguida, vamos calcular o valor do aumento. Se o salário for superior a R$1250,00, o aumento será de 10%. Caso contrário, o aumento será de 15%.
+aumento = .10 if salário &gt; 1250 else .15
+# Novamente simplificamos o cálculo do aumento usando uma estrutura condicional que define o valor do aumento com base no salário do funcionário. Se o salário for superior a R$1250,00, o aumento será de 10%. Caso contrário, o aumento será de 15%.
+
+# Com o valor do aumento definido, podemos calcular o valor do aumento multiplicando o salário pelo aumento.
+valor_aumento = salário * aumento
+# Agora, basta multiplicar o salário pelo aumento para obter o valor do aumento.
+
+print(f&#039;Seu salário atual é de R$ {salário:.2f}&#039;)
+print(f&#039;O valor do aumento de {aumento:.0%} será de R$ {valor_aumento:.2f}&#039;)
+# A formatação :.0% é usada para exibir a porcentagem sem casas decimais. A formatação :.2f é usada para exibir o valor do aumento com duas casas decimais.
+
+# Se quisermos saber qual foi o valor do aumento e o salário atualizado, basta somar o salário ao valor do aumento.
+salário_atualizado = salário + valor_aumento
+print(f&#039;Seu salário atualizado será de R$ {salário_atualizado:.2f}&#039;)</code></pre>
+        </div>
+        <script>hljs.highlightAll();</script>
+      
+  </main>
+</body>
+</html>

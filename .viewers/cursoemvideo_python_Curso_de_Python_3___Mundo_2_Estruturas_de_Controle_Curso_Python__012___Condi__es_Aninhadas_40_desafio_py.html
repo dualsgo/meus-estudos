@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>40_desafio.py - Meus Estudos</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/atom-one-dark.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/python.min.js"></script>
+        <style>
+          pre { border-radius: 8px; overflow-x: auto; font-size: 0.95rem; }
+          .code-toolbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem; }
+          .btn-copy { background: rgba(56, 189, 248, 0.2); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.4); padding: 0.4rem 0.8rem; border-radius: 6px; cursor: pointer; font-size: 0.85rem; }
+          .btn-copy:hover { background: rgba(56, 189, 248, 0.4); }
+        </style>
+      
+  <style>
+    :root {
+      --bg-color: #0b1120;
+      --glass-bg: rgba(30, 41, 59, 0.7);
+      --glass-border: rgba(255, 255, 255, 0.08);
+      --primary: #38bdf8;
+      --text-main: #f1f5f9;
+      --text-muted: #94a3b8;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
+    body { background-color: var(--bg-color); color: var(--text-main); min-height: 100vh; display: flex; flex-direction: column; }
+    header { padding: 0.8rem 2rem; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--glass-border); background: var(--glass-bg); backdrop-filter: blur(12px); position: sticky; top: 0; z-index: 100; }
+    .header-left { display: flex; align-items: center; gap: 1rem; }
+    .back-btn { color: var(--text-main); text-decoration: none; display: flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem; border-radius: 8px; background: rgba(255,255,255,0.05); font-size: 0.9rem; transition: 0.2s; }
+    .back-btn:hover { background: rgba(56, 189, 248, 0.2); color: var(--primary); }
+    .file-title { font-size: 1.1rem; font-weight: 600; color: #f8fafc; }
+    main { flex: 1; padding: 2rem; max-width: 1200px; margin: 0 auto; width: 100%; }
+    .container { background: rgba(15, 23, 42, 0.7); border: 1px solid var(--glass-border); border-radius: 16px; padding: 2rem; box-shadow: 0 10px 30px rgba(0,0,0,0.3); overflow-x: auto; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-left">
+      <a href="../index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Voltar ao Dashboard</a>
+      <div class="file-title">40_desafio.py</div>
+    </div>
+    <div>
+      <a href="../cursoemvideo_python/Curso de Python 3 - Mundo 2 Estruturas de Controle/Curso Python #012 - Condições Aninhadas/40_desafio.py" download class="back-btn"><i class="fa-solid fa-download"></i> Baixar Arquivo</a>
+    </div>
+  </header>
+  <main>
+    
+        <div class="container">
+          <div class="code-toolbar">
+            <span style="color: #38bdf8; font-weight: 600;"><i class="fa-brands fa-python"></i> 40_desafio.py</span>
+            <button class="btn-copy" onclick="navigator.clipboard.writeText(document.getElementById('py-code').innerText); this.innerText='Copiado!'; setTimeout(()=>this.innerText='Copiar Código', 2000)"><i class="fa-regular fa-copy"></i> Copiar Código</button>
+          </div>
+          <pre><code class="language-python" id="py-code"># Exercício Python #040 - Aquele clássico da Média - Aula 00 até 12 - Mundo 2
+# Crie um programa que leia duas notas de um aluno e calcule sua média, mostrando uma mensagem no final, conforme a média atingida:
+# - Média abaixo de 5.0: REPROVADO
+# - Média entre 5.0 e 6.9: RECUPERAÇÃO
+# - Média 7.0 ou superior: APROVADO
+
+# Tarefa 1: Receber as duas notas e calcular a média
+primeira_nota = float(input(&#039;Digite a primeira nota: &#039;))
+print(f&#039;Nota do primeiro bimestre: {primeira_nota:.1f}&#039;)
+segunda_nota = float(input(&#039;Digite a segunda nota: &#039;))
+print(f&#039;Nota do segundo bimestre: {segunda_nota:.1f}&#039;)
+
+media = (primeira_nota + segunda_nota) / 2
+# Tarefa 2: Definir as condições e mensagens
+print(f&#039;\033[1mSua média foi: {media:.1f} - \033[m&#039;, end=&#039;&#039;)
+if media &lt; 5:
+    print(&#039;\033[1;31mREPROVADO!\033[m&#039;)
+elif media &lt; 7:
+    print(&#039;\033[1;33mRECUPERAÇÃO!\033[m&#039;)
+else:
+    print(&#039;\033[1;32mAPROVADO!\033[m&#039;)
+# Tarefa 3: Mostrar o resultado
+
+# VERSÃO SIMPLIFICADA
+
+while True:
+	try:
+		media = (float(input(&#039;Nota 1: &#039;)) + float(input(&#039;Nota 2: &#039;))) / 2
+		print(f&#039;Média: {media}&#039;, &#039;APROVADO&#039; if media &gt;= 7 else &#039;RECUPERAÇÃO&#039; if media &gt;= 5 else &#039;REPROVADO&#039;)
+		break
+	except ValueError:
+		print(&#039;Valores inválidos.&#039;)
+
+
+# Versão completa
+
+from emoji import emojize
+from time import sleep
+
+
+def obtem_nota(mensagem):
+    while True:
+        try:
+            nota = float(input(mensagem))
+            if 0 &lt;= nota &lt;= 10:
+                return nota
+            else:
+                print(&#039;O valor deve estar entre 0 e 10&#039;)
+        except ValueError:
+            print(&#039;Apenas números são aceitos&#039;)
+
+
+notas = [obtem_nota(f&#039;Digite a {i}ª nota: &#039;) for i in range(1, 5)]
+média = sum(notas) / len(notas)
+avaliação = emojize(f&#039;\033[1;31mREPROVADO :livro_fechado:\033[m&#039; if média &lt; 5 else &#039;\033[1;33mEM RECUPERAÇÃO :livro_azul:\033[m&#039; if média &lt; 7 else &#039;\033[1;32mAPROVADO :livro_verde:\033[m&#039;, language=&#039;pt&#039;)
+
+print(f&#039;{&#039;-&#039;*30}&#039;)
+for i, nota in enumerate(notas, 1):
+	print(f&#039;{f&#039;{i}ª Nota&#039;:&lt;10}{nota:&gt;20.2f}&#039;)
+	sleep(1)
+print(f&#039;{&#039;-&#039;*30}&#039;)
+print(f&#039;{&#039;Situação:&#039;:&lt;10}{avaliação:^20}&#039;)
+
+# EXTRA - PROGRAMINHA
+
+from time import sleep
+
+nota1 = float(input(&#039;Digite a sua primeira nota: &#039;))
+nota2 = float(input(&#039;Digite a sua segunda nota: &#039;))
+dias_frequentados = int(input(f&#039;{&#039;\033[1;31m&#039;}Quantos dias frequentou a escola:{&#039;\033[m&#039;} &#039;))
+
+# faz a média das notas
+media_nota = (nota1 + nota2) / 2
+
+# valida se o aluno teve uma frequência escolar de mais de 50 dias.
+# caso a frequência seja menor que 50 dias, aluno será reprovado
+if dias_frequentados &gt;= 50:
+    if media_nota &lt; 5: # Condição quando a média do aluno é menor que 5 pontos
+        print(&#039;\nInfelizmente você foi reprovado, sua nota\n&#039;
+              f&#039;foi {media_nota:.2f}&#039;)
+    elif 5 &lt;= media_nota &lt;= 6.9: # Valida se o aluno teve nota entre 5 e 6.9.
+        print(f&#039;\nInfelizmente a sua nota foi {media_nota:.2f} e nesse caso,\n&#039;
+              f&#039;será necessário fazer a recuperação.\n&#039;)
+
+        validar_repeteco = int(input(&#039;Digite 1 para agendar ou 2 para sair: &#039;)) # Confirmando com o aluno.
+
+        print(f&#039;\n{&#039;\033[1;31m&#039;}VALIDANDO INFORMAÇÕES...{&#039;\033[m&#039;}&#039;)
+        sleep(1) # dellay de 1 segundo
+
+        if validar_repeteco == 1: # se o aluno escolheu agendar a recuperação, cai nessa condição.
+            print(f&#039;\nProva agendada para o dia 17, a prova será composta\n&#039;
+                  &#039;de 10 questões e cada questão valerá 1 ponto, deverá\n&#039;
+                  &#039;tirar uma media de 7 para ser aprovado.&#039;)
+
+            sleep(2) # dellay de 2 segundo
+            print(f&#039;\n{&#039;\033[1;31m&#039;}Dois mil anos depois...{&#039;\033[m&#039;}&#039;)
+
+            sleep(1) # dellay de 1 segundo
+            print(&#039;\nDia da prova.&#039;)
+
+            acertos = int(input(&#039;Digite quantas questões acertou das 10: &#039;)) # aqui pergunto quantas quantas
+            # questões o aluno acertou.
+
+            print(f&#039;\n{&#039;\033[1;31m&#039;}PROCESSANDO INFORMAÇÃO...{&#039;\033[m&#039;}&#039;)
+            sleep(1) # dellay de 1 segundo
+
+            # Valida se o aluno acertou 7 ou mais de 7 pontos na prova da recuperação.
+            if acertos &gt;= 7:
+                print(f&#039;\nParabéns, você foi aprovado, sua nota foi {acertos}&#039;)
+            else: # Caso ele tenha acertado menos que 7 pontos, será reprovado e cairá nessa condição.
+                print(f&#039;\nInfelizmente, você foi reprovado, sua nota foi {acertos}&#039;)
+        else: # essa condição só será executada caso o aluno selecione a opção 2 para não
+              # agendar a prova da recuperação. Na verdade, caso ele escolha qualquer opção
+              # diferente de 1, já cai nessa condição.
+            print(&#039;Tudo bem, lembrando que deverá voltar\n&#039;
+                  &#039;antes do dia 13 para agendar a sua recuperação &#039;)
+
+    elif media_nota &gt;= 7: # se a nota do aluno for 7 ou maior que 7, entrará nessa condição.
+        print(f&#039;\nParabéns, você foi aprovado com exíto, sua nota foi {media_nota:.2f}.&#039;)
+
+else: # Caso o aluno tenha uma frequência menor que 50 dias, será reprovado sem as validações das notas
+    print(&#039;\nInfelizmente, você foi reprovado, sua frequência escolar\n&#039;
+          &#039;foi menor que 50 dias de aula.&#039;)
+    
+# Estou compartilhando minhas anotações sobre os exercícios. Quem quiser, pode copiar e colar em um documento .py pois está tudo formatado e comentado.
+
+# Nesse exercício, o programa deve ler duas notas de um aluno e calcular a média entre elas. Em seguida, o programa deve mostrar a média calculada e a situação do aluno, conforme a média atingida:
+# - Média abaixo de 5.0: REPROVADO
+# - Média entre 5.0 e 6.9: RECUPERAÇÃO
+# - Média 7.0 ou superior: APROVADO
+
+# A primeira coisa a ser feita é ler as duas notas do aluno. Para isso, vamos utilizar a função input() para ler as notas e a função float() para converter os valores para ponto flutuante.    
+nota1 = float(input(&#039;Digite a primeira nota: &#039;))
+nota2 = float(input(&#039;Digite a segunda nota: &#039;))
+
+# Em seguida, vamos calcular a média entre as duas notas. Para isso, vamos somar as duas notas e dividir o resultado por 2.
+media = (nota1 + nota2) / 2
+# Note que utilizamos parenteses para garantir que a soma seja feita antes da divisão, já que a divisão tem prioridade sobre a soma.
+
+# Por fim, vamos verificar a situação do aluno conforme a média atingida. Para isso, vamos utilizar uma estrutura condicional que verifica se a média é menor que 5, se é menor que 7 ou se é maior ou igual a 7.
+
+if media &lt; 5: # Condição quando a média do aluno é menor que 5. Isso exclui o 5.
+    print(f&#039;Sua média foi {media:.1f} e você está \033[1;31mREPROVADO\033[m.&#039;)
+
+# Este elif verifica se a média do aluno é menor que 7 e maior ou igual a 5. Como o if anterior já verificou se a média é menor que 5, se ele não for atendido, a média é maior ou igual a 5.
+elif media &lt; 7: 
+    print(f&#039;Sua média foi {media:.1f} e você está de \033[1;33mRECUPERAÇÃO\033[m.&#039;)
+
+# Este else é executado quando a média do aluno é maior ou igual a 7. Como os ifs anteriores já verificaram se a média é menor que 5 ou menor que 7, se ele não for atendido, a média é maior ou igual a 7
+else:
+    print(f&#039;Sua média foi {media:.1f} e você está \033[1;32mAPROVADO\033[m.&#039;)</code></pre>
+        </div>
+        <script>hljs.highlightAll();</script>
+      
+  </main>
+</body>
+</html>

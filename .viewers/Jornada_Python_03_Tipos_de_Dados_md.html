@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>03_Tipos_de_Dados.md - Meus Estudos</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+        <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/atom-one-dark.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <style>
+          .markdown-body { font-size: 1.05rem; line-height: 1.7; color: #cbd5e1; }
+          .markdown-body h1, .markdown-body h2 { border-bottom: 1px solid var(--glass-border); padding-bottom: 0.5rem; margin-bottom: 1rem; color: #38bdf8; }
+          .markdown-body a { color: #38bdf8; text-decoration: none; }
+          .markdown-body a:hover { text-decoration: underline; }
+          .markdown-body pre { background: #1e293b; padding: 1rem; border-radius: 8px; overflow-x: auto; border: 1px solid var(--glass-border); margin: 1rem 0; }
+          .markdown-body code { font-family: monospace; color: #eab308; background: rgba(0,0,0,0.3); padding: 0.2rem 0.4rem; border-radius: 4px; }
+          .markdown-body pre code { padding: 0; background: transparent; color: inherit; }
+          .markdown-body img { max-width: 100%; border-radius: 8px; }
+          table { border-collapse: collapse; width: 100%; margin: 1rem 0; }
+          th, td { border: 1px solid var(--glass-border); padding: 0.6rem; text-align: left; }
+          th { background: rgba(255,255,255,0.05); color: #38bdf8; }
+        </style>
+      
+  <style>
+    :root {
+      --bg-color: #0b1120;
+      --glass-bg: rgba(30, 41, 59, 0.7);
+      --glass-border: rgba(255, 255, 255, 0.08);
+      --primary: #38bdf8;
+      --text-main: #f1f5f9;
+      --text-muted: #94a3b8;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
+    body { background-color: var(--bg-color); color: var(--text-main); min-height: 100vh; display: flex; flex-direction: column; }
+    header { padding: 0.8rem 2rem; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--glass-border); background: var(--glass-bg); backdrop-filter: blur(12px); position: sticky; top: 0; z-index: 100; }
+    .header-left { display: flex; align-items: center; gap: 1rem; }
+    .back-btn { color: var(--text-main); text-decoration: none; display: flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem; border-radius: 8px; background: rgba(255,255,255,0.05); font-size: 0.9rem; transition: 0.2s; }
+    .back-btn:hover { background: rgba(56, 189, 248, 0.2); color: var(--primary); }
+    .file-title { font-size: 1.1rem; font-weight: 600; color: #f8fafc; }
+    main { flex: 1; padding: 2rem; max-width: 1200px; margin: 0 auto; width: 100%; }
+    .container { background: rgba(15, 23, 42, 0.7); border: 1px solid var(--glass-border); border-radius: 16px; padding: 2rem; box-shadow: 0 10px 30px rgba(0,0,0,0.3); overflow-x: auto; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-left">
+      <a href="../index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Voltar ao Dashboard</a>
+      <div class="file-title">03_Tipos_de_Dados.md</div>
+    </div>
+    <div>
+      <a href="../Jornada Python/03_Tipos_de_Dados.md" download class="back-btn"><i class="fa-solid fa-download"></i> Baixar Arquivo</a>
+    </div>
+  </header>
+  <main>
+    
+        <div class="container markdown-body" id="md-content"></div>
+        <script>
+          document.getElementById('md-content').innerHTML = marked.parse(decodeURIComponent(escape(window.atob('IyBUaXBvcyBkZSBEYWRvcyBlbSBQeXRob24NCg0KIyMgRVhQTElDQcOHw4NPDQoNCk9zIHRpcG9zIGRlIGRhZG9zIGZ1bmRhbWVudGFpcyBlbSBQeXRob24gZGVmaW5lbSBjb21vIG9zIHZhbG9yZXMgc8OjbyBhcm1hemVuYWRvcyBlIHF1YWlzIG9wZXJhw6fDtWVzIHPDo28gcG9zc8OtdmVpczoNCg0KMS4gKipTdHJpbmdzIChgc3RyYCk6KiogRGFkb3MgZGUgdGV4dG8gZGVsaW1pdGFkb3MgcG9yIGFzcGFzIHNpbXBsZXMgKGAnYCkgb3UgZHVwbGFzIChgImApLiBTw6NvIGl0ZXLDoXZlaXMgZSBzdXBvcnRhbSBhY2Vzc28gcG9yIMOtbmRpY2UgZSBmYXRpYW1lbnRvICgqc2xpY2luZyopLg0KMi4gKipOw7ptZXJvczoqKg0KICAgICogKipJbnRlaXJvcyAoYGludGApOioqIE7Dum1lcm9zIHNlbSBwYXJ0ZSBmcmFjaW9uw6FyaWEuDQogICAgKiAqKlBvbnRvIEZsdXR1YW50ZSAoYGZsb2F0YCk6KiogTsO6bWVyb3MgZGVjaW1haXMgKHVzYW0gcG9udG8gYC5gIGNvbW8gc2VwYXJhZG9yKS4NCiAgICAqICoqQ29tcGxleG9zIChgY29tcGxleGApOioqIE7Dum1lcm9zIGNvbSBwYXJ0ZSBpbWFnaW7DoXJpYSBgamAuDQozLiAqKkJvb2xlYW5vcyAoYGJvb2xgKToqKiBWYWxvcmVzIGzDs2dpY29zIGBUcnVlYCBvdSBgRmFsc2VgLiBTw6NvIHN1YnRpcG9zIGRlIGludGVpcm9zIChUcnVlID0gMSwgRmFsc2UgPSAwKS4NCjQuICoqTm9uZToqKiBSZXByZXNlbnRhIGEgYXVzw6puY2lhIGRlIHZhbG9yLg0KDQoqKkNvbnZlcnPDo28gKENhc3RpbmcpOioqIMOJIHBvc3PDrXZlbCBmb3LDp2FyIGEgY29udmVyc8OjbyBkZSB0aXBvcyB1c2FuZG8gZnVuw6fDtWVzIGNvbW8gYGludCgpYCwgYGZsb2F0KClgIGUgYHN0cigpYC4NCg0KIyMgRVhFTVBMTyBQUsOBVElDTw0KDQpgYGBweXRob24NCiMgU3RyaW5ncyBlIFNsaWNpbmcNCmxpbmd1YWdlbSA9ICJQeXRob24iDQpwcmludChsaW5ndWFnZW1bMF0pICAgICMgJ1AnDQpwcmludChsaW5ndWFnZW1bOjotMV0pICMgJ25vaHR5UCcgKEludmVydGlkYSkNCg0KIyBOw7ptZXJvcyAoRXNjcml0YSBjaWVudMOtZmljYSkNCnZlbG9jaWRhZGVfbHV6ID0gM2U4ICAgIyAzMDAwMDAwMDAuMCAoZmxvYXQpDQpwbGFuY2sgPSA2LjYyNmUtMzQNCg0KIyBCb29sZWFub3MgZW0gYXJpdG3DqXRpY2ENCnByaW50KFRydWUgKyBUcnVlKSAgICAgIyAyDQoNCiMgVmVyaWZpY2HDp8OjbyBkZSBUaXBvDQpwcmludCh0eXBlKDEwKSkgICAgICAgICMgPGNsYXNzICdpbnQnPg0KcHJpbnQodHlwZSgxMC41KSkgICAgICAjIDxjbGFzcyAnZmxvYXQnPg0KDQojIFVzbyBkbyBOb25lDQpyZXN1bHRhZG8gPSBOb25lDQppZiByZXN1bHRhZG8gaXMgTm9uZToNCiAgICBwcmludCgiU2VtIHZhbG9yIGF0cmlidcOtZG8iKQ0KYGBgDQo='))));
+          hljs.highlightAll();
+        </script>
+      
+  </main>
+</body>
+</html>

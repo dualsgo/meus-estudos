@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>04.4_controlando_loops_while.py - Meus Estudos</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/atom-one-dark.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/python.min.js"></script>
+        <style>
+          pre { border-radius: 8px; overflow-x: auto; font-size: 0.95rem; }
+          .code-toolbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem; }
+          .btn-copy { background: rgba(56, 189, 248, 0.2); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.4); padding: 0.4rem 0.8rem; border-radius: 6px; cursor: pointer; font-size: 0.85rem; }
+          .btn-copy:hover { background: rgba(56, 189, 248, 0.4); }
+        </style>
+      
+  <style>
+    :root {
+      --bg-color: #0b1120;
+      --glass-bg: rgba(30, 41, 59, 0.7);
+      --glass-border: rgba(255, 255, 255, 0.08);
+      --primary: #38bdf8;
+      --text-main: #f1f5f9;
+      --text-muted: #94a3b8;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
+    body { background-color: var(--bg-color); color: var(--text-main); min-height: 100vh; display: flex; flex-direction: column; }
+    header { padding: 0.8rem 2rem; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--glass-border); background: var(--glass-bg); backdrop-filter: blur(12px); position: sticky; top: 0; z-index: 100; }
+    .header-left { display: flex; align-items: center; gap: 1rem; }
+    .back-btn { color: var(--text-main); text-decoration: none; display: flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem; border-radius: 8px; background: rgba(255,255,255,0.05); font-size: 0.9rem; transition: 0.2s; }
+    .back-btn:hover { background: rgba(56, 189, 248, 0.2); color: var(--primary); }
+    .file-title { font-size: 1.1rem; font-weight: 600; color: #f8fafc; }
+    main { flex: 1; padding: 2rem; max-width: 1200px; margin: 0 auto; width: 100%; }
+    .container { background: rgba(15, 23, 42, 0.7); border: 1px solid var(--glass-border); border-radius: 16px; padding: 2rem; box-shadow: 0 10px 30px rgba(0,0,0,0.3); overflow-x: auto; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-left">
+      <a href="../index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Voltar ao Dashboard</a>
+      <div class="file-title">04.4_controlando_loops_while.py</div>
+    </div>
+    <div>
+      <a href="../mimo_app/python/Aulas/04.4_controlando_loops_while.py" download class="back-btn"><i class="fa-solid fa-download"></i> Baixar Arquivo</a>
+    </div>
+  </header>
+  <main>
+    
+        <div class="container">
+          <div class="code-toolbar">
+            <span style="color: #38bdf8; font-weight: 600;"><i class="fa-brands fa-python"></i> 04.4_controlando_loops_while.py</span>
+            <button class="btn-copy" onclick="navigator.clipboard.writeText(document.getElementById('py-code').innerText); this.innerText='Copiado!'; setTimeout(()=>this.innerText='Copiar Código', 2000)"><i class="fa-regular fa-copy"></i> Copiar Código</button>
+          </div>
+          <pre><code class="language-python" id="py-code"># MIMO - 04 - Loops
+
+# 4.4 - Controlando loops while
+
+# Vamos nos aprofundar no controle dos tempos em que um loop while repete seu código.
+# Para controlar o tempo de repetição de um loop while, começamos com uma variável definida com um número. Chamamos essa variável de contador.
+contador = 1
+
+# Em seguida, usamos uma comparação na condição para comparar a variável de contador com um número.
+
+# Dentro do bloco de código, fazemos a condição retornar False e paramos o loop incrementando a variável de contador.
+
+# Neste caso usamos += e aumentamos o valor da variável em 1 cada vez que o loop é executado.
+
+# O loop while repete seu bloco de código enquanto a condição for True
+while contador &lt; 4:
+    # Nesse caso, enquanto contador for menor que 4
+    print(f&#039;{contador} - Agora temos um limite de repetições&#039;)
+    contador += 1 # Adicionamos 1 ao contador para atualizá-lo a cada repetição do loop
+    
+
+# Alterar o valor da variável de contador muda quando o loop é iniciado.
+# Alterar a condição informa ao loop quando parar.
+
+# A ordem do código afeta o que o console exibe! Se colocar o incremento antes do print pro exemplo
+
+
+contador = 1  
+# O loop while repete seu bloco de código enquanto a condição for True
+while contador &lt; 4:
+    contador += 1  # Adicionamos 1 ao contador para atualizá-lo a cada repetição do loop. Nesse caso o contador é atualizado antes do print, então ele começa em 2 e vai até 4
+    print(f&#039;{contador} - Agora temos um limite de repetições&#039;) #  O contador irá até o 4 pois o incremento é feito antes do print, sendo assim o print() é executado pois a condição é verificada após o incremento
+</code></pre>
+        </div>
+        <script>hljs.highlightAll();</script>
+      
+  </main>
+</body>
+</html>

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>aula19_dicionarios.py - Meus Estudos</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/atom-one-dark.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/python.min.js"></script>
+        <style>
+          pre { border-radius: 8px; overflow-x: auto; font-size: 0.95rem; }
+          .code-toolbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem; }
+          .btn-copy { background: rgba(56, 189, 248, 0.2); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.4); padding: 0.4rem 0.8rem; border-radius: 6px; cursor: pointer; font-size: 0.85rem; }
+          .btn-copy:hover { background: rgba(56, 189, 248, 0.4); }
+        </style>
+      
+  <style>
+    :root {
+      --bg-color: #0b1120;
+      --glass-bg: rgba(30, 41, 59, 0.7);
+      --glass-border: rgba(255, 255, 255, 0.08);
+      --primary: #38bdf8;
+      --text-main: #f1f5f9;
+      --text-muted: #94a3b8;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
+    body { background-color: var(--bg-color); color: var(--text-main); min-height: 100vh; display: flex; flex-direction: column; }
+    header { padding: 0.8rem 2rem; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--glass-border); background: var(--glass-bg); backdrop-filter: blur(12px); position: sticky; top: 0; z-index: 100; }
+    .header-left { display: flex; align-items: center; gap: 1rem; }
+    .back-btn { color: var(--text-main); text-decoration: none; display: flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem; border-radius: 8px; background: rgba(255,255,255,0.05); font-size: 0.9rem; transition: 0.2s; }
+    .back-btn:hover { background: rgba(56, 189, 248, 0.2); color: var(--primary); }
+    .file-title { font-size: 1.1rem; font-weight: 600; color: #f8fafc; }
+    main { flex: 1; padding: 2rem; max-width: 1200px; margin: 0 auto; width: 100%; }
+    .container { background: rgba(15, 23, 42, 0.7); border: 1px solid var(--glass-border); border-radius: 16px; padding: 2rem; box-shadow: 0 10px 30px rgba(0,0,0,0.3); overflow-x: auto; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-left">
+      <a href="../index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Voltar ao Dashboard</a>
+      <div class="file-title">aula19_dicionarios.py</div>
+    </div>
+    <div>
+      <a href="../cursoemvideo_python/Curso de Python 3 - Mundo 3 Estruturas Compostas/Curso Python #019 - Dicionários/aula19_dicionarios.py" download class="back-btn"><i class="fa-solid fa-download"></i> Baixar Arquivo</a>
+    </div>
+  </header>
+  <main>
+    
+        <div class="container">
+          <div class="code-toolbar">
+            <span style="color: #38bdf8; font-weight: 600;"><i class="fa-brands fa-python"></i> aula19_dicionarios.py</span>
+            <button class="btn-copy" onclick="navigator.clipboard.writeText(document.getElementById('py-code').innerText); this.innerText='Copiado!'; setTimeout(()=>this.innerText='Copiar Código', 2000)"><i class="fa-regular fa-copy"></i> Copiar Código</button>
+          </div>
+          <pre><code class="language-python" id="py-code"># Curso Python #19 - Dicionários
+# Nessa aula, vamos aprender o que são DICIONÁRIOS e como utilizar dicionários em Python. Os dicionários são variáveis compostas que permitem armazenar vários valores em uma mesma estrutura, acessíveis por chaves literais.
+
+# Listas compostas comportam um ou mais valores. Cada valor receberá um índice numérico, iniciando em zero para identificar sua posição. Os valores são elementos.
+# Com isso, podemos acessar os valores indicando sua posição
+
+# Com dicionários, podemos acessar os dados através das chaves. Isso facilita a identificação dos dados
+
+# Dicionários são identificados pelas chaves que envolvem os elementos.
+# Inicializando um dicionário com dados = dict() ou podemos declarar como dados = {}
+
+# Dentro das chaves, em vez de índices numéricos usamos chaves personalizadas
+dados = {&#039;nome&#039;: &#039;Pedro&#039;, &#039;idade&#039;: 25}
+
+# Para visualizar um determinado elemento declaramos da seguinte forma:
+print(dados[&#039;nome&#039;])  # Usamos a chave em vez do índice numérico
+
+# Para adicionar dados, é necessário somente declarar a lista, a nova chave entre colchetes e atribuir o valor
+dados[&#039;sexo&#039;] = &#039;M&#039;
+print(dados)
+
+# Podemos modificar da mesma forma:
+dados[&#039;sexo&#039;] = &#039;F&#039;
+
+# Para remover elementos utilizamos o comando del
+del dados[&#039;idade&#039;]
+print(dados)
+
+# Considerando a seguinte estrutura
+filme = {&#039;titulo&#039;: &#039;Star Wars&#039;,
+         &#039;ano&#039;: 1997,
+         &#039;diretor&#039;: &#039;George Lucas&#039;}
+
+# Podemos acessar itens, chaves ou valores
+
+print(filme.values())  # Retorna os valores:
+# dict_values([&#039;Star Wars&#039;, 1997, &#039;George Lucas&#039;])
+
+print(filme.keys())  # Retorna as chaves:
+# dict_keys([&#039;titulo&#039;, &#039;ano&#039;, &#039;diretor&#039;])
+
+print(filme.items())  # Retorna chaves e valores:
+# dict_items([(&#039;titulo&#039;, &#039;Star Wars&#039;), (&#039;ano&#039;, 1997), (&#039;diretor&#039;, &#039;George Lucas&#039;)])
+
+# Utilizando em laços
+
+for chave, valor in filme.items():
+    # O titulo é Star Wars
+    # O ano é 1997
+    # O diretor é George Lucas
+    print(f&#039;O {chave} é {valor}&#039;)
+
+# Podemos utiliza listas, tuplas e dicionários em conjunto
+locadora = [
+        {&#039;titulo&#039;: &#039;Star Wars&#039;,
+         &#039;ano&#039;: 1997,
+         &#039;diretor&#039;: &#039;George Lucas&#039;},
+        {&#039;titulo&#039;: &#039;Avengers&#039;,
+         &#039;ano&#039;: 2012,
+         &#039;diretor&#039;: &#039;Joss Whedon&#039;},
+        {&#039;titulo&#039;: &#039;Matrix&#039;,
+         &#039;ano&#039;: 1999,
+         &#039;diretor&#039;: &#039;Wachowski&#039;}]
+
+# Cada dicionário é um elemento e recebe seu índice dentro da lista, assim como cada par de chave e valor do dicionário é um elemento.
+
+# Acessamos primeiro o elemento da lista e depois a chave desejada ou até mesmo o dicionário completo
+print(locadora[0][&#039;ano&#039;])  # 1997
+print(locadora[2][&#039;titulo&#039;])  # Matrix
+print(locadora[1])  #  {&#039;titulo&#039;: &#039;Avengers&#039;, &#039;ano&#039;: 2012, &#039;diretor&#039;: &#039;Joss Whedon&#039;}
+
+pessoas = {&#039;nome&#039;: &#039;Gustavo&#039;, &#039;sexo&#039;: &#039;M&#039;, &#039;idade&#039;: 22}
+print(pessoas)
+print(pessoas[&#039;nome&#039;])
+print(pessoas[&#039;idade&#039;])
+# Ao utilizar em uma string formatada, deve-se ter atenção ao uso de aspas simples e duplas
+print(f&#039;O {pessoas[&quot;nome&quot;]} tem {pessoas[&quot;idade&quot;]} anos.&#039;)
+print(pessoas.keys())  # dict_keys([&#039;nome&#039;, &#039;sexo&#039;, &#039;idade&#039;])
+print(pessoas.values())  # dict_values([&#039;Gustavo&#039;, &#039;M&#039;, 22])
+print(pessoas.items())  # dict_items([(&#039;nome&#039;, &#039;Gustavo&#039;), (&#039;sexo&#039;, &#039;M&#039;), (&#039;idade&#039;, 22)])
+
+# Dicionários não suportam fatiamento como as lista. Utilizamos o método interno .copy() para contornar essa limitação
+brasil = []
+estados = {}
+for loop in range(3):
+    estados[&#039;uf&#039;] = str(input(&#039;Unidade Federativa: &#039;))
+    estados[&#039;sigla&#039;] = str(input(&#039;Sigla: &#039;))
+    brasil.append(estados.copy())
+
+# Laço para a lista
+for e in brasil:
+    # laço para o dicionario
+    for v in e.values():
+        print(v, end=&#039; - &#039;)
+    print()</code></pre>
+        </div>
+        <script>hljs.highlightAll();</script>
+      
+  </main>
+</body>
+</html>

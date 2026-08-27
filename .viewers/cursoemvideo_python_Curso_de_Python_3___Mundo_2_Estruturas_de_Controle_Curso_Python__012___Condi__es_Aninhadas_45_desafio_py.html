@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>45_desafio.py - Meus Estudos</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/atom-one-dark.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/python.min.js"></script>
+        <style>
+          pre { border-radius: 8px; overflow-x: auto; font-size: 0.95rem; }
+          .code-toolbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem; }
+          .btn-copy { background: rgba(56, 189, 248, 0.2); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.4); padding: 0.4rem 0.8rem; border-radius: 6px; cursor: pointer; font-size: 0.85rem; }
+          .btn-copy:hover { background: rgba(56, 189, 248, 0.4); }
+        </style>
+      
+  <style>
+    :root {
+      --bg-color: #0b1120;
+      --glass-bg: rgba(30, 41, 59, 0.7);
+      --glass-border: rgba(255, 255, 255, 0.08);
+      --primary: #38bdf8;
+      --text-main: #f1f5f9;
+      --text-muted: #94a3b8;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
+    body { background-color: var(--bg-color); color: var(--text-main); min-height: 100vh; display: flex; flex-direction: column; }
+    header { padding: 0.8rem 2rem; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--glass-border); background: var(--glass-bg); backdrop-filter: blur(12px); position: sticky; top: 0; z-index: 100; }
+    .header-left { display: flex; align-items: center; gap: 1rem; }
+    .back-btn { color: var(--text-main); text-decoration: none; display: flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem; border-radius: 8px; background: rgba(255,255,255,0.05); font-size: 0.9rem; transition: 0.2s; }
+    .back-btn:hover { background: rgba(56, 189, 248, 0.2); color: var(--primary); }
+    .file-title { font-size: 1.1rem; font-weight: 600; color: #f8fafc; }
+    main { flex: 1; padding: 2rem; max-width: 1200px; margin: 0 auto; width: 100%; }
+    .container { background: rgba(15, 23, 42, 0.7); border: 1px solid var(--glass-border); border-radius: 16px; padding: 2rem; box-shadow: 0 10px 30px rgba(0,0,0,0.3); overflow-x: auto; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-left">
+      <a href="../index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Voltar ao Dashboard</a>
+      <div class="file-title">45_desafio.py</div>
+    </div>
+    <div>
+      <a href="../cursoemvideo_python/Curso de Python 3 - Mundo 2 Estruturas de Controle/Curso Python #012 - Condições Aninhadas/45_desafio.py" download class="back-btn"><i class="fa-solid fa-download"></i> Baixar Arquivo</a>
+    </div>
+  </header>
+  <main>
+    
+        <div class="container">
+          <div class="code-toolbar">
+            <span style="color: #38bdf8; font-weight: 600;"><i class="fa-brands fa-python"></i> 45_desafio.py</span>
+            <button class="btn-copy" onclick="navigator.clipboard.writeText(document.getElementById('py-code').innerText); this.innerText='Copiado!'; setTimeout(()=>this.innerText='Copiar Código', 2000)"><i class="fa-regular fa-copy"></i> Copiar Código</button>
+          </div>
+          <pre><code class="language-python" id="py-code"># Exercício Python #045 - GAME: Pedra Papel e Tesoura - Aula 00 até 12 - Mundo 2
+# Crie um programa que faça o computador jogar Jokenpô com você.
+from math import e
+from time import sleep
+from random import randint, choice
+from emoji import emojize
+
+# Versão mais recente - Preciso corrigir o erro na lógica do empate
+
+
+def obter_valor(mensagem):
+	while True:
+		try:
+			jogada = int(input(mensagem))
+			while jogada not in [1, 2, 3]:
+				print(f&#039;\033[1;31m{&#039;-&#039; * 30}\033[m&#039;)
+				print(&#039;\033[1;31mOpção inválida! Escolha novamente...\033[m&#039;)
+				print(f&#039;\033[1;31m{&#039;-&#039; * 30}\033[m&#039;)
+				jogada = int(input(mensagem))
+			return jogada
+		except ValueError:
+			print(&#039;O valor digitado não é permitido!&#039;)
+
+
+def avaliação(player, computer):
+	if player == computer:
+		return emojize(&#039;:pessoa::aperto_de_mãos::rosto_de_robô:&#039;, language=&#039;pt&#039;)
+	else:
+		if player == 1 and computador == 3 or player == 2 and computer == 1 or player == 3 and computer == 2:
+			return emojize(&#039;Jogador :pessoa: vence!&#039;, language=&#039;pt&#039;)
+		else:
+			return emojize(&#039;Computador :rosto_de_robô: vence!&#039;, language=&#039;pt&#039;)
+
+print(f&#039;{&#039;-&#039; * 30}&#039;)
+print(emojize(&#039;VAMOS JOGAR JO :punho_levantado: KEN :mão_levantada: PO :mão_em_v_de_vitória:!&#039;, language=&#039;pt&#039;))
+print(f&#039;{&#039;-&#039; * 30}&#039;)
+sleep(1)
+print(&#039;Escolha a sua jogada: &#039;)
+computador = randint(1,3)
+jogador = obter_valor(emojize(&#039;[1] PEDRA :punho_levantado:\n[2] PAPEL :mão_levantada:\n[3] TESOURA :mão_em_v_de_vitória:\nEscolha: &#039;, language=&#039;pt&#039;))
+print(f&#039;{&#039;-&#039; * 30}&#039;)
+
+resultado = avaliação(jogador, computador)
+
+jogador_jogou = emojize(&#039;PEDRA :punho_levantado:&#039; if jogador == 1 else &#039;PAPEL :mão_levantada:&#039; if jogador == 2 else &#039;TESOURA :mão_em_v_de_vitória:&#039;, language=&#039;pt&#039;)
+computador_jogou = emojize(&#039;PEDRA :punho_levantado:&#039; if computador == 1 else &#039;PAPEL :mão_levantada:&#039; if computador == 2 else &#039;TESOURA :mão_em_v_de_vitória:&#039;, language=&#039;pt&#039;)
+
+print(emojize(f&#039;{&#039;:rosto_de_robô: COMPUTADOR: &#039;:&lt;20}{computador_jogou:&gt;10}&#039;, language=&#039;pt&#039;))
+sleep(1)
+print(emojize(f&#039;{&#039;:pessoa: JOGADOR: &#039;:&lt;20}{jogador_jogou:&gt;10}&#039;, language=&#039;pt&#039;))
+sleep(1)
+print(f&#039;{&#039;-&#039; * 30}&#039;)
+print(f&#039;\033[1mResultado: {resultado}\033[m&#039;)
+print(f&#039;{&#039;-&#039; * 30}&#039;)
+
+# Versão antiga
+computador = choice([&#039;Pedra&#039;, &#039;Papel&#039;, &#039;Tesoura&#039;])
+
+print(f&#039;Escolha sua jogada.\n1 - Pedra\n2 - Papel\n3 - Tesoura&#039;)
+
+while True:
+	try:
+		escolha = int(input(&#039;Digite o número correspondente à sua escolha: &#039;))
+		if escolha &lt; 1 or escolha &gt; 3:
+			print(&#039;Por favor, digite um número entre 1 e 3.&#039;)
+			continue
+
+		usuário = &#039;Pedra&#039; if escolha == 1 else &#039;Papel&#039; if escolha == 2 else &#039;Tesoura&#039;
+
+		print(f&#039;{&#039;Computador:&#039;:&lt;11}{computador:&gt;10}\n{&#039;Usuário:&#039;:&lt;11}{usuário:&gt;10}&#039;)
+
+		if usuário == &#039;Pedra&#039; and computador == &quot;Tesoura&quot; or usuário == &#039;Papel&#039; and computador == &#039;Pedra&#039; or usuário == &#039;Tesoura&#039; and computador == &quot;Papel&quot;:
+			print(f&#039;{f&#039;Venceu! {usuário} vence {computador}.&#039;}&#039;)
+
+		elif usuário == computador:
+			print(f&#039;{&#039;Empate!&#039;}&#039;)
+
+		else:
+			print(f&#039;{f&#039;Perdeu! {computador} vence {usuário}.&#039;}&#039;)
+		break
+	except ValueError:
+		print(&#039;Por favor, digite um número válido.&#039;)
+		continue
+
+# Estou compartilhando minhas anotações sobre os exercícios. Quem quiser, pode copiar e colar em um documento .py pois está tudo formatado e comentado.
+
+# Nesse exercício vamos criar um jogo
+
+# Primeiro, vamos importar as bibliotecas necessárias
+from random import randint # Vamos usar a função randint para gerar números aleatórios
+from time import sleep # Vamos usar a função sleep para dar um tempo entre as ações do jogo
+
+# Vamos criar uma lista com as opções do jogo
+opcoes = [&#039;Pedra&#039;, &#039;Papel&#039;, &#039;Tesoura&#039;]
+
+# Vamos usar um lista para associar os números às opções. Os elementos da lista são as opções do jogo. Uma lista é uma coleção de elementos que podem ser acessados por um índice. Os índices começam em 0, logo, a opção &#039;Pedra&#039; está no índice 0, a opção &#039;Papel&#039; está no índice 1 e a opção &#039;Tesoura&#039; está no índice 2.
+
+# Vamos fazer o computador escolher uma opção aleatória entre 0 e 2, que são os índices das opções na lista	
+computador = randint(0, 2)
+
+# Vamos pedir para o jogador escolher uma opção
+print(&#039;Escolha uma opção:&#039;)
+print(&#039;[0] Pedra&#039;)
+print(&#039;[1] Papel&#039;)
+print(&#039;[2] Tesoura&#039;)
+jogador = int(input(&#039;Digite o número correspondente à sua escolha: &#039;))
+
+# O usuário deve digitar um número entre 0 e 2. Vamos verificar se o número digitado é válido
+if jogador &lt; 0 or jogador &gt; 2:
+	print(&#039;Opção inválida! Por favor, escolha um número entre 0 e 2.&#039;)
+	exit() # A função exit() encerra o programa se o jogador digitar um número inválido
+else:
+    # Caso contrário, vamos mostrar as opções do jogo
+	print(&#039;JO&#039;)
+	sleep(1)
+	print(&#039;KEN&#039;)
+	sleep(1)
+	print(&#039;PO!!!&#039;)
+
+	# Vamos mostrar as escolhas do jogador e do computador
+	print(f&#039;Você escolheu: {opcoes[jogador]}&#039;)
+	print(f&#039;O computador escolheu: {opcoes[computador]}&#039;)
+
+	# Vamos verificar quem ganhou
+	if jogador == computador:
+		print(&#039;Empate!&#039;)
+	elif jogador == 0 and computador == 2 or jogador == 1 and computador == 0 or jogador == 2 and computador == 1:
+		print(&#039;Você ganhou!&#039;)
+	else:
+		print(&#039;Você perdeu!&#039;)
+
+# Usamos uma pequena validação para garantir que o jogador escolha um número entre 0 e 2. Porém o programa é encerrar se o jogador escolher um número inválido. Podemos melhorar isso para que o programa continue rodando até que o jogador escolha um número válido. Podemos fazer isso com um loop while, mas como ainda não vimos loops, vamos deixar assim por enquanto.</code></pre>
+        </div>
+        <script>hljs.highlightAll();</script>
+      
+  </main>
+</body>
+</html>

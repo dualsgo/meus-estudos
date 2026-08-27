@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>18_classes.ipynb - Meus Estudos</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+        <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/atom-one-dark.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/python.min.js"></script>
+        <style>
+          .cell { margin-bottom: 1.5rem; }
+          .cell-markdown { font-size: 1.05rem; line-height: 1.6; color: #cbd5e1; }
+          .cell-markdown h1, .cell-markdown h2, .cell-markdown h3 { color: #f1f5f9; margin-top: 1rem; margin-bottom: 0.5rem; }
+          .cell-markdown code { background: rgba(0,0,0,0.3); padding: 0.2rem 0.4rem; border-radius: 4px; color: #eab308; }
+          .cell-markdown pre { background: rgba(0,0,0,0.3); padding: 1rem; border-radius: 8px; overflow-x: auto; border: 1px solid var(--glass-border); margin: 1rem 0; }
+          .cell-code { background: #1e293b; border-radius: 8px; padding: 1rem; overflow-x: auto; position: relative; border: 1px solid var(--glass-border); }
+          .cell-output { background: #0f172a; color: #a3e635; padding: 1rem; border-radius: 8px; margin-top: 0.5rem; font-family: monospace; overflow-x: auto; white-space: pre-wrap; font-size: 0.9rem; }
+          .prompt { position: absolute; top: 0.5rem; right: 0.5rem; color: #64748b; font-size: 0.75rem; }
+        </style>
+      
+  <style>
+    :root {
+      --bg-color: #0b1120;
+      --glass-bg: rgba(30, 41, 59, 0.7);
+      --glass-border: rgba(255, 255, 255, 0.08);
+      --primary: #38bdf8;
+      --text-main: #f1f5f9;
+      --text-muted: #94a3b8;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
+    body { background-color: var(--bg-color); color: var(--text-main); min-height: 100vh; display: flex; flex-direction: column; }
+    header { padding: 0.8rem 2rem; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--glass-border); background: var(--glass-bg); backdrop-filter: blur(12px); position: sticky; top: 0; z-index: 100; }
+    .header-left { display: flex; align-items: center; gap: 1rem; }
+    .back-btn { color: var(--text-main); text-decoration: none; display: flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem; border-radius: 8px; background: rgba(255,255,255,0.05); font-size: 0.9rem; transition: 0.2s; }
+    .back-btn:hover { background: rgba(56, 189, 248, 0.2); color: var(--primary); }
+    .file-title { font-size: 1.1rem; font-weight: 600; color: #f8fafc; }
+    main { flex: 1; padding: 2rem; max-width: 1200px; margin: 0 auto; width: 100%; }
+    .container { background: rgba(15, 23, 42, 0.7); border: 1px solid var(--glass-border); border-radius: 16px; padding: 2rem; box-shadow: 0 10px 30px rgba(0,0,0,0.3); overflow-x: auto; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-left">
+      <a href="../index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Voltar ao Dashboard</a>
+      <div class="file-title">18_classes.ipynb</div>
+    </div>
+    <div>
+      <a href="../Resumos/18_classes.ipynb" download class="back-btn"><i class="fa-solid fa-download"></i> Baixar Arquivo</a>
+    </div>
+  </header>
+  <main>
+    <div class="container">
+            <div class="cell cell-markdown" id="md-0"></div>
+            <script>
+              document.getElementById('md-0').innerHTML = marked.parse(decodeURIComponent(escape(window.atob('IyAqKmBDbGFzc2VzYCoqCgrDgCBtZWRpZGEgcXVlIGNvbnN0cnXDrW1vcyBwcm9ncmFtYXMsIG11aXRhcyB2ZXplcyBwcmVjaXNhcmVtb3MgY3JpYXIgbXVpdG9zIG9iamV0b3Mgc2VtZWxoYW50ZXMsIG1hcyBkaXN0aW50b3MuIFBvciBleGVtcGxvLCB2w6FyaW9zIGNhZGFzdHJvcyBkZSBjYXJyb3MgZGlmZXJlbnRlcyBkZSB1bWEgY29uY2Vzc2lvbsOhcmlhLgoKQ3JpYXIgbm92YXMgdmFyacOhdmVpcyBhdnVsc2FzIHBhcmEgY2FkYSB1bSBkb3MgZGlmZXJlbnRlcyBjYXJyb3MgbGV2YXJpYSBtdWl0byB0ZW1wbyBlIHBvZGVyaWEgY2F1c2FyIG11aXRhIGNvbmZ1c8Ojby4K'))));
+            </script>
+          
+            <div class="cell cell-code">
+              <div class="prompt">In [27]</div>
+              <pre><code class="language-python">carro1_modelo = &quot;Fusca&quot;
+carro1_ano = 1970
+
+carro2_modelo = &quot;Civic&quot;
+carro2_ano = 2022</code></pre>
+            </div>
+          
+            <div class="cell cell-code">
+              <div class="prompt">In [28]</div>
+              <pre><code class="language-python">print(&quot;Modelo do Carro 1: &quot; + carro1_modelo)
+print(&quot;Ano do Carro 1: &quot; + str(carro1_ano))</code></pre>
+            </div>
+          <div class="cell-output">Modelo do Carro 1: Fusca
+Ano do Carro 1: 1970
+</div>
+            <div class="cell cell-code">
+              <div class="prompt">In [29]</div>
+              <pre><code class="language-python">print(&quot;Modelo do Carro 2: &quot; + carro2_modelo)
+print(&quot;Ano do Carro 2: &quot; + str(carro2_ano))</code></pre>
+            </div>
+          <div class="cell-output">Modelo do Carro 2: Civic
+Ano do Carro 2: 2022
+</div>
+            <div class="cell cell-markdown" id="md-4"></div>
+            <script>
+              document.getElementById('md-4').innerHTML = marked.parse(decodeURIComponent(escape(window.atob('UGFyYSBub3MgYWp1ZGFyIGEgYWdydXBhciBkYWRvcyBlIGZ1bmNpb25hbGlkYWRlcywgY3JpYW1vcyB1bWEgY2xhc3NlLiBVbWEgY2xhc3NlIMOpIHVtICdtb2xkZScgKG91IG1vZGVsbykgcXVlIHVzYW1vcyBwYXJhIGZhYnJpY2FyIG11aXRhcyBjb2lzYXMgc2VtZWxoYW50ZXMsIG1hcyBpbmRlcGVuZGVudGVzLgoKQSBzaW50YXhlIMOpIGEgc2VndWludGU6CgpgYGBweXRob24KY2xhc3MgTm9tZURhQ2xhc3NlOgogICAgIyBjw7NkaWdvIGRhIGNsYXNzZQpgYGAKClVzYW1vcyBhIGluZGVudGHDp8OjbyAoZXNwYcOnb3Mgbm8gaW7DrWNpbyBkYSBsaW5oYSkgcGFyYSBpbmRpY2FyIHF1ZSBvIGPDs2RpZ28gYWJhaXhvIGRhIGxpbmhhIGRlIGRlZmluacOnw6NvIHBlcnRlbmNlIMOgcXVlbGEgY2xhc3NlLgoKTyBub21lIGRhIGNsYXNzZSBkZXZlIGNvbWXDp2FyIGNvbSB1bWEgbGV0cmEgbWFpw7pzY3VsYS4gUG9yIGNvbnZlbsOnw6NvIChQRVAgOCksIHVzYW1vcyBDYW1lbENhc2UgKGV4OiBgQ29udGFCYW5jYXJpYWApIHBhcmEgbm9tZXMgZGUgY2xhc3NlcyBlbSBQeXRob24uCgpBIGNsYXNzZSBgQ2Fycm9gIMOpIHVtIG1vbGRlIHBhcmEgY3JpYXIgY2Fycm9zLiBFbGEgbsOjbyDDqSB1bSBjYXJybyByZWFsIGVzdGFjaW9uYWRvIG5hIGdhcmFnZW0sIG1hcyBzaW0gYSBwbGFudGEgZGUgbW9udGFnZW0gcGFyYSBmYWJyaWNhciBjYXJyb3MgcmVhaXMuCg=='))));
+            </script>
+          
+            <div class="cell cell-code">
+              <div class="prompt">In [30]</div>
+              <pre><code class="language-python">class Carro:
+    # O método __init__ é chamado quando criamos um novo objeto (fabricamos o carro). Ele nos permite definir as características iniciais.
+    def __init__(self, modelo, ano):
+        # O primeiro parâmetro de um método de classe é SEMPRE o &#039;self&#039;. Ele se refere ao próprio objeto que está sendo criado.
+        # Os outros parâmetros (modelo, ano) são as características que queremos salvar.
+
+        self.modelo = modelo  # O atributo (característica) interno recebe o valor passado.
+        self.ano = ano        
+        
+    # Podemos criar métodos (ações) para essa classe.
+    def exibir_especificacoes(self):
+        print(&quot;Modelo: &quot; + self.modelo)
+        print(&quot;Ano: &quot; + str(self.ano))
+        # Métodos nas classes são semelhantes a funções, mas são chamados usando um ponto (.).
+</code></pre>
+            </div>
+          
+            <div class="cell cell-markdown" id="md-6"></div>
+            <script>
+              document.getElementById('md-6').innerHTML = marked.parse(decodeURIComponent(escape(window.atob('UmVzdW1pbmRvIG8gcXVlIGZpemVtb3MgYXTDqSBhZ29yYTogY3JpYW1vcyBhIGNsYXNzZSBgQ2Fycm9gIGNvbW8gdW0gbW9sZGUuIEVzc2UgbW9sZGUgZGVmaW5lIHF1ZSB0b2RvIGNhcnJvIHRlcsOhIGF0cmlidXRvcyBgbW9kZWxvYCBlIGBhbm9gLCBlIHNhYmVyw6EgdXNhciBhIGHDp8OjbyBgZXhpYmlyX2VzcGVjaWZpY2Fjb2VzKClgLgoKQW8gdXNhciBlc3NlIG1vbGRlLCBwb2RlbW9zIGNyaWFyIHF1YW50b3MgY2Fycm9zIHF1aXNlcm1vcywgc2VtIGNyaWFyIHZhcmnDoXZlaXMgZ2Vuw6lyaWNhcyBzb2x0YXMuCg=='))));
+            </script>
+          
+            <div class="cell cell-code">
+              <div class="prompt">In [31]</div>
+              <pre><code class="language-python">carro_antigo = Carro(&quot;Fusca&quot;, 1970)  # Criamos um novo objeto da classe Carro e guardamos na variável carro_antigo.
+# O &#039;self&#039; é passado pelo Python automaticamente, só precisamos enviar &#039;Fusca&#039; e 1970.
+
+carro_novo = Carro(&quot;Civic&quot;, 2022)
+
+print(&quot;Especificações do Carro Antigo:&quot;)
+carro_antigo.exibir_especificacoes()  # Chamamos o método no objeto carro_antigo.</code></pre>
+            </div>
+          <div class="cell-output">Especificações do Carro Antigo:
+Modelo: Fusca
+Ano: 1970
+</div>
+            <div class="cell cell-markdown" id="md-8"></div>
+            <script>
+              document.getElementById('md-8').innerHTML = marked.parse(decodeURIComponent(escape(window.atob('Q3JpYW1vcyB1bSBtw6l0b2RvIGBleGliaXJfZXNwZWNpZmljYWNvZXMoKWAgcGFyYSBmYWNpbGl0YXIgYSBpbXByZXNzw6NvLiBNYXMgdGFtYsOpbSBwb2RlcsOtYW1vcyBsZXIgYXMgcHJvcHJpZWRhZGVzIGRpcmV0YW1lbnRlIHVzYW5kbyBwb250bywgYXNzaW06Cg=='))));
+            </script>
+          
+            <div class="cell cell-code">
+              <div class="prompt">In [32]</div>
+              <pre><code class="language-python">print(&quot;Lendo diretamente do objeto:&quot;)
+print(&quot;Qual o modelo do carro antigo? &quot; + carro_antigo.modelo)
+</code></pre>
+            </div>
+          <div class="cell-output">Lendo diretamente do objeto:
+Qual o modelo do carro antigo? Fusca
+</div>
+            <div class="cell cell-markdown" id="md-10"></div>
+            <script>
+              document.getElementById('md-10').innerHTML = marked.parse(decodeURIComponent(escape(window.atob('VmFtb3MgZmF6ZXIgdW0gb3V0cm8gbW9kZWxvIHBhc3NvIGEgcGFzc286CgpEZXN0YSB2ZXosIHZhbW9zIGNyaWFyIHVtYSBjbGFzc2UgYFBlc3NvYWAgcXVlIHRlbSB2YWxvcmVzIHBhZHLDtWVzIChzZW0gdXNhciBvIGBfX2luaXRfX2Agbm8gY29tZcOnbywgYXBlbmFzIHBhcmEgaWx1c3RyYXIgdmFyacOhdmVpcyBkZSBjbGFzc2UpOgo='))));
+            </script>
+          
+            <div class="cell cell-code">
+              <div class="prompt">In [33]</div>
+              <pre><code class="language-python">class Pessoa:
+    print(&#039;Lendo o conteúdo dentro da classe...&#039;)
+    
+    # Criar variáveis numa classe funciona exatamente como criar variáveis normais.
+    nacionalidade = &#039;Brasileiro(a)&#039;
+    hobby = &#039;Programar&#039;
+
+    # Adicionando uma funcionalidade (método).
+    def apresentar(self):
+        # Precisamos do &#039;self.&#039; para acessar as variáveis da própria classe de dentro de um método.
+        print(&#039;Olá, mundo!&#039;)
+        print(&#039;Meu passatempo favorito é &#039; + self.hobby)</code></pre>
+            </div>
+          <div class="cell-output">Lendo o conteúdo dentro da classe...
+</div>
+            <div class="cell cell-markdown" id="md-12"></div>
+            <script>
+              document.getElementById('md-12').innerHTML = marked.parse(decodeURIComponent(escape(window.atob('IyMjIENyaWFuZG8gaW5zdMOibmNpYXMgZGUgY2xhc3NlCgpRdWFuZG8gdXNhbW9zIG5vc3NvIG1vbGRlIChjbGFzc2UpIHBhcmEgZ2VyYXIgdW0gb2JqZXRvIHJlYWwgbm8gcHJvZ3JhbWEsIGNoYW1hbW9zIGlzc28gZGUgKippbnN0YW5jaWFyKiogZSBvIHJlc3VsdGFkbyDDqSB1bWEgKippbnN0w6JuY2lhKiogKG8gb2JqZXRvKS4K'))));
+            </script>
+          
+            <div class="cell cell-code">
+              <div class="prompt">In [34]</div>
+              <pre><code class="language-python">class Mascote:
+    cor = &quot;caramelo&quot;
+    patas = 4
+    vidas = 1</code></pre>
+            </div>
+          
+            <div class="cell cell-code">
+              <div class="prompt">In [35]</div>
+              <pre><code class="language-python">rex = Mascote()</code></pre>
+            </div>
+          
+            <div class="cell cell-markdown" id="md-15"></div>
+            <script>
+              document.getElementById('md-15').innerHTML = marked.parse(decodeURIComponent(escape(window.atob('YE1hc2NvdGVgIMOpIGEgZGVmaW5pw6fDo28gKG8gbW9sZGUpLiBgcmV4YCDDqSBhIGluc3TDom5jaWEgKG8gb2JqZXRvIHF1ZSBjcmlhbW9zKS4KClBhcmEgYWNlc3NhciB1bWEgcHJvcHJpZWRhZGUgZG8gYHJleGAsIHVzYW1vcyBvIHBvbnRvOgo='))));
+            </script>
+          
+            <div class="cell cell-code">
+              <div class="prompt">In [36]</div>
+              <pre><code class="language-python">print(rex.cor)  # caramelo</code></pre>
+            </div>
+          <div class="cell-output">caramelo
+</div>
+            <div class="cell cell-markdown" id="md-17"></div>
+            <script>
+              document.getElementById('md-17').innerHTML = marked.parse(decodeURIComponent(escape(window.atob('UG9kZW1vcyBhbHRlcmFyIG8gdmFsb3IgZGVzc2EgcHJvcHJpZWRhZGUgcGFyYSBlc3NlIG9iamV0byBlc3BlY8OtZmljbzoK'))));
+            </script>
+          
+            <div class="cell cell-code">
+              <div class="prompt">In [37]</div>
+              <pre><code class="language-python">rex.cor = &quot;preto&quot;
+rex.vidas = 7
+print(rex.cor) # 
+
+# Isso não afeta as demais instâncias
+fofo = Mascote()
+print(fofo.cor)</code></pre>
+            </div>
+          <div class="cell-output">preto
+caramelo
+</div>
+            <div class="cell cell-markdown" id="md-19"></div>
+            <script>
+              document.getElementById('md-19').innerHTML = marked.parse(decodeURIComponent(escape(window.atob('TWFzIGZpY2FyIG11ZGFuZG8gdW0gcG9yIHVtIGRlcG9pcyBkZSBjcmlhciBvIG1hc2NvdGUgZMOhIHRyYWJhbGhvLiDDiSBwb3IgaXNzbyBxdWUgZ2VyYWxtZW50ZSB1c2Ftb3MgY29uc3RydXRvcmVzIChvIGZhbW9zbyBgX19pbml0X19gKSBwYXJhIGrDoSBuYXNjZXJlbSBkaWZlcmVudGVzIQo='))));
+            </script>
+          
+            <div class="cell cell-code">
+              <div class="prompt">In [38]</div>
+              <pre><code class="language-python">class Mascote:
+    def __init__(self, cor, vidas):
+        self.cor = cor
+        self.vidas = vidas
+</code></pre>
+            </div>
+          
+            <div class="cell cell-markdown" id="md-21"></div>
+            <script>
+              document.getElementById('md-21').innerHTML = marked.parse(decodeURIComponent(escape(window.atob('QWdvcmEgbyBtb2xkZSBFWElHRSBxdWUgZGlnYW1vcyBhIGNvciBlIGFzIHZpZGFzIG5hIGhvcmEgZGUgaW5pY2lhcjoK'))));
+            </script>
+          
+            <div class="cell cell-code">
+              <div class="prompt">In [39]</div>
+              <pre><code class="language-python">rex = Mascote(&quot;preto&quot;, 7)
+belinha = Mascote(&quot;caramelo&quot;, 1)</code></pre>
+            </div>
+          
+            <div class="cell cell-markdown" id="md-23"></div>
+            <script>
+              document.getElementById('md-23').innerHTML = marked.parse(decodeURIComponent(escape(window.atob('IyMjIENsYXNzZXMgY29tIG3DqXRvZG9zCgpFIHNlIHF1aXNlcm1vcyBxdWUgbyBtYXNjb3RlIGZhw6dhIGFsZ3VtIHNvbT8K'))));
+            </script>
+          
+            <div class="cell cell-code">
+              <div class="prompt">In [40]</div>
+              <pre><code class="language-python">class Mascote:
+    def __init__(self, nome, cor):
+        self.nome = nome
+        self.cor = cor
+
+    def latir(self):
+        print(self.nome + &quot; diz: Au au!&quot;)
+        
+    def exibir_cor(self):
+        print(&quot;A cor do &quot; + self.nome + &quot; é &quot; + self.cor)</code></pre>
+            </div>
+          
+            <div class="cell cell-code">
+              <div class="prompt">In [41]</div>
+              <pre><code class="language-python">rex = Mascote(&quot;Rex&quot;, &quot;caramelo&quot;)
+rex.latir()
+rex.exibir_cor()</code></pre>
+            </div>
+          <div class="cell-output">Rex diz: Au au!
+A cor do Rex é caramelo
+</div>
+            <div class="cell cell-markdown" id="md-26"></div>
+            <script>
+              document.getElementById('md-26').innerHTML = marked.parse(decodeURIComponent(escape(window.atob('IyMjIEJvYXMgUHLDoXRpY2FzIGUgQ29tcHJlZW5zw6NvIGRlIENsYXNzZXMKClNlbWVsaGFudGUgw6Agbm9tZWHDp8OjbyBkZSB2YXJpw6F2ZWlzIGUgZnVuw6fDtWVzLCBleGlzdGVtIGNvbnZlbsOnw7VlcyAoY29tbyBhIFBFUCA4KSBlIGJvYXMgcHLDoXRpY2FzIGFvIGRlZmluaXIgY2xhc3NlcyBlbSBQeXRob246CjEuIFVzYXIgUGFzY2FsQ2FzZS9DYW1lbENhc2UgKGV4OiBgQ29udGFCYW5jYXJpYWAsIGBQaXp6YWAsIGBQZXNzb2FgKS4KMi4gTm9tZXMgZGVzY3JpdGl2b3MgZGUgYWNvcmRvIGNvbSBhIGVudGlkYWRlIHJlYWwgb3UgYWJzdHJhdGEuCjMuIE3DqXRvZG9zIHBvZGVtIHVzYXIgdG9kb3Mgb3MgcmVjdXJzb3MgZG8gUHl0aG9uOiBsYcOnb3MgYGZvcmAsIGBpZi9lbHNlYCwgZXRjLgo='))));
+            </script>
+          
+            <div class="cell cell-code">
+              <div class="prompt">In [42]</div>
+              <pre><code class="language-python">class Pizza:
+    def __init__(self, sabor, ingredientes):
+        self.sabor = sabor
+        # ingredientes deve ser uma lista
+        self.ingredientes = ingredientes
+
+    def mostrar_receita(self):
+        print(&quot;Para a pizza de &quot; + self.sabor + &quot; você precisa de:&quot;)
+        for ingrediente in self.ingredientes:
+            print(&quot;- &quot; + ingrediente)
+</code></pre>
+            </div>
+          
+            <div class="cell cell-code">
+              <div class="prompt">In [43]</div>
+              <pre><code class="language-python">pizza_marguerita = Pizza(&#039;Marguerita&#039;, [&#039;massa&#039;, &#039;molho de tomate&#039;, &#039;mucarela&#039;, &#039;manjericão&#039;])
+pizza_marguerita.mostrar_receita()
+</code></pre>
+            </div>
+          <div class="cell-output">Para a pizza de Marguerita você precisa de:
+- massa
+- molho de tomate
+- mucarela
+- manjericão
+</div>
+            <div class="cell cell-markdown" id="md-29"></div>
+            <script>
+              document.getElementById('md-29').innerHTML = marked.parse(decodeURIComponent(escape(window.atob('IyMjIE3DqXRvZG9zIEVzcGVjaWFpcyAoRHVuZGVyIE1ldGhvZHMpCgpFeGlzdGUgb3V0cm8gbcOpdG9kbyBlc3BlY2lhbCBtdWl0byDDunRpbCBjaGFtYWRvIGBfX3N0cl9fYC4gQXNzaW0gY29tbyBvIGNvbnN0cnV0b3IgYF9faW5pdF9fYCwgZWxlIMOpIGRlbGltaXRhZG8gcG9yIGRvaXMgc3VibGluaGFkb3MgZHVwbG9zIChkb3VibGUgdW5kZXJzY29yZXMsIG91ICpkdW5kZXIqIGVtIGluZ2zDqnMpLgoKUG9yIHBhZHLDo28sIHNlIHZvY8OqIHRlbnRhciBpbXByaW1pciB1bSBvYmpldG8gY29tbyBgcHJpbnQocGl6emFfbWFyZ3Vlcml0YSlgLCBvIFB5dGhvbiBpbXByaW1lIGA8X19tYWluX18uUGl6emEgb2JqZWN0IGF0IDB4Li4uPmAsIG8gcXVlIG7Do28gw6kgbXVpdG8gbGVnw612ZWwuCgpPIG3DqXRvZG8gYF9fc3RyX19gIGRlaXhhIHZvY8OqIGNvbmZpZ3VyYXIgcXVlIHRleHRvIGRldmUgYXBhcmVjZXIgcXVhbmRvIHRlbnRhcm1vcyBjb252ZXJ0ZXIgbyBvYmpldG8gcGFyYSB0ZXh0byBvdSB1c2EtbG8gbm8gYHByaW50KClgOgo='))));
+            </script>
+          
+            <div class="cell cell-code">
+              <div class="prompt">In [44]</div>
+              <pre><code class="language-python">class Mascote:
+    def __init__(self, nome, cor):
+        self.nome = nome
+        self.cor = cor
+
+    def __str__(self):
+        # Este método deve retornar uma string!
+        return f&quot;Mascote(nome=&#039;{self.nome}&#039;, cor=&#039;{self.cor}&#039;)&quot;
+
+pet = Mascote(&quot;Floquinho&quot;, &quot;verde&quot;)
+print(pet)  # Saída bonita: Mascote(nome=&#039;Floquinho&#039;, cor=&#039;verde&#039;)
+</code></pre>
+            </div>
+          <div class="cell-output">Mascote(nome=&#039;Floquinho&#039;, cor=&#039;verde&#039;)
+</div>
+            <div class="cell cell-markdown" id="md-31"></div>
+            <script>
+              document.getElementById('md-31').innerHTML = marked.parse(decodeURIComponent(escape(window.atob('IyMjIFBhcmFkaWdtYXM6IFByb2dyYW1hw6fDo28gRnVuY2lvbmFsIHZzIE9yaWVudGHDp8OjbyBhIE9iamV0b3MKClByb2dyYW1hw6fDo28gRnVuY2lvbmFsIChGUCkgc2VwYXJhIGJlbSBvcyBkYWRvcyBkYXMgYcOnw7VlcyAoZnVuw6fDtWVzKToK'))));
+            </script>
+          
+            <div class="cell cell-code">
+              <div class="prompt">In [45]</div>
+              <pre><code class="language-python"># Estilo Funcional
+def calcular_distancia(velocidade_kmh, tempo_horas):
+    return velocidade_kmh * tempo_horas
+
+v = 100
+t = 2
+distancia = calcular_distancia(v, t)
+print(distancia)
+</code></pre>
+            </div>
+          <div class="cell-output">200
+</div>
+            <div class="cell cell-markdown" id="md-33"></div>
+            <script>
+              document.getElementById('md-33').innerHTML = marked.parse(decodeURIComponent(escape(window.atob('TmEgT09QIChPcmllbnRhw6fDo28gYSBPYmpldG9zKSwgYW1hcnJhbW9zIG9zIGRhZG9zIGUgb3MgbcOpdG9kb3MgKGHDp8O1ZXMpIG51bWEgY29pc2Egc8OzOiBvIG9iamV0by4K'))));
+            </script>
+          
+            <div class="cell cell-code">
+              <div class="prompt">In [46]</div>
+              <pre><code class="language-python"># Estilo OOP
+class Viagem:
+    def __init__(self, velocidade, tempo):
+        self.velocidade = velocidade
+        self.tempo = tempo
+        
+    def calcular_distancia(self):
+        return self.velocidade * self.tempo
+
+minha_viagem = Viagem(100, 2)
+print(minha_viagem.calcular_distancia())
+</code></pre>
+            </div>
+          <div class="cell-output">200
+</div>
+            <div class="cell cell-markdown" id="md-35"></div>
+            <script>
+              document.getElementById('md-35').innerHTML = marked.parse(decodeURIComponent(escape(window.atob('RW0gT09QLCBjb25zdGFudGVtZW50ZSB1c2Ftb3Mgb3MgbcOpdG9kb3MgcGFyYSBhdHVhbGl6YXIgb3MgZGFkb3MgZG8gcHLDs3ByaW8gb2JqZXRvOgo='))));
+            </script>
+          
+            <div class="cell cell-code">
+              <div class="prompt">In [47]</div>
+              <pre><code class="language-python">class Cofrinho:
+    def __init__(self):
+        self.saldo = 0  
+        
+    def depositar(self, valor):
+        self.saldo = self.saldo + valor
+
+meu_cofre = Cofrinho()
+meu_cofre.depositar(50)
+meu_cofre.depositar(20)
+print(meu_cofre.saldo)  # 70
+</code></pre>
+            </div>
+          <div class="cell-output">70
+</div>
+            <div class="cell cell-markdown" id="md-37"></div>
+            <script>
+              document.getElementById('md-37').innerHTML = marked.parse(decodeURIComponent(escape(window.atob('IyMjIE8gcXVlIMOpIG8gRW5jYXBzdWxhbWVudG8/CgpFc3PDqm5jaWEgZG8gZW5jYXBzdWxhbWVudG8gw6kgYWdydXBhciBvcyBkYWRvcyBwZXJ0aW5lbnRlcyBlIHN1YXMgcmVzcGVjdGl2YXMgcmVzcG9uc2FiaWxpZGFkZXMgbm8gbWVzbW8gbHVnYXIuIE1hcyBuw6NvIMOpIHPDsyBpc3NvLiBUcmF0YS1zZSB0YW1iw6ltIGRlICoqb2N1bHRhciBlIHByb3RlZ2VyKiogZGFkb3MuCgpNdWl0YXMgdmV6ZXMsIG7Do28gcXVlcmVtb3MgcXVlIG91dHJhIHBhcnRlIGRvIGPDs2RpZ28gbW9kaWZpcXVlIG8gaW50ZXJpb3IgZG8gb2JqZXRvIGRlIGZvcm1hIGRlc2FqZWl0YWRhLiBFbSBQeXRob24gZGVjbGFyYW1vcyB1bSBhdHJpYnV0byByZXN0cml0byAocHJpdmFkbykgY29tIGRvaXMgc3VibGluaGFkb3MgYF9fYCBhbnRlcyBkbyBub21lLgo='))));
+            </script>
+          
+            <div class="cell cell-code">
+              <div class="prompt">In [48]</div>
+              <pre><code class="language-python">class ContaBancaria:
+    def __init__(self, titular, saldo_inicial):
+        self.titular = titular
+        # Protegendo o saldo para que ninguém altere diretamente (ex: conta.__saldo = 999999)
+        self.__saldo = saldo_inicial  
+        
+    def depositar(self, valor):
+        if valor &gt; 0:
+            self.__saldo += valor
+            
+    def sacar(self, valor):
+        if valor &lt;= self.__saldo:
+            self.__saldo -= valor
+            
+    def ver_saldo(self):
+        return self.__saldo
+
+conta_da_maria = ContaBancaria(&quot;Maria&quot;, 1000)
+conta_da_maria.sacar(100)
+print(&quot;Saldo real da conta:&quot;, conta_da_maria.ver_saldo())
+
+# Se você rodar: print(conta_da_maria.__saldo)
+# o Python apontará erro, indicando que este atributo não existe (proteção)!
+</code></pre>
+            </div>
+          <div class="cell-output">Saldo real da conta: 900
+</div>
+            <div class="cell cell-markdown" id="md-39"></div>
+            <script>
+              document.getElementById('md-39').innerHTML = marked.parse(decodeURIComponent(escape(window.atob('IyMjIEFwbGljYW5kbyBIZXJhbsOnYSAoSW5oZXJpdGFuY2UpCgpTZSB2w6FyaWFzIGNsYXNzZXMgY29tcGFydGlsaGFtIGNvbXBvcnRhbWVudG9zIHBhcmVjaWRvcywgdXNhciBoZXJhbsOnYSBldml0YSBjb3BpYXIgZSBjb2xhciBvIG1lc21vIGPDs2RpZ28uCg=='))));
+            </script>
+          
+            <div class="cell cell-code">
+              <div class="prompt">In [49]</div>
+              <pre><code class="language-python">class Pessoa:
+    def __init__(self, nome):
+        self.nome = nome
+        
+    def apresentar(self):
+        print(&quot;Olá, eu sou &quot; + self.nome)
+</code></pre>
+            </div>
+          
+            <div class="cell cell-markdown" id="md-41"></div>
+            <script>
+              document.getElementById('md-41').innerHTML = marked.parse(decodeURIComponent(escape(window.atob('VmFtb3MgY3JpYXIgdW0gYEVzdHVkYW50ZWAgcXVlIHZhaSAiaGVyZGFyIiBkZSBgUGVzc29hYCwgYWZpbmFsIHRvZG8gRXN0dWRhbnRlIMOpIHVtYSBQZXNzb2E6Cg=='))));
+            </script>
+          
+            <div class="cell cell-code">
+              <div class="prompt">In [50]</div>
+              <pre><code class="language-python">class Estudante(Pessoa):
+    # Ao colocar (Pessoa) na definição da classe, Estudante ganha acesso aos métodos da base
+    def __init__(self, nome, curso):
+        # super() nos dá acesso a &quot;superclasse&quot; que é a Pessoa. Chamamos o construtor dela!
+        super().__init__(nome)
+        self.curso = curso
+        
+    def exibir_curso(self):
+        print(&quot;Eu estudo &quot; + self.curso)
+
+aluno = Estudante(&quot;Felipe&quot;, &quot;Engenharia&quot;)
+aluno.apresentar()  # Herdado de Pessoa!
+aluno.exibir_curso() # Próprio de Estudante!
+</code></pre>
+            </div>
+          <div class="cell-output">Olá, eu sou Felipe
+Eu estudo Engenharia
+</div>
+            <div class="cell cell-markdown" id="md-43"></div>
+            <script>
+              document.getElementById('md-43').innerHTML = marked.parse(decodeURIComponent(escape(window.atob('IyMjIEFic3RyYWluZG8gb2JqZXRvcyAoQWJzdHJhY3Rpb24pCgpBYnN0cmHDp8OjbyDDqSBmb2NhciBubyBxdWUgw6kgaW1wb3J0YW50ZSBuYSB2aXPDo28gZGUgZm9yYSBlIGVzY29uZGVyIGEgY29tcGxleGlkYWRlIGRlIGRlbnRyby4KUG9yIGV4ZW1wbG8sIHBhcmEgb3BlcmFyIHVtYSBtw6FxdWluYSBkZSBjYWbDqSBuw6NvIHByZWNpc2Ftb3MgY29uZWN0YXIgY2FkYSBmaW8uIFPDsyBhcGVydGFtb3MgbyBib3TDo28gImZhemVyX2NhZmUiLgo='))));
+            </script>
+          
+            <div class="cell cell-code">
+              <div class="prompt">In [51]</div>
+              <pre><code class="language-python">class MaquinaDeCafe:
+    def __init__(self):
+        self.ligada = True
+        
+    def __aquecer_agua(self):   # Método privado! o usuário não chama isso.
+        print(&quot;Aquecendo água a 90 graus...&quot;)
+        
+    def __moer_graos(self):     # Outro método privado.
+        print(&quot;Moendo os grãos de café...&quot;)
+        
+    # Esse é o único método público que importa para quem vai beber o café:
+    def preparar_cafe(self):
+        if self.ligada:
+            self.__aquecer_agua()
+            self.__moer_graos()
+            print(&quot;Café pronto! ☕&quot;)
+        else:
+            print(&quot;A máquina está desligada.&quot;)
+
+maquina = MaquinaDeCafe()
+maquina.preparar_cafe()  # Abstração na prática: chamamos 1 método simples e muito trabalho interno acontece!
+</code></pre>
+            </div>
+          <div class="cell-output">Aquecendo água a 90 graus...
+Moendo os grãos de café...
+Café pronto! ☕
+</div>
+            <div class="cell cell-markdown" id="md-45"></div>
+            <script>
+              document.getElementById('md-45').innerHTML = marked.parse(decodeURIComponent(escape(window.atob('IyMjIFBvbGltb3JmaXNtbyAoU29icmVzY3JpdGEgZGUgTcOpdG9kb3MvT3ZlcnJpZGUpCgpBcyB2ZXplcyB1bSBtw6l0b2RvIGV4aXN0ZSBuYSBDbGFzc2UgUGFpLCBtYXMgcHJlY2lzYW1vcyBxdWUgZWxlIGFqYSBsaWdlaXJhbWVudGUgZGlmZXJlbnRlIGRlcGVuZGVuZG8gZGEgZXNwZWNpYWxpZGFkZSBkbyBGaWxoby4KKipQb2xpID0gTXVpdG9zIHwgTW9yZm9zID0gRm9ybWFzKiouIMOJIGEgbWVzbWEgYcOnw6NvLCBjb20gZm9ybWFzIGRpZmVyZW50ZXMgZGUgZXhlY3XDp8Ojby4K'))));
+            </script>
+          
+            <div class="cell cell-code">
+              <div class="prompt">In [52]</div>
+              <pre><code class="language-python">class Animal:
+    def emitir_som(self):
+        print(&quot;Som misterioso...&quot;)
+</code></pre>
+            </div>
+          
+            <div class="cell cell-code">
+              <div class="prompt">In [53]</div>
+              <pre><code class="language-python">class Cachorro(Animal):
+    # O método &#039;emitir_som&#039; já existia em Animal.
+    # Ao recriar aqui, estamos sobrescrevendo o original!
+    def emitir_som(self):
+        print(&quot;Au Au!&quot;)
+</code></pre>
+            </div>
+          
+            <div class="cell cell-code">
+              <div class="prompt">In [54]</div>
+              <pre><code class="language-python">class Gato(Animal):
+    def emitir_som(self):
+        print(&quot;Miau!&quot;)
+</code></pre>
+            </div>
+          
+            <div class="cell cell-code">
+              <div class="prompt">In [55]</div>
+              <pre><code class="language-python">class Vaca(Animal):
+    def emitir_som(self):
+        print(&quot;Muuuu!&quot;)
+</code></pre>
+            </div>
+          
+            <div class="cell cell-code">
+              <div class="prompt">In [56]</div>
+              <pre><code class="language-python">fazenda = [Cachorro(), Gato(), Vaca(), Animal()]
+
+for bicho in fazenda:
+    bicho.emitir_som()  # Mesma ação (polimorfismo), resultados diferentes!
+</code></pre>
+            </div>
+          <div class="cell-output">Au Au!
+Miau!
+Muuuu!
+Som misterioso...
+</div>
+            <div class="cell cell-markdown" id="md-51"></div>
+            <script>
+              document.getElementById('md-51').innerHTML = marked.parse(decodeURIComponent(escape(window.atob('IyMjIPCfp6AgRXhlcmPDrWNpb3MgUHLDoXRpY29zCg=='))));
+            </script>
+          
+            <div class="cell cell-markdown" id="md-52"></div>
+            <script>
+              document.getElementById('md-52').innerHTML = marked.parse(decodeURIComponent(escape(window.atob('KipFeGVyY8OtY2lvIDE6KiogSW5zaXJhIG9zIHRpam9sb3MgZGVjbGFyYXRpdm9zIHB1cm9zOiBHZXJlIG9zIGZ1bmRhbWVudG9zIG1vZGVsYWRvcmVzIGRhIGFyZ2FtYXNzYSBsaW1wYSBuYXMgYmFzZXMgZXNjdXJhcyBjcmlhbmRvIHN1YSBzdXBlciBjbGFzc2UgZW5jbGF1c3VyYWRvcmEgZGUgbW9sZGVzIHBhZHJvbml6YWRvcyBjb25zdHJpdMOtdmFzIGUgY29tIHByb3ByaWVkYWRlcyBlbSBjb25zdHJ1dG9yIG3DoWdpY28gaW52b2NhZG9yIHBhZHLDo28gZG8gcmVpbm8gbGltcG86IGBfX2luaXRfX2Au'))));
+            </script>
+          
+            <div class="cell cell-code">
+              <div class="prompt">In [ ]</div>
+              <pre><code class="language-python"></code></pre>
+            </div>
+          
+            <div class="cell cell-markdown" id="md-54"></div>
+            <script>
+              document.getElementById('md-54').innerHTML = marked.parse(decodeURIComponent(escape(window.atob('KipFeGVyY8OtY2lvIDI6KiogSW5jb3Jwb3JlIG5vIG1vbGRlIHZpdm8gdW0gY29yYcOnw6NvIGRlIGHDp8O1ZXMgYmF0ZWRvciBjb20gbcOpdG9kb3MgZnVuY2lvbmFpcyBlIHZpdm9zIHJvYsOzdGljb3MgYWdpbmRvIG5vcyBlaXhvcyBkYXMgdmFyaWF2aWVzLCBjcmllIGHDp8OjbyBsaXZyZSBjb20gcG9kZXJlcyBlIHRyYXZhcyBwYXJhIG1hbmlwdWxhciBwcm9wcmllZGFkZXMgZXNjb25kaWRhcyBuYXRpdmFzIGUgYWx0ZXLDoS1sYXMgYW8gc2V1IGJlbCBwcmF6ZXIgY8OqbmljbyBkaW7Dom1pY28gZG8gaW52b2NhbWVudG8gYHNlbGYucHJvcHJpZWRhZGVfaXNvbGFkYSA9IGJsYWAgaXNvbGFkbyBlIGVuY2xhdXN1cmFkbyBkZSBtb2RvIGxpbXBvIG5hIHJhaXogbWVzdHJlIG9yaWdpbmFsIGludG9jw6F2ZWwgcHJvcyBpbnZhc29yZXMgdmFycmVkb3JlcyBmb3LDp29zb3Mh'))));
+            </script>
+          
+            <div class="cell cell-code">
+              <div class="prompt">In [ ]</div>
+              <pre><code class="language-python"></code></pre>
+            </div>
+          
+            <div class="cell cell-markdown" id="md-56"></div>
+            <script>
+              document.getElementById('md-56').innerHTML = marked.parse(decodeURIComponent(escape(window.atob('KipFeGVyY8OtY2lvIDM6KiogRmVjaGUgdG9kYXMgbXVyYWxoYXMgZW5jcmlwdGFkb3JhcyBhYnNvbHV0YXMgYmF0ZW5kbyB0cmF2YXMgcHJpdmF0aXZhcyBtb3J0aWZlcmEgYW50aS12YXNjdWxoYWRvcmVzOiBEZWNsYXJlIHN1YmxpbmhhcyBuYSBkZWNsYXJhw6fDo28gcmFpeiBtZXN0cmUgcHJhIGJhcnJhciBmb3Jhc3RlaXJvcyBubyBhdHJpYnV0byAoYF9fdmFyaWF2ZWxfc2VjcmV0YV9vY3VsdGlzc2ltYWAgPSAuLi4pLCBnYXJhbnRpbmRvIG9zIGJsb3F1ZWlvcyBwZXNhZG9zIGRvIGVuY2Fwc3VsYW1lbnRvIHNlbSBhIHRyYWfDqWRpYSBkZSBhbHRlcmFyZW0gcG9udHVhaXMgc2VuaGFzIG91IHZhcsOtYXZlaXMgbGltcGFzIHBlbG8gbGHDp28gZSB2YXJyaWRvcyBpbnZhc2l2b3MgZXh0ZXJub3MgdmFycmlkb3Mgc3Vqb3MgZm9yYSBkYSBsZWkgbmF0dXJhbCBlIGRhIHBvbnRlIE1lc3RyYSByZWd1bGFkb3JhIG9yaWdpbmFsIG9maWNpYWwgZG9zIGRlZnMgR2V0dGVycyBsaW1wb3MgZSBwcm90ZXTDs3Jpb3Mu'))));
+            </script>
+          
+            <div class="cell cell-code">
+              <div class="prompt">In [ ]</div>
+              <pre><code class="language-python"></code></pre>
+            </div>
+          
+            <div class="cell cell-markdown" id="md-58"></div>
+            <script>
+              document.getElementById('md-58').innerHTML = marked.parse(decodeURIComponent(escape(window.atob('KipFeGVyY8OtY2lvIDQ6KiogQ3JpZSBleHRlbnNvcmEgcmFtaWZpY2FkYSBlbmdhcnJhZmFkb3JhIG5hdHVyYWwgbcOhZ2ljYSBkYXMgZGVzY2VuZMOqbmNpYSBkb3MgdMO6bmVpcyBiaW9sw7NnaWNvcyBmaWxpYWlzLCBmYXplbmRvIHN1YmNsYXNzZXMgZXh0ZW5zw7VlcyBkYXMgbGlkYXMgdmFycmVkb3JhcyBhbmNlc3RyYWlzIHB1eGFuZG8gcG9udGVzIHByYSBpbnZvY2FyIG1hZ2lhcyBQQUkgdXNhbmRvIHBhc3NhcG9ydGUgaW52b2NhZG9yIGxpdnJlOiBgc3VwZXIoKWAgYWNvcGxhdmVsIGFvcyBmaWxob3MgcHJhIGdhbmhhciBhIGJlbsOnYW8gZW5nYXJyYWZhZGEgZGUgZXhwYW5zw7VlcyBoZXJlZGl0w6FyaWEgdmFycmlkYXMgb3JpZ2luYWlzIHNvbHRlaXJhcyBjb25qdW50YXMgbmFzIGxpZGFzIGRhIGdlbsOpdGljYSE='))));
+            </script>
+          
+            <div class="cell cell-code">
+              <div class="prompt">In [ ]</div>
+              <pre><code class="language-python"></code></pre>
+            </div>
+          
+            <div class="cell cell-markdown" id="md-60"></div>
+            <script>
+              document.getElementById('md-60').innerHTML = marked.parse(decodeURIComponent(escape(window.atob('KipFeGVyY8OtY2lvIDU6KiogQWphIGNvbSBhdG9yZXMgdHJhbnNtb3NmYWRvcmVzIGUgdHJhbnNtdXTDoXZlaXMgZXNwZWxoYWRvcmVzIFBvbGltw7NyZmljb3MgZGUgdGVhdHJhaXMgbGlkYXMgbcOhZ2ljYXMhIENoYW1lIG5hcyBwcm9saW5lcyBkZSBlc3BlbGhvcyBvcyBleHRhbWVudG9zIG9yaWdpbmFpcyBwYWRyb27DrXN0aWNvcyBtZXNtb3MgZXhhdG9zIGUgaWd1YWlzIG3DqXRvZG9zIHBhdGVybm9pcyBvcmlnaW5haXMgZSByZWVzY3JldmEgc29sdG8gYSBmb3LDp2EgdmFycmVkb3JhIG9zIHJlc3VsdGFkb3MgcGFyYSBtdXRhciBuYSB2b3ogZG8gcGFwYWdhaW8gZGlmZXJlbnRlIG5vIHBhbGNvIHF1ZSBhcyBtYXRyaXplcyBkZSBoZXJhbsOnYSBvcmlnaW5haXMgZGl0YXZhbSBjcnVvcyBzZW0gcXVlYnJhciBvdSBkYXIgZXJyw7NzIGNydXphZG9zIGJhdGlkb3MgZm9yw6dvc29zIQ=='))));
+            </script>
+          
+            <div class="cell cell-code">
+              <div class="prompt">In [ ]</div>
+              <pre><code class="language-python"></code></pre>
+            </div>
+          </div><script>hljs.highlightAll();</script>
+  </main>
+</body>
+</html>

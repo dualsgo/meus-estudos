@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>71_desafio.py - Meus Estudos</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/atom-one-dark.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/python.min.js"></script>
+        <style>
+          pre { border-radius: 8px; overflow-x: auto; font-size: 0.95rem; }
+          .code-toolbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem; }
+          .btn-copy { background: rgba(56, 189, 248, 0.2); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.4); padding: 0.4rem 0.8rem; border-radius: 6px; cursor: pointer; font-size: 0.85rem; }
+          .btn-copy:hover { background: rgba(56, 189, 248, 0.4); }
+        </style>
+      
+  <style>
+    :root {
+      --bg-color: #0b1120;
+      --glass-bg: rgba(30, 41, 59, 0.7);
+      --glass-border: rgba(255, 255, 255, 0.08);
+      --primary: #38bdf8;
+      --text-main: #f1f5f9;
+      --text-muted: #94a3b8;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
+    body { background-color: var(--bg-color); color: var(--text-main); min-height: 100vh; display: flex; flex-direction: column; }
+    header { padding: 0.8rem 2rem; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--glass-border); background: var(--glass-bg); backdrop-filter: blur(12px); position: sticky; top: 0; z-index: 100; }
+    .header-left { display: flex; align-items: center; gap: 1rem; }
+    .back-btn { color: var(--text-main); text-decoration: none; display: flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem; border-radius: 8px; background: rgba(255,255,255,0.05); font-size: 0.9rem; transition: 0.2s; }
+    .back-btn:hover { background: rgba(56, 189, 248, 0.2); color: var(--primary); }
+    .file-title { font-size: 1.1rem; font-weight: 600; color: #f8fafc; }
+    main { flex: 1; padding: 2rem; max-width: 1200px; margin: 0 auto; width: 100%; }
+    .container { background: rgba(15, 23, 42, 0.7); border: 1px solid var(--glass-border); border-radius: 16px; padding: 2rem; box-shadow: 0 10px 30px rgba(0,0,0,0.3); overflow-x: auto; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-left">
+      <a href="../index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Voltar ao Dashboard</a>
+      <div class="file-title">71_desafio.py</div>
+    </div>
+    <div>
+      <a href="../cursoemvideo_python/Curso de Python 3 - Mundo 2 Estruturas de Controle/Curso Python #015 - Interrompendo repetições while/71_desafio.py" download class="back-btn"><i class="fa-solid fa-download"></i> Baixar Arquivo</a>
+    </div>
+  </header>
+  <main>
+    
+        <div class="container">
+          <div class="code-toolbar">
+            <span style="color: #38bdf8; font-weight: 600;"><i class="fa-brands fa-python"></i> 71_desafio.py</span>
+            <button class="btn-copy" onclick="navigator.clipboard.writeText(document.getElementById('py-code').innerText); this.innerText='Copiado!'; setTimeout(()=>this.innerText='Copiar Código', 2000)"><i class="fa-regular fa-copy"></i> Copiar Código</button>
+          </div>
+          <pre><code class="language-python" id="py-code"># Exercício Python #071 - Simulador de Caixa Eletrônico - Aula 00 até 15 - Mundo 2
+# Crie um programa que simule o funcionamento de um caixa eletrônico. No início, pergunte ao usuário qual será o valor a ser sacado (número inteiro) e o programa vai informar quantas cédulas de cada valor serão entregues.
+# OBS: considere que o caixa possui cédulas de R$50, R$20, R$10 e R$1.
+
+
+from emoji import emojize
+
+# Mensagem de boas-vindas
+print(emojize(&#039;:banco::moeda: BANCO GUANABARA :moeda::banco:&#039;, language=&#039;pt&#039;))
+
+while True:
+    try:
+        # Solicita ao usuário o valor desejado para saque
+        valor_saque = int(input(emojize(&#039;:símbolo_de_caixa_automático: Quanto deseja sacar? R$ &#039;, language=&#039;pt&#039;)))
+        break
+    except ValueError:
+        print(&#039;Valor inválido!&#039;)
+
+# Variável para armazenar a quantidade de cédulas
+cedulas = 0
+
+# Loop para calcular as cédulas necessárias
+while True:
+    if valor_saque &gt;= 100:
+        cedulas = valor_saque // 100
+        valor_saque %= 100
+        print(emojize(f&#039;{f&#039;:nota_de_dólar: Sacando {cedulas} cédulas de R$ &#039;:&lt;30}{&#039;100&#039;:&gt;3}&#039;, language=&#039;pt&#039;))
+
+    elif valor_saque &gt;= 50:
+        cedulas = valor_saque // 50
+        valor_saque %= 50
+        print(emojize(f&#039;{f&#039;:nota_de_dólar: Sacando {cedulas} {&#039;cédulas&#039; if cedulas &gt; 1 else &#039;cédula &#039;} de R$ &#039;:&lt;30}{&#039;50&#039;:&gt;3}&#039;, language=&#039;pt&#039;))
+
+    elif valor_saque &gt;= 20:
+        cedulas = valor_saque // 20
+        valor_saque %= 20
+        print(emojize(f&#039;{f&#039;:nota_de_dólar: Sacando {cedulas} {&#039;cédulas&#039; if cedulas &gt; 1 else &#039;cédula &#039;} de R$ &#039;:&lt;30}{&#039;20&#039;:&gt;3}&#039;, language=&#039;pt&#039;))
+
+    elif valor_saque &gt;= 10:
+        cedulas = valor_saque // 10
+        valor_saque %= 10
+        print(emojize(f&#039;{f&#039;:nota_de_dólar: Sacando {cedulas} {&#039;cédulas&#039; if cedulas &gt; 1 else &#039;cédula &#039;} de R$ &#039;:&lt;30}{&#039;10&#039;:&gt;3}&#039;, language=&#039;pt&#039;))
+
+    elif valor_saque &gt;= 5:
+        cedulas = valor_saque // 5
+        valor_saque %= 5
+        print(emojize(f&#039;{f&#039;:nota_de_dólar: Sacando {cedulas} {&#039;cédulas&#039; if cedulas &gt; 1 else &#039;cédula &#039;} de R$ &#039;:&lt;30}{&#039;5&#039;:&gt;3}&#039;, language=&#039;pt&#039;))
+
+    elif valor_saque &gt;= 2:
+        cedulas = valor_saque // 2
+        valor_saque %= 2
+        print(emojize(f&#039;{f&#039;:nota_de_dólar: Sacando {cedulas} {&#039;cédulas&#039; if cedulas &gt; 1 else &#039;cédula &#039;} de R$ &#039;:&lt;30}{&#039;2&#039;:&gt;3}&#039;, language=&#039;pt&#039;))
+
+    else:
+        # Quando não há mais cédulas a serem sacadas, encerra o loop
+        print(emojize(&#039;:rosto_com_cifrões: RETIRE O SEU DINHEIRO&#039;, language=&#039;pt&#039;))
+        break
+
+# Mensagem de agradecimento ao usuário por utilizar os serviços do banco
+print(emojize(&#039;Obrigado por utilizar os nossos serviços!&#039;, language=&#039;pt&#039;))
+
+# Estou compartilhando minhas anotações sobre os exercícios. Quem quiser, pode copiar e colar em um documento .py pois está tudo formatado e comentado.
+
+# Nesse exercício, vamos criar um programa que simule o funcionamento de um caixa eletrônico. No início, o programa deve perguntar ao usuário qual será o valor a ser sacado (número inteiro) e o programa vai informar quantas cédulas de cada valor serão entregues. Considere que o caixa possui cédulas de R$50, R$20, R$10 e R$1.
+
+# Vamos iniciar a variável cedulas com 0 para armazenar a quantidade de cédulas.
+cedulas = 0
+
+# Vamos pergunta ao usuário o valor desejado para saque.
+valor_saque = int(input(&#039;Quanto deseja sacar? R$ &#039;))
+
+# Vamos criar um loop para calcular as cédulas necessárias.
+while True:
+    if valor_saque &gt;= 100:
+        cedulas = valor_saque // 100
+        valor_saque %= 100
+        print(f&#039;Sacando {cedulas} cédulas de R$ 100&#039;)
+
+    elif valor_saque &gt;= 50:
+        cedulas = valor_saque // 50
+        valor_saque %= 50
+        print(f&#039;Sacando {cedulas} cédulas de R$ 50&#039;)
+
+    elif valor_saque &gt;= 20:
+        cedulas = valor_saque // 20
+        valor_saque %= 20
+        print(f&#039;Sacando {cedulas} cédulas de R$ 20&#039;)
+
+    elif valor_saque &gt;= 10:
+        cedulas = valor_saque // 10
+        valor_saque %= 10
+        print(f&#039;Sacando {cedulas} cédulas de R$ 10&#039;)
+
+    elif valor_saque &gt;= 5:
+        cedulas = valor_saque // 5
+        valor_saque %= 5
+        print(f&#039;Sacando {cedulas} cédulas de R$ 5&#039;)
+
+    elif valor_saque &gt;= 2:
+        cedulas = valor_saque // 2
+        valor_saque %= 2
+        print(f&#039;Sacando {cedulas} cédulas de R$ 2&#039;)
+
+    else:
+        # Quando não há mais cédulas a serem sacadas, encerra o loop
+        print(&#039;RETIRE O SEU DINHEIRO&#039;)
+        break
+    
+# Essa estrutura pode ser simplificada com o uso de listas e laços de repetição. Veja o exemplo abaixo:
+valor_saque = int(input(&#039;Quanto deseja sacar? R$ &#039;)) # Solicita ao usuário o valor desejado para saque
+
+for cedula in [100, 50, 20, 10, 5, 2]: # Percorre a lista de cédulas disponíveis
+    quantidade = valor_saque // cedula # Calcula a quantidade de cédulas necessárias para o valor de saque atual e a cédula atual
+    valor_saque %= cedula # Atualiza o valor de saque subtraindo o valor das cédulas já sacadas
+    
+    if quantidade &gt; 0: # Verifica se a quantidade de cédulas é maior que zero
+        print(f&#039;Sacando {quantidade} cédula(s) de R$ {cedula}&#039;) # Exibe a quantidade de cédulas a ser sacada</code></pre>
+        </div>
+        <script>hljs.highlightAll();</script>
+      
+  </main>
+</body>
+</html>

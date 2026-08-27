@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>43_desafio.py - Meus Estudos</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/atom-one-dark.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/python.min.js"></script>
+        <style>
+          pre { border-radius: 8px; overflow-x: auto; font-size: 0.95rem; }
+          .code-toolbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem; }
+          .btn-copy { background: rgba(56, 189, 248, 0.2); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.4); padding: 0.4rem 0.8rem; border-radius: 6px; cursor: pointer; font-size: 0.85rem; }
+          .btn-copy:hover { background: rgba(56, 189, 248, 0.4); }
+        </style>
+      
+  <style>
+    :root {
+      --bg-color: #0b1120;
+      --glass-bg: rgba(30, 41, 59, 0.7);
+      --glass-border: rgba(255, 255, 255, 0.08);
+      --primary: #38bdf8;
+      --text-main: #f1f5f9;
+      --text-muted: #94a3b8;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
+    body { background-color: var(--bg-color); color: var(--text-main); min-height: 100vh; display: flex; flex-direction: column; }
+    header { padding: 0.8rem 2rem; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--glass-border); background: var(--glass-bg); backdrop-filter: blur(12px); position: sticky; top: 0; z-index: 100; }
+    .header-left { display: flex; align-items: center; gap: 1rem; }
+    .back-btn { color: var(--text-main); text-decoration: none; display: flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem; border-radius: 8px; background: rgba(255,255,255,0.05); font-size: 0.9rem; transition: 0.2s; }
+    .back-btn:hover { background: rgba(56, 189, 248, 0.2); color: var(--primary); }
+    .file-title { font-size: 1.1rem; font-weight: 600; color: #f8fafc; }
+    main { flex: 1; padding: 2rem; max-width: 1200px; margin: 0 auto; width: 100%; }
+    .container { background: rgba(15, 23, 42, 0.7); border: 1px solid var(--glass-border); border-radius: 16px; padding: 2rem; box-shadow: 0 10px 30px rgba(0,0,0,0.3); overflow-x: auto; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-left">
+      <a href="../index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Voltar ao Dashboard</a>
+      <div class="file-title">43_desafio.py</div>
+    </div>
+    <div>
+      <a href="../cursoemvideo_python/Curso de Python 3 - Mundo 2 Estruturas de Controle/Curso Python #012 - Condições Aninhadas/43_desafio.py" download class="back-btn"><i class="fa-solid fa-download"></i> Baixar Arquivo</a>
+    </div>
+  </header>
+  <main>
+    
+        <div class="container">
+          <div class="code-toolbar">
+            <span style="color: #38bdf8; font-weight: 600;"><i class="fa-brands fa-python"></i> 43_desafio.py</span>
+            <button class="btn-copy" onclick="navigator.clipboard.writeText(document.getElementById('py-code').innerText); this.innerText='Copiado!'; setTimeout(()=>this.innerText='Copiar Código', 2000)"><i class="fa-regular fa-copy"></i> Copiar Código</button>
+          </div>
+          <pre><code class="language-python" id="py-code"># Exercício Python #043 - Índice de Massa Corporal - Aula 00 até 12 - Mundo 2
+# Desenvolva uma lógica que leia o peso e a altura de uma pessoa, calcule seu Índice de Massa Corporal (IMC) e mostre sua posição, conforme a tabela abaixo:
+
+# O IMC é calculado dividindo o peso (em kg) pela altura ao quadrado (em m), conforme a seguinte fórmula: IMC = peso / (altura x altura). O resultado de IMC é dado em kg/m 2.
+
+# - IMC abaixo de 18,5: Abaixo do Peso
+# - Entre 18,5 e 25: Peso Ideal
+# - 25 até 30: Sobrepeso
+# - 30 até 40: Obesidade
+# - Acima de 40: Obesidade Mórbida
+
+# Tarefa 1: Receber o peso e a altura para calcular o imc
+peso = float(input(&#039;Digite seu peso: Kg&#039;))
+altura = float(input(&#039;Digite sua altura em metros: m&#039;))
+
+
+# Tarefa 2: Formar a tabela com as condições para categorizar o imc
+imc = peso / (altura * altura)
+print(f&#039;Seu IMC é {imc:.1f}.&#039;, end= &#039; &#039;)
+if imc &lt; 18.5:
+    print(&#039;Abaixo do peso&#039;)
+elif imc &lt; 25:
+    print(&#039;Peso ideal&#039;)
+elif imc &lt; 30:
+    print(&#039;Sobrepeso&#039;)
+elif imc &lt; 40:
+    print(&#039;Obesidade&#039;)
+else:
+    print(&#039;Obesidade mórbida&#039;)
+# Tarefa 3: Exibir o resultado
+
+# SIMPLIFICADA 
+try:
+	peso_kg = float(input(&#039;Peso em Kg: &#039;))
+	altura_metros = float(input(&#039;Altura em metros: &#039;))
+	imc = round(peso_kg / (altura_metros * altura_metros), 2)
+	categoria = &#039;Abaixo do peso&#039; if imc &lt; 18.5 else &#039;Peso ideal&#039; if imc &lt; 25 else &#039;Sobrepeso&#039; if imc &lt; 30 else &#039;Obesidade&#039; if imc &lt; 40 else &#039;Obesidade mórbida&#039;
+	print(&#039;-&#039; * 55)
+	print(f&#039;|{&#039;Peso (Kg)&#039;:^10}|{&#039;Altura (m)&#039;:^10}|{&#039;IMC&#039;:^10}|{&#039;Categoria&#039;:^20}|&#039;)
+	print(&#039;-&#039; * 55)
+	print(f&#039;|{peso_kg:^10}|{altura_metros:^10.2f}|{imc:^10}|{categoria:^20}|&#039;)
+	print(&#039;-&#039; * 55)
+except ValueError:
+	print(f&#039;Erro! Valores inválidos para essa operação.&#039;)
+
+
+# VERSÃO COMPLETA
+
+def obter_valor(mensagem):
+    while True:
+        try:
+            return float(input(mensagem))
+        except ValueError:
+            print(&#039;Tipo de dado inválido.&#039;)
+
+peso = obter_valor(&#039;Digite o peso em Kg: &#039;)
+while 0 &gt; peso or peso &gt; 200:
+    print(&#039;Peso inválido!&#039;)
+    peso = obter_valor(&#039;Digite o peso em Kg: &#039;)
+
+altura = obter_valor(&#039;Digite a altura em cm: &#039;)
+while 0 &gt; altura or altura &gt; 300:
+    print(&#039;Altura inválida!&#039;)
+    altura = obter_valor(&#039;Digite a altura em cm: &#039;)
+
+if altura &gt;= 100:
+    altura = altura / 100
+
+imc = round(peso / (altura * altura), 2)
+
+categoria = (
+    &#039;Abaixo do peso&#039; if imc &lt; 18.5 else
+    &#039;Peso ideal&#039; if imc &lt; 25 else
+    &#039;Sobrepeso&#039; if imc &lt; 30 else
+    &#039;Obesidade&#039; if imc &lt; 40 else
+    &#039;Obesidade mórbida&#039;
+)
+
+print(f&#039;{&quot;Peso:&quot;:&lt;10}{f&quot;{peso:.2f} Kg&quot;:&gt;20}&#039;)
+print(f&#039;{&quot;Altura:&quot;:&lt;10}{f&quot;{altura:.2f} m&quot;:&gt;20}&#039;)
+print(f&#039;{&quot;IMC:&quot;:&lt;10}{imc:&gt;20}&#039;)
+print(&#039;-&#039; * 30)
+print(f&#039;{&quot;Categoria:&quot;:&lt;10}{categoria:&gt;20}&#039;)
+
+
+# Estou compartilhando minhas anotações sobre os exercícios. Quem quiser, pode copiar e colar em um documento .py pois está tudo formatado e comentado.
+
+# Nesse exercício, aprendemos a criar um programa que calcula o IMC de uma pessoa e exibe a categoria do IMC de acordo com a tabela fornecida no enunciado. Para isso, utilizamos a fórmula do IMC, que é o peso dividido pela altura ao quadrado, e criamos uma estrutura condicional para verificar em qual categoria o IMC se encaixa.
+
+# A primeira coisa a ser feita é ler o peso e a altura da pessoa. Para isso, utilizamos a função input() para ler os valores e a função float() para converter os valores para ponto flutuante.
+peso = float(input(&#039;Digite seu peso: Kg&#039;))
+altura = float(input(&#039;Digite sua altura em metros: m&#039;))
+
+# Em seguida, calculamos o IMC da pessoa utilizando a fórmula IMC = peso / (altura x altura).
+imc = peso / (altura * altura)
+print(f&#039;Seu IMC é {imc:.1f}.&#039;, end=&#039; &#039;)
+
+# Por fim, utilizamos uma estrutura condicional para verificar em qual categoria o IMC se encaixa e exibimos a categoria correspondente.
+if imc &lt; 18.5:
+    print(&#039;Abaixo do peso&#039;)
+elif imc &lt; 25:
+    print(&#039;Peso ideal&#039;)
+elif imc &lt; 30:
+    print(&#039;Sobrepeso&#039;)
+elif imc &lt; 40:
+    print(&#039;Obesidade&#039;)
+else:
+    print(&#039;Obesidade mórbida&#039;)
+</code></pre>
+        </div>
+        <script>hljs.highlightAll();</script>
+      
+  </main>
+</body>
+</html>

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>07_desafio.py - Meus Estudos</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/atom-one-dark.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/python.min.js"></script>
+        <style>
+          pre { border-radius: 8px; overflow-x: auto; font-size: 0.95rem; }
+          .code-toolbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem; }
+          .btn-copy { background: rgba(56, 189, 248, 0.2); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.4); padding: 0.4rem 0.8rem; border-radius: 6px; cursor: pointer; font-size: 0.85rem; }
+          .btn-copy:hover { background: rgba(56, 189, 248, 0.4); }
+        </style>
+      
+  <style>
+    :root {
+      --bg-color: #0b1120;
+      --glass-bg: rgba(30, 41, 59, 0.7);
+      --glass-border: rgba(255, 255, 255, 0.08);
+      --primary: #38bdf8;
+      --text-main: #f1f5f9;
+      --text-muted: #94a3b8;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
+    body { background-color: var(--bg-color); color: var(--text-main); min-height: 100vh; display: flex; flex-direction: column; }
+    header { padding: 0.8rem 2rem; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--glass-border); background: var(--glass-bg); backdrop-filter: blur(12px); position: sticky; top: 0; z-index: 100; }
+    .header-left { display: flex; align-items: center; gap: 1rem; }
+    .back-btn { color: var(--text-main); text-decoration: none; display: flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem; border-radius: 8px; background: rgba(255,255,255,0.05); font-size: 0.9rem; transition: 0.2s; }
+    .back-btn:hover { background: rgba(56, 189, 248, 0.2); color: var(--primary); }
+    .file-title { font-size: 1.1rem; font-weight: 600; color: #f8fafc; }
+    main { flex: 1; padding: 2rem; max-width: 1200px; margin: 0 auto; width: 100%; }
+    .container { background: rgba(15, 23, 42, 0.7); border: 1px solid var(--glass-border); border-radius: 16px; padding: 2rem; box-shadow: 0 10px 30px rgba(0,0,0,0.3); overflow-x: auto; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-left">
+      <a href="../index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Voltar ao Dashboard</a>
+      <div class="file-title">07_desafio.py</div>
+    </div>
+    <div>
+      <a href="../cursoemvideo_python/Curso de Python 3 - Mundo 1 Fundamentos/Curso Python #07 - Operadores Aritméticos/07_desafio.py" download class="back-btn"><i class="fa-solid fa-download"></i> Baixar Arquivo</a>
+    </div>
+  </header>
+  <main>
+    
+        <div class="container">
+          <div class="code-toolbar">
+            <span style="color: #38bdf8; font-weight: 600;"><i class="fa-brands fa-python"></i> 07_desafio.py</span>
+            <button class="btn-copy" onclick="navigator.clipboard.writeText(document.getElementById('py-code').innerText); this.innerText='Copiado!'; setTimeout(()=>this.innerText='Copiar Código', 2000)"><i class="fa-regular fa-copy"></i> Copiar Código</button>
+          </div>
+          <pre><code class="language-python" id="py-code"># Exercício Python #007 - Média Aritmética - Aula 00 até 07 - Mundo 1
+# Desenvolva um programa que leia as duas notas de um aluno, calcule e mostre a sua média.
+
+from emoji import emojize
+
+
+def obtem_nota(mensagem):
+	while True:
+		try:
+			return float(input(mensagem))
+		except ValueError:
+			print(emojize(f&#039;:xis: Valores inválidos! :xis:&#039;, language=&#039;pt&#039;))
+
+
+primeira_nota = obtem_nota(emojize(&#039;:memorando: Digite a primeira nota: &#039;, language=&#039;pt&#039;))
+segunda_nota = obtem_nota(emojize(&#039;:memorando: Digite a segunda nota: &#039;, language=&#039;pt&#039;))
+média = (primeira_nota + segunda_nota) / 2
+
+
+print(f&#039;{&#039;Primeira nota:&#039;:&lt;15}{primeira_nota:&gt;5}\n{&#039;Segunda nota:&#039;:&lt;15}{segunda_nota:&gt;5}\n{&#039;Média:&#039;:&lt;15}{média:&gt;5}&#039;)
+
+print(f&#039;{&#039;\033[1;31mREPROVADO\033[m&#039;}&#039; if média &lt; 5 else f&#039;{&#039;\033[1;33mEM RECUPERAÇÃO\033[m&#039;}&#039; if média &lt; 7 else f&#039;{&#039;\033[1;32mAPROVADO\033[m&#039;}&#039;)
+
+# Estou compartilhando minhas anotações sobre os exercícios. Quem quiser, pode copiar e colar em um documento .py pois está tudo formatado e comentado.
+
+# Nesse exercício, o programa solicita ao usuário duas notas e calcula a média aritmética entre elas. A média aritmética é a soma de todos os valores dividida pela quantidade de valores.
+
+# Assim como antes, utilizamos a função input() para solicitar um valor ao usuário. Como as notas podem ser números reais, utilizamos a função float() para converter o valor digitado em um número de ponto flutuante.
+
+nota1 = float(input(&#039;Digite a primeira nota: &#039;))
+nota2 = float(input(&#039;Digite a segunda nota: &#039;))
+
+# A média aritmética é calculada somando as duas notas e dividindo o resultado por 2. O resultado é armazenado na variável média.
+média = (nota1 + nota2) / 2
+
+# Note que colocamos a soma entre parênteses para garantir que ela seja feita antes da divisão. Isso é necessário porque a divisão tem prioridade sobre a adição na ordem de operações matemáticas.
+
+# Em Python, o operador de divisão é representado pela barra (/)
+
+# Vamos exibir as notas e a média na tela.
+print(f&#039;Primeira nota: {nota1}&#039;)
+print(f&#039;Segunda nota: {nota2}&#039;)
+print(f&#039;Média: {média}&#039;) # A saída será formatada com uma casa decimal, pois a média é um número real.
+
+# Podemos controlar o número de casas decimais exibidas utilizando a função format() ou f-string. Por exemplo, para exibir a média com duas casas decimais, podemos usar a seguinte formatação:
+print(f&#039;Média: {média:.2f}&#039;)
+
+# A notação :.2f no f-string indica que queremos exibir a variável média com duas casas decimais. O .2f é uma formatação específica para números reais.</code></pre>
+        </div>
+        <script>hljs.highlightAll();</script>
+      
+  </main>
+</body>
+</html>

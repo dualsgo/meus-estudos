@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>44_desafio.py - Meus Estudos</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/atom-one-dark.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/python.min.js"></script>
+        <style>
+          pre { border-radius: 8px; overflow-x: auto; font-size: 0.95rem; }
+          .code-toolbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem; }
+          .btn-copy { background: rgba(56, 189, 248, 0.2); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.4); padding: 0.4rem 0.8rem; border-radius: 6px; cursor: pointer; font-size: 0.85rem; }
+          .btn-copy:hover { background: rgba(56, 189, 248, 0.4); }
+        </style>
+      
+  <style>
+    :root {
+      --bg-color: #0b1120;
+      --glass-bg: rgba(30, 41, 59, 0.7);
+      --glass-border: rgba(255, 255, 255, 0.08);
+      --primary: #38bdf8;
+      --text-main: #f1f5f9;
+      --text-muted: #94a3b8;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
+    body { background-color: var(--bg-color); color: var(--text-main); min-height: 100vh; display: flex; flex-direction: column; }
+    header { padding: 0.8rem 2rem; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--glass-border); background: var(--glass-bg); backdrop-filter: blur(12px); position: sticky; top: 0; z-index: 100; }
+    .header-left { display: flex; align-items: center; gap: 1rem; }
+    .back-btn { color: var(--text-main); text-decoration: none; display: flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem; border-radius: 8px; background: rgba(255,255,255,0.05); font-size: 0.9rem; transition: 0.2s; }
+    .back-btn:hover { background: rgba(56, 189, 248, 0.2); color: var(--primary); }
+    .file-title { font-size: 1.1rem; font-weight: 600; color: #f8fafc; }
+    main { flex: 1; padding: 2rem; max-width: 1200px; margin: 0 auto; width: 100%; }
+    .container { background: rgba(15, 23, 42, 0.7); border: 1px solid var(--glass-border); border-radius: 16px; padding: 2rem; box-shadow: 0 10px 30px rgba(0,0,0,0.3); overflow-x: auto; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-left">
+      <a href="../index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Voltar ao Dashboard</a>
+      <div class="file-title">44_desafio.py</div>
+    </div>
+    <div>
+      <a href="../cursoemvideo_python/Curso de Python 3 - Mundo 2 Estruturas de Controle/Curso Python #012 - Condições Aninhadas/44_desafio.py" download class="back-btn"><i class="fa-solid fa-download"></i> Baixar Arquivo</a>
+    </div>
+  </header>
+  <main>
+    
+        <div class="container">
+          <div class="code-toolbar">
+            <span style="color: #38bdf8; font-weight: 600;"><i class="fa-brands fa-python"></i> 44_desafio.py</span>
+            <button class="btn-copy" onclick="navigator.clipboard.writeText(document.getElementById('py-code').innerText); this.innerText='Copiado!'; setTimeout(()=>this.innerText='Copiar Código', 2000)"><i class="fa-regular fa-copy"></i> Copiar Código</button>
+          </div>
+          <pre><code class="language-python" id="py-code"># Exercício Python #044 - Gerenciador de Pagamentos - Aula 00 até 12 - Mundo 2
+#  Elabore um programa que calcule o valor a ser pago por um produto, considerando o seu preço normal e condição de pagamento:
+# - à vista dinheiro/cheque: 10% de desconto
+# - à vista no cartão: 5% de desconto
+# - em até 2x no cartão: preço formal
+# - 3x ou mais no cartão: 20% de juros
+from emoji import emojize
+
+
+def obter_valor(mensagem):
+    while True:
+        try:
+            valor = float(input(mensagem))
+            if valor &gt; 0:
+                return valor
+            else:
+                print(&#039;Valor não pode ser zero ou negativo.&#039;)
+        except ValueError:
+            print(&#039;Tipo de dado inválido.&#039;)
+
+valor = obter_valor(&#039;Valor da compra: R$ &#039;)
+
+while True:
+    try:
+        forma_de_pagamento = int(input(&#039;Escolha a forma de pagamento: [1] Dinheiro [2] Cartão [3] PIX: &#039;))
+        if forma_de_pagamento in [1, 2, 3]:
+            break
+        else:
+            print(&#039;Opção inválida!&#039;)
+    except ValueError:
+        print(&#039;Tipo de dado inválido.&#039;)
+
+if forma_de_pagamento == 1:
+    desconto = 0.10
+    valor_final = valor - (valor * desconto)
+    print(&#039;Forma de pagamento: Dinheiro&#039;)
+
+elif forma_de_pagamento == 2:
+    while True:
+        try:
+            tipo_cartao = int(input(&#039;Tipo de cartão: [1] Débito [2] Crédito: &#039;))
+            if tipo_cartao in [1, 2]:
+                break
+            else:
+                print(&#039;Opção inválida!&#039;)
+        except ValueError:
+            print(&#039;Tipo de dado inválido.&#039;)
+
+    if tipo_cartao == 1:
+        desconto = 0.10
+        valor_final = valor - (valor * desconto)
+        print(&#039;Forma de pagamento: Cartão Débito&#039;)
+
+    elif tipo_cartao == 2:
+        while True:
+            try:
+                cartao_credito = int(input(&#039;Opção de crédito: [1] À Vista [2] Parcelado: &#039;))
+                if cartao_credito in [1, 2]:
+                    break
+                else:
+                    print(&#039;Opção inválida!&#039;)
+            except ValueError:
+                print(&#039;Tipo de dado inválido.&#039;)
+
+        if cartao_credito == 1:
+            desconto = 0.05
+            valor_final = valor - (valor * desconto)
+            print(&#039;Forma de pagamento: Cartão Crédito à Vista&#039;)
+
+        elif cartao_credito == 2:
+            while True:
+                try:
+                    parcelamento = int(input(&#039;Parcelamento: [1] 2X Sem Juros [2] 3X até 10X com Juros: &#039;))
+                    if parcelamento in [1, 2]:
+                        break
+                    else:
+                        print(&#039;Opção inválida!&#039;)
+                except ValueError:
+                    print(&#039;Tipo de dado inválido.&#039;)
+
+            if parcelamento == 1:
+                valor_final = valor
+                parcela = valor / 2
+                print(&#039;Forma de pagamento: Cartão Crédito Parcelado em 2X Sem Juros&#039;)
+
+            elif parcelamento == 2:
+                while True:
+                    try:
+                        parcelas = int(input(&#039;Número de parcelas (3 a 10): &#039;))
+                        if 3 &lt;= parcelas &lt;= 10:
+                            break
+                        else:
+                            print(&#039;Opção inválida!&#039;)
+                    except ValueError:
+                        print(&#039;Tipo de dado inválido.&#039;)
+
+                total_com_juros = valor + (valor * 0.20)
+                valor_final = total_com_juros
+                parcela = total_com_juros / parcelas
+                print(f&#039;Forma de pagamento: Cartão Crédito Parcelado em {parcelas}X com Juros&#039;)
+
+elif forma_de_pagamento == 3:
+    desconto = 0.10
+    valor_final = valor - (valor * desconto)
+    print(&#039;Forma de pagamento: PIX&#039;)
+
+print(f&#039;{&quot;Valor:&quot;:&lt;15} R$ {valor:.2f}&#039;)
+if forma_de_pagamento != 2 or (forma_de_pagamento == 2 and tipo_cartao == 2 and parcelamento == 1):
+    print(f&#039;{&quot;Desconto:&quot;:&lt;15} R$ {valor * desconto:.2f}&#039;)
+print(f&#039;{&quot;Valor final:&quot;:&lt;15} R$ {valor_final:.2f}&#039;)
+
+if forma_de_pagamento == 2 and tipo_cartao == 2 and cartao_credito == 2:
+    print(f&#039;{&quot;Valor da parcela:&quot;:&lt;15} R$ {parcela:.2f}&#039;)
+    print(f&#039;{&quot;Número de parcelas:&quot;:&lt;15} {parcelas}&#039;)
+    
+    
+# Estou compartilhando minhas anotações sobre os exercícios. Quem quiser, pode copiar e colar em um documento .py pois está tudo formatado e comentado.
+
+# Nesse exercício, o programa deve calcular o valor a ser pago por um produto, considerando o seu preço normal e a condição de pagamento. O usuário deve informar o valor da compra e a forma de pagamento. O programa deve exibir o valor final e, se for o caso, o valor do desconto e o valor da parcela.
+
+# O programa deve exibir as seguintes opções de pagamento:
+# - à vista dinheiro/cheque: 10% de desconto
+# - à vista no cartão: 5% de desconto
+# - em até 2x no cartão: preço formal
+# - 3x ou mais no cartão: 20% de juros
+
+# Primeiro vamos solicitar o valor da compra e validar se o valor é maior que zero.
+valor = float(input(&#039;Valor da compra: R$ &#039;))
+
+# NOTA: Podemos usar a notação de três aspas simples para criar uma string multilinha.
+forma_de_pagamento = int(input(&#039;&#039;&#039;Escolha a forma de pagamento:
+[1] Dinheiro/cheque
+[2] A vista no cartão
+[3] Em até 2x no cartão
+[4] 3x ou mais no cartão
+Opção: &#039;&#039;&#039;))
+
+# Usando três aspas a exibir a mensagem de forma mais organizada.
+
+if valor &lt;= 0:
+    print(&#039;Valor inválido! O valor da compra deve ser maior que zero.&#039;)
+
+# Em seguida, vamos solicitar a forma de pagamento.
+
+# Se a forma de pagamento for à vista dinheiro/cheque, o programa deve exibir o valor final com desconto.
+if forma_de_pagamento == 1:
+    print(&#039;Forma de pagamento: Dinheiro/cheque&#039;)
+    desconto = 0.10
+    valor_final = valor - (valor * desconto)
+
+# Se a forma de pagamento for à vista no cartão, o programa deve exibir o valor final com desconto.
+elif forma_de_pagamento == 2:
+    print(&#039;Forma de pagamento: A vista no cartão&#039;)
+    desconto = 0.05
+    valor_final = valor - (valor * desconto)
+
+# Se a forma de pagamento for em até 2x no cartão, o programa deve exibir o valor da parcela.
+elif forma_de_pagamento == 3:
+    print(&#039;Forma de pagamento: Em até 2x no cartão&#039;)
+    valor_final = valor
+    parcela = valor / 2
+    print(f&#039;Valor da parcela: R$ {parcela:.2f}&#039;)
+
+# Se a forma de pagamento for 3x ou mais no cartão, o programa deve calcular o valor total com juros e exibir o valor da parcela. Perguntamos ao usuário o número de parcelas e calculamos o valor da parcela.
+elif forma_de_pagamento == 4:
+    print(&#039;Forma de pagamento: 3x ou mais no cartão&#039;)
+    total_com_juros = valor + (valor * 0.20)
+    valor_final = total_com_juros
+    parcelas = int(input(&#039;Número de parcelas (3 a 10): &#039;))
+    parcela = total_com_juros / parcelas
+    print(f&#039;Valor da parcela: R$ {parcela:.2f}&#039;)</code></pre>
+        </div>
+        <script>hljs.highlightAll();</script>
+      
+  </main>
+</body>
+</html>

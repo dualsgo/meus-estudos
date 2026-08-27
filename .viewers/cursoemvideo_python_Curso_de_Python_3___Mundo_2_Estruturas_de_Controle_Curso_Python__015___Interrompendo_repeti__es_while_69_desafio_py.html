@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>69_desafio.py - Meus Estudos</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/atom-one-dark.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/python.min.js"></script>
+        <style>
+          pre { border-radius: 8px; overflow-x: auto; font-size: 0.95rem; }
+          .code-toolbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem; }
+          .btn-copy { background: rgba(56, 189, 248, 0.2); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.4); padding: 0.4rem 0.8rem; border-radius: 6px; cursor: pointer; font-size: 0.85rem; }
+          .btn-copy:hover { background: rgba(56, 189, 248, 0.4); }
+        </style>
+      
+  <style>
+    :root {
+      --bg-color: #0b1120;
+      --glass-bg: rgba(30, 41, 59, 0.7);
+      --glass-border: rgba(255, 255, 255, 0.08);
+      --primary: #38bdf8;
+      --text-main: #f1f5f9;
+      --text-muted: #94a3b8;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
+    body { background-color: var(--bg-color); color: var(--text-main); min-height: 100vh; display: flex; flex-direction: column; }
+    header { padding: 0.8rem 2rem; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--glass-border); background: var(--glass-bg); backdrop-filter: blur(12px); position: sticky; top: 0; z-index: 100; }
+    .header-left { display: flex; align-items: center; gap: 1rem; }
+    .back-btn { color: var(--text-main); text-decoration: none; display: flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem; border-radius: 8px; background: rgba(255,255,255,0.05); font-size: 0.9rem; transition: 0.2s; }
+    .back-btn:hover { background: rgba(56, 189, 248, 0.2); color: var(--primary); }
+    .file-title { font-size: 1.1rem; font-weight: 600; color: #f8fafc; }
+    main { flex: 1; padding: 2rem; max-width: 1200px; margin: 0 auto; width: 100%; }
+    .container { background: rgba(15, 23, 42, 0.7); border: 1px solid var(--glass-border); border-radius: 16px; padding: 2rem; box-shadow: 0 10px 30px rgba(0,0,0,0.3); overflow-x: auto; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-left">
+      <a href="../index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Voltar ao Dashboard</a>
+      <div class="file-title">69_desafio.py</div>
+    </div>
+    <div>
+      <a href="../cursoemvideo_python/Curso de Python 3 - Mundo 2 Estruturas de Controle/Curso Python #015 - Interrompendo repetições while/69_desafio.py" download class="back-btn"><i class="fa-solid fa-download"></i> Baixar Arquivo</a>
+    </div>
+  </header>
+  <main>
+    
+        <div class="container">
+          <div class="code-toolbar">
+            <span style="color: #38bdf8; font-weight: 600;"><i class="fa-brands fa-python"></i> 69_desafio.py</span>
+            <button class="btn-copy" onclick="navigator.clipboard.writeText(document.getElementById('py-code').innerText); this.innerText='Copiado!'; setTimeout(()=>this.innerText='Copiar Código', 2000)"><i class="fa-regular fa-copy"></i> Copiar Código</button>
+          </div>
+          <pre><code class="language-python" id="py-code"># Exercício Python #069 - Análise de dados do grupo - Aula 00 até 15 - Mundo 2
+# Crie um programa que leia a idade e o sexo de várias pessoas. A cada pessoa cadastrada, o programa deverá perguntar se o usuário quer ou não continuar. No final, mostre:
+# A) quantas pessoas tem mais de 18 anos.
+# B) quantos homens foram cadastrados.
+# C) quantas mulheres tem menos de 20 anos.
+
+cadastros = mais_18 = homens = mulheres_menos_20 = 0
+
+
+def recebe_idade(mensagem):
+	while True:
+		try:
+			return int(input(mensagem))
+		except ValueError:
+			print(&#039;Erro. Tente novamente...&#039;)
+
+
+def define_sexo(mensagem):
+	escolha = input(mensagem).strip().upper()
+	while escolha not in [&#039;F&#039;, &#039;M&#039;]:
+		print(&#039;Sexo deve ser M para masculino ou F para feminino&#039;)
+		escolha = input(mensagem).strip().upper()
+	return escolha
+
+
+def continuar_cadastros(mensagem):
+	opção = input(mensagem).strip().upper()
+	while opção not in [&#039;S&#039;, &#039;N&#039;]:
+		print(&#039;Escolha S para continuar ou N para encerrar&#039;)
+		opção = input(mensagem).strip().upper()
+	return opção
+
+
+while True:
+	idade = recebe_idade(&#039;Digite a idade: &#039;)
+	sexo = define_sexo(&#039;Digite o sexo: &#039;)
+
+	cadastros += 1
+	mais_18 += 1 if idade &gt; 18 else 0
+	homens += 1 if sexo == &#039;M&#039; else 0
+	mulheres_menos_20 += 1 if sexo == &#039;F&#039; and idade &lt; 20 else 0
+
+	continuar = continuar_cadastros(&#039;Deseja continuar? &#039;)
+
+	if continuar == &#039;S&#039;:
+		print(&#039;Próximo cadastro&#039;)
+	elif continuar == &#039;N&#039;:
+		print(&#039;Encerrando o programa...&#039;)
+		break
+
+if cadastros == 1:
+	print(f&#039;Somente uma pessoa foi cadastrada.\nSexo: {sexo}\nIdade: {idade}&#039;)
+else:
+	print(f&#039;Foram cadastradas {cadastros} pessoas&#039;)
+	print(f&#039;Homens: {homens}\nMaiores de 18 anos: {mais_18}\nMulheres com menos de 20 anos: {mulheres_menos_20}&#039;)
+
+# Estou compartilhando minhas anotações sobre os exercícios. Quem quiser, pode copiar e colar em um documento .py pois está tudo formatado e comentado.
+
+# Nesse exercício, vamos criar um programa que leia a idade e o sexo de várias pessoas. A cada pessoa cadastrada, o programa deverá perguntar se o usuário quer ou não continuar. No final, o programa deve mostrar:
+
+# A) quantas pessoas tem mais de 18 anos.
+# B) quantos homens foram cadastrados.
+# C) quantas mulheres tem menos de 20 anos.
+
+# Primeiro vamos criar uma variável cadastros para contar quantas pessoas foram cadastradas, e outras três variáveis para contar quantas pessoas tem mais de 18 anos, quantos homens foram cadastrados e quantas mulheres tem menos de 20 anos.
+cadastros = mais_18 = homens = mulheres_menos_20 = 0
+
+# Vamos criar um laço while True para que o programa fique em loop até que o usuário decida encerrá-lo.
+while True:
+    # Dentro do laço while, vamos pedir para o usuário digitar a idade.
+	idade = int(input(&#039;Digite a idade: &#039;))
+	
+	# Vamos pedir para o usuário digitar o sexo.
+	sexo = input(&#039;Digite o sexo: &#039;).strip().upper()
+	
+	# Vamos incrementar a variável cadastros para contar quantas pessoas foram cadastradas.
+	cadastros += 1
+	
+	# Vamos verificar se a idade é maior que 18. Se for, incrementamos a variável mais_18.
+	mais_18 += 1 if idade &gt; 18 else 0
+	
+	# Vamos verificar se o sexo é masculino. Se for, incrementamos a variável homens.
+	homens += 1 if sexo == &#039;M&#039; else 0
+	
+	# Vamos verificar se o sexo é feminino e a idade é menor que 20. Se for, incrementamos a variável mulheres_menos_20.
+	mulheres_menos_20 += 1 if sexo == &#039;F&#039; and idade &lt; 20 else 0
+	
+	# Vamos perguntar ao usuário se ele deseja continuar.
+	continuar = input(&#039;Deseja continuar? &#039;).strip().upper()
+	
+	# Se o usuário digitar N, o programa será encerrado.
+	if continuar == &#039;N&#039;:
+		print(&#039;Encerrando o programa...&#039;)
+		break
+
+# Vamos exibir o resultado do programa.
+if cadastros == 1:
+	print(f&#039;Somente uma pessoa foi cadastrada.\nSexo: {sexo}\nIdade: {idade}&#039;)
+else:
+	print(f&#039;Foram cadastradas {cadastros} pessoas&#039;)
+	print(f&#039;Homens: {homens}\nMaiores de 18 anos: {mais_18}\nMulheres com menos de 20 anos: {mulheres_menos_20}&#039;)
+
+</code></pre>
+        </div>
+        <script>hljs.highlightAll();</script>
+      
+  </main>
+</body>
+</html>

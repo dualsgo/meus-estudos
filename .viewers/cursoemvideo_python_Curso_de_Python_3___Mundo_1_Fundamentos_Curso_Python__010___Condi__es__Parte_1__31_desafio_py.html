@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>31_desafio.py - Meus Estudos</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/atom-one-dark.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/python.min.js"></script>
+        <style>
+          pre { border-radius: 8px; overflow-x: auto; font-size: 0.95rem; }
+          .code-toolbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem; }
+          .btn-copy { background: rgba(56, 189, 248, 0.2); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.4); padding: 0.4rem 0.8rem; border-radius: 6px; cursor: pointer; font-size: 0.85rem; }
+          .btn-copy:hover { background: rgba(56, 189, 248, 0.4); }
+        </style>
+      
+  <style>
+    :root {
+      --bg-color: #0b1120;
+      --glass-bg: rgba(30, 41, 59, 0.7);
+      --glass-border: rgba(255, 255, 255, 0.08);
+      --primary: #38bdf8;
+      --text-main: #f1f5f9;
+      --text-muted: #94a3b8;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
+    body { background-color: var(--bg-color); color: var(--text-main); min-height: 100vh; display: flex; flex-direction: column; }
+    header { padding: 0.8rem 2rem; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--glass-border); background: var(--glass-bg); backdrop-filter: blur(12px); position: sticky; top: 0; z-index: 100; }
+    .header-left { display: flex; align-items: center; gap: 1rem; }
+    .back-btn { color: var(--text-main); text-decoration: none; display: flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem; border-radius: 8px; background: rgba(255,255,255,0.05); font-size: 0.9rem; transition: 0.2s; }
+    .back-btn:hover { background: rgba(56, 189, 248, 0.2); color: var(--primary); }
+    .file-title { font-size: 1.1rem; font-weight: 600; color: #f8fafc; }
+    main { flex: 1; padding: 2rem; max-width: 1200px; margin: 0 auto; width: 100%; }
+    .container { background: rgba(15, 23, 42, 0.7); border: 1px solid var(--glass-border); border-radius: 16px; padding: 2rem; box-shadow: 0 10px 30px rgba(0,0,0,0.3); overflow-x: auto; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-left">
+      <a href="../index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Voltar ao Dashboard</a>
+      <div class="file-title">31_desafio.py</div>
+    </div>
+    <div>
+      <a href="../cursoemvideo_python/Curso de Python 3 - Mundo 1 Fundamentos/Curso Python #010 - Condições (Parte 1)/31_desafio.py" download class="back-btn"><i class="fa-solid fa-download"></i> Baixar Arquivo</a>
+    </div>
+  </header>
+  <main>
+    
+        <div class="container">
+          <div class="code-toolbar">
+            <span style="color: #38bdf8; font-weight: 600;"><i class="fa-brands fa-python"></i> 31_desafio.py</span>
+            <button class="btn-copy" onclick="navigator.clipboard.writeText(document.getElementById('py-code').innerText); this.innerText='Copiado!'; setTimeout(()=>this.innerText='Copiar Código', 2000)"><i class="fa-regular fa-copy"></i> Copiar Código</button>
+          </div>
+          <pre><code class="language-python" id="py-code"># Exercício Python #031 - Custo da Viagem - Aula 00 até 09 - Mundo 1
+# Desenvolva um programa que pergunte a distância de uma viagem em Km. Calcule o preço da passagem, cobrando R$0,50 por Km para viagens de até 200Km e R$0,45 parta viagens mais longas.
+
+from math import dist
+from random import randint
+# Tarefa 1: Perguntar a distância de uma viagem em
+distancia = randint(100, 500)
+print(f&#039;Você está prestes a fazer uma viagem de {distancia}Km&#039;)
+
+# Tarefa 2: Calcular o preço da viagem
+viagem_curta = distancia &lt;= 200
+
+preco = .5 if viagem_curta else .45
+preco_viagem = distancia * preco
+
+print(f&#039;O preço da sua viagem será R$ {preco_viagem:.2f}&#039;)
+
+# Versão 2 - Com validação
+
+while True:
+	try:
+		distancia = float(input(&#039;Digite a distância em KM: &#039;))
+		print(f&#039;Sua viagem de {distancia}Km irá custar:&#039;, f&#039;R$ {distancia * (.5 if distancia &lt; 201 else 0.45):.2f}&#039;)
+		break
+	except ValueError:
+		print(f&#039;Apenas valores numéricos&#039;)
+
+# Estou compartilhando minhas anotações sobre os exercícios. Quem quiser, pode copiar e colar em um documento .py pois está tudo formatado e comentado.
+
+# Nesse exercício, o programa deve perguntar a distância de uma viagem em Km. Calcule o preço da passagem, cobrando R$0,50 por Km para viagens de até 200Km e R$0,45 para viagens mais longas.
+
+# A primeira coisa a ser feita é perguntar a distância da viagem em Km. Para isso, vamos utilizar a função input() para ler a distância e a função float() para converter o valor para ponto flutuante.
+distancia = float(input(&#039;Digite a distância da viagem em Km: &#039;))
+
+# Em seguida, vamos calcular o preço da viagem. Se a distância for menor ou igual a 200Km, o preço será R$0,50 por Km. Caso contrário, o preço será R$0,45 por Km.
+preco = .5 if distancia &lt;= 200 else .45
+# O que fizemos aqui foi simplificar o cálculo do preço da viagem usando uma estrutura condicional que define o valor do preço com base na distância da viagem. Se a distância for menor ou igual a 200Km, o preço será R$0,50 por Km. Caso contrário, o preço será R$0,45 por Km.
+
+# Com a distância e o preço por Km definidos, podemos calcular o preço da viagem multiplicando a distância pelo preço.
+preco_viagem = distancia * preco
+# Lembre-se, já definimos o preço por Km com base na distância da viagem. Agora, basta multiplicar a distância pelo preço para obter o preço da viagem.
+
+# Agora bastar exibir o preço da viagem na tela.
+print(f&#039;A viagem de {distancia}Km custará R$ {preco_viagem:.2f}&#039;)
+
+# Fato curioso: Uma viagem de 200Km custará R$ 100,00 e uma viagem de 201Km custará R$ 90,45. Isso porque o preço por Km é diferente para viagens mais longas.	</code></pre>
+        </div>
+        <script>hljs.highlightAll();</script>
+      
+  </main>
+</body>
+</html>

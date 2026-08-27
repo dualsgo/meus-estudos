@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>08_desafio.py - Meus Estudos</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/atom-one-dark.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/python.min.js"></script>
+        <style>
+          pre { border-radius: 8px; overflow-x: auto; font-size: 0.95rem; }
+          .code-toolbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem; }
+          .btn-copy { background: rgba(56, 189, 248, 0.2); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.4); padding: 0.4rem 0.8rem; border-radius: 6px; cursor: pointer; font-size: 0.85rem; }
+          .btn-copy:hover { background: rgba(56, 189, 248, 0.4); }
+        </style>
+      
+  <style>
+    :root {
+      --bg-color: #0b1120;
+      --glass-bg: rgba(30, 41, 59, 0.7);
+      --glass-border: rgba(255, 255, 255, 0.08);
+      --primary: #38bdf8;
+      --text-main: #f1f5f9;
+      --text-muted: #94a3b8;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
+    body { background-color: var(--bg-color); color: var(--text-main); min-height: 100vh; display: flex; flex-direction: column; }
+    header { padding: 0.8rem 2rem; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--glass-border); background: var(--glass-bg); backdrop-filter: blur(12px); position: sticky; top: 0; z-index: 100; }
+    .header-left { display: flex; align-items: center; gap: 1rem; }
+    .back-btn { color: var(--text-main); text-decoration: none; display: flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem; border-radius: 8px; background: rgba(255,255,255,0.05); font-size: 0.9rem; transition: 0.2s; }
+    .back-btn:hover { background: rgba(56, 189, 248, 0.2); color: var(--primary); }
+    .file-title { font-size: 1.1rem; font-weight: 600; color: #f8fafc; }
+    main { flex: 1; padding: 2rem; max-width: 1200px; margin: 0 auto; width: 100%; }
+    .container { background: rgba(15, 23, 42, 0.7); border: 1px solid var(--glass-border); border-radius: 16px; padding: 2rem; box-shadow: 0 10px 30px rgba(0,0,0,0.3); overflow-x: auto; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-left">
+      <a href="../index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Voltar ao Dashboard</a>
+      <div class="file-title">08_desafio.py</div>
+    </div>
+    <div>
+      <a href="../cursoemvideo_python/Curso de Python 3 - Mundo 1 Fundamentos/Curso Python #07 - Operadores Aritméticos/08_desafio.py" download class="back-btn"><i class="fa-solid fa-download"></i> Baixar Arquivo</a>
+    </div>
+  </header>
+  <main>
+    
+        <div class="container">
+          <div class="code-toolbar">
+            <span style="color: #38bdf8; font-weight: 600;"><i class="fa-brands fa-python"></i> 08_desafio.py</span>
+            <button class="btn-copy" onclick="navigator.clipboard.writeText(document.getElementById('py-code').innerText); this.innerText='Copiado!'; setTimeout(()=>this.innerText='Copiar Código', 2000)"><i class="fa-regular fa-copy"></i> Copiar Código</button>
+          </div>
+          <pre><code class="language-python" id="py-code"># Exercício Python #008 - Conversor de Medidas - Aula 00 até 07 - Mundo 1
+# Escreva um programa que leia o valor em metros e o exiba convertido em centímetros e milímetros.
+
+def conversões(m):
+	print(
+		f&#039;\033[1m{&#039;Kilômetros:&#039;:&lt;15}{m / 1000:&gt;12}{&#039;km&#039;:&lt;3}\n&#039;
+		f&#039;{&#039;Hectometros:&#039;:&lt;15}{m / 100:&gt;11}{&#039;hm&#039;:&lt;3}\n&#039;
+		f&#039;{&#039;Decâmetros:&#039;:&lt;15}{m / 10:&gt;10}{&#039;dam&#039;:&lt;3}\n&#039;
+		f&#039;{&#039;Metros:&#039;:&lt;15}{m:&gt;10}{&#039;m&#039;:&lt;3}\n&#039;
+		f&#039;{&#039;Decímetros:&#039;:&lt;15}{m * 10:&gt;10}{&#039;dm&#039;:&lt;3}\n&#039;
+		f&#039;{&#039;Centímetros:&#039;:&lt;15}{m * 100:&gt;10}{&#039;cm&#039;:&lt;3}\n&#039;
+		f&#039;{&#039;Milímetros:&#039;:&lt;15}{m * 1000:&gt;10}{&#039;mm&#039;:&lt;3}\033[m&#039;)
+
+
+while True:
+	try:
+		metros = float(input(&#039;Digite o valor da medida em metros: &#039;))
+		conversões(metros)
+		break
+	except ValueError:
+		print(&#039;O valor informado não é válido para essa operação!&#039;)
+
+
+# Estou compartilhando minhas anotações sobre os exercícios. Quem quiser, pode copiar e colar em um documento .py pois está tudo formatado e comentado.
+
+# Nesse exercício, o programa solicita ao usuário um valor em metros e exibe na tela o equivalente em centímetros e milímetros. Para isso, são utilizadas as operações de multiplicação e divisão. Vamos exibir também a conversão para outras unidades de medida de comprimento.
+
+# Assim como antes, utilizamos a função input() para solicitar um valor ao usuário. O valor digitado é convertido para ponto flutuante e armazenado na variável metros. Usaremos float() para permitir que o usuário informe valores decimais como 1.5, por exemplo.
+metros = float(input(&#039;Digite o valor da medida em metros: &#039;))
+
+# A conversão de metros para centímetros e milímetros é feita multiplicando o valor em metros por 100 e 1000, respectivamente. A conversão para outras unidades de medida de comprimento segue a mesma lógica, multiplicando ou dividindo o valor em metros pela quantidade de metros correspondente a cada unidade. Podemos fazer a conversão diretamente na função print() ou armazenar os resultados em variáveis para exibição posterior.
+
+# Vamos exibir as conversões na tela.
+print(f&#039;Kilômetros: {metros / 1000} km&#039;)
+print(f&#039;Hectômetros: {metros / 100} hm&#039;)
+print(f&#039;Decâmetros: {metros / 10} dam&#039;)
+print(f&#039;Metros: {metros} m&#039;)
+print(f&#039;Decímetros: {metros * 10} dm&#039;)
+print(f&#039;Centímetros: {metros * 100} cm&#039;)
+print(f&#039;Milímetros: {metros * 1000} mm&#039;)
+
+# A explicação matemática é a seguinte:
+# Ao dividir um valor por multiplos de 10, estamos deslocando a vírgula para a esquerda. Por exemplo, ao dividir por 10, estamos transformando metros em decâmetros. Ao dividir por 100, estamos transformando metros em hectômetros. Ao dividir por 1000, estamos transformando metros em quilômetros.
+# A lógica inversa se aplica ao multiplicar por multiplos de 10. Ao multiplicar por 10, estamos deslocando a vírgula para a direita, transformando metros em decímetros. Ao multiplicar por 100, estamos transformando metros em centímetros. Ao multiplicar por 1000, estamos transformando metros em milímetros.
+
+</code></pre>
+        </div>
+        <script>hljs.highlightAll();</script>
+      
+  </main>
+</body>
+</html>

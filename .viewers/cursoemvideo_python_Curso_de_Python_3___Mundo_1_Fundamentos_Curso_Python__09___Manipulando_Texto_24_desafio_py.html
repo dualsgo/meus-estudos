@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>24_desafio.py - Meus Estudos</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/atom-one-dark.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/python.min.js"></script>
+        <style>
+          pre { border-radius: 8px; overflow-x: auto; font-size: 0.95rem; }
+          .code-toolbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem; }
+          .btn-copy { background: rgba(56, 189, 248, 0.2); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.4); padding: 0.4rem 0.8rem; border-radius: 6px; cursor: pointer; font-size: 0.85rem; }
+          .btn-copy:hover { background: rgba(56, 189, 248, 0.4); }
+        </style>
+      
+  <style>
+    :root {
+      --bg-color: #0b1120;
+      --glass-bg: rgba(30, 41, 59, 0.7);
+      --glass-border: rgba(255, 255, 255, 0.08);
+      --primary: #38bdf8;
+      --text-main: #f1f5f9;
+      --text-muted: #94a3b8;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
+    body { background-color: var(--bg-color); color: var(--text-main); min-height: 100vh; display: flex; flex-direction: column; }
+    header { padding: 0.8rem 2rem; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--glass-border); background: var(--glass-bg); backdrop-filter: blur(12px); position: sticky; top: 0; z-index: 100; }
+    .header-left { display: flex; align-items: center; gap: 1rem; }
+    .back-btn { color: var(--text-main); text-decoration: none; display: flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem; border-radius: 8px; background: rgba(255,255,255,0.05); font-size: 0.9rem; transition: 0.2s; }
+    .back-btn:hover { background: rgba(56, 189, 248, 0.2); color: var(--primary); }
+    .file-title { font-size: 1.1rem; font-weight: 600; color: #f8fafc; }
+    main { flex: 1; padding: 2rem; max-width: 1200px; margin: 0 auto; width: 100%; }
+    .container { background: rgba(15, 23, 42, 0.7); border: 1px solid var(--glass-border); border-radius: 16px; padding: 2rem; box-shadow: 0 10px 30px rgba(0,0,0,0.3); overflow-x: auto; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-left">
+      <a href="../index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Voltar ao Dashboard</a>
+      <div class="file-title">24_desafio.py</div>
+    </div>
+    <div>
+      <a href="../cursoemvideo_python/Curso de Python 3 - Mundo 1 Fundamentos/Curso Python #09 - Manipulando Texto/24_desafio.py" download class="back-btn"><i class="fa-solid fa-download"></i> Baixar Arquivo</a>
+    </div>
+  </header>
+  <main>
+    
+        <div class="container">
+          <div class="code-toolbar">
+            <span style="color: #38bdf8; font-weight: 600;"><i class="fa-brands fa-python"></i> 24_desafio.py</span>
+            <button class="btn-copy" onclick="navigator.clipboard.writeText(document.getElementById('py-code').innerText); this.innerText='Copiado!'; setTimeout(()=>this.innerText='Copiar Código', 2000)"><i class="fa-regular fa-copy"></i> Copiar Código</button>
+          </div>
+          <pre><code class="language-python" id="py-code"># Exercício Python #024 - Verificando as primeiras letras de um texto - Aulas 00 até 09 - Mundo 1
+# Crie um programa que leia o nome de uma cidade diga se ela começa ou não com o nome &quot;SANTO&quot;.
+
+# Tarefa 1: Ler o nome de uma cidade.
+cidade = str(input(&#039;Digite o nome da sua cidade: &#039;)).strip().upper()
+
+# Tarefa 2: Verificar se começa ou não com &#039;SANTO&#039;
+if cidade[:5] == &#039;SANTO&#039;:
+    print(f&#039;A cidade {cidade} começa com SANTO!&#039;)
+else:
+    print(f&#039;A cidade {cidade} não começa com SANTO, e sim com {cidade[:5]}.&#039;)
+
+
+# Versão 2
+
+print(&#039;\033[1;32mComeça com Santo.&quot;\033[m&#039; if input(&#039;Digite o nome da cidade: &#039;).strip().title().split()[0] == &#039;Santo&#039; else &#039;\033[1;31mNão começa com &quot;Santo&quot;\033[m&#039;)
+
+print(&#039;\033[1;32mComeça com &quot;Santo&quot;\033[m&#039; if input(&#039;Nome da cidade: &#039;).strip().title().startswith(&#039;Santo&#039;) else &#039;\033[1;31mNão começa com &quot;Santo&quot;\033[m&#039;)
+
+# Estou compartilhando minhas anotações sobre os exercícios. Quem quiser, pode copiar e colar em um documento .py pois está tudo formatado e comentado.
+
+# Nesse exercício, o programa solicita ao usuário que digite o nome de uma cidade e verifica se ela começa com a palavra &quot;SANTO&quot;.
+
+# Primiero vamos entender a propósta do exercício.
+# O programa deve ler o nome de uma cidade e verificar se ela começa com a palavra &quot;SANTO&quot;. Sendo assim, &quot;SANTOS&quot; não é uma cidade que começa com &quot;SANTO&quot;.
+
+# Capturar apenas os 5 primeiros caracteres da string não é uma boa ideia, pois a cidade pode ter menos de 5 caracteres ou mais de 5 caracteres. &#039;SANTO&#039; tem exatamente 5 caracteres, mas &#039;SANTOS&#039; tem 6 caracteres.
+
+# Então vamos utilizar um método mais eficiente para verificar se a cidade começa com &quot;SANTO&quot;.
+# Vamos utilizar a função startswith() para verificar se a cidade começa com &quot;SANTO&quot;. Essa função retorna True se a string começa com o valor especificado e False caso contrário.
+
+# Vamos solicitar ao usuário que digite o nome da cidade com a função input() e tratar a string, removendo espaços em branco no início e no final com a função strip() e deixando a primeira letra de cada palavra em maiúscula com a função title().
+# Em seguida, vamos verificar se a cidade começa com &quot;SANTO&quot; utilizando a função startswith() e exibir a mensagem correspondente.
+cidade = str(input(&#039;Digite o nome da sua cidade: &#039;)).strip().title()
+
+if cidade.startswith(&#039;Santo&#039;):
+    print(f&#039;A cidade {cidade} começa com SANTO!&#039;)
+else:
+    print(f&#039;A cidade {cidade} não começa com SANTO.&#039;)
+    
+# Agora, se digitarmos &#039;SANTOS&#039;, o programa irá exibir a mensagem correta, pois a função startswith() verifica se a string começa com o valor especificado. Se digitarmos &#039;SANTOS&#039;, a função startswith() irá retornar False, pois &#039;SANTOS&#039; não começa com &#039;SANTO&#039;, apesar de conter &#039;SANTO&#039; no início da string.
+
+# Outra forma de resolver esse exercício é utilizando a função split() para separar o nome da cidade em uma lista de palavras e verificar se a primeira palavra é igual a &#039;Santo&#039;.
+
+cidade = input(&#039;Digite o nome da cidade: &#039;).strip().title().split()[0]
+# Nessa instrução, utilizamos a função split() para separar o nome da cidade em uma lista de palavras e pegamos a primeira palavra com o índice [0].
+# Em seguida, verificamos se a primeira palavra é igual a &#039;Santo&#039; e exibimos a mensagem correspondente.
+if cidade == &#039;Santo&#039;:
+    print(&#039;Começa com &quot;Santo&quot;&#039;)
+else:
+    print(&#039;Não começa com &quot;Santo&quot;&#039;)</code></pre>
+        </div>
+        <script>hljs.highlightAll();</script>
+      
+  </main>
+</body>
+</html>

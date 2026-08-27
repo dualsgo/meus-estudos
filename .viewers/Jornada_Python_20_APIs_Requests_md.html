@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>20_APIs_Requests.md - Meus Estudos</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+        <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/atom-one-dark.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <style>
+          .markdown-body { font-size: 1.05rem; line-height: 1.7; color: #cbd5e1; }
+          .markdown-body h1, .markdown-body h2 { border-bottom: 1px solid var(--glass-border); padding-bottom: 0.5rem; margin-bottom: 1rem; color: #38bdf8; }
+          .markdown-body a { color: #38bdf8; text-decoration: none; }
+          .markdown-body a:hover { text-decoration: underline; }
+          .markdown-body pre { background: #1e293b; padding: 1rem; border-radius: 8px; overflow-x: auto; border: 1px solid var(--glass-border); margin: 1rem 0; }
+          .markdown-body code { font-family: monospace; color: #eab308; background: rgba(0,0,0,0.3); padding: 0.2rem 0.4rem; border-radius: 4px; }
+          .markdown-body pre code { padding: 0; background: transparent; color: inherit; }
+          .markdown-body img { max-width: 100%; border-radius: 8px; }
+          table { border-collapse: collapse; width: 100%; margin: 1rem 0; }
+          th, td { border: 1px solid var(--glass-border); padding: 0.6rem; text-align: left; }
+          th { background: rgba(255,255,255,0.05); color: #38bdf8; }
+        </style>
+      
+  <style>
+    :root {
+      --bg-color: #0b1120;
+      --glass-bg: rgba(30, 41, 59, 0.7);
+      --glass-border: rgba(255, 255, 255, 0.08);
+      --primary: #38bdf8;
+      --text-main: #f1f5f9;
+      --text-muted: #94a3b8;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
+    body { background-color: var(--bg-color); color: var(--text-main); min-height: 100vh; display: flex; flex-direction: column; }
+    header { padding: 0.8rem 2rem; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--glass-border); background: var(--glass-bg); backdrop-filter: blur(12px); position: sticky; top: 0; z-index: 100; }
+    .header-left { display: flex; align-items: center; gap: 1rem; }
+    .back-btn { color: var(--text-main); text-decoration: none; display: flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem; border-radius: 8px; background: rgba(255,255,255,0.05); font-size: 0.9rem; transition: 0.2s; }
+    .back-btn:hover { background: rgba(56, 189, 248, 0.2); color: var(--primary); }
+    .file-title { font-size: 1.1rem; font-weight: 600; color: #f8fafc; }
+    main { flex: 1; padding: 2rem; max-width: 1200px; margin: 0 auto; width: 100%; }
+    .container { background: rgba(15, 23, 42, 0.7); border: 1px solid var(--glass-border); border-radius: 16px; padding: 2rem; box-shadow: 0 10px 30px rgba(0,0,0,0.3); overflow-x: auto; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-left">
+      <a href="../index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Voltar ao Dashboard</a>
+      <div class="file-title">20_APIs_Requests.md</div>
+    </div>
+    <div>
+      <a href="../Jornada Python/20_APIs_Requests.md" download class="back-btn"><i class="fa-solid fa-download"></i> Baixar Arquivo</a>
+    </div>
+  </header>
+  <main>
+    
+        <div class="container markdown-body" id="md-content"></div>
+        <script>
+          document.getElementById('md-content').innerHTML = marked.parse(decodeURIComponent(escape(window.atob('IyBUcmFiYWxoYW5kbyBjb20gQVBJcyAoUmVxdWVzdHMpDQoNCiMjIEVYUExJQ0HDh8ODTw0KDQpBUElzIHBlcm1pdGVtIHF1ZSBzZXUgcHJvZ3JhbWEgUHl0aG9uIGNvbnZlcnNlIGNvbSBvdXRyb3Mgc2VydmnDp29zIG5hIGludGVybmV0IChjbGltYSwgYmFuY28gZGUgZGFkb3MsIHJlZGVzIHNvY2lhaXMpLg0KDQoxLiAqKkJpYmxpb3RlY2EgYHJlcXVlc3RzYCoqOiBBIG1haXMgdXNhZGEgcGFyYSBmYXplciByZXF1aXNpw6fDtWVzIEhUVFAuDQoyLiAqKk3DqXRvZG9zIEhUVFAqKjoNCiAgICogKipHRVQqKjogUmVjdXBlcmFyIGRhZG9zIChleDogbGVyIHVtIHBvc3QpLg0KICAgKiAqKlBPU1QqKjogRW52aWFyIGRhZG9zIChleDogY3JpYXIgdW0gdXN1w6FyaW8pLg0KICAgKiAqKlBVVC9QQVRDSCoqOiBBdHVhbGl6YXIgZGFkb3MuDQogICAqICoqREVMRVRFKio6IFJlbW92ZXIgZGFkb3MuDQozLiAqKkpTT04qKjogRm9ybWF0byBwYWRyw6NvIGRlIHRyb2NhIGRlIGRhZG9zIChlbSBQeXRob24sIHZpcmEgdW0gZGljaW9uw6FyaW8pLg0KNC4gKipTdGF0dXMgQ29kZXMqKjogDQogICAqIGAyMDBgOiBTdWNlc3NvLg0KICAgKiBgNDA0YDogTsOjbyBlbmNvbnRyYWRvLg0KICAgKiBgNTAwYDogRXJybyBubyBzZXJ2aWRvci4NCg0KIyMgRVhFTVBMTyBQUsOBVElDTw0KDQpgYGBweXRob24NCmltcG9ydCByZXF1ZXN0cw0KDQojIEV4ZW1wbG8gZGUgY29uc3VsdGEgKEdFVCkgZW0gQVBJIHDDumJsaWNhIChQb2tlQVBJKQ0KdXJsID0gImh0dHBzOi8vcG9rZWFwaS5jby9hcGkvdjIvcG9rZW1vbi9waWthY2h1Ig0KDQp0cnk6DQogICAgcmVzcG9zdGEgPSByZXF1ZXN0cy5nZXQodXJsKQ0KICAgIA0KICAgICMgVmVyaWZpY2Egc2UgYSByZXF1aXNpw6fDo28gZGV1IGNlcnRvIChTdGF0dXMgMjAwKQ0KICAgIGlmIHJlc3Bvc3RhLnN0YXR1c19jb2RlID09IDIwMDoNCiAgICAgICAgZGFkb3MgPSByZXNwb3N0YS5qc29uKCkgIyBDb252ZXJ0ZSBKU09OIHBhcmEgRGljaW9uw6FyaW8NCiAgICAgICAgcHJpbnQoZiJOb21lOiB7ZGFkb3NbJ25hbWUnXS5jYXBpdGFsaXplKCl9IikNCiAgICAgICAgcHJpbnQoZiJBbHR1cmE6IHtkYWRvc1snaGVpZ2h0J119IikNCiAgICAgICAgcHJpbnQoZiJQZXNvOiB7ZGFkb3NbJ3dlaWdodCddfSIpDQogICAgZWxzZToNCiAgICAgICAgcHJpbnQoZiJFcnJvIG5hIEFQSTogU3RhdHVzIHtyZXNwb3N0YS5zdGF0dXNfY29kZX0iKQ0KDQpleGNlcHQgRXhjZXB0aW9uIGFzIGU6DQogICAgcHJpbnQoZiJFcnJvIGRlIGNvbmV4w6NvOiB7ZX0iKQ0KDQojIEV4ZW1wbG8gY29uY2VpdHVhbCBkZSBQT1NUDQojIHJlcXVlc3RzLnBvc3QodXJsLCBqc29uPXsidGl0dWxvIjogIk5vdm8gUG9zdCJ9KQ0KYGBgDQo='))));
+          hljs.highlightAll();
+        </script>
+      
+  </main>
+</body>
+</html>

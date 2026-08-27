@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>19_desafio.py - Meus Estudos</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/atom-one-dark.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/python.min.js"></script>
+        <style>
+          pre { border-radius: 8px; overflow-x: auto; font-size: 0.95rem; }
+          .code-toolbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem; }
+          .btn-copy { background: rgba(56, 189, 248, 0.2); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.4); padding: 0.4rem 0.8rem; border-radius: 6px; cursor: pointer; font-size: 0.85rem; }
+          .btn-copy:hover { background: rgba(56, 189, 248, 0.4); }
+        </style>
+      
+  <style>
+    :root {
+      --bg-color: #0b1120;
+      --glass-bg: rgba(30, 41, 59, 0.7);
+      --glass-border: rgba(255, 255, 255, 0.08);
+      --primary: #38bdf8;
+      --text-main: #f1f5f9;
+      --text-muted: #94a3b8;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
+    body { background-color: var(--bg-color); color: var(--text-main); min-height: 100vh; display: flex; flex-direction: column; }
+    header { padding: 0.8rem 2rem; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--glass-border); background: var(--glass-bg); backdrop-filter: blur(12px); position: sticky; top: 0; z-index: 100; }
+    .header-left { display: flex; align-items: center; gap: 1rem; }
+    .back-btn { color: var(--text-main); text-decoration: none; display: flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem; border-radius: 8px; background: rgba(255,255,255,0.05); font-size: 0.9rem; transition: 0.2s; }
+    .back-btn:hover { background: rgba(56, 189, 248, 0.2); color: var(--primary); }
+    .file-title { font-size: 1.1rem; font-weight: 600; color: #f8fafc; }
+    main { flex: 1; padding: 2rem; max-width: 1200px; margin: 0 auto; width: 100%; }
+    .container { background: rgba(15, 23, 42, 0.7); border: 1px solid var(--glass-border); border-radius: 16px; padding: 2rem; box-shadow: 0 10px 30px rgba(0,0,0,0.3); overflow-x: auto; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-left">
+      <a href="../index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Voltar ao Dashboard</a>
+      <div class="file-title">19_desafio.py</div>
+    </div>
+    <div>
+      <a href="../cursoemvideo_python/Curso de Python 3 - Mundo 1 Fundamentos/Curso Python #08 - Utilizando Módulos/19_desafio.py" download class="back-btn"><i class="fa-solid fa-download"></i> Baixar Arquivo</a>
+    </div>
+  </header>
+  <main>
+    
+        <div class="container">
+          <div class="code-toolbar">
+            <span style="color: #38bdf8; font-weight: 600;"><i class="fa-brands fa-python"></i> 19_desafio.py</span>
+            <button class="btn-copy" onclick="navigator.clipboard.writeText(document.getElementById('py-code').innerText); this.innerText='Copiado!'; setTimeout(()=>this.innerText='Copiar Código', 2000)"><i class="fa-regular fa-copy"></i> Copiar Código</button>
+          </div>
+          <pre><code class="language-python" id="py-code"># Exercício Python #019 - Sorteando um item na lista - Aula 00 até 08 - Mundo 1
+# Um professor quer sortear um dos seus quatro alunos para apagar o quadro. Faça um programa que ajude ele, lendo o nome dos alunos e escrevendo na tela o nome do escolhido.
+
+from random import choice
+from emoji import emojize
+from time import sleep
+
+# Tarefa 1: Ler o nome dos alunos
+alunos = [str(input(emojize(&#039;:estudante: Digite o nome do primeiro aluno: &#039;, language=&#039;pt&#039;))), str(input(emojize(&#039;:estudante: Digite o nome do segundo aluno: &#039;, language=&#039;pt&#039;))), str(input(emojize(&#039;:estudante: Digite o nome do terceiro aluno: &#039;, language=&#039;pt&#039;))), str(input(emojize(&#039;:estudante: Digite o nome do quarto aluno: &#039;, language=&#039;pt&#039;)))]
+
+# Tarefa 2: Exibir o nome do aluno escolhido.
+escolhido = choice(alunos)
+print(&#039;O aluno escolhido foi: &#039;, end=&#039;&#039;)
+sleep(1)
+print(emojize(f&#039;{escolhido} :professora:&#039;, language=&#039;pt&#039;))
+
+# Versão 2
+
+while True:
+	try:
+		nomes = [input(f&#039;Digite o nome do {i}º aluno: &#039;).strip().title() for i in range(1, 5)]
+		escolhido = choice(nomes)
+		print(f&#039;Uni, duni, tê...&#039;)
+		print(f&#039;O aluno escolhido foi você: {escolhido}&#039;)
+		break
+	except Exception as e:
+		print(f&#039;Ocorreu o erro: {e}&#039;)
+
+# Versão 3 - Resumida
+
+print(f&#039;O aluno escolhido foi: \033[1;32m{choice([input(f&#039;{i}º aluno: &#039;).strip().title() for i in range(1, 5)])}\033[m&#039;)
+
+
+# Estou compartilhando minhas anotações sobre os exercícios. Quem quiser, pode copiar e colar em um documento .py pois está tudo formatado e comentado.
+
+# Nesse exercício, o programa solicita ao usuário o nome de quatro alunos e sorteia um deles para apagar o quadro.
+
+# Vamos aprender mais uma função do módulo random, a função choice(). A função choice() é utilizada para escolher um elemento aleatório de uma sequência, como uma lista. A função recebe como argumento uma sequência e retorna um elemento aleatório dessa sequência.
+
+# Primeiro, como sempre importamos a função que iremos utilizar do módulo random.
+from random import choice
+
+# Em seguida, utilizamos a função input() para solicitar o nome dos quatro alunos. Os nomes são armazenados em uma lista chamada alunos.
+# Como ainda não falamos sobre listas, vamos armazenar os nomes em variáveis separadas e só usaremos lista no final, quando chamarmos a função choice().
+aluno1 = str(input(&#039;Digite o nome do primeiro aluno: &#039;)).strip().title()
+aluno2 = str(input(&#039;Digite o nome do segundo aluno: &#039;)).strip().title()
+aluno3 = str(input(&#039;Digite o nome do terceiro aluno: &#039;)).strip().title()
+aluno4 = str(input(&#039;Digite o nome do quarto aluno: &#039;)).strip().title()
+
+# NOTA: A função input() retorna um valor do tipo string, então não é necessário utilizar a função str() para converter o valor digitado em string. Estamos utilizando para deixar claro que o valor digitado é uma string.
+
+# strip() e title() são métodos de strings que podem ser encadeados, ou seja, chamados em sequência. O método strip() remove espaços em branco no início e no final da string, enquanto o método title() deixa a primeira letra de cada palavra em maiúscula.
+
+# Com os nomes dos alunos armazenados, utilizamos a função choice() para escolher um aluno aleatório da lista alunos. O nome do aluno escolhido é armazenado na variável escolhido.
+escolhido = choice([aluno1, aluno2, aluno3, aluno4])
+
+# A função choice() recebe uma lista de alunos como argumento e retorna um dos nomes aleatoriamente. O nome do aluno escolhido é armazenado na variável escolhido. Dessa forma, fica fácil exibir o nome do aluno escolhido na tela.
+
+# Por fim, exibimos na tela o nome do aluno escolhido.
+print(f&#039;O aluno escolhido foi: {escolhido}&#039;)
+
+# NOTA: listas são um tipo de dado que armazena uma coleção de elementos. Cada elemento da lista é separado por vírgula e a lista é delimitada por colchetes. No exemplo acima, a lista alunos contém os nomes dos quatro alunos digitados pelo usuário. Falaremos mais sobre listas em aulas futuras. </code></pre>
+        </div>
+        <script>hljs.highlightAll();</script>
+      
+  </main>
+</body>
+</html>

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>101_desafio.py - Meus Estudos</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/atom-one-dark.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/python.min.js"></script>
+        <style>
+          pre { border-radius: 8px; overflow-x: auto; font-size: 0.95rem; }
+          .code-toolbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem; }
+          .btn-copy { background: rgba(56, 189, 248, 0.2); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.4); padding: 0.4rem 0.8rem; border-radius: 6px; cursor: pointer; font-size: 0.85rem; }
+          .btn-copy:hover { background: rgba(56, 189, 248, 0.4); }
+        </style>
+      
+  <style>
+    :root {
+      --bg-color: #0b1120;
+      --glass-bg: rgba(30, 41, 59, 0.7);
+      --glass-border: rgba(255, 255, 255, 0.08);
+      --primary: #38bdf8;
+      --text-main: #f1f5f9;
+      --text-muted: #94a3b8;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
+    body { background-color: var(--bg-color); color: var(--text-main); min-height: 100vh; display: flex; flex-direction: column; }
+    header { padding: 0.8rem 2rem; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--glass-border); background: var(--glass-bg); backdrop-filter: blur(12px); position: sticky; top: 0; z-index: 100; }
+    .header-left { display: flex; align-items: center; gap: 1rem; }
+    .back-btn { color: var(--text-main); text-decoration: none; display: flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem; border-radius: 8px; background: rgba(255,255,255,0.05); font-size: 0.9rem; transition: 0.2s; }
+    .back-btn:hover { background: rgba(56, 189, 248, 0.2); color: var(--primary); }
+    .file-title { font-size: 1.1rem; font-weight: 600; color: #f8fafc; }
+    main { flex: 1; padding: 2rem; max-width: 1200px; margin: 0 auto; width: 100%; }
+    .container { background: rgba(15, 23, 42, 0.7); border: 1px solid var(--glass-border); border-radius: 16px; padding: 2rem; box-shadow: 0 10px 30px rgba(0,0,0,0.3); overflow-x: auto; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-left">
+      <a href="../index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Voltar ao Dashboard</a>
+      <div class="file-title">101_desafio.py</div>
+    </div>
+    <div>
+      <a href="../cursoemvideo_python/Curso de Python 3 - Mundo 3 Estruturas Compostas/Curso Python #021 - Funções (Parte 2)/101_desafio.py" download class="back-btn"><i class="fa-solid fa-download"></i> Baixar Arquivo</a>
+    </div>
+  </header>
+  <main>
+    
+        <div class="container">
+          <div class="code-toolbar">
+            <span style="color: #38bdf8; font-weight: 600;"><i class="fa-brands fa-python"></i> 101_desafio.py</span>
+            <button class="btn-copy" onclick="navigator.clipboard.writeText(document.getElementById('py-code').innerText); this.innerText='Copiado!'; setTimeout(()=>this.innerText='Copiar Código', 2000)"><i class="fa-regular fa-copy"></i> Copiar Código</button>
+          </div>
+          <pre><code class="language-python" id="py-code"># Exercício Python #101 - Funções para votação - Aula 00 até 21 - Mundo 3
+# Crie um programa que tenha uma função chamada voto() que vai receber como parâmetro o ano de nascimento de uma pessoa, retornando um valor literal indicando se uma pessoa tem voto NEGADO, OPCIONAL e OBRIGATÓRIO nas eleições.
+
+def valor_valido(mensagem):
+	while True:
+		try:
+			entrada = int(input(mensagem))
+			if 1924 &lt; entrada &lt; 2024:
+				return entrada
+			else:
+				print(&#039;Ano fora do intervalo permitido...&#039;)
+		except ValueError:
+			print(&#039;Apenas valores numéricos!&#039;)
+
+
+def voto(ano_de_nascimento):
+	idade = 2024 - ano_de_nascimento
+	if idade &lt; 16:
+		print(f&#039;Idade: {idade} anos - Não tem idade suficiente para votar!&#039;)
+	elif idade == 16 or idade == 17 or idade &gt; 70:
+		print(f&#039;Idade: {idade} anos - Voto facultativo!&#039;)
+	else:
+		print(f&#039;Idade: {idade} anos - Voto obrigatório!&#039;)
+
+
+voto(valor_valido(&#039;Digite o seu ano de nascimento: &#039;))
+
+# Estou compartilhando minhas anotações sobre os exercícios. Quem quiser, pode copiar e colar em um documento .py pois está tudo formatado e comentado.
+
+# Nesse exercício, temos que criar uma função chamada voto() que vai receber como parâmetro o ano de nascimento de uma pessoa, retornando um valor literal indicando se uma pessoa tem voto NEGADO, OPCIONAL e OBRIGATÓRIO nas eleições.
+
+# Primeiramente, vamos receber o ano de nascimento do usuário. Para isso, vamos criar uma função chamada valor_valido() que vai receber uma mensagem como parâmetro e vai retornar um valor inteiro válido.
+def valor_valido(mensagem):
+	while True:
+		try:
+			entrada = int(input(mensagem))
+			if 1924 &lt; entrada &lt; 2024:
+				return entrada
+			else:
+				print(&#039;Ano fora do intervalo permitido...&#039;)
+		except ValueError:
+			print(&#039;Apenas valores numéricos!&#039;)
+
+# Essa estrutura garante que o usuário só vai digitar um valor numérico válido. O ano de nascimento deve estar entre 1924 e 2024. Você pode alterar esses valores se quiser ou remover essa verificação.
+
+# Agora, vamos criar a função voto() que vai receber o ano de nascimento como parâmetro e vai retornar se a pessoa tem voto NEGADO, OPCIONAL ou OBRIGATÓRIO.
+def voto(ano_de_nascimento):
+	idade = 2024 - ano_de_nascimento
+	if idade &lt; 16:
+		print(f&#039;Idade: {idade} anos - Não tem idade suficiente para votar!&#039;)
+	elif idade == 16 or idade == 17 or idade &gt; 70:
+		print(f&#039;Idade: {idade} anos - Voto facultativo!&#039;)
+	else:
+		print(f&#039;Idade: {idade} anos - Voto obrigatório!&#039;)
+
+
+# Por fim, vamos chamar a função voto() passando o ano de nascimento que foi validado pela função valor_valido().
+voto(valor_valido(&#039;Digite o seu ano de nascimento: &#039;))</code></pre>
+        </div>
+        <script>hljs.highlightAll();</script>
+      
+  </main>
+</body>
+</html>

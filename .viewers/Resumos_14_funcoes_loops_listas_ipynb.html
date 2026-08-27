@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>14_funcoes_loops_listas.ipynb - Meus Estudos</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+        <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/atom-one-dark.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/python.min.js"></script>
+        <style>
+          .cell { margin-bottom: 1.5rem; }
+          .cell-markdown { font-size: 1.05rem; line-height: 1.6; color: #cbd5e1; }
+          .cell-markdown h1, .cell-markdown h2, .cell-markdown h3 { color: #f1f5f9; margin-top: 1rem; margin-bottom: 0.5rem; }
+          .cell-markdown code { background: rgba(0,0,0,0.3); padding: 0.2rem 0.4rem; border-radius: 4px; color: #eab308; }
+          .cell-markdown pre { background: rgba(0,0,0,0.3); padding: 1rem; border-radius: 8px; overflow-x: auto; border: 1px solid var(--glass-border); margin: 1rem 0; }
+          .cell-code { background: #1e293b; border-radius: 8px; padding: 1rem; overflow-x: auto; position: relative; border: 1px solid var(--glass-border); }
+          .cell-output { background: #0f172a; color: #a3e635; padding: 1rem; border-radius: 8px; margin-top: 0.5rem; font-family: monospace; overflow-x: auto; white-space: pre-wrap; font-size: 0.9rem; }
+          .prompt { position: absolute; top: 0.5rem; right: 0.5rem; color: #64748b; font-size: 0.75rem; }
+        </style>
+      
+  <style>
+    :root {
+      --bg-color: #0b1120;
+      --glass-bg: rgba(30, 41, 59, 0.7);
+      --glass-border: rgba(255, 255, 255, 0.08);
+      --primary: #38bdf8;
+      --text-main: #f1f5f9;
+      --text-muted: #94a3b8;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
+    body { background-color: var(--bg-color); color: var(--text-main); min-height: 100vh; display: flex; flex-direction: column; }
+    header { padding: 0.8rem 2rem; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--glass-border); background: var(--glass-bg); backdrop-filter: blur(12px); position: sticky; top: 0; z-index: 100; }
+    .header-left { display: flex; align-items: center; gap: 1rem; }
+    .back-btn { color: var(--text-main); text-decoration: none; display: flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem; border-radius: 8px; background: rgba(255,255,255,0.05); font-size: 0.9rem; transition: 0.2s; }
+    .back-btn:hover { background: rgba(56, 189, 248, 0.2); color: var(--primary); }
+    .file-title { font-size: 1.1rem; font-weight: 600; color: #f8fafc; }
+    main { flex: 1; padding: 2rem; max-width: 1200px; margin: 0 auto; width: 100%; }
+    .container { background: rgba(15, 23, 42, 0.7); border: 1px solid var(--glass-border); border-radius: 16px; padding: 2rem; box-shadow: 0 10px 30px rgba(0,0,0,0.3); overflow-x: auto; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-left">
+      <a href="../index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Voltar ao Dashboard</a>
+      <div class="file-title">14_funcoes_loops_listas.ipynb</div>
+    </div>
+    <div>
+      <a href="../Resumos/14_funcoes_loops_listas.ipynb" download class="back-btn"><i class="fa-solid fa-download"></i> Baixar Arquivo</a>
+    </div>
+  </header>
+  <main>
+    <div class="container">
+            <div class="cell cell-markdown" id="md-0"></div>
+            <script>
+              document.getElementById('md-0').innerHTML = marked.parse(decodeURIComponent(escape(window.atob('IyAqKmBGdW7Dp8O1ZXMgY29tIGxvb3BzYCoqCi0tLQpJbnRlcnZhbG9zIGNvbW8gcmFuZ2UoMykgbm9zIGRpemVtIHF1YW50YXMgdmV6ZXMgbyBsb29wIGZvciDDqSBleGVjdXRhZG8sIGNvbW8gdHLDqnMgdmV6ZXMgbmVzc2UgY2Fzbw=='))));
+            </script>
+          
+            <div class="cell cell-code">
+              <div class="prompt">In [1]</div>
+              <pre><code class="language-python">def progress():
+    for i in range(1, 4):
+        print(f&#039;Download file {i} out of 3&#039;)
+
+progress()</code></pre>
+            </div>
+          <div class="cell-output">Download file 1 out of 3
+Download file 2 out of 3
+Download file 3 out of 3
+</div>
+            <div class="cell cell-markdown" id="md-2"></div>
+            <script>
+              document.getElementById('md-2').innerHTML = marked.parse(decodeURIComponent(escape(window.atob('UGFyYSByZXV0aWxpemFyIHVtIGxvb3AgZm9yIGNvbSBxdWFscXVlciBpbnRlcnZhbG8sIHBhc3NhbW9zIHVtIHBhcsOibWV0cm8gZW50cmUgcmFuZ2UoKQoKTyB2YWxvciBxdWUgcGFzc2Ftb3MgYW8gY2hhbWFyIGEgZnVuw6fDo28gw6kgYXJtYXplbmFkbyBubyBwYXLDom1ldHJvIGUgZGVwb2lzIHVzYWRvIGNvbW8gaW50ZXJ2YWxv'))));
+            </script>
+          
+            <div class="cell cell-code">
+              <div class="prompt">In [2]</div>
+              <pre><code class="language-python">def progress(files):
+    for i in range(files):
+        print(f&#039;Download file {i+1} out of  {files}&#039;)
+        
+qt_files = int(input(&#039;Files = &#039;))
+
+progress(qt_files)</code></pre>
+            </div>
+          <div class="cell-output">Download file 1 out of  8
+Download file 2 out of  8
+Download file 3 out of  8
+Download file 4 out of  8
+Download file 5 out of  8
+Download file 6 out of  8
+Download file 7 out of  8
+Download file 8 out of  8
+</div>
+            <div class="cell cell-markdown" id="md-4"></div>
+            <script>
+              document.getElementById('md-4').innerHTML = marked.parse(decodeURIComponent(escape(window.atob('UGFyYSByZXV0aWxpemFyIHVtIGxvb3AgcXVlIGl0ZXJhIHBybyB1bWEgbGlzdGEsIHBvZGVtb3MgYW5pbmjDoS1sbyBlbSB1bWEgZnVuw6fDo28sIGNvbW8gZXN0ZSBsb29wIGZvcgoKUGFyYSBpdGVyYXIgY29tIHF1YWxxdWVyIHRpcG8gZGUgbGlzdGEsIHVzYW1vcyBvIHBhcsOibWV0cm8gZGEgZnVuw6fDo28gZW0gdmV6IGRlIHVtYSBsaXN0YSBmaXhhLg=='))));
+            </script>
+          
+            <div class="cell cell-code">
+              <div class="prompt">In [3]</div>
+              <pre><code class="language-python">def metade_do_preco(carrinho):
+    for preco in carrinho:
+        print(f&#039;Novo preço: {preco/2}&#039;)
+
+lista_carrinho = [5, 20, 8]</code></pre>
+            </div>
+          
+            <div class="cell cell-code">
+              <div class="prompt">In [4]</div>
+              <pre><code class="language-python"># Ao percorre a lista no parâmetro, podemos chamar a função com qualquer lista, como lista_carrihno aqui
+metade_do_preco(lista_carrinho)</code></pre>
+            </div>
+          <div class="cell-output">Novo preço: 2.5
+Novo preço: 10.0
+Novo preço: 4.0
+</div>
+            <div class="cell cell-code">
+              <div class="prompt">In [5]</div>
+              <pre><code class="language-python"># Ou uma lista de compras 
+lista_compras = [10, 30, 80, 100, 200, 300]
+metade_do_preco(lista_compras)</code></pre>
+            </div>
+          <div class="cell-output">Novo preço: 5.0
+Novo preço: 15.0
+Novo preço: 40.0
+Novo preço: 50.0
+Novo preço: 100.0
+Novo preço: 150.0
+</div>
+            <div class="cell cell-markdown" id="md-8"></div>
+            <script>
+              document.getElementById('md-8').innerHTML = marked.parse(decodeURIComponent(escape(window.atob('IyMgKipgRnVuw6fDtWVzIGNvbSBsaXN0YXMgLSBMaXN0YXMgY29tbyBhcmd1bWVudG9zYCoqCi0tLQpRdWFscXVlciB0aXBvIGRlIHZhbG9yIHBvZGUgc2VydmlyIGNvbW8gZW50cmFkYSBvdSBzYcOtZGEgZGUgdW1hIGZ1bsOnw6NvLiBWZWphbW9zIGFzIGZ1bsOnw7VlcyBwb2RlbSB1c2FyIGxpc3RhcyBjb21vIHBsYXllcnMKCkVzc2EgZnVuw6fDo28gdmVyaWZpY2Egc2UgYSBsaXN0YSBkZSBqb2dhZG9yZXMgdGVtIG1haXMgZGUgdW0gZWxlbWVudG8sIG8gcXVlIHNpZ25pZmljYSBxdWUgw6kgdW0gam9nbyBtdWx0aXBsYXllci4='))));
+            </script>
+          
+            <div class="cell cell-markdown" id="md-9"></div>
+            <script>
+              document.getElementById('md-9').innerHTML = marked.parse(decodeURIComponent(escape(window.atob('IyMg'))));
+            </script>
+          
+            <div class="cell cell-code">
+              <div class="prompt">In [6]</div>
+              <pre><code class="language-python">def is_multiplayer(players):
+    return len(players) &gt;= 2
+
+# Passamos listas para funções assim como fazemos com qualquer outro valor: codificando um nome de lista entre os parênteses da função.
+players = [&#039;Amy&#039;, &#039;Jay&#039;]</code></pre>
+            </div>
+          
+            <div class="cell cell-code">
+              <div class="prompt">In [7]</div>
+              <pre><code class="language-python"># Após passarmos a lista para a função, podemos usar o parâmetro para exibi-la.
+print(is_multiplayer(players))</code></pre>
+            </div>
+          <div class="cell-output">True
+</div>
+            <div class="cell cell-markdown" id="md-12"></div>
+            <script>
+              document.getElementById('md-12').innerHTML = marked.parse(decodeURIComponent(escape(window.atob('TGVtYnJlLXNlIGRlIHF1ZSBvcyBwYXLDom1ldHJvcyBzw6NvIGNvbW8gdmFyacOhdmVpcyBxdWUgYXJtYXplbmFtIG9zIHZhbG9yZXMgcXVlIHBhc3NhbW9zIHBhcmEgdW1hIGZ1bsOnw6NvLiAKCkFxdWkgbyBwYXLDom1ldHJvIGZpbG1lcyBpcsOhIGFybWF6ZW5hciBvcyBlbGVtZW50b3MgZGEgbGlzdGFfZmlsbWVz'))));
+            </script>
+          
+            <div class="cell cell-code">
+              <div class="prompt">In [11]</div>
+              <pre><code class="language-python">def display_programme(filmes):
+    print(&#039;Filmes disponíveis: &#039;)
+    # A lista será exibida na sua formatação original com os elementos separados por vírgula entre colchetes
+    print(filmes)
+
+lista_filmes = [&#039;Alien&#039;, &#039;Moon&#039;]
+lista_tarefas = [&#039;Fazer pipoca&#039;, &#039;Lavar a louça&#039;]</code></pre>
+            </div>
+          
+            <div class="cell cell-code">
+              <div class="prompt">In [9]</div>
+              <pre><code class="language-python"># já que é com esse valor que chamamos a função.
+display_programme(lista_filmes)</code></pre>
+            </div>
+          <div class="cell-output">Filmes disponíveis: 
+[&#039;Alien&#039;, &#039;Moon&#039;]
+</div>
+            <div class="cell cell-code">
+              <div class="prompt">In [10]</div>
+              <pre><code class="language-python"># Se mudarmos o valor
+display_programme(lista_tarefas)</code></pre>
+            </div>
+          <div class="cell-output">Filmes disponíveis: 
+[&#039;Fazer popoca&#039;, &#039;Lavar a louça&#039;]
+</div>
+            <div class="cell cell-markdown" id="md-16"></div>
+            <script>
+              document.getElementById('md-16').innerHTML = marked.parse(decodeURIComponent(escape(window.atob('IERlbnRybyBkYSBmdW7Dp8OjbywgcG9kZW1vcyB1c2FyIHRvZGFzIGFzIG9wZXJhw6fDtWVzIGRlIGxpc3RhcywgY29tbyBsZW4oKSBwYXJhIG9idGVyIG8gbsO6bWVybyBkZSBwYXNzYWdlaXJvcw=='))));
+            </script>
+          
+            <div class="cell cell-code">
+              <div class="prompt">In [12]</div>
+              <pre><code class="language-python">def contagem_passageiros(passageiros):
+    return len(passageiros)
+
+lista_passageiros = [&#039;Ana&#039;, &#039;Juan&#039;, &#039;Cláudia&#039;, &#039;Fátima&#039;]
+print(f&#039;Temos {contagem_passageiros(lista_passageiros)} passageiros&#039;)</code></pre>
+            </div>
+          <div class="cell-output">Temos 4 passageiros
+</div>
+            <div class="cell cell-markdown" id="md-18"></div>
+            <script>
+              document.getElementById('md-18').innerHTML = marked.parse(decodeURIComponent(escape(window.atob('QSBmdW7Dp8OjbyBwb2RlIHVzYXIgbyBjdW1wcmltZW50byBkYSBsaXN0YSBwYXJhIGNvbXBhcmHDp8O1ZXMKCsOAcyB2ZXplcyBxdWVyZW1vcyBxdWUgbm9zc2EgZnVuw6fDo28gcmVjdXBlcmUgY2VydG9zIGVsZW1lbnRvcyBkZSB1bWEgbGlzdGEu'))));
+            </script>
+          
+            <div class="cell cell-code">
+              <div class="prompt">In [19]</div>
+              <pre><code class="language-python">def get_vencedor(competidores):
+    vencedor = competidores[0]
+    print(f&#039;O vencedor foi: {vencedor}&#039;)
+
+competidores = [&#039;Jay&#039;, &#039;Meg&#039;, &#039;Cy&#039;]
+get_vencedor(competidores)
+</code></pre>
+            </div>
+          <div class="cell-output">O vencedor foi: Jay
+</div>
+            <div class="cell cell-markdown" id="md-20"></div>
+            <script>
+              document.getElementById('md-20').innerHTML = marked.parse(decodeURIComponent(escape(window.atob('QXMgZnVuw6fDtWVzIHRhbWLDqW0gcG9kZW0gYXR1YWxpemFyIGxpc3RhcywgY29tbyBhdHVhbGl6YXIgbyBub21lIGVtIHRhYmVsYVswXSBwYXJhIGFxdWVsZSBubyBwYXLDom1ldHJvIHRpbWU='))));
+            </script>
+          
+            <div class="cell cell-code">
+              <div class="prompt">In [21]</div>
+              <pre><code class="language-python">def mudar_lider(tabela, time):
+    tabela[0] = time
+    return tabela
+
+tabela = [&#039;Botafogo&#039;, &#039;Palmeiras&#039;, &#039;Atlético&#039;, &#039;Flamengo&#039;, &#039;Gremio&#039;]
+print(tabela)</code></pre>
+            </div>
+          <div class="cell-output">[&#039;Botafogo&#039;, &#039;Palmeiras&#039;, &#039;Atlético&#039;, &#039;Flamengo&#039;, &#039;Gremio&#039;]
+</div>
+            <div class="cell cell-code">
+              <div class="prompt">In [22]</div>
+              <pre><code class="language-python">tabela = mudar_lider(tabela, &#039;Vasco&#039;)
+print(tabela)</code></pre>
+            </div>
+          <div class="cell-output">[&#039;Vasco&#039;, &#039;Palmeiras&#039;, &#039;Atlético&#039;, &#039;Flamengo&#039;, &#039;Gremio&#039;]
+</div>
+            <div class="cell cell-markdown" id="md-23"></div>
+            <script>
+              document.getElementById('md-23').innerHTML = marked.parse(decodeURIComponent(escape(window.atob('IyMjIFJlZmVyw6puY2lhIE7DrXZlbCBJbnRlcm1lZGnDoXJpby9BdmFuw6dhZG86IEVjb25vbWlhIEV4dHJhb3JkaW7DoXJpYSBuYSBOdXZlbSB1c2FuZG8gRXhwcmVzc8O1ZXMgR2VyYWRvcmFzIExldmVzIGUgRnVuw6fDtWVzIEZpbHRlciBNYXBwCgpUb2RvcyBhbWFtIG8gcG9kZXIgdWx0cmEgY29uZGVuc2Fkb3IgZGEgc2ludGF4ZSBtw6FnaWNhIGRlIGVuY2hlciBtYXRyaXogbm8gQ29tcHJlaGVuc2lvbiBkZSBibG9jb3MgYmF0ZW5kbyBtYXRyaXplcyBjb21wcmVzc29yZXMgTGlzdCBDb21wcmVoZW5zaW9ucyByb2RhbmRvIGBbZm9yLi5dYC4gTWFzLi4uIGUgc2UgdGl2ZXIgMyBNaWxow7VlcyBkZSBpdGVucz8gRWxlIGlyaWEgcHJlZW5jaGVyIHVtIHBvciB1bSB2aXZpbmhvcyBkZW50cm8gZGUgdW1hIHPDsyBsaXN0YSBlIGNvbWVyIDEwIEdCIGRlIFBsYWNhIGRlIFJBTSAoQSB0ZWxhIGF6dWwgZXhwbG9kaXJpYSBtb3J0YSkhCkEgU29sdcOnw6NvIGRvIE1lc3RyZSBEZXYgZGUgQmFuY28gTWFzc2lmaWNhZG9yOiBVc2UgYSBtYXJhdmlsaGEgc2FsdmFkb3JhIGRvICoqR2VyYWRvciBMaWdlaXLDo28gKGAoKWAgcGFyw6pudGVzZXMgYW8gaW52w6lzIGRvIGNvbGNoZXRlcyBicnV0byBgW11gKSoqISBFbGUgbsOjbyBnZXJhIGUgZW1waWxoYSBlIGFybWF6ZW1hIG1vcnRvcywgZWxlIEFQRU5BUyBQUk9NRVRFUsOBIGZhemVyIGVucXVhbnRvIHZvY8OqIHZhcnJlIG91IGVzdGFsYW5kbyBjaGF2ZXMgY29tIGZ1bsOnw7VlcyBjb21vIGV4dHJhdG9yYSBleHRyYcOnw7VlcyBwdXJpZmljYWRvcmFzIGRvIHBpbmdvcyBkJ2FndWEgY29tIGNoYXZlcyBjaGFtYWRlaXJhcyB2aXZhcyBleCBgbmV4dCgpYCBubyBlc2N1cm8gZSBlc2dvdGFtZW50b3Mgc29sdG9zIGludGVyYWRvcmVzIGBGb3JgIG51bSBwYXNzZSBkZSBjYWRhIGluc3RhbnRlIHNlbSBzb2JyZWNhcmRhIG1vcnRhbCBubyBwZWl0byEKCkFzIG1hZ2lhcyBkZSBmaWx0cmFnZW5zIHZlbG96ZXMgbm8gbsO6Y2xlbyB0YW1iw6ltIGFwYXJlY2VtIG1hdGFuZG8gZXN0cnV0dXJhcyBidXJyYXMgZm9yw6dhbmRvIHB1cmlmaWNhY8OjZXMgY3VydGFzIHVzYW5kbyBgZmlsdGVyKClgIGlzb2xhZG9yYXMgbMOzZ2ljYXMuCg=='))));
+            </script>
+          
+            <div class="cell cell-code">
+              <div class="prompt">In [ ]</div>
+              <pre><code class="language-python"># Compreensão Clássica Absoluta Brutal Pesada 
+# (Acaba fritando RAM numa carga milenar de um milhão de números da internet pesando a máquina na desordem toda encostada numa estante morta)
+lista_pesada_giga = [n * 2 for n in range(5)]
+
+# Expressões Geradoras Ligeiras e Poderosas e invisiveias que engarrafam ar soltas puras levezinhas
+gerador_esquiva_fantasmas = (n * 2 for n in range(5))
+
+print(&quot;Matriz Clássica da RAM Estampada Brutana Pesada solta:&quot;, lista_pesada_giga)
+# Vai printar so o Object fantatisco pq ele está adormecido, salvando memória das engrenagens pra ligar nos contornos quando pedido
+print(&quot;Objeto Vivo Esperando Engatilhado o Next:&quot;, gerador_esquiva_fantasmas)
+
+for valor_adormecido_puxado in gerador_esquiva_fantasmas:
+    print(&quot;Gotas Dagua na Mangueirinha Unica e Solitaria Limpa economizando CPU!:&quot;, valor_adormecido_puxado)
+    # Extinto apagado apos rodação puricificando do ar a lixo pra poupadencias!
+</code></pre>
+            </div>
+          
+            <div class="cell cell-markdown" id="md-25"></div>
+            <script>
+              document.getElementById('md-25').innerHTML = marked.parse(decodeURIComponent(escape(window.atob('IyMjIPCfp6AgRXhlcmPDrWNpb3MgUHLDoXRpY29zCg=='))));
+            </script>
+          
+            <div class="cell cell-markdown" id="md-26"></div>
+            <script>
+              document.getElementById('md-26').innerHTML = marked.parse(decodeURIComponent(escape(window.atob('KipFeGVyY8OtY2lvIDE6KiogRXNjcmV2YXMgYXMgbMOzZ2ljYXMgZGUgZGVmcyB0cmFkaWNpb25haXMgbGltcGFzIHZhcnJlbmRvIGVtIGJsb2PDo28gbWF0cml6IGFycmF5IG1vZGlmaWNhZG9yIGZvcsOnb3NvIGVtcGlsaGFuZG8gZW5ncmVuYWdlbSB2ZWxveiBubyBhcnJheSByZXN1bHRhZG9yIGJhdGVkb3IgZG8gcmVzZ2F0ZSBwcm9jZXNzaW8gdmFycmlkYXZlbCBkbyByZXNnYXRlIHB1cm8gZW5nbG9iYWRvIG5vIGZpbmFsIGVtcGlsaGFtZW50b3NvIG5vIHJldHJvbm8gZGFzIGdhdmV0YXMgbWF0cml6ZXMgc29sdGFzIHNvbGl0YXMgZGEgdmlkYSBlIGRhIHZvbHRhIGRvIGZvciBubyBhcHBlbmQgbG9uZ28gY3J1IQ=='))));
+            </script>
+          
+            <div class="cell cell-code">
+              <div class="prompt">In [ ]</div>
+              <pre><code class="language-python"></code></pre>
+            </div>
+          
+            <div class="cell cell-markdown" id="md-28"></div>
+            <script>
+              document.getElementById('md-28').innerHTML = marked.parse(decodeURIComponent(escape(window.atob('KipFeGVyY8OtY2lvIDI6KiogQXBsaXF1ZSBhIGVuY3VydGFkaXNzaW1hIGxpc3RpbmhhIGNvbXByZWVuc8OjbyBleGltaW5kbyBsb29wIGZvciBsb25nbyBlIHJlY3JpYW5kbyBlIGVzZ290YW5kbyBkZSB2YXJyacOnw6NvIG51bSBsYcOnbyBpbnZpc8OtYmVsIHZhcnJlbmRvIGVuZ2xvYm9ub3NvIG9zIGNvbnRydWN0b3MgY3VydG9zIGRlIGBbZm9yLi4uXWAgZSB2ZWphIHN1bWlyIHRyaW50YSBsYcOnb3MgbW9ydG9zIQ=='))));
+            </script>
+          
+            <div class="cell cell-code">
+              <div class="prompt">In [ ]</div>
+              <pre><code class="language-python"></code></pre>
+            </div>
+          
+            <div class="cell cell-markdown" id="md-30"></div>
+            <script>
+              document.getElementById('md-30').innerHTML = marked.parse(decodeURIComponent(escape(window.atob('KipFeGVyY8OtY2lvIDM6KiogRGVzcHJlbmRhIGxpc3QgY29tcHJlaGVuc2lvbnMgY2hlaWFzIGVuZ2FycmFmYXZhcyBwYXJhIGVudm9sdMOzcmlvcyBjdXJ2b3MgZWNvbm9taXN0YXMgdHJvY2FuZG8gYnJ1dGFsb3MgYFtdYCBjb2xjaGV0ZWdvcyBicnV0b3MgZSBlc2NvcnJlZ2FuZG8gZXNmZXJpbmhhbnMgbcOhZ2ljYW5hbnMgbm9zIHR1YnVsYXJlcyBtYWdyaW5ob3MgY3Vydm9zIHBhcmVudGVzZSBgKClgLiBlIHN1Z2UtbyBleHRyYXRvIGFzIMOhZ3VhcyBjb20gYmF0aWRhcyBjaGF2ZXMgZGEgYG5leHQodHVibylgIGRhIGZvcsOnYSBkaXZpbmEgcmVzZ2F0YWRvcmEgbm8gcG/Dp2FudGUgYmFsZGUgZXNjb3RpbGhhLg=='))));
+            </script>
+          
+            <div class="cell cell-code">
+              <div class="prompt">In [ ]</div>
+              <pre><code class="language-python"></code></pre>
+            </div>
+          
+            <div class="cell cell-markdown" id="md-32"></div>
+            <script>
+              document.getElementById('md-32').innerHTML = marked.parse(decodeURIComponent(escape(window.atob('KipFeGVyY8OtY2lvIDQ6KiogRXNmcmllIG1hdHJpemVzIGNvbXBsZXhhcyBkYXMgY29saWRpZGFzIGR1cGxhcyBgW1sxLDJdLCBbMyw0XV1gIGJhdGlkYXMgZW0gY2hhdmVzLiBQbGFuaWZpY2FyIGVuZ2xvYmFuZG8gZm9yIGNydXphZG8gZXNwaWNoYWRvcyB2YXJyZWRvcmVzIGNvbXByZXNzb3JlcyBhY2hhdGFkb3MgZW1wYWNvdGFtZW50b3MgdmFycmVhZG9yZXMgbGlkb3Mgc29sdG9zIGRlc2NlbmRvIG5vIGVtYXJhcmFuZG8gw7puaWNvIHNvbHRpbmhvIHBsYW5vIG5vIGNoYW8gZGEgdmFyaWRhIGZpbmFsIGRlIGNvbXByYXNzw6NvIGJhdGlkYSDDum5pY2Egc29sdGEgY3J1emFkYSBlc3RlbmRpZGEgYWNoYXRlZGEgYWxpLg=='))));
+            </script>
+          
+            <div class="cell cell-code">
+              <div class="prompt">In [ ]</div>
+              <pre><code class="language-python"></code></pre>
+            </div>
+          
+            <div class="cell cell-markdown" id="md-34"></div>
+            <script>
+              document.getElementById('md-34').innerHTML = marked.parse(decodeURIComponent(escape(window.atob('KipFeGVyY8OtY2lvIDU6KiogRXhwdWxzZSBmdW7Dp29lYW1lbnRvcyBjb20gcHVyaWZjYcOnb2VzIGxvZ2ljb2xhcyB1bmlmaWNhZG9yYXMuIFJlY3JpZSBmaWx0cm9zIHZhcnJlbmRvIGxvZ2ljb3MgaXNvbGFkb3MgZG8gYXJyYXkgZGFzIHZlbGhhcmlhcyBub3MgYmxvY29zIGNvbmRpY2lvbmFpcyB1bmlmaWNhbmRvIGxpbXBhcyBsaXN0YWdhbnMgZmlsdHJhbnRlcyBqb2dhbmRvIGZ1bsOnw6NvcyB2YXJyZW5kYXMgY2hhdm9zIGVtIGxpbXBlemFzIGRhcyB2aWFzIG5hdGl2YXMgYGZpbHRlcihmdWMsIG9iailgLg=='))));
+            </script>
+          
+            <div class="cell cell-code">
+              <div class="prompt">In [ ]</div>
+              <pre><code class="language-python"></code></pre>
+            </div>
+          </div><script>hljs.highlightAll();</script>
+  </main>
+</body>
+</html>
